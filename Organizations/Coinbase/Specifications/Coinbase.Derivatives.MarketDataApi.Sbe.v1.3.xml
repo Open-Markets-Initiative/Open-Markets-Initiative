@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--suppress XmlDefaultAttributeValue -->
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="fairx.gateway.sbe.codec.marketdata"
+                   id="1201"
+                   version="3"
+                   semanticVersion="1.3"
+                   description="FairX Market Data API"
+                   byteOrder="littleEndian">
+    <types>
+        <composite name="PacketHeader" description="Header of all packets for all channels including incremental, snapshot and retransmit">
+            <type name="sendingTime" primitiveType="int64" description="Nanoseconds since Unix epoch."/>
+            <type name="seqNum"      primitiveType="int64" description="Sequence number of first message in packet."/>
+            <type name="channelId"   primitiveType="uint16" description="Channel identifier for product/instrument set."/>
+            <set name="flags" encodingType="uint8">
+                <choice name="INCREMENTAL_UPDATE">0</choice>
+                <choice name="SNAPSHOT">1</choice>
+                <choice name="RETRANSMIT">2</choice>
+            </set>
+            <type name="messageCount" primitiveType="uint8" description="Count of messages within packet."/>
+            <type name="snapshotInstrumentId" primitiveType="int32" description="Instrument id of messages in snapshot packet (not used for incrementals)"/>
+        </composite>
+        
+        <composite name="messageHeader" description="Frame length plus standard SBE header">
+            <type name="frameLength" primitiveType="uint16" description="Total message size in bytes including this header."/>
+            <type name="blockLength" primitiveType="uint16" description="Length of message body excluding this header and any repeating groups or variable-length fields."/>
+            <type name="templateId"  primitiveType="uint16"/>
+            <type name="schemaId"    primitiveType="uint16"/>
+            <type name="version"     primitiveType="uint16"/>
+        </composite>
+        <composite name="InstrumentHeader" description="Common instrument header following message header">
+            <set name="flags" encodingType="uint8">
+                <choice name="startOfTransaction">0</choice>
+                <choice name="endOfTransaction">1</choice>
+                <choice name="clearBook">7</choice>
+            </set>
+            <enum name="side" encodingType="int8">
+                <validValue name="BUY">1</validValue>
+                <validValue name="SELL">-1</validValue>
+                <validValue name="OPENING_FILL">0</validValue>
+            </enum>
+            <type name="instrumentId" primitiveType="int32"/>
+            <type name="instrSeqNum"  primitiveType="uint32" description="Reset each trading day"/>
+            <type name="tradingSessionDate" primitiveType="uint16" description="Days since Unix epoch"/>
+            <type name="reserved" primitiveType="int16" description="reserved for future use"/>
+            <type name="transactTime" primitiveType="int64" description="Nanoseconds since Unix epoch"/>
+        </composite>
+
+        <composite name="AsciiString" deprecated="2">
+            <type name="length" primitiveType="uint16"/>
+            <type name="varData" primitiveType="char" length="0"/>
+        </composite>
+
+        <composite name="Price" description="Price with constant exponent -9">
+            <type name="price" description="price" primitiveType="int64" nullValue="-9223372036854775808"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+        </composite>
+
+        <type name="Quantity0" primitiveType="int32" description="A quantity with 0 decimal places."/>
+        <type name="Int64Nullable" primitiveType="int64" nullValue="-9223372036854775808" description="Nullable int64."/>
+
+        <type name="char8" length="8" primitiveType="char" semanticType="String"/>
+        <type name="char16" length="16" primitiveType="char" semanticType="String"/>
+        <type name="char24" length="24" primitiveType="char" semanticType="String"/>
+        <type name="char32" length="32" primitiveType="char" semanticType="String"/>
+        <type name="char40" length="40" primitiveType="char" semanticType="String"/>
+
+        <enum name="ProductGroup" encodingType="int8">
+            <validValue name="CURRENCY">0</validValue>
+            <validValue name="EQUITY">1</validValue>
+            <validValue name="ENERGY">2</validValue>
+            <validValue name="METALS">3</validValue>
+            <validValue name="INTEREST_RATE">4</validValue>
+            <validValue name="AGRICULTURE">5</validValue>
+        </enum>
+        <enum name="InstrumentTradingStatus" encodingType="int8">
+            <validValue name="PRE_OPEN">0</validValue>
+            <validValue name="OPEN">1</validValue>
+            <validValue name="HALT">2</validValue>
+            <validValue name="PAUSE">3</validValue>
+            <validValue name="CLOSE">4</validValue>
+            <validValue name="PRE_OPEN_NO_CANCEL">5</validValue>
+            <validValue name="EXPIRED">6</validValue>
+        </enum>
+        <enum name="SpreadBuyConvention" encodingType="int8">
+            <validValue name="USE_FAR_BID">1</validValue>
+            <validValue name="USE_NEAR_BID">-1</validValue>
+        </enum>
+        <enum name="MarketStatType" encodingType="char">
+            <validValue name="DAY_OPENING_PRICE">4</validValue>
+            <validValue name="CLOSING_PRICE">5</validValue>
+            <validValue name="SETTLEMENT_PRICE">6</validValue>
+            <validValue name="TRADING_SESSION_HIGH_PRICE">7</validValue>
+            <validValue name="TRADING_SESSION_LOW_PRICE">8</validValue>
+            <validValue name="REFERENCE_PRICE">F</validValue>
+            <validValue name="INDICATIVE_OPENING_PRICE">I</validValue>
+        </enum>
+        <enum name="Side" encodingType="int8">
+            <validValue name="BUY">1</validValue>
+            <validValue name="SELL">-1</validValue>
+        </enum>
+
+        <set name="InstrumentDefinitionFlags" encodingType="uint16" sinceVersion="2">
+            <choice name="isPriorSettlementTheoretical">0</choice>
+            <choice name="isAnnounced" sinceVersion="3">1</choice>
+            <choice name="isCall" description="applicable for options; put if false" sinceVersion="3">2</choice>
+        </set>
+
+        <enum name="RetransmitRejectReason" encodingType="int8">
+            <validValue name="SEQ_TOO_LOW">1</validValue>
+            <validValue name="SEQ_TOO_HIGH">2</validValue>
+            <validValue name="RATE_LIMIT_EXCEEDED">3</validValue>
+            <validValue name="OTHER_ERROR">4</validValue>
+        </enum>
+    </types>
+
+    <!-- Incremental channel messages -->
+
+    <sbe:message name="OutrightInstrumentDefinition" id="10" description="Definition of an outright futures instrument.">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="symbol"                   id= "2" type="char24"/>
+        <field name="productCode"              id= "3" type="char8"/>
+        <field name="description"              id= "4" type="char32"/>
+        <field name="priceIncrement"           id= "5" type="Price"/>
+        <field name="cfiCode"                  id= "6" type="char8"/>
+        <field name="currency"                 id= "7" type="char8"/>
+        <field name="firstTradingSessionDate"  id= "8" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id= "9" type="uint16" description="In days since Unix epoch."/>
+        <field name="contractSize"             id="10" type="Quantity0"/>
+        <field name="priorSettlementPrice"     id="11" type="Price" presence="optional"/>
+        <field name="settlementPrice"          id="12" type="Price" presence="optional"/>
+        <field name="limitDownPrice"           id="13" type="Price"/>
+        <field name="limitUpPrice"             id="14" type="Price"/>
+        <field name="productId"                id="15" type="int32"/>
+        <field name="productGroup"             id="16" type="ProductGroup"/>
+        <field name="tradingStatus"            id="17" type="InstrumentTradingStatus"/>
+        <field name="definitionFlags"          id="18" type="InstrumentDefinitionFlags" sinceVersion="2"/>
+    </sbe:message>
+
+    <sbe:message name="SpreadInstrumentDefinition" id="11" description="Definition of a calendar spread futures instrument.">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="symbol"                   id= "2" type="char24"/>
+        <field name="productCode"              id= "3" type="char8"/>
+        <field name="description"              id= "4" type="char32"/>
+        <field name="priceIncrement"           id= "5" type="Price"/>
+        <field name="cfiCode"                  id= "6" type="char8"/>
+        <field name="currency"                 id= "7" type="char8"/>
+        <field name="firstTradingSessionDate"  id= "8" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id= "9" type="uint16" description="In days since Unix epoch."/>
+        <field name="contractSize"             id="10" type="Quantity0"/>
+        <field name="priorSettlementPrice"     id="11" type="Price" presence="optional"/>
+        <field name="settlementPrice"          id="12" type="Price" presence="optional"/>
+        <field name="limitDownPrice"           id="13" type="Price"/>
+        <field name="limitUpPrice"             id="14" type="Price"/>
+        <field name="productId"                id="15" type="int32"/>
+        <field name="productGroup"             id="16" type="ProductGroup"/>
+        <field name="tradingStatus"            id="17" type="InstrumentTradingStatus"/>
+        <field name="leg1InstrumentId"         id="18" type="int32"/>
+        <field name="leg2InstrumentId"         id="19" type="int32"/>
+        <field name="spreadBuyConvention"      id="20" type="SpreadBuyConvention"/>
+        <field name="definitionFlags"          id="21" type="InstrumentDefinitionFlags" sinceVersion="2"/>
+    </sbe:message>
+
+    <sbe:message name="OptionInstrumentDefinition" id="12" description="Definition of an futures option instrument." sinceVersion="3">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader"/>
+        <field name="symbol"                   id= "2" type="char24"/>
+        <field name="productCode"              id= "3" type="char8"/>
+        <field name="description"              id= "4" type="char32"/>
+        <field name="smallTick"                id= "5" type="Price"/>
+        <field name="cfiCode"                  id= "6" type="char8"/>
+        <field name="largeTick"                id= "7" type="Price"/>
+        <field name="largeTickThreshold"       id= "8" type="Price"/>
+        <field name="strikePrice"              id= "9" type="Price"/>
+        <field name="firstTradingSessionDate"  id="10" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id="11" type="uint16" description="In days since Unix epoch."/>
+        <field name="priorSettlementPrice"     id="12" type="Price"/>
+        <field name="settlementPrice"          id="13" type="Price" presence="optional"/>
+        <field name="productId"                id="14" type="int32"/>
+        <field name="underlyingInstrumentId"   id="15" type="int32"/>
+        <field name="productGroup"             id="16" type="ProductGroup"/>
+        <field name="tradingStatus"            id="17" type="InstrumentTradingStatus"/>
+        <field name="definitionFlags"          id="18" type="InstrumentDefinitionFlags"/>
+    </sbe:message>
+
+    <sbe:message name="TradingStatusUpdate" id="17" description="Instrument trading status updated">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="limitDownPrice"           id= "2" type="Price"/>
+        <field name="limitUpPrice"             id= "3" type="Price"/>
+        <field name="tradingStatus"            id= "4" type="InstrumentTradingStatus"/>
+    </sbe:message>
+
+    <sbe:message name="OrderPut" id="20" description="Order added or modified">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="orderId"                  id= "2" type="int64"/>
+        <field name="price"                    id= "3" type="Price"/>
+        <field name="quantity"                 id= "4" type="Quantity0"/>
+    </sbe:message>
+
+    <sbe:message name="OrderDelete" id="21" description="Order deleted">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="orderId"                  id= "2" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="ImpliedOrderUpdate" id="22" description="Implied orders updated">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="bestPrice"                id= "2" type="Price" presence="optional"/>
+        <field name="nextPrice"                id= "3" type="Price" presence="optional"/>
+        <field name="bestQty"                  id= "4" type="Quantity0"/>
+        <field name="nextQty"                  id= "5" type="Quantity0"/>
+    </sbe:message>
+
+    <sbe:message name="TradeSummary" id="33" description="Summary of aggressor fills. Sent before individual trade messages.">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="aggressorOrderId"         id= "2" type="int64"/>
+        <field name="aggressorReceiveTime"     id= "3" type="int64" description="Nanoseconds since Unix epoch when we received aggressor order on gateway"/>
+        <field name="vwapPrice"                id= "4" type="Price"/>
+        <field name="deepestPrice"             id= "5" type="Price"/>
+        <field name="quantity"                 id= "6" type="Quantity0"/>
+    </sbe:message>
+
+    <sbe:message name="Trade" id="30" description="Trade (side in instrument header is the aggressor side)">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="matchId"                  id= "2" type="int64"/>
+        <field name="buyOrderId"               id= "3" type="Int64Nullable" presence="optional"/>
+        <field name="sellOrderId"              id= "4" type="Int64Nullable" presence="optional"/>
+        <field name="price"                    id= "5" type="Price"/>
+        <field name="quantity"                 id= "6" type="Quantity0"/>
+    </sbe:message>
+
+    <sbe:message name="TradeAmend" id="31" description="Trade amendment/correction (side in instrument header is the aggressor side)">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="matchId"                  id= "2" type="int64"/>
+        <field name="buyOrderId"               id= "3" type="Int64Nullable" presence="optional"/>
+        <field name="sellOrderId"              id= "4" type="Int64Nullable" presence="optional"/>
+        <field name="oldPrice"                 id= "5" type="Price"/>
+        <field name="newPrice"                 id= "6" type="Price"/>
+    </sbe:message>
+
+    <sbe:message name="SpreadTradeAmend" id="34" description="Spread Trade amendment/correction (side in instrument header is the aggressor side)">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="matchId"                  id= "2" type="int64"/>
+        <field name="buyOrderId"               id= "3" type="Int64Nullable" presence="optional"/>
+        <field name="sellOrderId"              id= "4" type="Int64Nullable" presence="optional"/>
+        <field name="oldPrice"                 id= "5" type="Price"/>
+        <field name="newPrice"                 id= "6" type="Price"/>
+        <field name="oldLeg1Price"             id= "7" type="Price"/>
+        <field name="newLeg1Price"             id= "8" type="Price"/>
+        <field name="oldLeg2Price"             id= "9" type="Price"/>
+        <field name="newLeg2Price"             id= "10" type="Price"/>
+    </sbe:message>
+
+    <sbe:message name="TradeBust" id="32" description="Trade bust (side in instrument header is the aggressor side)">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="matchId"                  id= "2" type="int64"/>
+        <field name="buyOrderId"               id= "3" type="Int64Nullable" presence="optional"/>
+        <field name="sellOrderId"              id= "4" type="Int64Nullable" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="MarketStat" id="40" description="Market summary statistic update">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="price"                    id= "2" type="Price"/>
+        <field name="statType"                 id= "3" type="MarketStatType"/>
+    </sbe:message>
+
+    <sbe:message name="TradeSessionVolume" id="41" description="Trading session total volume traded and volume-weighted average price update">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="vwapPrice"                id= "2" type="Price"/>
+        <field name="tradeVolume"              id= "3" type="Quantity0"/>
+    </sbe:message>
+
+    <sbe:message name="OpenInterest" id="42" description="Open Interest calculated">
+        <field name="instrHeader"              id= "1" type="InstrumentHeader" />
+        <field name="quantity"                 id= "2" type="Quantity0"/>
+    </sbe:message>
+
+
+    <!-- Snapshot channel messages -->
+
+    <sbe:message name="StartOfOutrightInstrumentSnapshot" id="110" description="Start of snapshot of an outright futures instrument.">
+        <field name="snapshotSeqNum"           id= "1" type="uint16" description="Sequence number of message within snapshot; always 0."/>
+        <field name="lastInstrSeqNum"          id= "2" type="uint32" description="Snapshot incorporates all incremental messages with instrSeqNum up and including this value."/>
+        <field name="symbol"                   id= "3" type="char24"/>
+        <field name="productCode"              id= "4" type="char8"/>
+        <field name="description"              id= "5" type="char32"/>
+        <field name="priceIncrement"           id= "6" type="Price"/>
+        <field name="cfiCode"                  id= "7" type="char8"/>
+        <field name="currency"                 id= "8" type="char8"/>
+        <field name="productId"                id= "9" type="int32"/>
+        <field name="contractSize"             id="10" type="Quantity0"/>
+        <field name="orderCount"               id="11" type="int32"/>
+        <field name="firstTradingSessionDate"  id="12" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id="13" type="uint16" description="In days since Unix epoch."/>
+        <field name="tradingSessionDate"       id="14" type="uint16" description="In days since Unix epoch."/>
+        <field name="productGroup"             id="15" type="ProductGroup"/>
+        <field name="tradingStatus"            id="16" type="InstrumentTradingStatus"/>
+    </sbe:message>
+
+    <sbe:message name="StartOfSpreadInstrumentSnapshot" id="111" description="Start of snapshot of a calendar spread futures instrument.">
+        <field name="snapshotSeqNum"           id= "1" type="uint16" description="Sequence number of message within snapshot; always 0."/>
+        <field name="lastInstrSeqNum"          id= "2" type="uint32" description="Snapshot incorporates all incremental messages with instrSeqNum up and including this value."/>
+        <field name="symbol"                   id= "3" type="char24"/>
+        <field name="productCode"              id= "4" type="char8"/>
+        <field name="description"              id= "5" type="char32"/>
+        <field name="priceIncrement"           id= "6" type="Price"/>
+        <field name="cfiCode"                  id= "7" type="char8"/>
+        <field name="currency"                 id= "8" type="char8"/>
+        <field name="productId"                id= "9" type="int32"/>
+        <field name="contractSize"             id="10" type="Quantity0"/>
+        <field name="orderCount"               id="11" type="int32"/>
+        <field name="firstTradingSessionDate"  id="12" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id="13" type="uint16" description="In days since Unix epoch."/>
+        <field name="tradingSessionDate"       id="14" type="uint16" description="In days since Unix epoch."/>
+        <field name="productGroup"             id="15" type="ProductGroup"/>
+        <field name="tradingStatus"            id="16" type="InstrumentTradingStatus"/>
+        <field name="leg1InstrumentId"         id="17" type="int32"/>
+        <field name="leg2InstrumentId"         id="18" type="int32"/>
+        <field name="spreadBuyConvention"      id="19" type="SpreadBuyConvention"/>
+    </sbe:message>
+
+    <sbe:message name="StartOfOptionInstrumentSnapshot" id="112" description="Start of snapshot of an option futures instrument." sinceVersion="3">
+        <field name="snapshotSeqNum"           id= "1" type="uint16" description="Sequence number of message within snapshot; always 0."/>
+        <field name="lastInstrSeqNum"          id= "2" type="uint32" description="Snapshot incorporates all incremental messages with instrSeqNum up and including this value."/>
+        <field name="symbol"                   id= "3" type="char24"/>
+        <field name="productCode"              id= "4" type="char8"/>
+        <field name="description"              id= "5" type="char32"/>
+        <field name="smallTick"                id= "6" type="Price"/>
+        <field name="cfiCode"                  id= "7" type="char8"/>
+        <field name="largeTick"                id= "8" type="Price"/>
+        <field name="largeTickThreshold"       id= "9" type="Price"/>
+        <field name="strikePrice"              id="10" type="Price"/>
+        <field name="productId"                id="11" type="int32"/>
+        <field name="underlyingInstrumentId"   id="12" type="int32"/>
+        <field name="orderCount"               id="13" type="int32"/>
+        <field name="firstTradingSessionDate"  id="14" type="uint16" description="In days since Unix epoch."/>
+        <field name="lastTradingSessionDate"   id="15" type="uint16" description="In days since Unix epoch."/>
+        <field name="tradingSessionDate"       id="16" type="uint16" description="In days since Unix epoch."/>
+        <field name="productGroup"             id="17" type="ProductGroup"/>
+        <field name="tradingStatus"            id="18" type="InstrumentTradingStatus"/>
+        <field name="definitionFlags"          id="19" type="InstrumentDefinitionFlags"/>
+    </sbe:message>
+    
+    <sbe:message name="OrderSnapshot" id="120" description="Snapshot of order">
+        <field name="snapshotSeqNum"           id= "1" type="uint16" description="Sequence number of message within snapshot."/>
+        <field name="quantity"                 id= "2" type="Quantity0" description="Signed quantity; positive value = buy, negative value = sell"/>
+        <field name="transactTime"             id= "3" type="int64" description="Nanoseconds since Unix epoch"/>
+        <field name="orderId"                  id= "4" type="int64"/>
+        <field name="price"                    id= "5" type="Price"/>
+    </sbe:message>
+
+    <sbe:message name="EndOfSnapshot" id="122">
+        <field name="snapshotSeqNum"           id= "1" type="uint16" description="Sequence number of message within snapshot."/>
+        <field name="tradeVolume"              id= "2" type="Quantity0" description="Total traded volume for the instrument for the current trading day."/>
+        <field name="indicativeOpenPrice"      id= "3" type="Price" presence="optional"/>
+        <field name="dayOpenPrice"             id= "4" type="Price" presence="optional"/>
+        <field name="closePrice"               id= "5" type="Price" presence="optional"/>
+        <field name="lowPrice"                 id= "6" type="Price" presence="optional"/>
+        <field name="highPrice"                id= "7" type="Price" presence="optional"/>
+        <field name="vwapPrice"                id= "8" type="Price" presence="optional"/>
+        <field name="settlementPrice"          id="10" type="Price" presence="optional"/>
+        <field name="lastTradePrice"           id="11" type="Price" presence="optional"/>
+        <field name="lastTradeTime"            id="12" type="Int64Nullable" presence="optional" description="Nanoseconds since Unix epoch"/>
+        <field name="bestBidImpliedPrice"      id="13" type="Price" presence="optional"/>
+        <field name="bestAskImpliedPrice"      id="14" type="Price" presence="optional"/>
+        <field name="nextBidImpliedPrice"      id="15" type="Price" presence="optional"/>
+        <field name="nextAskImpliedPrice"      id="16" type="Price" presence="optional"/>
+        <field name="limitDownPrice"           id="17" type="Price"/>
+        <field name="limitUpPrice"             id="18" type="Price"/>
+        <field name="lastTradeQty"             id="19" type="Quantity0"/>
+        <field name="openInterest"             id="20" type="Quantity0"/>
+        <field name="bestBidImpliedQty"        id="21" type="Quantity0"/>
+        <field name="bestAskImpliedQty"        id="22" type="Quantity0"/>
+        <field name="nextBidImpliedQty"        id="23" type="Quantity0"/>
+        <field name="nextAskImpliedQty"        id="24" type="Quantity0"/>
+        <field name="priorSettlementPrice"     id="25" type="Price" presence="optional" sinceVersion="1"/>
+        <field name="definitionFlags"          id="26" type="InstrumentDefinitionFlags" sinceVersion="2"/>
+    </sbe:message>
+
+
+    <!-- Retransmit messages -->
+    <!-- Same packet header; client sets packet header seqNum to any value.  If rejected, server will reply with same seqNum (like a correlationId). -->
+
+    <sbe:message name="RetransmitRequest" id="200">
+        <field name="beginSeqNum"             id="1" type="int64" description="Sequence number of first requested message."/>
+        <field name="messageCount"            id="2" type="uint8" description="Number of requested messages."/>
+    </sbe:message>
+
+    <sbe:message name="RetransmitReject" id="202">
+        <field name="retryDelayNanos"         id="1" type="int64" description="Minimum time to wait in nanoseconds before sending another retransmit request."/>
+        <field name="details"                 id="2" type="char40"/>
+        <field name="reason"                  id="3" type="RetransmitRejectReason"/>
+    </sbe:message>
+
+</sbe:messageSchema>

@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:messageSchema xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="streamlinemktdata" id="5" version="8" semanticVersion="FIX5SP2" description="20170602" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixtradingcommunity.org/pg/file/fplpo/read/1196759/simple-binary-encoding-rc2xsd SimpleBinary-RC2.xsd">
+    <types>
+        <type name="CHAR" description="char" primitiveType="char" sinceVersion="2"/>
+        <type name="Currency" description="Currency" length="3" primitiveType="char" sinceVersion="2" semanticType="Currency"/>
+        <type name="ErisUDI" description="Eris User Defined Instrument" presence="optional" length="1" primitiveType="char" sinceVersion="5" semanticType="char"/>
+        <type name="Int32" description="int32" primitiveType="int32"/>
+        <type name="Int32NULL" presence="optional" nullValue="2147483647" primitiveType="int32"/>
+        <type name="Int8" description="int8" primitiveType="int8" sinceVersion="1"/>
+        <type name="Int8NULL" description="Integer 8 with a null value" presence="optional" nullValue="127" primitiveType="int8" sinceVersion="1"/>
+        <type name="LegSecurityIDSource" description="Constant value sent from clearing for legs" presence="constant" length="1" primitiveType="char" sinceVersion="1">H</type>
+        <type name="LocalMktDate" presence="optional" nullValue="65535" primitiveType="uint16" semanticType="LocalMktDate"/>
+        <type name="MDEntryTypeTrade" description="MDEntryTypeTrade" presence="constant" primitiveType="char">2</type>
+        <type name="MDUpdateActionNew" description="MDUpdateActionNew" presence="constant" primitiveType="int8" sinceVersion="2">0</type>
+        <type name="SecurityExchange" length="4" primitiveType="char" semanticType="Exchange"/>
+        <type name="String100" description="String length 100" presence="optional" length="100" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="String12" description="StringLength12" presence="optional" length="12" primitiveType="char" semanticType="String"/>
+        <type name="String30" description="String Length 30" presence="optional" length="30" primitiveType="char" semanticType="String"/>
+        <type name="String4" description="StringLength4" presence="optional" length="4" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="String5" description="Optional string with length of 5" presence="optional" length="5" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="String8" description="String length 8" presence="optional" length="8" primitiveType="char" sinceVersion="2" semanticType="String"/>
+        <type name="StringLen3" description="Optional string with length of 3" presence="optional" length="3" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="StringLength17" description="Optional string with length of 17" presence="optional" length="17" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="StringLength2" description="StringLength of 2 characters" presence="optional" length="2" primitiveType="char" semanticType="String"/>
+        <type name="StringLength26" description="Optional string with length of 26" presence="optional" length="26" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="StringLength50" description="String With Length 50 Characters " presence="optional" length="50" primitiveType="char" semanticType="String"/>
+        <type name="StringLength500" description="String with Length 500" length="500" primitiveType="char" sinceVersion="2"/>
+        <type name="StringLength6" description="StringLength6" presence="optional" length="6" primitiveType="char" sinceVersion="7" semanticType="String"/>
+        <type name="StringLength9" description="String With Length 9 Characters" presence="optional" length="9" primitiveType="char" semanticType="String"/>
+        <type name="Text" description="Text" length="180" primitiveType="char" sinceVersion="1" semanticType="String"/>
+        <type name="charNULL" description="Char with a null value" presence="optional" primitiveType="char" sinceVersion="1" semanticType="char">0</type>
+        <type name="uInt16" description="uInt16" primitiveType="uint16"/>
+        <type name="uInt16NULL" description="Unsigned Int16 with NULL" presence="optional" nullValue="65535" primitiveType="uint16" semanticType="int"/>
+        <type name="uInt32" description="uInt32" primitiveType="uint32"/>
+        <type name="uInt32NULL" description="uInt32NULL" presence="optional" nullValue="4294967295" primitiveType="uint32" sinceVersion="7"/>
+        <type name="uInt64" description="uInt64" primitiveType="uint64"/>
+        <type name="uInt64NULL" description="uInt64NULL" presence="optional" nullValue="18446744073709551615" primitiveType="uint64" sinceVersion="1"/>
+        <type name="uInt8" description="uInt8" primitiveType="uint8"/>
+        <type name="uInt8NULL" description="uInt8NULL" presence="optional" nullValue="255" primitiveType="uint8"/>
+        <composite name="Decimal32" description="Fixed point decimal with int32 mantissa and constant -4 exponent" sinceVersion="1">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="2147483647" primitiveType="int32"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-4</type>
+        </composite>
+        <composite name="Decimal32NULL" description="Optional floating point decimal with int32 mantissa and int8 exponent" sinceVersion="7">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="2147483647" primitiveType="int32"/>
+            <type name="exponent" description="exponent" presence="optional" nullValue="127" primitiveType="int8"/>
+        </composite>
+        <composite name="Decimal64" description="Floating-point decimal" sinceVersion="2">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" primitiveType="int8"/>
+        </composite>
+        <composite name="Decimal64NULL" description="Optional floating point decimal" sinceVersion="7">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="optional" nullValue="127" primitiveType="int8"/>
+        </composite>
+        <composite name="MaturityMonthYear" description="Year, Month and Date" sinceVersion="1" semanticType="MonthYear">
+            <type name="year" description="YYYY" presence="optional" nullValue="65535" primitiveType="uint16"/>
+            <type name="month" description="MM" presence="optional" nullValue="255" primitiveType="uint8"/>
+            <type name="day" description="DD" presence="optional" nullValue="255" primitiveType="uint8"/>
+            <type name="week" description="WW" presence="optional" nullValue="255" primitiveType="uint8"/>
+        </composite>
+        <composite name="PRICENULL" description="Price NULL" sinceVersion="1">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-7</type>
+        </composite>
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16" semanticType="Length"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <enum name="AggressorSide" encodingType="uInt8NULL">
+            <validValue name="NoAggressor" description="No Aggressor" sinceVersion="1">0</validValue>
+            <validValue name="Buy" description="Buy" sinceVersion="1">1</validValue>
+            <validValue name="Sell" description="Sell" sinceVersion="1">2</validValue>
+        </enum>
+        <enum name="EventTypeIndices" encodingType="uInt8" sinceVersion="2">
+            <validValue name="Activation" description="Activation">5</validValue>
+            <validValue name="Deletion" description="Deletion">6</validValue>
+            <validValue name="Modification" description="Modification">120</validValue>
+        </enum>
+        <enum name="MDEntryCode" encodingType="uInt8NULL" sinceVersion="2">
+            <validValue name="Indicative" description="Indicative">1</validValue>
+            <validValue name="PreMarket" description="PreMarket">2</validValue>
+            <validValue name="PreliminaryClose" description="PreliminaryClose">3</validValue>
+            <validValue name="SessionClose" description="SessionClose">4</validValue>
+            <validValue name="Close" description="Close">5</validValue>
+        </enum>
+        <enum name="MDEntryTypeIndices" encodingType="CHAR" sinceVersion="2">
+            <validValue name="Bid" description="Bid">0</validValue>
+            <validValue name="Offer" description="Offer">1</validValue>
+            <validValue name="Trade" description="Trade">2</validValue>
+            <validValue name="IndexValue" description="Index Value">3</validValue>
+            <validValue name="OpeningValue" description="Opening Value">4</validValue>
+            <validValue name="ClosingPrice" description="Closing Price">5</validValue>
+            <validValue name="SettlementPrice" description="Settlement Price">6</validValue>
+            <validValue name="SessionHighPrice" description="Session High Price">7</validValue>
+            <validValue name="SessionLowPrice" description="Session Low Price">8</validValue>
+            <validValue name="TradeVolume" description="Trade Volume">e</validValue>
+        </enum>
+        <enum name="MDUpdateAction" encodingType="uInt8">
+            <validValue name="New" description="New" sinceVersion="1">0</validValue>
+            <validValue name="Change" description="Change" sinceVersion="1">1</validValue>
+            <validValue name="Delete" description="Delete" sinceVersion="1">2</validValue>
+            <validValue name="DeleteThru" description="Delete Thru" sinceVersion="1">3</validValue>
+            <validValue name="DeleteFrom" description="Delete From" sinceVersion="1">4</validValue>
+            <validValue name="Overlay" description="Overlay" sinceVersion="1">5</validValue>
+        </enum>
+        <enum name="SecurityUpdateAction" encodingType="CHAR" sinceVersion="2">
+            <validValue name="Add" description="Add">A</validValue>
+            <validValue name="Delete" description="Delete">D</validValue>
+            <validValue name="Modify" description="Modify">M</validValue>
+        </enum>
+        <set name="MatchEventIndicator" encodingType="uInt8">
+            <choice name="LastTradeMsg" description="1=Last trade message for the event, 0=Not last">0</choice>
+            <choice name="LastVolumeMsg" description="1=Last electronic volume message, 0=Not last">1</choice>
+            <choice name="LastQuoteMsg" description="1=Last real quote message, 0=Not last">2</choice>
+            <choice name="LastStatsMsg" description="1=Last statistics message, 0=Not last">3</choice>
+            <choice name="LastImpliedMsg" description="1=Last implied quote message, 0=Not last">4</choice>
+            <choice name="RecoveryMsg" description="1=Message is sent during  recovery process">5</choice>
+            <choice name="Reserved" description="0=Reserved for future use">6</choice>
+            <choice name="EndOfEvent" description="1=Last message for the event, 0=Not last">7</choice>
+        </set>
+        <set name="SettlPriceType" encodingType="uInt8" sinceVersion="7">
+            <choice name="Final" description="1=Final, 0=Preliminary">0</choice>
+            <choice name="Actual" description="1=Actual, 0=Theoretically Calculated">1</choice>
+            <choice name="Rounded" description="1=Rounded, 0=Non-Rounded or Undefined">2</choice>
+            <choice name="ReservedBits" description="Bits 3-6 are reserved">3</choice>
+            <choice name="NullValue" description="1=Entire set is NULL, 0=not NULL">7</choice>
+        </set>
+    </types>
+    <ns2:message name="AdminHeartbeat312" id="312" description="AdminHeartbeat" blockLength="0" semanticType="0" sinceVersion="1"/>
+    <ns2:message name="AdminLogin315" id="315" description="AdminLogin" blockLength="1" semanticType="A" sinceVersion="1">
+        <field name="HeartBtInt" id="108" type="Int8" description="Heartbeat interval (seconds)" offset="0" semanticType="int"/>
+    </ns2:message>
+    <ns2:message name="AdminLogout316" id="316" description="AdminLogout" blockLength="180" semanticType="5" sinceVersion="1">
+        <field name="Text" id="58" type="Text" description="Free format text string. May include logout confirmation or reason for logout" offset="0" semanticType="String"/>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshErisReferenceDataAndDailyStatistics333" id="333" description="MDIncrementalRefreshErisReferenceDataAndDailyStatistics" blockLength="11" semanticType="X" sinceVersion="7">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16NULL" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="9" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="419" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="CHAR" description="Indicates the type of Market Data update action" offset="0" semanticType="char"/>
+            <field name="MDEntryType" id="269" type="CHAR" description="Indicates the type of Market Data entry" offset="1" semanticType="char"/>
+            <field name="RptSeq" id="83" type="uInt32" description="Sequence number per Index update" offset="2" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="Decimal64NULL" description="Price of the Market Data Entry" offset="6" semanticType="Price"/>
+            <field name="OpenCloseSettlFlag" id="286" type="uInt8NULL" description="Flag that identifies a market data entry" offset="15" semanticType="int"/>
+            <field name="SettlPriceType" id="731" type="SettlPriceType" description="Indicates reference price as calculated, final or preliminary settle." offset="16" semanticType="MultipleCharValue"/>
+            <field name="CalFutPx" id="37508" type="Decimal64NULL" description="Calculated Futures Price using Swap NPV, Historical fixed and floating amounts and synthetic interest on variation margin " offset="17" semanticType="Price"/>
+            <field name="ReferenceID" id="9633" type="StringLength50" description="For future use" offset="26" semanticType="String"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Quantity or volume represented by the Market Data Entry" offset="76" semanticType="Qty"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument, Index, Swap Name." offset="84" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="StringLength26" description="Indicates the product code for the instrument" offset="134" semanticType="String"/>
+            <field name="Product" id="460" type="uInt8NULL" description="Indicates the type of product the instrument is associated with in the message" offset="160" semanticType="int"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Indicates type of security" offset="161" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="170" semanticType="Exchange"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="174" semanticType="LocalMktDate"/>
+            <field name="CouponRate" id="223" type="Decimal32NULL" description="The rate of the fixed leg" offset="176" semanticType="Percentage"/>
+            <field name="TradeDate" id="75" type="LocalMktDate" description="Pricing date" offset="181" semanticType="LocalMktDate"/>
+            <field name="FairCouponPct" id="38013" type="Decimal64NULL" description="Shows the coupon rate that would result in a zero-NPV swap" offset="183" semanticType="Percentage"/>
+            <field name="LegPurchaseRate" id="252" type="Decimal64NULL" description="The date the floating rate was set for the next floating payment" offset="192" semanticType="Percentage"/>
+            <field name="FixedNPV" id="38002" type="Decimal64NULL" description="The NPV (Net Present Value) for the fixed leg of the trade, calculated that day. NPV is per 100 notional" offset="201" semanticType="Price"/>
+            <field name="FloatNPV" id="38001" type="Decimal64NULL" description="The NPV (Net Present Value) for the floating leg of the trade, calculated that day. NPV is per 100 notional" offset="210" semanticType="Price"/>
+            <field name="NPV" id="38000" type="Decimal64NULL" description="The NPV represents net present value of the future cash flows at time t" offset="219" semanticType="Price"/>
+            <field name="AccruedCoupons" id="38003" type="Decimal64NULL" description="This value represents accumulated fixed and floating amounts" offset="228" semanticType="float"/>
+            <field name="DailyIncrementalErisPAI" id="38006" type="Decimal64NULL" description="This number represents the day over day variation margin for 1 contract for this instrument ID or Eris PAI" offset="237" semanticType="float"/>
+            <field name="ErisPAI" id="38004" type="Decimal64NULL" description="This is the cumulative daily interest adjustment" offset="246" semanticType="float"/>
+            <field name="FedFundsRate" id="38009" type="Decimal64NULL" description="The Fed Funds Rate published for the Fed Funds Date by the New York Federal Reserve" offset="255" semanticType="Percentage"/>
+            <field name="MinPriceIncrement" id="969" type="Decimal64NULL" description="Minimum tick for a product (only sent if not eligible for VTT)." offset="264" semanticType="float"/>
+            <field name="FixedPayment" id="38014" type="Decimal64NULL" description="Fixed payment that occurs on the Evaluation Date" offset="273" semanticType="float"/>
+            <field name="FloatingPayment" id="38017" type="Decimal64NULL" description="Floating Payment that occurs on the Evaulation Date" offset="282" semanticType="float"/>
+            <field name="NextFixedPaymentDate" id="38015" type="LocalMktDate" description="The date the next fixed payment will be made" offset="291" semanticType="LocalMktDate"/>
+            <field name="NextFixedPaymentAmount" id="38016" type="Decimal64NULL" description="The next fixed payment amount" offset="293" semanticType="float"/>
+            <field name="NextFloatingPaymentAmount" id="38019" type="Decimal64NULL" description="The next floating payment amount" offset="302" semanticType="float"/>
+            <field name="TradingReferenceDate" id="5796" type="LocalMktDate" description="Indicates the business date for previous settlement price" offset="311" semanticType="LocalMktDate"/>
+            <field name="PreviousErisPAI" id="38007" type="Decimal64NULL" description="The Eris PAI on the Previous Settlement Date" offset="313" semanticType="float"/>
+            <field name="FedFundsDate" id="38010" type="LocalMktDate" description="The date that the for which the fed funds date was published" offset="322" semanticType="LocalMktDate"/>
+            <field name="AccrualDays" id="7337" type="uInt32NULL" description="How many days have passed since settlement price was last calculated" offset="324" semanticType="int"/>
+            <field name="Nominal" id="9280" type="uInt64NULL" description="This is the notional value used to calculate NPV and Fixed and Floating Payment amounts" offset="328" semanticType="int"/>
+            <field name="LegCreditRating" id="257" type="StringLength6" description="Description of Float Rate." offset="336" semanticType="String"/>
+            <field name="LegContractMultiplier" id="614" type="Decimal64NULL" description="Multiplier that when applied on longer rate results in PreviousFixingRate." offset="342" semanticType="float"/>
+            <field name="NextFloatingPaymentDate" id="38018" type="LocalMktDate" description="The date the next floating payment will be made" offset="351" semanticType="LocalMktDate"/>
+            <field name="PV01" id="38023" type="Decimal64NULL" description="The present value of a 1bp change in the fixed rate" offset="353" semanticType="float"/>
+            <field name="DV01" id="5731" type="Decimal64NULL" description="Present value of on basis points change in value if yield curve shifts 1bp" offset="362" semanticType="float"/>
+            <field name="SettlementNPV" id="38025" type="Decimal64NULL" description="Final Settlement Price in NPV terms" offset="371" semanticType="float"/>
+            <field name="FinalSettlementFuturesPrice" id="38024" type="Decimal64NULL" description="Final Settlement Futures Prices" offset="380" semanticType="float"/>
+            <field name="SecurityDescription" id="107" type="String30" description="Ticker symbol. Common, &amp;amp;quot;human understood&amp;amp;quot; representation of the security." offset="389" semanticType="String"/>
+            <group name="NoSecurityAltID" id="454" description="Number of entries in AltID group." blockLength="27" dimensionType="groupSize">
+                <field name="SecurityAltID" id="455" type="StringLength26" description="Expanded instrument description." offset="0" semanticType="String"/>
+                <field name="SecurityAltIDSource" id="456" type="charNULL" description="Identifies class or source of the SecurityAltID (455) value." offset="26" semanticType="char"/>
+            </group>
+            <group name="NoRelatedInstruments" id="1647" description="Number of related instruments group" blockLength="77" dimensionType="groupSize">
+                <field name="RelatedInstrumentType" id="1648" type="uInt8NULL" description="The type of instrument relationship" offset="0" semanticType="int"/>
+                <field name="RelatedSymbol" id="1649" type="StringLength50" description="Related instrument Symbol" offset="1" semanticType="String"/>
+                <field name="RelatedSecurityGroup" id="37023" type="StringLength26" description="Instrument Symbol Suffix for T+1 (Next Trading day)" offset="51" semanticType="String"/>
+            </group>
+            <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSize">
+                <field name="EventType" id="865" type="uInt8NULL" description="Code to represent the type of event" offset="0" semanticType="int"/>
+                <field name="EventTime" id="1145" type="uInt64NULL" description="Time of event. This is number of days since unix epoch" offset="1" semanticType="UTCTimeOnly"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDNewsIndices339" id="339" description="MDNewsIndices" blockLength="60" semanticType="B" sinceVersion="2">
+        <field name="Headline" id="148" type="StringLength50" description="The headline of a News  message." offset="0" semanticType="String"/>
+        <field name="OrigTime" id="42" type="uInt64NULL" description="Time of message origination expressed as number of nanoseconds since unix epoch" offset="50" semanticType="UTCTimestamp"/>
+        <field name="MDFeedType" id="1022" type="StringLength2" description="Describes a class of service for a given data feed." offset="58" semanticType="String"/>
+        <group name="NoRelatedSym" id="146" description="Specifies the number of repeating symbols specified." blockLength="50" dimensionType="groupSize">
+            <field name="Symbol" id="55" type="StringLength50" description="A specific moniter assigned to a group of related securities which may be concurrently affected by market events and actions. Falcon ignores the incoming value except when null and returns back the correct one in the outgoing execution report." offset="0" semanticType="String"/>
+        </group>
+        <group name="NoLinesOfText" id="33" description="Identifies number of lines of text body." blockLength="500" dimensionType="groupSize">
+            <field name="Text" id="58" type="StringLength500" description="This general purpose text field could contain any post-trade instructions used by customers based on mutual understanding with their clearing firm. If incoming value is greater than max length then take the right most fifty bytes. No validation is done for valid values and this is a pass through to clearing. After any right justification if applicable the incoming value is flipped back in the execution report and also becomes an attribute of the order." offset="0" semanticType="String"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshTradeBlocks340" id="340" description="MDIncrementalRefreshTradeBlocks" blockLength="11" semanticType="X" sinceVersion="1">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="9" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="327" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description=" Market Data update Action" offset="0" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeTrade" description="Market Data Entry Type" semanticType="char"/>
+            <field name="SecurityID" id="48" type="uInt64NULL" description="Unique security ID" offset="1" semanticType="int"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per instrument update. Reset weekly" offset="9" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL" description="Price of the Market Data Entry" offset="13" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Traded quantity" offset="21" semanticType="Qty"/>
+            <field name="NumberOfOrders" id="346" type="Int32NULL" description="The total number of real orders per instrument that participated in a match step within a match event" offset="29" semanticType="int"/>
+            <field name="TradeID" id="1003" type="Int32" description="Unique Trade Entry ID per Instrument  and Trading Date" offset="33" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade. If there is no value present, then there is no aggressor." offset="37" semanticType="int"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name" offset="38" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="String12" description="Indicates the product code for the instrument" offset="88" semanticType="String"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Identifies the type of instrument" offset="100" semanticType="String"/>
+            <field name="SecuritySubType" id="762" type="StringLength2" description="SecuritySubType for CDS only" offset="109" semanticType="String"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="This field provides the actual calendar date for contract maturity month and year (used for standardized futures and options)" offset="111" semanticType="MonthYear"/>
+            <field name="SecurityExchange" id="207" type="String4" description="Market used to help identify an instrument" offset="116" semanticType="String"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="120" semanticType="LocalMktDate"/>
+            <field name="UnitOfMeasure" id="996" type="String5" description="Unit of measure for the products' original contract size" offset="122" semanticType="String"/>
+            <field name="UnitOfMeasureCurrency" id="1716" type="StringLen3" description="Indicates the ISO Currency code if it is a currency product" offset="127" semanticType="String"/>
+            <field name="UnitOfMeasureQty" id="1147" type="PRICENULL" description="This field contains the notional value for each instrument. The notional value is equivalent to the corresponding premium-quoted contract" offset="130" semanticType="float"/>
+            <field name="CouponRate" id="223" type="Decimal32" description="The rate of interest that, when multiplied by the principal, par value, or face value of a bond, provides the currency amount of the periodic interest payment" offset="138" semanticType="Percentage"/>
+            <field name="PriceType" id="423" type="uInt16NULL" description="Valid price types for intraday trade" offset="142" semanticType="int"/>
+            <field name="TrdType" id="828" type="uInt8NULL" description="Valid trade types for intraday trade" offset="144" semanticType="int"/>
+            <field name="MDEntryID" id="278" type="StringLength26" description="Market data entry identifier to map multiple prices of a single trade" offset="145" semanticType="String"/>
+            <field name="PutOrCall" id="201" type="uInt8NULL" description="Indicates whether an option instrument is a put or call" offset="171" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="PRICENULL" description="Strike Price for an option instrument" offset="172" semanticType="Price"/>
+            <field name="RestructuringType" id="1449" type="StringLength2" description="A category of CDS credit event in which the underlying bond experiences a restructuring" offset="180" semanticType="String"/>
+            <field name="Seniority" id="1450" type="StringLength2" description="Specifies which issue (underlying bond) will receive payment priority in the event of a default" offset="182" semanticType="String"/>
+            <field name="ReferenceID" id="9633" type="String100" description="For future use" offset="184" semanticType="String"/>
+            <field name="StrategyLinkID" id="1851" type="StringLength26" description="Identifies the multileg strategy (e.g. spread) to which the trade belongs. This links together trade legs executed as part of a strategy during a single match event." offset="284" semanticType="String"/>
+            <field name="LegRefID" id="654" type="StringLength17" description="Used to correlate leg instrument definitions with their executions. Cross referenced to Tag 1788" offset="310" semanticType="String"/>
+            <group name="NoUnderlyings" id="711" description="Number of underlying legs that make up the security" blockLength="68" dimensionType="groupSize">
+                <field name="UnderlyingSymbol" id="311" type="StringLength50" description="Underlying Security's symbol" offset="0" semanticType="String"/>
+                <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Security's MaturityMonthYear" offset="50" semanticType="MonthYear"/>
+                <field name="UnderlyingSecurityType" id="310" type="StringLength9" description="Underlying Security's SecurityType" offset="55" semanticType="String"/>
+                <field name="UnderlyingSecurityExchange" id="308" type="String4" description="Underlying Security's SecurityExchange" offset="64" semanticType="String"/>
+            </group>
+            <group name="NoPartyIDs" id="453" description="Number of party roles" blockLength="52" dimensionType="groupSize">
+                <field name="PartyID" id="448" type="StringLength50" description="Party identifier/code" offset="0" semanticType="String"/>
+                <field name="PartyRole" id="452" type="StringLength2" description="Identifies the type or role of the PartyID specified" offset="50" semanticType="String"/>
+            </group>
+            <group name="NoLegs" id="555" description="Number of legs (repeating groups)" blockLength="135" dimensionType="groupSize">
+                <field name="LegSymbol" id="600" type="StringLength50" description="This tag contains the instrument group of the requested security definition. Must be present when tag 555-NoLegs is present. Also must be first tag in repeating group. Multileg instrument's individual security's Symbol." offset="0" semanticType="String"/>
+                <field name="LegSecurityID" id="602" type="uInt64NULL" description="Multileg instrument's individual security's SecurityID." offset="50" semanticType="int"/>
+                <field name="LegSecurityIDSource" id="603" type="LegSecurityIDSource" description="Identifies source of tag 602-LegSecurityID value. This value is always 'H' for CME." semanticType="char"/>
+                <field name="LegSecurityGroup" id="5795" type="String12" description="Leg equivalent of body tag 1151-SecurityGroup (i.e. leg 'product code')" offset="58" semanticType="String"/>
+                <field name="LegID" id="1788" type="StringLength17" description="Used to correlate leg instrument definitions with their executions.Cross referenced in Tag 654" offset="70" semanticType="String"/>
+                <field name="LegSecurityType" id="609" type="StringLength9" description="Identifies the type of leg instrument" offset="87" semanticType="String"/>
+                <field name="LegMaturityMonthYear" id="610" type="MaturityMonthYear" description="Multileg instrument's individual security's leg MaturityMonthYear" offset="96" semanticType="MonthYear"/>
+                <field name="LegMaturityDate" id="611" type="LocalMktDate" description="Multileg instrument's individual security's leg MaturityDate" offset="101" semanticType="LocalMktDate"/>
+                <field name="LegStrikePrice" id="612" type="PRICENULL" description="Multileg instrument's individual security's StrikePrice" offset="103" semanticType="Price"/>
+                <field name="LegUnitOfMeasure" id="999" type="String5" description="Multileg instrument's individual security's leg UnitOfMeasure" offset="111" semanticType="String"/>
+                <field name="LegUnitOfMeasureQty" id="1224" type="PRICENULL" description="Multileg instrument's individual security's leg UnitOfMeasureQty" offset="116" semanticType="float"/>
+                <field name="LegSecurityExchange" id="616" type="String4" description="Multileg instrument's individual security's leg SecurityExchange" offset="124" semanticType="String"/>
+                <field name="LegRatioQty" id="623" type="uInt16NULL" description="The ratio of quantity for this individual leg relative to the entire multileg security" offset="128" semanticType="int"/>
+                <field name="LegSide" id="624" type="uInt8NULL" description="The side of this individual leg (multileg security)" offset="130" semanticType="int"/>
+                <field name="LegPutOrCall" id="1358" type="uInt8NULL" description="Multileg instrument's individual security's leg option put or call" offset="131" semanticType="int"/>
+                <field name="LegUnitOfMeasureCurrency" id="1720" type="StringLen3" description="Indicates the currency of the unit of measure. Conditionally required when LegUnitOfMeasure(999) = Ccy" offset="132" semanticType="String"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="QuoteRequest345" id="345" description="QuoteRequest" blockLength="35" semanticType="R" sinceVersion="2">
+        <field name="TransactTime" id="60" type="uInt64" description="Time of quote request creation, expressed in UTC." offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given Globex event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="QuoteReqID" id="131" type="StringLength26" description="Quote request ID defined by the exchange." offset="9" semanticType="String"/>
+        <group name="NoRelatedSym" id="146" description="Specifies the number of repeating symbols specified." blockLength="100" dimensionType="groupSize">
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name." offset="0" semanticType="String"/>
+            <field name="CouponRate" id="223" type="Decimal32" description="Coupon Rate of the swap." offset="50" semanticType="Percentage"/>
+            <field name="OrderQty" id="38" type="uInt64NULL" description="Quantity Requested" offset="54" semanticType="Qty"/>
+            <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="62" semanticType="Exchange"/>
+            <field name="Product" id="460" type="uInt8NULL" description="Indicates the type of product the instrument is associated with in the message" offset="66" semanticType="int"/>
+            <field name="SecurityGroup" id="1151" type="StringLength26" description="Indicates the product code for the instrument" offset="67" semanticType="String"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument." offset="93" semanticType="LocalMktDate"/>
+            <field name="SecurityType" id="167" type="String4" description="Indicates type of instrument" offset="95" semanticType="String"/>
+            <field name="QuoteType" id="537" type="uInt8NULL" description="Type of quote requested. A tradable quote can trade against other orders and quotes upon acceptance. " offset="99" semanticType="int"/>
+            <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSize">
+                <field name="EventType" id="865" type="uInt8NULL" description="Code to represent the type of event.." offset="0" semanticType="int"/>
+                <field name="EventTime" id="1145" type="uInt64NULL" description="Time of event. This is number of days since unix epoch" offset="1" semanticType="UTCTimeOnly"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDInstrumentDefinitionIndices347" id="347" description="MDInstrumentDefinitionIndices" blockLength="63" semanticType="d" sinceVersion="2">
+        <field name="Symbol" id="55" type="StringLength50" description="Instrument Name or Symbol. " offset="0" semanticType="String"/>
+        <field name="Product" id="460" type="Int8" description="Indicates the type of product the instrument is associated with in the message" offset="50" semanticType="int"/>
+        <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="51" semanticType="Exchange"/>
+        <field name="Currency" id="15" type="Currency" description="Identifies the currency for the instrument traded." offset="55" semanticType="Currency"/>
+        <field name="SecurityUpdateAction" id="980" type="SecurityUpdateAction" description="Included on the message when a modification or deletion occurs." offset="58" semanticType="char"/>
+        <field name="MDFeedType" id="1022" type="StringLength2" description="Describes a class of service for a given data feed." offset="59" semanticType="String"/>
+        <field name="ApplID" id="1180" type="uInt16NULL" description="This value indicates the channel ID as defined in the XML configuration file." offset="61" sinceVersion="4" semanticType="int"/>
+        <group name="NoInstAttrib" id="870" description="Number of repeating InstrAttribType entries." blockLength="101" dimensionType="groupSizeEncoding">
+            <field name="InstAttribType" id="871" type="uInt8" description="Code to represent the type of instrument attribute." offset="0" semanticType="int"/>
+            <field name="InstAttribValue" id="872" type="String100" description="Attribute value appropriate to the InstrAttribType (871) field." offset="1" semanticType="String"/>
+        </group>
+        <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSizeEncoding">
+            <field name="EventType" id="865" type="EventTypeIndices" description="Code to represent the type of event." offset="0" semanticType="int"/>
+            <field name="EventTime" id="1145" type="uInt64" description="Time of event. This is number of days since unix epoch" offset="1" semanticType="UTCTimeOnly"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshIndices348" id="348" description="MDIncrementalRefreshIndices" blockLength="13" semanticType="X" sinceVersion="2">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MDFeedType" id="1022" type="StringLength2" description="Describes a class of service for a given data feed." offset="8" semanticType="String"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event " offset="10" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16NULL" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="11" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message" blockLength="176" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Indicates Market data Update Action which is always New" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeIndices" description="Indicates Market Data Entry Type " offset="0" semanticType="char"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per index update" offset="1" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="Decimal64" description="Price of the Market Data Entry" offset="5" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Quantity of the MD Entry" offset="14" semanticType="Qty"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Index Name" offset="22" semanticType="String"/>
+            <field name="OpenCloseSettlFlag" id="286" type="Int8NULL" description="Indicates whether the price is preliminary or previous day" offset="72" semanticType="int"/>
+            <field name="YieldType" id="235" type="String8" description="Type of yield" offset="73" semanticType="String"/>
+            <field name="Yield" id="236" type="Decimal64" description="Yield of the index's underlying constituents and applicable for FI indices only" offset="81" semanticType="Price"/>
+            <field name="NetChgPrevDay" id="451" type="Decimal64" description="Net change from previous day's closing price" offset="90" semanticType="float"/>
+            <field name="NetPctChg" id="6119" type="Decimal64" description="Index percentage change with respect to previous close" offset="99" semanticType="Percentage"/>
+            <field name="PercentTrading" id="7017" type="Decimal64" description="Percent trading of the underlying index constituents" offset="108" semanticType="Percentage"/>
+            <field name="MDEntryCode" id="9988" type="MDEntryCode" description="List of conditions describing a index value" offset="117" semanticType="int"/>
+            <field name="MDEntryDate" id="272" type="Int32NULL" description="Indicates Market Data Entry Date" offset="118" semanticType="UTCDateOnly"/>
+            <field name="MDEntryTime" id="273" type="Int32NULL" description="Indicates Market Data Entry Timestamp" offset="122" semanticType="UTCTimeOnly"/>
+            <field name="ReferenceID" id="9633" type="StringLength50" description="For future use" offset="126" semanticType="String"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshTradeBlocks349" id="349" description="MDIncrementalRefreshTradeBlocks" blockLength="13" semanticType="X" sinceVersion="1">
+        <field name="TransactTime" id="60" type="uInt64NULL" description="Start of event processing time in number of nanoseconds since Unix epoch. Not present for EFP (828=2) and EFR (828=11) transactions" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="9" semanticType="int"/>
+        <field name="TradeDate" id="75" type="LocalMktDate" description="Indicates date of trade referenced in this message in YYYYMMDD format (expressed in local time at place of trade). Returned only in trade and trade cancel execution reports." offset="11" sinceVersion="6" semanticType="LocalMktDate"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="328" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description=" Market Data update Action" offset="0" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeTrade" description="Market Data Entry Type" semanticType="char"/>
+            <field name="SecurityID" id="48" type="uInt64NULL" description="Unique security ID" offset="1" semanticType="int"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per instrument update. Reset weekly" offset="9" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL" description="Price of the Market Data Entry" offset="13" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="Decimal64" description="Traded quantity" offset="21" semanticType="Qty"/>
+            <field name="NumberOfOrders" id="346" type="Int32NULL" description="The total number of real orders per instrument that participated in a match step within a match event" offset="30" semanticType="int"/>
+            <field name="TradeID" id="1003" type="Int32" description="Unique Trade Entry ID per Instrument  and Trading Date" offset="34" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade. If there is no value present, then there is no aggressor." offset="38" semanticType="int"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name" offset="39" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="String12" description="Indicates the product code for the instrument" offset="89" semanticType="String"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Identifies the type of instrument" offset="101" semanticType="String"/>
+            <field name="SecuritySubType" id="762" type="StringLength2" description="SecuritySubType for CDS only" offset="110" semanticType="String"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="This field provides the actual calendar date for contract maturity month and year (used for standardized futures and options)" offset="112" semanticType="MonthYear"/>
+            <field name="SecurityExchange" id="207" type="String4" description="Market used to help identify an instrument" offset="117" semanticType="String"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="121" semanticType="LocalMktDate"/>
+            <field name="UnitOfMeasure" id="996" type="String5" description="Unit of measure for the products' original contract size" offset="123" semanticType="String"/>
+            <field name="UnitOfMeasureCurrency" id="1716" type="StringLen3" description="Indicates the ISO Currency code if it is a currency product" offset="128" semanticType="String"/>
+            <field name="UnitOfMeasureQty" id="1147" type="PRICENULL" description="This field contains the notional value for each instrument. The notional value is equivalent to the corresponding premium-quoted contract" offset="131" semanticType="float"/>
+            <field name="CouponRate" id="223" type="Decimal32" description="The rate of interest that, when multiplied by the principal, par value, or face value of a bond, provides the currency amount of the periodic interest payment" offset="139" semanticType="Percentage"/>
+            <field name="PriceType" id="423" type="uInt16NULL" description="Valid price types for intraday trade" offset="143" semanticType="int"/>
+            <field name="TrdType" id="828" type="uInt8NULL" description="Valid trade types for intraday trade" offset="145" semanticType="int"/>
+            <field name="MDEntryID" id="278" type="StringLength26" description="Market data entry identifier to map multiple prices of a single trade" offset="146" semanticType="String"/>
+            <field name="PutOrCall" id="201" type="uInt8NULL" description="Indicates whether an option instrument is a put or call" offset="172" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="PRICENULL" description="Strike Price for an option instrument" offset="173" semanticType="Price"/>
+            <field name="RestructuringType" id="1449" type="StringLength2" description="A category of CDS credit event in which the underlying bond experiences a restructuring" offset="181" semanticType="String"/>
+            <field name="Seniority" id="1450" type="StringLength2" description="Specifies which issue (underlying bond) will receive payment priority in the event of a default" offset="183" semanticType="String"/>
+            <field name="ReferenceID" id="9633" type="String100" description="For future use" offset="185" semanticType="String"/>
+            <field name="StrategyLinkID" id="1851" type="StringLength26" description="Identifies the multileg strategy (e.g. spread) to which the trade belongs. This links together trade legs executed as part of a strategy during a single match event." offset="285" semanticType="String"/>
+            <field name="LegRefID" id="654" type="StringLength17" description="Used to correlate leg instrument definitions with their executions. Cross referenced to Tag 1788" offset="311" semanticType="String"/>
+            <group name="NoUnderlyings" id="711" description="Number of underlying legs that make up the security" blockLength="68" dimensionType="groupSize">
+                <field name="UnderlyingSymbol" id="311" type="StringLength50" description="Underlying Security's symbol" offset="0" semanticType="String"/>
+                <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Security's MaturityMonthYear" offset="50" semanticType="MonthYear"/>
+                <field name="UnderlyingSecurityType" id="310" type="StringLength9" description="Underlying Security's SecurityType" offset="55" semanticType="String"/>
+                <field name="UnderlyingSecurityExchange" id="308" type="String4" description="Underlying Security's SecurityExchange" offset="64" semanticType="String"/>
+            </group>
+            <group name="NoPartyIDs" id="453" description="Number of party roles" blockLength="52" dimensionType="groupSize">
+                <field name="PartyID" id="448" type="StringLength50" description="Party identifier/code" offset="0" semanticType="String"/>
+                <field name="PartyRole" id="452" type="StringLength2" description="Identifies the type or role of the PartyID specified" offset="50" semanticType="String"/>
+            </group>
+            <group name="NoLegs" id="555" description="Number of legs (repeating groups)" blockLength="135" dimensionType="groupSize">
+                <field name="LegSymbol" id="600" type="StringLength50" description="This tag contains the instrument group of the requested security definition. Must be present when tag 555-NoLegs is present. Also must be first tag in repeating group. Multileg instrument's individual security's Symbol." offset="0" semanticType="String"/>
+                <field name="LegSecurityID" id="602" type="uInt64NULL" description="Multileg instrument's individual security's SecurityID." offset="50" semanticType="int"/>
+                <field name="LegSecurityIDSource" id="603" type="LegSecurityIDSource" description="Identifies source of tag 602-LegSecurityID value. This value is always 'H' for CME." semanticType="char"/>
+                <field name="LegSecurityGroup" id="5795" type="String12" description="Leg equivalent of body tag 1151-SecurityGroup (i.e. leg 'product code')" offset="58" semanticType="String"/>
+                <field name="LegID" id="1788" type="StringLength17" description="Used to correlate leg instrument definitions with their executions.Cross referenced in Tag 654" offset="70" semanticType="String"/>
+                <field name="LegSecurityType" id="609" type="StringLength9" description="Identifies the type of leg instrument" offset="87" semanticType="String"/>
+                <field name="LegMaturityMonthYear" id="610" type="MaturityMonthYear" description="Multileg instrument's individual security's leg MaturityMonthYear" offset="96" semanticType="MonthYear"/>
+                <field name="LegMaturityDate" id="611" type="LocalMktDate" description="Multileg instrument's individual security's leg MaturityDate" offset="101" semanticType="LocalMktDate"/>
+                <field name="LegStrikePrice" id="612" type="PRICENULL" description="Multileg instrument's individual security's StrikePrice" offset="103" semanticType="Price"/>
+                <field name="LegUnitOfMeasure" id="999" type="String5" description="Multileg instrument's individual security's leg UnitOfMeasure" offset="111" semanticType="String"/>
+                <field name="LegUnitOfMeasureQty" id="1224" type="PRICENULL" description="Multileg instrument's individual security's leg UnitOfMeasureQty" offset="116" semanticType="float"/>
+                <field name="LegSecurityExchange" id="616" type="String4" description="Multileg instrument's individual security's leg SecurityExchange" offset="124" semanticType="String"/>
+                <field name="LegRatioQty" id="623" type="uInt16NULL" description="The ratio of quantity for this individual leg relative to the entire multileg security" offset="128" semanticType="int"/>
+                <field name="LegSide" id="624" type="uInt8NULL" description="The side of this individual leg (multileg security)" offset="130" semanticType="int"/>
+                <field name="LegPutOrCall" id="1358" type="uInt8NULL" description="Multileg instrument's individual security's leg option put or call" offset="131" semanticType="int"/>
+                <field name="LegUnitOfMeasureCurrency" id="1720" type="StringLen3" description="Indicates the currency of the unit of measure. Conditionally required when LegUnitOfMeasure(999) = Ccy" offset="132" semanticType="String"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshEris351" id="351" description="MDIncrementalRefreshEris" blockLength="11" semanticType="X" sinceVersion="2">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16NULL" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="9" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="187" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="CHAR" description="Indicates the type of Market Data update action" offset="0" semanticType="char"/>
+            <field name="MDEntryType" id="269" type="CHAR" description="Indicates the type of Market Data entry" offset="1" semanticType="char"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per instrument update. Reset weekly" offset="2" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="Decimal64" description="Price of the Market Data Entry" offset="6" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Quantity or volume represented by the Market Data Entry" offset="15" semanticType="Qty"/>
+            <field name="CalFutPx" id="37508" type="Decimal64" description="Calculated Futures Price using Swap NPV, Historical fixed and floating amounts and synthetic interest on variation margin " offset="23" semanticType="Price"/>
+            <field name="MDEntryPositionNo" id="290" type="Int32NULL" description="Position in the book. " offset="32" semanticType="int"/>
+            <field name="NumberOfOrders" id="346" type="Int32NULL" description="Number of orders working at a price level. Not sent on implied." offset="36" semanticType="int"/>
+            <field name="TradeID" id="1003" type="Int32" description="The unique identifier for the trade entry, per instrument + trading date." offset="40" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade. If there is no value present, then there is no aggressor." offset="44" semanticType="int"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name." offset="45" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="StringLength26" description="Indicates the product code for the instrument" offset="95" semanticType="String"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Identifies the type of instrument" offset="121" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="130" semanticType="Exchange"/>
+            <field name="Product" id="460" type="uInt8NULL" description="Indicates the type of product the instrument is associated with in the message" offset="134" semanticType="int"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="135" semanticType="LocalMktDate"/>
+            <field name="ReferenceID" id="9633" type="StringLength50" description="For future use" offset="137" semanticType="String"/>
+            <group name="NoSecurityAltID" id="454" description="Number of entries in AltID group." blockLength="27" dimensionType="groupSize">
+                <field name="SecurityAltID" id="455" type="StringLength26" description="Expanded instrument description." offset="0" semanticType="String"/>
+                <field name="SecurityAltIDSource" id="456" type="CHAR" description="Identifies class or source of the SecurityAltID (455) value." offset="26" semanticType="String"/>
+            </group>
+            <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSize">
+                <field name="EventType" id="865" type="uInt8" description="Code to represent the type of event." offset="0" semanticType="int"/>
+                <field name="EventTime" id="1145" type="uInt64NULL" description="Time of event. This is UTC Time." offset="1" semanticType="UTCTimeOnly"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshEris353" id="353" description="MDIncrementalRefreshEris" blockLength="11" semanticType="X" sinceVersion="2">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="8" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16NULL" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="9" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="188" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="CHAR" description="Indicates the type of Market Data update action" offset="0" semanticType="char"/>
+            <field name="MDEntryType" id="269" type="CHAR" description="Indicates the type of Market Data entry" offset="1" semanticType="char"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per instrument update. Reset weekly" offset="2" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="Decimal64" description="Price of the Market Data Entry" offset="6" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Quantity or volume represented by the Market Data Entry" offset="15" semanticType="Qty"/>
+            <field name="CalFutPx" id="37508" type="Decimal64" description="Calculated Futures Price using Swap NPV, Historical fixed and floating amounts and synthetic interest on variation margin " offset="23" semanticType="Price"/>
+            <field name="MDEntryPositionNo" id="290" type="Int32NULL" description="Position in the book. " offset="32" semanticType="int"/>
+            <field name="NumberOfOrders" id="346" type="Int32NULL" description="Number of orders working at a price level. Not sent on implied." offset="36" semanticType="int"/>
+            <field name="TradeID" id="1003" type="Int32" description="The unique identifier for the trade entry, per instrument + trading date." offset="40" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade. If there is no value present, then there is no aggressor." offset="44" semanticType="int"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name." offset="45" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="StringLength26" description="Indicates the product code for the instrument" offset="95" semanticType="String"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Identifies the type of instrument" offset="121" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="130" semanticType="Exchange"/>
+            <field name="Product" id="460" type="uInt8NULL" description="Indicates the type of product the instrument is associated with in the message" offset="134" semanticType="int"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="135" semanticType="LocalMktDate"/>
+            <field name="ReferenceID" id="9633" type="StringLength50" description="For future use" offset="137" semanticType="String"/>
+            <field name="MDQuoteType" id="1070" type="uInt8NULL" description="Identifies the type of quote. 0=Indicative, 1=Tradeable" offset="187" sinceVersion="7" semanticType="int"/>
+            <group name="NoSecurityAltID" id="454" description="Number of entries in AltID group." blockLength="27" dimensionType="groupSize">
+                <field name="SecurityAltID" id="455" type="StringLength26" description="Expanded instrument description." offset="0" semanticType="String"/>
+                <field name="SecurityAltIDSource" id="456" type="CHAR" description="Identifies class or source of the SecurityAltID (455) value." offset="26" semanticType="String"/>
+            </group>
+            <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSize">
+                <field name="EventType" id="865" type="uInt8" description="Code to represent the type of event." offset="0" semanticType="int"/>
+                <field name="EventTime" id="1145" type="uInt64NULL" description="Time of event. This is number of days since unix epoch" offset="1" semanticType="UTCTimeOnly"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshOTC356" id="356" description="MDIncrementalRefreshOTC" blockLength="13" semanticType="X" sinceVersion="2">
+        <field name="TransactTime" id="60" type="uInt64" description="Start of event processing time in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="TradeDate" id="75" type="LocalMktDate" description="Indicates date of trade referenced in this message in YYYYMMDD format (expressed in local time at place of trade). Returned only in trade and trade cancel execution reports." offset="8" sinceVersion="6" semanticType="LocalMktDate"/>
+        <field name="MatchEventIndicator" id="5799" type="MatchEventIndicator" description="Bitmap field of eight Boolean type indicators reflecting the end of updates for a given event" offset="10" semanticType="MultipleCharValue"/>
+        <field name="BatchTotalMessages" id="50001" type="uInt16NULL" description="Total number of messages contained within batch which is defined by match event indicator (5799)" offset="11" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message." blockLength="338" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Indicates the type of Market Data update action" semanticType="char"/>
+            <field name="MDEntryType" id="269" type="CHAR" description="Indicates the type of Market Data entry" offset="0" semanticType="char"/>
+            <field name="RptSeq" id="83" type="uInt32" description="MD Entry sequence number per instrument update. Reset weekly" offset="1" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL" description="Price of the Market Data Entry" offset="5" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="Decimal64" description="Quantity or volume represented by the Market Data Entry" offset="13" semanticType="Qty"/>
+            <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name." offset="22" semanticType="String"/>
+            <field name="SecurityGroup" id="1151" type="String12" description="Indicates the product code for the instrument" offset="72" semanticType="String"/>
+            <field name="SecurityType" id="167" type="StringLength9" description="Indicates the type of instrument" offset="84" semanticType="String"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="This field provides the actual calendar date for contract maturity month and year (used for standardized futures and options)" offset="93" semanticType="MonthYear"/>
+            <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify an instrument" offset="98" semanticType="Exchange"/>
+            <field name="Product" id="460" type="uInt8NULL" description="Indicates the type of product the instrument is associated with in the message" offset="102" sinceVersion="4" semanticType="int"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="103" semanticType="LocalMktDate"/>
+            <field name="CouponRate" id="223" type="Decimal32" description="The rate of interest that, when multiplied by the principal, par value, or face value of a bond, provides the currency amount of the periodic interest payment" offset="105" sinceVersion="4" semanticType="Percentage"/>
+            <field name="RestructuringType" id="1449" type="StringLength2" description="A category of CDS credit event in which the underlying bond experiences a restructuring" offset="109" semanticType="String"/>
+            <field name="Seniority" id="1450" type="StringLength2" description="Specifies which issue (underlying bond) will receive payment priority in the event of a default" offset="111" semanticType="String"/>
+            <field name="NotionalPercentageOutstanding" id="1451" type="Decimal32" description="Indicates the notional percentage of the deal that is still outstanding based on the remaining components of the index" offset="113" semanticType="Percentage"/>
+            <field name="PutOrCall" id="201" type="uInt8NULL" description="Indicates whether an option instrument is a put or call" offset="117" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="Decimal64" description="Strike Price for an option instrument" offset="118" semanticType="Price"/>
+            <field name="UnitOfMeasure" id="996" type="String5" description="Unit of measure for the products' original contract size" offset="127" semanticType="String"/>
+            <field name="UnitOfMeasureCurrency" id="1716" type="Currency" description="Indicates the ISO Currency code if it is a currency product" offset="132" semanticType="Currency"/>
+            <field name="UnitOfMeasureQty" id="1147" type="Decimal64" description="This field contains the notional value for each instrument. The notional value is equivalent to the corresponding premium-quoted contract" offset="135" semanticType="float"/>
+            <field name="MDEntryDate" id="272" type="Int32NULL" description="Date of the Market Data Entry Format: YYYYMMDD (i.e. 20071215)" offset="144" semanticType="UTCDateOnly"/>
+            <field name="OpenCloseSettlFlag" id="286" type="uInt8NULL" description="Flag that identifies a market data entry" offset="148" semanticType="int"/>
+            <field name="PriceType" id="423" type="uInt16NULL" description="Valid price types for intraday trade" offset="149" semanticType="int"/>
+            <field name="SettlDate" id="64" type="LocalMktDate" description="Indicates date of settlement" offset="151" semanticType="LocalMktDate"/>
+            <field name="QuoteCondition" id="276" type="CHAR" description="Condition describing a quote" offset="153" semanticType="char"/>
+            <field name="MarketSector" id="37521" type="StringLength26" description="Identifies the market in which a product trades. For e.g. CDS, Dairy" offset="154" semanticType="String"/>
+            <field name="SectorGroup" id="37522" type="StringLength2" description="Group of related products. For e.g. High Yield, Cheese" offset="180" semanticType="String"/>
+            <field name="SectorSubGroup" id="37523" type="StringLength26" description="A further qualification of Sector Group For e.g. North American" offset="182" semanticType="String"/>
+            <field name="ProductComplex" id="1227" type="StringLength26" description="Identifies an entire suite of products for a given market." offset="208" semanticType="String"/>
+            <field name="SecuritySubType" id="762" type="StringLength2" description="SecuritySubType for CDS only" offset="234" semanticType="String"/>
+            <field name="VolType" id="9705" type="uInt16NULL" description="Volume types for end of day volume" offset="236" semanticType="int"/>
+            <field name="ReferenceID" id="9633" type="String100" description="For future use" offset="238" sinceVersion="4" semanticType="String"/>
+            <group name="NoUnderlyings" id="711" description="Number of underlying legs that make up the security" blockLength="68" dimensionType="groupSize">
+                <field name="UnderlyingSymbol" id="311" type="StringLength50" description="Underlying Security's symbol" offset="0" semanticType="String"/>
+                <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Security's MaturityMonthYear" offset="50" semanticType="MonthYear"/>
+                <field name="UnderlyingSecurityType" id="310" type="StringLength9" description="Underlying Security's SecurityType" offset="55" semanticType="String"/>
+                <field name="UnderlyingSecurityExchange" id="308" type="SecurityExchange" description="Underlying Security's SecurityExchange and it can be used to identify the underlying security" offset="64" semanticType="Exchange"/>
+            </group>
+            <group name="NoSecurityAltID" id="454" description="Number of entries in AltID group." blockLength="51" dimensionType="groupSize">
+                <field name="SecurityAltID" id="455" type="StringLength50" description="Expanded instrument description." offset="0" semanticType="String"/>
+                <field name="SecurityAltIDSource" id="456" type="CHAR" description="Identifies class or source of the SecurityAltID (455) value." offset="50" semanticType="String"/>
+            </group>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDInstrumentDefinitionEris363" id="363" description="MDInstrumentDefinitionEris" blockLength="95" semanticType="d" sinceVersion="2">
+        <field name="SecurityGroup" id="1151" type="String12" description="Product code." offset="0" semanticType="String"/>
+        <field name="Symbol" id="55" type="StringLength50" description="Instrument/Index/Swap Name. " offset="12" semanticType="String"/>
+        <field name="SecurityType" id="167" type="String4" description="Identifies the type of instrument." offset="62" semanticType="String"/>
+        <field name="Product" id="460" type="uInt8NULL" description="Identifies the type of product." offset="66" semanticType="int"/>
+        <field name="SecurityExchange" id="207" type="SecurityExchange" description="Market used to help identify a security." offset="67" semanticType="Exchange"/>
+        <field name="MaturityDate" id="541" type="LocalMktDate" description="Maturity date of instrument" offset="71" semanticType="LocalMktDate"/>
+        <field name="Currency" id="15" type="Currency" description="Identifies currency used for price." offset="73" semanticType="Currency"/>
+        <field name="MinPriceIncrement" id="969" type="Decimal64" description="Minimum constant tick for the instrument." offset="76" semanticType="float"/>
+        <field name="SecurityUpdateAction" id="980" type="SecurityUpdateAction" description="Included in the message on the Incremental feed when a mid-week deletion or modification (i.e. extension) occurs." offset="85" semanticType="char"/>
+        <field name="RateType" id="37507" type="StringLength2" description="Rate type for the swap  and spread. " offset="86" semanticType="String"/>
+        <field name="CouponRate" id="223" type="Decimal32" description="Coupon Rate of the Swap." offset="88" semanticType="Percentage"/>
+        <field name="UserDefinedInstrument" id="9779" type="ErisUDI" description="Identifies user-defined instruments. If the tag is not present, the instrument is not user-defined." offset="92" semanticType="char"/>
+        <field name="ApplID" id="1180" type="uInt16NULL" description="This value indicates the channel ID as defined in the XML configuration file." offset="93" sinceVersion="4" semanticType="int"/>
+        <group name="NoMDFeedTypes" id="1141" description="Number of feed type repeating group entries." blockLength="4" dimensionType="groupSize">
+            <field name="MDFeedType" id="1022" type="StringLen3" description="Describes a class of service for a given data feed. This value will always be EBX for Eris" offset="0" semanticType="String"/>
+            <field name="MarketDepth" id="264" type="uInt8NULL" description="Indicated the level on the book traded." offset="3" semanticType="int"/>
+        </group>
+        <group name="NoEvents" id="864" description="Number of repeating EventType entries." blockLength="9" dimensionType="groupSize">
+            <field name="EventType" id="865" type="uInt8NULL" description="Code to represent the type of event." offset="0" semanticType="int"/>
+            <field name="EventTime" id="1145" type="uInt64NULL" description="Time of event. This is number of days since unix epoch" offset="1" semanticType="UTCTimeOnly"/>
+        </group>
+        <group name="NoSecurityAltID" id="454" description="Number of entries in AltID group." blockLength="27" sinceVersion="6" dimensionType="groupSize">
+            <field name="SecurityAltID" id="455" type="StringLength26" description="Expanded instrument description." offset="0" semanticType="String"/>
+            <field name="SecurityAltIDSource" id="456" type="CHAR" description="Identifies class or source of the SecurityAltID (455) value." offset="26" semanticType="String"/>
+        </group>
+        <group name="NoLegs" id="555" description="Number of legs (repeating groups)" blockLength="115" dimensionType="groupSize">
+            <field name="LegBenchmarkCurveName" id="677" type="String5" description="Required for Floating Rate Leg. Floating rate reference." offset="0" semanticType="String"/>
+            <field name="RateDescriptor" id="37504" type="String8" description="Rate Descriptor." offset="5" semanticType="String"/>
+            <field name="PreviousFixingDate" id="37501" type="LocalMktDate" description="Issue date for one leg of a multi-issue trade. It is the previous fixing date on the float leg." offset="13" semanticType="LocalMktDate"/>
+            <field name="LegPayFrequencey" id="37506" type="StringLen3" description="Payment frequency of fixed and floating rates expresses as a period." offset="15" semanticType="String"/>
+            <field name="PreviousFixingRate" id="37502" type="Decimal64" description="The Rate set on the last reset date. It is the previous fixing rate." offset="18" semanticType="float"/>
+            <field name="LegSymbol" id="600" type="StringLength50" description="For Eris Interest rate swaps values would be FIXED, FLOAT and for Spread, value would be underline instrument " offset="27" semanticType="String"/>
+            <field name="LegRatioQty" id="623" type="Int32NULL" description="The ratio of quantity for this individual leg relative to the entire multi-leg instrument." offset="77" semanticType="int"/>
+            <field name="LegSide" id="624" type="uInt8NULL" description="The side of this individual leg." offset="81" semanticType="int"/>
+            <field name="LegCurrency" id="556" type="Currency" description="Currency associated with a particular Leg's quantity" offset="82" sinceVersion="4" semanticType="Currency"/>
+            <field name="LegSecurityType" id="609" type="String8" description="Identifies the type of instrument." offset="85" semanticType="String"/>
+            <field name="LegSecurityGroup" id="5795" type="String12" description="Leg equivalent of body tag 1151-SecurityGroup (i.e. leg 'product code')" offset="93" sinceVersion="5" semanticType="String"/>
+            <field name="LegDateOffset" id="37503" type="Int8NULL" description="Float reset date offset, specified when LegType = FLOAT." offset="105" sinceVersion="5" semanticType="int"/>
+            <field name="InterpolationFactor" id="37505" type="Decimal64" description="Multiplier that when applied on longer rate results in previous fixing rate." offset="106" sinceVersion="5" semanticType="float"/>
+            <group name="NoLegSecurityAltID" id="604" description="Multileg instrument's individual security's NoSecurityAltID. " blockLength="27" dimensionType="groupSize">
+                <field name="LegSecurityAltID" id="605" type="StringLength26" description="Multileg instrument's individual security's SecurityAltID. " offset="0" semanticType="String"/>
+                <field name="LegSecurityAltIDSource" id="606" type="uInt8NULL" description="Multileg instrument's individual security's SecurityAltIDSource." offset="26" semanticType="int"/>
+            </group>
+        </group>
+    </ns2:message>
+</ns2:messageSchema>

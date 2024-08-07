@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" byteOrder="bigEndian" id="11" package="com.memx.us_options.memoir.top.sbe.v1_3" semanticVersion="1.3" version="259" xsi:schemaLocation="http://fixprotocol.io/2016/sbe">
+    <types>
+        <enum encodingType="uint8" name="BooleanType">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+        <composite name="PriceType">
+            <type name="Exponent" presence="constant" primitiveType="int8">-8</type>
+            <type name="Mantissa" primitiveType="uint64"/>
+        </composite>
+        <composite name="ShortPriceType">
+            <type name="Exponent" presence="constant" primitiveType="int8">-2</type>
+            <type name="Mantissa" primitiveType="uint16"/>
+        </composite>
+        <composite name="UTCTimestampNanos">
+            <type name="Unit" presence="constant" primitiveType="uint8">9</type>
+            <type name="Time" primitiveType="uint64"/>
+        </composite>
+        <set encodingType="uint8" name="TradeConditions">
+            <choice name="IntermarketSweep">0</choice>
+        </set>
+        <enum encodingType="char" name="SideType">
+            <validValue name="Buy">B</validValue>
+            <validValue name="Sell">S</validValue>
+        </enum>
+        <enum encodingType="uint8" name="OptionsProductType">
+            <validValue name="EquityUnderlying">0</validValue>
+            <validValue name="IndexUnderlying">1</validValue>
+        </enum>
+        <enum encodingType="uint8" name="PutOrCallType">
+            <validValue name="Put">0</validValue>
+            <validValue name="Call">1</validValue>
+        </enum>
+        <enum encodingType="char" name="InstrumentTradingStatusType">
+            <validValue name="Halted">H</validValue>
+            <validValue name="Trading">T</validValue>
+        </enum>
+        <enum encodingType="char" name="InstrumentTradingStatusReasonType">
+            <validValue name="None">X</validValue>
+            <validValue name="Administrative">A</validValue>
+        </enum>
+        <enum encodingType="char" name="TradingSessionType">
+            <validValue name="Trading">1</validValue>
+            <validValue name="Closed">2</validValue>
+        </enum>
+        <enum encodingType="char" name="OrderCapacityType">
+            <validValue name="Customer">C</validValue>
+            <validValue name="NonCustomer">N</validValue>
+        </enum>
+        <composite name="messageHeader">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint8"/>
+            <type name="schemaId" primitiveType="uint8"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <type length="8" name="InstrumentDirectorySymbol" primitiveType="char"/>
+        <type length="6" name="InstrumentDirectoryUnderlier" primitiveType="char"/>
+        <type length="6" name="InstrumentDirectoryOSIRoot" primitiveType="char"/>
+        <type length="8" name="InstrumentDirectoryMaturityDate" primitiveType="char"/>
+        <type length="8" name="InstrumentTradingStatusSymbol" primitiveType="char"/>
+        <type length="8" name="BrokenTradeSymbol" primitiveType="char"/>
+        <type length="8" name="CorrectedTradeSymbol" primitiveType="char"/>
+        <type length="8" name="BestBidOfferSymbol" primitiveType="char"/>
+        <type length="8" name="BestBidSymbol" primitiveType="char"/>
+        <type length="8" name="BestOfferSymbol" primitiveType="char"/>
+        <type length="8" name="BestBidShortSymbol" primitiveType="char"/>
+        <type length="8" name="BestOfferShortSymbol" primitiveType="char"/>
+        <type length="8" name="TradeSymbol" primitiveType="char"/>
+        <type length="8" name="ClearBookSymbol" primitiveType="char"/>
+    </types>
+    <sbe:message blockLength="56" id="1" name="InstrumentDirectory">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="InstrumentDirectorySymbol"/>
+        <field id="3" name="OptionsProductType" type="OptionsProductType"/>
+        <field id="4" name="Underlier" type="InstrumentDirectoryUnderlier"/>
+        <field id="5" name="OSIRoot" type="InstrumentDirectoryOSIRoot"/>
+        <field id="6" name="MaturityDate" type="InstrumentDirectoryMaturityDate"/>
+        <field id="7" name="StrikePutOrCall" type="PutOrCallType"/>
+        <field id="8" name="StrikePrice" type="PriceType"/>
+        <field id="9" name="ClosingOnly" type="BooleanType"/>
+        <field id="10" name="ClosingTime" type="UTCTimestampNanos"/>
+        <field id="11" name="IsTestSymbol" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="18" id="2" name="InstrumentTradingStatus">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="InstrumentTradingStatusSymbol"/>
+        <field id="3" name="InstrumentTradingStatus" type="InstrumentTradingStatusType"/>
+        <field id="4" name="InstrumentTradingStatusReason" type="InstrumentTradingStatusReasonType"/>
+    </sbe:message>
+    <sbe:message blockLength="9" id="3" name="TradingSessionStatus">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="TradingSession" type="TradingSessionType"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="5" name="BrokenTrade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BrokenTradeSymbol"/>
+        <field id="3" name="TradeID" type="uint64"/>
+        <field id="4" name="OriginalQuantity" type="uint32"/>
+        <field id="5" name="OriginalPrice" type="PriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="48" id="6" name="CorrectedTrade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="CorrectedTradeSymbol"/>
+        <field id="3" name="TradeID" type="uint64"/>
+        <field id="4" name="OriginalQuantity" type="uint32"/>
+        <field id="5" name="OriginalPrice" type="PriceType"/>
+        <field id="6" name="CorrectedQuantity" type="uint32"/>
+        <field id="7" name="CorrectedPrice" type="PriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="16" id="7" name="SnapshotComplete">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="AsOfSequenceNumber" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="48" id="10" name="BestBidOffer">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BestBidOfferSymbol"/>
+        <field id="3" name="TotalBidSize" type="uint32"/>
+        <field id="4" name="CustBidSize" type="uint32"/>
+        <field id="5" name="BidPrice" type="PriceType"/>
+        <field id="6" name="TotalOfferSize" type="uint32"/>
+        <field id="7" name="CustOfferSize" type="uint32"/>
+        <field id="8" name="OfferPrice" type="PriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="32" id="11" name="BestBid">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BestBidSymbol"/>
+        <field id="3" name="TotalBidSize" type="uint32"/>
+        <field id="4" name="CustBidSize" type="uint32"/>
+        <field id="5" name="BidPrice" type="PriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="32" id="12" name="BestOffer">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BestOfferSymbol"/>
+        <field id="3" name="TotalOfferSize" type="uint32"/>
+        <field id="4" name="CustOfferSize" type="uint32"/>
+        <field id="5" name="OfferPrice" type="PriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="22" id="13" name="BestBidShort">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BestBidShortSymbol"/>
+        <field id="3" name="TotalBidSize" type="uint16"/>
+        <field id="4" name="CustBidSize" type="uint16"/>
+        <field id="5" name="BidPrice" type="ShortPriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="22" id="14" name="BestOfferShort">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="BestOfferShortSymbol"/>
+        <field id="3" name="TotalOfferSize" type="uint16"/>
+        <field id="4" name="CustOfferSize" type="uint16"/>
+        <field id="5" name="OfferPrice" type="ShortPriceType"/>
+    </sbe:message>
+    <sbe:message blockLength="43" id="15" name="Trade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="TradeSymbol"/>
+        <field id="3" name="TradeID" type="uint64"/>
+        <field id="4" name="TradeConditions" type="TradeConditions"/>
+        <field id="5" name="Side" type="SideType"/>
+        <field id="6" name="Quantity" type="uint32"/>
+        <field id="7" name="Price" type="PriceType"/>
+        <field id="8" name="CustQuantity" type="uint32"/>
+        <field id="9" name="Capacity" type="OrderCapacityType"/>
+    </sbe:message>
+    <sbe:message blockLength="16" id="16" name="ClearBook">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="Symbol" type="ClearBookSymbol"/>
+    </sbe:message>
+</sbe:messageSchema>

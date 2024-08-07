@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:messageSchema xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="mdpsessionmgmt" id="2" version="0" semanticVersion="FIX5SP2" description="20190620" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixtradingcommunity.org/pg/file/fplpo/read/1196759/simple-binary-encoding-rc2xsd SimpleBinary-RC2.xsd">
+    <types>
+        <type name="HMACVersion" description="HMACVersion" presence="constant" length="13" primitiveType="char" semanticType="String">CME-1-SHA-256</type>
+        <type name="Int32" description="int32" primitiveType="int32"/>
+        <type name="SecurityGroup" length="6" primitiveType="char" semanticType="String"/>
+        <type name="String100" description="String length 100" length="100" primitiveType="char" semanticType="String"/>
+        <type name="String20Req" description="String length 20" length="20" primitiveType="char" semanticType="String"/>
+        <type name="String32Req" description="String length 32 " length="32" primitiveType="char" semanticType="String"/>
+        <type name="String48" description="String length 48" length="48" primitiveType="char" semanticType="String"/>
+        <type name="String5" description="String length 5" length="5" primitiveType="char" semanticType="String"/>
+        <type name="uInt16NULL" description="Unsigned Int16 with NULL" presence="optional" nullValue="65535" primitiveType="uint16"/>
+        <type name="uInt32" description="uInt32" primitiveType="uint32"/>
+        <type name="uInt32NULL" description="uInt32NULL" presence="optional" nullValue="4294967295" primitiveType="uint32"/>
+        <type name="uInt64" description="uInt64" primitiveType="uint64"/>
+        <type name="uInt8" description="uInt8" primitiveType="uint8"/>
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16" semanticType="Length"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <enum name="ErrorCodes" encodingType="uInt8">
+            <validValue name="HMACReject" description="Failed authentication">0</validValue>
+            <validValue name="InvalidValue" description="Failed required field validation">1</validValue>
+            <validValue name="SlowConnection" description="Slow connection">2</validValue>
+            <validValue name="Other" description="Unexpected request, see Reason field for details">3</validValue>
+        </enum>
+        <enum name="MDReqRejReason" encodingType="uInt8">
+            <validValue name="UnknownSecurity" description="Unknown Security">0</validValue>
+            <validValue name="UnknownMessage" description="Unknown or Invalid Message">1</validValue>
+            <validValue name="UnsupportedScope" description="Unsupported Scope">2</validValue>
+            <validValue name="Other" description="Other">3</validValue>
+        </enum>
+        <enum name="RequestIDStatus" encodingType="uInt8">
+            <validValue name="FullAck" description="Requested subscription scope is fully acknowledged ">0</validValue>
+            <validValue name="PartialAck" description="Requested subscription scope is partially acknowledged ">1</validValue>
+        </enum>
+        <enum name="SubscriptionReqType" encodingType="uInt8">
+            <validValue name="Snapshot" description="Snapshot">0</validValue>
+            <validValue name="SnapshotAndUpdates" description="Snapshot and updates">1</validValue>
+            <validValue name="Unsubscribe" description="Disable previous subscription">2</validValue>
+        </enum>
+    </types>
+    <ns2:message name="Negotiate200" id="200" description="Negotiate" blockLength="78" semanticType="MsgTypeNeg">
+        <field name="HMACVersion" id="39003" type="HMACVersion" description="Constant value representing CME HMAC version" semanticType="String"/>
+        <field name="HMACSignature" id="39005" type="String32Req" description="Contains the HMAC signature" offset="0" semanticType="String"/>
+        <field name="AccessKeyID" id="39004" type="String20Req" description="Contains the AccessKeyID assigned to this session on this port" offset="32" semanticType="String"/>
+        <field name="UUID" id="39001" type="uInt64" description="Session Identifier defined as type long uInt64, recommended to use timestamp as number of microseconds since Unix epoch" offset="52" semanticType="int"/>
+        <field name="RequestTimestamp" id="39002" type="uInt64" description="Time of request, recommended to use timestamp as number of nanoseconds since Unix epoch" offset="60" semanticType="UTCTimestamp"/>
+        <field name="Session" id="39006" type="String5" description="Session ID" offset="68" semanticType="String"/>
+        <field name="Firm" id="39007" type="String5" description="Firm ID" offset="73" semanticType="String"/>
+    </ns2:message>
+    <ns2:message name="NegotiationReject201" id="201" description="NegotiationReject" blockLength="70" semanticType="NegotiationReject">
+        <field name="Reason" id="39011" type="String48" description="Reject reason details" offset="0" semanticType="String"/>
+        <field name="UUID" id="39001" type="uInt64" description="Matches Negotiate.UUID" offset="48" semanticType="int"/>
+        <field name="RequestTimestamp" id="39002" type="uInt64" description="Matches Negotiate.RequestTimestamp" offset="56" semanticType="UTCTimestamp"/>
+        <field name="ErrorCodes" id="39012" type="ErrorCodes" description="Error code for reject reason" offset="64" semanticType="int"/>
+    </ns2:message>
+    <ns2:message name="NegotiationResponse202" id="202" description="NegotiationResponse" blockLength="22" semanticType="NegotiationResponse">
+        <field name="UUID" id="39001" type="uInt64" description="Matches Negotiate.UUID" offset="0" semanticType="int"/>
+        <field name="RequestTimestamp" id="39002" type="uInt64" description="Matches Negotiate.RequestTimestamp" offset="8" semanticType="UTCTimestamp"/>
+        <field name="SecretKeySecureIDExpiration" id="39022" type="uInt16NULL" description="This indicates in how many days the HMAC secret key will expire" offset="16" semanticType="int"/>
+    </ns2:message>
+    <ns2:message name="Terminate203" id="203" description="Terminate" blockLength="70" semanticType="Terminate">
+        <field name="Reason" id="39011" type="String48" description="Reject reason details" offset="0" semanticType="String"/>
+        <field name="UUID" id="39001" type="uInt64" description="Matches Negotiate.UUID  " offset="48" semanticType="int"/>
+        <field name="RequestTimestamp" id="39002" type="uInt64" description="Matches last received Negotiate.RequestTimestamp" offset="56" semanticType="UTCTimestamp"/>
+        <field name="ErrorCodes" id="39012" type="ErrorCodes" description="Error code for reject reason" offset="64" semanticType="int"/>
+    </ns2:message>
+    <ns2:message name="MarketDataRequest205" id="205" description="MarketDataRequest" blockLength="5" semanticType="V ">
+        <field name="MDReqID" id="262" type="uInt32" description="Unique identifier for Market Data Request. Must be unique per session so it can be referenced in Request Ack or Request Reject responses from the exchange" offset="0" semanticType="int"/>
+        <field name="SubscriptionReqType" id="263" type="SubscriptionReqType" description="Subscription Request Type indicates to the type of response expected" offset="4" semanticType="int"/>
+        <group name="NoSecurityGroups" id="37022" description="Number of SecurityGroups specified in subscription request. Should be equal 0, when subscription is requested for all groups on the segment or individual Security IDs are listed in the criteria for subscription" blockLength="6" dimensionType="groupSize">
+            <field name="SecurityGroup" id="1151" type="SecurityGroup" description="Security Group" offset="0" semanticType="String"/>
+        </group>
+        <group name="NoRelatedSym" id="146" description="Number of instruments requested. When NoSecurityGroups &gt; 0 specified in the request, the NoRelatedSym should be   equal 0" blockLength="4" dimensionType="groupSize">
+            <field name="SecurityID" id="48" type="Int32" description="Security ID" offset="0" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="RequestAck206" id="206" description="RequestAck" blockLength="6" semanticType="V">
+        <field name="MDReqID" id="262" type="uInt32" description="Unique identifier for Market Data Request" offset="0" semanticType="int"/>
+        <field name="SubscriptionReqType" id="263" type="SubscriptionReqType" description="Subscription ReqType" offset="4" semanticType="int"/>
+        <field name="MDReqIDStatus" id="37720" type="RequestIDStatus" description="Status of the request acknowledgement" offset="5" semanticType="int"/>
+        <group name="NoSecurityGroups" id="37022" description="Number of SecurityGroups acknowledged" blockLength="6" dimensionType="groupSize">
+            <field name="SecurityGroup" id="1151" type="SecurityGroup" description="Security Group" offset="0" semanticType="String"/>
+        </group>
+        <group name="NoRelatedSym" id="146" description="Number of securities acknowledged" blockLength="4" dimensionType="groupSize">
+            <field name="SecurityID" id="48" type="Int32" description="Security ID " offset="0" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="RequestReject207" id="207" description="RequestReject" blockLength="105" semanticType="Y">
+        <field name="MDReqID" id="262" type="uInt32NULL" description="Unique identifier for Market Data Request" offset="0" semanticType="int"/>
+        <field name="MDReqRejReason" id="281" type="MDReqRejReason" description="Market Data Request Reject reason code" offset="4" semanticType="int"/>
+        <field name="Text" id="58" type="String100" description="Reject reason details" offset="5" semanticType="String"/>
+    </ns2:message>
+    <ns2:message name="SecurityListRequest208" id="208" description="SecurityListRequest" blockLength="5" semanticType="x ">
+        <field name="MDReqID" id="262" type="uInt32" description="Unique identifier of the Request. Must be unique per session so it can be referenced in Request Acknowledgment or Request Reject responses from the exchange" offset="0" semanticType="int"/>
+        <field name="SubscriptionReqType" id="263" type="SubscriptionReqType" description="Subscription Request Type indicates to the type of response expected" offset="4" semanticType="int"/>
+        <group name="NoSecurityGroups" id="37022" description="Number of SecurityGroups specified in subscription request. Should be equal 0, when subscription is requested for all groups on the segment or individual Security IDs are listed in the criteria for subscription" blockLength="6" dimensionType="groupSize">
+            <field name="SecurityGroup" id="1151" type="SecurityGroup" description="Security Group" offset="0" semanticType="String"/>
+        </group>
+        <group name="NoRelatedSym" id="146" description="Number of instruments requested. When NoSecurityGroups &gt; 0 specified in the request, the NoRelatedSym should be   equal 0" blockLength="4" dimensionType="groupSize">
+            <field name="SecurityID" id="48" type="Int32" description="Security ID " offset="0" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="SecurityStatusRequest209" id="209" description="SecurityStatusRequest" blockLength="5" semanticType="g">
+        <field name="MDReqID" id="262" type="uInt32" description="Unique identifier of the Request. Must be unique per session so it can be referenced in Request Acknowledgment or Request Reject responses from the exchange" offset="0" semanticType="int"/>
+        <field name="SubscriptionReqType" id="263" type="SubscriptionReqType" description="Subscription Request Type indicates to the type of response expected" offset="4" semanticType="int"/>
+        <group name="NoSecurityGroups" id="37022" description="Number of SecurityGroups specified in subscription request. Should be equal 0, when subscription is requested for all groups on the segment or individual Security IDs are listed in the criteria for subscription" blockLength="6" dimensionType="groupSize">
+            <field name="SecurityGroup" id="1151" type="SecurityGroup" description="Security Group" offset="0" semanticType="String"/>
+        </group>
+        <group name="NoRelatedSym" id="146" description="Number of instruments requested. When NoSecurityGroups &gt; 0 specified in the request, the NoRelatedSym should be   equal 0" blockLength="4" dimensionType="groupSize">
+            <field name="SecurityID" id="48" type="Int32" description="Security ID" offset="0" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="SubscriberHeartbeat210" id="210" description="SubscriberHeartbeat" blockLength="0" semanticType="0"/>
+</ns2:messageSchema>

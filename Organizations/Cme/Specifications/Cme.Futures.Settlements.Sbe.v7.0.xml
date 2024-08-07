@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:messageSchema xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="svstreammktdata" id="7" version="0" semanticVersion="FIX5SP2" description="20181203" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixtradingcommunity.org/pg/file/fplpo/read/1196759/simple-binary-encoding-rc2xsd SimpleBinary-RC2.xsd">
+    <types>
+        <type name="CHAR" description="char" primitiveType="char"/>
+        <type name="Exchange" description="Exchange or Venue name" length="8" primitiveType="char"/>
+        <type name="LocalMktDate" presence="optional" nullValue="65535" primitiveType="uint16" semanticType="LocalMktDate"/>
+        <type name="MDEntryCVOI" description="MD Entry Type used for Cleared Volume and Open Interest updates" presence="constant" primitiveType="char" semanticType="char">B</type>
+        <type name="MDEntryTypeHighLow" description="MD Entry Type used for composite High and Low update" presence="constant" primitiveType="char" semanticType="char">h</type>
+        <type name="MDUpdateActionNew" description="MDUpdateActionNew" presence="constant" primitiveType="int8">0</type>
+        <type name="SecurityType" description="SecurityType" length="6" primitiveType="char" semanticType="String"/>
+        <type name="String12" description="String with length 12" presence="optional" length="12" primitiveType="char" semanticType="String"/>
+        <type name="String40" description="String length 40 char" length="40" primitiveType="char" semanticType="String"/>
+        <type name="Symbol" description="Symbol" length="20" primitiveType="char" semanticType="String"/>
+        <type name="uInt32NULL" description="uInt32NULL" presence="optional" nullValue="4294967295" primitiveType="uint32"/>
+        <type name="uInt64" description="uInt64" primitiveType="uint64"/>
+        <type name="uInt64NULL" description="uInt64NULL" presence="optional" nullValue="18446744073709551615" primitiveType="uint64"/>
+        <type name="uInt8" description="uInt8" primitiveType="uint8"/>
+        <type name="uInt8NULL" description="uInt8NULL" presence="optional" nullValue="255" primitiveType="uint8"/>
+        <composite name="Decimal64" description="Floating-point decimal">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="-9223372036854775808" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="optional" nullValue="-128" primitiveType="int8"/>
+        </composite>
+        <composite name="MaturityMonthYear" description="Year, Month and Date" semanticType="MonthYear">
+            <type name="year" description="YYYY" presence="optional" nullValue="65535" primitiveType="uint16"/>
+            <type name="month" description="MM" presence="optional" nullValue="255" primitiveType="uint8"/>
+            <type name="day" description="DD" presence="optional" nullValue="255" primitiveType="uint8"/>
+            <type name="week" description="WW" presence="optional" nullValue="255" primitiveType="uint8"/>
+        </composite>
+        <composite name="PRICENULL9" description="Optional Price with constant exponent -9">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+        </composite>
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16" semanticType="Length"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <enum name="CycleFlag" encodingType="uInt8">
+            <validValue name="Estimated" description="Estimated values">3</validValue>
+            <validValue name="ActualAdjusted" description="Actual adjusted values">4</validValue>
+        </enum>
+        <enum name="MDUpdateAction" encodingType="uInt8">
+            <validValue name="New" description="New">0</validValue>
+            <validValue name="Change" description="Change">1</validValue>
+            <validValue name="Delete" description="Delete">2</validValue>
+        </enum>
+        <enum name="PutOrCall" encodingType="uInt8NULL">
+            <validValue name="Put" description="Put Option">0</validValue>
+            <validValue name="Call" description="Call Option">1</validValue>
+        </enum>
+        <enum name="PxInd" encodingType="CHAR">
+            <validValue name="Ask" description="Ask">A</validValue>
+            <validValue name="Bid" description="Bid">B</validValue>
+            <validValue name="Trade" description="Trade">T</validValue>
+        </enum>
+        <set name="SettlPriceType" encodingType="uInt8">
+            <choice name="FinalDaily" description="1=FinalDaily, 0=Preliminary">0</choice>
+            <choice name="Actual" description="1=Actual, 0=Theoretical">1</choice>
+            <choice name="Rounded" description="1=Rounded, 0=Unrounded">2</choice>
+            <choice name="Intraday" description="1=Intraday, 0=Undefined">3</choice>
+            <choice name="Cabinet" description="1=SettleAtCab, 0=Undefined">4</choice>
+            <choice name="ReservedBits" description="Bits 5-6 are reserved">5</choice>
+            <choice name="NullValue" description="1=Entire set is NULL, 0=not NULL">7</choice>
+        </set>
+    </types>
+    <ns2:message name="MDIncrementalRefreshSettle401" id="401" description="MDIncrementalRefreshSettle" blockLength="8" semanticType="X">
+        <field name="TransactTime" id="60" type="uInt64" description="Event processing time (UTC), sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <group name="NoMDEntries" id="268" description="Number of data blocks" blockLength="182" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Market Data update action" offset="0" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="CHAR" description="Indicates the type of price" offset="1" semanticType="char"/>
+            <field name="ProductGUID" id="7178" type="uInt64NULL" description="Product GUID" offset="2" semanticType="int"/>
+            <field name="ClearingProductCode" id="37500" type="String12" description="Clearing Product Code" offset="10" semanticType="String"/>
+            <field name="SecurityType" id="167" type="SecurityType" description="Security Type" offset="22" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="Exchange" description="Security Exchange" offset="28" semanticType="Exchange"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="Contract Maturity" offset="36" semanticType="MonthYear"/>
+            <field name="PutOrCall" id="201" type="PutOrCall" description="Put or call indicator" offset="41" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="Decimal64" description="Option Strike Price in Clearing format" offset="42" semanticType="Price"/>
+            <field name="UnderlyingProductGUID" id="37509" type="uInt64NULL" description="Underlying Product GUID" offset="51" semanticType="int"/>
+            <field name="UnderlyingClearingProductCode" id="37510" type="String12" description="Underlying Clearing Product Code" offset="59" semanticType="String"/>
+            <field name="UnderlyingSecurityType" id="310" type="SecurityType" description="Underlying Security Type" offset="71" semanticType="String"/>
+            <field name="UnderlyingSecurityExchange" id="308" type="Exchange" description="Underlying Security Exchange" offset="77" semanticType="Exchange"/>
+            <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Maturity" offset="85" semanticType="MonthYear"/>
+            <field name="Symbol" id="55" type="Symbol" description="Contract name, symbol" offset="90" semanticType="String"/>
+            <field name="InstrumentGUID" id="37513" type="uInt64NULL" description="External unique instrument ID" offset="110" semanticType="int"/>
+            <field name="SecurityID" id="48" type="uInt32NULL" description="Security ID" offset="118" semanticType="int"/>
+            <field name="FormattedLastPx" id="9732" type="Decimal64" description="Price formatted for processing by post-trade systems (Clearing price format)" offset="122" semanticType="Price"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL9" description="Price in Globex decimal format. Sent only for the instruments listed on Globex" offset="131" semanticType="Price"/>
+            <field name="SettlPriceType" id="731" type="SettlPriceType" description="Set of Boolean flags describing Settlement or Valuation price" offset="139" semanticType="MultipleCharValue"/>
+            <field name="TradingReferenceDate" id="5796" type="LocalMktDate" description="Business date corresponding to a statistic entry" offset="140" semanticType="LocalMktDate"/>
+            <field name="MDStatisticDesc" id="2455" type="String40" description="An optional textual description for a statistic" offset="142" semanticType="String"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshVOI402" id="402" description="MDIncrementalRefreshVOI" blockLength="8" semanticType="X">
+        <field name="TransactTime" id="60" type="uInt64" description="Event processing time (UTC), sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <group name="NoMDEntries" id="268" description="Number of data blocks" blockLength="131" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Market Data update action" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryCVOI" description="Market Data entry type" semanticType="char"/>
+            <field name="ProductGUID" id="7178" type="uInt64NULL" description="Product GUID" offset="0" semanticType="int"/>
+            <field name="ClearingProductCode" id="37500" type="String12" description="Clearing Product Code" offset="8" semanticType="String"/>
+            <field name="SecurityType" id="167" type="SecurityType" description="Security Type" offset="20" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="Exchange" description="Security Exchange" offset="26" semanticType="Exchange"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="Contract Maturity" offset="34" semanticType="MonthYear"/>
+            <field name="PutOrCall" id="201" type="PutOrCall" description="Put or call indicator" offset="39" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="Decimal64" description="Option Strike Price in Clearing format" offset="40" semanticType="Price"/>
+            <field name="UnderlyingProductGUID" id="37509" type="uInt64NULL" description="Underlying Product GUID" offset="49" semanticType="int"/>
+            <field name="UnderlyingClearingProductCode" id="37510" type="String12" description="Underlying Clearing Product Code" offset="57" semanticType="String"/>
+            <field name="UnderlyingSecurityType" id="310" type="SecurityType" description="Underlying Security Type" offset="69" semanticType="String"/>
+            <field name="UnderlyingSecurityExchange" id="308" type="Exchange" description="Underlying Security Exchange" offset="75" semanticType="Exchange"/>
+            <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Contract Maturity" offset="83" semanticType="MonthYear"/>
+            <field name="Symbol" id="55" type="Symbol" description="Symbol, contract name" offset="88" semanticType="String"/>
+            <field name="InstrumentGUID" id="37513" type="uInt64NULL" description="External unique instrument ID" offset="108" semanticType="int"/>
+            <field name="SecurityID" id="48" type="uInt32NULL" description="Security ID" offset="116" semanticType="int"/>
+            <field name="ClearedVolume" id="5791" type="uInt32NULL" description="Cleared volume reported for prior trading session referenced in Tag 5796 TradingReferenceDate" offset="120" semanticType="Qty"/>
+            <field name="OpenInterestQty" id="5792" type="uInt32NULL" description="Open interest reported for prior trading session referenced in Tag 5796 TradingReferenceDate" offset="124" semanticType="Qty"/>
+            <field name="OpenCloseSettlFlag" id="286" type="CycleFlag" description="Estimated vs Actual flag" offset="128" semanticType="int"/>
+            <field name="TradingReferenceDate" id="5796" type="LocalMktDate" description="Business date corresponding to a statistic entry" offset="129" semanticType="LocalMktDate"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshHighLow403" id="403" description="MDIncrementalRefreshHighLow" blockLength="8" semanticType="X">
+        <field name="TransactTime" id="60" type="uInt64" description="Event processing time (UTC), sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <group name="NoMDEntries" id="268" description="Number of data blocks" blockLength="142" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Market Data update action" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeHighLow" description="Market Data entry type" semanticType="char"/>
+            <field name="ProductGUID" id="7178" type="uInt64NULL" description="Product GUID" offset="0" semanticType="int"/>
+            <field name="ClearingProductCode" id="37500" type="String12" description="Clearing Product Code" offset="8" semanticType="String"/>
+            <field name="SecurityType" id="167" type="SecurityType" description="Security Type" offset="20" semanticType="String"/>
+            <field name="SecurityExchange" id="207" type="Exchange" description="Security Exchange" offset="26" semanticType="Exchange"/>
+            <field name="MaturityMonthYear" id="200" type="MaturityMonthYear" description="Contract Maturity" offset="34" semanticType="MonthYear"/>
+            <field name="PutOrCall" id="201" type="PutOrCall" description="Put or call indicator" offset="39" semanticType="int"/>
+            <field name="StrikePrice" id="202" type="Decimal64" description="Option Strike Price in Clearing format" offset="40" semanticType="Price"/>
+            <field name="UnderlyingProductGUID" id="37509" type="uInt64NULL" description="Underlying Product GUID" offset="49" semanticType="int"/>
+            <field name="UnderlyingClearingProductCode" id="37510" type="String12" description="Underlying Clearing Product Code " offset="57" semanticType="String"/>
+            <field name="UnderlyingSecurityType" id="310" type="SecurityType" description="Underlying Security Type" offset="69" semanticType="String"/>
+            <field name="UnderlyingSecurityExchange" id="308" type="Exchange" description="Underlying Security Exchange" offset="75" semanticType="Exchange"/>
+            <field name="UnderlyingMaturityMonthYear" id="313" type="MaturityMonthYear" description="Underlying Contract Maturity" offset="83" semanticType="MonthYear"/>
+            <field name="Symbol" id="55" type="Symbol" description="Contract name, symbol" offset="88" semanticType="String"/>
+            <field name="InstrumentGUID" id="37513" type="uInt64NULL" description="External unique instrument ID" offset="108" semanticType="int"/>
+            <field name="SecurityID" id="48" type="uInt32NULL" description="Security ID" offset="116" semanticType="int"/>
+            <field name="LowPx" id="333" type="Decimal64" description="Low Price" offset="120" semanticType="Price"/>
+            <field name="LowPxInd" id="37525" type="PxInd" description="Low price origin indicator" offset="129" semanticType="char"/>
+            <field name="HighPx" id="332" type="Decimal64" description="High Price" offset="130" semanticType="Price"/>
+            <field name="HighPxInd" id="37524" type="PxInd" description="High price origin indicator" offset="139" semanticType="char"/>
+            <field name="TradingReferenceDate" id="5796" type="LocalMktDate" description="Business date corresponding to a statistic entry" offset="140" semanticType="LocalMktDate"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="AdminHeartbeat407" id="407" description="AdminHeartbeat" blockLength="0" semanticType="0"/>
+</ns2:messageSchema>

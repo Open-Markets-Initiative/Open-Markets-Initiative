@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" byteOrder="bigEndian" id="12" package="com.memx.us_options.risk.sbe.v1_6" semanticVersion="1.6" version="262" xsi:schemaLocation="http://fixprotocol.io/2016/sbe">
+    <types>
+        <enum encodingType="uint8" name="BooleanType">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+        <composite name="PriceType">
+            <type name="Exponent" presence="constant" primitiveType="int8">-8</type>
+            <type name="Mantissa" primitiveType="uint64"/>
+        </composite>
+        <composite name="UTCTimestampNanos">
+            <type name="Unit" presence="constant" primitiveType="uint8">9</type>
+            <type name="Time" primitiveType="uint64"/>
+        </composite>
+        <enum encodingType="uint8" name="RuleType">
+            <validValue name="ContractVolume">1</validValue>
+            <validValue name="NotionalExecuted">2</validValue>
+            <validValue name="TotalTradesExecuted">3</validValue>
+            <validValue name="PercentExecuted">4</validValue>
+            <validValue name="NumberOfBreaches">5</validValue>
+            <validValue name="AllowISOOrders">6</validValue>
+            <validValue name="AllowOrdersInCrossedMarket">7</validValue>
+            <validValue name="MaxNotional">8</validValue>
+            <validValue name="MaxContracts">9</validValue>
+            <validValue name="GrossNotional">10</validValue>
+            <validValue name="MarketOrderGrossNotional">11</validValue>
+            <validValue name="NetNotional">12</validValue>
+            <validValue name="MarketOrderNetNotional">13</validValue>
+            <validValue name="DuplicateOrder">14</validValue>
+            <validValue name="OrderRate">15</validValue>
+            <validValue name="TriggeredBreach">254</validValue>
+        </enum>
+        <enum encodingType="uint16" name="RiskRejectReason">
+            <validValue name="Other">0</validValue>
+            <validValue name="MissingClOrdID">1</validValue>
+            <validValue name="InvalidClOrdID">2</validValue>
+            <validValue name="DuplicateClOrdID">3</validValue>
+            <validValue name="MissingTimePeriod">4</validValue>
+            <validValue name="InvalidTimePeriod">5</validValue>
+            <validValue name="MissingRiskGroupID">6</validValue>
+            <validValue name="InvalidRiskGroupID">7</validValue>
+            <validValue name="MissingUnderlier">8</validValue>
+            <validValue name="InvalidUnderlier">9</validValue>
+            <validValue name="MissingEFID">10</validValue>
+            <validValue name="InvalidEFID">11</validValue>
+            <validValue name="MissingThreshold">12</validValue>
+            <validValue name="InvalidThreshold">13</validValue>
+            <validValue name="MissingQuantity">14</validValue>
+            <validValue name="InvalidQuantity">15</validValue>
+            <validValue name="MissingBreachID">16</validValue>
+            <validValue name="InvalidBreachID">17</validValue>
+            <validValue name="MissingVolume">18</validValue>
+            <validValue name="InvalidVolume">19</validValue>
+            <validValue name="MissingPeriodInMilliSeconds">20</validValue>
+            <validValue name="InvalidPeriodInMilliSeconds">21</validValue>
+            <validValue name="MissingPriceInDollars">22</validValue>
+            <validValue name="InvalidPriceInDollars">23</validValue>
+            <validValue name="MissingTotalExecutions">24</validValue>
+            <validValue name="InvalidTotalExecutions">25</validValue>
+            <validValue name="MissingPercent">26</validValue>
+            <validValue name="InvalidPercent">27</validValue>
+            <validValue name="MissingCount">28</validValue>
+            <validValue name="InvalidCount">29</validValue>
+            <validValue name="MissingAllowISOOrders">30</validValue>
+            <validValue name="InvalidAllowISOOrders">31</validValue>
+            <validValue name="MissingAllowOrders">32</validValue>
+            <validValue name="InvalidAllowOrders">33</validValue>
+            <validValue name="MissingMaxNotionalInDollars">34</validValue>
+            <validValue name="InvalidMaxNotionalInDollars">35</validValue>
+            <validValue name="MissingMaxContracts">36</validValue>
+            <validValue name="InvalidMaxContracts">37</validValue>
+            <validValue name="OverConfirm">38</validValue>
+            <validValue name="InvalidRiskCombination">39</validValue>
+            <validValue name="UnknownRiskRule">40</validValue>
+            <validValue name="MissingMaxDupOrders">41</validValue>
+            <validValue name="InvalidMaxDupOrders">42</validValue>
+            <validValue name="MissingMaxOrderMsgs">43</validValue>
+            <validValue name="InvalidMaxOrderMsgs">44</validValue>
+            <validValue name="BreachInProgress">45</validValue>
+            <validValue name="NumberOfBreachesForbidClearing">46</validValue>
+            <validValue name="NoActiveBreaches">47</validValue>
+            <validValue name="ExchangeClosed">100</validValue>
+            <validValue name="NullValue">65535</validValue>
+        </enum>
+        <enum encodingType="char" name="SideType">
+            <validValue name="Buy">1</validValue>
+            <validValue name="Sell">2</validValue>
+        </enum>
+        <composite name="messageHeader">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint8"/>
+            <type name="schemaId" primitiveType="uint8"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <type length="20" name="RiskSettingsQueryClOrdID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskAcknowledgementReqClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskAcknowledgementReqUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskAcknowledgementReqEFID" primitiveType="char"/>
+        <type length="20" name="CPVolumeThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPVolumeThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPVolumeThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPExecutedNotionalThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPExecutedNotionalThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPExecutedNotionalThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPTotalExecutionsThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPTotalExecutionsThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPTotalExecutionsThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPPercentOutstandingContractsThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPPercentOutstandingContractsThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPPercentOutstandingContractsThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPBreachCountThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPBreachCountThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPBreachCountThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="ManualCPBreachTriggerReqClOrdID" primitiveType="char"/>
+        <type length="6" name="ManualCPBreachTriggerReqUnderlier" primitiveType="char"/>
+        <type length="4" name="ManualCPBreachTriggerReqEFID" primitiveType="char"/>
+        <type length="20" name="CPClearBreachReqClOrdID" primitiveType="char"/>
+        <type length="20" name="SingleOrderAllowISOOrdersChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderAllowISOOrdersChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderAllowISOOrdersChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderAllowOrdersInCrossedMarketChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderAllowOrdersInCrossedMarketChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderAllowOrdersInCrossedMarketChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderMaxNotionalChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderMaxNotionalChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderMaxNotionalChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderMaxContractsChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderMaxContractsChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderMaxContractsChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPGrossNotionalThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPGrossNotionalThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPGrossNotionalThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPMarketOrderGrossNotionalThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPMarketOrderGrossNotionalThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPMarketOrderGrossNotionalThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPNetNotionalThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPNetNotionalThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPNetNotionalThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPMarketOrderNetNotionalThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPMarketOrderNetNotionalThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPMarketOrderNetNotionalThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPDuplicateOrderThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPDuplicateOrderThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPDuplicateOrderThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="CPOrderRateThresholdChangeReqClOrdID" primitiveType="char"/>
+        <type length="6" name="CPOrderRateThresholdChangeReqUnderlier" primitiveType="char"/>
+        <type length="4" name="CPOrderRateThresholdChangeReqEFID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskThresholdChangeRejClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskThresholdChangeRejUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskThresholdChangeRejEFID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskAcknowledgedClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskAcknowledgedUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskAcknowledgedEFID" primitiveType="char"/>
+        <type length="20" name="ActiveRiskAcknowledgeRejClOrdID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskAcknowledgeRejUnderlier" primitiveType="char"/>
+        <type length="4" name="ActiveRiskAcknowledgeRejEFID" primitiveType="char"/>
+        <type length="4" name="ActiveRiskQuantityUpdateNotificationEFID" primitiveType="char"/>
+        <type length="6" name="ActiveRiskQuantityUpdateNotificationUnderlier" primitiveType="char"/>
+        <type length="8" name="ActiveRiskQuantityUpdateNotificationOptionSecurityID" primitiveType="char"/>
+        <type length="20" name="CPVolumeThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPVolumeThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPVolumeThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPExecutedNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPExecutedNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPExecutedNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPTotalExecutionsThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPTotalExecutionsThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPTotalExecutionsThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPPercentOutstandingContractsThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPPercentOutstandingContractsThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPPercentOutstandingContractsThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPBreachCountThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPBreachCountThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPBreachCountThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="ManualCPBreachTriggerPendingClOrdID" primitiveType="char"/>
+        <type length="6" name="ManualCPBreachTriggerPendingUnderlier" primitiveType="char"/>
+        <type length="4" name="ManualCPBreachTriggerPendingEFID" primitiveType="char"/>
+        <type length="20" name="ManualCPBreachTriggerDoneClOrdID" primitiveType="char"/>
+        <type length="6" name="ManualCPBreachTriggerDoneUnderlier" primitiveType="char"/>
+        <type length="4" name="ManualCPBreachTriggerDoneEFID" primitiveType="char"/>
+        <type length="20" name="RiskThresholdUpdateRejClOrdID" primitiveType="char"/>
+        <type length="6" name="PassiveRiskThresholdNotificationUnderlier" primitiveType="char"/>
+        <type length="4" name="PassiveRiskThresholdNotificationEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderAllowISOOrdersStateClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderAllowISOOrdersStateUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderAllowISOOrdersStateEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderAllowOrdersInCrossedMarketStateClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderAllowOrdersInCrossedMarketStateUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderAllowOrdersInCrossedMarketStateEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderMaxNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderMaxNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderMaxNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="SingleOrderMaxContractsThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="SingleOrderMaxContractsThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="SingleOrderMaxContractsThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="RiskSettingsQueryDoneClOrdID" primitiveType="char"/>
+        <type length="20" name="RiskSettingsQueryRejClOrdID" primitiveType="char"/>
+        <type length="20" name="ManualCPBreachTriggerRejClOrdID" primitiveType="char"/>
+        <type length="6" name="ManualCPBreachTriggerRejUnderlier" primitiveType="char"/>
+        <type length="4" name="ManualCPBreachTriggerRejEFID" primitiveType="char"/>
+        <type length="20" name="BreachClearRejClOrdID" primitiveType="char"/>
+        <type length="20" name="BreachClearedClOrdID" primitiveType="char"/>
+        <type length="20" name="CPGrossNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPGrossNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPGrossNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPMarketOrderGrossNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPMarketOrderGrossNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPMarketOrderGrossNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPNetNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPNetNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPNetNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPMarketOrderNetNotionalThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPMarketOrderNetNotionalThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPMarketOrderNetNotionalThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPDuplicateOrderThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPDuplicateOrderThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPDuplicateOrderThresholdStateEFID" primitiveType="char"/>
+        <type length="20" name="CPOrderRateThresholdStateClOrdID" primitiveType="char"/>
+        <type length="6" name="CPOrderRateThresholdStateUnderlier" primitiveType="char"/>
+        <type length="4" name="CPOrderRateThresholdStateEFID" primitiveType="char"/>
+    </types>
+    <sbe:message blockLength="20" id="1" name="RiskSettingsQuery">
+        <field id="1" name="ClOrdID" type="RiskSettingsQueryClOrdID"/>
+    </sbe:message>
+    <sbe:message blockLength="34" id="2" name="ActiveRiskThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="ActiveRiskThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ActiveRiskThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ActiveRiskThresholdChangeReqEFID"/>
+        <field id="4" name="ThresholdQuantity" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="34" id="3" name="ActiveRiskAcknowledgementReq">
+        <field id="1" name="ClOrdID" type="ActiveRiskAcknowledgementReqClOrdID"/>
+        <field id="2" name="Underlier" type="ActiveRiskAcknowledgementReqUnderlier"/>
+        <field id="3" name="EFID" type="ActiveRiskAcknowledgementReqEFID"/>
+        <field id="4" name="Quantity" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="44" id="4" name="CPVolumeThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPVolumeThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPVolumeThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPVolumeThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="Volume" type="uint64"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="44" id="5" name="CPExecutedNotionalThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPExecutedNotionalThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPExecutedNotionalThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPExecutedNotionalThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="6" name="CPTotalExecutionsThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPTotalExecutionsThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPTotalExecutionsThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPTotalExecutionsThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="TotalExecutions" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="38" id="7" name="CPPercentOutstandingContractsThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPPercentOutstandingContractsThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPPercentOutstandingContractsThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPPercentOutstandingContractsThresholdChangeReqEFID"/>
+        <field id="4" name="Percent" type="int32"/>
+        <field id="5" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="8" name="CPBreachCountThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPBreachCountThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPBreachCountThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPBreachCountThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="Count" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="33" id="9" name="ManualCPBreachTriggerReq">
+        <field id="1" name="ClOrdID" type="ManualCPBreachTriggerReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ManualCPBreachTriggerReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ManualCPBreachTriggerReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="SendCancels" presence="optional" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="28" id="10" name="CPClearBreachReq">
+        <field id="1" name="ClOrdID" type="CPClearBreachReqClOrdID"/>
+        <field id="2" name="BreachID" presence="optional" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="33" id="11" name="SingleOrderAllowISOOrdersChangeReq">
+        <field id="1" name="ClOrdID" type="SingleOrderAllowISOOrdersChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderAllowISOOrdersChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderAllowISOOrdersChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="AllowISOOrders" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="33" id="12" name="SingleOrderAllowOrdersInCrossedMarketChangeReq">
+        <field id="1" name="ClOrdID" type="SingleOrderAllowOrdersInCrossedMarketChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderAllowOrdersInCrossedMarketChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderAllowOrdersInCrossedMarketChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="AllowOrders" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="13" name="SingleOrderMaxNotionalChangeReq">
+        <field id="1" name="ClOrdID" type="SingleOrderMaxNotionalChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderMaxNotionalChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderMaxNotionalChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxNotionalInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="14" name="SingleOrderMaxContractsChangeReq">
+        <field id="1" name="ClOrdID" type="SingleOrderMaxContractsChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderMaxContractsChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderMaxContractsChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxContracts" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="18" name="CPGrossNotionalThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPGrossNotionalThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPGrossNotionalThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPGrossNotionalThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="19" name="CPMarketOrderGrossNotionalThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPMarketOrderGrossNotionalThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPMarketOrderGrossNotionalThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPMarketOrderGrossNotionalThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="20" name="CPNetNotionalThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPNetNotionalThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPNetNotionalThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPNetNotionalThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="21" name="CPMarketOrderNetNotionalThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPMarketOrderNetNotionalThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPMarketOrderNetNotionalThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPMarketOrderNetNotionalThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="41" id="22" name="CPDuplicateOrderThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPDuplicateOrderThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPDuplicateOrderThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPDuplicateOrderThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxDupOrders" type="uint32"/>
+        <field id="6" name="UseOrderPriceInDupCheck" presence="optional" type="BooleanType"/>
+        <field id="7" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="23" name="CPOrderRateThresholdChangeReq">
+        <field id="1" name="ClOrdID" type="CPOrderRateThresholdChangeReqClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPOrderRateThresholdChangeReqUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPOrderRateThresholdChangeReqEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxOrderMsgs" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="38" id="30" name="ActiveRiskThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="ActiveRiskThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" type="ActiveRiskThresholdStateUnderlier"/>
+        <field id="3" name="EFID" type="ActiveRiskThresholdStateEFID"/>
+        <field id="4" name="ThresholdQuantity" type="uint32"/>
+        <field id="5" name="UnackedQuantity" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="31" name="ActiveRiskThresholdChangeRej">
+        <field id="1" name="ClOrdID" type="ActiveRiskThresholdChangeRejClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ActiveRiskThresholdChangeRejUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ActiveRiskThresholdChangeRejEFID"/>
+        <field id="4" name="ThresholdQuantity" type="uint32"/>
+        <field id="5" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="38" id="32" name="ActiveRiskAcknowledged">
+        <field id="1" name="ClOrdID" type="ActiveRiskAcknowledgedClOrdID"/>
+        <field id="2" name="Underlier" type="ActiveRiskAcknowledgedUnderlier"/>
+        <field id="3" name="EFID" type="ActiveRiskAcknowledgedEFID"/>
+        <field id="4" name="Quantity" type="uint32"/>
+        <field id="5" name="UnAckedQuantity" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="33" name="ActiveRiskAcknowledgeRej">
+        <field id="1" name="ClOrdID" type="ActiveRiskAcknowledgeRejClOrdID"/>
+        <field id="2" name="Underlier" type="ActiveRiskAcknowledgeRejUnderlier"/>
+        <field id="3" name="EFID" type="ActiveRiskAcknowledgeRejEFID"/>
+        <field id="4" name="ThresholdQuantity" type="uint32"/>
+        <field id="5" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="67" id="34" name="ActiveRiskQuantityUpdateNotification">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="TransactTime" type="UTCTimestampNanos"/>
+        <field id="3" name="OrderID" type="uint64"/>
+        <field id="4" name="TrdMatchID" type="uint64"/>
+        <field id="5" name="EFID" type="ActiveRiskQuantityUpdateNotificationEFID"/>
+        <field id="6" name="Underlier" type="ActiveRiskQuantityUpdateNotificationUnderlier"/>
+        <field id="7" name="OptionSecurityID" type="ActiveRiskQuantityUpdateNotificationOptionSecurityID"/>
+        <field id="8" name="Side" type="SideType"/>
+        <field id="9" name="LastPx" type="PriceType"/>
+        <field id="10" name="LastQty" type="uint32"/>
+        <field id="11" name="UnAckedQuantity" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="44" id="35" name="CPVolumeThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPVolumeThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPVolumeThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPVolumeThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="Volume" type="uint64"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="44" id="36" name="CPExecutedNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPExecutedNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPExecutedNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPExecutedNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="37" name="CPTotalExecutionsThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPTotalExecutionsThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPTotalExecutionsThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPTotalExecutionsThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="TotalExecutions" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="38" id="38" name="CPPercentOutstandingContractsThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPPercentOutstandingContractsThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPPercentOutstandingContractsThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPPercentOutstandingContractsThresholdStateEFID"/>
+        <field id="4" name="Percent" type="uint32"/>
+        <field id="5" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="39" name="CPBreachCountThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPBreachCountThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPBreachCountThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPBreachCountThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="Count" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="40" name="ManualCPBreachTriggerPending">
+        <field id="1" name="ClOrdID" type="ManualCPBreachTriggerPendingClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ManualCPBreachTriggerPendingUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ManualCPBreachTriggerPendingEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="BreachID" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="44" id="41" name="ManualCPBreachTriggerDone">
+        <field id="1" name="ClOrdID" type="ManualCPBreachTriggerDoneClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ManualCPBreachTriggerDoneUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ManualCPBreachTriggerDoneEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="BreachID" type="uint64"/>
+        <field id="6" name="TotalAffectedOrders" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="23" id="42" name="RiskThresholdUpdateRej">
+        <field id="1" name="ClOrdID" type="RiskThresholdUpdateRejClOrdID"/>
+        <field id="2" name="RiskType" type="RuleType"/>
+        <field id="3" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="30" id="43" name="PassiveRiskThresholdNotification">
+        <field id="1" name="Underlier" presence="optional" type="PassiveRiskThresholdNotificationUnderlier"/>
+        <field id="2" name="EFID" presence="optional" type="PassiveRiskThresholdNotificationEFID"/>
+        <field id="3" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="4" name="RuleType" type="RuleType"/>
+        <field id="5" name="LatestPercentage" type="uint8"/>
+        <field id="6" name="BreachID" presence="optional" type="uint64"/>
+        <field id="7" name="TransactTime" type="UTCTimestampNanos"/>
+    </sbe:message>
+    <sbe:message blockLength="33" id="44" name="SingleOrderAllowISOOrdersState">
+        <field id="1" name="ClOrdID" presence="optional" type="SingleOrderAllowISOOrdersStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderAllowISOOrdersStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderAllowISOOrdersStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="AllowISOOrders" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="33" id="45" name="SingleOrderAllowOrdersInCrossedMarketState">
+        <field id="1" name="ClOrdID" presence="optional" type="SingleOrderAllowOrdersInCrossedMarketStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderAllowOrdersInCrossedMarketStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderAllowOrdersInCrossedMarketStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="AllowOrders" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="46" name="SingleOrderMaxNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="SingleOrderMaxNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderMaxNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderMaxNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxNotionalInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="47" name="SingleOrderMaxContractsThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="SingleOrderMaxContractsThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="SingleOrderMaxContractsThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="SingleOrderMaxContractsThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxContracts" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="24" id="48" name="RiskSettingsQueryDone">
+        <field id="1" name="ClOrdID" type="RiskSettingsQueryDoneClOrdID"/>
+        <field id="2" name="NumberMsgsSent" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="22" id="49" name="RiskSettingsQueryRej">
+        <field id="1" name="ClOrdID" type="RiskSettingsQueryRejClOrdID"/>
+        <field id="2" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="34" id="50" name="ManualCPBreachTriggerRej">
+        <field id="1" name="ClOrdID" type="ManualCPBreachTriggerRejClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="ManualCPBreachTriggerRejUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="ManualCPBreachTriggerRejEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="30" id="51" name="BreachClearRej">
+        <field id="1" name="ClOrdID" type="BreachClearRejClOrdID"/>
+        <field id="2" name="BreachID" presence="optional" type="uint64"/>
+        <field id="3" name="RejectReason" type="RiskRejectReason"/>
+    </sbe:message>
+    <sbe:message blockLength="28" id="52" name="BreachCleared">
+        <field id="1" name="ClOrdID" presence="optional" type="BreachClearedClOrdID"/>
+        <field id="2" name="BreachID" presence="optional" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="60" name="CPGrossNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPGrossNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPGrossNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPGrossNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="61" name="CPMarketOrderGrossNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPMarketOrderGrossNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPMarketOrderGrossNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPMarketOrderGrossNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="62" name="CPNetNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPNetNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPNetNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPNetNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="63" name="CPMarketOrderNetNotionalThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPMarketOrderNetNotionalThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPMarketOrderNetNotionalThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPMarketOrderNetNotionalThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="PriceInDollars" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="41" id="64" name="CPDuplicateOrderThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPDuplicateOrderThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPDuplicateOrderThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPDuplicateOrderThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxDupOrders" type="uint32"/>
+        <field id="6" name="UseOrderPriceInDupCheck" type="BooleanType"/>
+        <field id="7" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="40" id="65" name="CPOrderRateThresholdState">
+        <field id="1" name="ClOrdID" presence="optional" type="CPOrderRateThresholdStateClOrdID"/>
+        <field id="2" name="Underlier" presence="optional" type="CPOrderRateThresholdStateUnderlier"/>
+        <field id="3" name="EFID" presence="optional" type="CPOrderRateThresholdStateEFID"/>
+        <field id="4" name="RiskGroupID" presence="optional" type="uint16"/>
+        <field id="5" name="MaxOrderMsgs" type="uint32"/>
+        <field id="6" name="PeriodInMilliSeconds" type="uint32"/>
+    </sbe:message>
+</sbe:messageSchema>

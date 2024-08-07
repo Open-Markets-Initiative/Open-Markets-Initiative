@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--suppress XmlDefaultAttributeValue -->
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="fairx.gateway.sbe.codec.order"
+                   id="1101"
+                   version="3"
+                   semanticVersion="1.5"
+                   description="SBE order gateway message API."
+                   byteOrder="littleEndian">
+    <types>
+        <composite name="messageHeader" description="Message header (includes fields to satisfy FIX session protocol, plus standard SBE header)">
+            <type name="protocolId" primitiveType="uint8"/>
+            <set name="flags" encodingType="uint8">
+                <choice name="isResend">0</choice>
+            </set>
+            <type name="messageLength" primitiveType="uint16"/>
+            <type name="sequenceNumber" primitiveType="uint32"/>
+            <type name="lastProcessedSeqNo" primitiveType="uint32"/>
+            <type name="reserved" primitiveType="uint32"/>
+            <type name="sendTimeEpochNanos" primitiveType="int64"/>
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <composite name="VarData" description="Variable length data blob">
+            <type name="length" primitiveType="uint8"/>
+            <type name="varData" primitiveType="int8"/>
+        </composite>
+    </types>
+    <types>
+        <type name="String16" length="16" primitiveType="char" semanticType="String"/>
+        <type name="String23" length="23" primitiveType="char" semanticType="String"/>
+        <type name="String31" length="31" primitiveType="char" semanticType="String"/>
+        <type name="String32" length="32" primitiveType="char" semanticType="String"/>
+        <type name="String47" length="47" primitiveType="char" semanticType="String"/>
+        <type name="Account" length="12" primitiveType="char" semanticType="String"/>
+        <type name="OrderId" primitiveType="int64"/>
+        <type name="ClientOrderId" primitiveType="int64"/>
+        <type name="CorrelationId" primitiveType="int64"/>
+        <type name="InstrumentId" primitiveType="int32" minValue="1"/>
+        <type name="TimestampNanos" primitiveType="int64" description="Nanoseconds since Unix epoch."/>
+        <type name="FillId" primitiveType="int64"/>
+        <type name="Quantity0" primitiveType="int32" description="A quantity with 0 decimal places."/>
+        <composite name="Price9" description="Price with constant exponent -9">
+            <type name="price9" description="price" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+        </composite>
+        <enum name="Bool" encodingType="int8">
+            <validValue name="FALSE">0</validValue>
+            <validValue name="TRUE">1</validValue>
+        </enum>
+        <enum name="InstrumentStatus" encodingType="uint8">
+            <validValue name="PRE_OPEN">1</validValue>
+            <validValue name="PRE_OPEN_NO_CANCEL">2</validValue>
+            <validValue name="READY_TO_TRADE">3</validValue>
+            <validValue name="TRADING_HALT">4</validValue>
+            <validValue name="CLOSE">5</validValue>
+            <validValue name="POST_CLOSE">6</validValue>
+        </enum>
+        <enum name="OrderRejectReason" encodingType="uint8">
+            <validValue name="ERROR" description="Error occurred during submit.">1</validValue>
+            <validValue name="INVALID_INSTRUMENT" description="InstrumentId is unknown.">2</validValue>
+            <validValue name="CL_ORD_ID_IN_USE" description="ClientOrderId is already in use for another order.">3</validValue>
+            <validValue name="VALIDATION_FAILURE" description="Some sort of validation failure.">8</validValue>
+            <validValue name="UNKNOWN_ORDER" description="Unknown order.">9</validValue>
+        </enum>
+        <enum name="CancelOrderRejectReason" encodingType="uint8">
+            <validValue name="ERROR" description="Error occurred during cancel request.">1</validValue>
+            <validValue name="UNKNOWN_ORDER" description="Unknown order.">2</validValue>
+            <validValue name="ORDER_FILLED" description="Order already filled">3</validValue>
+        </enum>
+        <enum name="CancelReason" encodingType="uint8">
+            <validValue name="EXPIRED">0</validValue>
+            <validValue name="CANCELED_BY_USER">1</validValue>
+            <validValue name="SELF_MATCH_PREVENTION">2</validValue>
+            <validValue name="CLIENT_DISCONNECT">3</validValue>
+            <validValue name="PRICE_LIMIT" sinceVersion="2">4</validValue>
+            <validValue name="ADMIN_CANCEL" sinceVersion="2">5</validValue>
+            <validValue name="MASS_CANCEL" sinceVersion="2">6</validValue>
+            <validValue name="STREAM_REPLACED" sinceVersion="2">7</validValue>
+            <validValue name="ACTIVE_LIMIT_EXCEEDED" sinceVersion="3">8</validValue>
+        </enum>
+        <enum name="SecurityType" encodingType="uint8">
+            <validValue name="FUTURES">0</validValue>
+            <validValue name="OPTIONS">1</validValue>
+        </enum>
+        <enum name="Side" encodingType="int8">
+            <validValue name="BUY">1</validValue>
+            <validValue name="SELL">-1</validValue>
+        </enum>
+        <enum name="TradingSystemStatus" encodingType="int8">
+            <validValue name="OK">0</validValue>
+            <validValue name="TEMPORARILY_UNAVAILABLE">1</validValue>
+            <validValue name="BACK_PRESSURED">2</validValue>
+        </enum>
+        <enum name="ResendRejectReason" encodingType="int8">
+            <validValue name="BEGIN_EXEC_ID_TOO_SMALL">1</validValue>
+            <validValue name="END_EXEC_ID_TOO_LARGE">2</validValue>
+            <validValue name="RESEND_ALREADY_IN_PROGRESS">3</validValue>
+            <validValue name="TOO_MANY_RESEND_REQUESTS">4</validValue>
+            <validValue name="SERVER_ERROR">5</validValue>
+        </enum>
+    </types>
+
+    <sbe:message name="Ping" id="102" description="Can be used as a service heartbeat and/or simple round-trip latency test.">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="requestTime"       id="2" type="int64"/>
+        <data  name="data"              id="3" type="VarData"/>
+    </sbe:message>
+    <sbe:message name="Pong" id="202" description="Reply to Ping.">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="requestTime"       id="2" type="int64"/>
+        <field name="serverTime"        id="3" type="int64"/>
+        <field name="status"            id="4" type="TradingSystemStatus"/>
+        <data  name="data"              id="5" type="VarData"/>
+    </sbe:message>
+
+    <sbe:message name="InstrumentInfoRequest" id="103" description="Request all instruments available for trading">
+        <field name="correlationId"     id="1" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="InstrumentInfo" id="203" description="Information about an instrument and its status">
+        <!-- should we send a separate header, and index inside this message? -->
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="instrumentId"      id="2" type="InstrumentId"/>
+        <field name="securityType"      id="3" type="SecurityType"/>
+        <field name="status"            id="4" type="InstrumentStatus"/>
+        <field name="isLastMessage"     id="5" type="Bool"/>
+        <field name="reserved"          id="6" type="int8"/>
+        <field name="symbol"            id="7" type="String32"/>
+        <!-- TODO: add minTradeQty, maxTradeQty, tickSize, instrumentStatus -->
+    </sbe:message>
+
+    <sbe:message name="SetAccount" id="105" description="Set the current Account">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="account"           id="2" type="String16"/>
+    </sbe:message>
+
+    <sbe:message name="SetTrader" id="106" description="Set the current Trader">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="trader"            id="2" type="String16"/>
+    </sbe:message>
+
+    <sbe:message name="SetAck" id="205" description="Sent in response to SetAccount and SetTrader messages">
+        <field name="correlationId"     id="1" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="NewOrder" id="110" description="Place a new order">
+        <field name="clientOrderId"                  id="1" type="ClientOrderId"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="limitPrice"                     id="3" type="Price9"/>
+        <field name="quantity"                       id="4" type="Quantity0"/>
+        <field name="instrumentId"                   id="5" type="InstrumentId"/>
+        <field name="side"                           id="6" type="Side"/>
+        <!-- traderId, subFirmId configured on setup -->
+    </sbe:message>
+
+    <sbe:message name="OrderEntered" id="210" description="Confirm that a new order was successfully placed.">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="execId"                         id="2" type="int64"/>
+        <field name="clientOrderId"                  id="3" type="ClientOrderId"/>
+        <field name="correlationId"                  id="4" type="CorrelationId"/>
+        <field name="orderId"                        id="5" type="OrderId"/>
+        <field name="receiveTime"                    id="6" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="ReplaceOrder" id="120" description="Replace an order">
+        <field name="clientOrderId"                  id="1" type="ClientOrderId"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="newLimitPrice"                  id="3" type="Price9" presence="optional"/>
+        <field name="newQuantity"                    id="4" type="Quantity0" presence="optional"/>
+        <field name="instrumentId"                   id="5" type="InstrumentId"/>
+    </sbe:message>
+
+    <sbe:message name="StreamOrder" id="121" description="Enter a stream order">
+        <field name="clientOrderId"                  id="1" type="ClientOrderId"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="lastProcessedFillId"            id="3" type="FillId" presence="optional"/>
+        <field name="limitPrice"                     id="4" type="Price9"/>
+        <field name="quantity"                       id="5" type="Quantity0"/>
+        <field name="instrumentId"                   id="6" type="InstrumentId"/>
+        <field name="side"                           id="7" type="Side"/>
+    </sbe:message>
+
+    <sbe:message name="OrderReject" id="221" description="Reply to NewOrder/ReplaceOrder/StreamOrder message when request fails.">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="clientOrderId"                  id="2" type="ClientOrderId"/>
+        <field name="correlationId"                  id="3" type="CorrelationId"/>
+        <field name="orderId"                        id="4" type="OrderId" presence="optional"/>
+        <field name="rejectReason"                   id="5" type="OrderRejectReason"/>
+        <field name="details"                        id="6" type="String47"/>
+    </sbe:message>
+
+    <sbe:message name="OrderReplaced" id="220" description="Reply to ReplaceOrder message after order is replaced.">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="execId"                         id="2" type="int64"/>
+        <field name="clientOrderId"                  id="3" type="ClientOrderId"/>
+        <field name="correlationId"                  id="4" type="CorrelationId"/>
+        <field name="orderId"                        id="5" type="OrderId"/>
+        <field name="receiveTime"                    id="6" type="int64"/>
+        <field name="totalFilled"                    id="7" type="Quantity0"/>
+        <field name="availableQty"                   id="8" type="Quantity0"/>
+        <field name="instrumentId"                   id="9" type="InstrumentId"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrder" id="130" description="Request to cancel an order">
+        <field name="clientOrderId"     id="1" type="ClientOrderId"/>
+        <field name="correlationId"     id="2" type="CorrelationId"/>
+        <field name="instrumentId"      id="3" type="InstrumentId"/>
+    </sbe:message>
+
+    <sbe:message name="OrderCanceled" id="230" description="Sent when an order is canceled.">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="execId"                         id="2" type="int64"/>
+        <field name="clientOrderId"                  id="3" type="ClientOrderId"/>
+        <field name="correlationId"                  id="4" type="CorrelationId"/>
+        <field name="orderId"                        id="5" type="OrderId"/>
+        <field name="receiveTime"                    id="6" type="int64"/>
+        <field name="totalFilled"                    id="7" type="Quantity0"/>
+        <field name="instrumentId"                   id="8" type="InstrumentId"/>
+        <field name="cancelReason"                   id="9" type="CancelReason"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrderReject" id="233" description="Reply to CancelOrder message when cancel request fails.">
+        <field name="timestamp"                 id="1" type="TimestampNanos"/>
+        <field name="clientOrderId"             id="2" type="ClientOrderId"/>
+        <field name="correlationId"             id="3" type="ClientOrderId"/>
+        <field name="orderId"                   id="4" type="OrderId" presence="optional"/>
+        <field name="rejectReason"              id="5" type="CancelOrderRejectReason"/>
+        <field name="details"                   id="6" type="String31"/>
+    </sbe:message>
+
+    <sbe:message name="MassCancelOrder" id="131" description="Mass Cancel Orders">
+        <field name="correlationId"                  id="1" type="CorrelationId"/>
+        <field name="limitPrice"                     id="2" type="Price9"/>
+        <field name="instrumentId"                   id="3" type="InstrumentId"/>
+        <field name="side"                           id="4" type="Side"/>
+        <field name="currentSessionOnly"             id="5" type="Bool"/>
+        <field name="requestTradingLock"             id="6" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="MassCancelOrderAck" id="231" description="Mass Cancel Orders">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="execId"                         id="2" type="int64"/>
+        <field name="correlationId"                  id="3" type="CorrelationId"/>
+        <field name="canceledCount"                  id="4" type="int32"/>
+        <field name="onlyCurrentSession"             id="5" type="Bool"/>
+        <field name="tradingLockApplied"             id="6" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="MassCancelOrderReject" id="232" description="Mass Cancel Orders">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="errorMessage"                   id="3" type="String32"/>
+    </sbe:message>
+
+    <sbe:message name="UnlockTrading" id="132" description="Unlock Client Requested Trading Lock">
+        <field name="correlationId"                  id="1" type="CorrelationId"/>
+        <field name="currentSessionOnly"             id="2" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="UnlockTradingAck" id="234" description="Acknowledge UnlockTrading">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="numUsersAffected"               id="3" type="int32"/>
+    </sbe:message>
+
+    <sbe:message name="UnlockTradingReject" id="235" description="Reject UnlockTrading">
+        <field name="timestamp"                      id="1" type="TimestampNanos"/>
+        <field name="correlationId"                  id="2" type="CorrelationId"/>
+        <field name="errorMessage"                   id="3" type="String32"/>
+    </sbe:message>
+
+    <sbe:message name="OrderFilled" id="240" description="Sent when an outright order is partially or fully filled.">
+        <field name="timestamp"                 id= "1" type="TimestampNanos"/>
+        <field name="execId"                    id= "2" type="int64"/>
+        <field name="matchId"                   id= "3" type="int64"/>
+        <field name="clientOrderId"             id= "4" type="ClientOrderId"/>
+        <field name="correlationId"             id= "5" type="CorrelationId"/>
+        <field name="orderId"                   id= "6" type="OrderId"/>
+        <field name="filledVwap"                id= "7" type="Price9"/>
+        <field name="totalFilled"               id= "8" type="Quantity0"/>
+        <field name="availableQty"              id= "9" type="Quantity0"/>
+        <field name="fillPrice"                 id="10" type="Price9"/>
+        <field name="fillQty"                   id="11" type="Quantity0"/>
+        <field name="instrumentId"              id="12" type="InstrumentId"/>
+        <field name="isAggressor"               id="13" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="SpreadOrderFilled" id="241" description="Sent when a spread order is partially or fully filled.">
+        <field name="timestamp"                 id= "1" type="TimestampNanos"/>
+        <field name="execId"                    id= "2" type="int64"/>
+        <field name="matchId"                   id= "3" type="int64"/>
+        <field name="clientOrderId"             id= "4" type="ClientOrderId"/>
+        <field name="correlationId"             id= "5" type="CorrelationId"/>
+        <field name="orderId"                   id= "6" type="OrderId"/>
+        <field name="filledVwap"                id= "7" type="Price9"/>
+        <field name="totalFilled"               id= "8" type="Quantity0"/>
+        <field name="availableQty"              id= "9" type="Quantity0"/>
+        <field name="fillPrice"                 id="10" type="Price9"/>
+        <field name="leg1FillPrice"             id="11" type="Price9"/>
+        <field name="leg2FillPrice"             id="12" type="Price9"/>
+        <field name="fillQty"                   id="13" type="Quantity0"/>
+        <field name="instrumentId"              id="14" type="InstrumentId"/>
+        <field name="isAggressor"               id="15" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="LastExecIdRequest" id="150" description="Request the execId of the last order event message sent to the client.">
+        <field name="correlationId"     id="1" type="int64"/>
+    </sbe:message>
+    <sbe:message name="LastExecId" id="250" description="Reply to LastExecIdRequest message.">
+        <field name="timestamp"         id="1" type="int64"/>
+        <field name="lastExecId"        id="2" type="int64"/>
+        <field name="correlationId"     id="3" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="EventResendRequest" id="152" description="Request resend of order events in the specified range.">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="beginExecId"       id="2" type="int64"/>
+        <field name="endExecId"         id="3" type="int64"/>
+    </sbe:message>
+    <sbe:message name="EventResendComplete" id="252" description="Sent in response to successful EventResendRequest following all resent events.">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="resentEventCount"  id="2" type="int32"/>
+    </sbe:message>
+    <sbe:message name="EventResendReject" id="253" description="Sent in response to EventResentRequest if the request cannot be fulfilled.">
+        <field name="correlationId"     id="1" type="int64"/>
+        <field name="rejectReason"      id="2" type="ResendRejectReason"/>
+        <field name="details"           id="3" type="String23"/>
+    </sbe:message>
+
+</sbe:messageSchema>

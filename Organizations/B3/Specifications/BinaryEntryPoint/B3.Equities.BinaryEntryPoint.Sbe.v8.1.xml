@@ -1,0 +1,1504 @@
+<!--
+
+=================================================================================
+DISCLAIMER:
+
+Fully tested with Java codecs generated from sbe-tool 1.28.3.
+More details on how to generate codecs from templates described here, see this link below:
+https://github.com/real-logic/simple-binary-encoding/wiki/Sbe-Tool-Guide
+=================================================================================
+
+=================================================================================
+
+B3 Entrypoint FIXP SBE Messages
+
+=================================================================================
+History
+=================================================================================
+8.1.1 | 2024-05-16 | ordTagID and investorID fields added in ExecutionReport_New, ExecutionReport_Modify, ExecutionReport_Cancel and ExecutionReport_Reject messages.
+      |            | Trading session identification, group phase, instrument state fields added in ExecutionReport_Trade and ExecutionReport_Forward messages.
+8.1.0 | 2024-04-30 | Protocol version changed to 3.
+      |            | receivedTime field that is the instant when inbound message arrived in the gateway added in ExecutionReport_New, ExecutionReport_Modify, ExecutionReport_Cancel, ExecutionReport_Reject messages.
+      |            | strategyID field added to NewOrderSingle, OrderCancelReplaceRequest, ExecutionReport_New, ExecutionReport_Modify, ExecutionReport_Reject, ExecutionReport_Trade messages.
+      |            | crossType, crossPrioritization, maxSweepQty fields added to NewOrderCross messages to support Sweep & Cross feature.
+      |            | actionRequestedFromSessionID field added in ExecutionReport_Cancel message to support cancel on behalf feature.
+      |            | mmProtectionReset field added in ExecutionReport_New and ExecutionReport_Modify messages.
+      |            | New values for ExecRestatementReason enum: CANCEL_REMAINING_FROM_SWEEP_CROSS, MASS_CANCEL_ON_BEHALF and MASS_CANCEL_ON_BEHALF_DUE_TO_OPERATIONAL_ERROR_EFFECTIVE.
+      |            | securityID field turned optional in SecurityDefinitionResponse message.
+      |            | Type QuoteIDOptional nullValue changed to 0.
+      |            | Type of quoteReqID changed from variable length field to fixed field in the root block.
+      |            | All occurences of price field in the Quote family of messages (QuoteRequest, QuoteStatusReport, Quote, QuoteRequestReject) changed to 8 decimals.
+      |            | All occurences of fixedRate field changed to 8 decimals.
+8.0.0 | 2023-09-18 | === BEWARE, THIS NEW SCHEMA IS IMCOMPATIBLE WITH THE OLDER ONES. PLEASE MAKE THE NECESSARY CHANGES IN YOUR SYSTEM BEFORE USING IN PRODUCTION ENVIRONMENT ===
+      |            | The routingInstruction field is relocated in the SimpleNewOrder, SimpleModifyOrder, NewOrderSingle, OrderCancelReplaceRequest messages, so that the first 18 fields share the same order/position (76 bytes) between these messages.
+      |            | accountType field was reallocated to the same position as the previous position of the routingInstruction field in the OrderCancelReplaceRequest message for the reason described in the sentence above.
+      |            | deprecatedInvestorID variable-length field removed: the correct one to inform investor's identification is investorID composite field.
+      |            | Added value PROTOCOL_VERSION_NOT_SUPPORTED to NegotiationRejectCode, EstablishRejectCode and TerminationCode enums.
+      |            | Added value SYSTEM_BUSY to RetransmitRejectCode.
+      |            | SelfTradePreventionInstruction enum includes a new value: NONE (0) to not enable self-trade prevention mechanism even when used for mass cancel on behalf mechanism. Therefore, the presence of selfTradePreventionInstruction field becomes required (mass cancel on behalf mechanism will be available in the future).
+      |            | Several unused types/enum values/fields removed from ExecutionReport_Cancel, OrderMassActionRequest and OrderMassActionReport messages. investorID composite field replaced those fields at the end of OrderMassActionRequest and OrderMassActionReport messages for mass cancel on behalf purposes (mass cancel on behalf mechanism will be available in the future).
+7.1.0 | 2023-08-14 | routingInstruction field included in the SimpleNewOrder and SimpleModifyOrder messages.
+      |            | investorID composite field added at the end of root block in the SimpleNewOrder, SimpleModifyOrder, OrderCancelReplaceRequest, NewOrderSingle to replace deprecated variable length data investorID field.
+7.0.1 | 2023-06-26 | QuoteRequestReject: orderQty type changed to QuantityOptional.
+7.0.0 | 2023-06-21 | Added new domain: DUPLICATE_SESSION_CONNECTION to NegotiationRejectCode.
+      |            | Added new domain: AUTHENTICATION_IN_PROGRESS to NegotiationRejectCode.
+      |            | Added new domain: DUPLICATE_SESSION_CONNECTION to EstablishRejectCode.
+      |            | Added new domain: AUTHENTICATION_IN_PROGRESS to EstablishRejectCode.
+      |            | Added new domain: INVALID_SESSIONID to TerminationCode.
+      |            | Added new domain: INVALID_SESSIONVERID to TerminationCode.
+      |            | Added new domain: INVALID_TIMESTAMP to TerminationCode.
+      |            | Added new domain: INVALID_NEXTSEQNO to TerminationCode.
+      |            | Added new domain: UNRECOGNIZED_MESSAGE to TerminationCode.
+      |            | Added new domain: INVALID_SOFH to TerminationCode.
+      |            | Added new domain: DECODING_ERROR to TerminationCode.
+      |            | Added new domain: THROTTLE_REJECT to RetransmitRejectCode.
+      |            | Support for mass cancel on behalf: affected messages: ExecutionReport_Cancel and OrderMassActionRequest/OrderMassActionReport.
+      |            | side field included in OrderCancelRequest message.
+      |            | origClOrdID added to ExecutionReport_Cancel and ExecutionReport_Modify.
+      |            | All filter fields from OrderMassActionRequest echo back to OrderMassActionReport.
+      |            | Optional attribute revised in fields that use composite types for more clarification.
+      |            | Presence of legside field became optional.
+      |            | Presence of RatioQty type became required.
+      |            | UTCTimestampNanosOptional type created for marketSegmentReceivedTime field.
+      |            | NullValue of PriceOffsetOptional type is not zero anymore.
+      |            | massActionScope and execRestatementReason fields became optional in OrderMassActionRequest/OrderMassActionReport messages.
+      |            | <*** Warning: Version 7.0.0 is binary incompatible with previous versions. ***>
+6.4.2 | 2023-04-25 | Several order entry fields echoed for all types of ExecutionReport.
+6.4.1 | 2023-03-27 | Added execRestatementReason field (of ExecRestatementReasonValidForSingleCancel type) in the OrderCancelRequest message.
+      |            | Added new domain: NEW_ORDER_SINGLE to CxlRejResponseTo field.
+      |            | Created new variations of ExecRestatementReason for different purposes.
+      |            | "NEW" (0) value included (and label changed for other values) in the domain of CxlRejResponseTo enum if the reject is related to NewOrderSingle/SimpleNewOrder/NewOrderCross inbound messages.
+      |            | Removed group noPositions in PositionMaintenanceRequest message and all related nested fields moved to body.
+      |            | Removed group noAllocs in AllocationInstruction message and all related nested fields moved to body.
+      |            | Optional presence attribute reviewed in the messages.
+6.4   | 2023-03-27 | Removed nextSeqNo field from NegotiateReject message.
+      |            | Added lastIncomingSeqNo field to EstablishReject message.
+      |            | Added precision warning to the description of fields that use UTCTimestampNanos type.
+6.3.1 | 2023-03-22 | All UTF-8 fields changed to ASCII.
+6.3   | 2023-03-03 | sessionID included in all business headers.
+      |            | nextSeqNo included in the NegotiateReject message.
+      |            | FinishedSending message removed.
+      |            | FinishedReceiving message removed.
+      |            | Condition fields informed in the request removed in the OrderMassActionReport message.
+      |            | Converting presence from optional to required for clOrdID field in the ExecutionReport_Modify and ExecutionReport_Cancel.
+6.2   | 2023-02-24 | Template version changed back to 0.
+      |            | SelfTradePreventionInstruction changed from char to uint8.
+      |            | CxlRejResponseTo null value changed to 0.
+      |            | Created type CrossIDOptional.
+      |            | Padding from all business headers moved into the composite.
+      |            | Re-alignment of fields of several messages.
+      |            | When present, marketSegmentReceivedTime changed to optional on Execution Reports.
+      |            | Removed origClOrdId from ExecutionReport_Cancel and ExecutionReport_Forward.
+      |            | ExecutionReport_New: Added execID and crossID.
+      |            | ExecutionReport_Reject: Added origClOrdId; orderID and cxlRejResponseTo changed to optional.
+      |            | Added deskID to NewOrderCross, NewOrderSingle, OrderCancelReplaceRequest, OrderCancelRequest and Quote.
+      |            | origClOrdID changed to optional on OrderCancelReplaceRequest, SimpleModifyOrder and OrderCancelRequest.
+      |            | Added orderID on OrderCancelReplaceRequest, OrderCancelRequest and SimpleModifyOrder.
+      |            | Removed secondaryOrderID from OrderCancelRequest.
+      |            | enteringTrader changed to required on OrderCancelRequest.
+      |            | legSecurityID and securityIDSource removed from SecurityDefinitionRequest.
+      |            | Added memo to SimpleNewOrder and SimpleModifyOrder.
+      |            | Removing text from Quote.
+6.1   | 2023-02-14 | Several enum types changed from numeric to char to preserve FIX compatibility and assure 0 as nullValue.
+      |            | Several enum types changed from uint8 to uint8EnumEncoding to assure 0 as nullValue.
+      |            | Constant AccountType added to SimpleModifyOrder to avoid misunderstandings.
+      |            | Removed secondaryOrderID from SimpleModifyOrder and OrderCancelReplaceRequest.
+      |            | Removed BooleanOptional type: all boolean fields now are mandatory.
+      |            | Re-ordered fields on SimpleNewOrder, SimpleModifyOrder, NewOrderSingle, OrderCancelReplaceRequest and
+      |            | OrderCancelRequest.
+      |            | Added secondaryOrderId on OrderCancelRequest.
+      |            | Added expected credentials format in description.
+      |            | Adding crossedIndicator to NewOrderCross, ExecutionReport_New, ExecutionReport_Trade and ExecutionReport_Reject.
+      |            | SecurityIDSource changed from constant to optional on SecurityDefinitionRequest.
+      |            | Changed SecurityIDSource constant definition.
+      |            | Adding missing description on some fields.
+6.0   | 2023-01-17 | Changing aligment of the fields on all business messages, including repeating groups and variable length fields.
+      |            | Removing the following values on enums: MassActionScope (20) and MassActionType (1 and 2).
+      |            | Adding explicit msgSeqNum in all business messages.
+      |            | Adding new TerminationRejectCode: INVALID_MSGSEQNUM.
+      |            | Creation of InboundBusinessHeader, OutboundBusinessHeader and BidirectionalBusinessHeader, which contain common fields for
+      |            | business messages. The fields marketSegmentId and possResend were moved to these headers.
+      |            | Adding SendingTime in all business headers.
+      |            | Attribute "presence" of several fields were either changed or made explicit. Some types had Optional versions created.
+      |            | Attribute "nullValue" of several optional fields were made explicit.
+      |            | Creation of SimpleTimeInForce and SimpleOrdType to limit which operations can be done with SimpleNewOrder and SimpleModifyOrder.
+      |            | Side changed from uint8 to char.
+      |            | Minimum changes in description of several fields.
+      |            | Created field "currentSessionVerID" in NegotiateReject to allow reconnection after a catastrophic failure on client side.
+      |            | Added mmProtectionReset and selfTradePreventionInstruction on SimpleNewOrder and SimpleModifyOrder.
+      |            | Added origClOrdId in SimpleModifyOrder.
+      |            | Changing enteringTrader and executingTrader to fixed string on all messages.
+      |            | Added several new fields on all types of ExecutionReport.
+5.11  | 2023-01-13 | Changing DaysOfSettlement field type, changing InvestorId field from numeric to string.
+5.10  | 2022-11-16 | Adding to securityID, securityExchange and securityIDSource to OrderCancelRequest.
+5.9   | 2022-10-31 | Changing alignment in some messages and types of some enumeration types from uint8 to int8.
+5.8   | 2022-10-14 | Changing OrderCategory possible values.
+5.7   | 2022-09-30 | Tag Memo added to NewOrderSingle, OrderCancelReplaceRequest, OrderCancelRequest, and NewOrderCross.
+      |            | Including MarketSegmentID to AllocationInstruction.
+      |            | Refactoring of messages QuoteRequest, QuoteStatusReport, Quote, QuoteCancel, QuoteRequestReject.
+5.6   | 2022-08-24 | Tag PossResend included for outgoing messages (ExecutionReports, PositionMaintenanceReport, AllocationReport, etc.).
+      |            | MetricType enum and NoMetrics group removed.
+      |            | MarketSegmentReceivedTime added to ExecutionReport_Reject message.
+5.5   | 2022-06-21 | Updating OrderMassActionRequest/OrderMassActionReport for new filter parameters for mass cancel.
+      |            | Adding new domains for OrderCategory, RoutingInstruction and ExecRestatementReason to support various QDF modes and Mass Cancel.
+      |            | Adding side and account fields to SimpleModifyOrder message.
+      |            | Removing QuantityU64 and QuantityOptionalU64 type definition.
+      |            | Removing NewOrderSingle_U64, OrderCancelReplaceRequest_U64 and ExecutionReport_Trade_U64 messages.
+      |            | Changing Quantiy and QuantityOptional fields to uint64 type.
+5.4   | 2022-04-13 | Moving SenderLocation field from Negotiate to incoming messages.
+      |            | Including CxlRejResponseTo field in the ExecutionReport_Reject.
+      |            | Removing EnteringTrader field from PositionMaintenanceReport and AllocationReport.
+      |            | Including ExternalRFQIndicator for cross/trade execution report to support RFQ System.
+      |            | Adjusting message layout to not have any fields to tranverse cache line (64 bytes including SBE header).
+      |            | Changing AllocRejCode field type from uint64 to uint32.
+      |            | Changing ThresholdAmount type to PriceOffsetOptional type (uint32 to uint64).
+      |            | Domains of NegotiationRejectCode, EstablishRejectCode, TerminationCode, RetransmitRejectCode changed.
+      |            | Including SimpleOpenFramingHeader composite type for reference (and non-functional message to allow stub generation).
+      |            | To equalize MD and OE specs: Bool type => Boolean type.
+      |            | Unifying all reject code to RejReason type.
+      |            | Unifying contra broker type and contra firm type into contra broker type.
+      |            | Cosmetic changes: id attribute always after type attribute in field declaration inside messages.
+================================================================================= 
+-->
+
+<!-- Reference: https://github.com/real-logic/simple-binary-encoding -->
+<sbe:messageSchema
+	xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sbe="http://fixprotocol.io/2016/sbe"
+	package="b3.entrypoint.fixp.sbe"
+	id="1"
+	version="3"
+	semanticVersion="8.1.1"
+	description="B3 Binary Entrypoint FIXP messages"
+	byteOrder="littleEndian"
+	xsi:schemaLocation="http://fixprotocol.io/2016/sbe sbe.xsd">
+	<types>
+		<enum name="Boolean" encodingType="uint8" semanticType="Boolean" description="Boolean type">
+			<validValue name="FALSE_VALUE" description="false, N, 0">0</validValue>
+			<validValue name="TRUE_VALUE" description="true, Y, 1">1</validValue>
+		</enum>
+		<enum name="AllocTransType" encodingType="char" semanticType="Char" description="Identifies allocation transaction type.">
+			<validValue name="NEW">0</validValue>
+			<validValue name="CANCEL">2</validValue>
+		</enum>
+		<enum name="AllocReportType" encodingType="char" semanticType="Char" description="Describes the specific type or purpose of an Allocation Report message.">
+			<validValue name="REQUEST_TO_INTERMEDIARY">8</validValue>
+		</enum>
+		<enum name="AllocType" encodingType="char" semanticType="Char" description="Describes the specific type or purpose of an Allocation message.">
+			<validValue name="REQUEST_TO_INTERMEDIARY">8</validValue>
+		</enum>
+		<enum name="AllocNoOrdersType" encodingType="char" semanticType="Char" description="Indicates how the orders being booked and allocated by an Allocation Instruction.">
+			<validValue name="NOT_SPECIFIED">0</validValue>
+		</enum>
+		<enum name="AllocStatus" encodingType="char" semanticType="Char" description="Identifies status of allocation.">
+			<validValue name="ACCEPTED">0</validValue>
+			<validValue name="REJECTED_BY_INTERMEDIARY">5</validValue>
+		</enum>
+		<enum name="QuoteStatus" encodingType="uint8" semanticType="Int" description="Identifies the status of the quote acknowledgement.">
+			<validValue name="EXPIRED">7</validValue>
+			<validValue name="ACCEPTED">0</validValue>
+			<validValue name="REJECTED">5</validValue>
+			<validValue name="QUOTE_NOT_FOUND">9</validValue>
+			<validValue name="PENDING">10</validValue>
+			<validValue name="PASS">11</validValue>
+			<validValue name="CANCELED">17</validValue>
+		</enum>
+		<enum name="QuoteStatusResponseTo" encodingType="char" semanticType="Char" description="Identifies the type of request that a Quote Status Report is in response to">
+			<validValue name="QUOTE">0</validValue>
+			<validValue name="QUOTE_REQUEST">1</validValue>
+			<validValue name="QUOTE_CANCEL">2</validValue>
+			<validValue name="QUOTE_REQUEST_REJECT">3</validValue>
+		</enum>
+		<enum name="QuoteCancelType" encodingType="uint8" semanticType="Int" description="Identifies the type of quote cancel.">
+			<validValue name="CANCEL_FOR_QUOTE_ID">5</validValue>
+		</enum>
+		<enum name="PosType" encodingType="char" semanticType="Char" description="Used to identify the type of quantity.">
+			<validValue name="TRANSACTION_QUANTITY">T</validValue>
+			<validValue name="START_OF_DAY_QTY">S</validValue>
+			<validValue name="OPTION_EXERCISE_QTY">E</validValue>
+			<validValue name="BLOCKED_QTY">B</validValue>
+			<validValue name="UNCOVERED_QTY">U</validValue>
+			<validValue name="COVERED_QTY">C</validValue>
+		</enum>
+		<enum name="MassActionScope" encodingType="uint8EnumEncoding" semanticType="Int" description="Specifies the scope of the action. All Day and MOC orders will be cancelled. GTC, GTD and MOA orders will not be cancelled.">
+			<validValue name="ALL_ORDERS_FOR_A_TRADING_SESSION">6</validValue>
+		</enum>
+		<enum name="MassActionType" encodingType="uint8" semanticType="Int" description="Specifies the type of action requested.">
+			<validValue name="RELEASE_ORDERS_FROM_SUSPENSION">2</validValue>
+			<validValue name="CANCEL_ORDERS">3</validValue>
+			<validValue name="CANCEL_AND_SUSPEND_ORDERS">4</validValue>
+		</enum>
+		<enum name="MassActionResponse" encodingType="char" semanticType="Char" description="Specifies the action taken by matching engine when it receives the Order Mass Action Request.">
+			<validValue name="REJECTED">0</validValue>
+			<validValue name="ACCEPTED">1</validValue>
+		</enum>
+		<enum name="MassActionRejectReason" encodingType="uint8" semanticType="Int" description="Reason Order Mass Action Request was rejected.">
+			<validValue name="MASS_ACTION_NOT_SUPPORTED">0</validValue>
+			<validValue name="INVALID_OR_UNKNOWN_MARKET_SEGMENT">8</validValue>
+			<validValue name="OTHER">99</validValue>
+		</enum>
+		<enum name="SecurityResponseType" encodingType="uint8" semanticType="Int" description="Type of Security Definition message response.">
+			<validValue name="ACCEPT_SECURITY_PROPOSAL_AS_IS">1</validValue>
+			<validValue name="REJECT_SECURITY_PROPOSAL">5</validValue>
+			<validValue name="ACCEPT_SECURITY_AS_PROPOSAL_WITH_REVISIONS">2</validValue>
+		</enum>
+		<enum name="PosMaintStatus" encodingType="char" semanticType="Char" description="Status of Position Maintenance Request.">
+			<validValue name="ACCEPTED">0</validValue>
+			<validValue name="REJECTED">2</validValue>
+			<validValue name="COMPLETED">3</validValue>
+			<validValue name="NOT_EXECUTED">9</validValue>
+		</enum>
+		<enum name="ExecuteUnderlyingTrade" encodingType="char" semanticType="Char" description="Specifies if a simultaneous trade of the underlying is to be performed.">
+			<validValue name="NO_UNDERLYING_TRADE">0</validValue>
+			<validValue name="UNDERLYING_OPPOSING_TRADE">1</validValue>
+		</enum>
+		<enum name="PosTransType" encodingType="uint8" semanticType="Int" description="Identifies the type of position transaction.">
+			<validValue name="EXERCISE">1</validValue>
+			<validValue name="AUTOMATIC_EXERCISE">105</validValue>
+			<validValue name="EXERCISE_NOT_AUTOMATIC">106</validValue>
+		</enum>
+		<enum name="PosMaintAction" encodingType="char" semanticType="Char" description="Maintenance Action to be performed.">
+			<validValue name="NEW">1</validValue>
+			<validValue name="CANCEL">3</validValue>
+		</enum>
+		<enum name="SettlType" encodingType="char" semanticType="Char" description="Indicates who in the contract has control over evoking settlement.">
+			<validValue name="BUYERS_DISCRETION">0</validValue>
+			<validValue name="SELLERS_DISCRETION">8</validValue>
+			<validValue name="MUTUAL">X</validValue>
+		</enum>
+		<enum name="SelfTradePreventionInstruction" encodingType="uint8" semanticType="Int" description="Indicates which order should be canceled due to self-trade prevention.">
+			<validValue name="NONE" sinceVersion="2">0</validValue>
+			<validValue name="CANCEL_AGGRESSOR_ORDER">1</validValue>
+			<validValue name="CANCEL_RESTING_ORDER">2</validValue>
+			<validValue name="CANCEL_BOTH_ORDERS">3</validValue>
+		</enum>
+		<enum name="TimeUnit" encodingType="uint8" semanticType="Int" description="Unit of time used for measurement.">
+			<validValue name="SECOND">0</validValue>
+			<validValue name="MILLISECOND">3</validValue>
+			<validValue name="MICROSECOND">6</validValue>
+			<validValue name="NANOSECOND">9</validValue>
+		</enum>
+		<enum name="MessageType" encodingType="uint8" semanticType="Int" description="Defines message type.">
+			<validValue name="Negotiate">0</validValue>
+			<validValue name="NegotiateResponse">1</validValue>
+			<validValue name="NegotiateReject">2</validValue>
+			<validValue name="Establish">3</validValue>
+			<validValue name="EstablishAck">4</validValue>
+			<validValue name="EstablishReject">5</validValue>
+			<validValue name="Terminate">6</validValue>
+			<validValue name="NotApplied">9</validValue>
+			<validValue name="RetransmitRequest">10</validValue>
+			<validValue name="Retransmission">11</validValue>
+			<validValue name="RetransmitReject">12</validValue>
+			<validValue name="Sequence">13</validValue>
+			<validValue name="BusinessMessageReject">14</validValue>
+			<validValue name="SimpleNewOrder">15</validValue>
+			<validValue name="SimpleModifyOrder">16</validValue>
+			<validValue name="NewOrderSingle">17</validValue>
+			<validValue name="OrderCancelReplaceRequest">18</validValue>
+			<validValue name="OrderCancelRequest">19</validValue>
+			<validValue name="NewOrderCross">20</validValue>
+			<validValue name="ExecutionReport_New">21</validValue>
+			<validValue name="ExecutionReport_Modify">22</validValue>
+			<validValue name="ExecutionReport_Cancel">23</validValue>
+			<validValue name="ExecutionReport_Trade">24</validValue>
+			<validValue name="ExecutionReport_Reject">25</validValue>
+			<validValue name="ExecutionReport_Forward">26</validValue>
+			<validValue name="SecurityDefinitionRequest">27</validValue>
+			<validValue name="SecurityDefinitionResponse">28</validValue>
+			<validValue name="OrderMassActionRequest">29</validValue>
+			<validValue name="OrderMassActionReport">30</validValue>
+			<validValue name="QuoteRequest">31</validValue>
+			<validValue name="QuoteStatusReport">32</validValue>
+			<validValue name="Quote">33</validValue>
+			<validValue name="QuoteCancel">34</validValue>
+			<validValue name="QuoteRequestReject">35</validValue>
+			<validValue name="PositionMaintenanceCancelRequest">36</validValue>
+			<validValue name="PositionMaintenanceRequest">37</validValue>
+			<validValue name="PositionMaintenanceReport">38</validValue>
+			<validValue name="AllocationInstruction">39</validValue>
+			<validValue name="AllocationReport">40</validValue>
+		</enum>
+		<enum name="FlowType" encodingType="uint8" semanticType="Int" description="Type of message flow from client to server or from server to client.">
+			<validValue name="NONE">0</validValue>
+			<validValue name="RECOVERABLE">1</validValue>
+			<validValue name="UNSEQUENCED">2</validValue>
+			<validValue name="IDEMPOTENT">3</validValue>
+		</enum>
+		<enum name="NegotiationRejectCode" encodingType="uint8" semanticType="Int" description="Identifies the code of reject negotiation.">
+			<validValue name="UNSPECIFIED">0</validValue>
+			<validValue name="CREDENTIALS">1</validValue>
+			<validValue name="FLOWTYPE_NOT_SUPPORTED">2</validValue>
+			<validValue name="ALREADY_NEGOTIATED">3</validValue>
+			<validValue name="SESSION_BLOCKED">4</validValue>
+			<validValue name="INVALID_SESSIONID">5</validValue>
+			<validValue name="INVALID_SESSIONVERID">6</validValue>
+			<validValue name="INVALID_TIMESTAMP">7</validValue>
+			<validValue name="INVALID_FIRM">8</validValue>
+			<validValue name="NEGOTIATE_NOT_ALLOWED">20</validValue>
+			<validValue name="DUPLICATE_SESSION_CONNECTION">21</validValue>
+			<validValue name="AUTHENTICATION_IN_PROGRESS">22</validValue>
+			<validValue name="PROTOCOL_VERSION_NOT_SUPPORTED">23</validValue>
+		</enum>
+		<enum name="EstablishRejectCode" encodingType="uint8" semanticType="Int" description="Identifies the code of reject establishment.">
+			<validValue name="UNSPECIFIED">0</validValue>
+			<validValue name="CREDENTIALS">1</validValue>
+			<validValue name="UNNEGOTIATED">2</validValue>
+			<validValue name="ALREADY_ESTABLISHED">3</validValue>
+			<validValue name="SESSION_BLOCKED">4</validValue>
+			<validValue name="INVALID_SESSIONID">5</validValue>
+			<validValue name="INVALID_SESSIONVERID">6</validValue>
+			<validValue name="INVALID_TIMESTAMP">7</validValue>
+			<validValue name="INVALID_KEEPALIVE_INTERVAL">8</validValue>
+			<validValue name="INVALID_NEXTSEQNO">9</validValue>
+			<validValue name="ESTABLISH_ATTEMPTS_EXCEEDED">10</validValue>
+			<validValue name="ESTABLISH_NOT_ALLOWED">20</validValue>
+			<validValue name="DUPLICATE_SESSION_CONNECTION">21</validValue>
+			<validValue name="AUTHENTICATION_IN_PROGRESS">22</validValue>
+			<validValue name="PROTOCOL_VERSION_NOT_SUPPORTED">23</validValue>
+		</enum>
+		<enum name="TerminationCode" encodingType="uint8" semanticType="Int" description="Identifies the code of termination.">
+			<validValue name="UNSPECIFIED">0</validValue>
+			<validValue name="FINISHED">1</validValue>
+			<validValue name="UNNEGOTIATED">2</validValue>
+			<validValue name="NOT_ESTABLISHED">3</validValue>
+			<validValue name="SESSION_BLOCKED">4</validValue>
+			<validValue name="NEGOTIATION_IN_PROGRESS">5</validValue>
+			<validValue name="ESTABLISH_IN_PROGRESS">6</validValue>
+			<validValue name="KEEPALIVE_INTERVAL_LAPSED">10</validValue>
+			<validValue name="INVALID_SESSIONID">11</validValue>
+			<validValue name="INVALID_SESSIONVERID">12</validValue>
+			<validValue name="INVALID_TIMESTAMP">13</validValue>
+			<validValue name="INVALID_NEXTSEQNO">14</validValue>
+			<validValue name="UNRECOGNIZED_MESSAGE">15</validValue>
+			<validValue name="INVALID_SOFH">16</validValue>
+			<validValue name="DECODING_ERROR">17</validValue>
+			<validValue name="TERMINATE_NOT_ALLOWED">20</validValue>
+			<validValue name="TERMINATE_IN_PROGRESS">21</validValue>
+			<validValue name="PROTOCOL_VERSION_NOT_SUPPORTED">23</validValue>
+			<validValue name="BACKUP_TAKEOVER_IN_PROGRESS">30</validValue>
+		</enum>
+		<enum name="RetransmitRejectCode" encodingType="uint8" semanticType="Int" description="Identifies the code of reject retransmission.">
+			<validValue name="OUT_OF_RANGE">0</validValue>
+			<validValue name="INVALID_SESSION">1</validValue>
+			<validValue name="REQUEST_LIMIT_EXCEEDED">2</validValue>
+			<validValue name="RETRANSMIT_IN_PROGRESS">3</validValue>
+			<validValue name="INVALID_TIMESTAMP">4</validValue>
+			<validValue name="INVALID_FROMSEQNO">5</validValue>
+			<validValue name="INVALID_COUNT">9</validValue>
+			<validValue name="THROTTLE_REJECT">10</validValue>
+			<validValue name="SYSTEM_BUSY">11</validValue>
+		</enum>
+		<enum name="CancelOnDisconnectType" encodingType="uint8" semanticType="Int" description="Criteria used to initiate cancel on disconnect mechanism by the gateway.">
+			<validValue name="DO_NOT_CANCEL_ON_DISCONNECT_OR_TERMINATE">0</validValue>
+			<validValue name="CANCEL_ON_DISCONNECT_ONLY">1</validValue>
+			<validValue name="CANCEL_ON_TERMINATE_ONLY">2</validValue>
+			<validValue name="CANCEL_ON_DISCONNECT_OR_TERMINATE">3</validValue>
+		</enum>
+		<enum name="Side" encodingType="char" semanticType="Char" description="Side of order.">
+			<validValue name="BUY">1</validValue>
+			<validValue name="SELL">2</validValue>
+		</enum>
+		<enum name="TimeInForce" encodingType="char" semanticType="Char" description="Specifies how long the order remains in effect.">
+			<validValue name="DAY">0</validValue>
+			<validValue name="GOOD_TILL_CANCEL">1</validValue>
+			<validValue name="IMMEDIATE_OR_CANCEL">3</validValue>
+			<validValue name="FILL_OR_KILL">4</validValue>
+			<validValue name="GOOD_TILL_DATE">6</validValue>
+			<validValue name="AT_THE_CLOSE">7</validValue>
+			<validValue name="GOOD_FOR_AUCTION">A</validValue>
+		</enum>
+		<enum name="SimpleTimeInForce" encodingType="char" semanticType="Char" description="Specifies how long the order remains in effect.">
+			<validValue name="DAY">0</validValue>
+			<validValue name="IMMEDIATE_OR_CANCEL">3</validValue>
+			<validValue name="FILL_OR_KILL">4</validValue>
+		</enum>
+		<enum name="OrdType" encodingType="char" semanticType="Char" description="Order type.">
+			<validValue name="MARKET">1</validValue>
+			<validValue name="LIMIT">2</validValue>
+			<validValue name="STOP_LOSS">3</validValue>
+			<validValue name="STOP_LIMIT">4</validValue>
+			<validValue name="MARKET_WITH_LEFTOVER_AS_LIMIT">K</validValue>
+			<validValue name="RLP">W</validValue>
+			<validValue name="PEGGED_MIDPOINT">P</validValue>
+		</enum>
+		<enum name="SimpleOrdType" encodingType="char" semanticType="Char" description="Order type.">
+			<validValue name="MARKET">1</validValue>
+			<validValue name="LIMIT">2</validValue>
+		</enum>
+		<enum name="RoutingInstruction" encodingType="uint8EnumEncoding" semanticType="Int" description="Indicates additional order instruction.">
+			<validValue name="RETAIL_LIQUIDITY_TAKER">1</validValue>
+			<validValue name="WAIVED_PRIORITY">2</validValue>
+			<validValue name="BROKER_ONLY">3</validValue>
+			<validValue name="BROKER_ONLY_REMOVAL">4</validValue>
+		</enum>
+		<enum name="ExecType" encodingType="char" semanticType="Char" description="Describes the action that triggered this specific Execution Report - see the OrdStatus (39) tag for the current order status (e.g, Partially Filled).">
+			<validValue name="TRADE">F</validValue>
+			<validValue name="TRADE_CANCEL">H</validValue>
+		</enum>
+		<enum name="OrdStatus" encodingType="char" semanticType="Char" description="Identifies current status of order.">
+			<validValue name="NEW">0</validValue>
+			<validValue name="PARTIALLY_FILLED">1</validValue>
+			<validValue name="FILLED">2</validValue>
+			<validValue name="CANCELED">4</validValue>
+			<validValue name="REPLACED">5</validValue>
+			<validValue name="REJECTED">8</validValue>
+			<validValue name="EXPIRED">C</validValue>
+			<validValue name="RESTATED">R</validValue>
+			<validValue name="PREVIOUS_FINAL_STATE">Z</validValue>
+		</enum>
+		<enum name="ExecRestatementReasonValidForSingleCancel" encodingType="uint8EnumEncoding" semanticType="Int" description="Used to communicate a reason for a solicited cancel.">
+			<validValue name="CANCEL_ORDER_DUE_TO_OPERATIONAL_ERROR">203</validValue>
+		</enum>
+		<enum name="ExecRestatementReasonValidForMassCancel" encodingType="uint8EnumEncoding" semanticType="Int" description="Used to communicate event type which triggers mass cancelation.">
+			<validValue name="ORDER_MASS_ACTION_FROM_CLIENT_REQUEST">202</validValue>
+			<validValue name="MASS_CANCEL_ORDER_DUE_TO_OPERATIONAL_ERROR_REQUEST">207</validValue>
+		</enum>
+		<enum name="ExecRestatementReason" encodingType="uint8EnumEncoding" semanticType="Int" description="Indicates reason of cancelation, if available.">
+			<validValue name="MARKET_OPTION">8</validValue>
+			<validValue name="CANCEL_ON_HARD_DISCONNECTION">100</validValue>
+			<validValue name="CANCEL_ON_TERMINATE">101</validValue>
+			<validValue name="CANCEL_ON_DISCONNECT_AND_TERMINATE">102</validValue>
+			<validValue name="SELF_TRADING_PREVENTION">103</validValue>
+			<validValue name="CANCEL_FROM_FIRMSOFT">105</validValue>
+			<validValue name="CANCEL_RESTING_ORDER_ON_SELF_TRADE">107</validValue>
+			<validValue name="MARKET_MAKER_PROTECTION">200</validValue>
+			<validValue name="RISK_MANAGEMENT_CANCELLATION">201</validValue>
+			<validValue name="ORDER_MASS_ACTION_FROM_CLIENT_REQUEST">202</validValue>
+			<validValue name="CANCEL_ORDER_DUE_TO_OPERATIONAL_ERROR">203</validValue>
+			<validValue name="ORDER_CANCELLED_DUE_TO_OPERATIONAL_ERROR">204</validValue>
+			<validValue name="CANCEL_ORDER_FIRMSOFT_DUE_TO_OPERATIONAL_ERROR">205</validValue>
+			<validValue name="ORDER_CANCELLED_FIRMSOFT_DUE_TO_OPERATIONAL_ERROR">206</validValue>
+			<validValue name="MASS_CANCEL_ORDER_DUE_TO_OPERATIONAL_ERROR_REQUEST">207</validValue>
+			<validValue name="MASS_CANCEL_ORDER_DUE_TO_OPERATIONAL_ERROR_EFFECTIVE">208</validValue>
+			<validValue name="CANCEL_ON_MIDPOINT_BROKER_ONLY_REMOVAL">209</validValue>
+			<validValue name="CANCEL_REMAINING_FROM_SWEEP_CROSS" sinceVersion="3">210</validValue>
+			<validValue name="MASS_CANCEL_ON_BEHALF" sinceVersion="3">211</validValue>
+			<validValue name="MASS_CANCEL_ON_BEHALF_DUE_TO_OPERATIONAL_ERROR_EFFECTIVE" sinceVersion="3">212</validValue>
+		</enum>
+		<enum name="MultiLegReportingType" encodingType="char" semanticType="Char" description="Used to indicate what an Execution Report represents.">
+			<validValue name="SINGLE_SECURITY">1</validValue>
+			<validValue name="INDIVIDUALLEG_OF_MULTILEG_SECURITY">2</validValue>
+			<validValue name="MULTILEG_SECURITY">3</validValue>
+		</enum>
+		<enum name="OrderCategory" encodingType="char" semanticType="Char" description="Defines the type of interest behind a trade i.e. why a trade occurred.">
+			<validValue name="RESULT_OF_OPTIONS_EXERCISE">B</validValue>
+			<validValue name="RESULT_OF_ASSIGNMENT_FROM_AN_OPTIONS_EXERCISE">C</validValue>
+			<validValue name="RESULT_OF_AUTOMATIC_OPTIONS_EXERCISE">D</validValue>
+			<validValue name="RESULT_OF_MIDPOINT_ORDER">E</validValue>
+			<validValue name="RESULT_OF_BLOCK_BOOK_TRADE">F</validValue>
+			<validValue name="RESULT_OF_TRADE_AT_CLOSE">G</validValue>
+			<validValue name="RESULT_OF_TRADE_AT_AVERAGE">H</validValue>
+		</enum>
+		<enum name="AccountType" encodingType="uint8EnumEncoding" semanticType="Int" description="Type of Account associated with an order.">
+			<validValue name="REMOVE_ACCOUNT_INFORMATION">38</validValue>
+			<validValue name="REGULAR_ACCOUNT">39</validValue>
+		</enum>
+		<enum name="CxlRejResponseTo" encodingType="uint8" semanticType="Int" description="Identifies the type of request that this cancel reject is in response to.">
+			<validValue name="NEW">0</validValue>
+			<validValue name="CANCEL">1</validValue>
+			<validValue name="REPLACE">2</validValue>
+		</enum>
+		<enum name="PossResend" encodingType="uint8" semanticType="Boolean" description="Indicates that message may contain information that has been sent under another sequence number.">
+			<validValue name="FALSE_VALUE" description="false, N, 0">0</validValue>
+			<validValue name="TRUE_VALUE" description="true, Y, 1">1</validValue>
+		</enum>
+		<enum name="SecurityIDSource" encodingType="char" semanticType="Char" description="Identifies the class of the SecurityID.">
+			<validValue name="ISIN">4</validValue>
+			<validValue name="EXCHANGE_SYMBOL">8</validValue>
+		</enum>
+		<enum name="CrossedIndicator" encodingType="uint16EnumEncoding" semanticType="Int" description="Indicates cross order purpose.">
+			<validValue name="STRUCTURED_TRANSACTION">1001</validValue>
+			<validValue name="OPERATIONAL_ERROR">1002</validValue>
+			<validValue name="TWAP_VWAP">1003</validValue>
+		</enum>
+		<enum name="TradingSessionID" encodingType="uint8EnumEncoding" description="Identifier for Trading Session." sinceVersion="3">
+			<validValue name="REGULAR_DAY_SESSION">1</validValue>
+			<validValue name="NON_REGULAR_SESSION">6</validValue>
+		</enum>
+		<enum name="TradingSessionSubID" encodingType="uint8EnumEncoding" description="Identifier for the instrument group phase." sinceVersion="3">
+			<validValue name="PAUSE">2</validValue>
+			<validValue name="CLOSE">4</validValue>
+			<validValue name="OPEN">17</validValue>
+			<validValue name="PRE_CLOSE">18</validValue>
+			<validValue name="PRE_OPEN">21</validValue>
+			<validValue name="FINAL_CLOSING_CALL">101</validValue>
+		</enum>
+		<enum name="SecurityTradingStatus" encodingType="uint8EnumEncoding" description="Identifier for the instrument status." sinceVersion="3">
+			<validValue name="TRADING_HALT">2</validValue>
+			<validValue name="NO_OPEN">4</validValue>
+			<validValue name="READY_TO_TRADE">17</validValue>
+			<validValue name="FORBIDDEN">18</validValue>
+			<validValue name="UNKNOWN_OR_INVALID">20</validValue>
+			<validValue name="PRE_OPEN">21</validValue>
+			<validValue name="FINAL_CLOSING_CALL">101</validValue>
+			<validValue name="RESERVED">110</validValue>
+		</enum>
+		<enum name="CrossType" encodingType="uint8EnumEncoding" description="Type of cross being submitted to a market." sinceVersion="3">
+			<validValue name="ALL_OR_NONE_CROSS">1</validValue>
+			<validValue name="CROSS_EXECUTED_AGAINST_BOOK_FROM_CLIENT">4</validValue>
+		</enum>
+		<enum name="CrossPrioritization" encodingType="uint8" description="Indicates if one side or the other of a cross order should be prioritized." sinceVersion="3">
+			<validValue name="NONE">0</validValue>
+			<validValue name="BUY_SIDE_IS_PRIORITIZED">1</validValue>
+			<validValue name="SELL_SIDE_IS_PRIORITIZED">2</validValue>
+		</enum>
+
+		<type name="AllocID" primitiveType="uint64" semanticType="Int" description="Unique identifier for this allocation instruction message."/>
+		<type name="ClOrdID" primitiveType="uint64" semanticType="Int" description="Unique identifier of the order as assigned by the market participant."/>
+		<type name="ClOrdIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier of the order as assigned by the market participant."/>
+		<type name="SessionID" primitiveType="uint32" semanticType="Int" description="Client connection identification on the gateway assigned by B3."/>
+		<type name="SessionIDOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional client connection identification on the gateway assigned by B3."/>
+		<type name="SessionVerID" primitiveType="uint64" semanticType="Int" description="Session version identification: unique identification of a sequence of messages to be transmitted to exchange gateway associated with given SessionId."/>
+		<type name="SessionVerIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional session version identification: unique identification of a sequence of messages to be transmitted to exchange gateway associated with given SessionId."/>
+		<type name="SeqNum" primitiveType="uint32" semanticType="Int" description="Sequence number of a given SessionID/SessionVerID."/>
+		<type name="SeqNumOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional sequence number of a given SessionID/SessionVerID."/>
+		<type name="Quantity" primitiveType="uint64" semanticType="Qty" description="Quantity in order/trade."/>
+		<type name="QuantityOptional" primitiveType="uint64" semanticType="Qty" presence="optional" nullValue="0" description="Optional quantity in order/trade."/>
+		<type name="LocalMktDate" primitiveType="uint16" semanticType="LocalMktDate" description="Local calendar date: days since Unix epoch (January 1st, 1970)."/>
+		<type name="LocalMktDateOptional" primitiveType="uint16" semanticType="LocalMktDate" presence="optional" nullValue="0" description="Local calendar date: days since Unix epoch (January 1st, 1970)."/>
+		<type name="Account" primitiveType="uint32" semanticType="Int" description="Account mnemonic."/>
+		<type name="AccountOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional account mnemonic."/>
+		<type name="Firm" primitiveType="uint32" semanticType="Int" description="Identification of the broker firm."/>
+		<type name="FirmOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional identification of the broker firm."/>
+		<type name="DaysToSettlement" primitiveType="uint16" semanticType="Int" description="Deadline for completing the forward deal" />
+		<type name="DaysToSettlementOptional" primitiveType="uint16" semanticType="Int" presence="optional" nullValue="65535" description="Optional deadline for completing the forward deal" />
+		<type name="Trader" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="5" description="Identification of the trader."/>
+		<type name="TraderOptional" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="5" presence="optional" description="Optional identification of the trader."/>
+		<type name="ExecID" primitiveType="uint64" semanticType="Int" description="Unique identifier of execution message as assigned by exchange."/>
+		<type name="ExecIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier of execution message as assigned by exchange."/>
+		<type name="OrderID" primitiveType="uint64" semanticType="Int" description="Exchange-generated order identifier."/>
+		<type name="OrderIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional exchange-generated order identifier."/>
+		<type name="SenderLocation" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="10" description="Identifies the original location for routing orders."/>
+		<type name="RejReason" primitiveType="uint32" semanticType="Int" description="Code to identify reason for order rejection. Please refer to the error codes document for domain information."/>
+		<type name="RejReasonOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional code to identify reason for order rejection. Please refer to the error codes document for domain information."/>
+		<type name="AllocReportID" primitiveType="uint64" semanticType="Int" description="Unique identifier for this allocation report message."/>
+		<type name="PosMaintRptID" primitiveType="uint64" semanticType="Int" description="Unique identifier for this position maintenance report message."/>
+		<type name="PosMaintRptIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier for this position maintenance report message."/>
+		<type name="PosReqID" primitiveType="uint64" semanticType="Int" description="Unique identifier for the position maintenance request."/>
+		<type name="PosReqIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier for the position maintenance request."/>
+		<type name="SecurityReqRespID" primitiveType="uint64" semanticType="Int" description="Unique ID of a Security Definition Request/Response."/>
+		<type name="SecurityStrategyType" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="3" presence="optional" description="Indicates the type of Strategy created."/>
+		<type name="BusinessRejectRefID" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Value of business-level identification field on the message being referenced."/>
+		<type name="MassActionReportID" primitiveType="uint64" semanticType="Int" description="Unique ID of Order Mass Action Report as assigned by the matching engine."/>
+		<type name="MassActionReportIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique ID of Order Mass Action Report as assigned by the matching engine."/>
+		<type name="OrdTagID" primitiveType="uint8" semanticType="Int" presence="optional" nullValue="0" description="Identifies the order tag identification."/>
+		<type name="MarketSegmentID" primitiveType="uint8" semanticType="Int" description="Identifies the market segment."/>
+		<type name="MarketSegmentIDOptional" primitiveType="uint8" semanticType="Int" presence="optional" nullValue="0" description="Optional identifier of the market segment."/>
+		<type name="SecurityID" primitiveType="uint64" semanticType="Int" description="Security identification as defined by exchange. For the SecurityID list, see the Security List/Definition message in Market Data feed."/>
+		<type name="SecurityIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional security identification as defined by exchange. For the SecurityID list, see the Security List/Definition message in Market Data feed."/>
+		<type name="SecurityExchange" primitiveType="char" semanticType="Exchange" characterEncoding="ASCII" presence="constant" length="4" description="Market Identifier Code: 4-character used to identify stock markets and other trading exchanges.">BVMF</type>
+		<type name="Symbol" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="20" description="B3 requires that this field is properly set. It contains the human readable form of the SecurityID tag ans is also available in the Security List message in Market Data feed."/>
+		<type name="SecurityGroup" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="3" presence="optional" description="Indicates the group this instrument belongs to."/>
+		<type name="CrossID" primitiveType="uint64" semanticType="Int" description="Identifier for a cross order. Must be unique during a given trading day."/>
+		<type name="CrossIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Identifier for a cross order."/>
+		<type name="TradeID" primitiveType="uint32" semanticType="Int" description="The unique identification assigned to the trade entity once it is received or matched by the exchange or central counterparty."/>
+		<type name="TradeIDOptional" primitiveType="uint32" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identification assigned to the trade entity once it is received or matched by the exchange or central counterparty."/>
+		<type name="QuoteID" primitiveType="uint64" semanticType="Int" description="Unique identifier for quote."/>
+		<type name="QuoteIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier for quote."/>
+		<type name="QuoteReqID" primitiveType="uint64" semanticType="Int" description="Unique identifier for quote request."/>
+		<type name="QuoteReqIDOptional" primitiveType="uint64" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identifier for quote request."/>
+		<type name="TotNoRelatedSym" primitiveType="uint8" semanticType="Int" presence="optional" nullValue="0" description="Number of leg fill notice messages sent with spread summary."/>
+		<type name="MessageCounter" primitiveType="uint32" semanticType="Int" description="Counter of related messages."/>
+		<type name="AssetOptional" primitiveType="char" length="6" characterEncoding="ASCII" semanticType="String" presence="optional" description="Asset associated with the security, such as DOL, BGI, OZ1, WDL, CNI, etc."/>
+		<type name="StrategyIDOptional" primitiveType="int32" semanticType="Int" presence="optional" nullValue="0" description="Optional unique identification of a client-assigned strategy." sinceVersion="3"/>
+
+		<!-- Enum encodingTypes -->
+		<type name="uint8EnumEncoding" primitiveType="uint8" semanticType="Int" presence="optional" nullValue="0" description="Type used to encode enum with zero nullValue."/>
+		<type name="uint16EnumEncoding" primitiveType="uint16" semanticType="Int" presence="optional" nullValue="0" description="Type used to encode enum with zero nullValue."/>
+
+		<!-- Mandatory composite definitions -->
+		<composite name="messageHeader" description="Message identifiers and length of message root.">
+			<type name="blockLength" primitiveType="uint16" description="Length of the root of the FIX message contained before repeating groups or variable/conditions fields."/>
+			<type name="templateId" primitiveType="uint16" description="Template ID used to encode the message."/>
+			<type name="schemaId" primitiveType="uint16" description="ID of the system publishing the message."/>
+			<type name="version" primitiveType="uint16" description="Schema version."/>
+		</composite>
+		<composite name="GroupSizeEncoding" description="Repeating group dimensions.">
+			<type name="blockLength" primitiveType="uint16" description="Root block length."/>
+			<type name="numInGroup" primitiveType="uint8" semanticType="NumInGroup" description="Counter representing the number of entries in a repeating group."/>
+		</composite>
+
+		<!-- Common composite definitions -->
+		<composite name="FramingHeader" description="Simple Open Framing Header. Used to frame both session and business messages.">
+			<type name="messageLength" primitiveType="uint16" minValue="12" maxValue="2048" description="Message length (including Framing and SBE headers)."/>
+			<type name="encodingType" primitiveType="uint16" description="Encoding type of payload."/>
+		</composite>
+		<composite name="Price" semanticType="Price" description="Mandatory price.">
+			<type name="mantissa" primitiveType="int64" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-4</type>
+		</composite>
+		<composite name="PriceOptional" semanticType="Price" description="Optional price.">
+			<type name="mantissa" primitiveType="int64" presence="optional" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-4</type>
+		</composite>
+		<composite name="Price8" semanticType="Price" description="Price (8 decimal places)." sinceVersion="3">
+			<type name="mantissa" primitiveType="int64" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-8</type>
+		</composite>
+		<composite name="Price8Optional" semanticType="Price" description="Optional Price (8 decimal places)." sinceVersion="3">
+			<type name="mantissa" primitiveType="int64" presence="optional" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-8</type>
+		</composite>
+		<composite name="PriceOffsetOptional" semanticType="PriceOffset" description="Optional price offset (4 decimal places). Usually 3 places are enough, but FX requires 4.">
+			<type name="mantissa" primitiveType="int64" presence="optional" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-4</type>
+		</composite>
+		<composite name="Percentage8" semanticType="Percentage" description="Percentage (8 decimal places).">
+			<type name="mantissa" primitiveType="int64" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-8</type>
+		</composite>
+		<composite name="Percentage8Optional" semanticType="Percentage" description="Optional percentage (8 decimal places).">
+			<type name="mantissa" primitiveType="int64" presence="optional" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-8</type>
+		</composite>
+		<composite name="RatioQty" semanticType="float" description="Ratio of quantity relative to the whole thing.">
+			<type name="mantissa" primitiveType="int64" description="Mantissa (for fixed-point decimal numbers)."/>
+			<type name="exponent" primitiveType="int8" presence="constant" description="Exponent (for fixed-point decimal numbers).">-7</type>
+		</composite>
+		<composite name="UTCTimestampNanos" semanticType="UTCTimestamp" description="UTC timestamp with nanosecond precision.">
+			<type name="time" primitiveType="uint64" description="UTC timestamp with nanosecond precision (Unix Epoch)."/>
+			<type name="unit" primitiveType="uint8" presence="constant" valueRef="TimeUnit.NANOSECOND" description="time unit (nanoseconds)."/>
+		</composite>
+		<composite name="UTCTimestampNanosOptional" semanticType="UTCTimestamp" description="Optional UTC timestamp with nanosecond precision.">
+			<type name="time" primitiveType="uint64" presence="optional" nullValue="0" description="UTC timestamp with nanosecond precision (Unix Epoch)."/>
+			<type name="unit" primitiveType="uint8" presence="constant" valueRef="TimeUnit.NANOSECOND" description="time unit (nanoseconds)."/>
+		</composite>
+		<composite name="DeltaInMillis" semanticType="Int" description="Interval time expressed in milliseconds.">
+			<type name="time" primitiveType="uint64" description="Interval time expressed in milliseconds."/>
+			<type name="unit" primitiveType="uint8" presence="constant" valueRef="TimeUnit.MILLISECOND" description="time unit (milliseconds)."/>
+		</composite>
+
+		<!-- Specific composite definitions -->
+		<composite name="CredentialsEncoding" semanticType="String" description="Credentials to identify/authenticate the client. The format is a JSON with the following data: { &quot;auth_type&quot;: &quot;basic&quot;, &quot;username&quot;: &quot;session_id&quot;, &quot;access_key&quot;: &quot;somepassword&quot; }">
+			<type name="length" primitiveType="uint8" maxValue="128" description="Length of credentials data."/>
+			<type name="varData" primitiveType="char" length="0" characterEncoding="ASCII" description="Credentials data in ASCII."/>
+		</composite>
+		<composite name="MemoEncoding" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports.">
+			<type name="length" primitiveType="uint8" maxValue="40" description="Length of free format text field defined by client."/>
+			<type name="varData" primitiveType="char" length="0" characterEncoding="ASCII" description="Free ASCII format text field defined by client."/>
+		</composite>
+		<composite name="TextEncoding" semanticType="String" description="Free ASCII format text string.">
+			<type name="length" primitiveType="uint8" maxValue="250" description="Length of free format text string generated by exchange."/>
+			<type name="varData" primitiveType="char" length="0" characterEncoding="ASCII" description="Free ASCII format text string generated by exchange."/>
+		</composite>
+		<composite name="DeskIDEncoding" semanticType="String" description="Identify the client associated with the given account number. This information may be used to correlate the order entry messages with the messages at the back-office and clearing systems.">
+			<type name="length" primitiveType="uint8" maxValue="20" description="Length of trading desk identification."/>
+			<type name="varData" primitiveType="char" length="0" characterEncoding="ASCII" description="Trading desk identification in ASCII format."/>
+		</composite>
+		<composite name="ClientAppEncoding" semanticType="String" description="Identifies the IP address, name and version declared for audit.">
+			<type name="length" primitiveType="uint8" maxValue="30" description="Length of client system information."/>
+			<type name="varData" primitiveType="char" length="0" characterEncoding="ASCII" description="Client system information."/>
+		</composite>
+		<composite name="CustodianInfo" description="Custodian information is required for going private offer.">
+			<type name="custodian" primitiveType="uint32" presence="optional" nullValue="0" description="Identifies the custodian."/>
+			<type name="custodyAccount" primitiveType="uint32" presence="optional" nullValue="0" description="Identifies the custody account."/>
+			<type name="custodyAllocationType" primitiveType="uint32" presence="optional" nullValue="0" description="Custody allocation type."/>
+		</composite>
+		<composite name="InboundBusinessHeader" description="Header used for inbound business messages.">
+			<ref name="sessionID" type="SessionID"/>
+			<ref name="msgSeqNum" type="SeqNum"/>
+			<ref name="sendingTime" type="UTCTimestampNanosOptional"/>
+			<ref name="marketSegmentID" type="MarketSegmentID"/>
+			<type name="padding" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="1" description="Padding for alignment purpose."/>
+		</composite>
+		<composite name="OutboundBusinessHeader" description="Header used for outbound business messages.">
+			<ref name="sessionID" type="SessionID"/>
+			<ref name="msgSeqNum" type="SeqNum"/>
+			<ref name="sendingTime" type="UTCTimestampNanosOptional"/>
+			<ref name="possResend" type="PossResend"/>
+			<type name="padding" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="1" description="Padding for alignment purpose."/>
+		</composite>
+		<composite name="BidirectionalBusinessHeader" description="Header used for business messages that can go inbound or outbound.">
+			<ref name="sessionID" type="SessionID"/>
+			<ref name="msgSeqNum" type="SeqNum"/>
+			<ref name="sendingTime" type="UTCTimestampNanosOptional"/>
+			<ref name="possResend" type="PossResend"/>
+			<ref name="marketSegmentID" type="MarketSegmentIDOptional"/>
+			<type name="padding" primitiveType="char" semanticType="String" characterEncoding="ASCII" length="2" description="Padding for alignment purpose."/>
+		</composite>
+		<composite name="InvestorID" sinceVersion="1" description="Self trade prevention investor identification is composed of the prefix and document.">
+			<type name="prefix" primitiveType="uint16" presence="optional" nullValue="0" maxValue="999" semanticType="Int"/>
+			<type name="document" primitiveType="uint32" presence="optional" nullValue="0" maxValue="999999999" semanticType="Int" offset="4"/>
+		</composite>
+	</types>
+	<sbe:message name="Negotiate" id="1" description="The client sends the Negotiate message to B3 to initiate a connection. Negotiate is the first message that the client must sent to start the communication between client and gateway through a TCP socket connection.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Negotiate" description="Message type = Negotiate."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="timestamp" type="UTCTimestampNanos" id="35520" description="Time of request. Sent in number of nanoseconds since Unix epoch."/>
+		<field name="clientFlow" type="FlowType" id="35516" presence="constant" valueRef="FlowType.IDEMPOTENT" description="Type of flow from client to server. It is a constant value = idempotent."/>
+		<field name="enteringFirm" type="Firm" id="35501" description="Identifies the broker firm that will enter orders."/>
+		<field name="onbehalfFirm" type="FirmOptional" id="35517" description="Identifies the broker firm who executes their orders on behalf."/>
+		<data name="credentials" type="CredentialsEncoding" id="35512" semanticType="String" description="Credentials to identify/authenticate the client. The format is a JSON with the following data: { &quot;auth_type&quot;: &quot;basic&quot;, &quot;username&quot;: &quot;session_id&quot;, &quot;access_key&quot;: &quot;somepassword&quot; }"/>
+		<data name="clientIP" type="ClientAppEncoding" id="35513" semanticType="String" description="Source IP from client system."/>
+		<data name="clientAppName" type="ClientAppEncoding" id="35514" semanticType="String" description="Application name as informed during certification process."/>
+		<data name="clientAppVersion" type="ClientAppEncoding" id="35515" semanticType="String" description="Application version as informed during certification process."/>
+	</sbe:message>
+	<sbe:message name="NegotiateResponse" id="2" description="The NegotiationResponse message is sent when a Negotiate message from the client is accepted by B3.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.NegotiateResponse" description="Message type = NegotiateResponse."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="serverFlow" type="FlowType" id="35524" presence="constant" valueRef="FlowType.RECOVERABLE" description="Type of flow from client to server. It is a constant value = recoverable."/>
+		<field name="clientFlow" type="FlowType" id="35516" presence="constant" valueRef="FlowType.IDEMPOTENT" description="Type of flow from client to server. It is a constant value = idempotent."/>
+		<field name="enteringFirm" type="Firm" id="35501" description="Identifies the broker firm that will enter orders."/>
+	</sbe:message>
+	<sbe:message name="NegotiateReject" id="3" description="NegotiateReject message is sent when B3 rejects a Negotiate message sent by the client.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.NegotiateReject" description="Message type = NegotiateReject."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="clientFlow" type="FlowType" id="35516" presence="constant" valueRef="FlowType.IDEMPOTENT" description="Type of flow from client to server. It is a constant value = idempotent."/>
+		<field name="enteringFirm" type="FirmOptional" id="35501" description="Identifies the broker firm that will enter orders."/>
+		<field name="negotiationRejectCode" type="NegotiationRejectCode" id="35522" description="Identifies the code of reject negotiation."/>
+		<field name="currentSessionVerID" type="SessionVerIDOptional" id="35523" description="The current sessionVerID informed at the first Negotiate message for that specific session." offset="28"/>
+	</sbe:message>
+	<sbe:message name="Establish" id="4" description="After negotiation level is complete, the client must send an Establish message to start assigning sequence numbers and also to keep the connection active. Once the connection is established, client can submit orders and quotes.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Establish" description="Message type = Establish."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="timestamp" type="UTCTimestampNanos" id="35520" description="Time of request. Sent in number of nanoseconds since Unix epoch."/>
+		<field name="keepAliveInterval" type="DeltaInMillis" id="35525" description="Longest time in milliseconds the initiator should remain silent before sending Sequence message. It should be in the range of 1000 to 60000 (inclusive)."/>
+		<field name="nextSeqNo" type="SeqNum" id="35526" description="The next application sequence number to be produced by the client."/>
+		<field name="cancelOnDisconnectType" type="CancelOnDisconnectType" id="35002" description="Criteria used to initiate cancel on disconnect mechanism by the gateway."/>
+		<field name="codTimeoutWindow" type="DeltaInMillis" id="35003" description="Gateway will not trigger CoD if the customer reconnects within the timeout window (milliseconds) which starts when the triggering event is detected. Range is 0 (as soon as possible) to 60000." offset="34"/>
+		<data name="credentials" type="CredentialsEncoding" id="35512" semanticType="String" description="Credentials to identify/authenticate the client. The format is a JSON with the following data: { &quot;auth_type&quot;: &quot;basic&quot;, &quot;username&quot;: &quot;session_id&quot;, &quot;access_key&quot;: &quot;somepassword&quot; }"/>
+	</sbe:message>
+	<sbe:message name="EstablishAck" id="5" description="The EstablishmentAck message is sent when an Establish message is accepted by B3. EstablishmentAck message contains next sequence number. At the start of a session, default value is 1 (one).">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.EstablishAck" description="Message type = EstablishAck."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="keepAliveInterval" type="DeltaInMillis" id="35525" description="Longest time in milliseconds the initiator should remain silent before sending Sequence message."/>
+		<field name="nextSeqNo" type="SeqNum" id="35526" description="The next application sequence number to be produced by the gateway."/>
+		<field name="lastIncomingSeqNo" type="SeqNum" id="35527" description="Indicates the application sequence number of the last application message received by the server from the client. At the start of a session, default value is 0 (zero)."/>
+	</sbe:message>
+	<sbe:message name="EstablishReject" id="6" description="EstablishmentReject message is sent when an Establish message is rejected by B3 informing the reason of rejection.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.EstablishReject" description="Message type = EstablishReject."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="establishmentRejectCode" type="EstablishRejectCode" id="35532" description="Identifies the code of reject establishment."/>
+		<field name="lastIncomingSeqNo" type="SeqNumOptional" id="35527" description="If establishmentRejectCode = EstablishRejectCode.INVALID_NEXTSEQNO, indicates the application sequence number of the last application message received by the server from the client. At the start of a session, default value is 0 (zero)." offset="22"/>
+	</sbe:message>
+	<sbe:message name="Terminate" id="7" description="Terminate message is sent to indicate that the sender is going to disconnect the TCP socket connection.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Terminate" description="Message type = Terminate."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="sessionVerID" type="SessionVerID" id="35519" description="Session version identification: unique identification of a sequence of messages to be transmitted to/from B3´s gateways associated with given SessionId. Need to be incremented each time Negotiate message is sent to gateway."/>
+		<field name="terminationCode" type="TerminationCode" id="35533" description="Identifies the code of termination."/>
+	</sbe:message>
+	<sbe:message name="NotApplied" id="8" description="NotApplied message is sent when B3 detects messages that already been sent (concept of idempotence) or an invalid message format from the client.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.NotApplied" description="Message type = NotApplied."/>
+		<field name="fromSeqNo" type="SeqNum" id="35529" description="The first applied sequence number."/>
+		<field name="count" type="MessageCounter" id="35530" description="How many messages haven´t been applied?"/>
+	</sbe:message>
+	<sbe:message name="Sequence" id="9" description="Sequence message specifies the sequence number of the next business message both: Recoverable (B3 to client) and Idempotent (client to B3) flows. It is also used as heartbeat.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Sequence" description="Message type = Sequence."/>
+		<field name="nextSeqNo" type="SeqNum" id="35526" description="The next application sequence number to be produced by the client."/>
+	</sbe:message>
+	<sbe:message name="RetransmitRequest" id="12" description="RetransmitRequest message is used for client to recover missed messages.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.RetransmitRequest" description="Message type = RetransmitRequest."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="timestamp" type="UTCTimestampNanos" id="35520" description="Time of request. Sent in number of nanoseconds since Unix epoch."/>
+		<field name="fromSeqNo" type="SeqNum" id="35529" description="The first applied sequence number."/>
+		<field name="count" type="MessageCounter" id="35530" description="Maximum number of messages to be retransmitted. Range is 1 to 1000 (inclusive)."/>
+	</sbe:message>
+	<sbe:message name="Retransmission" id="13" description="Retransmission message is sent when a RetransmitRequest message from the client is accepted by B3.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Retransmission" description="Message type = Retransmission."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="nextSeqNo" type="SeqNum" id="35526" description="The sequence number of the first retransmitted message."/>
+		<field name="count" type="MessageCounter" id="35530" description="Number of messages to be retransmitted."/>
+	</sbe:message>
+	<sbe:message name="RetransmitReject" id="14" description="RetransmitReject message is sent when a RetransmitRequest message is rejected by B3. More details are described in the Message Specification Guidelines document.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.RetransmitReject" description="Message type = RetransmitReject."/>
+		<field name="sessionID" type="SessionID" id="35518" description="Client connection identification on the gateway assigned by B3."/>
+		<field name="requestTimestamp" type="UTCTimestampNanos" id="35521" description="Matches Negotiate timestamp."/>
+		<field name="retransmitRejectCode" type="RetransmitRejectCode" id="35534" description="Identifies the code of reject retransmission."/>
+	</sbe:message>
+	<sbe:message name="SimpleNewOrder" id="100" description="SimpleNewOrder message submits a simple new order focused on sent only main parameters with low complexity. Used by client to enter a simple order in the system.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.SimpleNewOrder" description="Message type = SimpleNewOrder."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="selfTradePreventionInstruction" type="SelfTradePreventionInstruction" id="35539" description="Indicates which order should be canceled due to Self-Trade Prevention."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordType" type="SimpleOrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="SimpleTimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="routingInstruction" type="RoutingInstruction" id="35487" presence="optional" sinceVersion="2" description="Indicates additional order instruction."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="1" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="SimpleModifyOrder" id="101" description="The SimpleModifyOrder submits a simple modify request for basic parameters like price and quantity. The client sends the SimpleModifyOrder message to B3 to modify some order values only.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.SimpleModifyOrder" description="Message type = SimpleModifyOrder."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="selfTradePreventionInstruction" type="SelfTradePreventionInstruction" id="35539" description="Indicates which order should be canceled due to Self-Trade Prevention."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordType" type="SimpleOrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="SimpleTimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="routingInstruction" type="RoutingInstruction" id="35487" presence="optional" sinceVersion="2" description="Indicates additional order instruction."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="orderID" type="OrderIDOptional" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="ClOrdID which should be replaced."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="1" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="accountType" type="AccountType" id="581" presence="constant" sinceVersion="2" valueRef="AccountType.REGULAR_ACCOUNT" description="Type of account associated with an order."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="NewOrderSingle" id="102" description="NewOrderSingle message is used to enter an order in the system; the behavior of an order can be affected by many parameters such as order type and order type qualifier.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.NewOrderSingle" description="Message type = NewOrderSingle."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="selfTradePreventionInstruction" type="SelfTradePreventionInstruction" id="35539" description="Indicates which order should be canceled due to Self-Trade Prevention."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="routingInstruction" type="RoutingInstruction" id="35487" presence="optional" sinceVersion="2" description="Indicates additional order instruction."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="executingTrader" type="TraderOptional" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="custodianInfo" type="CustodianInfo" id="35507" presence="optional" description="Identifies the custodian."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="1" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="OrderCancelReplaceRequest" id="104" description="Sent by client system to replace an existing order.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.OrderCancelReplaceRequest" description="Message type = OrderCancelReplaceRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="selfTradePreventionInstruction" type="SelfTradePreventionInstruction" id="35539" description="Indicates which order should be canceled due to Self-Trade Prevention."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" presence="optional" description="Specifies how long the order remains in effect."/>
+		<field name="routingInstruction" type="RoutingInstruction" id="35487" presence="optional" sinceVersion="2" description="Indicates additional order instruction."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="orderID" type="OrderIDOptional" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="ClOrdID which should be replaced."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="executingTrader" type="TraderOptional" id="35506" description="Identifies the trader who is executing an order." />
+		<field name="accountType" type="AccountType" id="581" presence="optional" sinceVersion="2" description="Type of account associated with an order."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="custodianInfo" type="CustodianInfo" id="35507" presence="optional" description="Identifies the custodian."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="1" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="OrderCancelRequest" id="105" description="OrderCancelRequest message submits a deletion of an existing order by referencing the original client order id.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.OrderCancelRequest" description="Message type = OrderCancelRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant." offset="20"/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="orderID" type="OrderIDOptional" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="ClOrdID which should be canceled."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="execRestatementReason" type="ExecRestatementReasonValidForSingleCancel" id="378" presence="optional" description="Used to communicate a reason for a solicited cancel."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." offset="56"/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="TraderOptional" id="35506" description="Identifies the trader who is executing an order."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="NewOrderCross" id="106" description="The NewOrderCross message submits a Cross on Order Entry gateway, a two-sided order submitted by a single party/broker at the same price and quantity.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.NewOrderCross" description="Message type = NewOrderCross."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="crossID" type="CrossID" id="548" description="ID of electronically submitted cross order by the institution (if in response to a cross order)." offset="20"/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="TraderOptional" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="Price" id="44" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="crossedIndicator" type="CrossedIndicator" id="2523" presence="optional" description="Indicates cross order purpose."/>
+		<field name="crossType" type="CrossType" id="549" presence="optional" description="Type of cross being submitted to a market. Null value indicates all or none cross." sinceVersion="3"/>
+		<field name="crossPrioritization" type="CrossPrioritization" id="550" presence="optional" description="Indicates if one side or the other of a cross order should be prioritized. Null value indicates none is prioritized." sinceVersion="3"/>
+		<field name="maxSweepQty" type="QuantityOptional" id="35115" presence="optional" description="Maximum sweep quantity." sinceVersion="3"/>
+		<group name="noSides" id="552" dimensionType="GroupSizeEncoding">
+			<field name="side" type="Side" id="54" description="Side of order."/>
+			<field name="account" type="AccountOptional" id="1" offset="2" description="Account mnemonic of the order."/>
+			<field name="enteringFirm" type="FirmOptional" id="35501" description="Identifies the broker firm that will enter orders."/>
+			<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		</group>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_New" id="200" description="Execution Report - New message is sent in response to a NewOrderSingle or SimpleNewOrder messages, or also from a restated iceberg order.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_New" description="MessageType.ExecutionReport_New."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" description="Identifies current status of order."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderID" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="orderID" type="OrderID" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="marketSegmentReceivedTime" type="UTCTimestampNanosOptional" id="35543" presence="optional" description="Time of receipt of related inbound message in the market segment path. For aggressor STOP orders, it indicates the moment when the order is triggered."/>
+		<field name="protectionPrice" type="PriceOptional" id="35001" presence="optional" description="Conditionally returned on execution reports for Market and Stop Protect orders. This contains the final protection price limit at which any unmatched quantity will rest on the book."/>
+		<field name="tradeDate" type="LocalMktDate" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="workingIndicator" type="Boolean" id="636" description="Indicates if an order has been triggered and is available for trading. Used with Stop (Limit, with protection) orders and the At the Close validity."/>
+		<field name="multiLegReportingType" type="MultiLegReportingType" id="442" presence="optional" description="Used to indicate what an Execution Report represents. Default value is 1 (Single Security)."/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="crossID" type="CrossIDOptional" id="548" description="ID of electronically submitted cross order by the institution (if in response to a cross order)."/>
+		<field name="receivedTime" type="UTCTimestampNanosOptional" id="35544" presence="optional" sinceVersion="3" description="Time of receipt of related inbound message in the gateway."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" presence="optional" sinceVersion="3" description="Identifies the order tag identification." offset="155"/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="3" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="crossType" type="CrossType" id="549" presence="optional" description="Type of cross being submitted to a market. Null value indicates report is not related to cross." sinceVersion="3"/>
+		<field name="crossPrioritization" type="CrossPrioritization" id="550" presence="optional" description="Indicates if one side or the other of a cross order should be prioritized.  Null value indicates report is not related to cross." sinceVersion="3"/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" presence="optional" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection." sinceVersion="3"/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3" offset="168"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_Modify" id="201" description="Execution Report - Modify message is sent in response to OrderCancelReplaceRequest or SimpleModifyOrder messages.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_Modify" description="MessageType.ExecutionReport_Modify."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" description="Identifies current status of order."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderID" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="leavesQty" type="Quantity" id="151" description="Amount of shares open for further execution, or unexecuted." />
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="cumQty" type="Quantity" id="14" description="Total number of shares or contracts filled."/>
+		<field name="marketSegmentReceivedTime" type="UTCTimestampNanosOptional" id="35543" presence="optional" description="Time of receipt of related inbound message in the market segment path. For aggressor STOP orders, it indicates the moment when the order is triggered."/>
+		<field name="orderID" type="OrderID" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="Value of origClOrdID field informed from the related request message."/>
+		<field name="protectionPrice" type="PriceOptional" id="35001" presence="optional" description="Conditionally returned on execution reports for Market and Stop Protect orders. This contains the final protection price limit at which any unmatched quantity will rest on the book."/>
+		<field name="tradeDate" type="LocalMktDate" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="workingIndicator" type="Boolean" id="636" description="Indicates if an order has been triggered and is available for trading. Used with Stop (Limit, with protection) orders and the At the Close validity."/>
+		<field name="multiLegReportingType" type="MultiLegReportingType" id="442" presence="optional" description="Used to indicate what an Execution Report represents. Default value is 1 (Single Security)."/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="receivedTime" type="UTCTimestampNanosOptional" id="35544" presence="optional" sinceVersion="3" description="Time of receipt of related inbound message in the gateway."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" presence="optional" sinceVersion="3" description="Identifies the order tag identification." offset="171"/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="3" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="mmProtectionReset" type="Boolean" id="9773" presence="optional" description="Resets Market Protections. When Market Protections are triggered, the Exchange will not accept new orders for that product group without tag MMProtectionReset: True = Reset Market Maker Protection; False = Do nothing related to Market Maker Protection." sinceVersion="3"/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3" offset="182"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_Cancel" id="202" description="ExecutionReport - Cancel message is sent in response to Order Cancel Request as well as to report unsolicited cancellation of orders due to: Market Operations or Cancel On Disconnect mechanism.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_Cancel" description="MessageType.ExecutionReport_Cancel."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" description="Identifies current status of order."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderID" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="cumQty" type="Quantity" id="14" description="Total number of shares or contracts filled."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="marketSegmentReceivedTime" type="UTCTimestampNanosOptional" id="35543" presence="optional" description="Time of receipt of related inbound message in the market segment path. For aggressor STOP orders, it indicates the moment when the order is triggered."/>
+		<field name="orderID" type="OrderID" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="Value of origClOrdID field informed from the related request message."/>
+		<field name="tradeDate" type="LocalMktDate" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="workingIndicator" type="Boolean" id="636" description="Indicates if an order has been triggered and is available for trading. Used with Stop (Limit, with protection) orders and the At the Close validity."/>
+		<field name="execRestatementReason" type="ExecRestatementReason" id="378" presence="optional" description="Indicates reason of cancelation, if available."/>
+		<field name="massActionReportID" type="MassActionReportIDOptional" id="1369" description="Unique ID of Order Mass Action Report as assigned by the matching engine." offset="104"/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="receivedTime" type="UTCTimestampNanosOptional" id="35544" presence="optional" sinceVersion="3" description="Time of receipt of related inbound message in the gateway."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" presence="optional" sinceVersion="3" description="Identifies the order tag identification." offset="167"/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="3" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3"/>
+		<field name="actionRequestedFromSessionID" type="SessionIDOptional" id="35117" sinceVersion="3" description="Indicates the SessionID that requested the Cancel on behalf."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_Trade" id="203" description="Execution Report – Trade/Trade Bust message is sent with order fills that were traded and processed on Matching Engine. Also, trade bust included on behalf of B3’s desk.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_Trade" description="MessageType.ExecutionReport_Trade."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" description="Identifies current status of order."/>
+		<field name="clOrdID" type="ClOrdIDOptional" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderID" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="lastQty" type="Quantity" id="33" description="Quantity of shares bought/sold on the last fill."/>
+		<field name="lastPx" type="Price" id="31" description="Price of last fill."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument." />
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="leavesQty" type="Quantity" id="151" description="Amount of shares open for further execution, or unexecuted." />
+		<field name="cumQty" type="Quantity" id="14" description="Total number of shares or contracts filled." />
+		<field name="aggressorIndicator" type="Boolean" id="1057" description="Identify whether the order initiator is an aggressor or not in the trade."/>
+		<field name="execType" type="ExecType" id="150" description="Describes the action that triggered this specific Execution Report - see the OrdStatus (39) tag for the current order status (e.g, Partially Filled)."/>
+		<field name="orderCategory" type="OrderCategory" id="1115" presence="optional" description="Reason why a trade occurred."/>
+		<field name="multiLegReportingType" type="MultiLegReportingType" id="442" presence="optional" description="Used to indicate what an Execution Report represents. Default value is 1 (Single Security)."/>
+		<field name="tradeID" type="TradeID" id="1003" description="Contains the unique identifier for this trade, per instrument + trading date, as assigned by the exchange."/>
+		<field name="contraBroker" type="Firm" id="375" description="Identifies the contra broker firm."/>
+		<field name="orderID" type="OrderID" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="tradeDate" type="LocalMktDate" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="totNoRelatedSym" type="TotNoRelatedSym" id="393" description="Number of leg fill notice messages sent with spread summary."/>
+		<field name="secondaryExecID" type="ExecIDOptional" id="8" description="Unique identifier present in all messages associated with a spread transaction. This value allows linking spread summary fill notice, leg fill notices, and leg trade cancellation execution report messages generated from a spread transaction." offset="120"/>
+		<field name="execRefID" type="ExecIDOptional" id="19" description="Optionally sent when reporting a trade bust. Contains the identifier of the busted trade."/>
+		<field name="crossID" type="CrossIDOptional" id="548" description="ID of electronically submitted cross order by the institution (if in response to a cross order)."/>
+		<field name="crossedIndicator" type="CrossedIndicator" id="2523" presence="optional" description="Indicates cross order purpose."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="tradingSessionID" type="TradingSessionID" id="336" presence="optional" sinceVersion="3" description="Identifier for Trading Session."/>
+		<field name="tradingSessionSubID" type="TradingSessionSubID" id="625" presence="optional" sinceVersion="3" description="Identifier for the instrument group phase."/>
+		<field name="securityTradingStatus" type="SecurityTradingStatus" id="6392" presence="optional" sinceVersion="3" description="Identifier for the instrument status."/>
+		<field name="crossType" type="CrossType" id="549" presence="optional" description="Type of cross being submitted to a market. Null value indicates report is not related to cross." sinceVersion="3"/>
+		<field name="crossPrioritization" type="CrossPrioritization" id="550" presence="optional" description="Indicates if one side or the other of a cross order should be prioritized.  Null value indicates report is not related to cross." sinceVersion="3"/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." offset="160" sinceVersion="3"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_Reject" id="204" description="Execution Report - Reject message notifies the reason a client request was not accepted by Matching Engine.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_Reject" description="MessageType.ExecutionReport_Reject."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" presence="constant" valueRef="OrdStatus.REJECTED" description="Identifies current status of order."/>
+		<field name="cxlRejResponseTo" type="CxlRejResponseTo" id="434" description="Identifies the type of request that this Cancel Reject is in response to."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderIDOptional" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="ordRejReason" type="RejReason" id="103" description="Code to identify reason for order rejection. Please refer to the error codes document for domain information."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument."/>
+		<field name="orderID" type="OrderIDOptional" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="origClOrdID" type="ClOrdIDOptional" id="41" description="Value of origClOrdID field informed from the related request message."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="ordType" type="OrdType" id="40" description="Order type."/>
+		<field name="timeInForce" type="TimeInForce" id="59" description="Specifies how long the order remains in effect."/>
+		<field name="expireDate" type="LocalMktDateOptional" id="432" description="Date of order expiration (last day the order can trade), always expressed in terms of the local market date."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="price" type="PriceOptional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="stopPx" type="PriceOptional" id="99" presence="optional" description="The stop price of a stop limit order (Conditionally required if OrdType = 4)."/>
+		<field name="minQty" type="QuantityOptional" id="110" description="Minimum quantity of an order to be executed."/>
+		<field name="maxFloor" type="QuantityOptional" id="111" description="Maximum number of shares or contracts within an order to be shown on the match engine at any given time."/>
+		<field name="crossID" type="CrossIDOptional" id="548" description="ID of electronically submitted cross order by the institution (if in response to a cross order)."/>
+		<field name="crossedIndicator" type="CrossedIndicator" id="2523" presence="optional" description="Indicates cross order purpose."/>
+		<field name="receivedTime" type="UTCTimestampNanosOptional" id="35544" presence="optional" sinceVersion="3" description="Time of receipt of related inbound message in the gateway."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" presence="optional" sinceVersion="3" description="Identifies the order tag identification." offset="149"/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="3" description="Unique identifier of investor for self trade prevention/mass cancel on behalf purposes."/>
+		<field name="strategyID" type="StrategyIDOptional" id="35528" presence="optional" description="Client-assigned identification of a strategy." sinceVersion="3"/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<sbe:message name="ExecutionReport_Forward" id="205" description="Execution Report – Forward message is sent with order fills were traded and processed on Matching Engine for Forward exclusively (Termo).">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.ExecutionReport_Forward" description="MessageType.ExecutionReport_Forward."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="ordStatus" type="OrdStatus" id="39" description="Identifies current status of order."/>
+		<field name="clOrdID" type="ClOrdIDOptional" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="secondaryOrderID" type="OrderID" id="198" description="Exchange-generated order identifier that changes for each order modification event, or quantity replenishment in disclosed orders."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="lastQty" type="Quantity" id="32" description="Quantity of shares bought/sold on the last fill."/>
+		<field name="lastPx" type="Price" id="31" description="Price of last fill."/>
+		<field name="execID" type="ExecID" id="17" description="Unique identifier of execution message as assigned by the exchange – unique per instrument."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="leavesQty" type="Quantity" id="151" description="Amount of shares open for further execution, or unexecuted."/>
+		<field name="cumQty" type="Quantity" id="14" description="Total number of shares or contracts filled." />
+		<field name="tradeID" type="TradeID" id="1003" description="Contains the unique identifier for this trade, per instrument + trading date, as assigned by the exchange."/>
+		<field name="contraBroker" type="Firm" id="375" description="Identifies the contra broker firm."/>
+		<field name="orderID" type="OrderID" id="37" description="Unique identifier for order as assigned by the exchange."/>
+		<field name="aggressorIndicator" type="Boolean" id="1057" description="Identify whether the order initiator is an aggressor or not in the trade."/>
+		<field name="settlType" type="SettlType" id="63" presence="optional" description="Indicates who in the contract has control over evoking settlement."/>
+		<field name="tradeDate" type="LocalMktDate" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="daysToSettlement" type="DaysToSettlementOptional" id="5497" description="Deadline for completing the forward deal. For Common, Dollar and Index contracts must be between 16 and 999. And maximum of 90 days for Flexible."/>
+		<field name="secondaryExecID" type="ExecIDOptional" id="527" description="Unique identifier present in all messages associated with a spread transaction. This value allows linking spread summary fill notice, leg fill notices, and leg trade cancellation execution report messages generated from a spread transaction." offset="120"/>
+		<field name="execRefID" type="ExecIDOptional" id="19" description="Optionally sent when reporting a trade bust. Contains the identifier of the busted trade."/>
+		<field name="fixedRate" type="Percentage8Optional" id="5706" presence="optional" description="Describes the interest to be paid by the forward buyer and received by the forward seller, in proportion to the agreed days to settlement. Expressed in decimal form. For example, 1% is expressed and sent as 0.01. One basis point is represented as 0.0001." sinceVersion="3"/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="tradingSessionID" type="TradingSessionID" id="336" presence="optional" sinceVersion="3" description="Identifier for Trading Session."/>
+		<field name="tradingSessionSubID" type="TradingSessionSubID" id="625" presence="optional" sinceVersion="3" description="Identifier for the instrument group phase."/>
+		<field name="securityTradingStatus" type="SecurityTradingStatus" id="6392" presence="optional" sinceVersion="3" description="Identifier for the instrument status."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="BusinessMessageReject" id="206" description="BusinessMessageReject message can reject an application-level message which fulfills session level rules but fails the business rules.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.BusinessMessageReject" description="Message type = BusinessMessageReject."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="refMsgType" type="MessageType" id="372" description="MsgType of the FIX message being referenced."/>
+		<field name="refSeqNum" type="SeqNum" id="45" description="Message sequence number of rejected message." offset="20"/>
+		<field name="businessRejectRefID" type="BusinessRejectRefID" id="379" description="The value of the business-level “ID” field on the message being referenced. Required unless the corresponding ID field was not specified."/>
+		<field name="businessRejectReason" type="RejReason" id="380" description="Code to identify the reason of the rejection."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<sbe:message name="SecurityDefinitionRequest" id="300" description="The SecurityDefinitionRequest message creates a User Defined Spread (UDS) instrument. User-Defined Spreads provide users of the electronic trading platform the ability to create strategies composed by their choice of leg instruments, leg ratio and leg side.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.SecurityDefinitionRequest" description="Message type = SecurityDefinitionRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="securityReqID" type="SecurityReqRespID" id="320" description="Unique ID of a Security Definition Request."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<group name="noLegs" id="555" dimensionType="GroupSizeEncoding" blockLength="30">
+			<field name="legSymbol" type="Symbol" id="600" description="Multileg instrument's individual security’s Symbol. See Symbol (55) field for description."/>
+			<field name="legSecurityExchange" type="SecurityExchange" id="616" description="Exchange code the leg security belongs to."/>
+			<field name="legRatioQty" type="RatioQty" id="623" description="The ratio of quantity for this individual leg relative to the entire multileg security."/>
+			<field name="legSide" type="Side" id="624" presence="optional" description="The side of this individual leg (multileg security). See Side (54) field for description and values."/>
+		</group>
+	</sbe:message>
+	<sbe:message name="SecurityDefinitionResponse" id="301" description="The SecurityDefinitioresponse message is sent in response to an attempt to create a new security definition.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.SecurityDefinitionResponse" description="Message type = SecurityDefinitionResponse."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all outbound business messages."/>
+		<field name="securityReqID" type="SecurityReqRespID" id="320" description="Unique ID of a Security Definition Request." offset="20"/>
+		<field name="securityID" type="SecurityIDOptional" id="48" presence="optional" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="securityResponseType" type="SecurityResponseType" id="323" description="Type of Security Definition message response."/>
+		<field name="securityStrategyType" type="SecurityStrategyType" id="7534" description="Indicates the type of Strategy created. This field is not sent on rejects." />
+		<field name="symbol" type="Symbol" id="55" description="B3 requires that this field is properly set. It contains the human readable form of the SecurityID tag, available in the Security List message in Market Data feed."/>
+		<field name="securityResponseID" type="SecurityReqRespID" id="322" description="Unique ID of a Security Definition message."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+	</sbe:message>
+	<sbe:message name="QuoteRequest" id="401" description="The Quote Request message is used within the context of this Forward transaction in which two parties have completed a deal outside the Exchange and are initiating the negotiation process to formalize and execute this operation on the Exchange.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.QuoteRequest" description="Message type = QuoteRequest."/>
+		<field name="businessHeader" type="BidirectionalBusinessHeader" id="35524" description="Common header to all bidirectional business messages."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="quoteReqID" type="QuoteReqID" id="131" description="Unique identifier for quote request."/>
+		<field name="quoteID" type="QuoteIDOptional" id="117" description="Unique identifier for quote."/>
+		<field name="tradeID" type="TradeIDOptional" id="1003" description="Contains the unique identifier for this trade, per instrument + trading date, as assigned by the exchange."/>
+		<field name="contraBroker" type="Firm" id="375" description="Broker identifier as assigned by B3 used to indicate the counterparty brokerage firm in a Forward deal."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="price" type="Price8" id="44" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="settlType" type="SettlType" id="63" description="Indicates who in the contract has control over evoking settlement."/>
+		<field name="executeUnderlyingTrade" type="ExecuteUnderlyingTrade" id="35004" presence="optional" description="Specifies if a simultaneous trade of the underlying is to be performed.Required to indicate Termo Vista and Termo Vista Registered."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="Trader" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="fixedRate" type="Percentage8" id="5706" description="Describes the interest to be paid by the forward buyer and received by the forward seller, in proportion to the agreed days to settlement. Expressed in decimal form. For example, 1% is expressed and sent as 0.01. One basis point is represented as 0.0001." sinceVersion="3"/>
+		<field name="privateQuote" type="Boolean" id="1171" presence="constant" valueRef="Boolean.TRUE_VALUE" description="Specifies whether a quote is public, i.e. available to the market, or private, i.e. available to a specified counterparty only."/>
+		<field name="daysToSettlement" type="DaysToSettlement" id="5497" description="Deadline for completing the forward deal. For Common, Dollar and Index contracts must be between 16 and 999. And maximum of 90 days for Flexible."/>
+		<group name="noSides" id="35511" dimensionType="GroupSizeEncoding" blockLength="5" >
+			<field name="side" type="Side" id="54" description="Side of order."/>
+			<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		</group>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="QuoteStatusReport" id="402" description="The QuoteStatusReport message is to inform the current status of forward acceptance.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.QuoteStatusReport" description="Message type = QuoteStatusReport."/>
+		<field name="businessHeader" type="BidirectionalBusinessHeader" id="35524" description="Common header to all bidirectional business messages."/>
+		<field name="quoteRejectReason" type="RejReasonOptional" id="300" description="Reason Quote was rejected."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="quoteReqID" type="QuoteReqID" id="131" description="Unique identifier for quote request."/>
+		<field name="quoteID" type="QuoteID" id="117" description="Unique identifier for quote."/>
+		<field name="tradeID" type="TradeIDOptional" id="1003" description="Contains the unique identifier for this trade, per instrument + trading date, as assigned by the exchange."/>
+		<field name="contraBroker" type="Firm" id="375" description="Broker identifier as assigned by B3 used to indicate the counterparty brokerage firm in a Forward deal."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="quoteStatus" type="QuoteStatus" id="297" description="Identifies the status of the quote acknowledgement."/>
+		<field name="quoteStatusResponseTo" type="QuoteStatusResponseTo" id="35006" presence="optional" description="Identifies the type of request that a Quote Status Report is in response to."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="side" type="Side" id="54" presence="optional" description="Side of order."/>
+		<field name="settlType" type="SettlType" id="63" presence="optional" description="Indicates who in the contract has control over evoking settlement."/>
+		<field name="price" type="Price8Optional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered" />
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="Trader" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="fixedRate" type="Percentage8Optional" id="5706" presence="optional" description="Interest rate of the forward trade." sinceVersion="3"/>
+		<field name="executeUnderlyingTrade" type="ExecuteUnderlyingTrade" id="35004" presence="optional" description="Specifies if a simultaneous trade of the underlying is to be performed.Required to indicate Termo Vista and Termo Vista Registered."/>
+		<field name="privateQuote" type="Boolean" id="1171" presence="constant" valueRef="Boolean.TRUE_VALUE" description="Specifies whether a quote is public, i.e. available to the market, or private, i.e. available to a specified counterparty only." />
+		<field name="daysToSettlement" type="DaysToSettlementOptional" id="5497" description="Deadline for completing the forward deal. For Common, Dollar and Index contracts must be between 16 and 999. And maximum of 90 days for Flexible."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<sbe:message name="Quote" id="403" description="Quote message is used as the response to a QuoteRequest message, tradeable, and restricted tradeable quoting markets.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.Quote" description="Message type = TermoQuote."/>
+		<field name="businessHeader" type="BidirectionalBusinessHeader" id="35524" description="Common header to all bidirectional business messages."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="quoteReqID" type="QuoteReqID" id="131" description="Unique identifier for quote request."/>
+		<field name="quoteID" type="QuoteID" id="117" description="Unique identifier for quote."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="price" type="Price8Optional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="orderQty" type="Quantity" id="38" description="Quantity ordered" />
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="settlType" type="SettlType" id="63" description="Indicates who in the contract has control over evoking settlement."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order." />
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders." />
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="Trader" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="fixedRate" type="Percentage8" id="5706" description="Interest rate of the forward trade." sinceVersion="3"/>
+		<field name="executeUnderlyingTrade" type="ExecuteUnderlyingTrade" id="35004" presence="optional" description="Specifies if a simultaneous trade of the underlying is to be performed.Required to indicate Termo Vista and Termo Vista Registered."/>
+		<field name="privateQuote" type="Boolean" id="1171" presence="constant" valueRef="Boolean.TRUE_VALUE" description="Specifies whether a quote is public, i.e. available to the market, or private, i.e. available to a specified counterparty only." />
+		<field name="daysToSettlement" type="DaysToSettlement" id="5497" description="Deadline for completing the forward deal. For Common, Dollar and Index contracts must be between 16 and 999. And maximum of 90 days for Flexible."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="QuoteCancel" id="404" description="The QuoteCancel message is used to cancel a previous QuoteRequest message.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.QuoteCancel" description="Message type = QuoteCancel."/>
+		<field name="businessHeader" type="BidirectionalBusinessHeader" id="35524" description="Common header to all bidirectional business messages."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="quoteReqID" type="QuoteReqIDOptional" id="131" description="Unique identifier for quote request."/>
+		<field name="quoteID" type="QuoteIDOptional" id="117" description="Unique identifier for quote."/>
+		<field name="quoteCancelType" type="QuoteCancelType" id="298" presence="constant" valueRef="QuoteCancelType.CANCEL_FOR_QUOTE_ID" description="Identifies the type of quote cancel." />
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="executingTrader" type="Trader" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="privateQuote" type="Boolean" id="1171" presence="constant" valueRef="Boolean.TRUE_VALUE" description="Specifies whether a quote is public, i.e. available to the market, or private, i.e. available to a specified counterparty only." />
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="QuoteRequestReject" id="405" description="The QuoteRequestReject message is used when a QuoteRequest is not accept by B3 due to missing or incorrect details to reject QuoteRequest messages for all quoting models.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.QuoteRequestReject" description="Message type = QuoteRequestReject."/>
+		<field name="businessHeader" type="BidirectionalBusinessHeader" id="35524" description="Common header to all bidirectional business messages."/>
+		<field name="quoteRequestRejectReason" type="RejReasonOptional" id="658" description="Reason Quote was rejected."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange." />
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="quoteReqID" type="QuoteReqID" id="131" description="Unique identifier for quote request."/>
+		<field name="quoteID" type="QuoteIDOptional" id="117" description="Unique identifier for quote."/>
+		<field name="tradeID" type="TradeIDOptional" id="1003" description="Contains the unique identifier for this trade, per instrument + trading date, as assigned by the exchange."/>
+		<field name="contraBroker" type="Firm" id="375" description="Broker identifier as assigned by B3 used to indicate the counterparty brokerage firm in a Forward deal." />
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="settlType" type="SettlType" id="63" presence="optional" description="Indicates who in the contract has control over evoking settlement."/>
+		<field name="price" type="Price8Optional" id="44" presence="optional" description="Price per share or contract. Conditionally required if the order type requires a price (not market orders and RLP)."/>
+		<field name="orderQty" type="QuantityOptional" id="38" description="Quantity ordered" />
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="executingTrader" type="Trader" id="35506" description="Identifies the trader who is executing an order."/>
+		<field name="fixedRate" type="Percentage8Optional" id="5706" presence="optional" description="Interest rate of the forward trade." sinceVersion="3"/>
+		<field name="privateQuote" type="Boolean" id="1171" presence="constant" valueRef="Boolean.TRUE_VALUE" description="Specifies whether a quote is public, i.e. available to the market, or private, i.e. available to a specified counterparty only." />
+		<field name="daysToSettlement" type="DaysToSettlementOptional" id="5497" description="Deadline for completing the forward deal. For Common, Dollar and Index contracts must be between 16 and 999. And maximum of 90 days for Flexible."/>
+		<group name="noSides" id="35511" dimensionType="GroupSizeEncoding" blockLength="5">
+			<field name="side" type="Side" id="54" description="Side of order."/>
+			<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		</group>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<sbe:message name="PositionMaintenanceCancelRequest" id="501" description="PositionMaintenanceCancelRequest is a solicited cancel of PositionMaintenance message sent by client.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.PositionMaintenanceCancelRequest" description="Message type = PositionMaintenanceCancelRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="posReqID" type="PosReqID" id="710" description="Unique identifier for the position maintenance request."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="origPosReqRefID" type="PosReqIDOptional" id="713" description="Reference to the PosReqID (710) of a previous maintenance request that is being canceled."/>
+		<field name="posMaintRptRefID" type="PosMaintRptIDOptional" id="714" description="Reference to a PosMaintRptID (721) from a previous Position Maintenance Report that is being canceled."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+	</sbe:message>
+	<sbe:message name="PositionMaintenanceRequest" id="502" description="PositionMaintenanceRequest message allows the position owner (holder) to submit requests which will affect the position. Generally, the holder of the position or clearing organization is a central party but can also be a party providing investment services.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.PositionMaintenanceRequest" description="Message type = PositionMaintenanceRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="posReqID" type="PosReqID" id="710" description="Unique identifier for the position maintenance request."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="thresholdAmount" type="PriceOffsetOptional" id="834" presence="optional" description="Used to indicate the minimum acceptable offset between the Strike Price and the Market Price."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="posTransType" type="PosTransType" id="709" description="Identifies the type of position transaction."/>
+		<field name="clearingBusinessDate" type="LocalMktDate" id="715" description="The 'Clearing Business Date' referred to by this request. It must be set with the current date."/>
+		<field name="contraryInstructionIndicator" type="Boolean" id="719" description="Used to indicate when a contrary instruction for exercise or abandonment is being submitted: The exercise should not happen to an ITM position or it should happen to an ATM or OTM position, always using the values of tags 709-PosTransType and 712-PosMaintAction to determine which operation will take place. Should not be submitted when false."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="posType" type="PosType" id="703" presence="constant" valueRef="PosType.OPTION_EXERCISE_QTY" description="Used to identify the type of quantity."/>
+		<field name="longQty" type="Quantity" id="704" description="Long quantity."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="PositionMaintenanceReport" id="503" description="PositionMaintenanceReport message is sent owner of a position (holder) in response to a PositionMaintenanceRequest message and is used to confirm that a request has been successfully processed or rejected.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.PositionMaintenanceReport" description="Message type = PositionMaintenanceReport."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="posReqID" type="PosReqIDOptional" id="710" description="Unique identifier for the position maintenance request."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="posMaintRptID" type="PosMaintRptID" id="721" description="Unique identifier for this position report."/>
+		<field name="posTransType" type="PosTransType" id="709" description="Identifies the type of position transaction."/>
+		<field name="posMaintAction" type="PosMaintAction" id="712" description="Maintenance Action to be performed."/>
+		<field name="posMaintStatus" type="PosMaintStatus" id="722" description="Status of Position Maintenance Request."/>
+		<field name="tradeID" type="TradeIDOptional" id="1003" description="The unique ID assigned to the trade entity once it is received or matched by the exchange or central counterparty."/>
+		<field name="origPosReqRefID" type="PosReqIDOptional" id="713" description="Reference to the PosReqID (710) of a previous maintenance request that is being canceled."/>
+		<field name="accountType" type="AccountType" id="581" presence="optional" description="Type of account associated with an order."/>
+		<field name="clearingBusinessDate" type="LocalMktDate" id="715" description="The 'Clearing Business Date' referred to by this request. It must be set with the current date."/>
+		<field name="thresholdAmount" type="PriceOffsetOptional" id="834" presence="optional" description="Used to indicate the minimum acceptable offset between the Strike Price and the Market Price."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="account" type="AccountOptional" id="1" description="Account mnemonic of the order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="posMaintResult" type="RejReasonOptional" id="723" description="Identifies reason for rejection. Required when PosMaintStatus = 2."/>
+		<field name="contraryInstructionIndicator" type="Boolean" id="719" description="Used to indicate when a contrary instruction for exercise or abandonment is being submitted :The exercise should not happen to an ITM position or it should happen to an ATM or OTM position, always using the values of tags 709-PosTransType and 712-PosMaintAction to determine which operation will take place. Should not be submitted when false."/>
+		<group name="noPositions" id="702" dimensionType="GroupSizeEncoding">
+			<field name="posType" type="PosType" id="703" description="Used to identify the type of quantity."/>
+			<field name="longQty" type="QuantityOptional" id="704" description="Long Quantity."/>
+			<field name="shortQty" type="QuantityOptional" id="705" description="Short Quantity."/>
+		</group>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<sbe:message name="AllocationInstruction" id="601" description="AllocationInstruction message submits a request to allocate (fully or partially) a non-allocated trade to block an issuer position, preventing it to be assigned to an exercise executed by a holder during current session.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.AllocationInstruction" description="Message type = AllocationInstruction."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="allocID" type="AllocID" id="70" description="Unique identifier for this allocation instruction message."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="allocTransType" type="AllocTransType" id="71" description="Identifies allocation transaction type."/>
+		<field name="allocType" type="AllocType" id="626" description="Describes the specific type or purpose of an Allocation message."/>
+		<field name="allocNoOrdersType" type="AllocNoOrdersType" id="857" description="Indicates how the orders being booked and allocated by an Allocation Instruction."/>
+		<field name="quantity" type="Quantity" id="53" description="Overall/total quantity (e.g. number of shares)."/>
+		<field name="side" type="Side" id="54" presence="constant" valueRef="Side.BUY" description="Side of order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+		<field name="tradeID" type="TradeID" id="1003" description="The unique ID assigned to the trade entity once it is received or matched by the exchange or central counterparty."/>
+		<field name="tradeDate" type="LocalMktDateOptional" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="individualAllocID" type="AllocID" id="467" description="Unique identifier for a specific NoAllocs (78) repeating group instance (e.g. for an AllocAccount)."/>
+		<field name="allocAccount" type="Account" id="79" description="Sub-account mnemonic."/>
+		<field name="allocQty" type="Quantity" id="80" description="Quantity allocated to specific sub-account."/>
+		<data name="deskID" type="DeskIDEncoding" id="35510" semanticType="String" description="Identifies the trading desk."/>
+		<data name="memo" type="MemoEncoding" id="5149" semanticType="String" description="Free ASCII format text field. This field may be used to convey client's relevant info. It's always echoed in the reports."/>
+	</sbe:message>
+	<sbe:message name="AllocationReport" id="602" description="AllocationReport message is as response of AllocationInstruction message.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.AllocationReport" description="Message type = AllocationReport."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="allocID" type="AllocID" id="70" description="Unique identifier for this allocation instruction message."/>
+		<field name="securityID" type="SecurityID" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="allocReportID" type="AllocReportID" id="755" description="Unique identifier for this message."/>
+		<field name="allocTransType" type="AllocTransType" id="71" description="Identifies allocation transaction type."/>
+		<field name="allocReportType" type="AllocReportType" id="794" description="Describes the specific type or purpose of an Allocation Report message."/>
+		<field name="allocNoOrdersType" type="AllocNoOrdersType" id="857" description="Indicates how the orders being booked and allocated by an Allocation Instruction."/>
+		<field name="allocRejCode" type="RejReasonOptional" id="88" description="Identifies reason for rejection."/>
+		<field name="quantity" type="Quantity" id="53" description="Overall/total quantity (e.g. number of shares)."/>
+		<field name="allocStatus" type="AllocStatus" id="87" description="Identifies status of allocation."/>
+		<field name="tradeDate" type="LocalMktDateOptional" id="75" description="Indicates date of trading day (expressed in local time at place of trade). Sent in number of days since Unix epoch."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="side" type="Side" id="54" description="Side of order."/>
+		<field name="senderLocation" type="SenderLocation" id="35503" description="Identifies the original location for routing orders."/>
+		<field name="enteringTrader" type="Trader" id="35502" description="Identifies the trader who is inserting an order."/>
+	</sbe:message>
+	<sbe:message name="OrderMassActionRequest" id="701" description="OrderMassActionRequest is sent by the client system to cancel working orders that belongs to a defined criteria as per client definition.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.OrderMassActionRequest" description="Message type = OrderMassActionRequest."/>
+		<field name="businessHeader" type="InboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="massActionType" type="MassActionType" id="1373" description="Specifies the type of action requested."/>
+		<field name="massActionScope" type="MassActionScope" id="1374" presence="optional" description="Specifies the scope of the action."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="execRestatementReason" type="ExecRestatementReasonValidForMassCancel" id="378" presence="optional" description="Used to communicate event type which triggers the Order Mass Action Request."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="side" type="Side" id="54" presence="optional" description="Side of order."/>
+		<field name="asset" type="AssetOptional" id="6937" offset="32" description="Asset associated with the security, such as DOL, BGI, OZ1, WDL, CNI, etc."/>
+		<field name="securityID" type="SecurityIDOptional" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="2" description="Unique identifier of investor for mass cancel on behalf purposes."/>
+	</sbe:message>
+	<sbe:message name="OrderMassActionReport" id="702" description="OrderMassActionReport message is used to acknowledge an OrderMassActionRequest message.">
+		<field name="messageType" type="MessageType" id="35" presence="constant" valueRef="MessageType.OrderMassActionReport" description="Message type = OrderMassActionReport."/>
+		<field name="businessHeader" type="OutboundBusinessHeader" id="35524" description="Common header to all inbound business messages."/>
+		<field name="massActionType" type="MassActionType" id="1373" description="Specifies the type of action requested."/>
+		<field name="massActionScope" type="MassActionScope" id="1374" presence="optional" description="Specifies the scope of the action."/>
+		<field name="clOrdID" type="ClOrdID" id="11" description="Unique identifier of the order as assigned by the market participant."/>
+		<field name="massActionReportID" type="MassActionReportID" id="1369" description="Unique ID of Order Mass Action Report as assigned by the matching engine."/>
+		<field name="transactTime" type="UTCTimestampNanos" id="60" description="Time of execution/order creation; expressed in UTC. Please note that although the clock is specified in nanoseconds, the actual accuracy of the exchange's clocks is milliseconds."/>
+		<field name="massActionResponse" type="MassActionResponse" id="1375" description="Specifies the action taken by matching engine when it receives the Order Mass Action Request."/>
+		<field name="massActionRejectReason" type="MassActionRejectReason" id="1376" presence="optional" description="Reason Order Mass Action Request was rejected."/>
+		<field name="execRestatementReason" type="ExecRestatementReasonValidForMassCancel" id="378" presence="optional" description="Used to communicate event type which triggers the Order Mass Action Request."/>
+		<field name="ordTagID" type="OrdTagID" id="35505" description="Identifies the order tag identification."/>
+		<field name="side" type="Side" id="54" presence="optional" description="Side of order."/>
+		<field name="asset" type="AssetOptional" id="6937" offset="50" description="Asset associated with the security, such as DOL, BGI, OZ1, WDL, CNI, etc."/>
+		<field name="securityID" type="SecurityIDOptional" id="48" description="Security identification as defined by exchange."/>
+		<field name="securityIDSource" type="SecurityIDSource" id="22" presence="constant" valueRef="SecurityIDSource.EXCHANGE_SYMBOL" description="Identifies the class of the SecurityID (Exchange Symbol)."/>
+		<field name="securityExchange" type="SecurityExchange" id="207" description="Market to which the symbol belongs."/>
+		<field name="investorID" type="InvestorID" id="35508" presence="optional" sinceVersion="2" description="Unique identifier of investor for mass cancel on behalf purposes."/>
+		<data name="text" type="TextEncoding" id="58" semanticType="String" description="Free ASCII format text string."/>
+	</sbe:message>
+	<!-- ============================================================================================================================= -->
+	<!-- Comment the message below if your code generation tool can generate code for composite types that aren't used inside messages -->
+	<!-- ============================================================================================================================= -->
+	<sbe:message name="HeaderMessage" id="0" description="Generate code for FramingHeader for convenience, making easier to handle this header as SBE instead of handling as pure binary format. It is not meant to be used as a standalone SBE message.">
+		<field name="framingHeader" type="FramingHeader" id="0"/>
+	</sbe:message>
+</sbe:messageSchema>

@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" byteOrder="bigEndian" id="1" package="com.memx.us_equities.memo.sbe.v1" semanticVersion="1.0.0" version="1" xsi:schemaLocation="http://fixprotocol.io/2016/sbe">
+    <types>
+        <enum encodingType="uint8" name="BooleanType">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+        <composite name="PriceType">
+            <type name="Mantissa" primitiveType="int64"/>
+            <type name="Exponent" presence="constant" primitiveType="int8">-6</type>
+        </composite>
+        <composite name="UTCTimestampNanos">
+            <type name="Time" primitiveType="uint64"/>
+            <type name="Unit" presence="constant" primitiveType="uint8">9</type>
+        </composite>
+        <set encodingType="uint16" name="ExecInstType">
+            <choice name="ParticipateDoNotInitiate">0</choice>
+            <choice name="IntermarketSweep">1</choice>
+            <choice name="ExternalRoutingNotAllowed">2</choice>
+        </set>
+        <enum encodingType="uint8" name="SideType">
+            <validValue name="Buy">1</validValue>
+            <validValue name="Sell">2</validValue>
+            <validValue name="SellShort">3</validValue>
+            <validValue name="SellShortExempt">4</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="OrdType">
+            <validValue name="Market">1</validValue>
+            <validValue name="Limit">2</validValue>
+            <validValue name="Pegged">3</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="TimeInForceType">
+            <validValue name="Day">1</validValue>
+            <validValue name="ImmediateOrCancel">2</validValue>
+            <validValue name="FillOrKill">3</validValue>
+            <validValue name="GoodForTime">4</validValue>
+            <validValue name="RegularHoursOnly">5</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="OrderCapacityType">
+            <validValue name="Agency">1</validValue>
+            <validValue name="Principal">2</validValue>
+            <validValue name="RisklessPrincipal">3</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="OrdStatusType">
+            <validValue name="New">1</validValue>
+            <validValue name="PartialFilled">2</validValue>
+            <validValue name="Filled">3</validValue>
+            <validValue name="Canceled">4</validValue>
+            <validValue name="PendingCancel">5</validValue>
+            <validValue name="Rejected">6</validValue>
+            <validValue name="PendingNew">7</validValue>
+            <validValue name="PendingReplace">8</validValue>
+            <validValue name="Expired">9</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="CxlRejResponseToType">
+            <validValue name="OrderCancelRequest">1</validValue>
+            <validValue name="OrderCancelReplaceRequest">2</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="LastLiquidityIndType">
+            <validValue name="AddDisplayed">1</validValue>
+            <validValue name="Removed">2</validValue>
+            <validValue name="Routed">3</validValue>
+            <validValue name="Cross">4</validValue>
+            <validValue name="AddHidden">5</validValue>
+            <validValue name="AddMidpointPeg">6</validValue>
+            <validValue name="AddDisplayedNbboImprove">7</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="PegType">
+            <validValue name="MidPricePeg">1</validValue>
+            <validValue name="PrimaryPeg">2</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="DispMethodType">
+            <validValue name="Initial">1</validValue>
+            <validValue name="Random">2</validValue>
+            <validValue name="Undisclosed">3</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="ReserveReplenishTimingType">
+            <validValue name="Immediate">1</validValue>
+            <validValue name="Random">2</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="CustOrderCapacityType">
+            <validValue name="MemberTradingOnTheirOwnAccount">1</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="RepriceFrequencyType">
+            <validValue name="SingleReprice">1</validValue>
+            <validValue name="ContinuousReprice">2</validValue>
+            <validValue name="None">3</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="RepriceBehaviorType">
+            <validValue name="RepriceLockCancelCross">1</validValue>
+            <validValue name="RepriceLockRepriceCross">2</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="SelfTradePreventionType">
+            <validValue name="CancelNewest">1</validValue>
+            <validValue name="CancelOldest">2</validValue>
+            <validValue name="DecrementAndCancel">3</validValue>
+            <validValue name="CancelBoth">4</validValue>
+            <validValue name="CancelSmallest">5</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="CancelReasonCode">
+            <validValue name="Other">0</validValue>
+            <validValue name="UserRequestedCancel">1</validValue>
+            <validValue name="EndOfTrading">4</validValue>
+            <validValue name="LimitUpLimitDown">5</validValue>
+            <validValue name="Halted">6</validValue>
+            <validValue name="ExchangeSupervisory">7</validValue>
+            <validValue name="OrderExpired">8</validValue>
+            <validValue name="LockOrCrossBook">9</validValue>
+            <validValue name="SelfTradePrevention">10</validValue>
+            <validValue name="InsufficientQuotes">11</validValue>
+            <validValue name="NonCompliantPrice">12</validValue>
+            <validValue name="ParticipantDisconnect">13</validValue>
+            <validValue name="OrderNotBookable">14</validValue>
+            <validValue name="TradeProtectionLimits">15</validValue>
+            <validValue name="UnableToRoute">16</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="OrderRejectReasonCode">
+            <validValue name="Other">0</validValue>
+            <validValue name="MissingSymbol">1</validValue>
+            <validValue name="MissingLocate">2</validValue>
+            <validValue name="MissingClOrdId">3</validValue>
+            <validValue name="MissingSide">4</validValue>
+            <validValue name="MissingOrderQuantity">5</validValue>
+            <validValue name="MissingOrderType">6</validValue>
+            <validValue name="MissingTimeInForce">7</validValue>
+            <validValue name="MissingOrderCapacity">8</validValue>
+            <validValue name="MissingExecInst">9</validValue>
+            <validValue name="MissingLimitPrice">10</validValue>
+            <validValue name="MissingMaxFloor">11</validValue>
+            <validValue name="MissingReserveReplenishAmountType">12</validValue>
+            <validValue name="MissingReserveReplenishTimeType">13</validValue>
+            <validValue name="MissingRandomReplenishValue">14</validValue>
+            <validValue name="MissingRepriceFrequencyType">15</validValue>
+            <validValue name="MissingRepriceBehaviorType">16</validValue>
+            <validValue name="MissingCustomerCapacityType">17</validValue>
+            <validValue name="MissingExpireTime">18</validValue>
+            <validValue name="MissingPegType">19</validValue>
+            <validValue name="InvalidModifierForOrderType">20</validValue>
+            <validValue name="InvalidModifiersCombination">21</validValue>
+            <validValue name="InvalidTradingSessionForOrderType">22</validValue>
+            <validValue name="InvalidTimeInForceForOrderType">23</validValue>
+            <validValue name="InvalidMinQuantity">24</validValue>
+            <validValue name="InvalidOrderQuantity">25</validValue>
+            <validValue name="InvalidSide">26</validValue>
+            <validValue name="InvalidOrderType">27</validValue>
+            <validValue name="InvalidTimeInForce">28</validValue>
+            <validValue name="InvalidOrderCapacity">29</validValue>
+            <validValue name="InvalidCustomerCapacity">30</validValue>
+            <validValue name="InvalidSymbol">31</validValue>
+            <validValue name="InvalidExpireTime">32</validValue>
+            <validValue name="InvalidLimitPrice">33</validValue>
+            <validValue name="InvalidLimitPriceIncrement">34</validValue>
+            <validValue name="InvalidMaxFloor">35</validValue>
+            <validValue name="InvalidRandomReplenishValue">36</validValue>
+            <validValue name="InvalidRandomReplenishValueForReserveType">37</validValue>
+            <validValue name="InvalidReserveReplenishAmountType">38</validValue>
+            <validValue name="InvalidReserveReplenishTimeType">39</validValue>
+            <validValue name="InvalidRepriceFrequencyType">40</validValue>
+            <validValue name="InvalidRepriceBehaviorType">41</validValue>
+            <validValue name="InvalidRepriceBehaviorForRepriceFrequency">42</validValue>
+            <validValue name="InvalidMPIDValue">43</validValue>
+            <validValue name="InvalidPegType">44</validValue>
+            <validValue name="InvalidModifierForPegType">45</validValue>
+            <validValue name="InvalidLocate">46</validValue>
+            <validValue name="SymbolHaltedOrPaused">47</validValue>
+            <validValue name="ExchangeClosed">48</validValue>
+            <validValue name="DuplicateClOrdID">49</validValue>
+            <validValue name="OrderSizeExceedsLimit">50</validValue>
+            <validValue name="OrderNotionalExceedsLimit">51</validValue>
+            <validValue name="BlockISORiskRuleViolated">52</validValue>
+            <validValue name="BlockSessionRiskRuleViolated">53</validValue>
+            <validValue name="BlockSellShortRiskRuleViolated">54</validValue>
+            <validValue name="BlockNonTestSymbolsRiskRuleViolated">55</validValue>
+            <validValue name="MaxSharesPerOrderRiskRuleBreach">56</validValue>
+            <validValue name="MaxNotionalValuePerOrderRiskRuleBreach">57</validValue>
+            <validValue name="PricePercentCollarRiskRuleViolated">58</validValue>
+            <validValue name="PriceValueCollarRiskRuleViolated">59</validValue>
+            <validValue name="MaxADVPercentPerOrderRiskRuleBreach">60</validValue>
+            <validValue name="DailyGrossNotionalExposureRiskRuleBreach">61</validValue>
+            <validValue name="DailyNetNotionalExposureRiskRuleBreach">62</validValue>
+            <validValue name="MaxNumDuplicateOrdersRiskRuleBreach">63</validValue>
+            <validValue name="MaxOrderRateRiskRuleBreach">64</validValue>
+            <validValue name="RestrictedSecurityRiskRuleViolated">65</validValue>
+            <validValue name="HardToBorrowSecurityRiskRuleViolated">66</validValue>
+            <validValue name="InvalidSelfTradePreventionConfiguration">67</validValue>
+            <validValue name="InvalidSelfTradePreventionType">68</validValue>
+            <validValue name="InvalidRiskGroupId">69</validValue>
+            <validValue name="FirmDisabled">70</validValue>
+            <validValue name="MPIDDisabled">71</validValue>
+            <validValue name="AccountDisabled">72</validValue>
+            <validValue name="NoNBBOAvailable">73</validValue>
+            <validValue name="CannotTradeNonTestSymbol">74</validValue>
+            <validValue name="MissingFirm">75</validValue>
+            <validValue name="MissingAccount">76</validValue>
+            <validValue name="MissingMPID">77</validValue>
+            <validValue name="MissingRiskGroup">78</validValue>
+            <validValue name="DailyMarketOrderGrossNotionalExposureRiskRuleBreach">79</validValue>
+            <validValue name="DailyMarketOrderNetNotionalExposureRiskRuleBreach">80</validValue>
+            <validValue name="MissingDispMethodType">81</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="CancelRejectReasonCode">
+            <validValue name="Other">0</validValue>
+            <validValue name="MissingSymbol">1</validValue>
+            <validValue name="MissingClOrdId">2</validValue>
+            <validValue name="MissingOrigOrderIdentifiers">3</validValue>
+            <validValue name="AmbiguousOrigOrderIdentifiers">4</validValue>
+            <validValue name="UnknownOrigOrder">5</validValue>
+            <validValue name="OrigOrderSymbolNotMatchingRequestSymbol">6</validValue>
+            <validValue name="MissingLocate">7</validValue>
+            <validValue name="InvalidOrderQuantity">8</validValue>
+            <validValue name="InvalidSymbol">9</validValue>
+            <validValue name="InvalidLimitPrice">10</validValue>
+            <validValue name="InvalidLimitPriceIncrement">11</validValue>
+            <validValue name="InvalidLocate">12</validValue>
+            <validValue name="SymbolHaltedOrPaused">13</validValue>
+            <validValue name="ExchangeClosed">14</validValue>
+            <validValue name="DuplicateClOrdID">15</validValue>
+            <validValue name="OrderSizeExceedsLimit">16</validValue>
+            <validValue name="ExceededMaxNotionalOrderAmt">17</validValue>
+            <validValue name="UnsupportedDisplayQuantityChange">18</validValue>
+            <validValue name="UnsupportedOrdTypeChange">19</validValue>
+            <validValue name="UnsupportedSideChange">20</validValue>
+            <validValue name="UnsupportedQuantityChange">21</validValue>
+            <validValue name="OrderInPendingState">22</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="uint8" name="MassCancelRejectReasonCode">
+            <validValue name="Other">0</validValue>
+            <validValue name="UnknownProduct">1</validValue>
+            <validValue name="UnknownSide">2</validValue>
+            <validValue name="UnknownGroupId">3</validValue>
+            <validValue name="HigherPriceLowerOrEqualToLowerPrice">4</validValue>
+            <validValue name="ProductMissingForPriceRestriction">5</validValue>
+            <validValue name="DuplicateClOrdID">6</validValue>
+            <validValue name="MalformedRequestMissingClOrdIdField">7</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <enum encodingType="char" name="ExchangeCode">
+            <validValue name="MEMX">U</validValue>
+            <validValue name="Nasdaq">Q</validValue>
+            <validValue name="NasdaqBX">B</validValue>
+            <validValue name="NasdaqPSX">X</validValue>
+            <validValue name="NYSE">N</validValue>
+            <validValue name="ARCA">P</validValue>
+            <validValue name="NYSEAmerican">A</validValue>
+            <validValue name="NYSEChicago">M</validValue>
+            <validValue name="NYSENational">C</validValue>
+            <validValue name="EDGX">K</validValue>
+            <validValue name="EDGA">J</validValue>
+            <validValue name="BATS">Z</validValue>
+            <validValue name="BATSY">Y</validValue>
+            <validValue name="IEX">V</validValue>
+            <validValue name="LTSE">L</validValue>
+            <validValue name="EPRL">H</validValue>
+            <validValue name="NullValue"> </validValue>
+        </enum>
+        <enum encodingType="uint8" name="ExecRestatementType">
+            <validValue name="OrderReprice">1</validValue>
+            <validValue name="SelfTradePrevention">2</validValue>
+            <validValue name="NullValue">255</validValue>
+        </enum>
+        <composite name="messageHeader">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint8"/>
+            <type name="schemaId" primitiveType="uint8"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <type length="16" name="NewOrderSingleClOrdID" primitiveType="char"/>
+        <type length="4" name="NewOrderSingleMPID" primitiveType="char"/>
+        <type length="6" name="NewOrderSingleSymbol" primitiveType="char"/>
+        <type length="6" name="NewOrderSingleSymbolSfx" primitiveType="char"/>
+        <type length="16" name="OrderCancelReplaceRequestOrigClOrdID" primitiveType="char"/>
+        <type length="16" name="OrderCancelReplaceRequestClOrdID" primitiveType="char"/>
+        <type length="6" name="OrderCancelReplaceRequestSymbol" primitiveType="char"/>
+        <type length="6" name="OrderCancelReplaceRequestSymbolSfx" primitiveType="char"/>
+        <type length="16" name="OrderCancelRequestOrigClOrdID" primitiveType="char"/>
+        <type length="16" name="OrderCancelRequestClOrdID" primitiveType="char"/>
+        <type length="6" name="OrderCancelRequestSymbol" primitiveType="char"/>
+        <type length="6" name="OrderCancelRequestSymbolSfx" primitiveType="char"/>
+        <type length="16" name="MassCancelRequestClOrdID" primitiveType="char"/>
+        <type length="6" name="MassCancelRequestSymbol" primitiveType="char"/>
+        <type length="6" name="MassCancelRequestSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_PendingNewClOrdID" primitiveType="char"/>
+        <type length="4" name="ExecutionReport_PendingNewMPID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingNewSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingNewSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_NewClOrdID" primitiveType="char"/>
+        <type length="4" name="ExecutionReport_NewMPID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_NewSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_NewSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_RejectedClOrdID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_RejectedSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_RejectedSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_TradeClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_PendingCancelClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_PendingCancelOrigClOrdID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingCancelSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingCancelSymbolSfx" primitiveType="char"/>
+        <type length="16" name="PendingMassCancelClOrdID" primitiveType="char"/>
+        <type length="6" name="PendingMassCancelSymbol" primitiveType="char"/>
+        <type length="6" name="PendingMassCancelSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_CanceledClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_CanceledOrigClOrdID" primitiveType="char"/>
+        <type length="16" name="MassCancelDoneClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_PendingReplaceClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_PendingReplaceOrigClOrdID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingReplaceSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_PendingReplaceSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_ReplacedClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_ReplacedOrigClOrdID" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_ReplacedSymbol" primitiveType="char"/>
+        <type length="6" name="ExecutionReport_ReplacedSymbolSfx" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_TradeCorrectionClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_TradeBreakClOrdID" primitiveType="char"/>
+        <type length="16" name="ExecutionReport_RestatementClOrdID" primitiveType="char"/>
+        <type length="16" name="OrderCancelRejectClOrdID" primitiveType="char"/>
+        <type length="16" name="MassCancelRejectClOrdID" primitiveType="char"/>
+        <type length="6" name="MassCancelRejectSymbol" primitiveType="char"/>
+        <type length="6" name="MassCancelRejectSymbolSfx" primitiveType="char"/>
+    </types>
+    <sbe:message blockLength="92" id="1" name="NewOrderSingle">
+        <field id="1" name="ClOrdID" type="NewOrderSingleClOrdID"/>
+        <field id="2" name="MPID" type="NewOrderSingleMPID"/>
+        <field id="3" name="Symbol" type="NewOrderSingleSymbol"/>
+        <field id="4" name="SymbolSfx" type="NewOrderSingleSymbolSfx"/>
+        <field id="5" name="Side" type="SideType"/>
+        <field id="6" name="OrderQty" type="uint32"/>
+        <field id="7" name="OrdType" type="OrdType"/>
+        <field id="8" name="Price" presence="optional" type="PriceType"/>
+        <field id="9" name="TimeInForce" type="TimeInForceType"/>
+        <field id="10" name="OrderCapacity" type="OrderCapacityType"/>
+        <field id="11" name="CustOrderCapacity" type="CustOrderCapacityType"/>
+        <field id="12" name="ExecInst" type="ExecInstType"/>
+        <field id="13" name="PegOffsetValue" presence="optional" type="PriceType"/>
+        <field id="14" name="PegPriceType" presence="optional" type="PegType"/>
+        <field id="15" name="ExpireTime" presence="optional" type="UTCTimestampNanos"/>
+        <field id="16" name="MinQty" presence="optional" type="uint32"/>
+        <field id="17" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="18" name="DisplayMethod" presence="optional" type="DispMethodType"/>
+        <field id="19" name="ReserveReplenishTiming" presence="optional" type="ReserveReplenishTimingType"/>
+        <field id="20" name="DisplayMinIncr" presence="optional" type="uint32"/>
+        <field id="21" name="LocateReqd" presence="optional" type="char"/>
+        <field id="22" name="RepriceFrequency" presence="optional" type="RepriceFrequencyType"/>
+        <field id="23" name="RepriceBehavior" presence="optional" type="RepriceBehaviorType"/>
+        <field id="24" name="CancelGroupId" presence="optional" type="uint16"/>
+        <field id="25" name="StpGroupId" presence="optional" type="uint16"/>
+        <field id="26" name="SelfTradePrevention" presence="optional" type="SelfTradePreventionType"/>
+        <field id="27" name="RiskGroupId" presence="optional" type="uint16"/>
+    </sbe:message>
+    <sbe:message blockLength="63" id="2" name="OrderCancelReplaceRequest">
+        <field id="1" name="OrigClOrdID" type="OrderCancelReplaceRequestOrigClOrdID"/>
+        <field id="2" name="ClOrdID" type="OrderCancelReplaceRequestClOrdID"/>
+        <field id="3" name="Symbol" type="OrderCancelReplaceRequestSymbol"/>
+        <field id="4" name="SymbolSfx" type="OrderCancelReplaceRequestSymbolSfx"/>
+        <field id="5" name="Side" type="SideType"/>
+        <field id="6" name="OrderQty" type="uint32"/>
+        <field id="7" name="OrdType" type="OrdType"/>
+        <field id="8" name="Price" presence="optional" type="PriceType"/>
+        <field id="9" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="10" name="LocateReqd" presence="optional" type="char"/>
+    </sbe:message>
+    <sbe:message blockLength="52" id="3" name="OrderCancelRequest">
+        <field id="1" name="OrigClOrdID" type="OrderCancelRequestOrigClOrdID"/>
+        <field id="2" name="OrderID" presence="optional" type="uint64"/>
+        <field id="3" name="ClOrdID" type="OrderCancelRequestClOrdID"/>
+        <field id="4" name="Symbol" type="OrderCancelRequestSymbol"/>
+        <field id="5" name="SymbolSfx" type="OrderCancelRequestSymbolSfx"/>
+    </sbe:message>
+    <sbe:message blockLength="47" id="4" name="MassCancelRequest">
+        <field id="1" name="ClOrdID" type="MassCancelRequestClOrdID"/>
+        <field id="2" name="Symbol" type="MassCancelRequestSymbol"/>
+        <field id="3" name="SymbolSfx" type="MassCancelRequestSymbolSfx"/>
+        <field id="4" name="Side" type="SideType"/>
+        <field id="5" name="LowerThanPrice" presence="optional" type="PriceType"/>
+        <field id="6" name="HigherThanPrice" presence="optional" type="PriceType"/>
+        <field id="7" name="CancelGroupId" presence="optional" type="uint16"/>
+    </sbe:message>
+    <sbe:message blockLength="125" id="5" name="ExecutionReport_PendingNew">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_PendingNewClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="MPID" type="ExecutionReport_PendingNewMPID"/>
+        <field id="6" name="OrdStatus" type="OrdStatusType"/>
+        <field id="7" name="Symbol" type="ExecutionReport_PendingNewSymbol"/>
+        <field id="8" name="SymbolSfx" type="ExecutionReport_PendingNewSymbolSfx"/>
+        <field id="9" name="Side" type="SideType"/>
+        <field id="10" name="OrdType" type="OrdType"/>
+        <field id="11" name="OrderQty" type="uint32"/>
+        <field id="12" name="Price" presence="optional" type="PriceType"/>
+        <field id="13" name="TimeInForce" type="TimeInForceType"/>
+        <field id="14" name="OrderCapacity" type="OrderCapacityType"/>
+        <field id="15" name="CustOrderCapacity" type="CustOrderCapacityType"/>
+        <field id="16" name="ExecInst" type="ExecInstType"/>
+        <field id="17" name="PegOffsetValue" presence="optional" type="PriceType"/>
+        <field id="18" name="PegPriceType" presence="optional" type="PegType"/>
+        <field id="19" name="ExpireTime" presence="optional" type="UTCTimestampNanos"/>
+        <field id="20" name="MinQty" presence="optional" type="uint32"/>
+        <field id="21" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="22" name="DisplayMethod" presence="optional" type="DispMethodType"/>
+        <field id="23" name="ReserveReplenishTiming" presence="optional" type="ReserveReplenishTimingType"/>
+        <field id="24" name="DisplayMinIncr" presence="optional" type="uint32"/>
+        <field id="25" name="LocateReqd" presence="optional" type="char"/>
+        <field id="26" name="RepriceFrequency" presence="optional" type="RepriceFrequencyType"/>
+        <field id="27" name="RepriceBehavior" presence="optional" type="RepriceBehaviorType"/>
+        <field id="28" name="CancelGroupId" presence="optional" type="uint16"/>
+        <field id="29" name="StpGroupId" presence="optional" type="uint16"/>
+        <field id="30" name="SelfTradePrevention" presence="optional" type="SelfTradePreventionType"/>
+        <field id="31" name="RiskGroupId" presence="optional" type="uint16"/>
+        <field id="32" name="LeavesQty" type="uint32"/>
+        <field id="33" name="CumQty" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="133" id="6" name="ExecutionReport_New">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_NewClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="MPID" type="ExecutionReport_NewMPID"/>
+        <field id="6" name="OrdStatus" type="OrdStatusType"/>
+        <field id="7" name="Symbol" type="ExecutionReport_NewSymbol"/>
+        <field id="8" name="SymbolSfx" type="ExecutionReport_NewSymbolSfx"/>
+        <field id="9" name="Side" type="SideType"/>
+        <field id="10" name="OrdType" type="OrdType"/>
+        <field id="11" name="OrderQty" type="uint32"/>
+        <field id="12" name="Price" presence="optional" type="PriceType"/>
+        <field id="13" name="TimeInForce" type="TimeInForceType"/>
+        <field id="14" name="OrderCapacity" type="OrderCapacityType"/>
+        <field id="15" name="CustOrderCapacity" type="CustOrderCapacityType"/>
+        <field id="16" name="ExecInst" type="ExecInstType"/>
+        <field id="17" name="PegOffsetValue" presence="optional" type="PriceType"/>
+        <field id="18" name="PegPriceType" presence="optional" type="PegType"/>
+        <field id="19" name="ExpireTime" presence="optional" type="UTCTimestampNanos"/>
+        <field id="20" name="MinQty" presence="optional" type="uint32"/>
+        <field id="21" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="22" name="DisplayMethod" presence="optional" type="DispMethodType"/>
+        <field id="23" name="ReserveReplenishTiming" presence="optional" type="ReserveReplenishTimingType"/>
+        <field id="24" name="DisplayMinIncr" presence="optional" type="uint32"/>
+        <field id="25" name="LocateReqd" presence="optional" type="char"/>
+        <field id="26" name="RepriceFrequency" presence="optional" type="RepriceFrequencyType"/>
+        <field id="27" name="RepriceBehavior" presence="optional" type="RepriceBehaviorType"/>
+        <field id="28" name="CancelGroupId" presence="optional" type="uint16"/>
+        <field id="29" name="StpGroupId" presence="optional" type="uint16"/>
+        <field id="30" name="SelfTradePrevention" presence="optional" type="SelfTradePreventionType"/>
+        <field id="31" name="RiskGroupId" presence="optional" type="uint16"/>
+        <field id="32" name="LeavesQty" type="uint32"/>
+        <field id="33" name="CumQty" type="uint32"/>
+        <field id="34" name="TransactTime" type="UTCTimestampNanos"/>
+    </sbe:message>
+    <sbe:message blockLength="54" id="7" name="ExecutionReport_Rejected">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="ExecutionReport_RejectedClOrdID"/>
+        <field id="3" name="ExecID" type="uint64"/>
+        <field id="4" name="OrdStatus" type="OrdStatusType"/>
+        <field id="5" name="Symbol" type="ExecutionReport_RejectedSymbol"/>
+        <field id="6" name="SymbolSfx" type="ExecutionReport_RejectedSymbolSfx"/>
+        <field id="7" name="LeavesQty" type="uint32"/>
+        <field id="8" name="CumQty" type="uint32"/>
+        <field id="9" name="RejectReason" type="OrderRejectReasonCode"/>
+    </sbe:message>
+    <sbe:message blockLength="79" id="8" name="ExecutionReport_Trade">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_TradeClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="OrdStatus" type="OrdStatusType"/>
+        <field id="6" name="LastQty" type="uint32"/>
+        <field id="7" name="LastPx" type="PriceType"/>
+        <field id="8" name="LeavesQty" type="uint32"/>
+        <field id="9" name="CumQty" type="uint32"/>
+        <field id="10" name="TransactTime" type="UTCTimestampNanos"/>
+        <field id="11" name="LastLiquidityInd" type="LastLiquidityIndType"/>
+        <field id="12" name="LastMkt" type="ExchangeCode"/>
+        <field id="13" name="TrdMatchingID" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="77" id="9" name="ExecutionReport_PendingCancel">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_PendingCancelClOrdID"/>
+        <field id="4" name="OrigClOrdID" type="ExecutionReport_PendingCancelOrigClOrdID"/>
+        <field id="5" name="ExecID" type="uint64"/>
+        <field id="6" name="Symbol" type="ExecutionReport_PendingCancelSymbol"/>
+        <field id="7" name="SymbolSfx" type="ExecutionReport_PendingCancelSymbolSfx"/>
+        <field id="8" name="OrdStatus" type="OrdStatusType"/>
+        <field id="9" name="LeavesQty" type="uint32"/>
+        <field id="10" name="CumQty" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="55" id="10" name="PendingMassCancel">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="PendingMassCancelClOrdID"/>
+        <field id="3" name="Symbol" type="PendingMassCancelSymbol"/>
+        <field id="4" name="SymbolSfx" type="PendingMassCancelSymbolSfx"/>
+        <field id="5" name="Side" type="SideType"/>
+        <field id="6" name="LowerThanPrice" presence="optional" type="PriceType"/>
+        <field id="7" name="HigherThanPrice" presence="optional" type="PriceType"/>
+        <field id="8" name="CancelGroupId" presence="optional" type="uint16"/>
+    </sbe:message>
+    <sbe:message blockLength="74" id="11" name="ExecutionReport_Canceled">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="ExecutionReport_CanceledClOrdID"/>
+        <field id="3" name="OrigClOrdID" type="ExecutionReport_CanceledOrigClOrdID"/>
+        <field id="4" name="OrderID" type="uint64"/>
+        <field id="5" name="ExecID" type="uint64"/>
+        <field id="6" name="OrdStatus" type="OrdStatusType"/>
+        <field id="7" name="LeavesQty" type="uint32"/>
+        <field id="8" name="CumQty" type="uint32"/>
+        <field id="9" name="CancelReason" presence="optional" type="CancelReasonCode"/>
+        <field id="10" name="TransactTime" type="UTCTimestampNanos"/>
+    </sbe:message>
+    <sbe:message blockLength="24" id="12" name="MassCancelDone">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="MassCancelDoneClOrdID"/>
+    </sbe:message>
+    <sbe:message blockLength="96" id="13" name="ExecutionReport_PendingReplace">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_PendingReplaceClOrdID"/>
+        <field id="4" name="OrigClOrdID" type="ExecutionReport_PendingReplaceOrigClOrdID"/>
+        <field id="5" name="ExecID" type="uint64"/>
+        <field id="6" name="Symbol" type="ExecutionReport_PendingReplaceSymbol"/>
+        <field id="7" name="SymbolSfx" type="ExecutionReport_PendingReplaceSymbolSfx"/>
+        <field id="8" name="Side" type="SideType"/>
+        <field id="9" name="OrderQty" type="uint32"/>
+        <field id="10" name="OrdType" type="OrdType"/>
+        <field id="11" name="Price" presence="optional" type="PriceType"/>
+        <field id="12" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="13" name="LocateReqd" presence="optional" type="char"/>
+        <field id="14" name="OrdStatus" type="OrdStatusType"/>
+        <field id="15" name="LeavesQty" type="uint32"/>
+        <field id="16" name="CumQty" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="104" id="14" name="ExecutionReport_Replaced">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_ReplacedClOrdID"/>
+        <field id="4" name="OrigClOrdID" type="ExecutionReport_ReplacedOrigClOrdID"/>
+        <field id="5" name="ExecID" type="uint64"/>
+        <field id="6" name="Symbol" type="ExecutionReport_ReplacedSymbol"/>
+        <field id="7" name="SymbolSfx" type="ExecutionReport_ReplacedSymbolSfx"/>
+        <field id="8" name="Side" type="SideType"/>
+        <field id="9" name="OrderQty" type="uint32"/>
+        <field id="10" name="OrdType" type="OrdType"/>
+        <field id="11" name="Price" presence="optional" type="PriceType"/>
+        <field id="12" name="DisplayQty" presence="optional" type="uint32"/>
+        <field id="13" name="LocateReqd" presence="optional" type="char"/>
+        <field id="14" name="OrdStatus" type="OrdStatusType"/>
+        <field id="15" name="LeavesQty" type="uint32"/>
+        <field id="16" name="CumQty" type="uint32"/>
+        <field id="17" name="TransactTime" type="UTCTimestampNanos"/>
+    </sbe:message>
+    <sbe:message blockLength="77" id="15" name="ExecutionReport_TradeCorrection">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_TradeCorrectionClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="ExecRefID" type="uint64"/>
+        <field id="6" name="TrdMatchID" type="uint64"/>
+        <field id="7" name="OrdStatus" type="OrdStatusType"/>
+        <field id="8" name="LastPx" type="PriceType"/>
+        <field id="9" name="LastQty" presence="optional" type="uint32"/>
+        <field id="10" name="LeavesQty" type="uint32"/>
+        <field id="11" name="CumQty" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="65" id="16" name="ExecutionReport_TradeBreak">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_TradeBreakClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="ExecRefID" type="uint64"/>
+        <field id="6" name="TrdMatchID" type="uint64"/>
+        <field id="7" name="OrdStatus" type="OrdStatusType"/>
+        <field id="8" name="LeavesQty" type="uint32"/>
+        <field id="9" name="CumQty" type="uint32"/>
+    </sbe:message>
+    <sbe:message blockLength="70" id="17" name="ExecutionReport_Restatement">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="OrderID" type="uint64"/>
+        <field id="3" name="ClOrdID" type="ExecutionReport_RestatementClOrdID"/>
+        <field id="4" name="ExecID" type="uint64"/>
+        <field id="5" name="OrdStatus" type="OrdStatusType"/>
+        <field id="6" name="LastPx" presence="optional" type="PriceType"/>
+        <field id="7" name="LeavesQty" type="uint32"/>
+        <field id="8" name="CumQty" type="uint32"/>
+        <field id="9" name="LastShares" type="uint32"/>
+        <field id="10" name="ExecRestatementReason" type="ExecRestatementType"/>
+        <field id="11" name="TransactTime" type="UTCTimestampNanos"/>
+    </sbe:message>
+    <sbe:message blockLength="26" id="18" name="OrderCancelReject">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="OrderCancelRejectClOrdID"/>
+        <field id="3" name="CxlRejResponseTo" type="CxlRejResponseToType"/>
+        <field id="4" name="CxlRejReason" type="CancelRejectReasonCode"/>
+    </sbe:message>
+    <sbe:message blockLength="56" id="20" name="MassCancelReject">
+        <field id="1" name="SendingTime" type="UTCTimestampNanos"/>
+        <field id="2" name="ClOrdID" type="MassCancelRejectClOrdID"/>
+        <field id="3" name="Symbol" type="MassCancelRejectSymbol"/>
+        <field id="4" name="SymbolSfx" type="MassCancelRejectSymbolSfx"/>
+        <field id="5" name="Side" type="SideType"/>
+        <field id="6" name="LowerThanPrice" presence="optional" type="PriceType"/>
+        <field id="7" name="HigherThanPrice" presence="optional" type="PriceType"/>
+        <field id="8" name="CancelGroupId" presence="optional" type="uint16"/>
+        <field id="9" name="RejectReason" type="MassCancelRejectReasonCode"/>
+    </sbe:message>
+</sbe:messageSchema>

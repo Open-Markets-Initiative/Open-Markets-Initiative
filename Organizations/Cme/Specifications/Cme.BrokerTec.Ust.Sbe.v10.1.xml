@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:messageSchema xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="btecstreammktdata" id="10" version="0" semanticVersion="FIX5SP2" description="20190425" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixtradingcommunity.org/pg/file/fplpo/read/1196759/simple-binary-encoding-rc2xsd SimpleBinary-RC2.xsd">
+    <types>
+        <type name="CHAR" description="char" primitiveType="char"/>
+        <type name="LocalMktDate" presence="optional" nullValue="65535" primitiveType="uint16" semanticType="LocalMktDate"/>
+        <type name="String12" description="String with length 12" presence="optional" length="12" primitiveType="char" semanticType="String"/>
+        <type name="Symbol" description="Symbol" length="20" primitiveType="char" semanticType="String"/>
+        <type name="uInt32NULL" description="uInt32NULL" presence="optional" nullValue="4294967295" primitiveType="uint32"/>
+        <type name="uInt64" description="uInt64" primitiveType="uint64"/>
+        <type name="uInt8" description="uInt8" primitiveType="uint8"/>
+        <type name="uInt8NULL" description="uInt8NULL" presence="optional" nullValue="255" primitiveType="uint8"/>
+        <composite name="Decimal32NULL" description="Optional floating point decimal with int32 mantissa and int8 exponent">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="2147483647" primitiveType="int32"/>
+            <type name="exponent" description="exponent" presence="optional" nullValue="127" primitiveType="int8"/>
+        </composite>
+        <composite name="Decimal64" description="Floating-point decimal">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="-9223372036854775808" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="optional" nullValue="-128" primitiveType="int8"/>
+        </composite>
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16" semanticType="Length"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <enum name="MDEntryType" encodingType="CHAR">
+            <validValue name="Bid" description="Bid">0</validValue>
+            <validValue name="Offer" description="Offer">1</validValue>
+            <validValue name="Trade" description="Trade">2</validValue>
+            <validValue name="OpenPrice" description="Open Price">4</validValue>
+            <validValue name="ClosePrice" description="Close Price">5</validValue>
+            <validValue name="HighTradePrice" description="Trading Session High Price">7</validValue>
+            <validValue name="LowTradePrice" description="Trading Session Low Price">8</validValue>
+            <validValue name="VWAP" description="VWAP or VWAY">9</validValue>
+            <validValue name="BookReset" description="Book Reset">J</validValue>
+        </enum>
+        <enum name="UpdateAction" encodingType="uInt8">
+            <validValue name="New" description="New">0</validValue>
+            <validValue name="Update" description="Update">1</validValue>
+            <validValue name="Delete" description="Delete">2</validValue>
+        </enum>
+    </types>
+    <ns2:message name="MDIncrementalRefreshBtec405" id="405" description="MDIncrementalRefreshBtec" blockLength="10" semanticType="X">
+        <field name="TradeDate" id="75" type="LocalMktDate" description="Trade Date" offset="0" semanticType="LocalMktDate"/>
+        <field name="TransactTime" id="60" type="uInt64" description="Event processing time (UTC), sent in number of nanoseconds since Unix epoch" offset="2" semanticType="UTCTimestamp"/>
+        <group name="NoMDEntries" id="268" description="Number of data blocks" blockLength="62" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="UpdateAction" description="Indicates the type of Market Data update action" offset="0" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryType" description="Indicates the type of Market Data entry" offset="1" semanticType="char"/>
+            <field name="MDEntryPx" id="270" type="Decimal64" description="Market Data entry price" offset="2" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt32NULL" description="Quantity or volume represented by the Market Data Entry" offset="11" semanticType="Qty"/>
+            <field name="MDPriceLevel" id="1023" type="uInt8NULL" description="Price level in the book" offset="15" semanticType="int"/>
+            <field name="TradeVolume" id="1020" type="uInt32NULL" description="Total traded volume since the beginning of the session. If this tag is not present, then there is no volume" offset="16" semanticType="Qty"/>
+            <field name="Symbol" id="55" type="Symbol" description="Contract symbol, name" offset="20" semanticType="String"/>
+            <field name="MaturityDate" id="541" type="LocalMktDate" description="Instrument Maturity Date" offset="40" semanticType="LocalMktDate"/>
+            <field name="SecurityAltID" id="455" type="String12" description="CUSIP" offset="42" semanticType="String"/>
+            <field name="SecurityAltIDSource" id="456" type="CHAR" description="Identifies class or source of the SecurityAltID (455) value" offset="54" semanticType="String"/>
+            <field name="CouponRate" id="223" type="Decimal32NULL" description="Coupon Rate" offset="55" semanticType="Percentage"/>
+            <field name="TradeCondition" id="277" type="CHAR" description="List of conditions describing a trade. H= Hit, T=Take" offset="60" semanticType="char"/>
+            <field name="PriceType" id="423" type="uInt8NULL" description="Price type condition. 9=Yield" offset="61" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="AdminHeartbeat411" id="411" description="AdminHeartbeat" blockLength="0" semanticType="0"/>
+</ns2:messageSchema>

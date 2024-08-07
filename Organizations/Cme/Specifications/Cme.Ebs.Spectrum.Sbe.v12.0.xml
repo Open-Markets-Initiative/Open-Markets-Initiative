@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:messageSchema xmlns:ns2="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="derivedmktdata" id="12" version="0" semanticVersion="FIX5SP2" description="20210408" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixtradingcommunity.org/pg/file/fplpo/read/1196759/simple-binary-encoding-rc2xsd SimpleBinary-RC2.xsd">
+    <types>
+        <type name="CHAR" description="char" primitiveType="char"/>
+        <type name="Int32" description="int32" primitiveType="int32"/>
+        <type name="LongName" description="Financial Instrument Full Name" length="35" primitiveType="char" semanticType="String"/>
+        <type name="MDUpdateActionNew" description="MDUpdateActionNew" presence="constant" primitiveType="int8">0</type>
+        <type name="Symbol" description="Symbol" length="20" primitiveType="char" semanticType="String"/>
+        <type name="uInt64" description="uInt64" primitiveType="uint64"/>
+        <type name="uInt64NULL" description="uInt64NULL" presence="optional" nullValue="18446744073709551615" primitiveType="uint64"/>
+        <type name="uInt8" description="uInt8" primitiveType="uint8"/>
+        <type name="uInt8NULL" description="uInt8NULL" presence="optional" nullValue="255" primitiveType="uint8"/>
+        <composite name="PRICENULL9" description="Optional Price with constant exponent -9">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+        </composite>
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16" semanticType="Length"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <enum name="AggressorSide" encodingType="uInt8NULL">
+            <validValue name="Buy" description="Buy">1</validValue>
+            <validValue name="Sell" description="Sell">2</validValue>
+        </enum>
+        <enum name="MarketHrs" encodingType="uInt8NULL">
+            <validValue name="GL" description="Global">0</validValue>
+            <validValue name="SY" description="Sydney">1</validValue>
+            <validValue name="TK" description="Tokyo">2</validValue>
+            <validValue name="HK" description="Hong Kong/ Singapore">3</validValue>
+            <validValue name="LN" description="London">4</validValue>
+            <validValue name="NY" description="New York">5</validValue>
+        </enum>
+        <enum name="PreviousDayFlag" encodingType="uInt8">
+            <validValue name="CurrentDay" description="Current day entry">0</validValue>
+            <validValue name="PreviousDay" description="Element entry from previous business day">4</validValue>
+        </enum>
+        <enum name="SecurityTradingEvent" encodingType="uInt8">
+            <validValue name="GlobalDayRoll" description="Global Day has been rolled and daily elements were reset">4</validValue>
+        </enum>
+        <enum name="SpectrumEntryType" encodingType="CHAR">
+            <validValue name="VWAP" description="Volume weighted average traded price">9</validValue>
+            <validValue name="TWAP" description="Average traded price">t</validValue>
+        </enum>
+        <enum name="TickerEntryType" encodingType="CHAR">
+            <validValue name="TouchHigh" description="Touch High">k</validValue>
+            <validValue name="TouchLow" description="Touch Low">l</validValue>
+            <validValue name="OpenBestBid" description="Open Best Bid">m</validValue>
+            <validValue name="OpenBestOffer" description="Open Best Offer">n</validValue>
+            <validValue name="CloseBestBid" description="Close Best Bid">o</validValue>
+            <validValue name="CloseBestOffer" description="Close Best Offer">p</validValue>
+            <validValue name="MarketHigh" description="Market High">q</validValue>
+            <validValue name="MarketLow" description="Market Low">r</validValue>
+            <validValue name="MarketBestOffer" description="Market Best Offer">w</validValue>
+            <validValue name="MarketBestBid" description="Market Best Bid">x</validValue>
+            <validValue name="Paid" description="Paid">y</validValue>
+            <validValue name="Given" description="Given">z</validValue>
+        </enum>
+        <set name="EventIndicator" encodingType="uInt8">
+            <choice name="RecoveryMessage" description="1=Message sent in recovery and may be a duplicate">6</choice>
+            <choice name="EndOfEvent" description="1=Last message for calculation event or the publication interval">7</choice>
+        </set>
+    </types>
+    <ns2:message name="AdminHeartbeat302" id="302" description="AdminHeartbeat" blockLength="0" semanticType="0"/>
+    <ns2:message name="MDIncrementalRefreshSpectrum303" id="303" description="MDIncrementalRefreshSpectrum" blockLength="9" semanticType="X">
+        <field name="TransactTime" id="60" type="uInt64" description="Publication event time, sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="EventIndicator" description="End of updates indicator. Bit 7 =1 when message is the last in the series of updates published for the publication interval. Bit 6 = 1 indicates if elements were resent during technical recovery and may be duplicates of previously published values" offset="8" semanticType="MultipleCharValue"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message" blockLength="92" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Market Data update action" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="SpectrumEntryType" description="Market Data entry type, identifies the element " offset="0" semanticType="char"/>
+            <field name="FinancialInstrumentFullName" id="2714" type="LongName" description="Financial instrument long name" offset="1" semanticType="String"/>
+            <field name="Symbol" id="55" type="Symbol" description="Unique instrument Symbol" offset="36" semanticType="String"/>
+            <field name="InstrumentGUID" id="37513" type="uInt64" description="External unique instrument ID" offset="56" semanticType="int"/>
+            <field name="SecurityID" id="48" type="Int32" description="SecurityID as referenced in MDP3 and Ilink3 protocols" offset="64" semanticType="int"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL9" description="Market Data entry price" offset="68" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Market Data entry size" offset="76" semanticType="Qty"/>
+            <field name="MDEntryTime" id="273" type="uInt64" description="Time of the last market event that contributed to element calculation or publication" offset="84" semanticType="UTCTimestamp"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDIncrementalRefreshTicker304" id="304" description="MDIncrementalRefreshTicker" blockLength="9" semanticType="X">
+        <field name="TransactTime" id="60" type="uInt64" description="Publication event time, sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="EventIndicator" description="End of updates indicator. Bit 7 =1 when message is the last in the series of updates published for the publication interval. Bit 6 = 1 indicates if elements were resent during technical recovery and may be duplicates of previously published values" offset="8" semanticType="MultipleCharValue"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message" blockLength="95" dimensionType="groupSize">
+            <field name="MDUpdateAction" id="279" type="MDUpdateActionNew" description="Market Data update action" semanticType="int"/>
+            <field name="MDEntryType" id="269" type="TickerEntryType" description="Market Data entry type, identifies the element " offset="0" semanticType="char"/>
+            <field name="SecurityID" id="48" type="Int32" description="SecurityID as referenced in MDP3 and Ilink3 protocols" offset="1" semanticType="int"/>
+            <field name="Symbol" id="55" type="Symbol" description="Unique instrument Symbol" offset="5" semanticType="String"/>
+            <field name="InstrumentGUID" id="37513" type="uInt64" description="External unique instrument ID" offset="25" semanticType="int"/>
+            <field name="FinancialInstrumentFullName" id="2714" type="LongName" description="Financial Instrument long name" offset="33" semanticType="String"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL9" description="Market Data entry price" offset="68" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Market Data entry size" offset="76" semanticType="Qty"/>
+            <field name="MDEntryTime" id="273" type="uInt64" description="Time of the last market event that contributed to element calculation or publication" offset="84" semanticType="UTCTimestamp"/>
+            <field name="OpenCloseSettlFlag" id="286" type="PreviousDayFlag" description="Previous day elements, Global or Regional, will contain the value 4 - entry from previous business date" offset="92" semanticType="int"/>
+            <field name="TradingSessionID" id="336" type="MarketHrs" description="The associated region market hours considered for the calculation of the element. The element is calculated from market events occurring during the region's open-close hours" offset="93" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade" offset="94" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDSnapshotRefreshSpectrum305" id="305" description="MDSnapshotRefreshSpectrum" blockLength="76" semanticType="W">
+        <field name="TransactTime" id="60" type="uInt64" description="Timestamp of the last publication event instrument participated in, sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="EventIndicator" description="End of updates indicator. Bit 7 = 1 in the last snapshot message sent in response to a subscription request" offset="8" semanticType="MultipleCharValue"/>
+        <field name="FinancialInstrumentFullName" id="2714" type="LongName" description="Financial instrument long name" offset="9" semanticType="String"/>
+        <field name="Symbol" id="55" type="Symbol" description="Unique instrument symbol " offset="44" semanticType="String"/>
+        <field name="InstrumentGUID" id="37513" type="uInt64" description="External unique instrument ID" offset="64" semanticType="int"/>
+        <field name="SecurityID" id="48" type="Int32" description="SecurityID as referenced in MDP3 and Ilink3 protocols" offset="72" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message" blockLength="25" dimensionType="groupSize">
+            <field name="MDEntryType" id="269" type="SpectrumEntryType" description="Market Data Entry Type " offset="0" semanticType="char"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL9" description="Market Data entry price" offset="1" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Market Data entry size" offset="9" semanticType="Qty"/>
+            <field name="MDEntryTime" id="273" type="uInt64" description="Time of the last market event that contributed to element calculation or publication" offset="17" semanticType="UTCTimestamp"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="MDSnapshotRefreshTicker306" id="306" description="MDSnapshotRefreshTicker" blockLength="76" semanticType="W">
+        <field name="TransactTime" id="60" type="uInt64" description="Timestamp of the last publication event instrument participated in, sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="MatchEventIndicator" id="5799" type="EventIndicator" description="End of updates indicator. Bit 7 = 1 in the last snapshot message sent in response to a subscription request" offset="8" semanticType="MultipleCharValue"/>
+        <field name="FinancialInstrumentFullName" id="2714" type="LongName" description="Financial Instrument long name" offset="9" semanticType="String"/>
+        <field name="Symbol" id="55" type="Symbol" description="Unique instrument Symbol" offset="44" semanticType="String"/>
+        <field name="InstrumentGUID" id="37513" type="uInt64" description="External unique instrument ID" offset="64" semanticType="int"/>
+        <field name="SecurityID" id="48" type="Int32" description="SecurityID as referenced in MDP3 and Ilink3 protocols" offset="72" semanticType="int"/>
+        <group name="NoMDEntries" id="268" description="Number of entries in Market Data message" blockLength="28" dimensionType="groupSize">
+            <field name="MDEntryType" id="269" type="TickerEntryType" description="Market Data entry type, identifies the element" offset="0" semanticType="char"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL9" description="Market Data entry price" offset="1" semanticType="Price"/>
+            <field name="MDEntrySize" id="271" type="uInt64NULL" description="Market Data entry size" offset="9" semanticType="Qty"/>
+            <field name="MDEntryTime" id="273" type="uInt64" description="Time of the last market event that contributed to element calculation or publication" offset="17" semanticType="UTCTimestamp"/>
+            <field name="OpenCloseSettlFlag" id="286" type="PreviousDayFlag" description="Previous day elements, Global or Regional, will contain the value 4 - entry from previous business date" offset="25" semanticType="int"/>
+            <field name="TradingSessionID" id="336" type="MarketHrs" description="The associated region market hours considered for the calculation of the element" offset="26" semanticType="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Indicates which side is aggressor of the trade" offset="27" semanticType="int"/>
+        </group>
+    </ns2:message>
+    <ns2:message name="GlobalDayRoll307" id="307" description="GlobalDayRoll" blockLength="9" semanticType="f">
+        <field name="TransactTime" id="60" type="uInt64" description="Event time, sent in number of nanoseconds since Unix epoch" offset="0" semanticType="UTCTimestamp"/>
+        <field name="SecurityTradingEvent" id="1174" type="SecurityTradingEvent" description="Signals the start of the next Global day or a Global day roll" offset="8" semanticType="int"/>
+    </ns2:message>
+</ns2:messageSchema>
