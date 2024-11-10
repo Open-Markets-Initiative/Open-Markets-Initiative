@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://fixprotocol.io/2016/sbe http://fixprotocol.io/2016/sbe/sbe.xsd"
+                   package="com.thesmallexchange.feed.sbe"
+                   id="1" version="6">
+    <types>
+        <type name="InstrumentId" description="Instrument ID" primitiveType="int32" minValue="1"
+              semanticType="int"/>
+        <type name="InstrumentMessageNo" description="Instrument message number" primitiveType="int64" minValue="1"
+              semanticType="SeqNum"/>
+        <type name="LastIncrementalMessageSeq" description="Last incremental message sequence for the instrument"
+              primitiveType="int64" minValue="1" semanticType="SeqNum"/>
+
+        <type name="Timestamp" description="Timestamp as number of nanoseconds since Unix epoch"
+              primitiveType="int64" minValue="0" semanticType="UTCTimestamp"/>
+
+        <type name="TimestampOptional" description="Timestamp as number of nanoseconds since Unix epoch"
+              primitiveType="int64" minValue="0" nullValue="-9223372036854775808" semanticType="UTCTimestamp" presence="optional"/>
+
+        <type name="OrderPriority" description="Time priority of order chain defines match priority within price level"
+              primitiveType="int64" minValue="0" semanticType="int"/>
+
+        <type name="Date" description="Date as number of days since Unix epoch" primitiveType="uint16"
+              semanticType="LocalMktDate"/>
+        <type name="OrderId" description="Order identifier" primitiveType="int64" minValue="0" semanticType="int"/>
+        <type name="TradeId" description="Trade identifier" primitiveType="int64" minValue="0"
+              nullValue="-9223372036854775808" semanticType="int"/>
+
+        <type name="IndexSymbol" description="Single instrument symbol" length="20" primitiveType="char"
+              semanticType="String" sinceVersion="6"/>
+
+        <type name="InstrumentSymbolV2" description="Single instrument symbol with option-compatible length" length="25"
+              primitiveType="char" semanticType="String" sinceVersion="6"/>
+
+        <type name="SpreadSymbolV2" description="Spread instrument symbol with option compatible length" length="120"
+              primitiveType="char" semanticType="String" sinceVersion="6" />
+
+        <type name="Product" description="Instrument product symbol" length="8" primitiveType="char"
+              semanticType="String"/>
+        <type name="InstrumentDescription" description="Instrument text description" length="120" primitiveType="char"
+              semanticType="String"/>
+        <type name="CfiCode" description="Instrument 6-chars CFI code" length="6" primitiveType="char"
+              semanticType="String"/>
+        <type name="Currency" description="Instrument currency" length="3" primitiveType="char"
+              semanticType="Currency"/>
+        <type name="SnapshotInstrumentsCount" description="Total number of instruments" primitiveType="int32" minValue="1"
+              semanticType="int"/>
+
+        <composite name="messageHeader" description="Standard SBE message header">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+
+        <composite name="Price" description="Price" semanticType="Price">
+            <type name="mantissa" description="mantissa" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-7</type>
+        </composite>
+
+        <composite name="NumInGroup" description="Repeating group length and size" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+
+        <composite name="PriceOptional" description="Optional Price" semanticType="Price">
+            <type name="mantissa" description="mantissa" presence="optional" nullValue="-9223372036854775808" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-7</type>
+        </composite>
+
+        <composite name="Quantity" description="A number representing contracts quantity" semanticType="Qty">
+            <type name="mantissa" description="mantissa" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">0</type>
+        </composite>
+
+        <composite name="QuantityOptional" description="A number representing quantity" semanticType="Qty" >
+            <type name="mantissa" description="mantissa " presence="optional" nullValue="-9223372036854775808" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">0</type>
+        </composite>
+
+        <composite name="InstrumentPriceMultiplier" semanticType="float">
+            <type name="mantissa" primitiveType="int64"/>
+            <type name="exponent" primitiveType="int8" presence="constant">-7</type>
+        </composite>
+
+        <set name="IncrementalMessageInstructions" description="Flags of the business event transaction" encodingType="uint16" semanticType="MultipleCharValue">
+            <choice name="TransactionBegin">0</choice>
+            <choice name="TransactionEnd">1</choice>
+            <choice name="InstrumentBegin">2</choice>
+            <choice name="InstrumentEnd">3</choice>
+            <choice name="BookBegin">4</choice>
+            <choice name="BookEnd">5</choice>
+            <choice name="BookReset">6</choice>
+        </set>
+
+        <set name="TradeConditions" description="Trade condition flags" encodingType="uint16" semanticType="MultipleCharValue">
+            <choice name="Synthetic" description="Synthetic trade, spread leg fill">0</choice>
+            <choice name="Auction" description="Opening auction trade">1</choice>
+        </set>
+
+        <set name="OrderAttributes" description="Order attributes" encodingType="uint16" semanticType="MultipleCharValue">
+            <choice name="Implied" description="Implied order">0</choice>
+        </set>
+
+        <set name="SnapshotMessageInstructions"
+             description="Flags of the business event transaction"
+             encodingType="uint16"
+             semanticType="MultipleCharValue">
+            <choice name="InstrumentBegin">2</choice>
+            <choice name="InstrumentEnd">3</choice>
+            <choice name="BookBegin">4</choice>
+            <choice name="BookEnd">5</choice>
+            <choice name="SnapshotBegin">7</choice>
+            <choice name="SnapshotEnd">8</choice>
+        </set>
+
+        <enum name="OrderUpdateAction" encodingType="char" semanticType="char">
+            <validValue name="NEW">N</validValue>
+            <validValue name="UPDATE">U</validValue>
+            <validValue name="DELETE">D</validValue>
+        </enum>
+
+        <enum name="TradeUpdateAction" encodingType="char" semanticType="char">
+            <validValue name="NEW">N</validValue>
+            <validValue name="DELETE">D</validValue>
+        </enum>
+
+        <enum name="Side" encodingType="char" semanticType="char">
+            <validValue name="BUY">B</validValue>
+            <validValue name="SELL">S</validValue>
+        </enum>
+
+        <enum name="AggressorSide" encodingType="char" semanticType="char">
+            <validValue name="NO_AGGRESSOR">N</validValue>
+            <validValue name="BUY">B</validValue>
+            <validValue name="SELL">S</validValue>
+        </enum>
+
+        <enum name="OpenPriceType" encodingType="char" semanticType="char">
+            <validValue name="INDICATIVE">I</validValue>
+            <validValue name="TRADED">T</validValue>
+            <validValue name="NO_PRICE" sinceVersion="5">N</validValue>
+        </enum>
+
+        <enum name="SettlementPriceType" encodingType="char" semanticType="char">
+            <validValue name="FINAL">F</validValue>
+            <validValue name="PRELIMINARY">P</validValue>
+            <validValue name="NO_PRICE" sinceVersion="5">N</validValue>
+        </enum>
+
+        <enum name="InstrumentTradingStatus" encodingType="char" semanticType="char">
+            <validValue name="CLOSED">C</validValue>
+            <validValue name="PRE_OPEN">P</validValue>
+            <validValue name="PRE_OPEN_NC">N</validValue>
+            <validValue name="OPEN">O</validValue>
+            <validValue name="PAUSED">U</validValue>
+            <validValue name="HALTED">H</validValue>
+        </enum>
+
+        <enum name="InstrumentUpdateAction" encodingType="char" semanticType="char">
+            <validValue name="ADD">A</validValue>
+            <validValue name="DELETE">D</validValue>
+            <validValue name="MODIFY">M</validValue>
+        </enum>
+
+        <enum name="PutOrCall" encodingType="char" semanticType="char">
+            <validValue name="PUT">P</validValue>
+            <validValue name="CALL">C</validValue>
+            <validValue name="NOT_OPTION" sinceVersion="5">N</validValue>
+        </enum>
+
+        <enum name="ExpirationStyle" encodingType="char">
+            <validValue name="STANDARD">S</validValue>
+            <validValue name="DAILY">D</validValue>
+            <validValue name="WEEKLY">W</validValue>
+            <validValue name="QUATERLY">Q</validValue>
+        </enum>
+
+        <enum name="ExerciseStyle" encodingType="char">
+            <validValue name="EUROPEAN">E</validValue>
+            <validValue name="AMERICAN">A</validValue>
+            <validValue name="NOT_OPTION">N</validValue>
+        </enum>
+
+        <enum name="Delivery" encodingType="char">
+            <validValue name="CASH">C</validValue>
+            <validValue name="PHYSICAL">P</validValue>
+        </enum>
+
+        <enum name="InstrumentType" encodingType="char" semanticType="char">
+            <validValue name="FUTURES">F</validValue>
+            <validValue name="OPTION">O</validValue>
+            <validValue name="MLEG">M</validValue>
+        </enum>
+
+        <enum name="StrategyType" encodingType="uint8" sinceVersion="3">
+            <validValue name="CUSTOM">0</validValue>
+            <validValue name="FUTURES_CALENDAR">1</validValue>
+            <validValue name="FUTURES_INTER_COMMODITY">2</validValue>
+            <validValue name="COVERED">3</validValue>
+            <validValue name="OPTION_BUTTERFLY">4</validValue>
+            <validValue name="OPTION_VERTICAL">5</validValue>
+            <validValue name="OPTION_STRANGLE">6</validValue>
+            <validValue name="OPTION_STRADDLE">7</validValue>
+            <validValue name="OPTION_DIAGONAL">8</validValue>
+            <validValue name="OPTION_CALENDAR">9</validValue>
+            <validValue name="OPTION_IRON_CONDOR">10</validValue>
+            <validValue name="PROTECTIVE_PUT">11</validValue>
+        </enum>
+    </types>
+
+    <sbe:message name="InstrumentTradingStatusIncremental" id="3" description="Instrument trading status, incremental" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+    </sbe:message>
+
+    <sbe:message name="TradesIncremental" id="4" description="Trades incremental message" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch." />
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <field name="LastTradePrice" id="31" type="PriceOptional" description="Last trade price"/>
+        <field name="LastTradeSize" id="32" type="QuantityOptional" description="Last trade size"/>
+        <field name="LastTradeTime" id="10008" type="TimestampOptional" description="Last trade time"/>
+        <field name="TotalVolume" id="10006" type="Quantity" description="Total daily trade volume"/>
+        <group name="NoTrades" id="268" description="Number of trades in the message" dimensionType="NumInGroup">
+            <field name="TradeId" id="1003" type="TradeId"/>
+            <field name="Price" id="270" type="Price" description="Traded price"/>
+            <field name="Size" id="271" type="Quantity" description="Traded quantity"/>
+            <field name="AggressorSide" id="2446" type="AggressorSide" description="Trade aggressor side"/>
+            <field name="BuyOrderId" id="288" type="OrderId" description="Buy order id"/>
+            <field name="SellOrderId" id="289" type="OrderId" description="Sell order id"/>
+            <field name="TradeConditions" id="10007" type="TradeConditions" description="Trade condition flags"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="TradeCorrect" id="5" description="Trade correct" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch." />
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <field name="LastTradePrice" id="31" type="PriceOptional" description="Last trade price" sinceVersion="3"/>
+        <field name="LastTradeSize" id="32" type="QuantityOptional" description="Last trade size" sinceVersion="3"/>
+        <field name="LastTradeTime" id="10008" type="TimestampOptional" description="Last trade time" sinceVersion="3"/>
+        <field name="TotalVolume" id="10006" type="Quantity" description="Total daily trade volume" sinceVersion="3"/>
+        <group name="NoTrades" id="268" description="Number of trades in the message"  dimensionType="NumInGroup">
+            <field name="TradeUpdateAction" id="279" type="TradeUpdateAction" description="Trade update action"/>
+            <field name="TradeId" id="1003" type="TradeId"/>
+            <field name="Time" id="273" type="Timestamp" description="Trade timestamp"/>
+            <field name="Price" id="270" type="Price" description="Trade price"/>
+            <field name="Size" id="271" type="Quantity" description="Trade quantity"/>
+            <field name="AggressorSide" id="2446" type="AggressorSide" description="Aggressor side"/>
+            <field name="BuyOrderId" id="288" type="OrderId" description="Buy order id"/>
+            <field name="SellOrderId" id="289" type="OrderId" description="Sell order id"/>
+            <field name="TradeConditions" id="10007" type="TradeConditions" description="Trade condition flags"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="TradeBust" id="6" description="Trade bust" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch." />
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <field name="LastTradePrice" id="31" type="PriceOptional" description="Last trade price" sinceVersion="3"/>
+        <field name="LastTradeSize" id="32" type="QuantityOptional" description="Last trade size" sinceVersion="3"/>
+        <field name="LastTradeTime" id="10008" type="TimestampOptional" description="Last trade time" sinceVersion="3"/>
+        <field name="TotalVolume" id="10006" type="Quantity" description="Total daily trade volume" sinceVersion="3"/>
+        <group name="NoTrades" id="268" description="Number of trades in the message"  dimensionType="NumInGroup">
+            <field name="TradeId" id="1003" type="TradeId"/>
+            <field name="Time" id="273" type="Timestamp" description="Trade timestamp"/>
+            <field name="Price" id="270" type="Price" description="Trade price"/>
+            <field name="Size" id="271" type="Quantity" description="Trade quantity" />
+            <field name="AggressorSide" id="2446" type="AggressorSide" description="Aggressor side"/>
+            <field name="BuyOrderId" id="288" type="OrderId" description="Buy order id"/>
+            <field name="SellOrderId" id="289" type="OrderId" description="Sell order id"/>
+            <field name="TradeConditions" id="10007" type="TradeConditions" description="Trade condition flags"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="OrderBookIncremental" id="7" description="Order book, market by order incremental message" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Business event transaction timestamp as nanoseconds since Unix epoch" />
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session date as number of days since Unix epoch" />
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <group name="NoOrders" id="268" description="Number of orders in the" dimensionType="NumInGroup">
+            <field name="OrderUpdateAction" id="279" type="OrderUpdateAction" description="Order update action"/>
+            <field name="OrderId" id="37" type="OrderId"/>
+            <field name="TradeId" id="1003" type="TradeId" presence="optional"/>
+            <field name="Side" id="54" type="Side" description="Order side"/>
+            <field name="Price" id="270" type="PriceOptional" description="Order price"/>
+            <field name="Size" id="271" type="Quantity" description="Order quantity"/>
+            <field name="OrderPriority" id="10025" type="OrderPriority" description="Time priority" presence="optional"/>
+            <field name="OrderAttributes" id="10003" type="OrderAttributes" description="Order attributes"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MarketSummaryIncremental" id="8" description="Market summary, incremental" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch" />
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch of transaction." />
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <field name="OpenPrice" id="1025" type="PriceOptional" description="Opening price for the day"/>
+        <field name="OpenPriceType" id="10028" type="OpenPriceType" description="Opening price type"/>
+        <field name="HighPrice" id="332" type="PriceOptional" description="High price for the day"/>
+        <field name="LowPrice" id="333" type="PriceOptional" description="Low price for the day"/>
+        <field name="ClosePrice" id="10012" type="PriceOptional" description="Closing price for the day"/>
+        <field name="OpenInterest" id="10013" type="QuantityOptional" description="Open Interest"/>
+        <field name="SettlementPrice" id="730" type="PriceOptional" description="Settlement price for the day"/>
+        <field name="SettlementPriceType" id="731" type="SettlementPriceType" description="Settlement price type"/>
+    </sbe:message>
+
+    <sbe:message name="OrderBookSnapshot" id="11" description="Market by order snapshot" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch" />
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="SnapshotMessageInstructions" id="10002" type="SnapshotMessageInstructions" description="Business event transaction flags" />
+        <field name="SnapshotInstrumentsCount" id="10023" type="SnapshotInstrumentsCount" description="Total number of instruments in snapshot"/>
+        <field name="LastIncrementalMessageSeq" id="10024" type="LastIncrementalMessageSeq" description="Last incremental message sequence"/>
+        <group name="NoOrders" id="268" description="Number of orders in the message" dimensionType="NumInGroup">
+            <field name="OrderId" id="37" type="OrderId"/>
+            <field name="Side" id="54" type="Side" description="Order side"/>
+            <field name="Price" id="270" type="Price" description="Order price"/>
+            <field name="Size" id="271" type="Quantity" description="Order quantity"/>
+            <field name="OrderPriority" id="10025" type="OrderPriority" description="Time priority"/>
+            <field name="OrderAttributes" id="10003" type="OrderAttributes" description="Order attributes"/>
+            <field name="Time" id="273" type="Timestamp" description="Order timestamp" sinceVersion="3"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MarketSummarySnapshot" id="12" description="Market summary snapshot" sinceVersion="1">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number" />
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="SnapshotMessageInstructions" id="10002" type="SnapshotMessageInstructions" description="Business event transaction flags" />
+        <field name="SnapshotInstrumentsCount" id="10023" type="SnapshotInstrumentsCount" description="Total number of instruments in snapshot"/>
+        <field name="LastIncrementalMessageSeq" id="10024" type="LastIncrementalMessageSeq" description="Last incremental message sequence"/>
+        <field name="LastTradePrice" id="31" type="PriceOptional" description="Level Trade Price"/>
+        <field name="LastTradeSize" id="32" type="QuantityOptional" description="Last trade volume"/>
+        <field name="LastTradeTime" id="10008" type="Timestamp" description="Last trade time"/>
+        <field name="TotalVolume" id="10006" type="QuantityOptional" description="Trade volume for the day"/>
+        <field name="OpenPrice" id="1025" type="PriceOptional" description="Opening price for the day"/>
+        <field name="OpenPriceType" id="10028" type="OpenPriceType" description="Opening price type"/>
+        <field name="HighPrice" id="332" type="PriceOptional" description="High price for the day"/>
+        <field name="LowPrice" id="333" type="PriceOptional" description="Low price for the day"/>
+        <field name="ClosePrice" id="10012" type="PriceOptional" description="Closing price for the day"/>
+        <field name="OpenInterest" id="10013" type="QuantityOptional" description="Open Interest"/>
+        <field name="SettlementPrice" id="730" type="PriceOptional" description="Settlement price for the day"/>
+        <field name="SettlementPriceType" id="731" type="SettlementPriceType" description="Settlement price type"/>
+    </sbe:message>
+
+    <sbe:message name="IndexValueSnapshot" id="13" description="Current index value snapshot message" sinceVersion="2">
+        <field name="InstrumentId" id="48" type="int32" offset="0"/>
+        <field name="TransactTime" id="60" type="int64" offset="4"/>
+        <field name="SnapshotMessageInstructions" id="10002" type="SnapshotMessageInstructions" offset="12"/>
+        <field name="IndexCount" id="10026" type="SnapshotInstrumentsCount" offset="14"/>
+        <field name="Symbol" id="55" type="IndexSymbol" offset="18"/>
+        <field name="Value" id="10027" type="PriceOptional" offset="38"/>
+        <field name="SessionDate" id="10029" type="uint16" offset="46" sinceVersion="4"/>
+        <field name="OpenPrice" id="10025" type="PriceOptional" offset="48" sinceVersion="4"/>
+        <field name="HighPrice" id="332" type="PriceOptional" offset="56" sinceVersion="4"/>
+        <field name="LowPrice" id="333" type="PriceOptional" offset="64" sinceVersion="4"/>
+        <field name="ClosePrice" id="10012" type="PriceOptional" offset="72" sinceVersion="4"/>
+    </sbe:message>
+
+    <sbe:message name="SingleInstrumentDefinitionIncrementalV2" id="14" description="Single instrument definition incremental" sinceVersion="6">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp"
+               description="Last business event transaction timestamp as nanoseconds since Unix epoch"
+        />
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002" type="IncrementalMessageInstructions" description="Business event transaction flags" />
+        <field name="InstrumentUpdateAction" id="980" type="InstrumentUpdateAction"
+               description="Flag defining if the Instrument is Added/Deleted/Modified" />
+        <field name="Symbol" id="55" type="InstrumentSymbolV2"  description="Instrument symbol"/>
+        <field name="Product" id="1151" type="Product" description="Product" />
+        <field name="Description" id="10016" type="InstrumentDescription" description="Description" />
+        <field name="InstrumentType" id="167" type="InstrumentType" description="Instrument Type" />
+        <field name="MaturityDate" id="200" type="Date" />
+        <field name="FirstTradingSessionDate" id="10017" type="Date" />
+        <field name="LastTradingSessionDate" id="10018" type="Date" />
+        <field name="ExpirationDate" id="10019" type="Date" />
+        <field name="CfiCode" id="461" type="CfiCode" />
+        <field name="Currency" id="15" type="Currency"/>
+        <field name="PriceIncrement" id="969" type="Price"/>
+        <field name="PriceMultiplier" id="10021" type="InstrumentPriceMultiplier"/>
+        <field name="UnderlyingSymbol" id="311" type="InstrumentSymbolV2" description="Option underlying"/>
+        <field name="UnderlyingInstrumentId" id="309" type="InstrumentId" description="Option underlying instrument ID"/>
+        <field name="PutOrCall" id="201" type="PutOrCall"/>
+        <field name="StrikePrice" id="202"  type="PriceOptional"/>
+        <field name="SharesPerContract" id="231"  type="QuantityOptional"/>
+        <field name="ExpirationStyle" id="232" type="ExpirationStyle"/>
+        <field name="ExerciseStyle" id="233" type="ExerciseStyle"/>
+        <field name="Delivery" id="234" type="Delivery"/>
+    </sbe:message>
+
+    <sbe:message name="MultilegDefinitionIncrementalV2" id="15" description="Instrument definition incremental" sinceVersion="6">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60"  type="Timestamp"
+               description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75"  type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="IncrementalMessageInstructions" id="10002"  type="IncrementalMessageInstructions" description="Business event transaction flags"/>
+        <field name="InstrumentUpdateAction" id="980" type="InstrumentUpdateAction" description="Flag defining if the Instrument is Added or Deleted" />
+        <field name="Symbol" id="55" type="SpreadSymbolV2"  description="Instrument symbol"/>
+        <field name="Description" id="10016" type="InstrumentDescription" description="Description" />
+        <field name="InstrumentType" id="167" type="InstrumentType" description="Instrument Type" />
+        <field name="MaturityDate" id="200" type="Date" />
+        <field name="FirstTradingSessionDate" id="10017" type="Date" />
+        <field name="LastTradingSessionDate" id="10018" type="Date" />
+        <field name="ExpirationDate" id="10019" type="Date" />
+        <field name="CfiCode" id="461" type="CfiCode" />
+        <field name="Currency" id="15" type="Currency"/>
+        <field name="PriceIncrement" id="969" type="Price" />
+        <field name="PriceMultiplier" id="10021" type="InstrumentPriceMultiplier" />
+        <field name="StrategyType" id="762" type="StrategyType" sinceVersion="3"/>
+        <group name="NoLegs" id="555" description="Number of Instrument legs" dimensionType="NumInGroup">
+            <field name="LegInstrumentId" id="602" type="InstrumentId" description="Leg Instrument id"/>
+            <field name="LegSymbol" id="600" type="InstrumentSymbolV2" description="Leg symbol"/>
+            <field name="LegProduct" id="1594" type="Product" description="Leg product"/>
+            <field name="LegRatioQuantity" id="623" type="Quantity" description="Leg ratio"/>
+            <field name="LegSide" id="624" type="Side" description="Leg side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="SingleInstrumentDefinitionSnapshotV2" id="16" description="Single instrument definition snapshot" sinceVersion="6">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp"
+               description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status" />
+        <field name="SnapshotMessageInstructions" id="10002" type="SnapshotMessageInstructions" description="Business event transaction flags" />
+        <field name="SnapshotInstrumentsCount" id="10023" type="SnapshotInstrumentsCount" description="Total number of instruments in snapshot"/>
+        <field name="LastIncrementalMessageSeq" id="10024" type="LastIncrementalMessageSeq" description="Last incremental message sequence"/>
+        <field name="Symbol" id="55" type="InstrumentSymbolV2" description="Instrument symbol"/>
+        <field name="Product" id="1151" type="Product" description="Product" />
+        <field name="Description" id="10016" type="InstrumentDescription" description="Description" />
+        <field name="InstrumentType" id="167" type="InstrumentType" description="Instrument Type" />
+        <field name="MaturityDate" id="200" type="Date" />
+        <field name="FirstTradingSessionDate" id="10017" type="Date" />
+        <field name="LastTradingSessionDate" id="10018" type="Date" />
+        <field name="ExpirationDate" id="10019"  type="Date" />
+        <field name="CfiCode" id="461" type="CfiCode" />
+        <field name="Currency" id="15" type="Currency"/>
+        <field name="PriceIncrement" id="969" type="Price" />
+        <field name="PriceMultiplier" id="10021" type="InstrumentPriceMultiplier"/>
+        <field name="UnderlyingSymbol" id="311" type="InstrumentSymbolV2" description="Option underlying"/>
+        <field name="UnderlyingInstrumentId" id="309" type="InstrumentId" description="Option underlying instrument ID"/>
+        <field name="PutOrCall" id="201" type="PutOrCall"/>
+        <field name="StrikePrice" id="202"  type="PriceOptional"/>
+        <field name="SharesPerContract" id="231" type="QuantityOptional"/>
+        <field name="ExpirationStyle" id="10020" type="ExpirationStyle"/>
+        <field name="ExerciseStyle" id="1194" type="ExerciseStyle"/>
+        <field name="Delivery" id="1193" type="Delivery"/>
+    </sbe:message>
+
+    <sbe:message name="MultilegDefinitionSnapshotV2" id="17" description="Instrument definition snapshot" sinceVersion="6">
+        <field name="InstrumentId" id="48" type="InstrumentId" description="Instrument ID"/>
+        <field name="InstrumentMessageNo" id="83" type="InstrumentMessageNo" description="Instrument message number"/>
+        <field name="TransactTime" id="60" type="Timestamp" description="Last business event transaction timestamp as nanoseconds since Unix epoch"/>
+        <field name="TradingSessionDate" id="75" type="Date" description="Trading session day as number of days since Unix epoch."/>
+        <field name="InstrumentTradingStatus" id="340" type="InstrumentTradingStatus" description="Instrument trading status"/>
+        <field name="SnapshotMessageInstructions" id="10002" type="SnapshotMessageInstructions" description="Business event transaction flags" />
+        <field name="SnapshotInstrumentsCount" id="10023" type="SnapshotInstrumentsCount" description="Total number of instruments in snapshot"/>
+        <field name="LastIncrementalMessageSeq" id="10024" type="LastIncrementalMessageSeq"
+               description="Last incremental message sequence at the moment of sending this particular message"/>
+        <field name="Symbol" id="55" type="SpreadSymbolV2"  description="Instrument symbol"/>
+        <field name="Description" id="10016" type="InstrumentDescription" description="Description" />
+        <field name="InstrumentType" id="167" type="InstrumentType" description="Instrument Type"/>
+        <field name="MaturityDate" id="200" type="Date" />
+        <field name="FirstTradingSessionDate" id="10017" type="Date" />
+        <field name="LastTradingSessionDate" id="10018" type="Date" />
+        <field name="ExpirationDate" id="10019"  type="Date" />
+        <field name="CfiCode" id="461" type="CfiCode" />
+        <field name="Currency" id="15" type="Currency"/>
+        <field name="PriceIncrement" id="969" type="Price"/>
+        <field name="PriceMultiplier" id="10021" type="InstrumentPriceMultiplier" />
+        <field name="StrategyType" id="762" type="StrategyType" sinceVersion="3"/>
+        <group name="NoLegs" id="555" description="Number of Instrument legs" dimensionType="NumInGroup">
+            <field name="LegInstrumentId" id="602" type="InstrumentId" description="Leg Instrument id"/>
+            <field name="LegSymbol" id="600" type="InstrumentSymbolV2" description="Leg symbol"/>
+            <field name="LegProduct" id="1594" type="Product" description="Leg product"/>
+            <field name="LegRatioQuantity" id="623" type="Quantity" description="Leg ratio"/>
+            <field name="LegSide" id="624" type="Side" description="Leg side"/>
+        </group>
+    </sbe:message>
+</sbe:messageSchema>
