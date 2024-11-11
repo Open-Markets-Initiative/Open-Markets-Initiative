@@ -16,7 +16,7 @@ A one-to-many approach using a database of symbols and a source generation tool 
 
 https://patents.google.com/patent/US8321465B2/en
 
-A one-to-many approach using an Interface Design Language and a source generation tool for several languages in a subset of binary protocols.
+A one-to-many approach using an Interface Design Language and a source generation tool for a specific subset of binary protocols and storage.
 
 ## Universal binary specification model
 
@@ -24,9 +24,9 @@ A one-to-many approach using an Interface Design Language and a source generatio
 
 https://patents.google.com/patent/US20240129382A1/en
 
-The first in a series of patents using a many-to-many approach that can take any IDL or binary protocol documentation using an independent intermediate representation for common operations within a multistage binary data model compiler. 
+The first in a series of patents using a many-to-many approach that can ingest any IDL or binary protocol documentation.  A front end of a multistage binary data model compiler built around an independent intermediate representation for common operations. 
 
-IDLs and the existing source generation tools used reduce the efficacy of the source generation platform.
+IDLs and the existing source generation tools reduce the efficacy of the source generation platform.
 
 # Open Source Projects
 
@@ -38,7 +38,7 @@ Kaitai Struct is a domain-specific language (DSL) that is designed with one part
 
 A one-to-many approach using an Interface Design Language and a source generation tool for several languages for arbitrary binary protocols.
 
-Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.
+Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent inter representation. 
 
 ## Simple Binary Encoding
 
@@ -49,3 +49,7 @@ Simple Binary Encoding (SBE) is an OSI layer 6 presentation for encoding and dec
 SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for arbitrary binary protocols.
 
 The intellectual property disclosed in Farber bares striking resemblance to SBE.
+
+# Notes
+
+There are many exiting implementations for binary protocol source generation into several languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
