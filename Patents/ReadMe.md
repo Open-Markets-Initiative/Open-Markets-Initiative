@@ -26,17 +26,15 @@ https://patents.google.com/patent/US20240129382A1/en
 
 The first in a series of patents using a many-to-many approach that can ingest any IDL or binary protocol documentation.  A front end of a multistage binary data model compiler built around an independent intermediate representation for common operations. 
 
-IDLs and the existing source generation tools reduce the efficacy of the source generation platform.
-
 # Open Source Projects
 
-## Kaitia Struct
+## Kaitai Struct
 
 https://kaitai.io
 
 Kaitai Struct is a domain-specific language (DSL) that is designed with one particular task in mind: dealing with arbitrary binary formats.
 
-A one-to-many approach using an Interface Design Language and a source generation tool for several languages for arbitrary binary protocols.
+A one-to-many approach using an Interface Design Language (.ksy) and a source generation tool for several languages for arbitrary binary protocols.
 
 Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent inter representation. 
 
@@ -53,3 +51,5 @@ The intellectual property disclosed in Farber bares striking resemblance to SBE.
 # Notes
 
 There are many exiting implementations for binary protocol source generation into several languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
+
+IDLs and existing source generation tools for binary protocol source generation reduce the efficacy of the source generation platform.
