@@ -1,8 +1,8 @@
-## Patents
+# Patents
 
 A series of patents and open source projects have been created in the technical field of Binary Protocol Source Generation.
 
-# Compiling protocol analysis code using protocol database
+## Compiling protocol analysis code using protocol database
 
 2002-06-24 to 2022-09-07 
 
@@ -10,7 +10,7 @@ https://patents.google.com/patent/US7401326B1/en
 
 A one-to-many approach using a database of symbols and a source generation tool for several languages.
 
-# Systems and methods for data coding, transmission, storage and decoding
+## Systems and methods for data coding, transmission, storage and decoding
 
 2005-11-14 to 2030-05-27 (Farber)
 
@@ -18,7 +18,7 @@ https://patents.google.com/patent/US8321465B2/en
 
 A one-to-many approach using an Interface Design Language and a source generation tool for several languages in a subset of binary protocols.
 
-# Universal binary specification model
+## Universal binary specification model
 
 2024-09-24 to 2042-10-13 (Tegel)
 
@@ -28,9 +28,9 @@ The first in a series of patents using a many-to-many approach that can take any
 
 IDLs and the existing source generation tools used reduce the efficacy of the source generation platform.
 
-## Open Source Projects
+# Open Source Projects
 
-# Kaitia Struct
+## Kaitia Struct
 
 https://kaitai.io
 
@@ -40,7 +40,7 @@ A one-to-many approach using an Interface Design Language and a source generatio
 
 Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.
 
-# Simple Binary Encoding
+## Simple Binary Encoding
 
 https://github.com/real-logic/simple-binary-encoding
 
