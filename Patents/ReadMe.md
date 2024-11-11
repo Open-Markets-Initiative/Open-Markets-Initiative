@@ -36,7 +36,7 @@ Kaitai Struct is a domain-specific language (DSL) that is designed with one part
 
 A one-to-many approach using an Interface Design Language (.ksy) and a source generation tool for several languages for arbitrary binary protocols.
 
-Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent inter representation. 
+Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent intermediate representation. 
 
 ## Simple Binary Encoding
 
