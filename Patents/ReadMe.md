@@ -4,7 +4,7 @@ A series of patents and open source projects have been created in the technical 
 
 ## Compiling protocol analysis code using protocol database
 
-2002-06-24 to 2022-09-07 
+2002-06-24 to 2022-09-07 (Durham)
 
 https://patents.google.com/patent/US7401326B1/en
 
@@ -16,40 +16,49 @@ A one-to-many approach using a database of symbols and a source generation tool 
 
 https://patents.google.com/patent/US8321465B2/en
 
-A one-to-many approach using an Interface Design Language and a source generation tool for a specific subset of binary protocols and storage.
+A one-to-many approach using an Interface Design Language via XML and a source generation tool for a specific subset of binary protocols and storage.
 
 ## Universal binary specification model
 
 2024-09-24 to 2042-10-13 (Tegel)
 
-https://patents.google.com/patent/US20240129382A1/en
+https://patents.google.com/patent/US12101388B2/en
 
 The first in a series of patents using a many-to-many approach that can ingest any IDL or binary protocol documentation.  A front end of a multistage binary data model compiler built around an independent intermediate representation for common operations. 
 
-# Open Source Projects
+# Public Domain
 
-## Kaitai Struct
+## Abstract Syntax Notation
 
-https://kaitai.io
+https://en.wikipedia.org/wiki/ASN.1 (1984)
 
-Kaitai Struct is a domain-specific language (DSL) that is designed with one particular task in mind: dealing with arbitrary binary formats.
+Abstract Syntax Notation One (ASN.1) is an interface description language (IDL) for defining data structures that can be serialized and deserialized in a cross-platform way.
 
-A one-to-many approach using an Interface Design Language (.ksy) and a source generation tool for several languages for arbitrary binary protocols.
-
-Due to differences in the IDL and scope of source generation cases, the Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent intermediate representation. 
+While ASN.1 is an attempt at generalizing data description via IDLs, a subset of encodings can encode a subset of binary data structures.
 
 ## Simple Binary Encoding
 
-https://github.com/real-logic/simple-binary-encoding
+https://github.com/real-logic/simple-binary-encoding (2013)
 
 Simple Binary Encoding (SBE) is an OSI layer 6 presentation for encoding and decoding binary application messages for low-latency financial applications.
 
 SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for arbitrary binary protocols.
 
-The intellectual property disclosed in Farber bares striking resemblance to SBE.
+SBE includes support for binary messages, repeating groups and some support for field customization, the same intellectual property disclosed in Farber.
+
+
+## Kaitai Struct
+
+https://kaitai.io (2015)
+
+Kaitai Struct is a domain-specific language (DSL) that is designed with one particular task in mind: dealing with arbitrary binary formats.
+
+A one-to-many approach using an Interface Design Language (.ksy) and a source generation tool for several languages for arbitrary binary protocols.
+
+Due to differences in the IDL and scope of source generation cases, The Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent intermediate representation. 
 
 # Notes
 
-There are many exiting implementations for binary protocol source generation into several languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
+There are many exiting implementations for generating binary protocols into several programming languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
 
-IDLs and existing source generation tools for binary protocol source generation reduce the efficacy of the source generation platform.
+Existing source generation tools based on IDLs and  for binary protocol source generation reduce the efficacy of a source generation platform.
