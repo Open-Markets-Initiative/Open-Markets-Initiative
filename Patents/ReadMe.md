@@ -16,7 +16,9 @@ A one-to-many approach using a database of symbols and a source generation tool 
 
 https://patents.google.com/patent/US8321465B2/en
 
-A one-to-many approach using an Interface Design Language via XML and a source generation tool for a specific subset of binary protocols and storage.
+A one-to-many approach using an interface design language via XML and a source generation tool for binary messages and storage.
+
+This patent discloses market data source generation supporting binary messages, repeating groups, optional fields and some support for custom fields.  This is a message based system, lacking support for arbitrary headers and binary data.  Some language in the patent implies that plain text can be used to generate on binary messages.
 
 ## Universal binary specification model
 
@@ -24,7 +26,7 @@ A one-to-many approach using an Interface Design Language via XML and a source g
 
 https://patents.google.com/patent/US12101388B2/en
 
-The first in a series of patents using a many-to-many approach that can ingest any IDL or binary protocol documentation.  A front end of a multistage binary data model compiler built around an independent intermediate representation for common operations. 
+A many-to-many approach that can ingest any IDL or binary protocol documentation.  A front end of a multistage binary data model compiler built around an independent intermediate representation for common operations. 
 
 # Public Domain
 
@@ -44,8 +46,7 @@ Simple Binary Encoding (SBE) is an OSI layer 6 presentation for encoding and dec
 
 SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for arbitrary binary protocols.
 
-SBE includes support for binary messages, repeating groups and some support for field customization, the same intellectual property disclosed in Farber.
-
+SBE includes support for binary messages, repeating groups and some support for field customization, similar to the architecture in Farber.
 
 ## Kaitai Struct
 
