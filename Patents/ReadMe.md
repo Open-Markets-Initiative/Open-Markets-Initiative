@@ -44,7 +44,7 @@ https://github.com/real-logic/simple-binary-encoding (2013)
 
 Simple Binary Encoding (SBE) is an OSI layer 6 presentation for encoding and decoding binary application messages for low-latency financial applications.
 
-SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for arbitrary binary protocols.
+SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for message based binary protocols.
 
 SBE includes support for binary messages, repeating groups and some support for field customization, similar to the architecture in Farber.
 
