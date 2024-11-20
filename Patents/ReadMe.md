@@ -60,6 +60,8 @@ Due to differences in the IDL and scope of source generation cases, The Open Mar
 
 # Notes
 
+According to the internet, Bloomberg would have had 6 years to file for patent infrigement for SBE.
+
 There are many exiting implementations for generating binary protocols into several programming languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
 
-Existing source generation tools based on IDLs and  for binary protocol source generation reduce the efficacy of a source generation platform.
+Existing source generation tools based on IDLs for binary protocol source generation reduce the efficacy of a source generation platform.
