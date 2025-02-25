@@ -4,7 +4,7 @@ A series of patents and open source projects have been created in the technical 
 
 ## Compiling protocol analysis code using protocol database
 
-2002-06-24 to 2022-09-07 (Durham)
+2002-06-24 to 2022-09-07
 
 https://patents.google.com/patent/US7401326B1/en
 
@@ -12,7 +12,7 @@ A one-to-many approach using a database of symbols and a source generation tool 
 
 ## Systems and methods for data coding, transmission, storage and decoding
 
-2005-11-14 to 2030-05-27 (Farber)
+2005-11-14 to 2030-05-27
 
 https://patents.google.com/patent/US8321465B2/en
 
@@ -20,21 +20,21 @@ A one-to-many approach using an interface design language via XML and a source g
 
 This patent discloses market data source generation supporting binary messages, repeating groups, optional fields and some support for custom fields.  This is a message based system, lacking support for arbitrary headers and binary data.  Some language in the patent implies that plain text can be used to generate on binary messages.
 
-## Universal Binary Specifiaction 
+## Universal Binary Specification
 
-2022-10-13 to 2042-10-13 (Tegel)
+2022-10-13 to 2042-10-13
 
 https://patents.google.com/patent/US12101388B2/en
 
-A many-to-many approach that can ingest any IDL or binary protocol documentation. 
+A many-to-one approach that can normalize any binary interface description language or binary protocol documentation. 
 
 ## Binary Data Model Compiler
 
-2024-09-24 (Tegel)
+2024-09-24
 
 https://patents.google.com/patent/US20240419416A1/en
 
-A front end of a multistage binary data model compiler built around an independent intermediate representation for generic binary data modeling. 
+A multistage, many-to-many, binary data model compiler using generic independent intermediate representations for binary data modeling. 
 
 # Public Domain
 
@@ -54,7 +54,7 @@ Simple Binary Encoding (SBE) is an OSI layer 6 presentation for encoding and dec
 
 SBE is a one-to-many approach using an Interface Design Language in XML and a source generation tool for several languages for message based binary protocols.
 
-SBE includes support for binary messages, repeating groups and some support for field customization, similar to the architecture in Farber.
+SBE includes support for binary messages, repeating groups and some support for field customization, similar to the architecture disclosed in US8321465B2.
 
 ## Kaitai Struct
 
@@ -64,12 +64,15 @@ Kaitai Struct is a domain-specific language (DSL) that is designed with one part
 
 A one-to-many approach using an Interface Design Language (.ksy) and a source generation tool for several languages for arbitrary binary protocols.
 
-Due to differences in the IDL and scope of source generation cases, The Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle evey case and cannot provide the scalability of an independent intermediate representation. 
+Due to differences in the IDL and scope of source generation cases, The Open Markets Initiative believes that Kaitai Struct does not infringe on any existing patents.  However, Kaitai struct cannot handle every case and does not provide the extensibility of a generic independent intermediate representation. 
 
 # Notes
 
-According to the internet, Bloomberg would have had 6 years to file for patent infrigement for SBE.
+Binary protocols are fundamentally different from self-describing data formats like XML, JSON and FIX and form their own technical field.
 
-There are many existing implementations for generating binary protocols into several programming languages.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
+According to the internet, Bloomberg would have had 6 years to file for patent infringement for SBE.
 
-Existing source generation tools based on IDLs for binary protocol source generation reduce the efficacy of a source generation platform.
+There are many existing implementations for generating binary protocols into several programming languages. For instance, patent US7401326B1 describes a one-to-many source generation method.  The Open Markets Initiative believes that the backend "plugin" architecture is within the public domain.
+
+Existing source generation tools based on any singular IDL limits the scalability of a binary protocol source generation platform.
+
