@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model name="edci_Derivatives" version="13.0" subVersion="D0001" buildNumber="130.810.0.ga-130008050-27">
+  <MessageFlows>
+    <!-- *************************************** Abstraction Layer 3 ****************************************
+		 		This XML section describes the system behaviour from the user's point of view.
+				It might be interesting for users who want:
+				  * an abstract overview about the system behaviour; * no technical layout descriptions -->
+    <MessageFlow name="Logon" description="">
+      <Message name="LogonRequest" applicationMessageRef="LogonRequest" description="">
+        <Message name="LogonResponse" applicationMessageRef="LogonResponse" description="">
+          <Message name="SessionListNotification" applicationMessageRef="SessionListNotification" description="">
+            <Message name="PartitionListNotification" applicationMessageRef="PartitionListNotification" description="">
+              <Message name="SessionStatusBroadcast" applicationMessageRef="SessionStatusBroadcast" description="" stream="per partition, TradSesEvent = 108 - 'Start of Order book synch' ">
+                <Message name="OrderExecReportBroadcast" applicationMessageRef="OrderExecReportBroadcast" description="" stream="per partition, 0....n times">
+                  <Message name="SessionStatusBroadcast" applicationMessageRef="SessionStatusBroadcast" description="" stream="per partition, TradSesEvent = 107 - 'End of Order book synch' "/>
+                </Message>
+              </Message>
+            </Message>
+          </Message>
+        </Message>
+      </Message>
+    </MessageFlow>
+    <MessageFlow name="Logout" description="">
+      <Message name="LogoutRequest" applicationMessageRef="LogoutRequest" description="">
+        <Message name="LogoutResponse" applicationMessageRef="LogoutResponse" description=""/>
+      </Message>
+    </MessageFlow>
+  </MessageFlows>
+  <ApplicationMessages>
+    <!-- *************************************** Abstraction Layer 2 ****************************************
+		 This XML section describes the ApplicationMessages transmitted between the participant and the exchange.
+		 An ApplicationMessage gives a data structure a functional meaning (e.g. enter an order).
+		 It might be interesting for users who want:
+			 * uncollapsed structures and sub-structures; * context specific information (e.g. usages, offsets) -->
+    <ApplicationMessage name="DeleteOrderBroadcast" package="edci_Derivatives" type="DeleteOrderBroadcast" numericID="10902" description="" functionalCategory="Order Handling" alias="Order (Mass) Cancellation Notification">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="OrderMassActionReport" value="BZ" description="Order Mass Action Report"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="PartyIDExecutingUnit" type="PartyIDExecutingUnit" package="edci_Derivatives" numericID="20059" usage="optional" offset="16" cardinality="1" description=""/>
+        <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" numericID="5948" usage="mandatory" offset="20" cardinality="1" description=""/>
+        <Member name="ApplID" type="ApplID" package="edci_Derivatives" numericID="1180" usage="mandatory" offset="22" cardinality="1" description="">
+          <ValidValue name="OrderDropCopy" value="12" description="OrderDropCopy Data"/>
+        </Member>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="23" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+      </Group>
+      <Member name="ExecID" type="ExecID" package="edci_Derivatives" numericID="17" usage="mandatory" offset="24" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" numericID="1300" usage="mandatory" offset="32" cardinality="1" description=""/>
+      <Member name="NoAffectedOrders" type="NoAffectedOrders" package="edci_Derivatives" numericID="1370" usage="mandatory" offset="36" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="38" cardinality="1" description=""/>
+      <Group name="AffectedOrdGrp" type="AffectedOrdGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="500" counter="NoAffectedOrders" description="">
+        <Member name="AffectedOrderID" type="AffectedOrderID" package="edci_Derivatives" numericID="535" usage="mandatory" offset="40" cardinality="1" description=""/>
+        <Member name="AffectedClOrdID" type="AffectedClOrdID" package="edci_Derivatives" numericID="30535" usage="optional" offset="48" cardinality="1" description=""/>
+        <Member name="AffectedOrigClOrdID" type="AffectedOrigClOrdID" package="edci_Derivatives" numericID="1824" usage="optional" offset="56" cardinality="1" description=""/>
+        <Member name="SecurityID" type="SecurityID" package="edci_Derivatives" numericID="48" usage="mandatory" offset="64" cardinality="1" description=""/>
+        <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" numericID="20055" usage="mandatory" offset="72" cardinality="1" description=""/>
+        <Member name="PartyIDExecutingTrader" type="PartyIDExecutingTrader" package="edci_Derivatives" numericID="20012" usage="mandatory" offset="76" cardinality="1" description=""/>
+        <Member name="OrdStatus" type="OrdStatus" package="edci_Derivatives" numericID="39" usage="mandatory" offset="80" cardinality="1" description="">
+          <ValidValue name="Canceled" value="4" description="Cancelled"/>
+          <ValidValue name="Pending_Cancel" value="6" description="Pending Cancel (i.e. result of Order Cancel Request)"/>
+          <ValidValue name="Suspended" value="9" description="Suspended"/>
+        </Member>
+        <Member name="ExecType" type="ExecType" package="edci_Derivatives" numericID="150" usage="mandatory" offset="81" cardinality="1" description="">
+          <ValidValue name="Canceled" value="4" description="Cancelled"/>
+          <ValidValue name="Pending_Cancel_e" value="6" description="Pending Cancel (e.g. result of Order Cancel Request)"/>
+        </Member>
+        <Member name="AffectedFIXClOrdID" type="AffectedFIXClOrdID" package="edci_Derivatives" numericID="30536" usage="optional" offset="82" cardinality="1" description=""/>
+        <Member name="AffectedFIXOrigClOrdID" type="AffectedFIXOrigClOrdID" package="edci_Derivatives" numericID="31824" usage="optional" offset="102" cardinality="1" description=""/>
+        <Member name="Pad6" type="Pad6" package="edci_Derivatives" numericID="39060" usage="unused" offset="122" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="ForcedLogoutNotification" package="edci_Derivatives" type="ForcedLogoutNotification" numericID="10012" description="" functionalCategory="Session Layer" alias="Session Logout Notification">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Logout" value="5" description="Logout"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+      </Group>
+      <Member name="VarTextLen" type="VarTextLen" package="edci_Derivatives" numericID="30354" usage="mandatory" offset="16" cardinality="1" description=""/>
+      <Member name="VarText" type="VarText" package="edci_Derivatives" numericID="30355" usage="mandatory" offset="18" cardinality="1" counter="VarTextLen" description=""/>
+    </ApplicationMessage>
+    <ApplicationMessage name="Heartbeat" package="edci_Derivatives" type="Heartbeat" numericID="10011" description="" functionalCategory="Session Layer" alias="Heartbeat">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Heartbeat" value="0" description="Heartbeat"/>
+      </Member>
+      <Group name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="HeartbeatNotification" package="edci_Derivatives" type="HeartbeatNotification" numericID="10023" description="" functionalCategory="Session Layer" alias="Heartbeat Notification">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Heartbeat" value="0" description="Heartbeat"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="LogonRequest" package="edci_Derivatives" type="LogonRequest" numericID="10000" description="" functionalCategory="Session Layer" alias="Session Logon">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Logon" value="A" description="Logon"/>
+      </Member>
+      <Group name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="RequestHeader" type="RequestHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" numericID="34" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="Pad4" type="Pad4" package="edci_Derivatives" numericID="39040" usage="unused" offset="12" cardinality="1" description=""/>
+      </Group>
+      <Member name="HeartBtInt" type="HeartBtInt" package="edci_Derivatives" numericID="108" usage="optional" offset="16" cardinality="1" description=""/>
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" numericID="20055" usage="mandatory" offset="20" cardinality="1" description=""/>
+      <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="edci_Derivatives" numericID="1408" usage="mandatory" offset="24" cardinality="1" description=""/>
+      <Member name="Password" type="Password" package="edci_Derivatives" numericID="554" usage="mandatory" offset="54" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="86" cardinality="1" description=""/>
+    </ApplicationMessage>
+    <ApplicationMessage name="LogonResponse" package="edci_Derivatives" type="LogonResponse" numericID="10001" description="" functionalCategory="Session Layer" alias="Session Logon Response">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Logon" value="A" description="Logon"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="RequestTime" type="RequestTime" package="edci_Derivatives" numericID="5979" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="16" cardinality="1" description=""/>
+        <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" numericID="34" usage="mandatory" offset="24" cardinality="1" description=""/>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="28" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+        <Member name="Pad3" type="Pad3" package="edci_Derivatives" numericID="39030" usage="unused" offset="29" cardinality="1" description=""/>
+      </Group>
+      <Member name="HeartBtInt" type="HeartBtInt" package="edci_Derivatives" numericID="108" usage="mandatory" offset="32" cardinality="1" description=""/>
+      <Member name="SessionInstanceID" type="SessionInstanceID" package="edci_Derivatives" numericID="25004" usage="mandatory" offset="36" cardinality="1" description=""/>
+      <Member name="MarketID" type="MarketID" package="edci_Derivatives" numericID="1301" usage="mandatory" offset="40" cardinality="1" description="">
+        <ValidValue name="XEUR" value="1" description="XEUR"/>
+        <ValidValue name="XEEE" value="2" description="XEEE"/>
+      </Member>
+      <Member name="TradSesMode" type="TradSesMode" package="edci_Derivatives" numericID="339" usage="mandatory" offset="42" cardinality="1" description="">
+        <ValidValue name="Testing" value="1" description="Development"/>
+        <ValidValue name="Simulated" value="2" description="Simulation"/>
+        <ValidValue name="Production" value="3" description="Production"/>
+        <ValidValue name="Acceptance" value="4" description="Acceptance"/>
+        <ValidValue name="Disaster_Recovery" value="5" description="Disaster Recovery"/>
+      </Member>
+      <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="edci_Derivatives" numericID="1408" usage="mandatory" offset="43" cardinality="1" description=""/>
+      <Member name="DefaultCstmApplVerSubID" type="DefaultCstmApplVerSubID" package="edci_Derivatives" numericID="28763" usage="mandatory" offset="73" cardinality="1" description="">
+        <ValidValue name="Derivatives" value="D0001" description="subversion"/>
+      </Member>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="78" cardinality="1" description=""/>
+    </ApplicationMessage>
+    <ApplicationMessage name="LogoutRequest" package="edci_Derivatives" type="LogoutRequest" numericID="10002" description="" functionalCategory="Session Layer" alias="Session Logout">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Logout" value="5" description="Logout"/>
+      </Member>
+      <Group name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="RequestHeader" type="RequestHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" numericID="34" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="Pad4" type="Pad4" package="edci_Derivatives" numericID="39040" usage="unused" offset="12" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="LogoutResponse" package="edci_Derivatives" type="LogoutResponse" numericID="10003" description="" functionalCategory="Session Layer" alias="Session Logout Response">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Logout" value="5" description="Logout"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="RequestTime" type="RequestTime" package="edci_Derivatives" numericID="5979" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="16" cardinality="1" description=""/>
+        <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" numericID="34" usage="mandatory" offset="24" cardinality="1" description=""/>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="28" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+        <Member name="Pad3" type="Pad3" package="edci_Derivatives" numericID="39030" usage="unused" offset="29" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="OrderExecReportBroadcast" package="edci_Derivatives" type="OrderExecReportBroadcast" numericID="10901" description="" functionalCategory="Order Handling" alias="Extended Order Information">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="ExecutionReport" value="8" description="Execution Report"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="PartyIDExecutingUnit" type="PartyIDExecutingUnit" package="edci_Derivatives" numericID="20059" usage="optional" offset="16" cardinality="1" description=""/>
+        <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" numericID="5948" usage="mandatory" offset="20" cardinality="1" description=""/>
+        <Member name="ApplID" type="ApplID" package="edci_Derivatives" numericID="1180" usage="mandatory" offset="22" cardinality="1" description="">
+          <ValidValue name="OrderDropCopy" value="12" description="OrderDropCopy Data"/>
+        </Member>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="23" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+      </Group>
+      <Member name="OrderID" type="OrderID" package="edci_Derivatives" numericID="37" usage="mandatory" offset="24" cardinality="1" description=""/>
+      <Member name="ClOrdID" type="ClOrdID" package="edci_Derivatives" numericID="11" usage="optional" offset="32" cardinality="1" description=""/>
+      <Member name="OrigClOrdID" type="OrigClOrdID" package="edci_Derivatives" numericID="41" usage="optional" offset="40" cardinality="1" description=""/>
+      <Member name="SecurityID" type="SecurityID" package="edci_Derivatives" numericID="48" usage="mandatory" offset="48" cardinality="1" description=""/>
+      <Member name="ExecID" type="ExecID" package="edci_Derivatives" numericID="17" usage="mandatory" offset="56" cardinality="1" description=""/>
+      <Member name="Price" type="Price" package="edci_Derivatives" numericID="44" usage="optional" offset="64" cardinality="1" description=""/>
+      <Member name="StopPx" type="StopPx" package="edci_Derivatives" numericID="99" usage="optional" offset="72" cardinality="1" description=""/>
+      <Member name="LeavesQty" type="LeavesQty" package="edci_Derivatives" numericID="151" usage="mandatory" offset="80" cardinality="1" description=""/>
+      <Member name="CumQty" type="CumQty" package="edci_Derivatives" numericID="14" usage="mandatory" offset="88" cardinality="1" description=""/>
+      <Member name="CxlQty" type="CxlQty" package="edci_Derivatives" numericID="84" usage="mandatory" offset="96" cardinality="1" description=""/>
+      <Member name="OrderQty" type="OrderQty" package="edci_Derivatives" numericID="38" usage="mandatory" offset="104" cardinality="1" description=""/>
+      <Member name="PartyIDClientID" type="PartyIDClientID" package="edci_Derivatives" numericID="20003" usage="optional" offset="112" cardinality="1" description=""/>
+      <Member name="PartyIdInvestmentDecisionMaker" type="PartyIdInvestmentDecisionMaker" package="edci_Derivatives" numericID="20122" usage="optional" offset="120" cardinality="1" description=""/>
+      <Member name="ExecutingTrader" type="ExecutingTrader" package="edci_Derivatives" numericID="25123" usage="optional" offset="128" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" numericID="1300" usage="mandatory" offset="136" cardinality="1" description=""/>
+      <Member name="ExpireDate" type="ExpireDate" package="edci_Derivatives" numericID="432" usage="optional" offset="140" cardinality="1" description=""/>
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" numericID="20055" usage="optional" offset="144" cardinality="1" description=""/>
+      <Member name="PartyIDExecutingTrader" type="PartyIDExecutingTrader" package="edci_Derivatives" numericID="20012" usage="optional" offset="148" cardinality="1" description=""/>
+      <Member name="ProductComplex" type="ProductComplex" package="edci_Derivatives" numericID="1227" usage="mandatory" offset="152" cardinality="1" description="">
+        <ValidValue name="simple_instrument" value="1" description="Simple instrument"/>
+        <ValidValue name="standard_option_strategy" value="2" description="Standard Option Strategy"/>
+        <ValidValue name="non_standard_option_strategy" value="3" description="Non-Standard Option Strategy"/>
+        <ValidValue name="volatility_strategy" value="4" description="Volatility Strategy"/>
+        <ValidValue name="futures_Spread" value="5" description="Futures Spread"/>
+        <ValidValue name="inter_product_spread" value="6" description="Inter-Product Spread"/>
+        <ValidValue name="standard_future_strategy" value="7" description="Standard Future Strategy"/>
+        <ValidValue name="pack_and_bundle" value="8" description="Pack and Bundle"/>
+        <ValidValue name="strip" value="9" description="Strip"/>
+        <ValidValue name="non_standard_volatility_strategy" value="13" description="Non-Standard Volatility Strategy"/>
+      </Member>
+      <Member name="OrdStatus" type="OrdStatus" package="edci_Derivatives" numericID="39" usage="mandatory" offset="153" cardinality="1" description="">
+        <ValidValue name="New" value="0" description="New"/>
+        <ValidValue name="Partially_filled" value="1" description="Partially filled"/>
+        <ValidValue name="Filled" value="2" description="Filled"/>
+        <ValidValue name="Canceled" value="4" description="Cancelled"/>
+        <ValidValue name="Pending_Cancel" value="6" description="Pending Cancel (i.e. result of Order Cancel Request)"/>
+        <ValidValue name="Suspended" value="9" description="Suspended"/>
+      </Member>
+      <Member name="ExecType" type="ExecType" package="edci_Derivatives" numericID="150" usage="mandatory" offset="154" cardinality="1" description="">
+        <ValidValue name="New" value="0" description="New"/>
+        <ValidValue name="Canceled" value="4" description="Cancelled"/>
+        <ValidValue name="Replaced" value="5" description="Replaced"/>
+        <ValidValue name="Pending_Cancel_e" value="6" description="Pending Cancel (e.g. result of Order Cancel Request)"/>
+        <ValidValue name="Suspended" value="9" description="Suspended"/>
+        <ValidValue name="Restated" value="D" description="Restated"/>
+        <ValidValue name="Triggered" value="L" description="Triggered"/>
+        <ValidValue name="Trade" value="F" description="Trade"/>
+      </Member>
+      <Member name="Side" type="Side" package="edci_Derivatives" numericID="54" usage="mandatory" offset="155" cardinality="1" description="">
+        <ValidValue name="Buy" value="1" description="Buy"/>
+        <ValidValue name="Sell" value="2" description="Sell"/>
+      </Member>
+      <Member name="OrdType" type="OrdType" package="edci_Derivatives" numericID="40" usage="mandatory" offset="156" cardinality="1" description="">
+        <ValidValue name="Market" value="1" description="Market"/>
+        <ValidValue name="Limit" value="2" description="Limit"/>
+        <ValidValue name="Stop" value="3" description="Stop"/>
+        <ValidValue name="Stop_Limit" value="4" description="Stop Limit"/>
+      </Member>
+      <Member name="MatchType" type="MatchType" package="edci_Derivatives" numericID="574" usage="optional" offset="157" cardinality="1" description="">
+        <ValidValue name="Auto_match_incoming" value="4" description="Auto-match incoming order"/>
+        <ValidValue name="Cross_Auction" value="5" description="Cross Auction"/>
+        <ValidValue name="Call_Auction" value="7" description="Call Auction"/>
+        <ValidValue name="Auto_match_resting" value="11" description="Auto match resting order"/>
+        <ValidValue name="Liquidity_Improvement_Cross" value="13" description="Liquidity Improvement Cross"/>
+      </Member>
+      <Member name="TradingCapacity" type="TradingCapacity" package="edci_Derivatives" numericID="1815" usage="mandatory" offset="158" cardinality="1" description="">
+        <ValidValue name="Customer" value="1" description="Customer (Agency)"/>
+        <ValidValue name="Principal" value="5" description="Principal (Proprietary)"/>
+        <ValidValue name="Market_Maker" value="6" description="Market Maker"/>
+      </Member>
+      <Member name="TimeInForce" type="TimeInForce" package="edci_Derivatives" numericID="59" usage="optional" offset="159" cardinality="1" description="">
+        <ValidValue name="Day" value="0" description="Day (GFD)"/>
+        <ValidValue name="GTC" value="1" description="Good Till Cancelled (GTC) - Standard Orders only"/>
+        <ValidValue name="IOC" value="3" description="Immediate or Cancel (IOC)"/>
+        <ValidValue name="FOK" value="4" description="Fill Or Kill (FOK)"/>
+        <ValidValue name="GTD" value="6" description="Good Till Date (GTD) - Standard Orders only"/>
+      </Member>
+      <Member name="ExecInst" type="ExecInst" package="edci_Derivatives" numericID="18" usage="optional" offset="160" cardinality="1" description="">
+        <ValidValue name="H" value="1" description="Persistent Order (FIX value 'H')"/>
+        <ValidValue name="Q" value="2" description="Non-persistent Order (FIX value 'Q')"/>
+        <ValidValue name="H_Q" value="3" description="Persistent and non-persistent orders affected (FIX value 'H Q')"/>
+        <ValidValue name="H_6" value="5" description="Persistent and Book or Cancel order (FIX value 'H 6')"/>
+        <ValidValue name="Q_6" value="6" description="Non-persistent and Book or Cancel order (FIX value 'Q 6')"/>
+      </Member>
+      <Member name="Triggered" type="Triggered" package="edci_Derivatives" numericID="1823" usage="optional" offset="161" cardinality="1" description="">
+        <ValidValue name="Not_triggered" value="0" description=""/>
+        <ValidValue name="Triggered_Stop" value="1" description=""/>
+        <ValidValue name="Triggered_OCO" value="2" description=""/>
+      </Member>
+      <Member name="TradingSessionSubID" type="TradingSessionSubID" package="edci_Derivatives" numericID="625" usage="optional" offset="162" cardinality="1" description="">
+        <ValidValue name="Opening_auction" value="2" description="Opening or opening auction"/>
+        <ValidValue name="Closing_auction" value="4" description="Closing or closing auction"/>
+        <ValidValue name="Any_Auction" value="8" description="Any auction"/>
+      </Member>
+      <Member name="ApplSeqIndicator" type="ApplSeqIndicator" package="edci_Derivatives" numericID="28703" usage="optional" offset="163" cardinality="1" description="">
+        <ValidValue name="No_Recovery_Required" value="0" description=""/>
+        <ValidValue name="Recovery_Required" value="1" description=""/>
+      </Member>
+      <Member name="PartyIdInvestmentDecisionMakerQualifier" type="PartyIdInvestmentDecisionMakerQualifier" package="edci_Derivatives" numericID="21222" usage="optional" offset="164" cardinality="1" description="">
+        <ValidValue name="Algo" value="22" description="Algo"/>
+        <ValidValue name="Human" value="24" description="Human/Natural person"/>
+      </Member>
+      <Member name="ExecutingTraderQualifier" type="ExecutingTraderQualifier" package="edci_Derivatives" numericID="25124" usage="optional" offset="165" cardinality="1" description="">
+        <ValidValue name="Algo" value="22" description="Algo"/>
+        <ValidValue name="Human" value="24" description="Human/Natural person"/>
+      </Member>
+      <Member name="NoFills" type="NoFills" package="edci_Derivatives" numericID="1362" usage="mandatory" offset="166" cardinality="1" description=""/>
+      <Member name="CrossedIndicator" type="CrossedIndicator" package="edci_Derivatives" numericID="2523" usage="mandatory" offset="167" cardinality="1" description="">
+        <ValidValue name="No_crossing" value="0" description="No crossing (Order not subject to crossing)"/>
+        <ValidValue name="Cross_rejected" value="1" description="Cross rejected (Order subject to crossing and match prevented)"/>
+      </Member>
+      <Member name="CustOrderHandlingInst" type="CustOrderHandlingInst" package="edci_Derivatives" numericID="1031" usage="optional" offset="168" cardinality="1" description="">
+        <ValidValue name="W" value="W" description="Desk"/>
+        <ValidValue name="Y" value="Y" description="Electronic"/>
+        <ValidValue name="C" value="C" description="Vendor-provided Platform billed by Executing Broker"/>
+        <ValidValue name="G" value="G" description="Sponsored Access via Exchange API or FIX provided by Executing Broker"/>
+        <ValidValue name="H" value="H" description="Premium Algorithmic Trading Provider billed by Executing Broker"/>
+        <ValidValue name="D" value="D" description="Other, including Other-provided Screen"/>
+      </Member>
+      <Member name="FreeText1" type="FreeText1" package="edci_Derivatives" numericID="25007" usage="optional" offset="169" cardinality="1" description=""/>
+      <Member name="FreeText2" type="FreeText2" package="edci_Derivatives" numericID="25008" usage="optional" offset="181" cardinality="1" description=""/>
+      <Member name="FreeText3" type="FreeText3" package="edci_Derivatives" numericID="25009" usage="optional" offset="193" cardinality="1" description=""/>
+      <Member name="FIXClOrdID" type="FIXClOrdID" package="edci_Derivatives" numericID="30011" usage="optional" offset="205" cardinality="1" description=""/>
+      <Member name="FIXOrigClOrdID" type="FIXOrigClOrdID" package="edci_Derivatives" numericID="30041" usage="optional" offset="225" cardinality="1" description=""/>
+      <Member name="PartyEndClientIdentification" type="PartyEndClientIdentification" package="edci_Derivatives" numericID="25241" usage="optional" offset="245" cardinality="1" description=""/>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" numericID="39070" usage="unused" offset="265" cardinality="1" description=""/>
+      <Group name="FillsGrp" type="FillsGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="100" counter="NoFills" description="">
+        <Member name="FillPx" type="FillPx" package="edci_Derivatives" numericID="1364" usage="mandatory" offset="272" cardinality="1" description=""/>
+        <Member name="FillQty" type="FillQty" package="edci_Derivatives" numericID="1365" usage="mandatory" offset="280" cardinality="1" description=""/>
+        <Member name="FillMatchID" type="FillMatchID" package="edci_Derivatives" numericID="28708" usage="mandatory" offset="288" cardinality="1" description=""/>
+        <Member name="FillExecID" type="FillExecID" package="edci_Derivatives" numericID="1363" usage="mandatory" offset="292" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="PartitionListNotification" package="edci_Derivatives" type="PartitionListNotification" numericID="10037" description="" functionalCategory="Session Layer" alias="Partition List Notification">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="SessionDetailsListResponse" value="U6" description="Session Details List Response"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+      </Group>
+      <Member name="NoPartitions" type="NoPartitions" package="edci_Derivatives" numericID="28735" usage="mandatory" offset="16" cardinality="1" description=""/>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" numericID="39070" usage="unused" offset="17" cardinality="1" description=""/>
+      <Group name="PartitionGrp" type="PartitionGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="100" counter="NoPartitions" description="">
+        <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" numericID="5948" usage="mandatory" offset="24" cardinality="1" description=""/>
+        <Member name="Pad6" type="Pad6" package="edci_Derivatives" numericID="39060" usage="unused" offset="26" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="Reject" package="edci_Derivatives" type="Reject" numericID="10010" description="" functionalCategory="Session Layer" alias="Reject">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="Reject" value="3" description="Reject"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="RequestTime" type="RequestTime" package="edci_Derivatives" numericID="5979" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="16" cardinality="1" description=""/>
+        <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" numericID="34" usage="mandatory" offset="24" cardinality="1" description=""/>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="28" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+        <Member name="Pad3" type="Pad3" package="edci_Derivatives" numericID="39030" usage="unused" offset="29" cardinality="1" description=""/>
+      </Group>
+      <Member name="SessionRejectReason" type="SessionRejectReason" package="edci_Derivatives" numericID="373" usage="mandatory" offset="32" cardinality="1" description="">
+        <ValidValue name="Required_Tag_Missing" value="1" description="Required Tag Missing"/>
+        <ValidValue name="Value_is_incorrect" value="5" description="Value is incorrect (out of range) for this tag"/>
+        <ValidValue name="Decryption_problem" value="7" description="Decoding problem"/>
+        <ValidValue name="Invalid_MsgID" value="11" description="Invalid TemplateID"/>
+        <ValidValue name="Incorrect_NumInGroup_count" value="16" description="Incorrect NumInGroup count for repeating group"/>
+        <ValidValue name="Other" value="99" description="Other"/>
+        <ValidValue name="Exposure_Limit_Exceeded" value="101" description="Stale request was not forwarded to T7"/>
+        <ValidValue name="Service_Not_Available" value="103" description="Service not available"/>
+        <ValidValue name="Outbound_conversion_error" value="105" description="Error converting response or broadcast"/>
+        <ValidValue name="Heartbeat_Violation" value="152" description="Heartbeat violation error"/>
+        <ValidValue name="Internal_technical_error" value="200" description="Internal technical error"/>
+        <ValidValue name="Validation_Error" value="210" description="Validation Error"/>
+        <ValidValue name="Session_Login_Limit_Reached" value="217" description="Session login limit (per time interval) reached"/>
+        <ValidValue name="Outstanding_Logins_Bu_Limit_Reached" value="226" description="Limit of outstanding session/user logins reached (per Business Unit)"/>
+        <ValidValue name="Outstanding_Logins_Session_Limit_Reached" value="227" description="Limit of outstanding session/user logins reached (per Session)"/>
+      </Member>
+      <Member name="VarTextLen" type="VarTextLen" package="edci_Derivatives" numericID="30354" usage="mandatory" offset="36" cardinality="1" description=""/>
+      <Member name="SessionStatus" type="SessionStatus" package="edci_Derivatives" numericID="1409" usage="mandatory" offset="38" cardinality="1" description="">
+        <ValidValue name="Active" value="0" description="Session active"/>
+        <ValidValue name="Logout" value="4" description="Session logout complete"/>
+      </Member>
+      <Member name="VarText" type="VarText" package="edci_Derivatives" numericID="30355" usage="mandatory" offset="39" cardinality="1" counter="VarTextLen" description=""/>
+    </ApplicationMessage>
+    <ApplicationMessage name="SessionListNotification" package="edci_Derivatives" type="SessionListNotification" numericID="10036" description="" functionalCategory="Session Layer" alias="Session List Notification">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="SessionDetailsListResponse" value="U6" description="Session Details List Response"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+      </Group>
+      <Member name="NoSessions" type="NoSessions" package="edci_Derivatives" numericID="28734" usage="mandatory" offset="16" cardinality="1" description=""/>
+      <Member name="Pad6" type="Pad6" package="edci_Derivatives" numericID="39060" usage="unused" offset="18" cardinality="1" description=""/>
+      <Group name="SessionsGrp" type="SessionsGrpComp" package="edci_Derivatives" minCardinality="1" cardinality="1000" counter="NoSessions" description="">
+        <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" numericID="20055" usage="mandatory" offset="24" cardinality="1" description=""/>
+        <Member name="SessionMode" type="SessionMode" package="edci_Derivatives" numericID="28730" usage="mandatory" offset="28" cardinality="1" description="">
+          <ValidValue name="ETI_HF" value="1" description="ETI HF"/>
+          <ValidValue name="ETI_LF" value="2" description="ETI LF"/>
+          <ValidValue name="GUI" value="3" description="GUI"/>
+          <ValidValue name="FIX_LF" value="4" description="FIX LF"/>
+        </Member>
+        <Member name="PartyExecutingFirm" type="PartyExecutingFirm" package="edci_Derivatives" numericID="22001" usage="mandatory" offset="29" cardinality="1" description=""/>
+        <Member name="Pad6" type="Pad6" package="edci_Derivatives" numericID="39060" usage="unused" offset="34" cardinality="1" description=""/>
+      </Group>
+    </ApplicationMessage>
+    <ApplicationMessage name="SessionStatusBroadcast" package="edci_Derivatives" type="SessionStatusBroadcast" numericID="10903" description="" functionalCategory="Order Handling" alias="Trading Session Event">
+      <Member name="MsgType" hidden="true" type="MsgType" package="edci_Derivatives" numericID="35" usage="unused" offset="0" cardinality="1" description="">
+        <ValidValue name="TradingSessionStatus" value="h" description="Trading Session Status"/>
+      </Member>
+      <Group name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" numericID="9" usage="mandatory" offset="0" cardinality="1" description=""/>
+        <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" numericID="28500" usage="mandatory" offset="4" cardinality="1" description=""/>
+        <Member name="Pad2" type="Pad2" package="edci_Derivatives" numericID="39020" usage="unused" offset="6" cardinality="1" description=""/>
+      </Group>
+      <Group name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description="">
+        <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" numericID="52" usage="mandatory" offset="8" cardinality="1" description=""/>
+        <Member name="PartyIDExecutingUnit" type="PartyIDExecutingUnit" package="edci_Derivatives" numericID="20059" usage="optional" offset="16" cardinality="1" description=""/>
+        <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" numericID="5948" usage="mandatory" offset="20" cardinality="1" description=""/>
+        <Member name="ApplID" type="ApplID" package="edci_Derivatives" numericID="1180" usage="mandatory" offset="22" cardinality="1" description="">
+          <ValidValue name="OrderDropCopy" value="12" description="OrderDropCopy Data"/>
+        </Member>
+        <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" numericID="893" usage="mandatory" offset="23" cardinality="1" description="">
+          <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+          <ValidValue name="Last_Message" value="1" description="Last Message"/>
+        </Member>
+      </Group>
+      <Member name="TradeDate" type="TradeDate" package="edci_Derivatives" numericID="75" usage="optional" offset="24" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" numericID="1300" usage="optional" offset="28" cardinality="1" description=""/>
+      <Member name="TradSesEvent" type="TradSesEvent" package="edci_Derivatives" numericID="1368" usage="mandatory" offset="32" cardinality="1" description="">
+        <ValidValue name="End_of_Restatement" value="103" description="End of Restatement"/>
+        <ValidValue name="End_of_Day_Service" value="104" description="End of Service"/>
+        <ValidValue name="End_of_Order_book_synch" value="107" description="End of Order book synchronization"/>
+        <ValidValue name="Start_of_Order_book_synch" value="108" description="Start of Order book synchronization"/>
+        <ValidValue name="Order_book_reset" value="109" description="Order book reset"/>
+      </Member>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" numericID="39070" usage="unused" offset="33" cardinality="1" description=""/>
+    </ApplicationMessage>
+  </ApplicationMessages>
+  <!-- *************************************** Abstraction Layer 1 ****************************************
+		 This XML section contains a detailed description of data structures and DataTypes contained in 
+		 ApplicationMessages. It might be interesting for users who want:
+			 * all technical details of (sub-) Structures and DataTypes; 
+	       * a simple collapsed, C-like definition of all (sub-)structures;  
+			 * no context (Application Message) specific information (e.g. usages, offsets); 
+		 Note, structure members are only references to other sub-Structure and DataType definitions. -->
+  <Structures>
+    <Structure name="AffectedOrdGrpComp" type="Sequence" package="edci_Derivatives" description="">
+      <Member name="AffectedOrderID" type="AffectedOrderID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="AffectedClOrdID" type="AffectedClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="AffectedOrigClOrdID" type="AffectedOrigClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SecurityID" type="SecurityID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDExecutingTrader" type="PartyIDExecutingTrader" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrdStatus" type="OrdStatus" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecType" type="ExecType" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="AffectedFIXClOrdID" type="AffectedFIXClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="AffectedFIXOrigClOrdID" type="AffectedFIXOrigClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad6" type="Pad6" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="DeleteOrderBroadcast" type="Message" numericID="10902" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecID" type="ExecID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NoAffectedOrders" type="NoAffectedOrders" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="AffectedOrdGrp" type="AffectedOrdGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="500" counter="NoAffectedOrders" description=""/>
+    </Structure>
+    <Structure name="FillsGrpComp" type="Sequence" package="edci_Derivatives" description="">
+      <Member name="FillPx" type="FillPx" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FillQty" type="FillQty" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FillMatchID" type="FillMatchID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FillExecID" type="FillExecID" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="ForcedLogoutNotification" type="Message" numericID="10012" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="VarTextLen" type="VarTextLen" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="VarText" type="VarText" package="edci_Derivatives" cardinality="1" counter="VarTextLen" description=""/>
+    </Structure>
+    <Structure name="Heartbeat" type="Message" numericID="10011" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="HeartbeatNotification" type="Message" numericID="10023" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="LogonRequest" type="Message" numericID="10000" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="RequestHeader" type="RequestHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="HeartBtInt" type="HeartBtInt" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Password" type="Password" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="LogonResponse" type="Message" numericID="10001" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="HeartBtInt" type="HeartBtInt" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SessionInstanceID" type="SessionInstanceID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MarketID" type="MarketID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TradSesMode" type="TradSesMode" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="DefaultCstmApplVerSubID" type="DefaultCstmApplVerSubID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="LogoutRequest" type="Message" numericID="10002" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderIn" type="MessageHeaderInComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="RequestHeader" type="RequestHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="LogoutResponse" type="Message" numericID="10003" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="MessageHeaderInComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="MessageHeaderOutComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="BodyLen" type="BodyLen" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TemplateID" type="TemplateID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad2" type="Pad2" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="NotifHeaderComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="OrderExecReportBroadcast" type="Message" numericID="10901" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrderID" type="OrderID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ClOrdID" type="ClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrigClOrdID" type="OrigClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SecurityID" type="SecurityID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecID" type="ExecID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Price" type="Price" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="StopPx" type="StopPx" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="LeavesQty" type="LeavesQty" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="CumQty" type="CumQty" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="CxlQty" type="CxlQty" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrderQty" type="OrderQty" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDClientID" type="PartyIDClientID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIdInvestmentDecisionMaker" type="PartyIdInvestmentDecisionMaker" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecutingTrader" type="ExecutingTrader" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExpireDate" type="ExpireDate" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDExecutingTrader" type="PartyIDExecutingTrader" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ProductComplex" type="ProductComplex" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrdStatus" type="OrdStatus" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecType" type="ExecType" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Side" type="Side" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="OrdType" type="OrdType" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MatchType" type="MatchType" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TradingCapacity" type="TradingCapacity" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TimeInForce" type="TimeInForce" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecInst" type="ExecInst" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Triggered" type="Triggered" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TradingSessionSubID" type="TradingSessionSubID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ApplSeqIndicator" type="ApplSeqIndicator" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIdInvestmentDecisionMakerQualifier" type="PartyIdInvestmentDecisionMakerQualifier" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ExecutingTraderQualifier" type="ExecutingTraderQualifier" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NoFills" type="NoFills" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="CrossedIndicator" type="CrossedIndicator" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="CustOrderHandlingInst" type="CustOrderHandlingInst" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FreeText1" type="FreeText1" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FreeText2" type="FreeText2" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FreeText3" type="FreeText3" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FIXClOrdID" type="FIXClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FIXOrigClOrdID" type="FIXOrigClOrdID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyEndClientIdentification" type="PartyEndClientIdentification" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="FillsGrp" type="FillsGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="100" counter="NoFills" description=""/>
+    </Structure>
+    <Structure name="PartitionGrpComp" type="Sequence" package="edci_Derivatives" description="">
+      <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad6" type="Pad6" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="PartitionListNotification" type="Message" numericID="10037" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NoPartitions" type="NoPartitions" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartitionGrp" type="PartitionGrpComp" package="edci_Derivatives" minCardinality="0" cardinality="100" counter="NoPartitions" description=""/>
+    </Structure>
+    <Structure name="RBCHeaderComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyIDExecutingUnit" type="PartyIDExecutingUnit" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartitionID" type="PartitionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ApplID" type="ApplID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="Reject" type="Message" numericID="10010" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="ResponseHeader" type="ResponseHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SessionRejectReason" type="SessionRejectReason" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="VarTextLen" type="VarTextLen" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SessionStatus" type="SessionStatus" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="VarText" type="VarText" package="edci_Derivatives" cardinality="1" counter="VarTextLen" description=""/>
+    </Structure>
+    <Structure name="RequestHeaderComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="ResponseHeaderComp" type="Component" package="edci_Derivatives" description="">
+      <Member name="RequestTime" type="RequestTime" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SendingTime" type="SendingTime" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MsgSeqNum" type="MsgSeqNum" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="LastFragment" type="LastFragment" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad3" type="Pad3" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="SessionListNotification" type="Message" numericID="10036" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NotifHeader" type="NotifHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="NoSessions" type="NoSessions" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad6" type="Pad6" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SessionsGrp" type="SessionsGrpComp" package="edci_Derivatives" minCardinality="1" cardinality="1000" counter="NoSessions" description=""/>
+    </Structure>
+    <Structure name="SessionStatusBroadcast" type="Message" numericID="10903" package="edci_Derivatives" description="">
+      <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="RBCHeader" type="RBCHeaderComp" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TradeDate" type="TradeDate" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="MarketSegmentID" type="MarketSegmentID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="TradSesEvent" type="TradSesEvent" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad7" type="Pad7" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+    <Structure name="SessionsGrpComp" type="Sequence" package="edci_Derivatives" description="">
+      <Member name="PartyIDSessionID" type="PartyIDSessionID" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="SessionMode" type="SessionMode" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="PartyExecutingFirm" type="PartyExecutingFirm" package="edci_Derivatives" cardinality="1" description=""/>
+      <Member name="Pad6" type="Pad6" package="edci_Derivatives" cardinality="1" description=""/>
+    </Structure>
+  </Structures>
+  <DataTypes>
+    <DataType name="AlphaNumeric" type="String" rootType="String" package="edci_Derivatives" description="" range="A-Z,0-9,\x20" noValue="0x00"/>
+    <DataType name="Counter" type="int" rootType="int" package="edci_Derivatives" description=""/>
+    <DataType name="CurrencyType" type="AlphaNumeric" rootType="String" package="edci_Derivatives" size="3" description="" range="A-Z,0-9,\x20" noValue="0x00"/>
+    <DataType name="Freetext" type="String" rootType="String" package="edci_Derivatives" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00"/>
+    <DataType name="ISIN" type="AlphaNumeric" rootType="String" package="edci_Derivatives" size="12" description="" range="A-Z,0-9,\x20" noValue="0x00"/>
+    <DataType name="LocalMktDate" type="int" rootType="int" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="99991231" noValue="0xFFFFFFFF"/>
+    <DataType name="LocalMonthYearCod" type="int" rootType="int" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="999912" noValue="0xFFFFFFFF"/>
+    <DataType name="PriceType" type="float" rootType="floatDecimal" package="edci_Derivatives" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
+    <DataType name="Qty" type="floatDecimal4" rootType="floatDecimal" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="String" type="String" rootType="String" package="edci_Derivatives" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="UTCTimestamp" type="int" rootType="int" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="char" type="String" rootType="String" package="edci_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="float" type="floatDecimal" rootType="floatDecimal" package="edci_Derivatives" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
+    <DataType name="floatDecimal" type="floatDecimal" rootType="floatDecimal" package="edci_Derivatives" size="8" description="" noValue="0x8000000000000000"/>
+    <DataType name="floatDecimal4" type="floatDecimal" rootType="floatDecimal" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="int" type="int" rootType="int" package="edci_Derivatives" description=""/>
+    <DataType name="AffectedClOrdID" type="int" rootType="int" numericID="30535" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="AffectedFIXClOrdID" type="String" rootType="String" numericID="30536" package="edci_Derivatives" size="20" description="" range="\x20-\x7E" noValue="0x00"/>
+    <DataType name="AffectedFIXOrigClOrdID" type="String" rootType="String" numericID="31824" package="edci_Derivatives" size="20" description="" range="\x20-\x7E" noValue="0x00"/>
+    <DataType name="AffectedOrderID" type="int" rootType="int" numericID="535" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="AffectedOrigClOrdID" type="int" rootType="int" numericID="1824" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="ApplID" type="int" rootType="int" numericID="1180" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="12" noValue="0xFF">
+      <ValidValue name="OrderDropCopy" value="12" description="OrderDropCopy Data"/>
+    </DataType>
+    <DataType name="ApplSeqIndicator" type="int" rootType="int" numericID="28703" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="1" noValue="0xFF">
+      <ValidValue name="No_Recovery_Required" value="0" description=""/>
+      <ValidValue name="Recovery_Required" value="1" description=""/>
+    </DataType>
+    <DataType name="BodyLen" type="int" rootType="int" numericID="9" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="ClOrdID" type="int" rootType="int" numericID="11" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="CrossedIndicator" type="int" rootType="int" numericID="2523" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="1" noValue="0xFF">
+      <ValidValue name="No_crossing" value="0" description="No crossing (Order not subject to crossing)"/>
+      <ValidValue name="Cross_rejected" value="1" description="Cross rejected (Order subject to crossing and match prevented)"/>
+    </DataType>
+    <DataType name="CumQty" type="Qty" rootType="floatDecimal" numericID="14" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="CustOrderHandlingInst" type="Freetext" rootType="String" numericID="1031" package="edci_Derivatives" size="1" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00" nonStrict="true">
+      <ValidValue name="W" value="W" description="Desk"/>
+      <ValidValue name="Y" value="Y" description="Electronic"/>
+      <ValidValue name="C" value="C" description="Vendor-provided Platform billed by Executing Broker"/>
+      <ValidValue name="G" value="G" description="Sponsored Access via Exchange API or FIX provided by Executing Broker"/>
+      <ValidValue name="H" value="H" description="Premium Algorithmic Trading Provider billed by Executing Broker"/>
+      <ValidValue name="D" value="D" description="Other, including Other-provided Screen"/>
+    </DataType>
+    <DataType name="CxlQty" type="Qty" rootType="floatDecimal" numericID="84" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="DefaultCstmApplVerID" type="Freetext" rootType="String" numericID="1408" package="edci_Derivatives" size="30" isTerminable="true" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00"/>
+    <DataType name="DefaultCstmApplVerSubID" type="Freetext" rootType="String" numericID="28763" package="edci_Derivatives" size="5" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00">
+      <ValidValue name="Derivatives" value="D0001" description="subversion"/>
+    </DataType>
+    <DataType name="ExecID" type="UTCTimestamp" rootType="int" numericID="17" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="ExecInst" type="int" rootType="int" numericID="18" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="6" noValue="0xFF">
+      <ValidValue name="H" value="1" description="Persistent Order (FIX value 'H')"/>
+      <ValidValue name="Q" value="2" description="Non-persistent Order (FIX value 'Q')"/>
+      <ValidValue name="H_Q" value="3" description="Persistent and non-persistent orders affected (FIX value 'H Q')"/>
+      <ValidValue name="H_6" value="5" description="Persistent and Book or Cancel order (FIX value 'H 6')"/>
+      <ValidValue name="Q_6" value="6" description="Non-persistent and Book or Cancel order (FIX value 'Q 6')"/>
+    </DataType>
+    <DataType name="ExecType" type="char" rootType="String" numericID="150" package="edci_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00">
+      <ValidValue name="New" value="0" description="New"/>
+      <ValidValue name="Canceled" value="4" description="Cancelled"/>
+      <ValidValue name="Replaced" value="5" description="Replaced"/>
+      <ValidValue name="Pending_Cancel_e" value="6" description="Pending Cancel (e.g. result of Order Cancel Request)"/>
+      <ValidValue name="Suspended" value="9" description="Suspended"/>
+      <ValidValue name="Restated" value="D" description="Restated"/>
+      <ValidValue name="Triggered" value="L" description="Triggered"/>
+      <ValidValue name="Trade" value="F" description="Trade"/>
+    </DataType>
+    <DataType name="ExecutingTrader" type="int" rootType="int" numericID="25123" package="edci_Derivatives" size="8" description="" minValue="1" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="ExecutingTraderQualifier" type="int" rootType="int" numericID="25124" package="edci_Derivatives" size="1" description="" minValue="22" maxValue="24" noValue="0xFF">
+      <ValidValue name="Algo" value="22" description="Algo"/>
+      <ValidValue name="Human" value="24" description="Human/Natural person"/>
+    </DataType>
+    <DataType name="ExpireDate" type="LocalMktDate" rootType="int" numericID="432" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="99991231" noValue="0xFFFFFFFF"/>
+    <DataType name="FIXClOrdID" type="String" rootType="String" numericID="30011" package="edci_Derivatives" size="20" description="" range="\x20-\x7E" noValue="0x00"/>
+    <DataType name="FIXOrigClOrdID" type="String" rootType="String" numericID="30041" package="edci_Derivatives" size="20" description="" range="\x20-\x7E" noValue="0x00"/>
+    <DataType name="FillExecID" type="int" rootType="int" numericID="1363" package="edci_Derivatives" size="4" description="" minValue="-2147483647" maxValue="2147483647" noValue="0x80000000"/>
+    <DataType name="FillMatchID" type="int" rootType="int" numericID="28708" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="FillPx" type="PriceType" rootType="floatDecimal" numericID="1364" package="edci_Derivatives" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
+    <DataType name="FillQty" type="Qty" rootType="floatDecimal" numericID="1365" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="FreeText1" type="Freetext" rootType="String" numericID="25007" package="edci_Derivatives" size="12" description="" range="\x20,\x23-\x25,\x28-\x2A,\x2C-\x3B,\x3F,\x41-\x5F,\x61-\x7B,\x7D,\x7E" noValue="0x00"/>
+    <DataType name="FreeText2" type="Freetext" rootType="String" numericID="25008" package="edci_Derivatives" size="12" description="" range="\x20,\x23-\x25,\x28-\x2A,\x2C-\x3B,\x3F,\x41-\x5F,\x61-\x7B,\x7D,\x7E" noValue="0x00"/>
+    <DataType name="FreeText3" type="Freetext" rootType="String" numericID="25009" package="edci_Derivatives" size="12" description="" range="\x20,\x23-\x25,\x28-\x2A,\x2C-\x3B,\x3F,\x41-\x5F,\x61-\x7B,\x7D,\x7E" noValue="0x00"/>
+    <DataType name="HeartBtInt" type="int" rootType="int" numericID="108" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="LastFragment" type="int" rootType="int" numericID="893" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="1" noValue="0xFF">
+      <ValidValue name="Not_Last_Message" value="0" description="Not Last Message"/>
+      <ValidValue name="Last_Message" value="1" description="Last Message"/>
+    </DataType>
+    <DataType name="LeavesQty" type="Qty" rootType="floatDecimal" numericID="151" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="MarketID" type="int" rootType="int" numericID="1301" package="edci_Derivatives" size="2" description="" minValue="1" maxValue="255" noValue="0xFFFF">
+      <ValidValue name="XEUR" value="1" description="XEUR"/>
+      <ValidValue name="XEEE" value="2" description="XEEE"/>
+    </DataType>
+    <DataType name="MarketSegmentID" type="int" rootType="int" numericID="1300" package="edci_Derivatives" size="4" description="" minValue="-2147483647" maxValue="2147483647" noValue="0x80000000"/>
+    <DataType name="MatchType" type="int" rootType="int" numericID="574" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="15" noValue="0xFF">
+      <ValidValue name="Auto_match_incoming" value="4" description="Auto-match incoming order"/>
+      <ValidValue name="Cross_Auction" value="5" description="Cross Auction"/>
+      <ValidValue name="Call_Auction" value="7" description="Call Auction"/>
+      <ValidValue name="Auto_match_resting" value="11" description="Auto match resting order"/>
+      <ValidValue name="Liquidity_Improvement_Cross" value="13" description="Liquidity Improvement Cross"/>
+    </DataType>
+    <DataType name="MsgSeqNum" type="int" rootType="int" numericID="34" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="MsgType" type="String" rootType="String" numericID="35" package="edci_Derivatives" size="3" description="" range="\x01-\x7E" noValue="0x00">
+      <ValidValue name="Heartbeat" value="0" description="Heartbeat"/>
+      <ValidValue name="Reject" value="3" description="Reject"/>
+      <ValidValue name="Logout" value="5" description="Logout"/>
+      <ValidValue name="ExecutionReport" value="8" description="Execution Report"/>
+      <ValidValue name="Logon" value="A" description="Logon"/>
+      <ValidValue name="OrderMassActionReport" value="BZ" description="Order Mass Action Report"/>
+      <ValidValue name="TradingSessionStatus" value="h" description="Trading Session Status"/>
+      <ValidValue name="ApplicationMessageReport" value="BY" description="Application Message Report"/>
+      <ValidValue name="SessionDetailsListResponse" value="U6" description="Session Details List Response"/>
+      <ValidValue name="PartitionListReport" value="U10" description="Partition List Report"/>
+    </DataType>
+    <DataType name="NoAffectedOrders" type="Counter" rootType="int" numericID="1370" package="edci_Derivatives" size="2" description="" minValue="0" maxValue="500" noValue="0xFFFF"/>
+    <DataType name="NoFills" type="Counter" rootType="int" numericID="1362" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="100" noValue="0xFF"/>
+    <DataType name="NoPartitions" type="Counter" rootType="int" numericID="28735" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="100" noValue="0xFF"/>
+    <DataType name="NoSessions" type="Counter" rootType="int" numericID="28734" package="edci_Derivatives" size="2" description="" minValue="1" maxValue="1000" noValue="0xFFFF"/>
+    <DataType name="OrdStatus" type="char" rootType="String" numericID="39" package="edci_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00">
+      <ValidValue name="New" value="0" description="New"/>
+      <ValidValue name="Partially_filled" value="1" description="Partially filled"/>
+      <ValidValue name="Filled" value="2" description="Filled"/>
+      <ValidValue name="Canceled" value="4" description="Cancelled"/>
+      <ValidValue name="Pending_Cancel" value="6" description="Pending Cancel (i.e. result of Order Cancel Request)"/>
+      <ValidValue name="Suspended" value="9" description="Suspended"/>
+    </DataType>
+    <DataType name="OrdType" type="int" rootType="int" numericID="40" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="4" noValue="0xFF">
+      <ValidValue name="Market" value="1" description="Market"/>
+      <ValidValue name="Limit" value="2" description="Limit"/>
+      <ValidValue name="Stop" value="3" description="Stop"/>
+      <ValidValue name="Stop_Limit" value="4" description="Stop Limit"/>
+    </DataType>
+    <DataType name="OrderID" type="int" rootType="int" numericID="37" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="OrderQty" type="Qty" rootType="floatDecimal" numericID="38" package="edci_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
+    <DataType name="OrigClOrdID" type="int" rootType="int" numericID="41" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="Pad1" type="String" rootType="String" numericID="39000" package="edci_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad2" type="String" rootType="String" numericID="39020" package="edci_Derivatives" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad3" type="String" rootType="String" numericID="39030" package="edci_Derivatives" size="3" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad4" type="String" rootType="String" numericID="39040" package="edci_Derivatives" size="4" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad4_1" type="String" rootType="String" numericID="39041" package="edci_Derivatives" size="4" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad4_2" type="String" rootType="String" numericID="39042" package="edci_Derivatives" size="4" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad4_3" type="String" rootType="String" numericID="39043" package="edci_Derivatives" size="4" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad5" type="String" rootType="String" numericID="39050" package="edci_Derivatives" size="5" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad6" type="String" rootType="String" numericID="39060" package="edci_Derivatives" size="6" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad7" type="String" rootType="String" numericID="39070" package="edci_Derivatives" size="7" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="PartitionID" type="int" rootType="int" numericID="5948" package="edci_Derivatives" size="2" description="" minValue="0" maxValue="65534" noValue="0xFFFF"/>
+    <DataType name="PartyEndClientIdentification" type="String" rootType="String" numericID="25241" package="edci_Derivatives" size="20" description="" range="A-Z,0-9,\x20,\x5F" noValue="0x00"/>
+    <DataType name="PartyExecutingFirm" type="AlphaNumeric" rootType="String" numericID="22001" package="edci_Derivatives" size="5" description="" range="A-Z,0-9,\x20" noValue="0x00"/>
+    <DataType name="PartyIDClientID" type="int" rootType="int" numericID="20003" package="edci_Derivatives" size="8" description="" minValue="1" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="PartyIDExecutingTrader" type="int" rootType="int" numericID="20012" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="PartyIDExecutingUnit" type="int" rootType="int" numericID="20059" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="PartyIDSessionID" type="int" rootType="int" numericID="20055" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="PartyIdInvestmentDecisionMaker" type="int" rootType="int" numericID="20122" package="edci_Derivatives" size="8" description="" minValue="1" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="PartyIdInvestmentDecisionMakerQualifier" type="int" rootType="int" numericID="21222" package="edci_Derivatives" size="1" description="" minValue="22" maxValue="24" noValue="0xFF">
+      <ValidValue name="Algo" value="22" description="Algo"/>
+      <ValidValue name="Human" value="24" description="Human/Natural person"/>
+    </DataType>
+    <DataType name="Password" type="String" rootType="String" numericID="554" package="edci_Derivatives" size="32" isTerminable="true" description="" range="0-9,A-Z,a-z,\x21,\x23,\x24,\x25,\x26,\x2A,\x2B,\x2D,\x2F,\x3D,\x40,\x5F" noValue="0x00"/>
+    <DataType name="Price" type="PriceType" rootType="floatDecimal" numericID="44" package="edci_Derivatives" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
+    <DataType name="ProductComplex" type="int" rootType="int" numericID="1227" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="13" noValue="0xFF">
+      <ValidValue name="simple_instrument" value="1" description="Simple instrument"/>
+      <ValidValue name="standard_option_strategy" value="2" description="Standard Option Strategy"/>
+      <ValidValue name="non_standard_option_strategy" value="3" description="Non-Standard Option Strategy"/>
+      <ValidValue name="volatility_strategy" value="4" description="Volatility Strategy"/>
+      <ValidValue name="futures_Spread" value="5" description="Futures Spread"/>
+      <ValidValue name="inter_product_spread" value="6" description="Inter-Product Spread"/>
+      <ValidValue name="standard_future_strategy" value="7" description="Standard Future Strategy"/>
+      <ValidValue name="pack_and_bundle" value="8" description="Pack and Bundle"/>
+      <ValidValue name="strip" value="9" description="Strip"/>
+      <ValidValue name="non_standard_volatility_strategy" value="13" description="Non-Standard Volatility Strategy"/>
+    </DataType>
+    <DataType name="RequestTime" type="UTCTimestamp" rootType="int" numericID="5979" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="SecurityID" type="int" rootType="int" numericID="48" package="edci_Derivatives" size="8" description="" minValue="-9223372036854775807" maxValue="9223372036854775807" noValue="0x8000000000000000"/>
+    <DataType name="SendingTime" type="UTCTimestamp" rootType="int" numericID="52" package="edci_Derivatives" size="8" description="" minValue="0" maxValue="18446744073709551614" noValue="0xFFFFFFFFFFFFFFFF"/>
+    <DataType name="SessionInstanceID" type="int" rootType="int" numericID="25004" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
+    <DataType name="SessionMode" type="int" rootType="int" numericID="28730" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="4" noValue="0xFF">
+      <ValidValue name="ETI_HF" value="1" description="ETI HF"/>
+      <ValidValue name="ETI_LF" value="2" description="ETI LF"/>
+      <ValidValue name="GUI" value="3" description="GUI"/>
+      <ValidValue name="FIX_LF" value="4" description="FIX LF"/>
+    </DataType>
+    <DataType name="SessionRejectReason" type="int" rootType="int" numericID="373" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF">
+      <ValidValue name="Required_Tag_Missing" value="1" description="Required Tag Missing"/>
+      <ValidValue name="Value_is_incorrect" value="5" description="Value is incorrect (out of range) for this tag"/>
+      <ValidValue name="Decryption_problem" value="7" description="Decoding problem"/>
+      <ValidValue name="Invalid_MsgID" value="11" description="Invalid TemplateID"/>
+      <ValidValue name="Incorrect_NumInGroup_count" value="16" description="Incorrect NumInGroup count for repeating group"/>
+      <ValidValue name="Other" value="99" description="Other"/>
+      <ValidValue name="Exposure_Limit_Exceeded" value="101" description="Stale request was not forwarded to T7"/>
+      <ValidValue name="Service_Not_Available" value="103" description="Service not available"/>
+      <ValidValue name="Outbound_conversion_error" value="105" description="Error converting response or broadcast"/>
+      <ValidValue name="Heartbeat_Violation" value="152" description="Heartbeat violation error"/>
+      <ValidValue name="Internal_technical_error" value="200" description="Internal technical error"/>
+      <ValidValue name="Validation_Error" value="210" description="Validation Error"/>
+      <ValidValue name="Session_Login_Limit_Reached" value="217" description="Session login limit (per time interval) reached"/>
+      <ValidValue name="Outstanding_Logins_Bu_Limit_Reached" value="226" description="Limit of outstanding session/user logins reached (per Business Unit)"/>
+      <ValidValue name="Outstanding_Logins_Session_Limit_Reached" value="227" description="Limit of outstanding session/user logins reached (per Session)"/>
+    </DataType>
+    <DataType name="SessionStatus" type="int" rootType="int" numericID="1409" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="4" noValue="0xFF">
+      <ValidValue name="Active" value="0" description="Session active"/>
+      <ValidValue name="Logout" value="4" description="Session logout complete"/>
+    </DataType>
+    <DataType name="Side" type="int" rootType="int" numericID="54" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="2" noValue="0xFF">
+      <ValidValue name="Buy" value="1" description="Buy"/>
+      <ValidValue name="Sell" value="2" description="Sell"/>
+    </DataType>
+    <DataType name="StopPx" type="PriceType" rootType="floatDecimal" numericID="99" package="edci_Derivatives" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
+    <DataType name="TemplateID" type="int" rootType="int" numericID="28500" package="edci_Derivatives" size="2" description="" minValue="0" maxValue="65534" noValue="0xFFFF"/>
+    <DataType name="TimeInForce" type="int" rootType="int" numericID="59" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="6" noValue="0xFF">
+      <ValidValue name="Day" value="0" description="Day (GFD)"/>
+      <ValidValue name="GTC" value="1" description="Good Till Cancelled (GTC) - Standard Orders only"/>
+      <ValidValue name="IOC" value="3" description="Immediate or Cancel (IOC)"/>
+      <ValidValue name="FOK" value="4" description="Fill Or Kill (FOK)"/>
+      <ValidValue name="GTD" value="6" description="Good Till Date (GTD) - Standard Orders only"/>
+    </DataType>
+    <DataType name="TradSesEvent" type="int" rootType="int" numericID="1368" package="edci_Derivatives" size="1" description="" minValue="103" maxValue="109" noValue="0xFF">
+      <ValidValue name="End_of_Restatement" value="103" description="End of Restatement"/>
+      <ValidValue name="End_of_Day_Service" value="104" description="End of Service"/>
+      <ValidValue name="End_of_Order_book_synch" value="107" description="End of Order book synchronization"/>
+      <ValidValue name="Start_of_Order_book_synch" value="108" description="Start of Order book synchronization"/>
+      <ValidValue name="Order_book_reset" value="109" description="Order book reset"/>
+    </DataType>
+    <DataType name="TradSesMode" type="int" rootType="int" numericID="339" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="5" noValue="0xFF">
+      <ValidValue name="Testing" value="1" description="Development"/>
+      <ValidValue name="Simulated" value="2" description="Simulation"/>
+      <ValidValue name="Production" value="3" description="Production"/>
+      <ValidValue name="Acceptance" value="4" description="Acceptance"/>
+      <ValidValue name="Disaster_Recovery" value="5" description="Disaster Recovery"/>
+    </DataType>
+    <DataType name="TradeDate" type="LocalMktDate" rootType="int" numericID="75" package="edci_Derivatives" size="4" description="" minValue="0" maxValue="99991231" noValue="0xFFFFFFFF"/>
+    <DataType name="TradingCapacity" type="int" rootType="int" numericID="1815" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="6" noValue="0xFF">
+      <ValidValue name="Customer" value="1" description="Customer (Agency)"/>
+      <ValidValue name="Principal" value="5" description="Principal (Proprietary)"/>
+      <ValidValue name="Market_Maker" value="6" description="Market Maker"/>
+    </DataType>
+    <DataType name="TradingSessionSubID" type="int" rootType="int" numericID="625" package="edci_Derivatives" size="1" description="" minValue="1" maxValue="8" noValue="0xFF">
+      <ValidValue name="Opening_auction" value="2" description="Opening or opening auction"/>
+      <ValidValue name="Closing_auction" value="4" description="Closing or closing auction"/>
+      <ValidValue name="Any_Auction" value="8" description="Any auction"/>
+    </DataType>
+    <DataType name="Triggered" type="int" rootType="int" numericID="1823" package="edci_Derivatives" size="1" description="" minValue="0" maxValue="2" noValue="0xFF">
+      <ValidValue name="Not_triggered" value="0" description=""/>
+      <ValidValue name="Triggered_Stop" value="1" description=""/>
+      <ValidValue name="Triggered_OCO" value="2" description=""/>
+    </DataType>
+    <DataType name="VarText" type="String" rootType="String" numericID="30355" package="edci_Derivatives" size="2000" variableSize="true" counter="VarTextLen" description="" range="\x09,\x0A,\x0D,\x20-\x7B,\x7D,\x7E"/>
+    <DataType name="VarTextLen" type="Counter" rootType="int" numericID="30354" package="edci_Derivatives" size="2" description="" minValue="0" maxValue="2000" noValue="0xFFFF"/>
+  </DataTypes>
+</Model>
