@@ -16,4 +16,4 @@ Machine generated Omi code has a provable origin, however, we recognize that som
 
 ## Copyrighted Source Generation Technology
 
-Rights to modular protocol code generation technologies remain with Omi.  Each model is 'quarantined' as a separate platform plugin project.  Legally this restricts any copyright leakage across models. 
+Rights to modular binary protocol code generation technologies remain with patent holders.  Each source generation model (ie C++, lua dissectors, etc) is 'quarantined' as a separate platform plugin and executable.  Legally these should be treated as separate programs. 
