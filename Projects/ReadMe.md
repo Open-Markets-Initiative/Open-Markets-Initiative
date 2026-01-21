@@ -1,5 +1,3 @@
-# Omi Repositories
-
 [![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/master/About)
 
 Index of Repositories for [The Open Markets Initiative](https://github.com/Open-Markets-Initiative/Directory/tree/main/About "About Omi")
@@ -24,6 +22,6 @@ Index of Repositories for [The Open Markets Initiative](https://github.com/Open-
 
 ## Source Generation and Monitoring Repositories
 
-[Fix Generators:](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators "Composable Fix Source Generators") Composable tools for latency Measurement
+[FIX Generators:](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators "Composable Fix Source Generators") Composable tools for FIX code generation
 
 [Latency Lab:](https://github.com/Open-Markets-Initiative/latency-lab "Composable tools for latency Measurement") Composable tools for latency Measurement
