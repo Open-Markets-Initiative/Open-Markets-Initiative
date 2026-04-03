@@ -1,3 +1,5 @@
+[![Memx](https://github.com/Open-Markets-Initiative/Directory/blob/main/Organizations/Memx/Images/Logo.png)](https://www.memx.com)
+
 ## The Members Exchange (MEMX)
 
 The Members Exchange is an independently owned, technology-driven stock exchange founded by members to serve the interest of its founders and their collective client base. The founding members, which include nine major financial organizations, claim they seek to transform markets around the goals of transparency, innovation, and competition in order to align exchange services with the interests of market participants.
