@@ -6,7 +6,7 @@ Proprietary binary protocol developed by Nasdaq and licensed to many exchanges a
 
 ITCH is a direct data-feed protocol designed for high-performance market data delivery. It provides a full order-by-order view of the order book, enabling subscribers to reconstruct the complete state of the market at any point in time. Each message reflects an individual order event such as an add, modify, cancel, or execution, offering the highest granularity of market data available from ITCH-based venues.
 
-Originally developed by Nasdaq for its US equity exchanges, ITCH has been widely licensed and adopted by exchanges globally including ASX, Japannext, Cboe FX, and others. The protocol is typically paired with OUCH for order entry and transported over MoldUDP or SoupBinTCP session layers depending on the delivery mechanism.
+Originally developed by Nasdaq for its US equity exchanges, ITCH has been widely licensed and adopted by exchanges globally including ASX, Japannext, Cboe FX, Odx, and others. The protocol is typically paired with OUCH for order entry and transported over MoldUDP or SoupBinTCP session layers depending on the delivery mechanism.
 
 ### Transport
 
