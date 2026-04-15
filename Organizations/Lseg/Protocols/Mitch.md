@@ -1,22 +1,23 @@
-## Mitch: Lseg Millennium Itch Level 2
+## Mitch: Lseg Millennium Exchange Order Book Market Data
 
-Market data protocol for disseminating Level 2 order book and trade data from Lseg venues, predecessor to the Group Ticker Plant.
+Millennium Itch-based binary market data feed publishing order by order events and trade messages for securities traded on the London Stock Exchange Millennium Exchange platform.
 
 ### Overview
 
-Mitch is Lseg's Millennium Itch protocol, a binary market data feed that provided Level 2 order-by-order data for the London Stock Exchange and Turquoise venues. The protocol delivers individual order add, modify, delete, and execution messages, enabling subscribers to reconstruct the complete order book at full depth for all traded instruments. Mitch was part of Lseg's Millennium Exchange technology platform.
+Mitch is the Millennium Itch market data protocol used by the London Stock Exchange Group (Lseg) to distribute real-time order book and trade data for securities traded on the Millennium Exchange platform. The feed delivers order add, modify, execute, and delete events along with trade messages, enabling subscribers to reconstruct the full order book for every listed instrument.
 
-Mitch served as the primary Level 2 market data protocol before the introduction of the Group Ticker Plant (Gtp) as Lseg's unified data platform. The protocol carries reference data, trading status, order book events, trade reports, and auction information through a sequential binary message stream. Mitch shares architectural similarities with other Itch-family protocols used across global exchange venues.
+Messages are delivered as fixed-width binary messages over MoldUdp64 multicast, with complementary Tcp replay and snapshot services for gap recovery and mid-day initialisation. The wire format is a Millennium variant of the Nasdaq Itch protocol tailored for the Lseg product set and trading conventions.
 
 ### Transport
 
-Tcp with a session layer providing connection management, sequencing, and recovery. Messages are delivered as a sequential stream with sequence numbers for ordering and gap detection. Recovery services support retransmission of missed messages.
+Udp multicast carrying Mitch binary messages over MoldUdp64 framing for real-time delivery of order book and trade events with per-packet sequence numbers for gap detection. Tcp to the Millennium replay and snapshot services for recovery of messages missed on the multicast feed and initialisation of book state.
 
 ### Key Characteristics
 
-- **Order-by-order data** - Individual order add, modify, delete, and execution messages
-- **Full book depth** - Complete order book reconstruction from order-level events
-- **Millennium platform** - Part of Lseg's Millennium Exchange technology stack
-- **Binary encoded** - Fixed-format binary messages for efficient low-latency parsing
-- **Predecessor to Gtp** - Original Level 2 feed before Group Ticker Plant unification
-- **Itch family** - Shares architectural lineage with other Itch-variant protocols
+- **Millennium Exchange** - Native market data for the Lseg Millennium platform
+- **Itch derived** - Millennium variant of the Nasdaq Itch protocol family
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Order-by-order** - Add, modify, execute, and delete events for each order
+- **Snapshot and replay** - Tcp recovery services for mid-day startup and gap fill
+- **Binary encoded** - Fixed-width compact binary messages for low latency processing
+

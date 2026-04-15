@@ -1,22 +1,22 @@
-## BrokerTec: Cme BrokerTec Us Treasury Market Data
+## Broker Tec: Cme BrokerTec Fixed Income Order Entry
 
-Sbe-encoded market data feed for BrokerTec Us Treasury fixed income trading on the Cme Globex platform.
+Binary order entry protocol for submitting orders on the Cme BrokerTec fixed income electronic trading venue.
 
 ### Overview
 
-The Cme BrokerTec Ust feed delivers real-time market data for Us Treasury securities traded on the BrokerTec platform, which Cme Group acquired from Nex Group in 2018. The feed provides depth of book (bids and offers), trade reports, and reference data for on-the-run and off-the-run Treasury benchmarks.
+BrokerTec is the Cme fixed income electronic trading venue covering US Treasuries, European repos, and European government bonds. The BrokerTec order entry protocol provides members with a binary session-based interface to submit, modify, and cancel orders against the fixed income order book.
 
-Messages include MdIncrementalRefreshBtec with fields for price, size, price level, traded volume, symbol, maturity date, Cusip, coupon rate, and trade condition (hit/take). The protocol uses the same Sbe encoding framework as other Cme market data feeds.
+The protocol is distinct from the Cme Globex iLink 3 interface, reflecting the fixed income trading workflow and the specific order types available on the BrokerTec venue.
 
 ### Transport
 
-Udp multicast with Sbe-encoded messages. Same packet structure and dual-feed architecture as Mdp 3.0.
+Tcp for persistent authenticated BrokerTec sessions carrying order entry, modification, cancellation, and execution report messages for fixed income instruments.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields with little-endian byte ordering
-- **Fixed income focused** - Us Treasury securities with Cusip, maturity date, and coupon rate fields
-- **Depth of book** - Bid, offer, and trade entries with price level information
-- **Trade conditions** - Hit (H) and Take (T) trade condition indicators
-- **Yield pricing** - Price type field supporting yield-based pricing
-- **Nanosecond timestamps** - Transaction time in nanoseconds since Unix epoch
+- **Fixed income** - US Treasuries, European repos, European government bonds
+- **BrokerTec venue** - Cme fixed income electronic trading platform
+- **Session based** - Persistent authenticated Tcp session per member
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Binary encoded** - Compact fixed-width messages for low latency
+

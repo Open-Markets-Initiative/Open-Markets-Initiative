@@ -1,20 +1,23 @@
-## Cboe Bzx Options Complex Depth Of Book
+## BzxOptions Complex Depth Of Book: Cboe BZX Options Complex Strategy Full Depth Of Book
 
-Pitch multicast feed providing order-level depth of book for complex multi-leg options strategies on Cboe Bzx Options Exchange.
+Full depth of book feed for complex multi-leg options strategies traded on Cboe BZX Options Exchange.
 
 ### Overview
 
-Options Complex Depth Of Book delivers real-time order-by-order market data for complex options strategies traded on Cboe Bzx Options Exchange. The feed shows individual order activity for user-defined and exchange-defined multi-leg strategy combinations, enabling full book reconstruction for complex instruments.
+Complex Depth Of Book is the full depth of book market data feed for the complex order book on Cboe BZX Options Exchange. It publishes order-by-order events for multi-leg options strategies, enabling subscribers to reconstruct the complete complex order book including spreads, straddles, and combinations.
 
-The feed includes strategy definition messages identifying the component legs, ratios, and sides of each complex instrument. Subscribers can track order and execution activity on the complex order book independently from the individual series feeds.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy. Strategy definitions, trade reports, and auction events for the complex book are carried alongside the order events, and a Tcp gap request proxy service provides replay for missed multicast messages.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Complex strategy depth** - Full order-level book for multi-leg options strategies
-- **Strategy definitions** - Component leg, ratio, and side information for each complex instrument
-- **Order-level detail** - Individual order add, modify, and cancel messages
-- **Execution reporting** - Trade messages for complex strategy executions
+- **Full complex depth** - Order-by-order events for multi-leg strategies
+- **Strategy definitions** - Complex instrument definitions published on the feed
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Complex auctions** - Auction messages for the complex order book
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

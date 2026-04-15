@@ -1,22 +1,23 @@
-## Memo: Memx Order Entry
+## Memo: Memx Sbe Order Entry
 
-Sbe-encoded binary order entry protocol for submitting and managing orders on Memx equities and options markets.
+Binary order entry protocol used by members to submit orders to the Members Exchange equities and options markets over an Sbe-encoded subset of Fix 5.0 SP2.
 
 ### Overview
 
-Memo is the Memx order entry protocol for trading equities and options on the Members Exchange. It provides a low-latency binary interface using Simple Binary Encoding (Sbe) for order submission, modification, cancellation, and execution reporting. The protocol supports a full range of order types and time-in-force instructions for both equity and options instruments.
+Memo is the Memx order entry protocol for trading equities and options on the Members Exchange (Memx). The wire format is a sequenced messaging protocol using fixed width binary messages encoded as a subset of Fix 5.0 SP2 tags and messages via Simple Binary Encoding, providing members with a low-latency interface for submitting, modifying, and cancelling orders across both asset classes.
 
-The protocol delivers deterministic message layouts with fixed-position fields, enabling efficient zero-copy parsing at the client. Memo handles the complete order lifecycle from new order submission through fill notification, including partial fills, order rejects, cancel confirmations, and replace acknowledgments. Risk checks are applied inline during order processing.
+Messages are transported over the Memx-Tcp streaming channel which provides reliable ordered delivery between clients and servers. Memo carries the complete order lifecycle including new order submission, modification, cancellation, execution reports, fills, and rejects, with risk checks applied inline during order processing before the order reaches the matching engine.
 
 ### Transport
 
-Tcp to Memx matching engine gateways. Sessions are established using the Memx common header framework with sequenced message delivery and heartbeat-based keepalive.
+Tcp via the Memx-Tcp streaming channel for reliable ordered delivery of order entry, modification, cancellation, and execution report messages between the client and the exchange.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Equities and options** - Unified order entry for both asset classes
-- **Full order lifecycle** - New, replace, cancel, fill, and reject messages
-- **Low latency** - Optimized binary encoding for high-frequency order flow
+- **Sbe encoded** - Simple Binary Encoding for fixed-width low-latency parsing
+- **Fix 5.0 SP2 subset** - Uses Fix standard tags and messages over a binary wire format
+- **Memx-Tcp streaming** - Reliable ordered delivery between clients and servers
+- **Full order lifecycle** - New, replace, cancel, execution report, fill, and reject messages
+- **Equities and options** - Unified order entry across Memx asset classes
 - **Inline risk checks** - Pre-trade risk validation applied during order processing
-- **Sequenced delivery** - Ordered message delivery with sequence number tracking
+

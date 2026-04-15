@@ -1,22 +1,24 @@
-## Ats: Otc Alternative Trading System Feed
+## Ats: Otc Markets Alternative Trading System Data Feed
 
-Multicast market data protocol providing real-time Ats trading information for Otc equity securities.
+Market data feed publishing quotations, trade reports, and security status events for Otc securities traded on the Otc Markets alternative trading system.
 
 ### Overview
 
-The Otc Ats feed is a multicast market data protocol delivering real-time trading activity from alternative trading systems for over-the-counter equity securities. The protocol disseminates quote and trade information for Otc-listed equities, providing visibility into Ats venues that trade Otc securities.
+Otc Ats is the market data feed for the Otc Markets alternative trading system, providing subscribers with real-time quotations, trade reports, and security status information for securities trading in the Otc market. The feed covers the full Otc universe including Pink, Otcqb, and Otcqx tiers.
 
-The feed provides subscribers with Ats-specific market data including best bid and offer quotes, trade executions, and volume statistics for Otc equities. This enables market participants to monitor Ats liquidity and trading activity in the Otc equity market alongside traditional Otc Markets quotation data.
+Messages are delivered as sequenced binary records over Ip multicast with a companion Tcp re-request service for gap recovery. The protocol supports quote update, trade report, administrative events such as trading halts, and reference data messages for each tradable security.
 
 ### Transport
 
-Udp multicast with sequenced packets for efficient one-to-many delivery of Ats market data.
+Udp multicast for real-time delivery of sequenced binary quote and trade messages with per-packet sequence numbers for gap detection. Tcp for the re-request service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Multicast delivery** - Udp multicast for efficient Ats data distribution
-- **Otc equities** - Market data for over-the-counter equity securities
-- **Ats coverage** - Trading activity from alternative trading systems
-- **Quote and trade data** - Best bid/offer quotes and trade execution reports
-- **Real-time feed** - Low-latency dissemination of Ats market activity
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
+- **Otc market data** - Quotes and trades for Otc Markets securities
+- **Multi-tier coverage** - Pink, Otcqb, and Otcqx tier securities
+- **Multicast delivery** - Real-time Udp multicast distribution of quote events
+- **Trade reports** - Last sale messages with price, size, and conditions
+- **Security status** - Trading halt and status notifications for listed securities
+- **Re-request service** - Tcp-based gap recovery for missed multicast messages
+- **Binary encoded** - Fixed-width compact binary message format
+

@@ -1,4 +1,4 @@
-## Rake: Txse Session and Framing Layer
+## Rake: Txse Session And Framing Layer
 
 Transport protocol providing session management and message framing for Txse order entry and market data protocols with Tcp and Udp variants.
 
@@ -20,3 +20,4 @@ Tcp for order entry sessions with connection management, authentication, and bid
 - **Session management** - Login, logout, and heartbeat for Tcp connections
 - **Gap detection** - Sequence number tracking for identifying missed messages
 - **Unified layer** - Common transport foundation for Seed and Feed protocols
+

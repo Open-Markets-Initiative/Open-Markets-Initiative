@@ -1,21 +1,23 @@
-## ESesM: Extended Session Management
+## ESes M: Miax Express Session Layer
 
-Extended Tcp session management protocol for Miax equities connections.
+Session management layer used by Miax binary protocols to establish authenticated sessions, exchange heartbeats, and recover sequence gaps across market data and order entry feeds.
 
 ### Overview
 
-ESesM is the Miax Extended Session Management protocol providing connection lifecycle management for Tcp-based equities trading sessions. The protocol handles session establishment, authentication, heartbeat monitoring, sequence synchronization, and graceful session termination for Miax Pearl Equities order entry connections.
+ESesM is the Miax Express Session Manager protocol, a shared session layer used across the Miax family of binary market data and order entry protocols. It handles session establishment, authentication, heartbeat monitoring, and sequence-based recovery over Tcp, providing a common framework that application-level feeds such as Top of Market and Express Orders build on.
 
-The protocol extends basic Tcp session management with enhanced capabilities for session recovery, sequence number negotiation, and connection state management. ESesM supports reconnection workflows that allow clients to resume sessions and resynchronize sequence numbers after network interruptions, reducing the operational impact of transient connectivity issues.
+The session layer defines login and logout message flows, periodic heartbeat exchanges for liveness detection, sequence number negotiation so that clients can resume after a transient disconnect, and gap fill request messages for replay of missing sequence ranges. By consolidating these concerns into a single reusable layer, Miax keeps the application-level protocols focused on their own message content.
 
 ### Transport
 
-Tcp session layer wrapping Miax equities order entry protocols. ESesM messages frame the outer session while business messages are carried as inner payloads.
+Tcp session layer carrying login, logout, heartbeat, sequence reset, and gap fill request messages shared across Miax Express market data and order entry interfaces.
 
 ### Key Characteristics
 
-- **Extended session management** - Enhanced session lifecycle beyond basic Tcp
-- **Authentication** - Session-level credential validation during establishment
-- **Heartbeat monitoring** - Bidirectional keepalive for connection health
-- **Sequence synchronization** - Sequence number negotiation on connect and reconnect
-- **Session recovery** - Reconnection with state resynchronization after interruption
+- **Shared session layer** - Used across Miax market data and order entry protocols
+- **Authentication** - Login and logout handshakes with credential checks
+- **Heartbeat** - Periodic keepalive exchanges for liveness detection
+- **Sequence recovery** - Sequence number negotiation and gap fill requests
+- **Binary encoded** - Compact fixed-width session messages
+- **Tcp delivered** - Session state carried over a persistent Tcp connection
+

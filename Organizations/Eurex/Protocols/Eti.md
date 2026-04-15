@@ -1,23 +1,23 @@
-## Eti: Enhanced Trading Interface
+## Eti: Eurex T7 Order Entry
 
-Binary order entry protocol for submitting and managing orders on the Eurex T7 trading platform for derivatives and cash equity instruments.
+Binary order entry interface for the Eurex T7 trading platform supporting order and quote submission for cash and derivatives markets.
 
 ### Overview
 
-Eti (Enhanced Trading Interface) is Deutsche Boerse's high-performance order entry protocol for the T7 trading platform, providing direct electronic access to Eurex derivatives and Xetra/Boerse Frankfurt cash equity markets. The protocol supports order submission, modification, cancellation, mass operations, and market maker quoting through a binary message format optimized for low-latency trading.
+Eti is the Eurex Enhanced Trading Interface, a binary session-based order entry protocol for the Eurex T7 trading platform. It is used by participants to submit, modify, and cancel orders and quotes across Eurex products including derivatives and cash markets hosted on the T7 infrastructure. The wire format is a compact fixed-width binary encoding tailored for low latency.
 
-Eti handles the full spectrum of T7 order management including standard orders, stop orders, trailing stops, iceberg orders, and complex instrument orders. Market makers use dedicated quote entry and mass quote messages for efficient two-sided pricing. The protocol supports pre-trade risk controls including transaction limits, maximum order quantity checks, and kill switch functionality. Session management provides authentication, throttling, and persistent order association across reconnections.
+The protocol defines session negotiation and logon handshakes, sequence number tracking for reliable delivery, recovery of unacknowledged messages after reconnection, and a rich set of application messages covering new orders, order modifications, mass quote submissions, execution reports, and trade captures. It is the primary order entry interface for listed derivatives across Eurex and the other markets running on the T7 platform.
 
 ### Transport
 
-Tcp connections to T7 trading gateways. Sessions are established with user authentication and session identifiers. Heartbeat monitoring maintains connection liveness. Message throttling enforces fair access and risk limits at the session level.
+Tcp for persistent authenticated sessions carrying order submission, modification, cancellation, quote entry, and execution report messages with sequence-numbered reliable delivery.
 
 ### Key Characteristics
 
-- **Binary encoded** - Compact fixed-format messages for low-latency order management
-- **T7 platform** - Order entry for Eurex derivatives and cash equity matching engines
-- **Market maker quoting** - Dedicated mass quote functionality for two-sided pricing
-- **Pre-trade risk controls** - Transaction limits, quantity checks, and kill switch
-- **Complex instruments** - Order entry for multi-leg strategies and user-defined instruments
-- **Session persistence** - Orders persist across session reconnections by default
-- **Mass operations** - Bulk cancellation by instrument, session, or user group
+- **T7 platform** - Native interface for the Eurex T7 trading system
+- **Order and quote entry** - Full message set for orders, quotes, and mass quotes
+- **Binary encoded** - Fixed-width compact binary messages for low latency
+- **Session based** - Persistent authenticated Tcp sessions with sequence tracking
+- **Reliable delivery** - Retransmission of unacknowledged messages after reconnection
+- **Derivatives and cash** - Unified order entry across Eurex asset classes on T7
+

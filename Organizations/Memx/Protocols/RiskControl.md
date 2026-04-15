@@ -1,22 +1,23 @@
-## Risk Control: Memx Options Risk Controls
+## Risk Control: Memx Pre Trade Risk Configuration
 
-Sbe-encoded protocol for managing pre-trade and post-trade risk controls on Memx options markets.
+Binary protocol used by risk administrators to configure and query pre-trade risk limits for clearing firms, sponsoring broker-dealers, and sponsored participants on the Members Exchange.
 
 ### Overview
 
-Risk Control is the Memx risk management protocol providing configurable risk limits and automated protective actions for options trading. The protocol uses Simple Binary Encoding (Sbe) to deliver risk parameter configuration, threshold monitoring, and kill switch functionality for options market participants.
+Memx Risk Control is the binary protocol used by clearing firms and sponsoring broker-dealers to manage pre-trade risk limits for their sponsored participants on the Members Exchange. The protocol allows administrators to set, update, and query limits on metrics such as notional exposure, order rate, and open position, with changes taking effect in real time against the matching engine risk checks.
 
-The protocol enables firms to set and manage risk thresholds including notional limits, contract limits, and rate controls for their options order flow. When configured thresholds are breached, the system can automatically cancel open orders and block new order submissions. Risk Control supports both self-imposed firm-level controls and exchange-imposed regulatory risk limits.
+The wire format uses Simple Binary Encoding consistent with the other Memx protocols, and the session is carried over an authenticated Tcp connection. Inline risk validation in the Memo order entry path uses the limits maintained through this interface, so updates propagate immediately to all subsequent order submissions from the impacted participants.
 
 ### Transport
 
-Tcp to Memx risk management gateways. Sessions use the Memx common header framework with sequenced message delivery.
+Tcp for authenticated risk administrator sessions carrying limit set, limit query, and limit update messages between the client and the Memx risk engine.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Options risk management** - Pre-trade and post-trade controls for options
-- **Configurable thresholds** - Notional, contract, and rate-based risk limits
-- **Kill switch** - Automated order cancellation on threshold breach
-- **Firm-level controls** - Self-imposed and exchange-imposed risk parameters
-- **Real-time monitoring** - Continuous risk exposure tracking and alerting
+- **Pre-trade risk** - Limit management for clearing firms and sponsored participants
+- **Sbe encoded** - Simple Binary Encoding consistent with other Memx protocols
+- **Real-time propagation** - Updates apply immediately to the matching engine risk checks
+- **Authenticated session** - Tcp session reserved for risk administrators
+- **Limit set and query** - Configure new limits and read current limits
+- **Integrated with Memo** - Same limits enforced by the inline risk checks on the order entry path
+

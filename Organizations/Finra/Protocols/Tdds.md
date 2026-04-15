@@ -1,22 +1,24 @@
-## Tdds: Finra Trade Data Dissemination Service
+## Tdds: Finra Orf Otc Equity Trade Dissemination
 
-Market data protocol for disseminating Otc equity trade reports from the Orf reporting facility in real time over MoldUdp64 multicast.
+Market data feed publishing real-time over-the-counter equity trade reports collected through the Finra Orf Over The Counter Reporting Facility for non-Nms securities.
 
 ### Overview
 
-Tdds is Finra's Trade Data Dissemination Service for distributing real-time trade information for Otc equity securities. The protocol carries trade reports originating from the Otc Reporting Facility (Orf), providing last sale data for Otc equities that do not trade on a listed exchange. Tdds delivers trade price, volume, and condition information to market data consumers.
+The Trade Data Dissemination Service (Tdds) is the Finra market data feed for over-the-counter equity transactions in securities that are not Nms stocks. Trade data is collected through the Finra Otc Reporting Facility (Orf) and then published in real time on the Tdds feed so that subscribers, vendors, and downstream systems can see the Otc equity tape as trades are reported.
 
-The service disseminates trade events as they are reported and validated, enabling market participants to track Otc equity transaction activity. Tdds supports trade corrections, cancellations, and as-of trades to maintain an accurate consolidated view of Otc equity market activity throughout the trading session.
+The feed uses the Data Feed Interface (Dfi) message format delivered over MoldUdp64 multicast for real-time distribution, with a companion Tcp re-request service for gap recovery. Trade submissions, cancellations, corrections, and administrative events are carried as fixed-width binary messages so that subscribers can reconstruct the complete Otc equity trade stream.
 
 ### Transport
 
-MoldUdp64 multicast. Messages are sequenced and delivered over Udp multicast with MoldUdp64 framing, providing session identification, sequence numbering, and message count per packet for gap detection and recovery.
+Udp multicast over MoldUdp64 carrying sequenced Data Feed Interface trade messages with per-packet sequence numbers for gap detection. Tcp for the re-request and snapshot services used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Otc equity trades** - Real-time dissemination of Otc Reporting Facility trade reports
-- **MoldUdp64 transport** - Sequenced multicast delivery with gap detection support
-- **Trade conditions** - Includes sale condition modifiers and settlement terms
-- **Corrections and cancellations** - Supports trade report amendments after initial publication
-- **Last sale data** - Provides price, volume, and timestamp for each reported trade
-- **As-of trades** - Handles late-reported trades with original execution timestamps
+- **Otc equity trades** - Trade reports for non-Nms securities trading over the counter
+- **Orf sourced** - Trades collected through the Finra Otc Reporting Facility
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Dfi encoded** - Finra Data Feed Interface binary message format
+- **Re-request service** - Tcp-based gap recovery for missed multicast messages
+- **Trade lifecycle** - Submission, cancellation, correction, and administrative events
+- **Regulated dissemination** - Operated by Finra under Sec-approved transparency rules
+

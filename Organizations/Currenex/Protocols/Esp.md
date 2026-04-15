@@ -1,22 +1,23 @@
-## Esp: Currenex Streaming Prices
+## Esp: Currenex Forex Executable Streaming Prices
 
-Binary market data protocol for streaming executable foreign exchange prices from Currenex using Cbp with Itch-based encoding.
+Itch-based market data protocol delivering executable streaming forex prices from Market Makers to Market Participants over low latency Tcp and Udp transports.
 
 ### Overview
 
-Esp (Electronic Streaming Prices) is Currenex's market data protocol for delivering real-time streaming Fx quotes from liquidity providers to consumers. The protocol is built on the Currenex Binary Protocol (Cbp) framework using an Itch-based message encoding, providing binary-efficient delivery of indicative and executable foreign exchange prices across supported currency pairs.
+Esp is the Currenex Executable Streaming Prices service, publishing foreign exchange executable prices from Market Makers to Market Participants who can then place orders against the prices received. The wire format uses a Currenex-specific subset of the Itch protocol optimized for forex streaming prices with compact fixed-width binary messages.
 
-Esp delivers continuous price updates showing bid and offer rates from multiple liquidity providers, enabling consumers to view and interact with live Fx pricing. The feed includes price depth, provider identification, and rate validity information. The Itch-based encoding provides a compact binary format familiar to participants already consuming Itch-family market data from other venues.
+The service is delivered over reliable high-speed physical networks such as Lan cross connects or metro area direct circuits and is not supported on the public internet or low-performance connections. Itch is supported on both Tcp for guaranteed delivery and Udp for low-latency datagram delivery on low-loss networks, with minimal differences between the two transports at the message level.
 
 ### Transport
 
-Tcp connections to Currenex Esp gateways. Sessions are established with authentication and maintained through heartbeat exchanges. Message sequencing supports reliable delivery and gap detection.
+Tcp for reliable delivery of Itch streaming price messages over low-latency physical networks such as Lan cross connects or metro area direct circuits. Udp for low-latency datagram delivery of Itch streaming price messages on low-loss networks, with per-packet sequence numbers for gap detection.
 
 ### Key Characteristics
 
-- **Cbp/Itch-based encoding** - Binary message format built on Currenex Binary Protocol with Itch conventions
-- **Streaming Fx prices** - Continuous executable bid and offer rates for currency pairs
-- **Multi-provider depth** - Quotes from multiple liquidity providers visible to consumers
-- **Rate validity** - Price freshness and validity indicators for execution decisions
-- **Spot Fx focus** - Primary coverage of spot foreign exchange currency pairs
-- **Low-latency delivery** - Binary encoding optimized for minimal processing overhead
+- **Forex executable streaming prices** - Real-time two-way prices for currency pairs
+- **Itch encoded** - Compact fixed-width binary message format
+- **Dual transport** - Tcp for reliability, Udp for low latency on controlled networks
+- **Market maker to participant** - Prices flow from liquidity providers to price takers
+- **Controlled delivery** - Dedicated physical networks, not public internet
+- **Low latency** - Designed for high-speed forex trading workloads
+

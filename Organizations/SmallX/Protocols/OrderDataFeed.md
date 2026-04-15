@@ -1,22 +1,22 @@
-## Order Data Feed: SmallX Market Data
+## Order Data Feed: SmallX Ats Order And Trade Data Feed
 
-Sbe-encoded order data feed providing real-time order and trade information for the SmallX exchange.
+Binary market data feed publishing order and trade events for securities traded on the SmallX alternative trading system.
 
 ### Overview
 
-The SmallX Order Data Feed is a market data protocol using Simple Binary Encoding (Sbe) to disseminate real-time order activity and trade executions on the SmallX exchange. The protocol delivers order book updates including new orders, modifications, cancellations, and trade executions, enabling subscribers to reconstruct the current state of the order book.
+SmallX Order Data Feed is the market data product for the SmallX alternative trading system, publishing real-time order and trade events for securities traded on the venue. The feed is designed for subscribers that need visibility into SmallX order flow and execution activity as it happens.
 
-The feed uses Sbe encoding with fixed-position, fixed-length fields for efficient parsing and low-latency processing. Messages carry order-level detail providing visibility into individual order events as they occur on the SmallX matching engine, supporting both market surveillance and trading applications.
+Messages are delivered as sequenced binary records over Ip multicast with fixed-width fields for low-latency processing. Subscribers receive order add, modify, delete, and execute events along with trade reports and system events so they can reconstruct the SmallX order book and trade stream.
 
 ### Transport
 
-Udp multicast with sequenced packets for efficient delivery of order data to subscribers.
+Udp multicast for real-time delivery of sequenced binary order and trade messages with per-packet sequence numbers for gap detection.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Order-level data** - Individual order events including adds, modifies, and deletes
-- **Trade executions** - Real-time execution reports with price and size
-- **Multicast delivery** - Udp multicast for efficient one-to-many distribution
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
-- **Schema versioned** - Sbe Xml templates define message layouts
+- **Order and trade feed** - Real-time order events and executed trade reports
+- **Ats market data** - Tailored for SmallX alternative trading system subscribers
+- **Multicast delivery** - Real-time Udp multicast distribution of the feed
+- **Binary encoded** - Fixed-width compact binary message format
+- **Sequence numbered** - Per-packet sequence numbers for gap detection
+

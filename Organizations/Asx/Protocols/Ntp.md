@@ -1,20 +1,25 @@
-## Ntp Itch: Asx Securities Market Data
+## Ntp: Asx Ntp Itch Market Data
 
-Ntp Itch market data feed for Asx securities on the National Trading Platform.
+High-speed binary market data protocol publishing real-time reference and trading data for securities traded on the Asx New Trading Platform via Ip multicast.
 
 ### Overview
 
-Ntp Itch is the binary market data protocol for the Asx National Trading Platform, disseminating real-time order book and trade data for equities, warrants, and related securities. The feed delivers order-by-order messages enabling subscribers to reconstruct the full depth of book.
+Ntp Itch is the Asx Market Data Protocol (Mdp) for the New Trading Platform, providing a high-speed binary market data service that distributes reference and trading data over Ip multicast. The protocol is built on Itch-style order-by-order events and delivers order add, modify, cancel, trade, and auction messages for all instruments traded on Asx Ntp.
 
-The protocol carries order add, modify, and delete events along with trade reports, instrument reference data, and trading status updates. Subscribers process the sequential message stream to maintain an accurate view of the Ntp order book throughout the trading session.
+The Mdp service consists of three complementary components. Multicast market data carries the real-time stream of reference and trading events. Blink is a Tcp recovery service that replays messages missed on the multicast feed. Glance is a Tcp snapshot service that provides on-demand full book snapshots so that subscribers can initialise state mid-day or after a gap.
 
 ### Transport
 
-Udp multicast with sequence numbers for gap detection and snapshot feeds for recovery.
+Udp multicast for real-time delivery of reference and trading data messages, carrying heartbeat-paced sequenced binary messages across the live market data feed. Tcp to the Blink recovery service for replay of missed multicast messages and to the Glance snapshot service for on-demand full book snapshots.
 
 ### Key Characteristics
 
-- **Order-by-order** - Individual order events for complete book reconstruction
-- **Full depth of book** - Every order visible at every price level
-- **Trade reporting** - Last sale data with trade condition indicators
-- **Binary encoded** - Compact fixed-length messages for efficient processing
+- **Order-by-order** - Full depth of book reconstruction from individual order events
+- **Multicast delivery** - Real-time Ip multicast distribution of the market data stream
+- **Blink recovery** - Tcp replay service for gap recovery of missed multicast messages
+- **Glance snapshot** - Tcp snapshot service for on-demand full book initialisation
+- **Reference data** - Security definition and trading status messages integrated with the feed
+- **Auction messages** - Equilibrium price update messages for auction events
+- **Heartbeat paced** - Periodic heartbeat messages on the multicast feed
+- **Binary encoded** - Compact fixed-width messages for low latency processing
+

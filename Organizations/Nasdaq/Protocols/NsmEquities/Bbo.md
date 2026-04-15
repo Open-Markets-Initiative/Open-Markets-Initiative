@@ -1,20 +1,23 @@
-## NsmEquities Bbo: Nasdaq Stock Market Best Bid And Offer
+## NsmEquities Bbo: Nasdaq Top Of Book Quotation Data
 
-Itch market data feed providing best bid and offer quotation updates for Nasdaq Stock Market securities.
+Top of book Itch-based market data feed publishing best bid and offer quotations for equities traded on Nasdaq Stock Market.
 
 ### Overview
 
-Bbo delivers top-of-book price and size updates for all Nsm-listed and Upa securities. The feed provides a simplified view compared to TotalView, reporting only the best bid and best offer rather than the full order book depth, making it suitable for subscribers who need current quote information without order-level detail.
+Bbo is the top of book market data feed for Nasdaq Stock Market, publishing best bid and best offer updates for every listed equity instrument. It is a lightweight alternative to the full TotalView depth feed, providing current quotations without the overhead of order-by-order events.
 
-The feed uses Itch binary encoding and shares the common Nsm reference data message set including stock directory, trading action, and system event messages. Quote updates reflect changes to the national best bid or offer for each security.
+Messages use the Nasdaq Itch binary format and are distributed over Ip multicast via MoldUdp64. A companion SoupBinTcp glimpse snapshot and retransmission service is available for gap recovery and mid-day initialisation.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Top-of-book** - Best bid and offer price and size only
-- **Lower bandwidth** - Reduced message volume compared to depth feeds
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
-- **Nanosecond timestamps** - High-resolution event timing
+- **Top of book** - Best bid and best offer for every listed instrument
+- **Nasdaq Itch** - Industry-standard Itch binary message format
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Glimpse snapshot** - Tcp snapshot service for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Lightweight** - Low bandwidth alternative to full depth of book
+

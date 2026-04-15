@@ -1,20 +1,20 @@
-## NsmEquities MatchView: Nasdaq Stock Market Match View
+## NsmEquities Match View: Nasdaq Nasdaq Executed Trade Feed
 
-Itch market data feed providing execution match details for Nasdaq Stock Market securities.
+Executed trade feed publishing matched trades from the Nasdaq Stock Market matching engine.
 
 ### Overview
 
-MatchView delivers detailed execution match information for trades on the Nasdaq Stock Market, including match identifiers, counterparty attribution, and execution quality metrics. The feed provides post-trade transparency beyond what is available in standard last sale reporting.
-
-The feed uses Itch binary encoding and reports execution details as matches are confirmed by the Nasdaq matching engine. MatchView is targeted at subscribers who need granular trade match data for execution analysis, best execution reporting, and post-trade analytics.
+MatchView is a Nasdaq market data feed for the Nasdaq Stock Market, delivered using the Nasdaq Itch binary protocol over MoldUdp64 multicast with SoupBinTcp glimpse and retransmission services for recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Match details** - Execution match identifiers and counterparty information
-- **Post-trade data** - Detailed execution quality and attribution
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
-- **Analytics focused** - Designed for execution analysis and best execution reporting
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Retransmission** - SoupBinTcp recovery for missed multicast
+- **Nasdaq Stock Market** - Coverage of Nasdaq listed securities
+

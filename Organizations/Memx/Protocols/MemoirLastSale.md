@@ -1,22 +1,24 @@
-## Memoir Last Sale: Memx Trade Feed
+## Memoir Last Sale: Memx Last Sale Trade Data
 
-Sbe-encoded market data protocol providing real-time trade reports for equities traded on Memx.
+Real-time trade feed reporting executions, cancellations, and corrections for securities and options traded on the Members Exchange.
 
 ### Overview
 
-Memoir Last Sale is the Memx trade reporting feed delivering real-time last sale information for equity instruments. The protocol uses Simple Binary Encoding (Sbe) to disseminate executed trade details including price, size, trade conditions, and timestamps for all transactions occurring on the Memx equities market.
+Memoir Last Sale is an event-based market data protocol that publishes trade activity for every instrument traded on the Members Exchange. The feed delivers trade report, trade cancellation, and trade correction events along with trading session state, enabling subscribers to consume a clean last-sale stream without needing full depth of book.
 
-The feed provides a dedicated stream of trade execution data separate from the order book feeds, enabling subscribers to monitor trading activity, calculate volume-weighted prices, and track market statistics without processing order book updates. Memoir Last Sale includes trade correction and cancellation messages for maintaining accurate trade records.
+Messages are encoded using the Fix Trading Community Simple Binary Encoding standard and distributed as a sequenced fixed-width stream over the Memx-Udp multicast channel. Gap fill replay is available over the Memx-Tcp channel for subscribers that miss packets or need to resynchronize. The protocol is unidirectional and cannot be used to submit orders.
 
 ### Transport
 
-Udp multicast with sequenced packets. Gap detection via sequence numbers for ensuring complete trade record delivery.
+Udp multicast via the Memx-Udp channel for real-time delivery of sequenced Sbe trade messages with per-message sequence numbers for gap detection. Tcp via the Memx-Tcp channel for gap fill replay when subscribers detect missed messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Equities trade feed** - Last sale reports for Memx equity instruments
-- **Trade conditions** - Sale condition indicators for each execution
-- **Trade corrections** - Correction and cancellation messages for trade adjustments
-- **Multicast delivery** - Udp multicast for efficient one-to-many distribution
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
+- **Last sale** - Executed trade stream with price, size, and condition codes
+- **Trade lifecycle** - Trade report, cancellation, and correction messages
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Udp multicast delivery** - Real-time publication over the Memx-Udp channel with sequence numbers
+- **Tcp gap fill** - Replay service over the Memx-Tcp channel for missed messages
+- **Trading session status** - Current state of the trading session included in the feed
+- **Unidirectional** - Market data only, cannot be used to enter orders
+

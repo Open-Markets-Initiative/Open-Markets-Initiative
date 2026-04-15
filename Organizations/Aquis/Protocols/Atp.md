@@ -1,21 +1,25 @@
-## Atp: Aquis Trading Protocol
+## Atp: Aquis Exchange Order Entry
 
-Binary order entry protocol for submitting and managing orders on the Aquis Exchange.
+Proprietary binary order entry protocol for efficient low-latency order submission and trading on Aquis Exchange.
 
 ### Overview
 
-Atp is the native binary order entry protocol for Aquis Exchange, providing electronic trading access for equities across Aquis European venues. The protocol supports order submission, modification, cancellation, and execution reporting with binary-encoded messages for efficient low-latency communication.
+Atp is the proprietary binary trading protocol developed by Aquis Exchange to provide efficient, streamlined, and low-latency order entry. It is the native interface for trading members submitting orders, modifications, and cancellations for equities listed on the Aquis platform.
 
-Atp provides a full order lifecycle management interface including support for various order types, time-in-force options, and execution instructions. The protocol handles session management with login, heartbeat, and sequencing to maintain reliable connectivity to Aquis matching engines.
+The protocol supports a rich set of trading features including order references, clearing configuration, cancel on disconnect, self-trade prevention, post-only orders and post-only cancel-replace variants, Market at Close handling, and order sweeps. Execution reports and order status updates are delivered on the same Tcp session that carries outbound orders.
 
 ### Transport
 
-Tcp to Aquis trading gateways. Sessions are established with authentication and maintained with heartbeat monitoring and bidirectional sequence number tracking.
+Tcp for persistent authenticated member sessions carrying order submission, modification, cancellation, and execution report messages with sequenced streaming delivery.
 
 ### Key Characteristics
 
-- **Binary encoded** - Efficient binary message format for low-latency order handling
-- **Full order lifecycle** - New order, modify, cancel, and execution report messages
-- **Session management** - Login, heartbeat, and sequence number synchronization
-- **Multiple order types** - Limit, market, and pegged order support
-- **Real-time execution reports** - Immediate acknowledgments and fill notifications
+- **Proprietary binary** - Custom low-latency wire format native to Aquis Exchange
+- **Full order lifecycle** - New, modify, cancel, execution report, and reject messages
+- **Cancel on disconnect** - Automatic order cancellation if the session drops
+- **Self-trade prevention** - Built-in protection against self-matching
+- **Post-only orders** - Non-aggressing order types with cancel-replace variants
+- **Market at Close** - Support for closing auction order types
+- **Order sweeps** - Grouped order actions for fast risk management
+- **Sequence numbered** - Bidirectional sequence numbers for reliable session recovery
+

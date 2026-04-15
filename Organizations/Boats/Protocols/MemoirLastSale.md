@@ -1,21 +1,24 @@
-## Memoir Last Sale: Boats Trade Data
+## Memoir Last Sale: Boats Last Sale Trade Data
 
-Sbe-encoded market data protocol providing last sale trade information for securities traded on Blue Ocean Ats.
+Real-time trade feed reporting executions, cancellations, and corrections for securities traded on Blue Ocean Ats.
 
 ### Overview
 
-Memoir Last Sale is the trade reporting market data protocol for Blue Ocean Ats (Boats), delivering real-time trade execution data including price, quantity, and trade condition indicators during overnight trading sessions. Built on the Memx technology platform, the protocol uses Simple Binary Encoding (Sbe) for efficient binary message encoding.
+Memoir Last Sale is an event-based market data protocol that publishes trade activity for every instrument traded on Blue Ocean Ats. The feed delivers trade reporting, trade cancellation, and trade correction events along with trading session state, enabling subscribers to consume a clean last-sale stream without needing full depth of book.
 
-The feed disseminates trade messages as executions occur, providing subscribers with timely last sale information for all listed instruments. Trade messages include relevant condition codes and indicators for regulatory reporting and downstream processing.
+Messages are encoded using the Fix Trading Community Simple Binary Encoding standard and distributed as a sequenced fixed-width stream over the Memx-Udp multicast channel. Gap fill replay is available over the Memx-Tcp channel for subscribers that miss packets or need to resynchronize. The protocol is unidirectional and cannot be used to submit orders.
 
 ### Transport
 
-Udp multicast. Trade messages are disseminated in real time on multicast groups with sequence numbers for gap detection and message ordering.
+Udp multicast via the Memx-Udp channel for real-time delivery of sequenced Sbe messages with per-message sequence numbers for gap detection. Tcp via the Memx-Tcp channel for gap fill replay when subscribers detect missed messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-length binary fields for efficient low-latency parsing
-- **Memx platform** - Built on proven Memx exchange technology
-- **Real-time trades** - Trade executions disseminated as they occur
-- **Trade conditions** - Condition codes and indicators included with each trade
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
+- **Last sale** - Executed trade stream with price, size, and condition codes
+- **Trade lifecycle** - Trade report, cancellation, and correction messages
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Udp multicast delivery** - Real-time publication over the Memx-Udp channel with sequence numbers
+- **Tcp gap fill** - Replay service over the Memx-Tcp channel for missed messages
+- **Trading session status** - Current state of the trading session included in the feed
+- **Unidirectional** - Market data only, cannot be used to enter orders
+

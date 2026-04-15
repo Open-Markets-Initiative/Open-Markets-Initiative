@@ -1,22 +1,23 @@
-## Edci: Enhanced Derivatives Clearing Interface
+## Edci: Eurex T7 Clearing Reference Data
 
-Binary market data protocol providing clearing-related data from the Eurex T7 platform for derivatives instruments.
+Clearing-oriented reference data and trade information interface for the Eurex T7 platform providing post-trade data for clearing members and risk systems.
 
 ### Overview
 
-Edci (Enhanced Derivatives Clearing Interface) is Deutsche Boerse's data interface for disseminating clearing-related information from the T7 platform. The protocol delivers real-time and end-of-day data relevant to the clearing lifecycle of derivatives instruments traded on Eurex, including settlement prices, margin parameters, position data, and clearing reference information.
+Edci is the Eurex Extended Derivatives Clearing Interface, a reference data and post-trade messaging channel for the T7 platform. It delivers clearing-relevant events including trade captures, instrument definitions, and position updates to clearing members, settlement systems, and post-trade risk infrastructure.
 
-Edci serves clearing members, risk managers, and back-office systems that require timely access to clearing-specific data beyond what standard market data feeds provide. The interface covers derivatives products cleared through Eurex Clearing, providing the data necessary for position management, margin calculation, and settlement processing within the T7 ecosystem.
+The protocol uses the T7 binary encoding to keep message processing efficient and consistent with the other T7 interfaces, while targeting the integration needs of the clearing and risk ecosystem rather than pre-trade market data consumption. It provides the authoritative view of executed trades and instrument reference data for downstream post-trade processing.
 
 ### Transport
 
-Tcp connections to T7 clearing data gateways. Session management provides authentication and sequenced message delivery for reliable data consumption.
+Tcp for authenticated sessions delivering trade capture, position, and reference data messages needed by clearing members and post-trade risk systems.
 
 ### Key Characteristics
 
-- **T7 platform** - Clearing data from Eurex derivatives and the T7 clearing infrastructure
-- **Settlement prices** - Daily and intraday settlement price dissemination
-- **Margin parameters** - Risk parameters for margin calculation and risk management
-- **Derivatives clearing** - Focused on the clearing lifecycle of Eurex derivatives products
-- **Position data** - Clearing-related position information for members
-- **Reference data** - Clearing instrument definitions and contract parameters
+- **T7 platform** - Native reference data interface for the Eurex T7 trading system
+- **Clearing oriented** - Trade captures and position data for clearing members
+- **Instrument reference** - Authoritative instrument definitions from the trading system
+- **Binary encoded** - Compact fixed-width T7 messages for efficient processing
+- **Post-trade focus** - Complements the Eobi market data and Eti order entry interfaces
+- **Session based** - Authenticated Tcp session delivery
+

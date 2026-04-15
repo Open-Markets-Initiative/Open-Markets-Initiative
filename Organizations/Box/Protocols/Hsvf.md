@@ -1,22 +1,23 @@
-## Hsvf: Box High Speed Vendor Feed
+## Hsvf: Box Options Sola Multicast Market Data
 
-Market data protocol for disseminating real-time pricing and order book data on the Box Options Exchange using multicast and unicast delivery on the Sola platform.
+High speed vendor feed distributing real-time options quotes, trades, and session events for contracts traded on the Box Options Exchange using the Sola Hsvf format.
 
 ### Overview
 
-Hsvf (High Speed Vendor Feed) is the market data protocol used by the Box Options Exchange for real-time dissemination of options pricing, order book, and trade data. The protocol operates on the Sola trading platform and delivers quote, trade, and instrument status information for all listed options series.
+Hsvf is the Box Options Exchange implementation of the Sola High Speed Vendor Feed, providing market data subscribers with real-time quotes, trades, and session events for options listed on Box. All messages that comprise the Box Hsvf feed are transmitted on a dedicated line with each message type fixed in format, enabling efficient parsing and low processing overhead.
 
-Hsvf is available in both multicast and unicast variants, providing flexibility for different subscriber connectivity requirements. The multicast variant delivers data via Udp multicast for high-throughput consumption, while the unicast variant provides a dedicated Tcp stream for subscribers requiring point-to-point delivery. Both variants carry the same market data content including best bid and offer updates, trade reports, and instrument reference data.
+The protocol covers the full set of events needed to track options markets including security definitions, trading status, underlying instrument changes, and quote and trade messages, along with session-level messages such as schedule notifications. Re-transmission of any data is available on the transmission line for subscribers that need to recover missed messages.
 
 ### Transport
 
-Udp multicast and Tcp unicast. The multicast variant disseminates data on multicast groups for scalable distribution. The unicast variant provides a dedicated point-to-point Tcp connection. Both carry sequence numbers for message ordering.
+Udp multicast delivery of fixed-format Hsvf messages for real-time options quote and trade dissemination on a dedicated transmission line. Tcp for the unicast Hsvf service used for re-transmission requests and subscriber recovery of missed messages.
 
 ### Key Characteristics
 
-- **Sola platform** - Operates on the Sola exchange technology platform
-- **Dual delivery modes** - Available in both multicast and unicast variants
-- **Options focused** - Quote and trade data for listed options series
-- **Real-time quotes** - Best bid and offer updates for all series
-- **Trade reporting** - Last sale data with trade condition indicators
-- **Sequence numbered** - Messages carry sequence numbers for gap detection
+- **Options market data** - Quotes and trades for options contracts on Box
+- **Sola Hsvf** - Sola platform High Speed Vendor Feed implementation
+- **Fixed format** - Each message type has a fixed format for efficient parsing
+- **Multicast delivery** - Real-time delivery on a dedicated transmission line
+- **Re-transmission** - Recovery service for missed messages
+- **Session events** - Schedule notifications and trading status updates included in the feed
+

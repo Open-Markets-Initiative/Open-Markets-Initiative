@@ -1,22 +1,22 @@
-## SessionMgmt: Cme Market Data Session Management
+## Session Mgmt: Cme Mdp Session Recovery Service
 
-Sbe-encoded session management protocol for authenticated market data subscriptions on Cme Group platforms.
+Tcp session management protocol used by Cme market data subscribers to perform recovery operations including market recovery, instrument definition, and snapshot recovery.
 
 ### Overview
 
-The Cme Session Management protocol provides session-level authentication and subscription management for Cme market data feeds. It enables clients to negotiate authenticated sessions using Hmac-Sha-256 signatures, subscribe to market data for specific instruments or security groups, and manage subscription lifecycle including snapshot requests and unsubscription.
+Cme Session Management is the Tcp-based session recovery service that complements the Mdp3 multicast market data feed. It allows subscribers to request market recovery messages for ranges missed on the multicast feed, instrument definition snapshots for specific securities, and full book snapshots for mid-day initialisation.
 
-The protocol supports Negotiate/NegotiateResponse handshakes with access key authentication, MarketDataRequest messages for subscribing to specific instruments by security group, and Terminate messages for session cleanup. Subscription requests can request snapshots only, snapshots with ongoing updates, or unsubscription from previous subscriptions.
+The protocol uses Sbe messages consistent with the Mdp3 wire format so that clients can share decoder infrastructure. Session management endpoints are provided at multiple Cme data centers to give subscribers resilient access to the recovery services.
 
 ### Transport
 
-Tcp with Sbe-encoded messages. Session establishment via Negotiate message with Hmac-Sha-256 authentication using AccessKeyId and Uuid.
+Tcp for authenticated session management requests including market recovery, instrument definition requests, and snapshot subscribe requests.
 
 ### Key Characteristics
 
-- **Hmac-Sha-256 authentication** - Cryptographic session authentication with access key and signature
-- **Sbe encoded** - Fixed-position, fixed-length fields with little-endian byte ordering
-- **Subscription management** - Subscribe to snapshots, snapshot+updates, or unsubscribe
-- **Security group filtering** - Subscribe to market data by security group
-- **Partial acknowledgement** - Subscription scope can be fully or partially acknowledged
-- **Uuid session identity** - Sessions identified by Uuid recommended as microsecond Unix timestamp
+- **Sbe encoded** - Consistent with Mdp3 market data wire format
+- **Recovery services** - Market, instrument, and snapshot recovery
+- **Session based** - Authenticated Tcp session per subscriber
+- **Shared with Mdp3** - Complementary to the multicast market data feed
+- **Multi-region** - Endpoints across Cme data centers for resilience
+

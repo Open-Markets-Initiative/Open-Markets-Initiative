@@ -1,20 +1,20 @@
-## BxOptions DepthOfMarket: Nasdaq Bx Options Depth Of Market
+## BxOptions Depth Of Market: Nasdaq Bx Options Depth Of Book Data
 
-Itch market data feed providing full depth of market for options traded on the Nasdaq Bx Options exchange.
+Full depth of book market data feed publishing order events for options traded on the Nasdaq Bx Options Market.
 
 ### Overview
 
-DepthOfMarket delivers order-by-order depth information for all options series listed on Bx Options. The feed provides individual order add, modify, delete, and execute messages with nanosecond timestamps, enabling subscribers to reconstruct the full options order book.
-
-The feed uses Itch binary encoding and includes options-specific reference data messages for series directory, trading action, and system events. Each options series is identified by its underlying symbol, expiration, strike, and option type.
+Depth Of Market is the Nasdaq Bx Options full depth of book feed, publishing order add, modify, execute, and delete events for every option listed on the Nasdaq Bx Options Market. It uses the Nasdaq Itch binary protocol over MoldUdp64 multicast.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Full depth** - Order-by-order visibility across all price levels
-- **Options-specific** - Series directory with underlying, expiration, strike, and type
-- **Nanosecond timestamps** - High-resolution event timing
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Full depth of book** - Order-by-order events for Bx Options
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Bx Options** - Coverage of Nasdaq Bx listed options
+

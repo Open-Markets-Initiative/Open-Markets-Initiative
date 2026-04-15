@@ -1,22 +1,25 @@
-## Cqs: Consolidated Quotation System
+## Cqs: Siac Consolidated Quote Feed
 
-Consolidated market data protocol disseminating best bid and offer quotes from all Us equity exchanges and market makers.
+Consolidated quotation feed for listed equities published by Siac on behalf of the Consolidated Tape Association delivering best bid and offer updates from Tape A and Tape B participants.
 
 ### Overview
 
-The Consolidated Quotation System (Cqs) is the Siac-operated national market data feed providing real-time best bid and offer quotes for all Nms-listed equity securities. Cqs collects quotation data from all participating Us equity exchanges and Finra and disseminates consolidated best bid and offer information to subscribers. The feed serves as the authoritative source for the National Best Bid and Offer (Nbbo).
+The Consolidated Quotation System (Cqs) is the consolidated quotation feed for Nyse-listed and Nyse Amex-listed securities (Tape A and Tape B). It is published by the Securities Industry Automation Corporation (Siac) on behalf of the Consolidated Tape Association and delivers quote updates from all reporting exchanges as a single consolidated stream.
 
-Cqs operates in both input and output directions. The input side receives quote updates from participating exchanges and market centers, while the output side disseminates consolidated quotation data to market data subscribers. The protocol carries quote messages with price, size, exchange identification, and condition indicators for each security.
+Messages are distributed over Ip multicast using the Cta output line format with sequenced quote updates, best bid and offer changes, limit up limit down events, administrative messages, and trading halts. A companion Tcp re-request service provides gap recovery for subscribers that miss messages on the multicast feed, giving the full reliability path expected of a regulated consolidated quote.
 
 ### Transport
 
-Multicast Udp for output distribution. Dedicated connections for input submission from participating exchanges. Sequenced delivery with gap detection and retransmission capabilities.
+Udp multicast for real-time delivery of consolidated quote messages over sequenced Cta-format datagrams with per-packet sequence numbers for gap detection. Tcp for the Consolidated Quotation re-request and snapshot services used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Consolidated quotes** - Best bid and offer from all Us equity exchanges
-- **Nbbo source** - Authoritative National Best Bid and Offer calculation
-- **Input and output** - Bidirectional quote collection and dissemination
-- **All Nms securities** - Covers all national market system listed equities
-- **Exchange attribution** - Quote source identification per exchange
-- **Regulatory feed** - Sip-operated feed mandated by Regulation Nms
+- **Consolidated quotes** - Tape A and Tape B quote updates in one stream
+- **Cta format** - Industry-standard Consolidated Tape Association output line format
+- **Multi-participant** - Aggregates quote updates from all reporting exchanges
+- **Multicast delivery** - Real-time Udp multicast distribution with sequence numbers
+- **Limit up limit down** - Luld band messages for price bands and trading pauses
+- **Trading halts** - Administrative halt and resumption messages
+- **Re-request service** - Tcp recovery service for missed multicast messages
+- **Regulated feed** - Operated by Siac on behalf of the Consolidated Tape Association
+

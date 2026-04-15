@@ -1,20 +1,20 @@
-## BroadcastFeed: Tmx Ip Broadcast Feed
+## Broadcast Feed: Tmx Toronto Stock Exchange Broadcast Market Data
 
-Tmx Group's Ip-based broadcast market data feed for distribution of equity and derivatives market information.
+Market data feed publishing real-time quotes and trades for securities traded on the Tmx Toronto Stock Exchange and Tsx Venture Exchange.
 
 ### Overview
 
-The Tmx Ip Broadcast Feed is a market data distribution protocol providing consolidated market data across Tmx Group venues. The feed delivers trade reports, quote updates, and reference data through a broadcast delivery mechanism. It complements the QuantumFeed and Xmt protocols by providing additional data products and delivery options.
-
-The broadcast feed specification defines the message formats, field layouts, and delivery characteristics for Ip-based market data distribution.
+Broadcast Feed is the real-time market data product for the Tmx Toronto Stock Exchange (Tsx) and Tsx Venture Exchange, publishing quote updates, trade reports, and session events for every listed security. It is the primary data feed for subscribers tracking Canadian cash equities markets.
 
 ### Transport
 
-Ip multicast for broadcast delivery of market data to subscribers.
+Udp multicast via the Sola transport framing for real-time delivery of sequenced messages with per-packet sequence numbers for gap detection. Tcp for the Sola gap fill and retransmission services used by subscribers to recover missed multicast messages.
 
 ### Key Characteristics
 
-- **Broadcast delivery** - Ip-based multicast distribution
-- **Consolidated data** - Market data across Tmx Group venues
-- **Trade and quote data** - Real-time trade reports and quote updates
-- **Reference data** - Instrument definitions and trading parameters
+- **Tsx and Tsxv** - Coverage of Toronto Stock Exchange and Tsx Venture
+- **Multicast delivery** - Real-time Udp multicast distribution
+- **Quote and trade events** - Real-time updates for listed securities
+- **Gap recovery** - Tcp gap fill and retransmission service
+- **Binary encoded** - Compact fixed-width binary messages
+

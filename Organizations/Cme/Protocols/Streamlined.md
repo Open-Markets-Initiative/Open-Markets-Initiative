@@ -1,21 +1,22 @@
-## Streamlined: Cme Streamlined Market Data
+## Streamlined: Cme Globex Streamlined Top Of Book Data
 
-Sbe-encoded market data feed providing streamlined settlement, volume, open interest, and trade data for Cme Group futures and options products.
+Sbe-encoded lightweight top of book market data feed publishing best bid and offer quotations for futures and options traded on Cme Globex.
 
 ### Overview
 
-The Cme Streamlined market data feed delivers a focused subset of market data including settlement prices, cleared volume, open interest, and trade information. Unlike Mdp 3.0 which provides full real-time depth of book, Streamlined publishes aggregated and derived data primarily used for end-of-day processing, risk management, and reference data consumption.
+Cme Streamlined is a lightweight market data product that publishes best bid and offer quotations plus last sale trade reports for futures and options traded on Cme Globex, delivered in the Cme Sbe binary format. It is positioned as a bandwidth-efficient alternative to the full Mdp3 feed for subscribers that only need top of book information.
 
-The protocol uses Sbe encoding with Fix 5.0 Sp2 semantics and supports incremental refresh messages for settlement data with fields including product Guid, settlement price, volume, open interest, and associated metadata. Messages carry nanosecond-precision timestamps.
+The feed shares the A and B channel redundancy model and the Sbe wire format of Mdp3, so clients can share decoder infrastructure. Tcp-based recovery is available through the same Cme session management service used for Mdp3 recovery.
 
 ### Transport
 
-Udp multicast with Sbe-encoded messages. Same dual-feed architecture and packet structure as Mdp 3.0.
+Udp multicast for real-time delivery of sequenced Sbe streamlined top of book messages with A and B channel redundancy. Tcp for recovery via the Cme session management service.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields with little-endian byte ordering
-- **Settlement focused** - Settlement prices, cleared volume, open interest, and trade data
-- **Incremental refresh** - MdIncrementalRefreshSettle messages with update actions (new, change, delete)
-- **High-precision pricing** - PriceNull9 composite with 10^-9 exponent for price fields
-- **Nanosecond timestamps** - Transaction time in nanoseconds since Unix epoch
+- **Top of book** - Best bid and offer for Cme Globex instruments
+- **Lightweight** - Bandwidth-efficient alternative to Mdp3
+- **Sbe encoded** - Consistent with Mdp3 wire format
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Tcp recovery** - Cme session management service for gap fill
+

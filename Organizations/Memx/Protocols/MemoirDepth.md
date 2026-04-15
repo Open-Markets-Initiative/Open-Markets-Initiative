@@ -1,22 +1,25 @@
-## Memoir Depth: Memx Full Depth of Book
+## Memoir Depth: Memx Depth Of Book Data
 
-Sbe-encoded market data protocol providing full depth of book information for equities and options traded on Memx.
+Real-time depth of book feed providing order data, non-displayed trade information, and trading session status for securities and options traded on the Members Exchange.
 
 ### Overview
 
-Memoir Depth is the Memx full depth of book market data feed delivering real-time order book updates for all price levels across equities and options instruments. The protocol uses Simple Binary Encoding (Sbe) to disseminate add, modify, delete, and execution messages that allow subscribers to maintain a complete view of the order book at every price level.
+Memoir Depth is an event-based market data protocol that publishes the complete displayed order book for every instrument traded on the Members Exchange. The feed delivers order add, modify, and delete events, non-displayed trade information, trading session state, and trading action notifications, allowing subscribers to reconstruct and maintain full order book state throughout the trading day.
 
-The feed provides order-level granularity enabling recipients to reconstruct the full visible book state. Memoir Depth supports both equities and options instruments on the Memx exchange, delivering updates for new orders entering the book, order modifications, cancellations, and trade executions that remove liquidity from the book.
+Messages are encoded using the Fix Trading Community Simple Binary Encoding standard and distributed as a sequenced fixed-width stream over the Memx-Udp multicast channel. Gap fill replay is available over the Memx-Tcp channel for subscribers that miss packets or need to resynchronize. The protocol is unidirectional and cannot be used to submit orders.
 
 ### Transport
 
-Udp multicast with sequenced packets. Gap detection via sequence numbers with snapshot recovery available for book state synchronization.
+Udp multicast via the Memx-Udp channel for real-time delivery of sequenced Sbe messages with per-message sequence numbers for gap detection. Tcp via the Memx-Tcp channel for gap fill replay when subscribers detect missed messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Full depth** - All price levels visible in the order book
-- **Equities and options** - Covers both asset classes on Memx
-- **Order-level updates** - Add, modify, delete, and execution messages
-- **Multicast delivery** - Udp multicast for efficient one-to-many distribution
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
+- **Full depth of book** - Every displayed order visible at every price level
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Udp multicast delivery** - Real-time publication over the Memx-Udp channel with sequence numbers
+- **Tcp gap fill** - Replay service over the Memx-Tcp channel for missed messages
+- **Order-level events** - Add, modify, and delete messages for individual orders
+- **Non-displayed trades** - Execution reports for hidden liquidity
+- **Trading actions** - Per-instrument trading status and session state notifications
+- **Unidirectional** - Market data only, cannot be used to enter orders
+

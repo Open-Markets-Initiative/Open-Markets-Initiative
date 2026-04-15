@@ -1,23 +1,25 @@
-## Binary Umdf: B3 Sbe Market Data
+## Binary Umdf: B3 Sbe Multicast Market Data
 
-Sbe-encoded binary market data protocol for disseminating real-time pricing and order book data on the B3 Brazilian exchange.
+Sbe-encoded multicast market data protocol publishing order book, trade, and reference data for equities and derivatives traded on B3.
 
 ### Overview
 
-Binary Umdf (Unified Market Data Feed) is B3's binary market data protocol delivering real-time order book, trade, and reference data for equities, derivatives, fixed income, and other instruments traded on the Brazilian exchange. The protocol uses Simple Binary Encoding (Sbe) for efficient binary message encoding with fixed-position, fixed-length fields.
+Binary Umdf is the B3 Unified Market Data Feed delivered as a binary Sbe-encoded multicast stream. It publishes the full range of B3 market data including incremental order book updates in Mbo form, security definitions, trading status, settlement prices, open interest, and reference data for every instrument on the B3 equities and derivatives markets.
 
-The feed provides incremental order book updates, trade reports, instrument reference data, and trading status notifications. Binary Umdf supports both aggregate book views and detailed market data across multiple asset classes, with multicast dissemination for scalable distribution to subscribers.
+The wire format is based on Fix Simple Binary Encoding version 1.0, which targets high performance trading systems by keeping encoding and decoding optimized for low latency while constraining each message to fit within a single 1400 byte network packet. The encoding is complementary to Fix semantics for application-level message content while avoiding the chunking and bandwidth overhead of Fix/Fast.
 
 ### Transport
 
-Udp multicast. Real-time incremental updates are disseminated on multicast groups with sequence numbers for gap detection. Snapshot and recovery feeds are available for initial book construction and gap recovery.
+Udp multicast for real-time delivery of sequenced Sbe messages fitting within a 1400 byte packet, carrying incremental refresh, security definition, settlement price, and open interest messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Multi-asset** - Covers equities, derivatives, fixed income, and other instruments
-- **Incremental updates** - Real-time order book add, modify, and delete messages
-- **Snapshot recovery** - Periodic full book snapshots for gap recovery and initial state
-- **Trade reporting** - Last sale data with trade condition indicators
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
-- **Schema versioned** - Xml Sbe templates define message layouts per version
+- **Sbe encoded** - Fix Simple Binary Encoding version 1.0 for fixed-width low-latency parsing
+- **Multicast delivery** - Real-time Udp multicast distribution with sequence numbers
+- **Order book Mbo** - Incremental depth of book refresh messages in market-by-order form
+- **Settlement price** - Dedicated settlement price messages per instrument
+- **Open interest** - Dedicated open interest messages for derivatives
+- **Security reference** - Security definition messages integrated with the feed
+- **Packet bounded** - Messages sized to fit within a 1400 byte network packet
+- **Equities and derivatives** - Unified feed across B3 asset classes
+

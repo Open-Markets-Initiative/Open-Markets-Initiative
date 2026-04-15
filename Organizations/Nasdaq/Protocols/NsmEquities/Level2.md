@@ -1,20 +1,20 @@
-## NsmEquities Level2: Nasdaq Stock Market Level 2
+## NsmEquities Level2: Nasdaq Level Two Market Maker Quotation Data
 
-Itch market data feed providing aggregated price level depth for Nasdaq Stock Market securities.
+Market maker level 2 quotation feed publishing price and size updates from Nasdaq market participants for securities traded on the Nasdaq Stock Market.
 
 ### Overview
 
-Level2 delivers aggregated order book depth information showing the total displayed size at each price level for Nsm-listed and Upa securities. Unlike TotalView which provides individual order detail, Level2 aggregates all orders at each price level into a single size, offering a more compact representation of market depth.
-
-The feed uses Itch binary encoding and provides price level updates as orders are added, modified, or removed from the book. It includes the standard Nsm reference data messages for stock directory and trading status information.
+Level2 is a Nasdaq market data feed for the Nasdaq Stock Market, delivered using the Nasdaq Itch binary protocol over MoldUdp64 multicast with SoupBinTcp glimpse and retransmission services for recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Aggregated depth** - Total size at each price level rather than individual orders
-- **Lower bandwidth** - More compact than order-by-order TotalView
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
-- **Multiple price levels** - Visible depth beyond top of book
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Retransmission** - SoupBinTcp recovery for missed multicast
+- **Nasdaq Stock Market** - Coverage of Nasdaq listed securities
+

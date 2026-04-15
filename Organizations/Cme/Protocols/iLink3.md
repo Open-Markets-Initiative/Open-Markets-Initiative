@@ -1,23 +1,23 @@
-## iLink 3: Cme Globex Binary Order Entry
+## i Link3: Cme Globex Sbe Order Entry
 
-Binary order entry protocol for submitting and managing orders on the Cme Globex electronic trading platform using Sbe encoding over a Fixp session layer.
+Sbe-encoded binary order entry protocol for submitting, modifying, and cancelling orders on the Cme Globex electronic trading platform with Fixp session layer.
 
 ### Overview
 
-iLink 3 is Cme Group's current-generation order entry Api for trading futures, options, spreads, BrokerTec fixed income, and Ebs Fx products on Cme Globex. It replaced the Fix tag-value-based iLink 2 protocol with Simple Binary Encoding (Sbe), providing significantly lower encoding and decoding latency. The protocol went fully live on July 26, 2020, across Cme, Cbot, Nymex, and Comex.
+iLink 3 is the binary order entry protocol for the Cme Globex electronic trading platform, providing members with a low-latency interface to submit, modify, and cancel orders for futures and options across the Cme complex. The wire format uses Fix Simple Binary Encoding (Sbe) and runs over the Fix Performance Session Layer (Fixp) for session authentication and sequence tracking.
 
-iLink 3 is structured as two layers: a session layer based on the Fix Performance Session Protocol (Fixp) and a business layer carrying order entry and execution messages in Sbe format. The Fixp session layer handles connection management, sequencing, and keepalive without embedding administrative information in business messages. Cancel On Conclusion (Coc) is a mandatory safety feature that automatically cancels all working orders when a session terminates.
+The protocol covers the full order lifecycle including new order single, order cancel replace, order cancel, order mass action, execution reports, and business message rejects. Fixp provides the Negotiate and Establish handshake for session creation, sequence number tracking for reliable delivery, and session recovery after reconnection.
 
 ### Transport
 
-Tcp to Cme Globex matching engine gateways (Msgw/Cgw). Fixp session layer provides negotiation with Hmac-Sha-256 authentication, establishment with Uuid and sequence number synchronization, bidirectional sequencing, keepalive heartbeats, and graceful termination.
+Tcp via the Fix Performance Session Layer (Fixp) for persistent authenticated sessions carrying order entry, modification, cancellation, mass action, and execution report messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Fixp session layer** - Lightweight session protocol with no headers on business messages
-- **Cancel On Conclusion** - Mandatory auto-cancellation of all working orders on disconnect
-- **Mass quoting** - Efficient bulk quoting for market makers
-- **Self-match prevention** - Built-in controls to prevent self-trading
-- **Party details definition** - Persistent trading party and account information
-- **Schema versioned** - Xml-based Sbe templates published on Cme Sftp servers
+- **Cme Globex** - Order entry across the Cme complex
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low latency
+- **Fixp session layer** - Negotiate and Establish with sequence tracking
+- **Full order lifecycle** - Order, modify, cancel, mass action, and execution report messages
+- **Session recovery** - Retransmission of unacknowledged messages after reconnection
+- **Futures and options** - Unified order entry across Cme asset classes
+

@@ -1,22 +1,24 @@
-## Binary Entry Point: B3 Sbe/Fixp Order Entry
+## Binary Entry Point: B3 Sbe Order Entry
 
-Sbe-encoded binary order entry protocol with Fixp session layer for submitting and managing orders on the B3 Brazilian exchange.
+Sbe-encoded binary order entry protocol for submitting, modifying, and cancelling orders on the B3 equities and derivatives platform with Fixp session layer.
 
 ### Overview
 
-Binary Entry Point is B3's binary order entry protocol for electronic trading of equities, derivatives, fixed income, and other instruments on the Brazilian exchange. The protocol uses Simple Binary Encoding (Sbe) for application-layer messages over a Fix Performance Session Protocol (Fixp) session layer, providing both low-latency binary encoding and robust session management.
+BinaryEntryPoint (Bep) is the B3 native binary order entry protocol used by market participants to submit, replace, and cancel orders across the B3 equities and derivatives markets. The wire format uses Simple Binary Encoding (Sbe) for fixed-width high performance message delivery, and application-level messages cover the full order lifecycle including simple new order, simple modify order, execution reports, and cancel rejects.
 
-The Fixp session layer handles connection negotiation, establishment, sequencing, and keepalive without embedding administrative overhead in business messages. The Sbe application layer carries order entry, modification, cancellation, and execution report messages with fixed-position, fixed-length fields for efficient direct-access parsing.
+The session layer is Fixp (Fix Performance Session Layer) which defines the Negotiate and Establish handshake for session creation, sequence number tracking for reliable delivery, and recovery messages for reconnection after a session drop. Bep supports self-trade prevention instructions, market maker protection reset, and execution restatement reasons for richer order management semantics.
 
 ### Transport
 
-Tcp to B3 matching engine gateways. Fixp session layer provides negotiation, establishment with sequence number synchronization, bidirectional sequencing, keepalive heartbeats, and graceful termination.
+Tcp for persistent authenticated sessions using the Fix Performance Session Layer (Fixp) with Negotiate and Establish messages for session start and sequence numbered delivery of order entry messages.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Fixp session layer** - Lightweight session protocol for sequencing and keepalive
-- **Multi-asset** - Supports equities, derivatives, fixed income, and other instruments
-- **Full order lifecycle** - New order, modify, cancel, and execution report messages
-- **Sequenced messaging** - Bidirectional sequence numbers for reliable delivery
-- **Schema versioned** - Xml Sbe templates define message layouts per version
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Fixp session layer** - Negotiate and Establish handshake with sequence number tracking
+- **Full order lifecycle** - New, modify, cancel, execution report, and cancel reject messages
+- **Self-trade prevention** - Per-order self-trade prevention instructions
+- **Market maker protection** - Mm protection reset support for market makers
+- **Session recovery** - Reconnection support after catastrophic client failure
+- **Equities and derivatives** - Unified order entry across B3 asset classes
+

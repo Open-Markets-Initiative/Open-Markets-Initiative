@@ -1,23 +1,25 @@
-## Eobi: Enhanced Order Book Interface
+## Eobi: Eurex T7 Order Book Market Data
 
-Binary market data protocol providing order-by-order depth of book data from the Eurex T7 trading platform for derivatives and cash equity instruments.
+Binary market data feed publishing the full unnetted order book and trade events for derivatives traded on the Eurex T7 platform via Ip multicast.
 
 ### Overview
 
-Eobi (Enhanced Order Book Interface) is Deutsche Boerse's high-performance market data feed for the T7 trading platform, delivering order-level book transparency for Eurex derivatives and Xetra/Boerse Frankfurt cash equities. The protocol disseminates every individual order add, modify, and delete event in the central order book, providing the most granular view of market microstructure available from T7.
+Eobi is the Eurex Enhanced Order Book Interface, the market data feed for the Eurex T7 platform. It publishes the complete unnetted order book including every visible order event, enabling subscribers to reconstruct the full depth of book for every listed instrument. The feed also carries trade messages, auction events, and reference data.
 
-Eobi offers full order-by-order depth showing individual order priority and queue position, which is critical for participants requiring precise book reconstruction. The feed also includes execution summaries, trade reports, instrument status changes, and product-level statistics. Eobi operates alongside the aggregate Emdi (Enhanced Market Data Interface) and provides a superset of information by exposing individual order identifiers and their lifecycle events.
+Messages are disseminated over Ip multicast as a sequenced stream with per-packet sequence numbers for gap detection. Complementary Tcp services provide book snapshot recovery for subscribers joining mid-day and retransmission of messages lost on the multicast feed, covering the full reliability path for the T7 market data product.
 
 ### Transport
 
-Udp multicast delivery on dedicated market data network infrastructure. Messages are organized by product partition and disseminated on separate multicast groups. Sequence numbers enable gap detection, and snapshot feeds provide periodic full book state for recovery.
+Udp multicast for real-time delivery of incremental order book updates, trade messages, and reference data with per-packet sequence numbers for gap detection. Tcp for the T7 retransmission and snapshot services used by subscribers to recover missed multicast messages or initialise book state.
 
 ### Key Characteristics
 
-- **Order-by-order depth** - Individual order visibility with priority and queue position
-- **T7 platform** - Market data from Eurex derivatives and cash equity matching engines
-- **Full order lifecycle** - Add, modify, delete, and execution events for every order
-- **Product partitioned** - Data organized by product partition on separate multicast groups
-- **Execution summaries** - Aggregated match event information at trade completion
-- **Snapshot recovery** - Periodic full book state dissemination for gap recovery
-- **Instrument status** - Trading state changes and auction phase notifications
+- **Full unnetted book** - Every visible order event for complete depth of book reconstruction
+- **T7 platform** - Native market data interface for the Eurex T7 trading system
+- **Multicast delivery** - Real-time Udp multicast distribution of the market data stream
+- **Snapshot service** - Tcp book snapshots for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Trade messages** - Executed trade events published alongside the order book stream
+- **Reference data** - Instrument definitions integrated with the feed
+- **Derivatives** - Futures and options listed on Eurex
+

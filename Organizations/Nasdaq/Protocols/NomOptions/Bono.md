@@ -1,20 +1,20 @@
-## NomOptions Bono: Nasdaq Options Market Best Of Options
+## NomOptions Bono: Nasdaq Options Binary Order Entry
 
-Itch market data feed providing best bid and offer for options traded on the Nasdaq Options Market.
+Binary order entry protocol for submitting, modifying, and cancelling options orders on the Nasdaq Options Market.
 
 ### Overview
 
-Bono delivers top-of-book quotation updates for all options series listed on the Nasdaq Options Market. The feed reports the best bid and best offer price and size for each series, providing a bandwidth-efficient alternative to the full Itto depth feed.
-
-The feed uses Itch binary encoding and includes the standard Nom options reference data messages. Quote updates reflect changes to the best displayed bid or offer for each options series.
+Bono is the binary order entry protocol for the Nasdaq Options Market (Nom), providing members with a low-latency session-based interface to submit, modify, and cancel options orders. The wire format uses compact fixed-width binary messages framed by SoupBinTcp for session authentication and recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Tcp via SoupBinTcp for persistent authenticated sessions carrying Nasdaq Options binary order entry messages with sequence recovery.
 
 ### Key Characteristics
 
-- **Top-of-book** - Best bid and offer price and size for each series
-- **Lower bandwidth** - Reduced message volume compared to Itto depth
-- **Options-specific** - Series directory with underlying, expiration, strike, and type
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Nasdaq Options** - Nom options order entry
+- **SoupBinTcp framed** - Session authentication and sequence recovery
+- **Binary encoded** - Fixed-width low latency messages
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Session based** - Persistent authenticated Tcp session per member
+

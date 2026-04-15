@@ -1,21 +1,24 @@
-## Fix: Aquis Fix Order Entry
+## Fix: Aquis Stock Exchange Fix Market Data
 
-Fix protocol implementation for submitting and managing orders on the Aquis Exchange.
+Fix 4.4 market data protocol disseminating trade capture reports, quotes, market states, and participant suspension events for securities listed on the Aquis Stock Exchange.
 
 ### Overview
 
-Fix is the Financial Information Exchange protocol implementation provided by Aquis Exchange for order entry and trade management. It offers a widely adopted, tag-value-based messaging interface for firms that prefer standard Fix connectivity over the native binary Atp protocol.
+Aquis Fix is the market data feed of the Aquis Stock Exchange (Aqse), disseminating trade capture reports, quote updates, market state changes, security suspensions and restorations, and Fix participant suspension events using the Fix 4.4 protocol. It is the recommended interface for subscribers who prefer a standards-based tagged-value market data feed.
 
-The Aquis Fix gateway supports standard order entry operations including new orders, modifications, cancellations, and execution reports using Fix session and application layer semantics. The implementation provides a familiar integration path for trading firms already connected to other venues via Fix.
+The feed delivers data over authenticated Fix sessions using standard market data subscription and response messages. Continuous trading data is distributed via the proprietary Amd multicast feed instead; this Fix feed focuses on trade reporting, quotes, and state transitions that benefit from reliable Tcp delivery rather than multicast dissemination.
 
 ### Transport
 
-Tcp to Aquis Fix gateways. Fix sessions are established using standard Fix logon handshake with sequence number synchronization and heartbeat monitoring.
+Tcp for authenticated Fix 4.4 sessions delivering market data subscription responses, trade capture reports, and security status updates over a persistent session.
 
 ### Key Characteristics
 
-- **Fix tag-value format** - Standard Fix message encoding for broad compatibility
-- **Full order lifecycle** - New order, modify, cancel, and execution report messages
-- **Session layer** - Fix session protocol with logon, heartbeat, and sequencing
-- **Standard integration** - Familiar Fix interface for multi-venue trading platforms
-- **Multiple order types** - Limit, market, and pegged order support
+- **Fix 4.4** - Industry-standard tagged value protocol
+- **Trade capture reports** - Detailed post-trade information with conditions and references
+- **Quotes** - Real-time quotation updates for listed securities
+- **Market state** - Session and instrument-level trading status transitions
+- **Security suspensions** - Suspension and restoration events for individual securities
+- **Participant suspensions** - Suspension and restoration events for Fix participants
+- **Authenticated sessions** - Standard Fix login over Tcp
+

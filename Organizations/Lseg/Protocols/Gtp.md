@@ -1,22 +1,23 @@
-## Gtp: Lseg Group Ticker Plant
+## Gtp: Lseg Group Ticker Plant Consolidated Market Data
 
-Market data protocol for disseminating real-time order book and trade data from the London Stock Exchange, Turquoise, and TradeEcho venues.
+Consolidated ticker plant market data protocol publishing real-time quotation and trade events across London Stock Exchange Group markets.
 
 ### Overview
 
-Gtp is Lseg's Group Ticker Plant, the current-generation market data dissemination platform serving the London Stock Exchange, Turquoise multilateral trading facility, and TradeEcho trade reporting service. The protocol delivers a comprehensive binary data feed including order-by-order book updates, trade reports, auction information, reference data, and trading status for all instruments across these venues.
+Gtp is the London Stock Exchange Group ticker plant feed, a consolidated market data product that aggregates real-time quotes and trades across Lseg venues into a single downstream stream. It provides a normalised view of the Lseg market for data vendors, redistributors, and subscribers who need cross-venue coverage in one feed.
 
-Gtp replaced the earlier Mitch protocol as Lseg's primary market data feed, providing a unified data platform across multiple venues under the Lseg group. The protocol carries Level 2 order book data with individual order add, modify, delete, and execution messages, enabling subscribers to reconstruct the full depth of book. Gtp supports equities, exchange-traded funds, fixed income, and other instrument types traded on Lseg venues.
+Messages are distributed over Ip multicast as sequenced binary records with compact fixed-width fields for low-latency processing. Tcp retransmission and snapshot services provide the recovery path for subscribers who miss packets on the multicast feed or need to initialise state mid-day.
 
 ### Transport
 
-Tcp with a session layer providing connection management, sequencing, and recovery. Messages are delivered as a sequential stream with sequence numbers for ordering. Recovery services allow subscribers to request retransmission of missed messages.
+Udp multicast for real-time delivery of consolidated ticker plant messages with per-packet sequence numbers for gap detection. Tcp for the ticker plant retransmission and snapshot services used by subscribers to recover missed multicast messages.
 
 ### Key Characteristics
 
-- **Multi-venue coverage** - London Stock Exchange, Turquoise, and TradeEcho in a single feed
-- **Order-by-order data** - Individual order add, modify, delete, and execution messages
-- **Full book depth** - Complete order book reconstruction from order-level events
-- **Binary encoded** - Fixed-format binary messages for efficient low-latency parsing
-- **Auction support** - Opening, closing, and intraday auction indicative prices and results
-- **Unified platform** - Successor to Mitch providing consolidated Lseg venue data
+- **Consolidated feed** - Aggregated market data across Lseg venues
+- **Ticker plant architecture** - Normalised quotes and trades delivered to downstream subscribers
+- **Multicast delivery** - Real-time Udp multicast distribution with sequence numbers
+- **Retransmission and snapshots** - Tcp recovery services for gap fill and mid-day startup
+- **Binary encoded** - Fixed-width compact binary messages for efficient processing
+- **Cross-venue** - Covers multiple Lseg trading platforms in one feed
+

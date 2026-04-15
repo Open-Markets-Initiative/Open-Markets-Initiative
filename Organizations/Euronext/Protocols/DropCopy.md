@@ -1,23 +1,23 @@
-## DropCopy: Euronext Optiq Post-Trade
+## Drop Copy: Euronext Optiq Sbe Drop Copy
 
-Binary post-trade protocol for receiving execution reports and order activity from Euronext exchanges using Sbe encoding on the Optiq platform.
+Sbe-encoded drop copy channel for the Euronext Optiq trading platform delivering a copy of all order entry and execution activity to back office and risk systems.
 
 ### Overview
 
-DropCopy is Euronext's post-trade data feed on the Optiq platform, providing a secondary stream of execution reports, order acknowledgments, and trade notifications for monitoring and compliance purposes. The protocol uses Simple Binary Encoding (Sbe) consistent with the OrderEntryGateway, delivering a real-time copy of all trading activity associated with a participant's sessions.
+Drop Copy is a read-only side channel of the Euronext Optiq Order Entry Gateway that mirrors order events and execution reports for a member firm, delivering them to back office, risk, and compliance systems without requiring those systems to connect to the primary order entry sessions. It provides real-time visibility into all order flow for the firm across Euronext Optiq markets.
 
-The feed delivers execution messages including fills, partial fills, cancellations, and order state changes across all instruments and markets accessible through the participant's trading configuration. DropCopy enables middle and back-office systems, risk management platforms, and compliance monitors to independently track trading activity without interfering with the primary order entry path. The feed covers all asset classes available on Euronext's Optiq platform.
+The wire format is consistent with the Optiq order entry gateway, using Fix Simple Binary Encoding (Sbe) for fixed-width messages. Drop copy clients receive execution reports, order status updates, and cancellation confirmations but do not submit orders on the channel, which keeps the downstream systems strictly in a monitoring role.
 
 ### Transport
 
-Tcp connections to Euronext Optiq drop copy gateways. Sessions are established with authentication and scoped to the participant's firm or trading group. Message sequencing supports reliable delivery and recovery of execution data.
+Tcp for authenticated drop copy sessions carrying a read-only copy of order events and execution reports for back office, risk, and compliance systems.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position binary fields consistent with Optiq order entry messages
-- **Post-trade feed** - Secondary stream of execution reports independent of order entry
-- **Full activity coverage** - Fills, cancellations, acknowledgments, and order state changes
-- **Multi-asset class** - Execution data across equities, derivatives, Etfs, bonds, and commodities
-- **Compliance monitoring** - Independent trade activity stream for surveillance and risk
-- **Firm-scoped** - Activity across all sessions associated with the participant's configuration
-- **Sequenced delivery** - Message sequencing for reliable gap detection and recovery
+- **Read-only** - Drop copy clients observe but do not submit orders
+- **Sbe encoded** - Same Sbe format as the Optiq order entry gateway
+- **Execution reports** - Full order lifecycle visibility for back office systems
+- **Back office target** - Designed for risk, compliance, and post-trade infrastructure
+- **Firm wide** - Mirrors all order activity for a member firm across Optiq markets
+- **Session based** - Authenticated Tcp session with sequence tracking
+

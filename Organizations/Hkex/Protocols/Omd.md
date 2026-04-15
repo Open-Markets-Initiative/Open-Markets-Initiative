@@ -1,22 +1,25 @@
-## Omd: Hkex Orion Market Data
+## Omd: Hkex Orion Multicast Market Data
 
-Binary market data protocol for disseminating real-time securities and derivatives market data from the Hong Kong Exchanges and Clearing Orion platform.
+Binary multicast market data feed publishing real-time order book, trade, and reference data for securities and derivatives traded on the Hong Kong Exchanges and Clearing Orion platform.
 
 ### Overview
 
-Omd is Hkex's Orion Market Data platform for delivering real-time pricing, order book, and trade data across Hong Kong's securities and derivatives markets. The platform comprises two major feeds: Omd-C for the securities (cash) market covering equities, warrants, and structured products traded on the Stock Exchange of Hong Kong, and Omd-D for derivatives covering futures and options traded on the Hong Kong Futures Exchange.
+Orion Market Data (Omd) is the next-generation market data platform at the Hong Kong Exchanges and Clearing (Hkex), replacing legacy feeds with a unified binary multicast product across both securities and derivatives markets. The feed delivers the full order book, trade events, auction prices, reference data, and session state for every instrument listed on the Hkex trading platforms.
 
-Omd delivers full depth of book, trade tickers, market statistics, index data, and reference information through a binary message protocol optimized for low-latency consumption. The platform uses a line-based multicast architecture where instruments are assigned to channels organized by product type. Both Omd-C and Omd-D support real-time incremental updates and periodic refresh messages to enable receivers to build and maintain current market state.
+The protocol is distributed over Ip multicast with redundant A and B channels for resilience and uses compact fixed-width binary messages for low-latency processing. Complementary Tcp refresh and retransmission services provide book snapshots and replay of missed multicast messages, giving subscribers a complete reliability path for mid-day startup and gap recovery.
 
 ### Transport
 
-Udp multicast. Each channel provides a real-time line and a refresh line on separate multicast addresses. Packets carry sequence numbers for gap detection, and the refresh line periodically broadcasts full instrument state for recovery. Dual dissemination paths provide redundancy.
+Udp multicast for real-time delivery of the Orion market data stream, with primary and secondary multicast channels for redundancy and per-packet sequence numbers for gap detection. Tcp for the Orion refresh and retransmission services used by subscribers to recover missed multicast messages and initialise book state from snapshots.
 
 ### Key Characteristics
 
-- **Binary encoded** - Fixed-length binary messages for efficient low-latency parsing
-- **Securities and derivatives** - Omd-C for cash market, Omd-D for derivatives market
-- **Full depth of book** - Complete order book depth with price and aggregate quantity
-- **Line-based architecture** - Instruments organized into channels with real-time and refresh lines
-- **Dual dissemination** - Redundant multicast paths for failover
-- **Sequence numbered** - Every packet carries sequence numbers for gap detection and recovery
+- **Orion platform** - Unified Hkex market data across securities and derivatives
+- **Full order book** - Depth of book reconstruction from order events
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Refresh service** - Tcp book snapshots for mid-day initialisation
+- **Retransmission** - Tcp replay of messages missed on the multicast feed
+- **Binary encoded** - Fixed-width compact binary messages for low latency
+- **Cash and derivatives** - Securities and derivatives on the same Orion backbone
+- **Reference data** - Instrument definitions integrated with the feed
+

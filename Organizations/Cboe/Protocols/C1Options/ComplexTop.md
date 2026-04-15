@@ -1,20 +1,23 @@
-## Cboe Options Complex Top Of Book
+## C1Options Complex Top: Cboe Options Complex Strategy Top Of Book
 
-Pitch feed providing best bid and offer updates for complex multi-leg options strategies on Cboe Options Exchange.
+Top of book feed for complex multi-leg options strategies traded on Cboe Options Exchange (C1).
 
 ### Overview
 
-Options Complex Top Of Book delivers lightweight real-time best bid and offer data for complex options strategies traded on Cboe Options Exchange. The feed provides top-of-book quotes for multi-leg instruments without the overhead of full complex depth.
+Complex Top is the top of book market data feed for the complex order book on Cboe Options Exchange (C1), publishing best bid and offer quotations for multi-leg options strategies including spreads, straddles, and combinations. The feed also carries trade reports for executed complex orders and strategy definition messages.
 
-The feed serves participants who need best price visibility for complex strategies but do not require individual order tracking. It includes strategy definitions, top-of-book updates, and execution data for complex instruments.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy. A companion Tcp gap request proxy service provides replay of missed multicast messages for subscribers that need gap recovery.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Complex Bbo** - Best bid and offer for multi-leg options strategies
-- **Low bandwidth** - Compact messages without full complex depth overhead
-- **Strategy definitions** - Component leg and ratio information for each instrument
-- **Execution data** - Trade reports for complex strategy matches
+- **Complex book** - Top of book for multi-leg options strategies
+- **Strategy definitions** - Complex instrument definitions published on the feed
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Trade reports** - Last sale messages for executed complex trades
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

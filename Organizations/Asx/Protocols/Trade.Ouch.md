@@ -1,20 +1,24 @@
-## Trade Ouch: Asx Securities Order Entry
+## Trade.Ouch: Asx Trade Equities Ouch Order Entry
 
-Trade Ouch order entry protocol for submitting and managing orders on the Asx Trade platform.
+Binary order entry protocol for submitting, replacing, and cancelling orders on the Asx Trade cash equities platform.
 
 ### Overview
 
-Trade Ouch is the binary order entry protocol for the Asx Trade platform, providing a low-latency interface for submitting, modifying, and cancelling orders for exchange-traded options and futures. The protocol uses compact fixed-length messages designed for minimal encoding and decoding overhead.
+Asx Trade Ouch is the binary order entry protocol for the Asx Trade cash equities platform, providing members with a low-latency session-based interface to submit, modify, and cancel orders. The wire format uses the Ouch message family with fixed-width binary fields and numeric references for efficient processing on both sides of the connection.
 
-The protocol carries new order instructions, replace and cancel requests, and execution reports including fill notifications and order status updates. Trade Ouch provides the full order lifecycle for direct market access participants and algorithmic trading systems connecting to the Asx Trade matching engine.
+The protocol defines inbound messages for entering new orders, replacing existing orders, cancelling by the client-assigned token, and cancelling by order identifier. Outbound messages report order accepted, rejected, cancelled, replaced, and executed events, giving clients a complete view of the order lifecycle over the trading session.
 
 ### Transport
 
-Tcp to Asx Trade matching engine gateways with session authentication, heartbeat monitoring, and sequence number tracking.
+Tcp for persistent authenticated trading sessions, carrying inbound Enter Order, Replace Order, Cancel Order and Cancel By Order Id messages and outbound execution reports and acknowledgements.
 
 ### Key Characteristics
 
-- **Binary order entry** - Compact fixed-length messages for low-latency order handling
-- **Options and futures** - Order entry for Asx Trade platform derivatives
-- **Full order lifecycle** - New order, replace, cancel, and execution report messages
-- **Real-time execution reports** - Immediate acknowledgments and fill notifications
+- **Session-based** - Persistent Tcp session per member for order entry
+- **Enter Order** - New order submission with full order parameters
+- **Replace Order** - In-place modification of an existing order
+- **Cancel Order** - Cancellation by client token or by order identifier
+- **Execution reports** - Order accepted, cancelled, replaced, and executed messages
+- **Binary encoded** - Compact fixed-width Ouch-style messages for low latency processing
+- **Equities order entry** - Designed for Asx Trade cash equities
+

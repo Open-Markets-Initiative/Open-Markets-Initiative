@@ -1,22 +1,22 @@
-## Now: Currenex Market Data
+## Now: Currenex Forex Spot Market Data
 
-Binary market data protocol for disseminating Fx market data from Currenex platforms using Cbp encoding.
+Itch-based market data service providing real-time access to Currenex Forex spot market data through multiple distinct feed channels.
 
 ### Overview
 
-Now is Currenex's market data protocol providing real-time foreign exchange pricing and order book data using the Currenex Binary Protocol (Cbp). The protocol delivers market data including order book updates, trade reports, and instrument reference data for Fx instruments available on the Currenex trading platform.
+Currenex Now is the Currenex forex spot market data service, providing real-time access to executable prices and trade events for spot currency pairs. The service is comprised of several distinct market data feeds each carrying a specific slice of the market, allowing subscribers to consume exactly the data they need without receiving the full Currenex universe.
 
-Now serves as the core market data distribution mechanism for Currenex's electronic Fx trading venues, providing participants with the pricing information needed for trading decisions. The Cbp encoding framework offers efficient binary serialization with fixed message formats designed for high-throughput, low-latency Fx market data consumption.
+Messages are delivered using a Currenex-specific Itch subset with compact fixed-width binary encoding. The protocol is supported over Tcp for reliable delivery and Udp for low-latency datagram delivery on controlled networks, matching the transport options available in the companion Currenex Esp service.
 
 ### Transport
 
-Tcp connections to Currenex market data gateways. Session management handles authentication, heartbeat monitoring, and sequence tracking for reliable message delivery.
+Tcp for reliable delivery of Itch Now market data messages over low-latency physical networks used by Currenex subscribers. Udp for low-latency datagram delivery of Itch Now market data on low-loss networks, with per-packet sequencing for gap detection.
 
 ### Key Characteristics
 
-- **Cbp encoded** - Currenex Binary Protocol for efficient binary message serialization
-- **Fx market data** - Real-time pricing and book data for foreign exchange instruments
-- **Order book updates** - Book depth changes reflecting Fx liquidity and pricing
-- **Trade reporting** - Executed transaction data for Fx currency pairs
-- **Instrument reference data** - Currency pair definitions and trading parameters
-- **Sequenced delivery** - Message sequence numbers for gap detection and recovery
+- **Forex spot market data** - Real-time prices and trades for spot currency pairs
+- **Multi-feed structure** - Multiple distinct market data feeds for different slices
+- **Itch encoded** - Compact fixed-width binary message format
+- **Dual transport** - Tcp for reliability, Udp for low latency on controlled networks
+- **Currenex platform** - Service tailored to Currenex forex subscribers
+

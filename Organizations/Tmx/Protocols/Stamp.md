@@ -1,21 +1,20 @@
-## Stamp: Tmx Stamp Order Entry
+## Stamp: Tmx Toronto Stock Exchange Tagged Order Entry
 
-Tmx Group's order entry protocol for submitting and managing orders on Tsx, Tsxv, and Tsx Alpha Exchange.
+Tagged-value order entry protocol for submitting, modifying, and cancelling orders on the Tmx Toronto Stock Exchange and Tsx Venture Exchange.
 
 ### Overview
 
-Stamp is the Tmx Group's order entry protocol providing direct access to the Tsx, Tsxv, and Tsx Alpha Exchange matching engines for equity order submission, modification, and cancellation. The protocol supports the full order lifecycle for Canadian equity trading including new orders, modifications, cancellations, and execution reporting.
-
-Stamp uses a binary message format designed for reliable order delivery over Tcp connections with built-in session management including login, heartbeat, and sequencing.
+Stamp is the order entry protocol for the Tmx Toronto Stock Exchange (Tsx) and Tsx Venture Exchange cash equities markets. It is a tagged-value protocol that provides members with a text-based interface for submitting, modifying, and cancelling orders, with full execution report handling over authenticated Tcp sessions.
 
 ### Transport
 
-Tcp with built-in session management. Persistent connections between trading participants and the Tmx matching engine gateways.
+Tcp for persistent authenticated Stamp sessions carrying tagged order entry, modification, cancellation, and execution report messages.
 
 ### Key Characteristics
 
-- **Equities order entry** - Purpose-built for Tsx, Tsxv, and Tsx Alpha Exchange
-- **Binary encoding** - Compact binary message format
-- **Bidirectional** - Supports inbound orders and outbound execution reports
-- **Session management** - Built-in login, heartbeat, and sequencing
-- **Multi-exchange** - Single protocol across Tsx, Tsxv, and Alpha
+- **Toronto Stock Exchange** - Cash equities order entry for Tsx and Tsxv
+- **Tagged value** - Text-based message format with field tags
+- **Session based** - Persistent authenticated Tcp session per member
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Equities coverage** - Tsx and Tsx Venture Exchange listed securities
+

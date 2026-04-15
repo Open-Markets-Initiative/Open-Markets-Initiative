@@ -1,22 +1,24 @@
-## Atds: Finra Agency Debt Trade Dissemination Service
+## Atds: Finra Trace Agency Debt Trade Dissemination
 
-Market data protocol for disseminating Trace agency debt trade reports in real time over MoldUdp64 multicast.
+Trace-based trade dissemination service publishing real-time agency debt transaction reports collected under Finra Rule 6700 through the Trade Reporting And Compliance Engine.
 
 ### Overview
 
-Atds is Finra's Agency Debt Trade Dissemination Service for distributing real-time trade information for agency debt securities reported through the Trace system. The protocol carries trade reports for agency debentures, agency mortgage-backed securities, and other agency debt instruments, providing transparency into fixed income transaction activity.
+The Agency Trade Dissemination Service (Atds) is the Finra market data feed that distributes real-time agency debt trade reports submitted through the Trade Reporting And Compliance Engine (Trace). Effective March 1, 2010 Trace expanded to accept trade reports of agency debt transactions as defined in revised Finra Rule 6710, and Atds provides the downstream transparency channel for that data to subscribers and market data vendors.
 
-The service disseminates trade price, yield, volume, and execution details as they are reported and validated through Trace. Atds supports trade corrections, cancellations, and reversals to maintain an accurate record of agency debt market activity. The protocol enables market participants to monitor real-time transaction flow in the agency debt market.
+The feed uses the Data Feed Interface (Dfi) message format delivered over MoldUdp64 multicast for real-time distribution, with a companion Tcp re-request service for gap recovery. Subscribers receive fixed-width binary trade messages including trade report submission, cancellation, correction, and administrative events so they can reconstruct a complete view of the agency debt tape.
 
 ### Transport
 
-MoldUdp64 multicast. Messages are sequenced and delivered over Udp multicast with MoldUdp64 framing, providing session identification, sequence numbering, and message count per packet for gap detection and recovery.
+Udp multicast over MoldUdp64 carrying sequenced Data Feed Interface messages with per-packet sequence numbers for gap detection and retransmission via the companion re-request service. Tcp for the re-request and snapshot services used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Trace agency debt trades** - Real-time dissemination of agency debt transaction reports
-- **MoldUdp64 transport** - Sequenced multicast delivery with gap detection support
-- **Yield and price data** - Provides both price and yield information for debt instruments
-- **Corrections and reversals** - Supports trade report amendments after initial publication
-- **Agency debt coverage** - Covers agency debentures, mortgage-backed, and related securities
-- **Execution details** - Includes trade size, execution time, and reporting party information
+- **Agency debt trade reports** - Real-time transparency data for US agency debt transactions
+- **Trace backed** - Trades sourced from the Finra Trade Reporting And Compliance Engine
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Dfi encoded** - Finra Data Feed Interface binary message format
+- **Re-request service** - Tcp-based gap recovery for missed multicast messages
+- **Trade lifecycle** - Submission, cancellation, correction, and administrative events
+- **Regulated dissemination** - Operated by Finra under Sec-approved transparency rules
+

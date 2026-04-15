@@ -1,19 +1,22 @@
-## Cboe C2 Options Complex Options
+## C2Options Complex Options: Cboe C2 Options Complex Order Entry
 
-Pitch feed providing market data for complex options instruments including strategy definitions and order activity on Cboe C2 Options Exchange.
+Cboe Binary Order Entry protocol for submitting, modifying, and cancelling complex multi-leg orders on Cboe C2 Options Exchange.
 
 ### Overview
 
-Options Complex Options delivers real-time market data for complex options instruments traded on Cboe C2 Options Exchange. The feed provides strategy creation notifications, order activity, and execution data for user-defined and exchange-defined multi-leg combinations.
+Complex Options is the Cboe Binary Order Entry variant for complex multi-leg strategies on Cboe C2 Options Exchange. It extends the standard Boe protocol with message types for defining and submitting spreads, straddles, combinations, and other multi-leg strategies, along with the order lifecycle messages needed to manage them.
 
-The feed includes instrument creation messages as new complex strategies are defined, along with ongoing market data for active complex instruments.
+The protocol runs over Tcp using the Boe session layer for authentication, sequence tracking, and recovery. Execution reports for complex orders include per-leg details so that clients can allocate fills back to the individual strategy components.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Tcp via the Cboe Binary Order Entry (Boe) session layer for persistent authenticated order flow with sequence tracking, heartbeats, and reliable recovery.
 
 ### Key Characteristics
 
-- **Strategy creation** - Notifications when new complex instruments are defined
-- **Order activity** - Real-time order and execution data for complex instruments
-- **Multi-leg support** - Coverage of user-defined and exchange-defined strategy combinations
+- **Complex order entry** - Multi-leg strategy submission and management
+- **Per-leg fills** - Execution reports with per-leg allocation details
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **Session based** - Persistent authenticated Tcp session per member
+- **Strategy definitions** - Support for ad-hoc and pre-defined strategies
+

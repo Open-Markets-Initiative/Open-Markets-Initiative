@@ -1,22 +1,20 @@
-## MoldUdp: Nasdaq Multicast Transport
+## Mold Udp: Nasdaq Reliable Multicast Transport Layer
 
-Udp multicast session and sequencing protocol providing reliable ordered delivery for Nasdaq market data feeds.
+Packet-level framing and sequencing transport used across Nasdaq multicast market data feeds providing session identification, packet sequencing, and gap detection.
 
 ### Overview
 
-MoldUdp is the Nasdaq transport protocol for delivering sequenced market data over Udp multicast. The protocol provides a lightweight framing layer that adds session identification, sequence numbering, and message count fields to multicast packets, enabling receivers to detect gaps and request retransmission of missed messages. MoldUdp64 extends the original MoldUdp with 64-bit sequence numbers to support higher message volumes.
-
-The protocol defines a downstream session identified by a 10-character session identifier and a monotonically increasing sequence number. Each Udp packet carries the session identifier, the sequence number of the first message in the packet, and a message count indicating how many messages are contained. Receivers track the next expected sequence number and can detect gaps by comparing incoming packet sequence numbers.
+MoldUdp64 is the Nasdaq reliable multicast transport layer used by Itch, Ouch, and other Nasdaq market data protocols. It defines the packet header with session identifier, starting sequence number, message count, and message block format used to pack one or more application-level messages into each Udp multicast datagram.
 
 ### Transport
 
-Udp multicast for primary data delivery. Retransmission requests are sent via Tcp or Udp to dedicated request servers for gap recovery. MoldUdp and MoldUdp64 variants differ in sequence number field width.
+Udp multicast carrying Mold Udp 64 packets with session identifier, starting sequence number, message count, and per-message payloads.
 
 ### Key Characteristics
 
-- **Udp multicast** - Efficient one-to-many delivery for market data
-- **Sequenced delivery** - Monotonically increasing sequence numbers for gap detection
-- **MoldUdp64** - Extended variant with 64-bit sequence numbers for high-volume feeds
-- **Session identification** - 10-character session identifiers for stream distinction
-- **Retransmission support** - Gap recovery via dedicated retransmission request servers
-- **Message aggregation** - Multiple messages packed into single Udp packets
+- **Packet framing** - Session, sequence, and message count headers
+- **Message block** - One or more application messages per datagram
+- **Gap detection** - Sequence numbers allow subscribers to identify missed packets
+- **Shared layer** - Used by Itch, Ouch, and other Nasdaq feeds
+- **Udp multicast** - Efficient one-to-many delivery
+

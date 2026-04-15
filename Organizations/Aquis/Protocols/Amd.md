@@ -1,22 +1,25 @@
-## Amd: Aquis Market Data
+## Amd: Aquis Exchange Market Data
 
-Binary market data protocol for disseminating real-time pricing and order book data on the Aquis Exchange.
+Binary market data protocol distributing real-time order, trade, and auction feeds for securities traded on Aquis Exchange via Ip multicast.
 
 ### Overview
 
-Amd is the native market data protocol for Aquis Exchange, delivering real-time order book and trade data for equities traded across Aquis European venues. The protocol provides a binary-encoded market data feed optimized for low-latency consumption by trading firms and market data vendors.
+Amd is the Aquis market data protocol, distributing real-time order and trade data for securities traded on Aquis Exchange over Ip multicast. The continuous feed publishes order add, cancel, modify, trade, and trade bust events, along with security definition and security status messages throughout the trading day.
 
-Amd delivers incremental order book updates, trade reports, instrument status changes, and reference data. The feed supports full depth of book visibility with granular add, modify, and delete messages enabling subscribers to maintain an accurate real-time view of order book state.
+Separate feeds carry Auction On Demand and Market at Close messages, and a snapshot feed publishes book state on a regular cadence for subscribers coming in after the start of the day. A Tcp replay service provides login-authenticated gap recovery for messages missed on the multicast feed, covering the full reliability path.
 
 ### Transport
 
-Udp multicast. Market data is disseminated on multicast groups with sequence numbers for gap detection and message ordering.
+Udp multicast for the continuous, auction, market at close, and snapshot feeds, carrying heartbeat-paced binary messages with per-packet sequence numbers for gap detection. Tcp to the replay service for login-authenticated gap recovery of missed messages from the multicast feed.
 
 ### Key Characteristics
 
-- **Binary encoded** - Efficient binary message format for low-latency processing
-- **Full depth of book** - Order book updates at every price level
-- **Incremental updates** - Real-time add, modify, and delete messages for book maintenance
-- **Trade reporting** - Last sale and trade condition data
-- **Instrument status** - Trading phase and halt notifications
-- **Sequence numbered** - Packets carry sequence numbers for gap detection
+- **Multicast distribution** - Ip multicast delivery of continuous, auction, and snapshot feeds
+- **Order-level events** - Add, cancel, modify, trade, and trade bust messages for each order
+- **Auction On Demand** - Dedicated feed for intra-day auction events
+- **Market at Close** - Dedicated feed for closing auction events
+- **Snapshot feed** - Periodic book state publication for late joiners
+- **Replay service** - Tcp-based gap recovery with login authentication
+- **Heartbeat paced** - Regular heartbeat messages on all multicast feeds
+- **Security reference data** - Security definition and security status message types
+

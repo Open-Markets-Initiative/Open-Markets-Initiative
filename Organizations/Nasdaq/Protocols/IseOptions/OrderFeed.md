@@ -1,20 +1,20 @@
-## IseOptions OrderFeed: Nasdaq Ise Options Order Feed
+## IseOptions Order Feed: Ise Order Feed Market Data
 
-Itch market data feed providing order-by-order depth for options traded on the Nasdaq Ise exchange.
+Order-by-order market data feed publishing individual order events for options traded on the Nasdaq Ise Options Exchange.
 
 ### Overview
 
-OrderFeed delivers individual order add, modify, delete, and execute messages for all options series on Ise. The feed provides full depth of book visibility with nanosecond timestamps, enabling complete order book reconstruction.
-
-The feed uses Itch binary encoding with Ise-specific message types and includes options series directory, trading action, and system event reference data messages.
+Order-by-order market data feed publishing individual order events for options published for options traded on the Nasdaq Ise Options Exchange
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Order-by-order** - Individual order lifecycle messages for full book depth
-- **Options-specific** - Series directory with underlying, expiration, strike, and type
-- **Nanosecond timestamps** - High-resolution event timing
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Order-by-order** - Add, modify, execute, delete events
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Full order book** - Complete limit order book reconstruction
+- **Gap recovery** - SoupBinTcp based recovery service
+

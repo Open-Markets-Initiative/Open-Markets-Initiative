@@ -1,20 +1,24 @@
-## Trade Itch: Asx Securities Market Data
+## Trade.Itch: Asx Trade Equities Itch Market Data
 
-Trade Itch market data feed for Asx exchange-traded options and futures on the Trade platform.
+Binary market data protocol publishing real-time order and trade events for equities traded on the Asx Trade platform with support for tailor made combinations and iceberg orders.
 
 ### Overview
 
-Trade Itch is the binary market data protocol for the Asx Trade platform, disseminating real-time order book and trade data for exchange-traded options and futures. The feed provides order-by-order messages enabling subscribers to reconstruct the full depth of book for all derivatives listed on the Trade platform.
+Asx Trade Itch is the binary market data protocol for the Asx Trade cash equities platform. It delivers order-by-order events including new orders, order modifications, trades, and auction equilibrium price updates, enabling subscribers to build a complete order book view and trade ticker for listed Asx equities.
 
-The protocol delivers order add, modify, and delete events, trade execution messages, instrument reference data, and trading status notifications. Subscribers process the sequential message stream to maintain an accurate representation of the Trade order book throughout the session.
+The protocol supports standard limit orders as well as undisclosed orders, iceberg orders, and tailor made combinations, with scenario-driven example messages documenting the event stream for each order type. A companion Glimpse snapshot service provides Tcp access to full book snapshots that can be used to initialise state without replaying the entire trading day.
 
 ### Transport
 
-Udp multicast with sequence numbers for gap detection and snapshot feeds for recovery.
+Udp multicast for the live Asx Trade Itch feed, carrying sequenced binary messages for real-time delivery of order book and trade events. Tcp to the Glimpse snapshot service for on-demand full book snapshots and end-of-snapshot indicators, used by subscribers to initialise order book state.
 
 ### Key Characteristics
 
-- **Options and futures** - Exchange-traded derivatives on the Asx Trade platform
-- **Order-by-order** - Individual order events for complete book reconstruction
-- **Full depth of book** - Every order visible at every price level
-- **Binary encoded** - Compact fixed-length messages for efficient processing
+- **Equities market data** - Real-time order and trade events for Asx listed equities
+- **Order-by-order** - Full depth of book reconstruction from individual order events
+- **Glimpse snapshot** - Tcp snapshot service for book state initialisation
+- **Iceberg orders** - Supported as a distinct order type with specific trade scenarios
+- **Tailor made combinations** - Multi-leg instruments with dedicated trade handling
+- **Auction events** - Equilibrium price update messages during the auction phase
+- **Binary encoded** - Compact fixed-width Itch-style messages for low latency processing
+

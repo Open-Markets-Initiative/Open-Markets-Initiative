@@ -1,20 +1,20 @@
-## IseOptions OrderComboFeed: Nasdaq Ise Options Order Combo Feed
+## IseOptions Order Combo Feed: Ise Order Combo Market Data Feed
 
-Itch market data feed providing order-by-order depth for complex options strategies on the Nasdaq Ise exchange.
+Order-by-order combo strategy market data feed publishing multi-leg strategy order events for Ise listed options.
 
 ### Overview
 
-OrderComboFeed delivers individual order messages for complex multi-leg options strategies traded on Ise. The feed covers combination orders including spreads, straddles, and other multi-leg structures, providing order add, modify, delete, and execute messages with nanosecond timestamps.
-
-The feed uses Itch binary encoding with complex order-specific message types. Each complex order references its component legs, including the individual options series and ratios that define the strategy.
+Order-by-order combo strategy market data feed publishing multi-leg strategy order events for Ise listed options
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Complex orders** - Multi-leg strategy order visibility
-- **Order-by-order** - Individual order lifecycle messages
-- **Strategy definitions** - Leg components with series and ratio references
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Order-by-order combo** - Individual combo strategy order events
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Strategy definitions** - Combo instrument reference data
+- **Gap recovery** - SoupBinTcp based recovery service
+

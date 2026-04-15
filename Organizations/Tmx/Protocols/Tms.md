@@ -1,20 +1,20 @@
-## Tms: Sola Trade Management System
+## Tms: Tmx Montreal Exchange Trade Management System
 
-Tmx Group's trade management protocol for the Montreal Exchange (Mx) Sola trading platform.
+Trade management interface for submitting, modifying, and verifying trade reports on the Tmx Montreal Exchange.
 
 ### Overview
 
-The Sola Trade Management System (Tms) provides post-trade functionality for the Montreal Exchange derivatives market. Tms supports trade management operations including trade inquiry, trade cancellation, trade adjustment, and give-up/take-up processing for options and futures traded on the Sola platform.
-
-The protocol enables clearing members and trading participants to manage their executed trades, process allocations, and handle trade lifecycle events through the Sola infrastructure.
+Tms is the Tmx Montreal Exchange Trade Management System, providing members with an interface for submitting trade reports, modifying existing reports, and verifying trade state. It handles off-exchange trades that need to be reported to Mx for publication and clearing.
 
 ### Transport
 
-Tcp connection to the Sola platform. Session-based connectivity with authentication and trade management messaging.
+Tcp for authenticated trade management sessions carrying trade submission, modification, and acknowledgement messages.
 
 ### Key Characteristics
 
-- **Post-trade focused** - Trade management and clearing operations for Mx derivatives
-- **Sola platform** - Native integration with the Sola matching engine
-- **Trade lifecycle** - Inquiry, cancellation, adjustment, and give-up/take-up processing
-- **Clearing integration** - Support for clearing member operations
+- **Trade reporting** - Off-exchange trade submission to Mx
+- **Montreal Exchange** - Tmx Mx trade management
+- **Session based** - Authenticated Tcp session per member
+- **Trade lifecycle** - Submit, modify, and verify trade messages
+- **Acknowledgements** - Status messages for each submission
+

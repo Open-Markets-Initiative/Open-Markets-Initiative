@@ -1,22 +1,24 @@
-## Pillar: Nyse Trading Platform
+## Pillar: Nyse Pillar Unified Order Entry And Market Data
 
-Binary trading platform providing order entry and market data services for Nyse equities and options exchanges via the BinaryGateway interface.
+Binary trading platform interface covering order entry, execution, and market data for securities traded on Nyse Pillar venues including Nyse, Nyse Arca, Nyse American, Nyse Chicago, and Nyse National.
 
 ### Overview
 
-Pillar is the Nyse trading platform underpinning all Nyse Group exchanges including Nyse, Nyse Arca, Nyse American, Nyse National, and Nyse Chicago. The platform provides a unified binary protocol through the BinaryGateway interface for both order entry and market data access across equities and options instruments. Pillar replaced the legacy Nyse systems with a modern, deterministic matching engine architecture.
+Pillar is the unified trading platform of the New York Stock Exchange, providing consolidated order entry, execution, and market data services across the Nyse family of equities and options venues. It replaces the legacy matching engines and protocols with a single native binary interface built around a common session layer, message model, and reference data format.
 
-The BinaryGateway provides binary-encoded order entry for submitting, modifying, and cancelling orders with execution reporting, as well as market data feeds delivering real-time quotes, trades, order imbalances, and depth of book information. The platform supports multiple market models including continuous trading, auctions, and market maker quoting across all Nyse Group venues.
+The Pillar protocol family covers the full lifecycle of trading activity from order submission through execution reporting, drop copy, and market data dissemination. Order entry sessions run over Tcp with authentication and sequence tracking, while market data is distributed over Ip multicast with A and B channel redundancy and a companion retransmission service for gap recovery.
 
 ### Transport
 
-Tcp for BinaryGateway order entry sessions. Multicast Udp for market data feed distribution. Binary framing with session management, sequencing, and heartbeat services.
+Tcp for persistent authenticated Pillar sessions carrying order entry, execution report, and drop copy messages between member firms and the Nyse matching engine. Udp multicast for Pillar market data distribution, delivering real-time order book and trade events over A and B multicast channels with per-packet sequence numbers.
 
 ### Key Characteristics
 
-- **Unified platform** - Single trading technology across all Nyse Group exchanges
-- **BinaryGateway** - Binary protocol for both order entry and market data
-- **Equities and options** - Supports both asset classes across Nyse venues
-- **Deterministic matching** - Consistent matching engine behavior across exchanges
-- **Multiple market models** - Continuous trading, auctions, and market maker quoting
-- **Binary encoded** - Compact binary message format for low-latency processing
+- **Unified trading platform** - Common interface across Nyse equities and options venues
+- **Order entry** - Full order lifecycle over authenticated Tcp sessions
+- **Market data** - Real-time multicast distribution with A and B channel redundancy
+- **Drop copy** - Read-only side channel for back office and risk systems
+- **Multi-venue** - Nyse, Nyse Arca, Nyse American, Nyse Chicago, and Nyse National
+- **Binary encoded** - Fixed-width Pillar-native message format for low latency
+- **Common reference data** - Unified security definitions across all Pillar markets
+

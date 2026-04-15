@@ -1,23 +1,25 @@
-## MarketDataGateway: Euronext Optiq Market Data
+## Market Data Gateway: Euronext Optiq Sbe Market Data
 
-Binary market data protocol for disseminating real-time order book and trade data from Euronext exchanges using Sbe encoding on the Optiq platform.
+Sbe-encoded multicast market data protocol for the Euronext Optiq trading platform publishing order, trade, and reference data for cash and derivatives markets.
 
 ### Overview
 
-MarketDataGateway is Euronext's market data distribution protocol on the Optiq trading platform, delivering real-time book depth, trade reports, instrument reference data, and market status for all instruments traded across Euronext's pan-European exchanges. The protocol uses Simple Binary Encoding (Sbe) for efficient fixed-position binary message serialization.
+The Optiq Market Data Gateway (Mdg) is the market data distribution channel for the Euronext Optiq trading platform. It delivers real-time order book events, trade messages, session and trading status updates, and instrument reference data for every Euronext cash and derivatives market running on Optiq, enabling subscribers to reconstruct the full order book and trade stream.
 
-The feed provides full depth of book with aggregate price level updates, trade ticks, opening and closing auction data, index values, and instrument trading status changes. MarketDataGateway covers equities, bonds, Etfs, derivatives, commodities, and structured products across Euronext's Paris, Amsterdam, Brussels, Lisbon, Dublin, Oslo, and Milan markets. The Sbe encoding delivers deterministic message layouts defined by Xml schema templates.
+Messages use Simple Binary Encoding (Sbe) with compact fixed-width fields for low-latency decoding, distributed over Ip multicast with A/B channel redundancy. Tcp-based snapshot and retransmission services are available for subscribers that join mid-day, miss multicast packets, or need to resynchronize after a gap, providing the full reliability path expected of a primary market data feed.
 
 ### Transport
 
-Udp multicast delivery organized by market segment and product group. Real-time incremental feeds carry book and trade updates, while reference data and recovery feeds provide full instrument state. Sequence numbers enable gap detection across multicast groups.
+Udp multicast for real-time delivery of Sbe-encoded order book, trade, and reference data messages with per-packet sequence numbers for gap detection. Tcp for the Optiq snapshot and retransmission services used by subscribers to recover missed multicast messages or initialise book state.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position binary fields defined by Xml schema templates
-- **Optiq platform** - Market data from Euronext's unified trading platform
-- **Pan-European coverage** - Instruments across Paris, Amsterdam, Brussels, Lisbon, Dublin, Oslo, and Milan
-- **Full depth of book** - Aggregate price level updates for order book reconstruction
-- **Multi-asset class** - Equities, derivatives, Etfs, bonds, commodities, and structured products
-- **Auction data** - Opening, closing, and intraday auction indicative and result messages
-- **Sequenced multicast** - Sequence numbers for gap detection and recovery
+- **Optiq platform** - Native market data gateway for the Euronext Optiq trading system
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Full order book** - Incremental order events for complete depth reconstruction
+- **Snapshot recovery** - Tcp book snapshots for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Cash and derivatives** - Unified feed across Euronext Optiq asset classes
+- **Reference data** - Instrument definitions integrated with the feed
+

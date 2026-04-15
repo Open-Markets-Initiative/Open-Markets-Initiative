@@ -1,20 +1,24 @@
-## Cboe Cfe Futures Depth Of Book
+## CfeFutures Depth Of Book: Cboe Futures Full Depth Of Book Data
 
-Pitch multicast feed providing full order-level depth of book for Cboe Futures Exchange.
+Full depth of book Pitch feed publishing order add, modify, cancel, and execute events for futures traded on Cboe Futures Exchange (CFE).
 
 ### Overview
 
-Futures Depth Of Book delivers real-time order-by-order market data for contracts traded on Cboe Futures Exchange. The feed shows individual order add, modify, and cancel activity, enabling subscribers to reconstruct the full limit order book for each futures contract.
+Depth Of Book is the full depth of book market data feed for Cboe Futures Exchange (CFE), delivered in the Cboe Pitch binary message format. The feed publishes order-by-order events including add, modify, delete, and execute messages so that subscribers can reconstruct the complete order book for every listed futures instrument.
 
-The feed covers all listed futures contracts including Vix futures and other volatility products. Messages include order priority information, execution reports, and contract-level trading status updates.
+Messages are distributed over Ip multicast with A and B feed redundancy and complemented by a Tcp gap request proxy service for recovery of missed multicast messages. Trade reports, auction events, and trading status updates are carried inline with the order events for a complete view of the market.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Order-level granularity** - Individual order activity for full book reconstruction
-- **Vix futures coverage** - Data for Vix and other volatility index futures
-- **Real-time executions** - Trade messages with price, quantity, and condition codes
-- **Sequenced multicast** - Sequence numbers on all messages for gap detection
+- **Full depth of book** - Order-by-order add, modify, cancel, and execute events
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Trade reports** - Last sale messages published alongside order events
+- **Auction events** - Opening, closing, and intraday auction messages
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+- **Trading status** - System event and instrument-level status notifications
+

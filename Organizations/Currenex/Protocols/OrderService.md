@@ -1,22 +1,23 @@
-## OrderService: Currenex Order Entry
+## Order Service: Currenex Forex Ouch Order Entry
 
-Binary order entry protocol for submitting and managing Fx orders on Currenex platforms using Cbp with Ouch-based encoding.
+Ouch-based order entry service for submitting, replacing, and cancelling forex orders on the Currenex trading platform.
 
 ### Overview
 
-OrderService is Currenex's order entry protocol providing low-latency order management for foreign exchange trading. The protocol is built on the Currenex Binary Protocol (Cbp) framework using an Ouch-based message encoding, enabling efficient binary order submission, modification, cancellation, and execution reporting for Fx instruments.
+Currenex Order Service is the order entry protocol for the Currenex forex platform, providing market participants with a high-performance binary interface to submit, modify, and cancel orders against Executable Streaming Prices received from market makers. The wire format is a Currenex subset of the Ouch protocol with fixed-width binary messages optimized for low-latency processing.
 
-The protocol supports the full Fx order lifecycle including limit orders, market orders, and streaming price acceptance. Execution reports provide real-time order state updates including acknowledgments, fills, partial fills, and rejections. The Ouch-based encoding provides a compact binary format familiar to participants using Ouch-family order entry protocols from other venues, adapted with Fx-specific fields for currency pair identification, settlement dates, and rate precision.
+With the number of order messages growing significantly year over year, the Order Service is tuned for high-performance processing and networking so that trading latency remains consistent under rising message volumes. The protocol carries the full order lifecycle including new orders, order replacements, cancellations, execution reports, and rejects, delivered over a persistent authenticated Tcp session.
 
 ### Transport
 
-Tcp connections to Currenex order entry gateways. Session establishment includes authentication, and connections are maintained through heartbeat exchanges. Bidirectional sequencing supports message recovery after reconnection.
+Tcp for persistent authenticated Ouch sessions carrying inbound order entry, replace, and cancel messages and outbound execution reports and acknowledgements.
 
 ### Key Characteristics
 
-- **Cbp/Ouch-based encoding** - Binary message format built on Currenex Binary Protocol with Ouch conventions
-- **Fx order management** - Full order lifecycle for foreign exchange instruments
-- **Multiple order types** - Limit, market, and streaming price acceptance orders
-- **Execution reports** - Real-time order state transitions and fill notifications
-- **Fx-specific fields** - Currency pair identification, settlement dates, and rate precision
-- **Low-latency binary** - Compact encoding optimized for minimal serialization overhead
+- **Ouch encoded** - Compact fixed-width binary message format for low latency
+- **Forex order entry** - Order submission against Executable Streaming Prices
+- **Full order lifecycle** - New, replace, cancel, execution report, and reject messages
+- **Session based** - Persistent authenticated Tcp session per participant
+- **High performance** - Tuned for rising order message volumes year over year
+- **Currenex platform** - Designed for direct participants on the Currenex venue
+

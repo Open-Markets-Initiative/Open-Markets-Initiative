@@ -1,20 +1,22 @@
-## Pts Bonds Ouch: Jnx Order Entry
+## JnxBonds Ouch: Japannext Pts Bonds Order Entry
 
-Pts Ouch order entry protocol for bonds traded on the Japannext proprietary trading system.
+Ouch-based binary order entry protocol for submitting, modifying, and cancelling orders on the Japannext Jnx Pts bonds venue.
 
 ### Overview
 
-Pts Bonds Ouch is the order entry protocol used by Japannext for submitting, modifying, and cancelling bond orders on the Jnx Pts venue. The protocol provides a binary message interface for entering limit and market orders with various time-in-force options for all listed bond instruments.
+JnxBonds Ouch is the order entry protocol for the Japannext Jnx Pts bonds venue, providing members with a low-latency binary interface to submit, replace, and cancel orders against listed bond instruments. The wire format is a Japannext subset of the Ouch message family with fixed-width binary fields and numeric token references for efficient order management.
 
-The protocol carries inbound messages for order entry, replacement, and cancellation, and returns outbound messages including acknowledgements, execution reports, and rejection notifications. Bonds Ouch provides a low-latency order management interface for direct market access participants connecting to the Jnx Pts matching engine.
+Messages are framed with SoupBinTcp over Tcp, providing session authentication, heartbeat monitoring, and sequence-based recovery. Inbound messages include Enter Order, Replace Order, and Cancel Order, and outbound messages report order accepted, replaced, cancelled, and executed events back to the client, sharing the architecture of the JnxEquities Ouch protocol.
 
 ### Transport
 
-Tcp with session layer providing connection management, sequencing, and heartbeat keepalive.
+Tcp via SoupBinTcp for persistent authenticated trading sessions carrying Enter Order, Replace Order, Cancel Order, and execution report messages with sequence-based recovery.
 
 ### Key Characteristics
 
-- **Binary order entry** - Fixed-format binary messages for low-latency order submission
-- **Full order lifecycle** - Enter, replace, and cancel with execution reports
-- **Bonds focused** - Supports all bond instruments on the Jnx Pts
-- **Real-time fills** - Inline acknowledgment and execution messages on the same session
+- **Session-based** - Persistent authenticated Tcp session per member
+- **Ouch encoded** - Compact fixed-width Ouch-style binary messages
+- **SoupBinTcp framed** - Session layer provides heartbeat and sequence recovery
+- **Full order lifecycle** - Enter, replace, cancel, accepted, replaced, cancelled, and executed
+- **Bonds order entry** - Designed for the Jnx Pts bonds venue
+

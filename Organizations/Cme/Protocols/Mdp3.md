@@ -1,23 +1,24 @@
-## Mdp 3.0: Cme Market Data Platform
+## Mdp3: Cme Globex Sbe Market Data
 
-Binary market data protocol for disseminating real-time and recovery market data across Cme, Cbot, Nymex, and Comex using Sbe encoding over multicast Udp.
+Sbe-encoded multicast market data platform publishing real-time order book, trade, and reference data for futures and options traded on Cme Globex.
 
 ### Overview
 
-Mdp 3.0 is Cme Group's event-based market data platform delivering real-time pricing, order book, and reference data for futures, options, spreads, and Fx instruments traded on Cme Globex. The protocol uses Sbe encoding based on Fix 5.0 Sp2, providing fixed-position, fixed-length fields for efficient direct access without sequential parsing.
+Mdp3 is the Cme Market Data Platform version 3, the primary market data distribution channel for futures and options traded on the Cme Globex electronic trading platform. It publishes the full order book, trade events, security definitions, trading status, and settlement data for every instrument listed on the Cme complex including Cbot, Nymex, and Comex contracts.
 
-The platform employs a dual-feed multicast Udp architecture where Feed A and Feed B simultaneously disseminate identical data on separate multicast addresses. Market data is organized into channels by product group. Mdp 3.0 supports both Market by Price (Mbp) aggregate book views and Market by Order (Mbo) full order-level depth. Conflated feeds are available for lower-bandwidth consumption.
+Messages are encoded using Fix Simple Binary Encoding (Sbe) for fixed-width low-latency processing and distributed over Ip multicast with A and B channel redundancy. Complementary Tcp recovery services provide market recovery, instrument definition snapshots, and session-based snapshot recovery for subscribers that miss packets or join mid-day.
 
 ### Transport
 
-Udp multicast. Each channel provides an Incremental Feed (Feed A and Feed B), an Instrument Definition Feed on continuous loop, and a Snapshot/Recovery Feed for periodic full book state. Packets carry sequence numbers for gap detection.
+Udp multicast for real-time delivery of sequenced Sbe market data messages over A and B feed channels with per-packet sequence numbers. Tcp for the Cme recovery services including market recovery, instrument definition, and snapshot recovery channels.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position, fixed-length fields for zero-copy parsing
-- **Dual-feed redundancy** - Feed A and Feed B disseminate identical data for failover
-- **Event-based messaging** - Messages grouped by match events with end-of-event indicators
-- **Channel architecture** - Instruments organized into channels by product group
-- **Market by Price and Market by Order** - Both aggregate and full order-level book depth
-- **Sequence numbered** - Every packet carries sequence numbers for gap detection
-- **Schema versioned** - Xml Sbe templates define message layouts per version
+- **Cme Globex** - Futures and options across the Cme complex
+- **Sbe encoded** - Fix Simple Binary Encoding for low latency
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Full order book** - Incremental refresh with market-by-price and market-by-order
+- **Recovery services** - Market, instrument, and snapshot recovery over Tcp
+- **Security definitions** - Instrument reference data integrated with the feed
+- **Settlement data** - End-of-day settlement and open interest messages
+

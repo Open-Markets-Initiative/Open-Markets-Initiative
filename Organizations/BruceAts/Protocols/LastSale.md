@@ -1,20 +1,24 @@
-## LastSale Itch: BruceAts Equities Market Data
+## Last Sale: Bruce Ats Last Sale Trade Data
 
-Equities last sale Itch feed providing trade execution data on BruceAts.
+Trade feed publishing executed trade reports and cancellations for securities traded on The Bruce Ats equities platform.
 
 ### Overview
 
-LastSale Itch is the trade reporting market data feed for equities traded on the Bruce alternative trading system. The feed disseminates real-time trade execution messages with price, size, and trade condition indicators for all executed trades on the venue.
+Bruce Last Sale is a direct market data feed delivering executed trade activity for securities traded on The Bruce Ats. The feed publishes trade report and trade cancellation messages as executions occur, providing subscribers with a clean last-sale stream without the overhead of a full depth feed.
 
-The protocol delivers trade-only data using compact binary-encoded messages over multicast. Subscribers requiring trade execution information without order book data use this feed as a focused alternative to the full depth of book feed.
+Messages are delivered over MoldUdp64 multicast which provides packet-level sequencing and gap detection. Instruments are identified by a stock locate code assigned dynamically each day via the Stock Directory message, and the feed also carries system events, trading actions, and Reg SHO short sale price test restricted indicators to give subscribers a self-contained view of the market state.
 
 ### Transport
 
-Udp multicast with sequence numbers for gap detection and message ordering.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style trade messages, with packet-level sequencing for gap detection.
 
 ### Key Characteristics
 
-- **Trade reporting** - Real-time last sale data for all executed trades
-- **Lightweight** - Trade-only feed without order book overhead
-- **Binary encoded** - Compact fixed-length messages for efficient processing
-- **Equities** - Covers all equity instruments on BruceAts
+- **Last sale** - Executed trade reports with price, size, and conditions
+- **Trade cancellations** - Cancellation messages for previously reported trades
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Itch encoded** - Fixed-width Itch-style binary messages
+- **Stock locate codes** - Dynamic integer identifiers assigned each day via Stock Directory
+- **Trading actions** - Per-instrument trading status notifications
+- **Reg SHO** - Short sale price test restricted indicator updates
+

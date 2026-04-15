@@ -1,19 +1,22 @@
-## Cboe Edga Equities Last Sale
+## EdgaEquities Last Sale: Cboe EDGA Trade Report Feed
 
-Pitch feed providing real-time trade execution data for Cboe Edga Equities Exchange.
+Trade report feed publishing executed trade messages for equities traded on Cboe US Equities EDGA Exchange.
 
 ### Overview
 
-Equities Last Sale delivers post-trade information for all executions on Cboe Edga Equities Exchange. The feed reports trade prices, quantities, timestamps, and condition codes as matches occur on the exchange matching engine.
+Last Sale is the trade report market data feed for Cboe US Equities EDGA Exchange, publishing executed trade messages with price, size, and condition codes as trades occur. It provides a clean last-sale stream for subscribers that need trade information without the overhead of a full depth of book feed.
 
-The feed provides a trade-only data stream for consumers who need execution data without order book depth or quote information.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy, and a Tcp gap request proxy service is available for recovery of messages missed on the multicast feed. Trade cancellations and corrections are published alongside trade reports.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Trade-only stream** - Execution data without order book overhead
-- **Real-time reporting** - Trade prices and quantities as matches occur
-- **Trade conditions** - Condition codes indicating trade type and context
+- **Last sale** - Executed trade stream for Cboe US Equities EDGA Exchange
+- **Trade lifecycle** - Trade report, cancellation, and correction messages
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

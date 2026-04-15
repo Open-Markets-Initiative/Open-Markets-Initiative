@@ -1,22 +1,23 @@
-## Memo: Boats Binary Order Entry
+## Memo: Boats Sbe Order Entry
 
-Sbe-encoded binary order entry protocol for submitting and managing orders on Blue Ocean Ats.
+Binary order entry protocol used by members to submit orders to Blue Ocean Ats over an Sbe-encoded subset of Fix 5.0 SP2.
 
 ### Overview
 
-Memo is the binary order entry protocol used by Blue Ocean Ats (Boats) for electronic trading of equities during overnight sessions. Built on the Memx technology platform, Memo uses Simple Binary Encoding (Sbe) to provide low-latency, fixed-length message encoding for order submission, modification, and cancellation.
+Memo is the binary order entry protocol for Blue Ocean Ats, providing members with a low-latency interface to submit, modify, and cancel orders during overnight trading sessions. The wire format is a sequenced messaging protocol using fixed width binary messages encoded as a subset of Fix 5.0 SP2 tags and messages via Simple Binary Encoding.
 
-The protocol supports equity order types with various time-in-force options appropriate for overnight trading. Memo provides real-time execution reports and order status updates over persistent Tcp sessions, enabling participants to manage their order flow during extended hours.
+Messages are transported over the Memx-Tcp streaming channel which provides reliable ordered delivery between clients and servers. Memo carries the complete order lifecycle including new order submission, modification, cancellation, execution reports, fills, and rejects, using a Fix-compatible message model that is convenient for participants already familiar with the Fix protocol.
 
 ### Transport
 
-Tcp with session-level sequencing and heartbeat management. Clients connect to Boats gateways and maintain persistent sessions for order lifecycle management.
+Tcp via the Memx-Tcp streaming channel for reliable ordered delivery of order entry, modification, cancellation, and execution report messages between the client and the exchange.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-length binary fields for efficient low-latency parsing
-- **Memx platform** - Built on proven Memx exchange technology
-- **Overnight trading** - Designed for extended hours equities trading
-- **Sequenced messaging** - Bidirectional sequence numbers for reliable delivery
-- **Real-time execution reports** - Immediate acknowledgments and fill notifications
-- **Session management** - Login, heartbeat, and graceful disconnect handling
+- **Sbe encoded** - Simple Binary Encoding for fixed-width low-latency parsing
+- **Fix 5.0 SP2 subset** - Uses Fix standard tags and messages over a binary wire format
+- **Memx-Tcp streaming** - Reliable ordered delivery between clients and servers
+- **Full order lifecycle** - New, replace, cancel, execution report, fill, and reject messages
+- **Member authenticated** - Persistent authenticated Tcp sessions per member
+- **Overnight trading** - Designed for Boats extended hours sessions
+

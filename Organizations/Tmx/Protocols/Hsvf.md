@@ -1,21 +1,20 @@
-## Hsvf: High Speed Vendor Feed
+## Hsvf: Tmx Montreal Exchange Sola Multicast Market Data
 
-Proprietary binary protocol with text elements developed by Tmx Group for derivatives market data dissemination on the Montreal Exchange (Mx) Sola trading platform.
+High Speed Vendor Feed distributing real-time market data for derivatives traded on the Tmx Montreal Exchange using the Sola Hsvf multicast specifications.
 
 ### Overview
 
-Hsvf (High Speed Vendor Feed) is the market data protocol for the Montreal Exchange, delivering real-time options and futures quotes, trades, and reference data from the Sola matching engine. The protocol is available in multicast delivery mode for broad real-time distribution to market participants.
-
-Hsvf delivers instrument definitions, best bid and offer updates, last sale trade reports, market state indicators, and end-of-day settlement summaries for all Mx-listed derivatives. The protocol uses a hybrid encoding combining binary framing with text-based field representation, designed for the specific requirements of the Canadian derivatives market.
+Tmx Hsvf is the Montreal Exchange market data product built on the Nasdaq Sola High Speed Vendor Feed specification. It delivers real-time quotes, trades, and session events for derivatives listed on Mx including equity options, index options, and futures, using fixed-format messages tuned for low-latency parsing.
 
 ### Transport
 
-Udp multicast from the Sola platform. The Mx Multicast Feed Service provides connectivity and access management for Hsvf subscribers.
+Udp multicast delivery of fixed-format Hsvf messages for real-time derivatives quote and trade dissemination from the Montreal Exchange.
 
 ### Key Characteristics
 
-- **Derivatives focused** - Purpose-built for Mx options and futures market data
-- **Hybrid encoding** - Combines binary framing with text-based field representation
-- **Multicast delivery** - Real-time distribution via Udp multicast
-- **Sola platform** - Native market data feed from the Sola matching engine
-- **Session-based** - Session management for connection lifecycle
+- **Sola Hsvf** - Nasdaq Sola platform High Speed Vendor Feed implementation
+- **Montreal Exchange** - Coverage of Tmx Mx derivatives markets
+- **Fixed format** - Each message type has a fixed format for efficient parsing
+- **Multicast delivery** - Real-time delivery on dedicated transmission line
+- **Derivatives** - Equity options, index options, and futures coverage
+

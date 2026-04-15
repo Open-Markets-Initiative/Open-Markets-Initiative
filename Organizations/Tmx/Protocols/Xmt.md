@@ -1,21 +1,20 @@
-## Xmt: eXtreme Message Transfer Protocol
+## Xmt: Tmx Toronto Stock Exchange Xmt Feed
 
-Proprietary binary protocol developed by Tmx Group for high-performance equities market data dissemination on Tsx and Tsxv.
+Market data feed variant for the Tmx Toronto Stock Exchange publishing real-time quote and trade events over the Xmt message format.
 
 ### Overview
 
-Xmt (eXtreme Message Transfer Protocol) is a binary market data protocol designed for low-latency delivery of equities trading information. It serves as the primary Level 2 market data feed for the Toronto Stock Exchange (Tsx) and Tsx Venture Exchange (Tsxv), providing real-time order book and trade data to market participants.
-
-The protocol provides full depth of book with order-by-order visibility, trade reports, instrument reference data, and market state updates. Xmt supports multicast delivery for efficient distribution to subscribers.
+Xmt is a Tmx market data product for the Toronto Stock Exchange family of venues, publishing quote updates, trade reports, and session events using the Xmt binary message format. It is available as an alternative to the Broadcast Feed for subscribers that integrate against the Xmt wire format.
 
 ### Transport
 
-Udp multicast. Messages carry sequence numbers for gap detection and recovery.
+Udp multicast via the Sola transport framing for real-time delivery of sequenced messages with per-packet sequence numbers for gap detection. Tcp for the Sola gap fill and retransmission services used by subscribers to recover missed multicast messages.
 
 ### Key Characteristics
 
-- **Equities focused** - Purpose-built for Tsx and Tsxv equity market data
-- **Binary encoding** - Compact binary message format optimized for parsing speed
-- **Depth of book** - Level 2 order book data with full price depth
-- **Low latency** - Designed for minimal wire-to-parse latency
-- **Sequenced delivery** - Sequence numbers for gap detection and recovery
+- **Tmx Xmt format** - Alternative binary message format for Tmx market data
+- **Tsx coverage** - Toronto Stock Exchange listed securities
+- **Multicast delivery** - Real-time Udp multicast distribution
+- **Gap recovery** - Tcp gap fill and retransmission service
+- **Quote and trade events** - Full market data coverage
+

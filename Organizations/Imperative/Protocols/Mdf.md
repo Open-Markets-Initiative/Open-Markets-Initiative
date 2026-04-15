@@ -1,22 +1,23 @@
-## Mdf: Imperative IntelligentCross Market Data Feed
+## Mdf: Imperative Intelligent Cross Equities Market Data
 
-Market data protocol for disseminating trade and auction information from the IntelligentCross alternative trading system.
+Binary market data feed publishing match events and reference data for the Imperative Intelligent Cross Ats periodic auction venue.
 
 ### Overview
 
-Mdf is the market data feed for Imperative Execution's IntelligentCross venue, an alternative trading system that uses machine learning to optimize trade timing. The protocol delivers trade reports, auction notifications, and system events to market data consumers. IntelligentCross conducts frequent intraday auctions using an intelligent matching algorithm, and Mdf disseminates the results of these auctions in real time.
+Mdf is the Imperative Intelligent Cross market data feed, publishing match events and related reference data for the Intelligent Cross alternative trading system. Intelligent Cross is a frequent periodic auction venue for Nms equities, and the Mdf feed exposes the auction match events downstream to subscribers that want real-time visibility into venue activity.
 
-The feed provides trade price, size, and execution details for completed auction crosses, along with system status and administrative messages. Mdf enables subscribers to monitor IntelligentCross trading activity and track execution outcomes from the venue's periodic crossing events throughout the trading day.
+Messages are delivered as a sequenced binary stream over Ip multicast with fixed-width fields for low-latency processing. Subscribers receive auction match messages, security reference data, and operational events so they can track the state of the Intelligent Cross venue throughout the trading day.
 
 ### Transport
 
-Udp multicast. Messages are delivered over sequenced Udp multicast with framing that supports gap detection and session management for reliable market data consumption.
+Udp multicast for real-time delivery of sequenced binary match and reference data messages with per-packet sequence numbers for gap detection.
 
 ### Key Characteristics
 
-- **IntelligentCross trades** - Real-time dissemination of auction cross execution results
-- **Auction-based venue** - Data reflects frequent intraday machine learning-optimized auctions
-- **Trade reports** - Provides price, size, and execution details for completed crosses
-- **System events** - Administrative messages for session state and trading status
-- **Sequenced delivery** - Messages carry sequence numbers for gap detection
-- **Low message rate** - Periodic auction results rather than continuous order book updates
+- **Periodic auction** - Match events from the Intelligent Cross Ats
+- **Binary encoded** - Fixed-width compact binary messages for low latency
+- **Multicast delivery** - Real-time Udp multicast distribution of the feed
+- **Sequence numbered** - Per-packet sequence numbers for gap detection
+- **Reference data** - Security definitions published on the feed
+- **Ats market data** - Designed for subscribers to the Intelligent Cross venue
+

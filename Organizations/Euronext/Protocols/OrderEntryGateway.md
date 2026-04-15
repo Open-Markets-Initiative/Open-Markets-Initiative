@@ -1,23 +1,24 @@
-## OrderEntryGateway: Euronext Optiq Order Entry
+## Order Entry Gateway: Euronext Optiq Sbe Order Entry
 
-Binary order entry protocol for submitting and managing orders on Euronext exchanges using Sbe encoding on the Optiq platform.
+Sbe-encoded binary order entry gateway for the Euronext Optiq trading platform supporting order, quote, and mass action submission across cash and derivatives markets.
 
 ### Overview
 
-OrderEntryGateway is Euronext's order entry protocol on the Optiq trading platform, providing electronic access for order submission, modification, cancellation, and execution reporting across Euronext's pan-European exchanges. The protocol uses Simple Binary Encoding (Sbe) for compact binary message serialization optimized for low-latency trading.
+The Optiq Order Entry Gateway (Oeg) is the primary order entry channel for Euronext participants connecting to the Optiq trading platform. It supports the full order lifecycle across Euronext cash equities, fixed income, and derivatives markets, including new order entry, order modification, cancellation, mass cancellation, and mass quote submission for market makers.
 
-The protocol supports the full order lifecycle including limit orders, market orders, stop orders, iceberg orders, and pegged orders. Specialized functionality includes mass cancellation, risk controls, market maker quoting, and strategy order entry for multi-leg instruments. OrderEntryGateway covers equities, derivatives, Etfs, bonds, and commodities across all Euronext markets. Execution reports deliver real-time order state transitions including acknowledgments, fills, and rejections.
+The wire format uses Fix Simple Binary Encoding (Sbe) for compact fixed-width messages that decode with minimal overhead. Sessions are authenticated at logon, sequence numbers are tracked bidirectionally, and the gateway provides replay of unacknowledged messages on reconnection. Execution reports and drop-copy events are delivered on the same session as outbound orders, giving clients a complete view of their order activity.
 
 ### Transport
 
-Tcp connections to Euronext Optiq order entry gateways. Sessions are established with authentication and logical access scope. Heartbeat monitoring maintains connection liveness, and message sequencing supports recovery after reconnection.
+Tcp for persistent authenticated Optiq sessions carrying order submission, modification, cancellation, mass quote, and execution report messages with sequence-numbered reliable delivery.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position binary fields for deterministic low-latency serialization
-- **Optiq platform** - Order entry across Euronext's unified trading platform
-- **Pan-European access** - Trading across Paris, Amsterdam, Brussels, Lisbon, Dublin, Oslo, and Milan
-- **Multi-asset class** - Equities, derivatives, Etfs, bonds, and commodities
-- **Mass operations** - Bulk cancellation by instrument, segment, or session
-- **Market maker quoting** - Dedicated quote entry for two-sided pricing
-- **Risk controls** - Pre-trade risk checks and kill switch functionality
+- **Optiq platform** - Native order entry gateway for the Euronext Optiq trading system
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Full order lifecycle** - New, modify, cancel, mass cancel, and execution report messages
+- **Mass quoting** - Market maker mass quote submission in a single message
+- **Session based** - Authenticated Tcp session with bidirectional sequence tracking
+- **Reliable delivery** - Retransmission of unacknowledged messages on reconnection
+- **Cash and derivatives** - Unified order entry across Euronext Optiq asset classes
+

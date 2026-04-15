@@ -1,20 +1,22 @@
-## Cboe Edgx Equities OneFeed
+## EdgxEquities One Feed: Cboe EDGX Consolidated Market Data Bundle
 
-Pitch feed providing consolidated best bid and offer across all Cboe Us equity exchanges.
+Consolidated market data bundle for Cboe US Equities EDGX Exchange combining top of book, last sale, and administrative events into a single multicast feed.
 
 ### Overview
 
-Equities OneFeed delivers a unified best bid and offer view by aggregating top-of-book quotes from all Cboe Us equity venues into a single consolidated stream. This eliminates the need for subscribers to independently consume and merge data from each individual exchange feed.
+One Feed is the consolidated market data product for Cboe US Equities EDGX Exchange, bundling top of book quotations, last sale trade reports, trading status, and administrative events into a single Udp multicast stream. It simplifies integration for subscribers that want the full low-depth picture of the venue without having to subscribe to multiple separate feeds.
 
-OneFeed simplifies market data infrastructure for participants who require cross-venue best price visibility without managing multiple separate feed connections. The feed reflects the best available prices across Bzx, Byx, Edgx, and Edga exchanges.
+Messages use the Cboe Pitch binary format and are distributed over Ip multicast with A and B feed redundancy. A Tcp gap request proxy service provides replay for subscribers that miss packets on the multicast feed.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Consolidated Bbo** - Unified best bid and offer across all Cboe equity venues
-- **Single feed** - Eliminates multi-feed aggregation complexity
-- **Real-time updates** - Reflects cross-venue best price changes as they occur
-- **Simplified connectivity** - Reduces infrastructure requirements for Cboe equity data
+- **Consolidated bundle** - Top, last sale, and administrative events in one feed
+- **Simplified integration** - Single subscription replaces multiple feed bundles
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

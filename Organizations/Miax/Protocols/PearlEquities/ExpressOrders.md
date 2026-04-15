@@ -1,20 +1,23 @@
-## Pearl Equities Express Orders: Meo Order Entry
+## PearlEquities Express Orders: Miax Pearl Equities Low Latency Order Entry
 
-Meo express order entry protocol for Miax Pearl Equities exchange.
+Low-latency binary order entry protocol for submitting, modifying, and cancelling orders on the Miax Pearl Equities Exchange.
 
 ### Overview
 
-Pearl Equities ExpressOrders is the Meo order entry protocol providing a low-latency binary interface for trading on the Miax Pearl Equities exchange. The protocol delivers optimized order submission, modification, and cancellation capabilities using compact binary encoding over Tcp, targeting high-frequency and latency-sensitive order flow.
+Miax Pearl Equities Express Orders (Meo) is the low-latency binary order entry protocol for the Miax Pearl Equities Exchange. It provides members with a high-performance native interface to submit, modify, and cancel orders for Nms securities listed on the Pearl Equities venue, using the Miax Express binary message format shared across the Miax family of protocols.
 
-Express Orders are designed for minimal processing overhead, providing a streamlined message set focused on rapid order entry and execution reporting. The protocol supports standard order types and time-in-force instructions for equity instruments on Pearl Equities with inline acknowledgment and execution messages.
+The protocol runs over Tcp with the Miax Express Session Manager (ESesM) providing session authentication, heartbeat monitoring, and sequence-based recovery. Application messages cover the full order lifecycle including new order submission, replace, cancel, execution reports, cancel rejects, and trading status updates from the matching engine back to the client.
 
 ### Transport
 
-Tcp to Miax Pearl Equities matching engine gateways with sequenced message delivery and heartbeat monitoring.
+Tcp for persistent authenticated Miax Express order entry sessions using the ESesM session layer, carrying order, modification, cancellation, and execution report messages.
 
 ### Key Characteristics
 
-- **Express orders** - Optimized message set for minimal processing overhead
-- **Binary Tcp** - Compact binary encoding for low-latency order entry
-- **Full order lifecycle** - New, replace, cancel, fill, and reject messages
-- **Low latency** - Streamlined protocol designed for high-frequency trading
+- **Low latency** - Miax Express binary order entry path
+- **Miax Express** - Native binary message format for the Miax platform
+- **ESesM session** - Session layer for authentication and sequence recovery
+- **Full order lifecycle** - New, replace, cancel, execution report, and cancel reject messages
+- **Nms equities** - Order entry for Miax Pearl Equities listed securities
+- **Tcp delivered** - Persistent authenticated session per member
+

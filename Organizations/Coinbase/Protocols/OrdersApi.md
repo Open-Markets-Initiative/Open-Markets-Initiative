@@ -1,22 +1,23 @@
-## OrdersApi: Coinbase Order Entry
+## Orders Api: Coinbase Derivatives Sbe Order Entry
 
-Binary order entry protocol for submitting and managing orders on Coinbase exchange using Sbe encoding.
+Sbe-encoded binary order entry api used by Lead Market Makers to submit, modify, and cancel orders on Coinbase Derivatives with 30 to 80 microsecond round trip quoting.
 
 ### Overview
 
-OrdersApi is Coinbase's binary order entry interface providing low-latency order management for digital asset trading. The protocol supports new order submission, order cancellation, and order modification using Sbe-encoded messages designed for minimal serialization overhead and deterministic field positioning.
+The Coinbase Derivatives orders api is the binary order entry protocol used by Lead Market Makers to connect to Coinbase Derivatives. It is built on Simple Binary Encoding (Sbe) and allows connected firms to send, modify, and cancel their orders in a simplified and efficient manner, with expected latency of 30 to 80 microseconds roundtrip for quoting workflows.
 
-The protocol handles the full order lifecycle including limit orders, market orders, stop orders, and cancel requests. Execution reports provide real-time feedback on order state transitions including acknowledgments, partial fills, complete fills, and rejections. The Sbe encoding ensures consistent message sizes and fixed field offsets for efficient encoding and decoding in latency-sensitive trading systems.
+The protocol defines a session layer for authentication and sequence number tracking along with application-level messages for new order submission, order replacement, cancellation, and execution reporting. The simplified message set is tuned specifically for the quoting use case where market makers continuously refresh two-sided prices across many instruments.
 
 ### Transport
 
-Tcp connections to Coinbase order entry gateways. Session establishment and authentication are managed by the companion Session protocol. Bidirectional message sequencing supports reliable delivery and recovery.
+Tcp for persistent authenticated sessions carrying order entry, modification, cancellation, and execution report messages between connected firms and Coinbase Derivatives.
 
 ### Key Characteristics
 
-- **Sbe encoded** - Fixed-position binary fields for deterministic low-latency serialization
-- **Full order lifecycle** - New orders, modifications, cancellations, and execution reports
-- **Multiple order types** - Limit, market, stop, and other order types for digital assets
-- **Execution reports** - Real-time order state transitions and fill notifications
-- **Self-trade prevention** - Controls to prevent matching against own resting orders
-- **Digital asset trading** - Order management for cryptocurrency trading pairs on Coinbase
+- **Sbe encoded** - Simple Binary Encoding for fixed-width low-latency parsing
+- **Low latency** - 30 to 80 microsecond roundtrip expected for quoting workloads
+- **Market maker tuned** - Message set optimized for continuous two-sided quoting
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Session based** - Authenticated Tcp session with sequence number tracking
+- **Lead Market Maker** - Primary interface for Coinbase Derivatives liquidity providers
+

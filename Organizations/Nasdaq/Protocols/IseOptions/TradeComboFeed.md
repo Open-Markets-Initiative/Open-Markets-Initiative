@@ -1,20 +1,20 @@
-## IseOptions TradeComboFeed: Nasdaq Ise Options Trade Combo Feed
+## IseOptions Trade Combo Feed: Ise Trade Combo Feed
 
-Itch market data feed providing execution reports for complex options strategies on the Nasdaq Ise exchange.
+Trade feed publishing executed multi-leg combo strategy trades on the Nasdaq Ise Options Exchange.
 
 ### Overview
 
-TradeComboFeed delivers trade execution reports for complex multi-leg options strategies traded on Ise. The feed reports the net execution price, total size, and component leg details for each complex trade, providing post-trade transparency for strategy executions.
-
-The feed uses Itch binary encoding and includes strategy definition reference data. Trade reports identify the executed strategy, net price, and individual leg execution details.
+Trade feed publishing executed multi-leg combo strategy trades on the Nasdaq Ise Options Exchange
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Complex trade reports** - Execution details for multi-leg strategy trades
-- **Net and leg pricing** - Both net strategy price and individual leg details
-- **Strategy definitions** - Leg components with series and ratio references
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Combo trade reports** - Multi-leg strategy executions
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Per-leg allocation** - Trade details with per-leg breakdown
+- **Gap recovery** - SoupBinTcp based recovery service
+

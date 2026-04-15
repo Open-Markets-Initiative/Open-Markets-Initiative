@@ -1,21 +1,20 @@
-## Sail: Sola Access Information Language
+## Sail: Tmx Montreal Exchange Order Entry
 
-Proprietary protocol developed by Tmx Group for order entry on the Montreal Exchange (Mx) Sola trading platform.
+Order entry protocol for submitting, modifying, and cancelling orders on the Tmx Montreal Exchange derivatives markets.
 
 ### Overview
 
-Sail (Sola Access Information Language) is the native order entry protocol for the Sola trading platform powering derivatives trading at the Montreal Exchange. It provides direct access to the Sola matching engine for order submission, modification, cancellation, and mass cancellation of options and futures contracts.
-
-The protocol supports the full order lifecycle including new order entry, modification, cancellation, and execution reporting. Sail includes a business design guide defining the trading workflows and a specifications guide defining the message formats and field layouts.
+Sail is the Sola Access Information Language, the order entry protocol for the Tmx Montreal Exchange (Mx) derivatives markets. It provides members with a text-based tagged-value interface for submitting orders against Mx options, futures, and other derivatives products, delivered over authenticated Tcp sessions.
 
 ### Transport
 
-Tcp to the Sola matching engine. The protocol includes built-in login, heartbeat, and sequencing mechanisms for session management.
+Tcp for persistent authenticated Sail sessions carrying order entry, modification, cancellation, and execution report messages for Montreal Exchange derivatives.
 
 ### Key Characteristics
 
-- **Derivatives order entry** - Purpose-built for Mx options and futures order management
-- **Bidirectional** - Supports inbound order instructions and outbound execution reports
-- **Sola platform native** - Designed specifically for the Sola matching engine
-- **Session management** - Built-in login, heartbeat, and sequencing
-- **Mass cancellation** - Cancel multiple orders matching specified criteria
+- **Montreal Exchange** - Order entry for Tmx Mx derivatives markets
+- **Sola Sail** - Nasdaq Sola platform order entry specification
+- **Tagged value** - Text-based message format with field tags
+- **Session based** - Persistent authenticated Tcp session per member
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+

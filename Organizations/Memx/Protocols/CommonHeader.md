@@ -1,22 +1,23 @@
-## Common Header: Memx Session Headers
+## Common Header: Memx Shared Packet Header Layer
 
-Transport-level header protocol defining Tcp and Udp session framing for all Memx protocols.
+Shared packet header and framing layer used across all Memx binary protocols to provide session identification, sequence numbering, and message ordering.
 
 ### Overview
 
-The Memx Common Header protocol defines the session-level framing and header structure used across all Memx binary protocols. It provides a unified header format for both Tcp order entry connections and Udp multicast market data feeds, establishing consistent message boundaries, sequencing, and session identification.
+The Memx Common Header is the shared framing layer used across all binary protocols running on the Memx platform, including Memo order entry, Memoir market data feeds, and the risk control protocol. It defines the packet header fields that appear on every datagram regardless of application protocol.
 
-The header framework supports login and logout handshakes for Tcp sessions, heartbeat messages for connection monitoring, and sequence number management for ordered message delivery. For Udp multicast feeds, the common header provides packet-level framing with sequence numbers for gap detection and message count fields for demarcating individual messages within multicast packets.
+The header carries session identifier, starting sequence number, message count, and timestamp information so that subscribers and clients can validate packet ordering, detect gaps, and correlate events across the Memx protocol family. By standardising the framing layer, Memx allows clients to share decoder infrastructure and recovery logic across every connection.
 
 ### Transport
 
-Tcp for order entry session framing and Udp for multicast market data packet framing. The common header is the outermost layer wrapping all Memx Sbe-encoded business messages.
+Udp multicast packet header providing session identifier, sequence number, message count, and timestamp fields for real-time market data feeds. Tcp packet header providing session and sequence framing for gap fill and recovery channels.
 
 ### Key Characteristics
 
-- **Dual transport** - Header variants for both Tcp and Udp protocols
-- **Session management** - Login, logout, and heartbeat for Tcp connections
-- **Sequence numbering** - Ordered delivery tracking for both Tcp and Udp
-- **Message framing** - Length-prefixed message boundaries within packets
-- **Unified format** - Consistent header structure across all Memx protocols
-- **Gap detection** - Sequence number tracking for identifying missed messages
+- **Shared framing** - Common header across all Memx binary protocols
+- **Session identifier** - Per-day session tracking for recovery and correlation
+- **Sequence number** - Packet-level sequencing for gap detection
+- **Message count** - Number of application messages packed into each datagram
+- **Timestamp** - Packet-level timestamp for latency measurement
+- **Multi-protocol** - Used by Memo, Memoir feeds, and Risk Control
+

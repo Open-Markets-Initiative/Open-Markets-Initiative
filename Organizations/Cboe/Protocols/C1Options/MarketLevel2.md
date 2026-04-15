@@ -1,20 +1,20 @@
-## Cboe Options Market Level 2
+## C1Options Market Level2: Cboe Options Level Two Market Data
 
-Csm feed providing aggregate price level depth for options series on Cboe Options Exchange.
+Level 2 aggregated depth market data feed publishing price-level book state for options listed on the Cboe Options Exchange.
 
 ### Overview
 
-Options Market Level 2 delivers aggregated order book data at each price level for options series traded on Cboe Options Exchange. The feed provides total quantity available at each price point using the Csm protocol, giving subscribers a compact depth view without individual order detail.
-
-The feed serves participants who need depth visibility beyond top of book for options series but do not require order-level granularity. It provides a bandwidth-efficient alternative to full depth feeds while conveying meaningful book structure at multiple price levels.
+Market Level 2 is an aggregated price-level market data product for the Cboe Options Exchange (C1), publishing top-of-book quotations plus additional price levels beyond the best bid and offer. It is positioned between the simple top of book feed and the full Pitch depth of book, giving subscribers a compact view of the most traded price levels.
 
 ### Transport
 
-Udp multicast delivery organized by product group with recovery mechanisms for gap handling.
+Udp multicast for real-time delivery of Level 2 price-level depth messages with per-packet sequence numbers for gap detection. Tcp for the Cboe recovery service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Price level depth** - Aggregate quantity at each price point for options series
-- **Csm protocol** - Delivered using the Csm streaming market data framework
-- **Reduced bandwidth** - Compact depth without individual order-level detail
-- **Multi-level visibility** - Book depth beyond top of book across price levels
+- **Aggregated depth** - Multiple price levels beyond top of book
+- **Cboe Options** - Coverage of the C1 Options Exchange
+- **Multicast delivery** - Udp multicast distribution of price-level messages
+- **Gap recovery** - Tcp recovery service for missed multicast messages
+- **Bandwidth efficient** - Compact alternative to full depth of book
+
