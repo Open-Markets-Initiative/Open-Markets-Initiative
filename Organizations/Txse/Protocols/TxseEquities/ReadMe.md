@@ -1,4 +1,4 @@
-## Txse Protocols
+## TxseEquities Protocols
 
 
 | Protocol | Type | Note |

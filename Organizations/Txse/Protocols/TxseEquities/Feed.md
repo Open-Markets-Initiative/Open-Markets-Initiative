@@ -1,4 +1,4 @@
-## Feed: Txse Binary Market Data
+## TxseEquities Feed: Txse Binary Market Data
 
 Binary market data feed publishing real-time order book, trade, and session events for equities traded on the Texas Stock Exchange using the Rake framing layer.
 

@@ -1,4 +1,4 @@
-## Seed: Txse Binary Order Entry
+## TxseEquities Seed: Txse Binary Order Entry
 
 Binary order entry protocol used by members to submit orders to the Texas Stock Exchange using the Rake session and framing layer.
 

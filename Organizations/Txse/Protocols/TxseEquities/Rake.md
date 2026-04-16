@@ -1,4 +1,4 @@
-## Rake: Txse Session And Framing Layer
+## TxseEquities Rake: Txse Session And Framing Layer
 
 Transport protocol providing session management and message framing for Txse order entry and market data protocols with Tcp and Udp variants.
 
