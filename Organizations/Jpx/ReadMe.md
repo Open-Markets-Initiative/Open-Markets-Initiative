@@ -3,3 +3,4 @@
 ## Japan Exchange Group (JPX)
 
 The exchange group was formed by the merger of Tokyo Stock Exchange Group, Inc. (ja) and Osaka Securities Exchange Co.
+
