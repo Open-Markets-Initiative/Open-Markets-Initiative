@@ -1,20 +1,20 @@
-## LinkDirect: Cboe Fx LinkDirect Market Data
+## CboeFx Link Direct: Cboe Fx Low Latency Direct Order Entry
 
-Itch-based market data feed providing streaming Fx quotes from liquidity providers on Cboe Fx LinkDirect.
+Low-latency binary order entry protocol for submitting forex orders directly to the Cboe Fx matching engine.
 
 ### Overview
 
-Fx LinkDirect delivers real-time streaming indicative and executable foreign exchange quotes from liquidity providers on the Cboe Fx LinkDirect platform. The feed provides participants with Fx pricing sourced directly from dealer liquidity rather than a central limit order book.
-
-The feed uses Itch binary encoding conventions adapted for foreign exchange with Fx-specific message types for currency pair identification and price representation. It serves participants who access Fx liquidity through the LinkDirect dealer-to-client model rather than the Ecn order book.
+Link Direct is the low-latency direct order entry interface to the Cboe Fx matching engine, providing market participants with a binary session-based protocol for submitting orders against spot and forward currency pairs. It is designed for high-frequency trading clients that need the lowest possible latency to the matching engine.
 
 ### Transport
 
-Tcp-based data feed with sequenced message delivery, session login, and heartbeat management.
+Tcp for persistent authenticated Link Direct sessions carrying order submission, modification, cancellation, and execution report messages.
 
 ### Key Characteristics
 
-- **Dealer liquidity** - Streaming quotes from Fx liquidity providers
-- **Itch-based encoding** - Binary message format following Itch conventions for Fx
-- **Indicative and executable** - Both indicative and firm executable pricing available
-- **LinkDirect platform** - Dealer-to-client Fx pricing model separate from the Ecn
+- **Direct to matching engine** - Lowest latency order entry path on Cboe Fx
+- **Forex order entry** - Spot and forward currency pair support
+- **Session based** - Persistent authenticated Tcp session per client
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **High frequency** - Tuned for low latency trading workloads
+

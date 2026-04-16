@@ -1,20 +1,24 @@
-## Pearl Equities Top Of Market: Mach Market Data
+## PearlEquities Top Of Market: Miax Pearl Equities Best Bid And Offer Feed
 
-Mach top of market feed for Miax Pearl Equities exchange.
+Real-time top of market feed publishing best bid and offer quotations and trade reports for Nms securities traded on the Miax Pearl Equities Exchange.
 
 ### Overview
 
-Pearl Equities TopOfMarket is the Mach market data feed providing real-time best bid and offer quotes and trade information for equities listed on the Miax Pearl Equities exchange. The feed delivers Bbo updates with associated sizes and last sale data using Miax proprietary binary encoding over multicast.
+Pearl Equities Top Of Market is the top of book equities market data feed for the Miax Pearl Equities Exchange, publishing the best bid and best offer for every Nms security traded on the venue along with last sale trade reports. The feed uses the Miax Express binary format shared across all Miax sub-exchanges.
 
-Subscribers receive continuous quote updates reflecting the current best prices available on Pearl Equities. The feed provides a lightweight view of equity market pricing suitable for quoting, pricing, and surveillance applications.
+Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and session recovery. The feed carries quotes, trades, system events, trading status, and short sale price test restricted indicators so that subscribers can maintain a complete view of Miax Pearl Equities market state.
 
 ### Transport
 
-Udp multicast with sequenced packets and retransmission for gap recovery.
+Udp multicast for real-time delivery of sequenced Miax Express binary quote and trade messages, with primary and secondary multicast channels for redundancy. Tcp session via Miax ESesM for gap fill and recovery of messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Top of market** - Best bid and offer quotes with sizes
-- **Equities** - Covers all equities listed on Miax Pearl Equities
-- **Binary multicast** - Proprietary Mach encoding over Udp multicast
-- **Trade data** - Last sale information with trade conditions
+- **Equities top of book** - Best bid and offer for Nms securities
+- **Miax Express** - Native binary message format for the Miax platform
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Trade reports** - Last sale messages published alongside quotes
+- **Gap fill** - Miax ESesM session for recovery of missed multicast messages
+- **Trading status** - System event and instrument-level status notifications
+- **Reg SHO** - Short sale price test restricted indicator updates
+

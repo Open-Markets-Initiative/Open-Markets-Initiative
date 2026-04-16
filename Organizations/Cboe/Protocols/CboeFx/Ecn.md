@@ -1,20 +1,20 @@
-## Ecn: Cboe Fx Ecn Market Data
+## CboeFx Ecn: Cboe Fx Ecn Price Stream
 
-Itch-based market data feed providing full depth of book for spot Fx currency pairs on Cboe Fx Ecn.
+Binary market data feed publishing executable streaming prices for spot and forward foreign exchange traded on the Cboe Fx Ecn platform.
 
 ### Overview
 
-Fx Ecn delivers real-time order-by-order market data for spot foreign exchange currency pairs traded on the Cboe Fx electronic communication network. The feed shows individual order-level activity on the central limit order book, enabling subscribers to reconstruct full depth for each currency pair.
-
-The feed uses the Itch binary encoding conventions adapted for foreign exchange, with Fx-specific message types for currency pair identification, price representation, and settlement date handling. It provides full book visibility for participants trading on the Cboe Fx Ecn venue.
+Cboe Fx Ecn is the electronic communication network for foreign exchange on the Cboe Fx platform. The Ecn market data feed publishes executable streaming prices from liquidity providers for spot and forward currency pairs, enabling price takers to see live tradable quotes and request execution against them.
 
 ### Transport
 
-Tcp-based data feed with sequenced message delivery, session login, and heartbeat management.
+Tcp for authenticated Ecn subscriber sessions delivering streaming price updates over a persistent reliable connection. Udp multicast for low-latency broadcast of price updates to subscribers on controlled networks.
 
 ### Key Characteristics
 
-- **Order-level depth** - Individual order visibility on the Fx Ecn central limit order book
-- **Itch-based encoding** - Binary message format following Itch conventions for Fx
-- **Spot Fx coverage** - Currency pair data for the Cboe Fx Ecn venue
-- **Sequenced delivery** - Message sequence numbers for reliable gap detection and recovery
+- **Cboe Fx Ecn** - Electronic communication network for spot and forward Fx
+- **Executable prices** - Streaming quotes that can be traded against
+- **Liquidity provider sourced** - Prices supplied by market makers on the venue
+- **Dual transport** - Tcp for reliability and Udp for low latency
+- **Authenticated subscribers** - Credentialled access to the price stream
+

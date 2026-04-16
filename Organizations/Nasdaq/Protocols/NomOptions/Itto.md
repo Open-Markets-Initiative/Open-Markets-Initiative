@@ -1,20 +1,20 @@
-## NomOptions Itto: Nasdaq Options Market Order Feed
+## NomOptions Itto: Nasdaq Options Top Order Market Data
 
-Itch market data feed providing full depth of book for options traded on the Nasdaq Options Market.
+Top of book Itch-based market data feed publishing best bid and offer quotations and trade reports for options traded on the Nasdaq Options Market.
 
 ### Overview
 
-Itto is the primary Nom market data feed, delivering order-by-order depth information for all options series listed on the Nasdaq Options Market. The feed provides individual order add, modify, delete, and execute messages with nanosecond timestamps, enabling complete order book reconstruction.
-
-The feed uses Itch binary encoding with Nom-specific message types and includes options series directory, trading action, and system event reference data. Itto supports both simple options and complex strategy visibility.
+Itto is the top of book market data feed for the Nasdaq Options Market (Nom), publishing best bid and offer updates plus trade reports for every listed option using the Nasdaq Itch binary protocol. The feed is delivered over MoldUdp64 multicast with a SoupBinTcp glimpse snapshot and retransmission service for recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Full depth of book** - Order-by-order visibility across all price levels
-- **Options-specific** - Series directory with underlying, expiration, strike, and type
-- **Nanosecond timestamps** - High-resolution event timing
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Top of book** - Best bid and offer for Nasdaq Options
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Options market data** - Coverage of all listed Nom options
+

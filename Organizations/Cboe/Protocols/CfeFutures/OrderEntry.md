@@ -1,21 +1,23 @@
-## Cboe Cfe Futures Order Entry
+## CfeFutures Order Entry: Cboe Futures Binary Order Entry
 
-Boe binary order entry protocol for submitting and managing orders on Cboe Futures Exchange.
+Cboe Binary Order Entry (Boe) protocol for submitting, modifying, and cancelling orders on Cboe Futures Exchange (CFE).
 
 ### Overview
 
-Futures Order Entry provides low-latency order management for trading on Cboe Futures Exchange using the Boe binary protocol family. The protocol supports new order submission, modification, cancellation, and execution reporting for futures contracts with compact binary message formats.
+Order Entry is the Cboe Binary Order Entry (Boe) protocol for Cboe Futures Exchange (CFE), providing members with a low-latency binary interface to submit, modify, and cancel orders. The wire format uses compact fixed-width binary messages and a custom session layer with authentication, sequence tracking, and heartbeat monitoring.
 
-The protocol includes Boe3 generation enhancements with expanded message types and fields tailored to futures trading. It covers all listed futures contracts including Vix futures, with support for spread orders, mass cancellation, and risk controls.
+The protocol supports the full order lifecycle including new order submission, order modification, cancellation, mass cancellation, execution reports, and cancel rejects. Risk checks are applied inline before orders reach the matching engine, and the session layer provides reliable recovery after transient disconnects.
 
 ### Transport
 
-Tcp connections to Cboe Futures Exchange matching engine gateways with session authentication and heartbeat management.
+Tcp via the Cboe Binary Order Entry (Boe) session layer for persistent authenticated order flow with sequence tracking, heartbeats, and reliable recovery.
 
 ### Key Characteristics
 
-- **Binary encoded** - Compact fixed-format messages for minimal serialization overhead
-- **Boe3 generation** - Current protocol with expanded futures-specific message types
-- **Spread order support** - Multi-leg futures spread submission and management
-- **Mass cancel** - Bulk cancellation by contract, session, or risk group
-- **Risk controls** - Pre-trade risk checks and kill switch functionality
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **Full order lifecycle** - New, modify, cancel, mass cancel, and execution report messages
+- **Inline risk checks** - Pre-trade risk validation applied during order processing
+- **Session based** - Persistent authenticated Tcp session per member
+- **Sequence recovery** - Reliable recovery after transient disconnects
+- **Low latency** - Compact binary messages for high-frequency order flow
+

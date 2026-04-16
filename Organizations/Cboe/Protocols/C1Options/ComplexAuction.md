@@ -1,20 +1,22 @@
-## Cboe Options Complex Auction
+## C1Options Complex Auction: Cboe Options Complex Order Auction Event Data
 
-Pitch feed providing auction indicative and result data for complex multi-leg options strategies on Cboe Options Exchange.
+Auction event feed publishing complex order auction information for multi-leg options strategies on Cboe Options Exchange (C1).
 
 ### Overview
 
-Options Complex Auction delivers real-time auction information for complex options strategies during auction periods on Cboe Options Exchange. The feed provides indicative prices, paired and imbalance quantities, and auction results for multi-leg complex instruments.
+Complex Auction is the auction event feed for the complex order book on Cboe Options Exchange (C1), publishing opening, closing, and intraday auction messages for multi-leg options strategies. It carries indicative prices, imbalance quantities, and auction status for every complex strategy auction.
 
-The feed covers opening auctions, complex order auctions, and improvement mechanisms for complex strategies. Subscribers monitor auction progression and final results for multi-leg instruments as order interest accumulates during auction collection windows.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy. A companion Tcp gap request proxy service provides replay of missed multicast messages for subscribers that need gap recovery.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Complex auction data** - Indicative prices and quantities for multi-leg strategy auctions
-- **Imbalance information** - Paired and unpaired quantities during auction collection
-- **Auction results** - Final executed prices and quantities for complex instruments
-- **Improvement mechanisms** - Data from complex order auction and improvement processes
+- **Complex auctions** - Auction events for multi-leg options strategies
+- **Indicative prices** - Complex auction collar and imbalance information
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

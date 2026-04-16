@@ -1,13 +1,19 @@
-## Cboe Byx Equities Exchange Protocols
+## ByxEquities Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Depth Of Book](DepthOfBook.md) | Market Data | Full order-level depth of book |
-| [Top](Top.md) | Market Data | Best bid and offer updates |
-| [Auction Feed](AuctionFeed.md) | Market Data | Auction indicative and result data |
-| [Last Sale](LastSale.md) | Market Data | Real-time trade execution data |
-| [OneFeed](OneFeed.md) | Market Data | Consolidated Bbo across Cboe equity exchanges |
-| [Summary Depth](SummaryDepth.md) | Market Data | Aggregate price level depth |
-| [Etf Implied Liquidity](EtfImpliedLiquidity.md) | Market Data | Synthetic Etf depth from underlying components |
-| [Tcp Depth Of Book](TcpDepthOfBook.md) | Market Data | Full depth of book over Tcp |
-| [Order Entry](OrderEntry.md) | Order Entry | Binary order entry for equities |
+| [AuctionFeed](AuctionFeed.md) | MarketData | Cboe BYX Auction Event Data |
+| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe BYX Full Depth Of Book Data |
+| [EtfImpliedLiquidity](EtfImpliedLiquidity.md) | MarketData | Cboe BYX Etf Implied Liquidity Data |
+| [LastSale](LastSale.md) | MarketData | Cboe BYX Trade Report Feed |
+| [OneFeed](OneFeed.md) | MarketData | Cboe BYX Consolidated Market Data Bundle |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Cboe BYX Binary Order Entry |
+| [SummaryDepth](SummaryDepth.md) | MarketData | Cboe BYX Aggregated Price Level Depth Of Book |
+| [TcpDepthOfBook](TcpDepthOfBook.md) | MarketData | Cboe BYX Tcp Full Depth Of Book Data |
+| [Top](Top.md) | MarketData | Cboe BYX Best Bid And Offer Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

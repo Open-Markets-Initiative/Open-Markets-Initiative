@@ -1,20 +1,23 @@
-## PsxEquities Bbo: Nasdaq Psx Best Bid And Offer
+## PsxEquities Bbo: Nasdaq PSX Top Of Book Quotation Data
 
-Itch market data feed providing best bid and offer quotation updates for Nasdaq Psx securities.
+Top of book Itch-based market data feed publishing best bid and offer quotations for equities traded on Nasdaq PSX Equities.
 
 ### Overview
 
-Bbo delivers top-of-book price and size updates for all Psx-listed securities. The feed provides a simplified view reporting only the best bid and best offer rather than the full order book depth.
+Bbo is the top of book market data feed for Nasdaq PSX Equities, publishing best bid and best offer updates for every listed equity instrument. It is a lightweight alternative to the full TotalView depth feed, providing current quotations without the overhead of order-by-order events.
 
-The feed uses Itch binary encoding and shares the common Psx reference data message set including stock directory and trading status information. Quote updates reflect changes to the best bid or offer for each security.
+Messages use the Nasdaq Itch binary format and are distributed over Ip multicast via MoldUdp64. A companion SoupBinTcp glimpse snapshot and retransmission service is available for gap recovery and mid-day initialisation.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Top-of-book** - Best bid and offer price and size only
-- **Lower bandwidth** - Reduced message volume compared to depth feeds
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
-- **Nanosecond timestamps** - High-resolution event timing
+- **Top of book** - Best bid and best offer for every listed instrument
+- **Nasdaq Itch** - Industry-standard Itch binary message format
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Glimpse snapshot** - Tcp snapshot service for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Lightweight** - Low bandwidth alternative to full depth of book
+

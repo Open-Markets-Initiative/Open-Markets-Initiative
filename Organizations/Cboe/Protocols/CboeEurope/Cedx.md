@@ -1,20 +1,20 @@
-## Cboe Europe Cedx
+## CboeEurope Cedx: Cboe Europe Derivatives Binary Order Entry
 
-Pitch feed providing market data for Cboe European Derivatives Exchange digital asset derivatives.
+Cboe Binary Order Entry protocol for submitting orders on the Cboe Europe Derivatives Exchange single-stock futures and equity index options markets.
 
 ### Overview
 
-Europe Cedx delivers real-time market data for digital asset derivative products traded on Cboe European Derivatives Exchange. The feed provides order book updates, trade executions, and instrument status for Cedx-listed crypto derivative contracts using the Pitch protocol.
-
-Cedx offers regulated European-venue crypto derivatives trading, and this feed serves participants monitoring or trading these instruments. The feed uses standard Pitch message types adapted for the specific contract specifications and trading characteristics of digital asset derivatives.
+Cedx is the order entry interface for Cboe Europe Derivatives Exchange, the Cboe European futures and options venue. It uses the same Cboe Binary Order Entry (Boe) session layer and message family as the US equities and options markets, providing members with a consistent low-latency interface for submitting, modifying, and cancelling orders on Cboe-listed single stock futures and equity index options.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Tcp via the Cboe Boe session layer for persistent authenticated order flow to the Cedx matching engine.
 
 ### Key Characteristics
 
-- **Digital asset derivatives** - Market data for Cedx crypto derivative contracts
-- **European regulated venue** - Data from Cboe European Derivatives Exchange
-- **Pitch protocol** - Standard Pitch encoding for Cedx-specific instruments
-- **Order book and trades** - Book updates and execution reports for listed contracts
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **European derivatives** - Single stock futures and equity index options
+- **Session based** - Persistent authenticated Tcp session per member
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Consistent with US markets** - Shared message model across Cboe venues
+

@@ -1,20 +1,23 @@
-## Cboe Edgx Equities Order Entry
+## EdgxEquities Order Entry: Cboe EDGX Binary Order Entry
 
-Boe binary order entry protocol for submitting and managing orders on Cboe Edgx Equities Exchange.
+Cboe Binary Order Entry (Boe) protocol for submitting, modifying, and cancelling orders on Cboe US Equities EDGX Exchange.
 
 ### Overview
 
-Equities Order Entry provides low-latency order management for trading on Cboe Edgx Equities Exchange using the Boe binary protocol. The protocol supports new order submission, modification, cancellation, and execution reporting with compact binary message formats designed for minimal encoding overhead.
+Order Entry is the Cboe Binary Order Entry (Boe) protocol for Cboe US Equities EDGX Exchange, providing members with a low-latency binary interface to submit, modify, and cancel orders. The wire format uses compact fixed-width binary messages and a custom session layer with authentication, sequence tracking, and heartbeat monitoring.
 
-The protocol covers all order types and time-in-force options available on the Edgx equity exchange. It includes mass cancellation, risk controls, and session management for robust production trading.
+The protocol supports the full order lifecycle including new order submission, order modification, cancellation, mass cancellation, execution reports, and cancel rejects. Risk checks are applied inline before orders reach the matching engine, and the session layer provides reliable recovery after transient disconnects.
 
 ### Transport
 
-Tcp connections to Cboe matching engine gateways with session authentication and heartbeat management.
+Tcp via the Cboe Binary Order Entry (Boe) session layer for persistent authenticated order flow with sequence tracking, heartbeats, and reliable recovery.
 
 ### Key Characteristics
 
-- **Binary encoded** - Compact fixed-format messages for minimal serialization overhead
-- **Full order lifecycle** - New, modify, cancel, and execution reporting
-- **Mass cancel** - Bulk cancellation by instrument, session, or risk group
-- **Risk controls** - Built-in pre-trade risk checks and kill switch functionality
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **Full order lifecycle** - New, modify, cancel, mass cancel, and execution report messages
+- **Inline risk checks** - Pre-trade risk validation applied during order processing
+- **Session based** - Persistent authenticated Tcp session per member
+- **Sequence recovery** - Reliable recovery after transient disconnects
+- **Low latency** - Compact binary messages for high-frequency order flow
+

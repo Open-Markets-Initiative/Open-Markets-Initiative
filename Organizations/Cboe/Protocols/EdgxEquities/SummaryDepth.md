@@ -1,20 +1,23 @@
-## Cboe Edgx Equities Summary Depth
+## EdgxEquities Summary Depth: Cboe EDGX Aggregated Price Level Depth Of Book
 
-Pitch feed providing aggregate price level depth for Cboe Edgx Equities Exchange.
+Aggregated price level depth of book feed for equities traded on Cboe US Equities EDGX Exchange, delivering top price levels instead of full order-by-order events.
 
 ### Overview
 
-Equities Summary Depth delivers aggregated order book data at each price level rather than individual order detail. The feed provides total quantity available at each price point, giving subscribers a compact view of market depth without the message volume of full order-level feeds.
+Summary Depth is the aggregated price level market data feed for Cboe US Equities EDGX Exchange, publishing order book state at the price-level aggregated tier rather than per-order. It delivers compact updates when aggregate size at a price level changes, making it suitable for subscribers that need depth information without the full volume of the order-by-order Pitch feed.
 
-The feed serves participants who need depth visibility beyond top of book but do not require individual order tracking. It reduces bandwidth and processing requirements compared to the full depth of book feed while still conveying meaningful book structure.
+Messages are distributed over Ip multicast with A and B feed redundancy. Trade reports, auction events, and trading status updates are carried alongside the depth updates, and a Tcp gap request proxy service provides replay of messages missed on the multicast feed.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Price level aggregation** - Total quantity at each price point rather than individual orders
-- **Reduced bandwidth** - Compact depth representation with lower message rates
-- **Multi-level depth** - Visibility beyond top of book across multiple price levels
-- **Real-time updates** - Aggregate quantities refreshed as book changes occur
+- **Aggregated depth** - Price level book state rather than per-order events
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Top levels** - Focused on the most traded price levels for bandwidth efficiency
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+- **Trade reports** - Last sale messages published alongside depth updates
+

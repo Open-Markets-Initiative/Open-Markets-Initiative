@@ -1,11 +1,17 @@
-## Cboe Europe Protocols
+## CboeEurope Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Depth Of Book](DepthOfBook.md) | Market Data | Full order-level depth of book |
-| [Tcp Depth Of Book](TcpDepthOfBook.md) | Market Data | Full depth of book over Tcp |
-| [Auction Feed](AuctionFeed.md) | Market Data | Auction indicative and result data |
-| [Last Sale](LastSale.md) | Market Data | Real-time trade execution data |
-| [Cedx](Cedx.md) | Market Data | Digital asset derivatives market data |
-| [Order Entry](OrderEntry.md) | Order Entry | Binary order entry for European venues |
-| [Trf Order Entry](TrfOrderEntry.md) | Order Entry | Trade reporting facility submissions |
+| [AuctionFeed](AuctionFeed.md) | MarketData | Cboe Europe Auction Event Data |
+| [Cedx](Cedx.md) | OrderEntry | Cboe Europe Derivatives Binary Order Entry |
+| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe Europe Full Depth Of Book Data |
+| [LastSale](LastSale.md) | MarketData | Cboe Europe Trade Report Feed |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Europe Binary Order Entry |
+| [TcpDepthOfBook](TcpDepthOfBook.md) | MarketData | Cboe Europe Tcp Full Depth Of Book Data |
+| [TrfOrderEntry](TrfOrderEntry.md) | OrderEntry | Cboe Europe Trf Trade Report Submission |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

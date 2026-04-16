@@ -1,6 +1,12 @@
-## Miax Onyx Futures Protocols
+## OnyxFutures Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TopOfMarket](TopOfMarket.md) | Market Data | Mach top of market for Onyx Futures |
-| [DepthOfMarket](DepthOfMarket.md) | Market Data | Mach depth of market for Onyx Futures |
+| [DepthOfMarket](DepthOfMarket.md) | MarketData | Miax Onyx Futures Full Depth Of Book Feed |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Miax Onyx Futures Best Bid And Offer Feed |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

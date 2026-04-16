@@ -1,20 +1,22 @@
-## PsxEquities Orders: Nasdaq Psx Order Entry
+## PsxEquities Orders: Nasdaq PSX Order Entry
 
-Ouch binary order entry protocol for submitting and managing equity orders on the Nasdaq Psx exchange.
+Ouch-based binary order entry protocol for submitting, replacing, and cancelling orders on Nasdaq PSX Equities.
 
 ### Overview
 
-Orders provides the Ouch order entry interface to the Nasdaq Psx matching engine. The protocol supports the complete order lifecycle including new order submission, replacement, cancellation, and execution reporting with immediate acknowledgment.
+Orders is the Nasdaq Ouch order entry protocol variant for Nasdaq PSX Equities, providing members with a low-latency binary interface to submit, replace, and cancel orders for equities. The wire format is the Ouch message family with fixed-width binary fields and numeric token references for efficient order management.
 
-The protocol uses compact binary encoding with single-byte message type identifiers and fixed-length fields, delivered over SoupBinTcp session connections. Order types include limit, market, and pegged orders with various time-in-force and display options.
+Messages are framed with SoupBinTcp over Tcp which provides session authentication, heartbeat monitoring, and sequence-based recovery. Inbound messages include Enter Order, Replace Order, Cancel Order, and Cancel By Order Id, and outbound messages report order accepted, replaced, cancelled, and executed events.
 
 ### Transport
 
-SoupBinTcp session over Tcp.
+Tcp via SoupBinTcp for persistent authenticated Ouch sessions carrying order submission, replacement, cancellation, and execution report messages.
 
 ### Key Characteristics
 
-- **Full order lifecycle** - New, replace, cancel, fill, and reject messages
-- **Low latency** - Optimized binary encoding for high-frequency order flow
-- **Ouch protocol** - Compact fixed-length fields with single-byte message types
-- **Immediate acknowledgment** - Order acceptance and rejection responses
+- **Nasdaq Ouch** - Industry-standard Ouch order entry protocol
+- **SoupBinTcp framed** - Session-authenticated Tcp with heartbeat and sequence recovery
+- **Full order lifecycle** - Enter, replace, cancel, accepted, replaced, cancelled, and executed
+- **Session based** - Persistent authenticated Tcp session per member
+- **Binary encoded** - Fixed-width Ouch binary messages for low latency
+

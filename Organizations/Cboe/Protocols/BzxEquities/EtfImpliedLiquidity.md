@@ -1,20 +1,22 @@
-## Cboe Bzx Equities Etf Implied Liquidity
+## BzxEquities Etf Implied Liquidity: Cboe BZX Etf Implied Liquidity Data
 
-Pitch feed providing synthetic depth of book for Etf instruments derived from underlying component liquidity.
+Specialised feed publishing implied liquidity values for exchange traded funds on Cboe US Equities BZX Exchange.
 
 ### Overview
 
-Equities Etf Implied Liquidity constructs a synthetic order book for Etf instruments by calculating implied prices and quantities from the real-time liquidity of each underlying component security. The feed enables participants to see executable depth beyond what is resting on the Etf order book itself.
+Etf Implied Liquidity is a specialised market data product for Cboe US Equities BZX Exchange that publishes implied liquidity metrics for exchange traded funds. Implied liquidity measures the quantity of an Etf that can be traded based on the underlying basket liquidity rather than the Etf quote directly, giving market participants a more realistic view of tradable size.
 
-The implied book reflects the theoretical Etf price at which a creation or redemption basket could be assembled from available component liquidity. This provides Etf market makers and arbitrageurs with a real-time view of implied fair value and tradeable depth.
+The feed is delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy. A Tcp gap request proxy service is available for recovery of messages missed on the multicast feed.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Synthetic depth** - Implied Etf book derived from underlying component liquidity
-- **Real-time calculation** - Continuously updated as component book changes occur
-- **Arbitrage support** - Enables Etf creation and redemption fair value assessment
-- **Component-based** - Reflects aggregate executable depth across basket constituents
+- **Etf implied liquidity** - Basket-derived liquidity metrics for Etfs
+- **Specialised feed** - Dedicated product for Etf tradable size
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

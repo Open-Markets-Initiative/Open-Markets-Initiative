@@ -1,20 +1,20 @@
-## NsmEquities Nois: Nasdaq Stock Market Net Order Imbalance Snapshot
+## NsmEquities Nois: Nasdaq Auction Imbalance Data
 
-Itch market data feed providing periodic snapshots of net order imbalance data for Nasdaq Stock Market cross auctions.
+Net Order Imbalance Snapshot feed publishing auction imbalance data for Nasdaq opening, closing, and halt cross auctions.
 
 ### Overview
 
-Nois delivers snapshot-based net order imbalance data for Nasdaq opening and closing crosses. Unlike NoiView which provides continuous updates, Nois disseminates imbalance information at scheduled intervals, providing a lower-bandwidth alternative for subscribers who do not need tick-by-tick imbalance changes.
-
-The feed uses Itch binary encoding and reports the same core imbalance data as NoiView including paired quantity, imbalance direction and size, reference price, and indicative clearing price. Snapshots are published at defined intervals during the pre-open and pre-close auction periods.
+Nois is a Nasdaq market data feed for the Nasdaq Stock Market, delivered using the Nasdaq Itch binary protocol over MoldUdp64 multicast with SoupBinTcp glimpse and retransmission services for recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Snapshot-based** - Periodic imbalance data rather than continuous updates
-- **Cross auction data** - Paired quantity, imbalance, and indicative prices
-- **Lower bandwidth** - Reduced message rate compared to NoiView
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Retransmission** - SoupBinTcp recovery for missed multicast
+- **Nasdaq Stock Market** - Coverage of Nasdaq listed securities
+

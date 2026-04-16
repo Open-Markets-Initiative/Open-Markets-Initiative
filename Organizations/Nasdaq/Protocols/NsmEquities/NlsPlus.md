@@ -1,20 +1,20 @@
-## NsmEquities NlsPlus: Nasdaq Stock Market Nls Plus
+## NsmEquities Nls Plus: Nasdaq Consolidated Last Sale Data
 
-Itch market data feed providing last sale data with extended attribution for Nasdaq Stock Market securities.
+Consolidated last sale feed publishing trade reports for Nasdaq-listed securities with additional trade attributes and conditions.
 
 ### Overview
 
-NlsPlus delivers trade reports with additional attribution fields beyond the standard LastSale feed, including market participant identifiers and extended sale condition codes. The feed provides enhanced trade transparency for subscribers requiring detailed execution source information.
-
-The feed uses Itch binary encoding and includes the standard Nsm reference data messages. Each trade report carries the execution price, size, sale conditions, and supplemental attribution fields that identify the reporting market center and trade characteristics.
+NlsPlus is a Nasdaq market data feed for the Nasdaq Stock Market, delivered using the Nasdaq Itch binary protocol over MoldUdp64 multicast with SoupBinTcp glimpse and retransmission services for recovery.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Extended attribution** - Market participant and trade source identifiers
-- **Enhanced sale conditions** - Additional trade characteristic codes
-- **Trade reports** - Real-time execution price and size data
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Retransmission** - SoupBinTcp recovery for missed multicast
+- **Nasdaq Stock Market** - Coverage of Nasdaq listed securities
+

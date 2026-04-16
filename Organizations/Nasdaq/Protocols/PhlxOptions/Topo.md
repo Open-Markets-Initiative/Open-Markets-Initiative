@@ -1,20 +1,20 @@
-## PhlxOptions Topo: Nasdaq Phlx Top Of Options Market
+## PhlxOptions Topo: Nasdaq Phlx Options Top Of Book Data
 
-Itch market data feed providing best bid and offer for options traded on the Nasdaq Phlx exchange.
+Top of book market data feed publishing best bid and offer quotations for options listed on the Nasdaq Phlx Options Exchange.
 
 ### Overview
 
-Topo delivers top-of-book quotation updates for all options series listed on Phlx. The feed reports the best bid and best offer price and size for each series, providing a lightweight view of the Phlx options market.
-
-The feed uses Itch binary encoding and includes Phlx-specific options reference data messages for series directory, trading action, and system events. Quote updates reflect changes to the best displayed bid or offer for each options series.
+Topo is the Nasdaq Phlx top of book market data feed, publishing best bid and offer quotations and trade reports for every option listed on the Nasdaq Phlx Options Exchange. It is a lightweight alternative to the full Market Depth feed.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Top-of-book** - Best bid and offer price and size for each series
-- **Lower bandwidth** - Reduced message volume compared to depth feeds
-- **Options-specific** - Series directory with underlying, expiration, strike, and type
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Top of book** - Best bid and offer for Phlx options
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Phlx Options** - Coverage of Nasdaq Phlx listed options
+

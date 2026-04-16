@@ -1,20 +1,20 @@
-## Cboe Options Msci Index
+## C1Options Msci Index: Cboe Msci Index Value Data
 
-Csm feed providing real-time Msci index value dissemination through Cboe infrastructure.
+Index value feed publishing real-time Msci index level updates for subscribers to Cboe Msci index options and futures products.
 
 ### Overview
 
-Options Msci Index delivers real-time Msci index values using the Csm protocol through Cboe's market data infrastructure. The feed provides streaming index levels for Msci indices that are disseminated via Cboe's index calculation and distribution platform.
-
-The feed serves participants who require low-latency access to Msci index values for trading, risk management, or analytical purposes. Index values are updated continuously throughout the trading session as underlying component prices change.
+Msci Index is the Cboe feed publishing real-time calculated Msci index values for subscribers who trade options and futures priced against Msci-branded indices. Cboe distributes the Msci index levels directly on a dedicated channel so that derivatives market participants can track the underlying index value alongside their options and futures positions.
 
 ### Transport
 
-Udp multicast delivery with recovery mechanisms for gap handling.
+Udp multicast for real-time delivery of Msci index value messages with per-packet sequence numbers for gap detection. Tcp for the Cboe recovery service used to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Msci index values** - Real-time streaming levels for Msci indices
-- **Csm protocol** - Delivered using the Csm message encoding framework
-- **Cboe dissemination** - Distributed through Cboe's index data infrastructure
-- **Continuous calculation** - Index levels updated as component prices change
+- **Msci indices** - Real-time Msci index level values
+- **Derivatives underlying** - Used for Msci options and futures pricing
+- **Multicast delivery** - Udp multicast distribution of index values
+- **Gap recovery** - Tcp recovery service for missed multicast messages
+- **Dedicated channel** - Separate feed channel for Msci index data
+

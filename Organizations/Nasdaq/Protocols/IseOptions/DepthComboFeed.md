@@ -1,20 +1,20 @@
-## IseOptions DepthComboFeed: Nasdaq Ise Options Depth Combo Feed
+## IseOptions Depth Combo Feed: Ise Depth Combo Market Data Feed
 
-Itch market data feed providing aggregated depth for complex options strategies on the Nasdaq Ise exchange.
+Aggregated depth of book combo feed publishing multi-leg strategy order book events for options traded on the Nasdaq Ise Options Exchange.
 
 ### Overview
 
-DepthComboFeed delivers aggregated price level depth information for complex multi-leg options strategies traded on Ise. Unlike OrderComboFeed which provides individual order detail, DepthComboFeed aggregates interest at each net price level for each strategy.
-
-The feed uses Itch binary encoding and provides price level updates as complex orders are added, modified, or removed. Each strategy is defined by its component legs with series and ratio references.
+Aggregated depth of book combo feed publishing multi-leg strategy order book events for options published for options traded on the Nasdaq Ise Options Exchange
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Aggregated complex depth** - Net price level data for multi-leg strategies
-- **Lower bandwidth** - Aggregated rather than order-by-order complex data
-- **Strategy definitions** - Leg components with series and ratio references
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
+- **Depth of book** - Aggregated price levels for combo strategies
+- **Multi-leg support** - Combo order book events
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Reference data** - Strategy definitions
+- **Gap recovery** - SoupBinTcp based recovery service
+

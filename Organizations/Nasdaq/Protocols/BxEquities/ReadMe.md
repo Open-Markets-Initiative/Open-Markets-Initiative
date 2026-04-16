@@ -1,8 +1,14 @@
-## Nasdaq Bx Equities Protocols
+## BxEquities Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TotalView](TotalView.md) | Market Data | Full depth of book |
-| [Bbo](Bbo.md) | Market Data | Best bid and offer |
-| [LastSale](LastSale.md) | Market Data | Last sale |
-| [Orders](Orders.md) | Order Entry | Ouch order entry |
+| [Bbo](Bbo.md) | MarketData | Nasdaq BX Top Of Book Quotation Data |
+| [LastSale](LastSale.md) | MarketData | Nasdaq BX Trade Report Feed |
+| [Orders](Orders.md) | OrderEntry | Nasdaq BX Order Entry |
+| [TotalView](TotalView.md) | MarketData | Nasdaq BX Full Depth Of Book Market Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

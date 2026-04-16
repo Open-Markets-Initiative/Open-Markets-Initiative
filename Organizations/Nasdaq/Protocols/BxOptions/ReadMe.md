@@ -1,6 +1,12 @@
-## Nasdaq Bx Options Protocols
+## BxOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [DepthOfMarket](DepthOfMarket.md) | Market Data | Full depth of market |
-| [TopOfMarket](TopOfMarket.md) | Market Data | Top of market quotes |
+| [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Bx Options Depth Of Book Data |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Bx Options Best Bid And Offer Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

@@ -1,7 +1,13 @@
-## Nasdaq Phlx Options Protocols
+## PhlxOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Topo](Topo.md) | Market Data | Top of options market |
-| [MarketDepth](MarketDepth.md) | Market Data | Full depth of market |
-| [Orders](Orders.md) | Order Entry | Ouch options order entry |
+| [MarketDepth](MarketDepth.md) | MarketData | Nasdaq Phlx Options Depth Of Book Data |
+| [Orders](Orders.md) | OrderEntry | Nasdaq PHLX Order Entry |
+| [Topo](Topo.md) | MarketData | Nasdaq Phlx Options Top Of Book Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

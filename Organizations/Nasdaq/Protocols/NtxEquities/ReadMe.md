@@ -1,7 +1,13 @@
-## Nasdaq Ntx Equities Protocols
+## NtxEquities Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TotalView](TotalView.md) | Market Data | Full depth of book |
-| [Bbo](Bbo.md) | Market Data | Best bid and offer |
-| [NlsPlus](NlsPlus.md) | Market Data | Last sale with extended attribution |
+| [Bbo](Bbo.md) | MarketData | Nasdaq TX Top Of Book Quotation Data |
+| [NlsPlus](NlsPlus.md) | MarketData | Nasdaq Texas Consolidated Last Sale Data |
+| [TotalView](TotalView.md) | MarketData | Nasdaq TX Full Depth Of Book Market Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

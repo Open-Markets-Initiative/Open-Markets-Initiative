@@ -1,20 +1,24 @@
-## Emerald Options Complex Top Of Market: Mach Market Data
+## EmeraldOptions Complex Top Of Market: Miax Emerald Options Complex Order Book Top Of Market
 
-Mach complex top of market feed for multi-leg strategies on Miax Emerald Options exchange.
+Real-time top of market feed publishing best bid and offer quotations and trade reports for complex multi-leg options strategies on the Miax Emerald Exchange.
 
 ### Overview
 
-Emerald Options ComplexTopOfMarket is the Mach market data feed providing real-time best bid and offer quotes for complex multi-leg strategies on the Miax Emerald exchange. The feed delivers Bbo updates for spreads, straddles, and other complex option combinations using Miax proprietary binary encoding over multicast.
+Emerald Options Complex Top Of Market (Ctom) is the market data feed for the complex order book on the Miax Emerald Exchange. It publishes the best bid and best offer for multi-leg strategies including spreads, straddles, and combinations along with trade reports for executed complex orders, delivered in the Miax Express binary format.
 
-Subscribers receive continuous quote updates for complex strategy instruments on Emerald, enabling pricing and risk management for multi-leg positions. The feed provides a focused view of complex strategy pricing separate from the simple instrument top of market feed.
+The protocol shares its transport and session model with the simple Top Of Market feed, using Udp multicast for live distribution and the Miax Express Session Manager (ESesM) over Tcp for gap fill. Complex strategy definitions, trading status changes, and auction messages for the complex book are all carried within the same sequenced feed.
 
 ### Transport
 
-Udp multicast with sequenced packets and retransmission for gap recovery.
+Udp multicast for real-time delivery of sequenced Miax Express binary complex strategy quote and trade messages, with primary and secondary multicast channels for redundancy. Tcp session via Miax ESesM for gap fill and recovery of messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Complex strategies** - Best quotes for multi-leg option combinations
-- **Options** - Complex instruments on Miax Emerald exchange
-- **Binary multicast** - Proprietary Mach encoding over Udp multicast
-- **Strategy pricing** - Spreads, straddles, and other multi-leg structures
+- **Complex book** - Top of book for multi-leg options strategies
+- **Strategy definitions** - Complex instrument definitions published on the feed
+- **Miax Express** - Native binary message format for the Miax platform
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Trade reports** - Last sale messages for executed complex trades
+- **Gap fill** - Miax ESesM session for recovery of missed multicast messages
+- **Complex auctions** - Auction messages for the complex order book
+

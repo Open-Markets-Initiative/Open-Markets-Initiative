@@ -1,20 +1,22 @@
-## NsmEquities LastSale: Nasdaq Stock Market Last Sale And Filter View
+## NsmEquities Last Sale: Nasdaq Trade Report Feed
 
-Itch market data feed providing trade reports and filtered order book views for Nasdaq Stock Market securities.
+Trade report feed publishing executed trade messages for equities traded on Nasdaq Stock Market.
 
 ### Overview
 
-LastSale delivers real-time trade execution reports for all Nsm-listed and Upa securities, including trade price, size, and sale condition information. FilterView extends the last sale data with filtered depth of book information, providing a combined trade and quote feed for subscribers who need both execution and book data.
+Last Sale is the trade report market data feed for Nasdaq Stock Market, publishing executed trade messages with price, size, and condition codes as trades occur. It provides a clean last-sale stream for subscribers that need trade information without the overhead of a full depth of book feed.
 
-The feed uses Itch binary encoding and includes the standard Nsm reference data messages. Trade reports carry execution details including match number, sale conditions, and consolidated trade identifiers for regulatory reporting.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy, and a Tcp gap request proxy service is available for recovery of messages missed on the multicast feed. Trade cancellations and corrections are published alongside trade reports.
 
 ### Transport
 
-MoldUdp64 multicast with SoupBinTcp replay.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Trade reports** - Real-time execution price, size, and sale conditions
-- **FilterView** - Optional filtered depth of book alongside trade data
-- **Itch binary encoding** - Compact fixed-length fields with single-byte message types
-- **Consolidated trade identifiers** - Match numbers for regulatory and audit purposes
+- **Last sale** - Executed trade stream for Nasdaq Stock Market
+- **Trade lifecycle** - Trade report, cancellation, and correction messages
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

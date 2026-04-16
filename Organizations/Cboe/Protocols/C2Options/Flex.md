@@ -1,19 +1,22 @@
-## Cboe C2 Options Flex
+## C2Options Flex: Cboe C2 Options Flex Order Entry
 
-Pitch feed providing market data for flexible options instruments traded on Cboe C2 Options Exchange.
+Cboe Binary Order Entry protocol for submitting Flex (flexible) options orders with custom terms on Cboe C2 Options Exchange.
 
 ### Overview
 
-Options Flex delivers real-time market data for flexible options contracts on Cboe C2 Options Exchange. Flex options allow customized strike prices, expiration dates, exercise styles, and settlement terms beyond the standard listed options series, and this feed provides order and execution data for those instruments.
+Flex is the order entry protocol for Flex (flexible) options on Cboe C2 Options Exchange. Flex options allow market participants to customise contract terms such as strike price, expiration date, and exercise style beyond the standard listed options series. The protocol provides the message types needed to define and submit orders against these custom contracts.
 
-The feed includes instrument definition messages for newly created flex series along with ongoing order activity and trade reports.
+It is built on the Cboe Binary Order Entry (Boe) session layer with authentication, sequence tracking, and reliable recovery. Execution reports and order status messages follow the same Boe conventions as standard options order entry, so clients can share decoder and session infrastructure.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Tcp via the Cboe Binary Order Entry (Boe) session layer for persistent authenticated order flow with sequence tracking, heartbeats, and reliable recovery.
 
 ### Key Characteristics
 
-- **Flexible terms** - Market data for options with customized strikes, expirations, and settlement
-- **Instrument definitions** - Notifications when new flex series are created
-- **Order and trade data** - Real-time activity for flex options instruments
+- **Flex options** - Custom contract terms beyond standard listed options
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **Session based** - Persistent authenticated Tcp session per member
+- **Full order lifecycle** - New, modify, cancel, and execution report messages
+- **Customisable terms** - Strike, expiration, and exercise style flexibility
+

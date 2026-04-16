@@ -1,10 +1,16 @@
-## Nasdaq Ise Options Protocols
+## IseOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [OrderFeed](OrderFeed.md) | Market Data | Order-by-order depth |
-| [OrderComboFeed](OrderComboFeed.md) | Market Data | Complex order depth |
-| [DepthComboFeed](DepthComboFeed.md) | Market Data | Aggregated complex depth |
-| [TopComboQuoteFeed](TopComboQuoteFeed.md) | Market Data | Best complex strategy quotes |
-| [TradeComboFeed](TradeComboFeed.md) | Market Data | Complex strategy trade reports |
-| [Otto](Otto.md) | Order Entry | Ouch options order entry |
+| [DepthComboFeed](DepthComboFeed.md) | MarketData | Ise Depth Combo Market Data Feed |
+| [OrderComboFeed](OrderComboFeed.md) | MarketData | Ise Order Combo Market Data Feed |
+| [OrderFeed](OrderFeed.md) | MarketData | Ise Order Feed Market Data |
+| [Otto](Otto.md) | OrderEntry | Ise Options Order Entry |
+| [TopComboQuoteFeed](TopComboQuoteFeed.md) | MarketData | Ise Top Combo Quote Feed |
+| [TradeComboFeed](TradeComboFeed.md) | MarketData | Ise Trade Combo Feed |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

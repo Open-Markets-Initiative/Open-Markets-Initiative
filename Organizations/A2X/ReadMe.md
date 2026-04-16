@@ -2,4 +2,5 @@
 
 ## A2X Markets
 
-A2X Markets is a South African stock exchange, founded in 2017. It was launched with the goal of creating competition in the South African marketplace 
+A2X Markets is a South African stock exchange, founded in 2017. It was launched with the goal of creating competition in the South African marketplace.
+

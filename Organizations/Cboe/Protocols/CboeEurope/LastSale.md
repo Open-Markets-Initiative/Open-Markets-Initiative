@@ -1,20 +1,22 @@
-## Cboe Europe Last Sale
+## CboeEurope Last Sale: Cboe Europe Trade Report Feed
 
-Apf feed providing real-time trade execution data for Cboe European equity venues.
+Trade report feed publishing executed trade messages for equities traded on Cboe Europe Equities.
 
 ### Overview
 
-Europe Last Sale delivers post-trade information for all executions on Cboe Europe's regulated market and multilateral trading facilities using the Apf protocol. The feed reports trade prices, quantities, timestamps, and condition codes as matches occur across European venues.
+Last Sale is the trade report market data feed for Cboe Europe Equities, publishing executed trade messages with price, size, and condition codes as trades occur. It provides a clean last-sale stream for subscribers that need trade information without the overhead of a full depth of book feed.
 
-The feed provides a trade-only data stream for consumers who need European execution data without order book depth or quote information. It covers equities, exchange-traded funds, exchange-traded products, and other instruments traded on Cboe Europe.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy, and a Tcp gap request proxy service is available for recovery of messages missed on the multicast feed. Trade cancellations and corrections are published alongside trade reports.
 
 ### Transport
 
-Udp multicast delivery organized by instrument segment with sequence numbers for gap detection.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Trade-only stream** - Execution data without order book overhead
-- **Apf protocol** - Cboe Europe's dedicated last sale data format
-- **European venue coverage** - Trades from Cboe Europe regulated market and Mtf venues
-- **Trade conditions** - Condition codes indicating trade type and reporting context
+- **Last sale** - Executed trade stream for Cboe Europe Equities
+- **Trade lifecycle** - Trade report, cancellation, and correction messages
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

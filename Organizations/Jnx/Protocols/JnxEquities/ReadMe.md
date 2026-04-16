@@ -1,6 +1,12 @@
-## Jnx Equities Protocols
+## JnxEquities Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Itch](Itch.md) | Market Data | Pts equities order-by-order market data |
-| [Ouch](Ouch.md) | Order Entry | Pts equities order entry |
+| [Itch](Itch.md) | MarketData | Japannext Pts Equities Order By Order Market Data |
+| [Ouch](Ouch.md) | OrderEntry | Japannext Pts Equities Order Entry |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

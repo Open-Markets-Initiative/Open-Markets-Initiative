@@ -1,12 +1,12 @@
 ## Jnx Protocols
 
-Protocol specifications for Japannext Pts market data and order entry. Jnx operates a proprietary trading system for Japanese equities and bonds.
 
 | Exchange | Protocols |
 | --- | --- |
-| [JnxEquities](JnxEquities) | Itch, Ouch |
-| [JnxBonds](JnxBonds) | Itch, Ouch |
+| [JnxBonds](JnxBonds/) | 2 |
+| [JnxEquities](JnxEquities/) | 2 |
 
 ## Specifications
 
-Protocol specifications are available in the [Specifications](../Specifications) directory.
+Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+

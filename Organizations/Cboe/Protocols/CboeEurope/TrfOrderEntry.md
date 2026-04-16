@@ -1,20 +1,22 @@
-## Cboe Europe Trf Order Entry
+## CboeEurope Trf Order Entry: Cboe Europe Trf Trade Report Submission
 
-Boe binary order entry protocol for trade reporting facility submissions on Cboe European venues.
+Order entry protocol for submitting trade reports to the Cboe Europe Equities trade report facility.
 
 ### Overview
 
-Europe Trf Order Entry provides order entry specifically for the Cboe Europe Trade Reporting Facility using the Boe binary protocol. The protocol enables participants to submit trade reports for off-exchange transactions that require publication through Cboe Europe's Trf.
+Trf Order Entry is the Cboe Binary Order Entry variant used to submit trade reports to the Cboe Europe Equities trade report facility. It is the interface through which off-exchange trades are reported for publication to consolidated tape and regulatory reporting, covering trade submission, modification, cancellation, and correction.
 
-The protocol handles trade report submission, amendment, and cancellation for Otc transactions. It supports the regulatory requirement for post-trade transparency by providing an efficient mechanism for reporting off-venue executions through Cboe Europe's infrastructure.
+The protocol runs over Tcp with the Boe session layer providing authentication, sequence tracking, and recovery. Submitted trade reports are acknowledged back to the submitter with status messages indicating acceptance, rejection, or publication timing.
 
 ### Transport
 
-Tcp connections to Cboe Europe Trf gateways with session authentication and heartbeat management.
+Tcp via the Cboe Binary Order Entry (Boe) session layer for persistent authenticated order flow with sequence tracking, heartbeats, and reliable recovery.
 
 ### Key Characteristics
 
-- **Trade reporting** - Submission of off-exchange trade reports to Cboe Europe Trf
-- **Binary encoded** - Compact Boe message format for efficient report submission
-- **Report management** - Amendment and cancellation of previously submitted trade reports
-- **Post-trade transparency** - Supports regulatory publication requirements for Otc transactions
+- **Trade report submission** - Off-exchange trade reporting to the Trf
+- **Cboe Boe** - Native Cboe Binary Order Entry protocol
+- **Trade lifecycle** - Submit, modify, cancel, and correction messages
+- **Session based** - Persistent authenticated Tcp session per reporting firm
+- **Acknowledgements** - Status messages for each submission
+

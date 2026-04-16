@@ -1,6 +1,12 @@
-## Miax Emerald Options Protocols
+## EmeraldOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TopOfMarket](TopOfMarket.md) | Market Data | Mach top of market for Emerald Options |
-| [ComplexTopOfMarket](ComplexTopOfMarket.md) | Market Data | Mach complex top of market for Emerald Options |
+| [ComplexTopOfMarket](ComplexTopOfMarket.md) | MarketData | Miax Emerald Options Complex Order Book Top Of Market |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Miax Emerald Options Best Bid And Offer Feed |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

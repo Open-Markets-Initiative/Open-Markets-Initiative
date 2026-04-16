@@ -1,20 +1,22 @@
-## Cboe Europe Auction Feed
+## CboeEurope Auction Feed: Cboe Europe Auction Event Data
 
-Pitch feed providing auction indicative and result data for Cboe European equity venues.
+Dedicated auction event feed publishing opening, closing, and intraday auction information for equities traded on Cboe Europe Equities.
 
 ### Overview
 
-Europe Auction Feed delivers real-time opening, closing, and intraday auction information for instruments traded on Cboe Europe's venues. The feed includes indicative prices, paired and imbalance quantities, and auction result messages throughout the auction process.
+Auction Feed is a dedicated market data product that publishes auction information for Cboe Europe Equities, including opening auction, closing auction, volatility auction, and price improvement auction events. It carries the indicative prices, imbalance quantities, and auction status messages that market participants rely on to trade auctions intelligently.
 
-The feed supports participants monitoring European equity auction events on Cboe Europe. Indicative data is continuously refreshed as order interest changes during scheduled and intraday auction collection windows.
+Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy, and a companion Tcp gap request proxy service provides replay of missed multicast messages. The feed is unidirectional market data and cannot be used to submit orders.
 
 ### Transport
 
-Udp multicast with sequenced delivery and spin server gap recovery.
+Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Opening and closing auctions** - Indicative data for scheduled European auction events
-- **Imbalance information** - Paired quantities and directional imbalance data
-- **Auction results** - Final auction prices and executed quantities
-- **Continuous updates** - Refreshed indicative data as auction interest changes
+- **Auction events** - Opening, closing, and intraday auction messages
+- **Indicative prices** - Auction collar and imbalance information
+- **Cboe Pitch** - Native Cboe binary message format
+- **Multicast delivery** - Udp multicast with A and B feed redundancy
+- **Gap request proxy** - Tcp recovery service for missed multicast messages
+

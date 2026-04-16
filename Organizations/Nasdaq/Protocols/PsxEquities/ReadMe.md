@@ -1,8 +1,14 @@
-## Nasdaq Psx Equities Protocols
+## PsxEquities Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TotalView](TotalView.md) | Market Data | Full depth of book |
-| [Bbo](Bbo.md) | Market Data | Best bid and offer |
-| [LastSale](LastSale.md) | Market Data | Last sale |
-| [Orders](Orders.md) | Order Entry | Ouch order entry |
+| [Bbo](Bbo.md) | MarketData | Nasdaq PSX Top Of Book Quotation Data |
+| [LastSale](LastSale.md) | MarketData | Nasdaq PSX Trade Report Feed |
+| [Orders](Orders.md) | OrderEntry | Nasdaq PSX Order Entry |
+| [TotalView](TotalView.md) | MarketData | Nasdaq PSX Full Depth Of Book Market Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

@@ -1,20 +1,20 @@
-## Cboe Options Market Data Feed
+## C1Options Market Data Feed: Cboe Options Market Data Feed
 
-Csm streaming market data feed providing real-time options quotes, trades, and book updates for Cboe Options Exchange.
+Legacy Cboe options market data feed publishing quote, trade, and administrative events for Cboe listed options.
 
 ### Overview
 
-Options Market Data Feed delivers comprehensive real-time market data for options series traded on Cboe Options Exchange using the Csm protocol. The feed provides quotes, trades, and book updates for individual options series.
-
-The feed is the primary Csm-based source for options market data, serving participants who consume Cboe options pricing through the Csm delivery framework. It covers all listed series with quote, trade, and instrument status information.
+Market Data Feed (Mdf) is the legacy Cboe options market data product, publishing quote updates, trade reports, and administrative events for options listed on the Cboe Options Exchange. It predates the Pitch family of feeds but remains available for subscribers that have integrated against the legacy Mdf message format.
 
 ### Transport
 
-Udp multicast delivery organized by product group with recovery mechanisms for gap handling.
+Udp multicast for real-time delivery of Cboe Market Data Feed binary messages with per-packet sequence numbers for gap detection. Tcp for the market data feed recovery service used by subscribers to recover messages missed on the multicast feed.
 
 ### Key Characteristics
 
-- **Csm protocol** - Streaming market data using the Csm message encoding framework
-- **Quotes and trades** - Real-time quote updates and trade execution reports
-- **Full series coverage** - All listed options series on Cboe Options Exchange
-- **Product group organization** - Multicast groups organized by options class and venue
+- **Legacy format** - Pre-Pitch Cboe options market data feed
+- **Multicast delivery** - Udp multicast distribution of quote and trade messages
+- **Trade reports** - Last sale messages with conditions
+- **Gap recovery** - Tcp recovery service for missed multicast messages
+- **Cboe Options** - Coverage of the Cboe Options Exchange (C1)
+

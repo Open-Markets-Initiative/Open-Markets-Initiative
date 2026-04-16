@@ -1,5 +1,11 @@
-## Miax Pearl Options Protocols
+## PearlOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TopOfMarket](TopOfMarket.md) | Market Data | Mach top of market for Pearl Options |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Miax Pearl Options Best Bid And Offer Feed |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+
