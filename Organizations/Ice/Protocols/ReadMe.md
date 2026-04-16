@@ -1,7 +1,11 @@
 ## Ice Protocols
 
-Protocol specifications for Intercontinental Exchange (Ice) market data.
 
-| Protocol | Type | Description |
-| --- | --- | --- |
-| [iMpact](iMpact.md) | Market Data | iMpact Multicast Feed |
+| Exchange | Protocols |
+| --- | --- |
+| [Ice](Ice/) | 1 |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+

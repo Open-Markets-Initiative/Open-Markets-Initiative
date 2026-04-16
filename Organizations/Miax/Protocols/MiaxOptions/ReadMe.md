@@ -1,6 +1,12 @@
-## Miax Options Protocols
+## MiaxOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [TopOfMarket](TopOfMarket.md) | Market Data | Mach top of market for Miax Options |
-| [ComplexTopOfMarket](ComplexTopOfMarket.md) | Market Data | Mach complex top of market for Miax Options |
+| [ComplexTopOfMarket](ComplexTopOfMarket.md) | MarketData | Miax Options Complex Order Book Top Of Market |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Miax Options Best Bid And Offer Feed |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

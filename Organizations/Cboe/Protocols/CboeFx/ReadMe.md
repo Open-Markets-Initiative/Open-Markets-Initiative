@@ -1,6 +1,12 @@
-## Cboe Fx Protocols
+## CboeFx Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Ecn](Ecn.md) | Market Data | Fx Ecn depth of book |
-| [LinkDirect](LinkDirect.md) | Market Data | Fx LinkDirect streaming quotes |
+| [Ecn](Ecn.md) | MarketData | Cboe Fx Ecn Price Stream |
+| [LinkDirect](LinkDirect.md) | OrderEntry | Cboe Fx Low Latency Direct Order Entry |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

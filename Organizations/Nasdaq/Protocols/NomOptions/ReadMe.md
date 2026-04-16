@@ -1,6 +1,12 @@
-## Nasdaq Options Market Protocols
+## NomOptions Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Itto](Itto.md) | Market Data | Full depth of book |
-| [Bono](Bono.md) | Market Data | Best of options quotes |
+| [Bono](Bono.md) | OrderEntry | Nasdaq Options Binary Order Entry |
+| [Itto](Itto.md) | MarketData | Nasdaq Options Top Order Market Data |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+

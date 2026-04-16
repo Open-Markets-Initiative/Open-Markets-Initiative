@@ -1,19 +1,25 @@
-## Cboe C1 Options Exchange Protocols
+## C1Options Protocols
 
-| Protocol | Type | Description |
+
+| Protocol | Type | Note |
 | --- | --- | --- |
-| [Depth Of Book](DepthOfBook.md) | Market Data | Full order-level depth of book |
-| [Complex Depth Of Book](ComplexDepthOfBook.md) | Market Data | Order-level depth for complex strategies |
-| [Complex Top](ComplexTop.md) | Market Data | Best bid and offer for complex strategies |
-| [Complex Auction](ComplexAuction.md) | Market Data | Auction data for complex strategies |
-| [Complex Multicast](ComplexMulticast.md) | Market Data | Combined complex strategy market data |
-| [Complex Options](ComplexOptions.md) | Market Data | Complex options instrument and order data |
-| [Multicast Top](MulticastTop.md) | Market Data | Best bid and offer for options series |
-| [Auction Feed](AuctionFeed.md) | Market Data | Auction indicative and result data |
-| [Flex](Flex.md) | Market Data | Flexible options market data |
-| [Order Entry](OrderEntry.md) | Order Entry | Binary order entry for options |
-| [Market Data Feed](MarketDataFeed.md) | Market Data | Streaming options quotes and trades |
-| [Market Level 2](MarketLevel2.md) | Market Data | Aggregate price level depth |
-| [Csmi Index](CsmiIndex.md) | Market Data | Streaming index values |
-| [Msci Index](MsciIndex.md) | Market Data | Msci index value dissemination |
-| [Opening Auction](OpeningAuction.md) | Market Data | Pre-market opening auction data |
+| [AuctionFeed](AuctionFeed.md) | MarketData | Cboe Options Auction Event Data |
+| [ComplexAuction](ComplexAuction.md) | MarketData | Cboe Options Complex Order Auction Event Data |
+| [ComplexDepthOfBook](ComplexDepthOfBook.md) | MarketData | Cboe Options Complex Strategy Full Depth Of Book |
+| [ComplexMulticast](ComplexMulticast.md) | MarketData | Cboe Options Complex Strategy Multicast Market Data |
+| [ComplexOptions](ComplexOptions.md) | OrderEntry | Cboe Options Complex Order Entry |
+| [ComplexTop](ComplexTop.md) | MarketData | Cboe Options Complex Strategy Top Of Book |
+| [CsmiIndex](CsmiIndex.md) | MarketData | Cboe Streaming Index Value Data |
+| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe Options Full Depth Of Book Data |
+| [Flex](Flex.md) | OrderEntry | Cboe Options Flex Order Entry |
+| [MarketDataFeed](MarketDataFeed.md) | MarketData | Cboe Options Market Data Feed |
+| [MarketLevel2](MarketLevel2.md) | MarketData | Cboe Options Level Two Market Data |
+| [MsciIndex](MsciIndex.md) | MarketData | Cboe Msci Index Value Data |
+| [MulticastTop](MulticastTop.md) | MarketData | Cboe Options Multicast Best Bid And Offer Data |
+| [OpeningAuction](OpeningAuction.md) | MarketData | Cboe Options Opening Auction Event Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Options Binary Order Entry |
+
+## Specifications
+
+Protocol schema definitions are available in the [Specifications](../../Specifications) directory.
+
