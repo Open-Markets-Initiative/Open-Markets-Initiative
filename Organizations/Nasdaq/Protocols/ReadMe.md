@@ -5,13 +5,16 @@
 | --- | --- |
 | [BxEquities](BxEquities/) | 4 |
 | [BxOptions](BxOptions/) | 2 |
-| [IseOptions](IseOptions/) | 6 |
+| [GemxOptions](GemxOptions/) | 4 |
+| [IseOptions](IseOptions/) | 12 |
+| [MrxOptions](MrxOptions/) | 7 |
 | [Nasdaq](Nasdaq/) | 2 |
 | [NomOptions](NomOptions/) | 2 |
-| [NsmEquities](NsmEquities/) | 10 |
-| [NtxEquities](NtxEquities/) | 3 |
-| [PhlxOptions](PhlxOptions/) | 3 |
-| [PsxEquities](PsxEquities/) | 4 |
+| [NsmEquities](NsmEquities/) | 12 |
+| [NtxEquities](NtxEquities/) | 5 |
+| [NtxOptions](NtxOptions/) | 3 |
+| [PhlxOptions](PhlxOptions/) | 10 |
+| [PsxEquities](PsxEquities/) | 5 |
 
 ## Specifications
 
