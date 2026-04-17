@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Memx](Memx/) | 6 |
+| [MemxEquities](MemxEquities/) | 6 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

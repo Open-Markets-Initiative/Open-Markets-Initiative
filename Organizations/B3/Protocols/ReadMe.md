@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [B3](B3/) | 2 |
+| [B3Derivatives](B3Derivatives/) | 2 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

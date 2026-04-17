@@ -8,5 +8,5 @@
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

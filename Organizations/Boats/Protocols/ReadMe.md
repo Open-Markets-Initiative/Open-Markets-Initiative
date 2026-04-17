@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Boats](Boats/) | 4 |
+| [BoatsEquities](BoatsEquities/) | 4 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

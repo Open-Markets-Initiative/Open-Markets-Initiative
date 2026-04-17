@@ -3,9 +3,10 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Finra](Finra/) | 3 |
+| [FinraOrf](FinraOrf/) | 2 |
+| [FinraOtc](FinraOtc/) | 1 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

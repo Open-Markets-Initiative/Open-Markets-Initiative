@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Asx](Asx/) | 4 |
+| [AsxSecurities](AsxSecurities/) | 4 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Cme](Cme/) | 7 |
+| [CmeFutures](CmeFutures/) | 7 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 

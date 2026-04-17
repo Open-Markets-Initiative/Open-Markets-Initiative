@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Coinbase](Coinbase/) | 3 |
+| [CoinbaseDerivatives](CoinbaseDerivatives/) | 3 |
 
 ## Specifications
 
-Protocol schema definitions are available in the [Specifications](../Specifications) directory.
+Protocol documentation is available in the [Specifications](../Specifications) directory.
 
