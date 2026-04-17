@@ -1,4 +1,4 @@
-## EuronextOptiq Drop Copy: Euronext Optiq Sbe Drop Copy
+## Optiq Drop Copy: Euronext Optiq Sbe Drop Copy
 
 Sbe-encoded drop copy channel for the Euronext Optiq trading platform delivering a copy of all order entry and execution activity to back office and risk systems.
 

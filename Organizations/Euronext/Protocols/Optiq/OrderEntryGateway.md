@@ -1,4 +1,4 @@
-## EuronextOptiq Order Entry Gateway: Euronext Optiq Sbe Order Entry
+## Optiq Order Entry Gateway: Euronext Optiq Sbe Order Entry
 
 Sbe-encoded binary order entry gateway for the Euronext Optiq trading platform supporting order, quote, and mass action submission across cash and derivatives markets.
 

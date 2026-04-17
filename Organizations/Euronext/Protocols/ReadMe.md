@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [EuronextOptiq](EuronextOptiq/) | 3 |
+| [Optiq](Optiq/) | 3 |
 
 ## Specifications
 

@@ -1,4 +1,4 @@
-## EuronextOptiq Market Data Gateway: Euronext Optiq Sbe Market Data
+## Optiq Market Data Gateway: Euronext Optiq Sbe Market Data
 
 Sbe-encoded multicast market data protocol for the Euronext Optiq trading platform publishing order, trade, and reference data for cash and derivatives markets.
 

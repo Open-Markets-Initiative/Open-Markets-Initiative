@@ -1,4 +1,4 @@
-## EuronextOptiq Protocols
+## Optiq Protocols
 
 
 | Protocol | Type | Note |
