@@ -4,13 +4,6 @@
 Japannext Proprietary Trading System for equities providing an alternative venue for trading Japanese listed stocks with lower latency and extended hours.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | JnxEquities |
-| Type | Exchange |
-| Organization | [Jnx](../../) |
-| Url | [website](https://www.japannext.co.jp/en/market) |
-
 ### Protocols
 
 

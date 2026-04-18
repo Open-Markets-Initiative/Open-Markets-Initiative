@@ -4,13 +4,6 @@
 Coinbase Derivatives Exchange regulated US futures venue offering nano sized Bitcoin and Ether futures originally launched as FairX.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | CoinbaseDerivatives |
-| Type | Exchange |
-| Organization | [Coinbase](../../) |
-| Url | [website](https://www.coinbase.com/en/exchange-partner/coinbase-derivatives) |
-
 ### Protocols
 
 

@@ -4,13 +4,6 @@
 Nasdaq Stock Market primary US cash equities listing exchange providing the reference market for Nasdaq listed securities.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | NsmEquities |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](http://www.nasdaqtrader.com/trader.aspx?id=TradingUSEquities) |
-
 ### Protocols
 
 

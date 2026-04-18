@@ -4,13 +4,6 @@
 Nasdaq Mrx Options US options exchange operating alongside Ise and Gemx within the Nasdaq options complex.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | MrxOptions |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-mrx) |
-
 ### Protocols
 
 

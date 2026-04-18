@@ -4,13 +4,6 @@
 CME Group futures markets including interest rate, equity index, foreign exchange, agricultural, and energy futures and options cleared by the Chicago Mercantile Exchange.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | CmeFutures |
-| Type | Exchange |
-| Organization | [Cme](../../) |
-| Url | [website](http://www.cmegroup.com) |
-
 ### Protocols
 
 

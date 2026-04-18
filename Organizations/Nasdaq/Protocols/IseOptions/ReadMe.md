@@ -4,13 +4,6 @@
 Nasdaq Ise International Securities Exchange US options exchange offering a price time priority market for listed equity and index options.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | IseOptions |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-ise) |
-
 ### Protocols
 
 

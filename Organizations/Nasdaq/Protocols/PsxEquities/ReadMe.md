@@ -4,13 +4,6 @@
 Nasdaq Psx US cash equities exchange offering a price size market model rewarding liquidity size over speed.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | PsxEquities |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-psx) |
-
 ### Protocols
 
 

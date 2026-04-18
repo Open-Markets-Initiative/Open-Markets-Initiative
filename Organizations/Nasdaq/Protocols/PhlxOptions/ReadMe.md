@@ -4,13 +4,6 @@
 Nasdaq Philadelphia Phlx Options US options exchange offering pro rata allocation and a wide range of equity and index options.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | PhlxOptions |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/phlx) |
-
 ### Protocols
 
 

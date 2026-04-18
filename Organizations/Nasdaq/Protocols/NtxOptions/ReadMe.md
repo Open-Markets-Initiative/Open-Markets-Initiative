@@ -4,13 +4,6 @@
 Nasdaq Ntx Options Canadian options venue providing an alternative options market for interlisted securities.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | NtxOptions |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-texas) |
-
 ### Protocols
 
 

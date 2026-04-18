@@ -4,13 +4,6 @@
 Nasdaq Canada Ntx Equities venue providing an alternative Canadian equities market for interlisted securities.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | NtxEquities |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-texas) |
-
 ### Protocols
 
 

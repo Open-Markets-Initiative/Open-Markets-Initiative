@@ -4,13 +4,6 @@
 Nasdaq Options Market US options exchange operating a price time priority market model complementing the Phlx and Bx options venues.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | NomOptions |
-| Type | Exchange |
-| Organization | [Nasdaq](../../) |
-| Url | [website](https://www.nasdaq.com/solutions/nasdaq-options-market) |
-
 ### Protocols
 
 

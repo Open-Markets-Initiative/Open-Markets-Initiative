@@ -4,13 +4,6 @@
 Blue Ocean ATS US equities alternative trading system operating overnight sessions for trading US-listed securities during Asia and Europe business hours.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | BoatsEquities |
-| Type | Exchange |
-| Organization | [Boats](../../) |
-| Url | [website](https://boatsexchange.com) |
-
 ### Protocols
 
 

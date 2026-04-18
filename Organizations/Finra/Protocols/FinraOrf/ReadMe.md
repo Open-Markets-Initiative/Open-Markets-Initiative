@@ -4,13 +4,6 @@
 Finra Over The Counter Reporting Facility for reporting trades in Nasdaq and other OTC equity securities executed outside of an exchange.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | FinraOrf |
-| Type | Exchange |
-| Organization | [Finra](../../) |
-| Url | [website](https://www.finra.org) |
-
 ### Protocols
 
 

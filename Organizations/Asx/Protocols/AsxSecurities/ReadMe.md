@@ -4,13 +4,6 @@
 Australian Securities Exchange cash securities market covering equities, exchange traded products, fixed income, and warrants listed in Sydney.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | AsxSecurities |
-| Type | Exchange |
-| Organization | [Asx](../../) |
-| Url | [website](https://www.asx.com.au) |
-
 ### Protocols
 
 

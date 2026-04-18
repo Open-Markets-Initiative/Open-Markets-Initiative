@@ -4,13 +4,6 @@
 Euronext Optiq trading platform hosting cash and derivatives markets across Euronext Paris, Amsterdam, Brussels, Lisbon, Dublin, Oslo, and Milan venues.
 
 
-| Field | Value |
-| --- | --- |
-| Abbreviation | Optiq |
-| Type | Platform |
-| Organization | [Euronext](../../) |
-| Url | [website](https://www.euronext.com/en/trade/trading-platforms/optiq) |
-
 ### Protocols
 
 
