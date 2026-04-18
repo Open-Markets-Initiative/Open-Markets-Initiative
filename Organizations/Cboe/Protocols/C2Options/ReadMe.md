@@ -1,4 +1,7 @@
-## C2Options Protocols
+## C2Options
+
+
+### Protocols
 
 
 | Protocol | Type | Note |

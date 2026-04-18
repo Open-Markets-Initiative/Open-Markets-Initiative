@@ -1,4 +1,17 @@
-## TxseEquities Protocols
+## Txse Equities
+
+
+Texas Stock Exchange Txse US cash equities exchange designed to provide a Texas based listing venue with national reach.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | TxseEquities |
+| Type | Exchange |
+| Organization | [Txse](../../) |
+| Url | [website](https://www.taiwanexchange.com) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

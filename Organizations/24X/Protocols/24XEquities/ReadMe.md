@@ -1,4 +1,17 @@
-## 24XEquities Protocols
+## 24X Equities
+
+
+24X National Exchange US listed equities and ETFs venue designed to operate around the clock including overnight trading outside of traditional US market hours.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | 24XEquities |
+| Type | Exchange |
+| Organization | [24X](../../) |
+| Url | [website](https://24exchange.com) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

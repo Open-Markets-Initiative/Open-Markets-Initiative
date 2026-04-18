@@ -1,4 +1,7 @@
-## EdgxEquities Protocols
+## EdgxEquities
+
+
+### Protocols
 
 
 | Protocol | Type | Note |

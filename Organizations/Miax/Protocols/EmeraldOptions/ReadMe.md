@@ -1,4 +1,7 @@
-## EmeraldOptions Protocols
+## EmeraldOptions
+
+
+### Protocols
 
 
 | Protocol | Type | Note |

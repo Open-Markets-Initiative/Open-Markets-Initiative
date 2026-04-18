@@ -1,4 +1,7 @@
-## BzxOptions Protocols
+## BzxOptions
+
+
+### Protocols
 
 
 | Protocol | Type | Note |

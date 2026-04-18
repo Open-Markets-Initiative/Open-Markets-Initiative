@@ -1,4 +1,17 @@
-## IexEquities Protocols
+## IEX Equities
+
+
+Iex Exchange US cash equities venue designed with a 350 microsecond speed bump to protect long term investors from latency arbitrage.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | IexEquities |
+| Type | Exchange |
+| Organization | [Iex](../../) |
+| Url | [website](https://www.iexexchange.io) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

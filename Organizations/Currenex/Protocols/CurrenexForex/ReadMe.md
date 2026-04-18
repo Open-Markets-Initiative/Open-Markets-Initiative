@@ -1,4 +1,17 @@
-## CurrenexForex Protocols
+## Currenex Forex
+
+
+Currenex institutional foreign exchange trading platform offering electronic multi bank FX trading and execution services.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | CurrenexForex |
+| Type | Exchange |
+| Organization | [Currenex](../../) |
+| Url | [website](https://www.currenex.com) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

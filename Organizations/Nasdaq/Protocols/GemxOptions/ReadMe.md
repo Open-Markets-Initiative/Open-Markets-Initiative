@@ -1,4 +1,17 @@
-## GemxOptions Protocols
+## Nasdaq GEMX
+
+
+Nasdaq Gemx Options US options exchange operating a pro rata market model within the Nasdaq options complex.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | GemxOptions |
+| Type | Exchange |
+| Organization | [Nasdaq](../../) |
+| Url | [website](https://www.nasdaq.com/solutions/nasdaq-gemx) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

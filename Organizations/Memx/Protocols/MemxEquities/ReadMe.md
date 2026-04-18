@@ -1,4 +1,17 @@
-## MemxEquities Protocols
+## Memx Equities
+
+
+Members Exchange Memx US cash equities exchange founded by a consortium of broker dealers to offer a cost efficient modern equities venue.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | MemxEquities |
+| Type | Exchange |
+| Organization | [Memx](../../) |
+| Url | [website](https://www.memxtrading.com) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

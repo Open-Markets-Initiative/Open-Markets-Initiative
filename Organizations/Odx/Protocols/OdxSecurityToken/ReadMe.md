@@ -1,4 +1,17 @@
-## OdxSecurityToken Protocols
+## Odx Security Token
+
+
+Osaka Digital Exchange security token trading venue offering electronic trading of tokenized securities under Japanese regulation.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | OdxSecurityToken |
+| Type | Exchange |
+| Organization | [Odx](../../) |
+| Url | [website](https://www.osakadojima.co.jp) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

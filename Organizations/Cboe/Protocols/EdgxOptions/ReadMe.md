@@ -1,4 +1,7 @@
-## EdgxOptions Protocols
+## EdgxOptions
+
+
+### Protocols
 
 
 | Protocol | Type | Note |

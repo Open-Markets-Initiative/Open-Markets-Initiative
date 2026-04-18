@@ -1,4 +1,17 @@
-## BxEquities Protocols
+## Nasdaq BX
+
+
+Nasdaq Bx US cash equities exchange operating a price time priority market complementing the Nasdaq main market.
+
+
+| Field | Value |
+| --- | --- |
+| Abbreviation | BxEquities |
+| Type | Exchange |
+| Organization | [Nasdaq](../../) |
+| Url | [website](https://www.nasdaq.com/solutions/nasdaq-bx-stock-market) |
+
+### Protocols
 
 
 | Protocol | Type | Note |

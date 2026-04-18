@@ -1,4 +1,7 @@
-## MiaxOptions Protocols
+## MiaxOptions
+
+
+### Protocols
 
 
 | Protocol | Type | Note |
