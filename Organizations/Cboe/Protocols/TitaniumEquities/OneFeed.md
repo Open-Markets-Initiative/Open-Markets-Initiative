@@ -1,6 +1,6 @@
-## Complex Auction: Cboe Titanium Options Complex Auction
+## TitaniumEquities One Feed: Cboe Titanium Equities One Feed
 
-Complex order auction feed for options traded on Cboe Titanium Options.
+Consolidated market data feed combining top of book, last sale, and auction information for equities traded on Cboe Titanium Equities.
 
 ### Transport
 

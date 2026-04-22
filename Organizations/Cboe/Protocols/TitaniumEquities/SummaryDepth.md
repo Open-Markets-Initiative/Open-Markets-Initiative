@@ -1,6 +1,6 @@
-## One Feed: Cboe Titanium Equities One Feed
+## TitaniumEquities Summary Depth: Cboe Titanium Equities Summary Depth
 
-Consolidated market data feed combining top of book, last sale, and auction information for equities traded on Cboe Titanium Equities.
+Aggregated summary depth of book feed for equities traded on Cboe Titanium Equities.
 
 ### Transport
 

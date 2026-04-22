@@ -1,6 +1,6 @@
-## One Options: Cboe Titanium Options One Options
+## TitaniumOptions Multicast Top: Cboe Titanium Options Multicast Top
 
-Consolidated options market data feed for Cboe Titanium Options.
+Multicast top of book feed for options traded on Cboe Titanium Options.
 
 ### Transport
 

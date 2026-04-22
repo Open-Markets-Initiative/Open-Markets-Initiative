@@ -1,6 +1,6 @@
-## Auction Feed: Cboe Titanium Options Auction Feed
+## TitaniumEquities Top Of Book: Cboe Titanium Equities Top Of Book
 
-Dedicated auction event feed for options traded on Cboe Titanium Options.
+Top of book best bid and offer feed for equities traded on Cboe Titanium Equities.
 
 ### Transport
 

@@ -1,6 +1,6 @@
-## Last Sale: Cboe Titanium Equities Last Sale
+## TitaniumEquities Auction Feed: Cboe Titanium Equities Auction Feed
 
-Last sale trade report feed for equities traded on Cboe Titanium Equities.
+Dedicated auction event feed publishing opening, closing, and intraday auction information for equities traded on Cboe Titanium Equities.
 
 ### Transport
 

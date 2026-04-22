@@ -39,9 +39,14 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [iLink3](iLink3.md) | Protocol | Cme | Cme Globex Sbe Order Entry |
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |
+| [CommonClient](CommonClient.md) | Session | Nyse | Pillar TCP framing and session layer |
+| [SimpleOpenFrame](SimpleOpenFrame.md) | Session | B3 | FIX SOFH framing used by B3 BinaryEntryPoint |
+| [SimpleOpenFrame](SimpleOpenFrame.md) | Session | Cme | FIX SOFH framing used by CME iLink3 and BrokerTec |
 | [SoupBinTcp](SoupBinTcp.md) | Session | Nasdaq | TCP Session Layer |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |
 | [Gtp](Gtp.md) | Trading Gateway | Lseg | Group Ticker Plant |
+| [BinaryPacket](BinaryPacket.md) | Transport | B3 | UMDF UDP packet framing |
+| [BinaryPacketHeader](BinaryPacketHeader.md) | Transport | Cme | MDP 3.0 UDP packet framing |
 | [IexTp](IexTp.md) | Transport | Iex | IEX Transport Protocol |
 | [MoldUdp](MoldUdp.md) | Transport | Nasdaq | Original Sequenced Multicast Transport |
 | [MoldUdp64](MoldUdp64.md) | Transport | Nasdaq | 64-bit Sequenced Multicast Transport |

@@ -1,4 +1,4 @@
-## Opening Process: Cboe Titanium Options Opening Process
+## TitaniumOptions Opening Process: Cboe Titanium Options Opening Process
 
 Opening process feed for options traded on Cboe Titanium Options.
 

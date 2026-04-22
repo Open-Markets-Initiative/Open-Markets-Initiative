@@ -1,6 +1,6 @@
-## Multicast Top: Cboe Titanium Options Multicast Top
+## TitaniumOptions Complex Auction: Cboe Titanium Options Complex Auction
 
-Multicast top of book feed for options traded on Cboe Titanium Options.
+Complex order auction feed for options traded on Cboe Titanium Options.
 
 ### Transport
 

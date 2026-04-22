@@ -1,6 +1,6 @@
-## Flex: Cboe Titanium Options Flex
+## TitaniumOptions Auction Feed: Cboe Titanium Options Auction Feed
 
-Flex options market data feed for Cboe Titanium Options.
+Dedicated auction event feed for options traded on Cboe Titanium Options.
 
 ### Transport
 

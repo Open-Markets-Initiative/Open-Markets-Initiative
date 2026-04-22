@@ -1,6 +1,6 @@
-## Summary Depth: Cboe Titanium Equities Summary Depth
+## TitaniumEquities Depth Of Book: Cboe Titanium Equities Depth Of Book
 
-Aggregated summary depth of book feed for equities traded on Cboe Titanium Equities.
+Full depth of book Pitch feed publishing order add, modify, cancel, and execute events for equities traded on Cboe Titanium Equities.
 
 ### Transport
 

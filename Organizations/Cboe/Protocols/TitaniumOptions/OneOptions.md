@@ -1,6 +1,6 @@
-## Complex Top: Cboe Titanium Options Complex Top
+## TitaniumOptions One Options: Cboe Titanium Options One Options
 
-Complex order top of book feed for options traded on Cboe Titanium Options.
+Consolidated options market data feed for Cboe Titanium Options.
 
 ### Transport
 

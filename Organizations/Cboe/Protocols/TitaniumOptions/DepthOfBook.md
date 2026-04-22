@@ -1,6 +1,6 @@
-## Complex: Cboe Titanium Options Complex
+## TitaniumOptions Depth Of Book: Cboe Titanium Options Depth Of Book
 
-Complex order multicast market data feed for Cboe Titanium Options.
+Full depth of book feed for options traded on Cboe Titanium Options.
 
 ### Transport
 

@@ -1,6 +1,6 @@
-## Top Of Book: Cboe Titanium Equities Top Of Book
+## TitaniumOptions Flex: Cboe Titanium Options Flex
 
-Top of book best bid and offer feed for equities traded on Cboe Titanium Equities.
+Flex options market data feed for Cboe Titanium Options.
 
 ### Transport
 

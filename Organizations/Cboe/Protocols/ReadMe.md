@@ -3,7 +3,6 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [](/) | 15 |
 | [ByxEquities](ByxEquities/) | 9 |
 | [BzxEquities](BzxEquities/) | 9 |
 | [BzxOptions](BzxOptions/) | 10 |
@@ -16,6 +15,8 @@
 | [EdgxEquities](EdgxEquities/) | 9 |
 | [EdgxOptions](EdgxOptions/) | 10 |
 | [Pitch](Pitch/) | 1 |
+| [TitaniumEquities](TitaniumEquities/) | 6 |
+| [TitaniumOptions](TitaniumOptions/) | 9 |
 
 ## Specifications
 
