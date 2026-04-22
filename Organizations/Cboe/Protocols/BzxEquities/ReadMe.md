@@ -1,4 +1,7 @@
-## BzxEquities
+## Cboe Bzx Equities
+
+
+Cboe Bzx Exchange US cash equities venue and listings market acquired from Bats Global Markets.
 
 
 ### Protocols

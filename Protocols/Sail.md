@@ -1,4 +1,4 @@
-## SAIL: Sola Access Information Language
+## Sail: Sola Access Information Language
 
 Proprietary binary protocol with text elements developed by TMX Group and licensed to several exchanges for order entry on the Sola trading platform.
 
@@ -19,3 +19,4 @@ SAIL operates over TCP, providing reliable ordered delivery of order messages be
 - **Hybrid encoding** - Combines binary framing with text-based field representation
 - **Sola platform native** - Designed specifically for the Sola matching engine architecture
 - **Session management** - Built-in login, heartbeat, and sequencing mechanisms
+

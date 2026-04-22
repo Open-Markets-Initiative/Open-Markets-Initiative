@@ -1,4 +1,7 @@
-## EdgxEquities
+## Cboe Edgx Equities
+
+
+Cboe Edgx Exchange US cash equities venue and listings market acquired from Direct Edge.
 
 
 ### Protocols

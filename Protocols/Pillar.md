@@ -1,25 +1,26 @@
-## Pillar: NYSE Pillar Trading Platform
+## Pillar: NYSE Pillar Market Data
 
-Proprietary integrated trading technology platform developed by NYSE Group (Intercontinental Exchange) providing a unified binary protocol for order entry and market data across all NYSE equities and options exchanges.
+Proprietary binary market data encoding of the unified NYSE Pillar platform, publishing order-by-order depth of book, trades, imbalances, and security status across all NYSE Group equities and options exchanges.
 
 ### Overview
 
-NYSE Pillar is an integrated trading technology platform designed to unify access to all NYSE Group markets under a single consistent architecture. The Pillar Binary Gateway provides a standardized protocol for member firms to submit orders and receive execution reports across NYSE, NYSE Arca, NYSE American, NYSE National, and NYSE Chicago. By consolidating previously disparate trading systems, Pillar reduces complexity for participants while enhancing performance and resiliency.
+NYSE Pillar is the unified trading technology platform used across NYSE, NYSE Arca, NYSE American, NYSE National, and NYSE Chicago. On the market data side, Pillar publishes a family of proprietary binary feeds that replace the legacy XDP (Exchange Data Publisher) feeds. The flagship Pillar Integrated Feed provides a comprehensive order-by-order view of market events including full depth of book, trades, order imbalances, and security status messages.
 
-Pillar replaced multiple legacy systems that had evolved independently across the NYSE family of exchanges. For market data, the XDP (Exchange Data Publisher) feeds were migrated to Pillar proprietary data feeds, while for order entry, legacy gateways such as CCG and UTPDirect were superseded by the Pillar Gateway. The Pillar market data architecture includes the Integrated Feed, which provides a comprehensive order-by-order view of market events including depth of book, trades, order imbalances, and security status messages.
+Pillar market data messages are encoded in a fixed-length binary format optimized for low-latency parsing. Each message carries a sequence number enabling gap detection, and feeds are delivered on two parallel multicast lines (A and B) per channel so that subscribers can arbitrate between them to mask packet loss. Refresh and retransmission services are available over TCP for gap recovery and intraday snapshots.
 
-Market data feeds are distributed across multiple multicast channels with data partitioned for capacity management. The Pillar Gateway correlates order entry and market data through shared identifiers, with gateway OrderIDs mapping directly to OrderIDs in the market data feeds.
+The Pillar market data architecture is tightly correlated with Pillar order entry: gateway OrderIDs and DealIDs map directly to OrderIDs and DealIDs in the market data feeds, so order-entry activity can be reconciled against the integrated feed without additional identifier translation.
 
 ### Transport
 
-The Pillar Binary Gateway operates over TCP for order entry and session management. For market data, Pillar uses UDP multicast with a dual-feed architecture where each channel provides two redundant multicast groups (Line A and Line B) for subscriber arbitration. Dedicated TCP-based request servers provide refresh and retransmission services for gap recovery and market state snapshots.
+Pillar market data is distributed over UDP multicast with a dual-feed architecture where each channel provides two redundant multicast groups (Line A and Line B) for subscriber arbitration. Data is partitioned across multiple multicast channels for capacity management. Dedicated TCP-based request servers provide refresh and retransmission services for gap recovery and market state snapshots.
 
 ### Key Characteristics
 
-- **Unified platform** - Single protocol for order entry across all NYSE Group equities and options markets
+- **Unified market data** - Single encoding across all NYSE Group equities and options markets
 - **Binary encoding** - Fixed-length binary message format optimized for low-latency parsing
-- **Dual-feed redundancy** - Market data delivered on two parallel multicast lines per channel for reliability
-- **Order-by-order market data** - Integrated Feed provides full depth of book reconstruction capability
-- **Correlated identifiers** - Gateway OrderIDs and DealIDs map directly to market data feed fields
-- **Risk controls** - Built-in pre-trade risk management including price collars, order size limits, and kill switches
-- **Multi-asset support** - Supports equities, options, and complex multi-leg options orders
+- **Dual-feed redundancy** - Delivered on two parallel multicast lines per channel for reliability
+- **Order-by-order depth** - Integrated Feed enables full depth-of-book reconstruction
+- **Correlated identifiers** - OrderIDs and DealIDs match the Pillar Stream order-entry gateway
+- **Partitioned channels** - Data split across multicast channels for throughput and load balancing
+- **Refresh services** - TCP-based refresh and retransmission for gap recovery and snapshots
+

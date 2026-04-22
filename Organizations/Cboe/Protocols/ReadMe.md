@@ -3,17 +3,19 @@
 
 | Exchange | Protocols |
 | --- | --- |
+| [](/) | 15 |
 | [ByxEquities](ByxEquities/) | 9 |
 | [BzxEquities](BzxEquities/) | 9 |
 | [BzxOptions](BzxOptions/) | 10 |
-| [C1Options](C1Options/) | 15 |
+| [C1Options](C1Options/) | 16 |
 | [C2Options](C2Options/) | 10 |
-| [CboeEurope](CboeEurope/) | 7 |
+| [CboeEurope](CboeEurope/) | 8 |
 | [CboeFx](CboeFx/) | 2 |
-| [CfeFutures](CfeFutures/) | 4 |
+| [CfeFutures](CfeFutures/) | 5 |
 | [EdgaEquities](EdgaEquities/) | 9 |
 | [EdgxEquities](EdgxEquities/) | 9 |
 | [EdgxOptions](EdgxOptions/) | 10 |
+| [Pitch](Pitch/) | 1 |
 
 ## Specifications
 

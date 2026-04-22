@@ -1,26 +1,27 @@
-## EOBI: Enhanced Order Book Interface
+## Eobi: Eurex T7 Order Book Market Data
 
-Low-latency binary market data protocol developed by Deutsche Borse for the T7 trading platform, providing full order-by-order visibility into the order book without any depth restriction.
+Binary market data feed publishing the full unnetted order book and trade events for derivatives traded on the Eurex T7 platform via Ip multicast.
+
+EOBI is Eurex's flagship multicast market data protocol on the T7 platform, delivering order-by-order book depth, trades, and reference data across derivatives.
 
 ### Overview
 
-The Enhanced Order Book Interface (EOBI) is the premium market data feed of the T7 trading system operated by Deutsche Borse Group. It delivers un-netted, tick-by-tick order and trade information, giving subscribers complete transparency into every visible order and quote side in the book. Each individual order add, modify, delete, and execution event is published in real time, enabling participants to reconstruct the full order book at any point.
+Eobi is the Eurex Enhanced Order Book Interface, the market data feed for the Eurex T7 platform. It publishes the complete unnetted order book including every visible order event, enabling subscribers to reconstruct the full depth of book for every listed instrument. The feed also carries trade messages, auction events, and reference data.
 
-EOBI is designed for latency-sensitive market participants such as proprietary trading firms and market makers who require the fastest possible access to order book changes. Unlike aggregated market data feeds, EOBI transmits individual order-level events providing the highest granularity of market data available on T7 venues. The protocol uses FIX 5.0 SP2 application-level semantics but employs a proprietary flat binary encoding rather than FAST encoding, minimizing both message size and decode latency.
-
-Messages are organized into incremental and snapshot channels, where incremental messages carry real-time order book updates and snapshot channels provide periodic full order book state for recovery and initial synchronization. EOBI is deployed across all T7-powered venues including Eurex, Xetra, EEX, and partner exchanges in Vienna, Budapest, Prague, Ljubljana, Zagreb, Sofia, and Malta.
+Messages are disseminated over Ip multicast as a sequenced stream with per-packet sequence numbers for gap detection. Complementary Tcp services provide book snapshot recovery for subscribers joining mid-day and retransmission of messages lost on the multicast feed, covering the full reliability path for the T7 market data product.
 
 ### Transport
 
-EOBI distributes data via UDP multicast. Each product is assigned to a specific multicast group, with separate multicast addresses for the incremental feed and the snapshot feed. Participants subscribe to the incremental channel for real-time updates and use the snapshot channel to build or recover the initial order book state. Each datagram contains a packet header followed by one or more messages identified by TemplateID and carrying a message sequence number for gap detection.
+Udp multicast for real-time delivery of incremental order book updates, trade messages, and reference data with per-packet sequence numbers for gap detection. Tcp for the T7 retransmission and snapshot services used by subscribers to recover missed multicast messages or initialise book state.
 
 ### Key Characteristics
 
-- **Full depth of book** - Every visible order and quote side is published with no depth restriction
-- **Order-by-order granularity** - Individual order add, modify, delete, and execution events rather than aggregated price levels
-- **Flat binary encoding** - Proprietary binary format following FIX 5.0 SP2 semantics for minimal latency
-- **UDP multicast delivery** - Real-time distribution via multicast with separate incremental and snapshot channels
-- **Un-netted updates** - Each event is published individually with no netting or batching of order book changes
-- **Sequenced messages** - Message sequence numbers on every message for gap detection and recovery
-- **Priority timestamp** - Each order carries a priority timestamp enabling precise queue position determination
-- **Ultra-low latency** - Designed as the lowest-latency market data interface on T7
+- **Full unnetted book** - Every visible order event for complete depth of book reconstruction
+- **T7 platform** - Native market data interface for the Eurex T7 trading system
+- **Multicast delivery** - Real-time Udp multicast distribution of the market data stream
+- **Snapshot service** - Tcp book snapshots for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Trade messages** - Executed trade events published alongside the order book stream
+- **Reference data** - Instrument definitions integrated with the feed
+- **Derivatives** - Futures and options listed on Eurex
+

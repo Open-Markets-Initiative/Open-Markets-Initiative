@@ -1,4 +1,4 @@
-## FIX: Financial Information eXchange
+## Fix: Financial Information eXchange
 
 Industry standard electronic messaging protocol for real-time exchange of securities transaction information, developed and maintained by the FIX Trading Community.
 
@@ -22,3 +22,4 @@ FIX traditionally operates over TCP using the tag=value text encoding format. Th
 - **Extensible** - User-defined fields and custom message types allow venue-specific extensions
 - **Version negotiation** - FIXT session layer supports application message versioning
 - **Vendor neutral** - Open standard not tied to any specific technology provider
+

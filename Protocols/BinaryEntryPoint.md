@@ -1,26 +1,26 @@
-## BinaryEntryPoint: B3 Binary Entry Point
+## BinaryEntryPoint: B3 Sbe Order Entry
 
-Binary order entry protocol developed by B3 (Brasil Bolsa Balcao) for submitting and managing orders on the PUMA Trading System, using Simple Binary Encoding over a FIXP session layer.
+Sbe-encoded binary order entry protocol for submitting, modifying, and cancelling orders on the B3 equities and derivatives platform with Fixp session layer.
+
+Binary Entry Point is B3's Sbe order entry protocol for the Puma Trading System, implementing the Fix Binary Entry Point standard.
 
 ### Overview
 
-Binary EntryPoint is B3's current-generation order entry API for trading equities, derivatives, fixed income, and FX products on the PUMA Trading System. It replaced the older FIX 4.4 tag-value-based EntryPoint protocol with a modern binary encoding based on Simple Binary Encoding (SBE), providing significantly lower encoding and decoding latency. The protocol uses little-endian byte ordering for all numeric fields.
+BinaryEntryPoint (Bep) is the B3 native binary order entry protocol used by market participants to submit, replace, and cancel orders across the B3 equities and derivatives markets. The wire format uses Simple Binary Encoding (Sbe) for fixed-width high performance message delivery, and application-level messages cover the full order lifecycle including simple new order, simple modify order, execution reports, and cancel rejects.
 
-Binary EntryPoint is structured as two distinct layers: a session layer based on the FIX Performance Session Protocol (FIXP), and a business layer carrying order entry and execution messages in SBE format. The FIXP session layer handles connection management, sequencing, and keepalive negotiation. Session establishment follows a Negotiate and Establish handshake where the client initiates communication with the B3 gateway.
-
-The protocol supports multiple order types including standard new orders, simplified new orders with predefined defaults, order modifications, cancellations, cross orders, and mass quoting for market makers. B3 provides detailed certification scripts that trading participants must complete before production access.
+The session layer is Fixp (Fix Performance Session Layer) which defines the Negotiate and Establish handshake for session creation, sequence number tracking for reliable delivery, and recovery messages for reconnection after a session drop. Bep supports self-trade prevention instructions, market maker protection reset, and execution restatement reasons for richer order management semantics.
 
 ### Transport
 
-Binary EntryPoint operates over TCP for reliable ordered message delivery between client systems and B3 PUMA Trading System gateways. The FIXP session layer provides negotiation, establishment with sequence number synchronization, bidirectional sequencing, keepalive heartbeats, retransmission of missed messages, and graceful session termination.
+Tcp for persistent authenticated sessions using the Fix Performance Session Layer (Fixp) with Negotiate and Establish messages for session start and sequence numbered delivery of order entry messages.
 
 ### Key Characteristics
 
-- **SBE encoded** - Simple Binary Encoding for ultra-low latency encoding and decoding
-- **FIXP session layer** - FIX Performance protocol for lightweight session management
-- **Fixed message sizes** - Standard message layouts with fixed positions and fixed-length fields
-- **Little-endian byte order** - Least significant byte first for all numeric fields
-- **Simple and standard order types** - SimpleNewOrder for common cases and NewOrderSingle for full flexibility
-- **Mass quoting** - Efficient bulk quoting for market makers
-- **Schema versioned** - SBE XML templates define message layouts per specification version
-- **Certification required** - Trading participants must complete B3 certification scripts before production access
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low-latency parsing
+- **Fixp session layer** - Negotiate and Establish handshake with sequence number tracking
+- **Full order lifecycle** - New, modify, cancel, execution report, and cancel reject messages
+- **Self-trade prevention** - Per-order self-trade prevention instructions
+- **Market maker protection** - Mm protection reset support for market makers
+- **Session recovery** - Reconnection support after catastrophic client failure
+- **Equities and derivatives** - Unified order entry across B3 asset classes
+

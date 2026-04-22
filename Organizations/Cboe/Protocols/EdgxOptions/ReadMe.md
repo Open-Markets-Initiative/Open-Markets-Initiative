@@ -1,4 +1,7 @@
-## EdgxOptions
+## Cboe Edgx Options
+
+
+Cboe Edgx Options US options exchange offering a price time priority market for listed equity options.
 
 
 ### Protocols

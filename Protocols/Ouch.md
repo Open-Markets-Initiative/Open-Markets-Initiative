@@ -1,6 +1,6 @@
-## OUCH: Order Update for Communication and Handling
+## Ouch: Order Update for Communication and Handling
 
-Proprietary binary protocol developed by Nasdaq and licensed to several exchanges for order entry and management.
+Nasdaq Ouch order entry protocol a lightweight binary wire format for submitting, modifying, and cancelling orders with low latency execution reports on Nasdaq and licensed exchanges.
 
 ### Overview
 
@@ -19,3 +19,4 @@ OUCH operates over TCP using the SoupBinTCP session layer protocol, providing re
 - **Session management** - SoupBinTCP provides login, heartbeat, and sequencing for connection management
 - **Low latency** - Minimal overhead designed for latency-sensitive trading environments
 - **Simple message set** - Focused protocol with a small number of message types for clarity
+

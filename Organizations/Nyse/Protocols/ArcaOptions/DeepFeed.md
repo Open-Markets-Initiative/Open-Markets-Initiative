@@ -1,0 +1,8 @@
+## ArcaOptions Deep Feed: Nyse Arca Options Deep Feed
+
+Deep of book market data feed for options traded on Nyse Arca Options.
+
+### Transport
+
+Udp multicast for real-time delivery of Pillar binary market data messages with per-packet sequence numbers. Tcp via Pillar stream protocol for retransmission and recovery of missed multicast messages.
+

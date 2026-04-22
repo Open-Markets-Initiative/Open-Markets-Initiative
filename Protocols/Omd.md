@@ -1,4 +1,4 @@
-## OMD: HKEX Orion Market Data
+## Omd: HKEX Orion Market Data
 
 Binary market data dissemination platform operated by Hong Kong Exchanges and Clearing (HKEX) providing real-time low-latency market data for securities and derivatives markets via IP multicast.
 
@@ -24,3 +24,4 @@ OMD distributes all market data via UDP multicast. Each data feed is assigned de
 - **Disaster recovery signaling** - Dedicated multicast channel for site failover notifications
 - **Asset-class separation** - Distinct feeds for securities (OMD-C), derivatives (OMD-D), and China Connect (OMD-CC)
 - **Refresh service** - Periodic snapshot publication for initial synchronization and recovery
+

@@ -1,4 +1,4 @@
-## CBP: Currenex Binary Protocol
+## Cbp: Currenex Binary Protocol
 
 Proprietary binary protocol suite developed by Currenex, a State Street subsidiary, for low-latency foreign exchange trading including electronic streaming prices, order entry, and market data.
 
@@ -23,3 +23,4 @@ Currenex ITCH is supported over both TCP and UDP with minimal differences betwee
 - **ESP delivery** - Real-time executable streaming prices from multiple liquidity providers
 - **High precision** - 64-bit signed long amounts for precise FX price representation
 - **Maker/Taker APIs** - Separate interfaces for liquidity providers and consumers
+

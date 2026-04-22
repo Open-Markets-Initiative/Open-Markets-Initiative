@@ -1,4 +1,7 @@
-## ByxEquities
+## Cboe Byx Equities
+
+
+Cboe Byx Exchange US cash equities venue acquired from Bats Global Markets offering a low cost maker taker market model.
 
 
 ### Protocols

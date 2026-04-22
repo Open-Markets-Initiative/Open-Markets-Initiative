@@ -1,4 +1,7 @@
-## EdgaEquities
+## Cboe Edga Equities
+
+
+Cboe Edga Exchange US cash equities venue acquired from Direct Edge offering an inverted maker taker market model.
 
 
 ### Protocols

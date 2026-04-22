@@ -1,25 +1,26 @@
-## MDP3: CME Market Data Platform 3.0
+## Mdp3: Cme Globex Sbe Market Data
 
-Binary market data protocol developed by CME Group for disseminating real-time and recovery market data across CME, CBOT, NYMEX, and COMEX exchanges using Simple Binary Encoding over multicast UDP.
+Sbe-encoded multicast market data platform publishing real-time order book, trade, and reference data for futures and options traded on Cme Globex.
+
+MDP3 is Cme's flagship Sbe multicast market data feed covering futures and options across the Cme Globex complex including Cbot, Nymex, and Comex.
 
 ### Overview
 
-MDP 3.0 is CME Group's event-based market data platform that delivers real-time pricing, order book, and reference data for futures, options, spreads, and FX instruments traded on CME Globex. The protocol uses Simple Binary Encoding (SBE) based on the FIX 5.0 SP2 message specification, providing fixed-position, fixed-length fields for efficient direct access to data without sequential parsing.
+Mdp3 is the Cme Market Data Platform version 3, the primary market data distribution channel for futures and options traded on the Cme Globex electronic trading platform. It publishes the full order book, trade events, security definitions, trading status, and settlement data for every instrument listed on the Cme complex including Cbot, Nymex, and Comex contracts.
 
-The platform employs a dual-feed, multicast UDP architecture where Feed A and Feed B simultaneously disseminate identical data on separate multicast addresses for redundancy. Market data is organized into channels, each carrying data for a related group of instruments. MDP 3.0 supports both Market by Price (MBP) aggregate book views and Market by Order (MBO) full order-level depth.
-
-MDP 3.0 also offers conflated feeds for lower-bandwidth consumption, including a 50-millisecond conflated UDP feed and a conflated TCP market data group for clients that do not require tick-by-tick granularity. CME Group publishes SBE schema template files for all operating environments on public FTP servers.
+Messages are encoded using Fix Simple Binary Encoding (Sbe) for fixed-width low-latency processing and distributed over Ip multicast with A and B channel redundancy. Complementary Tcp recovery services provide market recovery, instrument definition snapshots, and session-based snapshot recovery for subscribers that miss packets or join mid-day.
 
 ### Transport
 
-MDP 3.0 operates over UDP multicast for real-time market data delivery. Each channel provides multiple feed types on dedicated multicast groups: an Incremental Feed for real-time updates on Feed A and Feed B, an Instrument Definition Feed broadcasting security definitions on a continuous loop, and a Snapshot/Recovery Feed providing periodic full book snapshots for recovery and late-joining clients.
+Udp multicast for real-time delivery of sequenced Sbe market data messages over A and B feed channels with per-packet sequence numbers. Tcp for the Cme recovery services including market recovery, instrument definition, and snapshot recovery channels.
 
 ### Key Characteristics
 
-- **SBE encoded** - Simple Binary Encoding with fixed-position, fixed-length fields for zero-copy parsing
-- **Dual-feed redundancy** - Feed A and Feed B disseminate identical data for failover
-- **Event-based messaging** - Messages grouped by match events with end-of-event indicators
-- **Channel architecture** - Instruments organized into channels by product group
-- **Market by Price and Market by Order** - Supports both aggregate and full order-level book depth
-- **Sequence numbered** - Every packet carries sequence numbers for gap detection
-- **Schema versioned** - XML-based SBE templates define message layouts per schema version
+- **Cme Globex** - Futures and options across the Cme complex
+- **Sbe encoded** - Fix Simple Binary Encoding for low latency
+- **Multicast delivery** - Udp multicast with A and B channel redundancy
+- **Full order book** - Incremental refresh with market-by-price and market-by-order
+- **Recovery services** - Market, instrument, and snapshot recovery over Tcp
+- **Security definitions** - Instrument reference data integrated with the feed
+- **Settlement data** - End-of-day settlement and open interest messages
+

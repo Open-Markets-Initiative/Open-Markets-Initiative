@@ -1,6 +1,6 @@
-## ITCH: Integrated Trading Channel Handlers
+## Itch: Integrated Trading Channel Handlers
 
-Proprietary binary protocol developed by Nasdaq and licensed to many exchanges around the world for market data dissemination.
+Nasdaq Itch market data protocol a sequenced binary wire format distributing full order book add, modify, cancel, execute, and trade messages for Nasdaq listed securities and licensed to many global venues.
 
 ### Overview
 
@@ -19,3 +19,4 @@ ITCH operates over both TCP and UDP depending on the exchange implementation. Mu
 - **Unidirectional** - Data flows from the exchange to the subscriber (dissemination only)
 - **Binary encoding** - Fixed-length fields with big-endian byte ordering for efficient parsing
 - **High throughput** - Designed for millions of messages per second during peak market activity
+

@@ -1,4 +1,4 @@
-## DFI: FINRA Data Feed Interface
+## Dfi: FINRA Data Feed Interface
 
 Data dissemination protocol used by FINRA (Financial Industry Regulatory Authority) for distributing real-time OTC equity, agency debt, and bulletin board market data through multiple specialized feed services.
 
@@ -22,3 +22,4 @@ FINRA data feeds operate over UDP multicast using the MoldUDP64 transmission pro
 - **Sequenced messages** - Sequence numbers for gap detection across multicast streams
 - **Regulatory data source** - Authoritative feed from FINRA reporting facilities
 - **Multiple feed products** - Specialized feeds for different asset classes and data types
+

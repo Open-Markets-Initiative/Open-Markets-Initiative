@@ -1,4 +1,4 @@
-## BOE: Cboe Binary Order Entry
+## Boe: Cboe Binary Order Entry
 
 Proprietary binary order entry protocol developed by BATS Global Markets (now Cboe Global Markets) for low-latency order submission, modification, and cancellation across Cboe equities, options, futures, and international exchanges.
 
@@ -24,3 +24,4 @@ BOE operates over TCP. Each member firm establishes a persistent TCP connection 
 - **Optional fields via bitfields** - Bitfield parameters indicate which optional fields are present, reducing message size
 - **Multiple versions** - BOE, BOE2, and BOEv3 specifications coexist across different markets and migration timelines
 - **Multi-asset support** - Separate specifications for equities, options, futures, and international markets
+

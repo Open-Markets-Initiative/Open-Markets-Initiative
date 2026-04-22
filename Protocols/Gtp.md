@@ -1,4 +1,4 @@
-## GTP: Group Ticker Plant
+## Gtp: Group Ticker Plant
 
 Proprietary binary market data protocol developed by LSEG (London Stock Exchange Group) as part of the Millennium Exchange technology suite, providing a consolidated real-time data feed across multiple LSEG venues and asset classes.
 
@@ -22,3 +22,4 @@ GTP delivers real-time market data via UDP multicast over IPv4. Data is broadcas
 - **Dual-feed redundancy** - Two identically sequenced multicast feeds for reliability
 - **Replay and recovery** - TCP replay for recent gaps (up to 65,000 messages) and snapshot recovery for larger resynchronization
 - **MiFID compliance** - Trade messages include regulatory details for post-trade transparency
+

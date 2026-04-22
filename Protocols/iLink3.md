@@ -1,25 +1,25 @@
-## iLink 3: CME Globex Binary Order Entry
+## iLink3: Cme Globex Sbe Order Entry
 
-Binary order entry protocol developed by CME Group for submitting and managing orders on the CME Globex electronic trading platform, using Simple Binary Encoding over a FIXP session layer.
+Sbe-encoded binary order entry protocol for submitting, modifying, and cancelling orders on the Cme Globex electronic trading platform with Fixp session layer.
+
+iLink 3 is Cme's current-generation Sbe-based binary order entry protocol, succeeding iLink 2 and unifying order entry across the Cme Globex complex.
 
 ### Overview
 
-iLink 3 is CME Group's current-generation order entry API for trading futures, options, spreads, BrokerTec fixed income, and EBS FX products on CME Globex. It replaced the FIX tag-value-based iLink 2 protocol with a modern binary encoding based on Simple Binary Encoding (SBE), providing significantly lower encoding and decoding latency. The protocol went fully live on July 26, 2020, across CME, CBOT, NYMEX, and COMEX exchanges.
+iLink 3 is the binary order entry protocol for the Cme Globex electronic trading platform, providing members with a low-latency interface to submit, modify, and cancel orders for futures and options across the Cme complex. The wire format uses Fix Simple Binary Encoding (Sbe) and runs over the Fix Performance Session Layer (Fixp) for session authentication and sequence tracking.
 
-iLink 3 is structured as two distinct layers: a lightweight point-to-point session layer based on the FIX Performance Session Protocol (FIXP), and a business layer carrying order entry and execution messages in SBE format. The FIXP session layer handles connection management, sequencing, and keepalive negotiation without embedding administrative information in business messages, resulting in leaner order messages with standard sizes, fixed positions, and fixed-length fields.
-
-The protocol supports Cancel On Conclusion (COC) as a mandatory safety feature, which automatically cancels all working orders when a session terminates gracefully. Session establishment involves a Negotiate and Establish handshake with UUID assignment.
+The protocol covers the full order lifecycle including new order single, order cancel replace, order cancel, order mass action, execution reports, and business message rejects. Fixp provides the Negotiate and Establish handshake for session creation, sequence number tracking for reliable delivery, and session recovery after reconnection.
 
 ### Transport
 
-iLink 3 operates over TCP for reliable ordered message delivery between client systems and CME Globex matching engine gateways. The FIXP session layer provides negotiation, establishment with sequence number synchronization, bidirectional sequencing for message ordering and gap detection, keepalive heartbeats for connection liveness monitoring, and graceful termination with Cancel On Conclusion.
+Tcp via the Fix Performance Session Layer (Fixp) for persistent authenticated sessions carrying order entry, modification, cancellation, mass action, and execution report messages.
 
 ### Key Characteristics
 
-- **SBE encoded** - Simple Binary Encoding for ultra-low latency encoding and decoding
-- **FIXP session layer** - Lightweight FIX Performance protocol with no session-level headers on business messages
-- **Fixed message sizes** - Standard message layouts with fixed positions and fixed-length fields
-- **Cancel On Conclusion** - Mandatory auto-cancellation of all working orders on session disconnect
-- **Mass quoting** - Efficient bulk quoting for market makers
-- **Self-match prevention** - Built-in controls to prevent self-trading
-- **Schema versioned** - XML-based SBE templates published on CME SFTP servers
+- **Cme Globex** - Order entry across the Cme complex
+- **Sbe encoded** - Fix Simple Binary Encoding for fixed-width low latency
+- **Fixp session layer** - Negotiate and Establish with sequence tracking
+- **Full order lifecycle** - Order, modify, cancel, mass action, and execution report messages
+- **Session recovery** - Retransmission of unacknowledged messages after reconnection
+- **Futures and options** - Unified order entry across Cme asset classes
+

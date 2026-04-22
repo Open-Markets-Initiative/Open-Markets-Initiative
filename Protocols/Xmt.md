@@ -1,4 +1,4 @@
-## XMT: eXtreme Message Transfer Protocol
+## Xmt: eXtreme Message Transfer Protocol
 
 Proprietary binary protocol developed by TMX Group and licensed to several exchanges for high-performance equities market data dissemination.
 
@@ -19,3 +19,4 @@ XMT operates over both TCP and UDP, supporting multicast delivery for efficient 
 - **Depth of book** - Provides Level 2 order book data with full price depth
 - **Low latency** - Designed for minimal wire-to-parse latency
 - **Sequenced delivery** - Messages carry sequence numbers for gap detection and recovery
+

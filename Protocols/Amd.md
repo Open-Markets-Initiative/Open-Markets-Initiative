@@ -1,4 +1,4 @@
-## AMD: Aquis Market Data
+## Amd: Aquis Market Data
 
 Proprietary binary protocol developed by Aquis Exchange for real-time market data dissemination, used on Aquis Exchange venues in the UK and EU as well as A2X Markets in South Africa.
 
@@ -22,3 +22,4 @@ AMD operates over IP multicast (UDP) for real-time market data distribution. Mul
 - **Replay service** - TCP/IP recovery service for retransmission of missed messages
 - **Order-by-order depth** - Provides full order book visibility with individual order events
 - **Snapshot feeds** - Periodic order book snapshots for initial book construction
+

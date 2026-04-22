@@ -1,4 +1,4 @@
-## HSVF: High Speed Vendor Feed
+## Hsvf: High Speed Vendor Feed
 
 Proprietary binary protocol with text elements developed by TMX Group and licensed to several exchanges for derivatives market data dissemination.
 
@@ -19,3 +19,4 @@ HSVF operates over both TCP and UDP, supporting direct data feed delivery to mar
 - **Real-time delivery** - Designed for low-latency distribution of market data updates
 - **Multicast and unicast** - Available in both delivery modes for different connectivity requirements
 - **Session-based** - Includes session management for connection lifecycle
+

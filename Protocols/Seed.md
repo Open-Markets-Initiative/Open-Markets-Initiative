@@ -1,4 +1,4 @@
-## SEED: Stock Exchange Electronic Delivery
+## Seed: Stock Exchange Electronic Delivery
 
 High-performance binary order entry protocol developed by the Texas Stock Exchange (TXSE) for low-latency access to US equity markets.
 
@@ -22,3 +22,4 @@ SEED order entry messages are transported over RAKE TCP for reliable in-order de
 - **FIX 5.0 alternative** - TXSE also supports FIX 5.0 for participants preferring standard protocol connectivity
 - **Testing tools** - PCAP files and Wireshark Lua plugins provided for protocol validation and certification
 - **Modern architecture** - Clean-slate exchange design without legacy protocol constraints
+

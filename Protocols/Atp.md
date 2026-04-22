@@ -1,4 +1,4 @@
-## ATP: Aquis Trading Protocol
+## Atp: Aquis Trading Protocol
 
 Proprietary binary order entry protocol developed by Aquis Exchange for high-performance order management on Aquis Exchange venues.
 
@@ -22,3 +22,4 @@ ATP operates over TCP providing reliable ordered delivery between the trading pa
 - **Lightweight session layer** - Unsequenced session management messages reduce overhead
 - **Post-only support** - Supports passive order types including post-only orders
 - **1-byte packing** - Compact message layout with no padding between fields
+

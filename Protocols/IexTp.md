@@ -1,4 +1,4 @@
-## IEX-TP: IEX Transport Protocol
+## IexTp: IEX Transport Protocol
 
 Custom transport protocol developed by IEX Exchange for sequenced delivery of market data feeds including DEEP (full depth of book) and TOPS (top of book) over UDP multicast, with TCP and UDP unicast retransmission for gap recovery.
 
@@ -23,3 +23,4 @@ IEX-TP uses UDP multicast as its primary delivery mechanism. Each segment consis
 - **Session-scoped sequencing** - Each session has an independent sequence number space identified by session ID
 - **Lightweight framing** - Minimal header overhead with fixed-length fields for fast parsing
 - **Multi-feed support** - Message protocol identifier distinguishes different application feeds (DEEP, TOPS)
+

@@ -1,4 +1,7 @@
-## C2Options
+## Cboe C2 Options
+
+
+Cboe C2 Options US options exchange offering an all electronic pro rata market complementing the C1 floor.
 
 
 ### Protocols

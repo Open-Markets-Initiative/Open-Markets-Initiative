@@ -24,3 +24,4 @@ Pitch primarily operates over UDP multicast for real-time market data distributi
 - **Symbol mapping** - Mapping messages link short feed symbols to full instrument identifiers
 - **Retail price improvement** - Retail Liquidity Indicator messages signal when retail price-improving orders are available
 - **Auction support** - Auction Update messages disseminate indicative price and imbalance information
+

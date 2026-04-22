@@ -3,7 +3,15 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Nyse](Nyse/) | 1 |
+| [AmexEquities](AmexEquities/) | 9 |
+| [AmexOptions](AmexOptions/) | 4 |
+| [ArcaEquities](ArcaEquities/) | 8 |
+| [ArcaOptions](ArcaOptions/) | 4 |
+| [NationalEquities](NationalEquities/) | 6 |
+| [NyseEquities](NyseEquities/) | 9 |
+| [NyseOptions](NyseOptions/) | 1 |
+| [Options](Options/) | 1 |
+| [TexasEquities](TexasEquities/) | 7 |
 
 ## Specifications
 

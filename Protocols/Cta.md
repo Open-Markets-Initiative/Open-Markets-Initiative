@@ -1,4 +1,4 @@
-## CTA: Consolidated Tape Association
+## Cta: Consolidated Tape Association
 
 The Consolidated Tape Association oversees the dissemination of real-time trade and quote data for exchange-listed equity securities in the United States, operated by SIAC (Securities Industry Automation Corporation) as the exclusive Securities Information Processor.
 
@@ -23,3 +23,4 @@ CTS and CQS data is disseminated via IP multicast over dedicated network infrast
 - **Regulatory mandate** - SEC-mandated consolidated data feeds under Regulation NMS
 - **SIP processing** - SIAC validates, sequences, and timestamps all incoming data before redistribution
 - **Pillar platform** - Modern specifications based on the NYSE Pillar technology platform
+

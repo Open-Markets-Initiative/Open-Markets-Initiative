@@ -1,0 +1,8 @@
+## NationalEquities Depth Feed: Nyse National Equities Depth Feed
+
+Depth of book market data feed for securities traded on Nyse National Equities.
+
+### Transport
+
+Udp multicast for real-time delivery of Pillar binary market data messages with per-packet sequence numbers. Tcp via Pillar stream protocol for retransmission and recovery of missed multicast messages.
+

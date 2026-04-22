@@ -1,4 +1,4 @@
-## SoupBinTCP: SoupBinTCP / SoupTCP
+## SoupBinTcp: TCP Session Layer
 
 Nasdaq's TCP-based session layer protocol providing login, heartbeat, sequencing, and message delivery for point-to-point connections, serving as the session layer beneath OUCH order entry and other Nasdaq protocols.
 
@@ -24,3 +24,4 @@ SoupBinTCP operates over TCP providing reliable ordered delivery. Each message i
 - **End of Session** - Explicit session termination signaling no more data will be sent
 - **Length-prefixed framing** - 2-byte big-endian packet length followed by packet type and payload
 - **Binary successor** - SoupBinTCP replaced the older text-based SoupTCP protocol
+

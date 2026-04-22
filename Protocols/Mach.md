@@ -1,4 +1,4 @@
-## MACH: MIAX MACH Protocol
+## Mach: MIAX MACH Protocol
 
 MIAX's proprietary binary multicast protocol used for real-time market data dissemination across all MIAX exchange platforms, including MIAX Options, MIAX Pearl Options, MIAX Pearl Equities, MIAX Emerald, and MIAX Sapphire.
 
@@ -23,3 +23,4 @@ MACH operates over UDP multicast. Market data is disseminated as unidirectional 
 - **Redundant feeds** - Subscribers can connect to dual A/B feeds per matching engine for failover
 - **No delivery guarantee** - Gap recovery is delegated to application-level retransmission services or feed arbitration
 - **Multi-exchange** - Same protocol specification used across all MIAX exchange platforms
+

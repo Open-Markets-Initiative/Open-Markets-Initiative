@@ -1,4 +1,4 @@
-## MITCH: Millennium Exchange ITCH
+## Mitch: Millennium Exchange ITCH
 
 Proprietary binary market data protocol developed by LSEG (London Stock Exchange Group) for Level 2 order-by-order market data dissemination on the Millennium Exchange platform, conceptually inspired by Nasdaq's ITCH protocol.
 
@@ -23,3 +23,4 @@ MITCH operates over UDP multicast. Recipients have access to two identically seq
 - **TCP recovery** - Replay for recent gaps and full snapshot recovery for larger resynchronization
 - **Unidirectional** - Data flows from the exchange to subscribers (dissemination only)
 - **Sequenced messages** - Sequential message numbering for gap detection
+

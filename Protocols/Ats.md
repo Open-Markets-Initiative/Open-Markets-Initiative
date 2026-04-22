@@ -1,4 +1,4 @@
-## ATS: OTC Markets ATS Protocol
+## Ats: OTC Markets ATS Protocol
 
 Proprietary multicast data feed protocol developed by OTC Markets Group for real-time dissemination of OTC equity market data from its Alternative Trading System platforms.
 
@@ -22,3 +22,4 @@ The protocol operates over UDP multicast for real-time data distribution. Each U
 - **Order-by-order depth** - Full order book visibility with individual order events
 - **Top of Book aggregation** - Aggregated best bid and offer feeds
 - **Heartbeat monitoring** - Periodic heartbeats during idle periods for connection health
+
