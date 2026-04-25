@@ -13,6 +13,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [T7](T7.md) | Encoding | Eurex | T7 Trading Architecture |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
 | [Xdp](Xdp.md) | Encoding | Nyse | Exchange Data Publisher |
+| [SimpleOpenFrame](SimpleOpenFrame.md) | Framing | Fix | FIX-standard length and encoding-type prefix for stream transports |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [Ats](Ats.md) | MarketData | Otc | OTC Markets ATS Protocol |
@@ -40,8 +41,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |
 | [CommonClient](CommonClient.md) | Session | Nyse | Pillar TCP framing and session layer |
-| [SimpleOpenFrame](SimpleOpenFrame.md) | Session | B3 | FIX SOFH framing used by B3 BinaryEntryPoint |
-| [SimpleOpenFrame](SimpleOpenFrame.md) | Session | Cme | FIX SOFH framing used by CME iLink3 and BrokerTec |
 | [SoupBinTcp](SoupBinTcp.md) | Session | Nasdaq | TCP Session Layer |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |
 | [Gtp](Gtp.md) | Trading Gateway | Lseg | Group Ticker Plant |

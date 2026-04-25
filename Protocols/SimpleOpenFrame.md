@@ -1,27 +1,27 @@
-## SimpleOpenFrame: FIX SOFH framing used by CME iLink3 and BrokerTec
+## SimpleOpenFrame: FIX-standard length and encoding-type prefix for stream transports
 
-CME's adoption of the FIX Simple Open Framing Header (SOFH) for delimiting Simple Binary Encoding messages over TCP, providing a fixed-length length and encoding-type prefix that frames each SBE message on iLink3 order entry and BrokerTec fixed income trading sessions.
+FIX Trading Community standard for delimiting messages encoded with any FIX-family encoding (FIX tag-value, FIXML, FAST, SBE) on stream transports. A six-byte prefix carries a four-byte big-endian message length and a two-byte encoding-type identifier so receivers can size each frame without inspecting the payload.
 
 ### Overview
 
-SimpleOpenFrame is CME's implementation of FIX SOFH (Simple Open Framing Header), a FIX Trading Community standard designed to delimit messages encoded with any FIX-family encoding (FIX tag-value, FAST, FIXML, SBE) on stream transports. CME uses SOFH as the framing layer for its iLink3 order entry protocol and BrokerTec fixed income trading sessions, pairing it with SBE application payloads defined by CME-specific schemas.
+The Simple Open Framing Header (SOFH) is a FIX Trading Community standard designed to provide a minimal, encoding-agnostic message delimiter for FIX messages carried over stream transports. SOFH solves the framing problem that arises when binary FIX-family encodings (most notably SBE) are sent over TCP: receivers need to know where one message ends and the next begins without inspecting the payload, and they may need to recognise multiple payload encodings on the same connection.
 
-The six-byte framing header carries only two fields: a four-byte message length (big-endian) that counts every byte of the frame including the header itself, and a two-byte encoding type that identifies the payload encoding and byte order. This minimal header lets the receiver size each message without inspecting the payload, stream arbitrary SBE templates over a single connection, and switch payload encodings within a session if required.
+The header carries only two fields: a four-byte message length in big-endian (network) byte order that counts every byte of the frame including the header, and a two-byte encoding type identifying the payload encoding and byte order. This keeps SOFH stateless and extremely cheap to parse, with framing overhead independent of payload size or schema.
 
-Session management for iLink3 and BrokerTec is provided by the FIX Performance Session Protocol (FIXP) carried inside the SOFH-framed SBE messages. SOFH itself is stateless — it performs no sequencing, authentication, or heartbeat function. Those responsibilities live in the application layer, leaving SOFH as a pure length-and-type delimiter with extremely low parsing overhead.
+SOFH has been widely adopted across global venues that use SBE for low-latency order entry and market data, including CME (iLink3 order entry, BrokerTec fixed-income trading), B3 (BinaryEntryPoint order entry across equities and derivatives), Euronext Optiq, and others. Session-layer concerns (sequencing, authentication, heartbeats, recovery) are handled by the FIX Performance Session Protocol (FIXP) carried inside the SOFH-framed messages — SOFH itself performs no session function.
 
 ### Transport
 
-SimpleOpenFrame sits directly on TCP and delimits each SBE-encoded application message with a six-byte prefix: a four-byte big-endian message length covering the entire frame and a two-byte encoding type identifying the payload format (for example, 0xEB50 denotes SBE 1.0 little-endian). Each read on the TCP socket yields one or more framed messages that can be parsed by length without delimiter scanning.
+SOFH sits directly on TCP and delimits each FIX-family encoded message with a six-byte prefix: a four-byte big-endian message length covering the entire frame including the header, and a two-byte encoding type identifying the payload format and byte order (for example, 0xEB50 denotes SBE 1.0 little-endian). Each TCP read yields one or more framed messages parseable by length without delimiter scanning.
 
 ### Key Characteristics
 
-- **FIX SOFH compliant** - Implements the FIX Trading Community Simple Open Framing Header standard
+- **FIX Trading Community standard** - Open specification published and maintained by the FIX Trading Community
 - **Six-byte prefix** - Four-byte length plus two-byte encoding type identifies each framed message
 - **Length-prefixed** - Receivers size each message without delimiter scanning
-- **Encoding type tag** - Two-byte encoding identifier signals the payload format and byte order per frame
-- **Stateless** - No sequencing, authentication, or heartbeat — session concerns live above SOFH
-- **SBE payload** - Frames SBE-encoded application messages on iLink3 and BrokerTec
-- **iLink3 order entry** - Framing layer for CME's iLink3 session-oriented order entry protocol
-- **BrokerTec trading** - Framing layer for BrokerTec fixed income and repo trading sessions
+- **Encoding-agnostic** - Two-byte encoding type lets a single connection carry multiple FIX-family payload encodings
+- **Stateless** - No sequencing, authentication, or heartbeat — session concerns live above SOFH (typically FIXP)
+- **Big-endian length** - Frame length uses network byte order regardless of payload byte order
+- **SBE companion** - Standard framing layer for SBE-encoded messages over TCP
+- **Wide adoption** - Used by CME iLink3 and BrokerTec, B3 BinaryEntryPoint, Euronext Optiq, and other global venues
 
