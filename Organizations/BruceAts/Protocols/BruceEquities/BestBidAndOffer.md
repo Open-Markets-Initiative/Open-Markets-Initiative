@@ -1,4 +1,4 @@
-## Best Bid And Offer: Bruce Ats Best Bid And Offer Data
+## BruceEquities Best Bid And Offer: Bruce Ats Best Bid And Offer Data
 
 Direct data feed providing best bid and best offer quotations for securities traded on The Bruce Ats equities platform.
 

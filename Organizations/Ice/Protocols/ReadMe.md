@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Ice](Ice/) | 1 |
+| [IceFutures](IceFutures/) | 2 |
 
 ## Specifications
 

@@ -1,4 +1,4 @@
-## Depth Of Book: Bruce Ats Depth Of Book Data
+## BruceEquities Depth Of Book: Bruce Ats Depth Of Book Data
 
 Order-by-order depth of book feed publishing add, modify, and execute events for securities traded on The Bruce Ats equities platform.
 

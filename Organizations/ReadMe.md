@@ -24,18 +24,19 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Ice](Ice/) | Intercontinental Exchange | IFUS | [theice.com](https://www.theice.com) |
 | [Iex](Iex/) | Investors Exchange | IEXG | [iexexchange.io](https://www.iexexchange.io) |
 | [Imperative](Imperative/) | Imperative Execution |  | [imperativex.com](https://www.imperativex.com) |
-| [Jnx](Jnx/) | Japannext Securities (JNX) | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
-| [Jpx](Jpx/) | Japan Exchange Group (JPX) | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
-| [Lseg](Lseg/) | London Stock Exchange (LSE) | XLON | [lseg.com](https://www.lseg.com) |
-| [Memx](Memx/) | The Members Exchange (MEMX) | MEMX | [memx.com](https://www.memx.com) |
-| [Miax](Miax/) | Miami International Holdings (MIAX) | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
+| [Jnx](Jnx/) | Japannext Securities | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
+| [Jpx](Jpx/) | Japan Exchange Group | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
+| [Lseg](Lseg/) | London Stock Exchange | XLON | [lseg.com](https://www.lseg.com) |
+| [Memx](Memx/) | The Members Exchange | MEMX | [memx.com](https://www.memx.com) |
+| [Miax](Miax/) | Miami International Holdings | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
 | [Nasdaq](Nasdaq/) | National Association of Securities Dealers Automated Quotations (Nasdaq) | XNAS | [nasdaq.com](https://www.nasdaq.com) |
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNSX | [nsx.com.au](https://www.nsx.com.au) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |
 | [Odx](Odx/) | Osaka Digital Exchange |  | [odx.co.jp](https://www.odx.co.jp/en) |
-| [Otc](Otc/) | OTC Markets Group (OTC) | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
-| [Siac](Siac/) | The Securities Industry Automation Corporation (SIAC) |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
+| [Omi](Omi/) | Open Markets Initiative |  | [openmarketsinitiative.com](https://openmarketsinitiative.com) |
+| [Otc](Otc/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
+| [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
 | [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
-| [Tmx](Tmx/) | TMX Group (TMX) | XTSE | [tmx.com](https://www.tmx.com/) |
+| [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
 

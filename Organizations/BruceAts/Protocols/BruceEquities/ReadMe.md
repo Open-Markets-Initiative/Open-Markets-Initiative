@@ -1,4 +1,7 @@
-## BruceAts
+## Bruce ATS Equities
+
+
+Bruce ATS cash equities alternative trading system targeting institutional block trading with midpoint matching.
 
 
 ### Protocols

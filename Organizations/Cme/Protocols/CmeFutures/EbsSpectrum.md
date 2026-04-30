@@ -1,22 +1,27 @@
-## CmeFutures Ebs Spectrum: Cme Ebs Spectrum Forex Order Entry
+## CmeFutures Ebs Spectrum: Cme Ebs Spectrum Spot Foreign Exchange Market Data
 
-Binary order entry protocol for submitting orders on the Cme Ebs Spectrum spot foreign exchange trading platform.
+Cme Ebs Spectrum market data feed distributing spot foreign exchange price discovery, depth of book, and trade summary messages for major, minor, and emerging market currency pairs traded on the Cme Ebs Spectrum platform. Delivered as conflated SBE messages over UDP multicast.
 
 ### Overview
 
-Ebs Spectrum is the Cme spot foreign exchange trading platform, offering electronic trading of major, minor, and emerging market currency pairs. The Ebs Spectrum order entry protocol provides participants with a binary session-based interface for submitting orders against the central limit order book and negotiating block trades.
+Ebs Spectrum is Cme's spot foreign exchange trading platform, offering electronic trading of major, minor, and emerging market currency pairs. The Ebs Spectrum market data feed distributes price discovery, top-of-book, depth-of-book, and trade summary messages aggregated from the central limit order book and negotiated block trades on the venue. The data flow is independent of the Ebs Spectrum order entry protocol and is intended for subscribers who observe the market without posting orders.
 
-The protocol is separate from Cme Globex order entry, reflecting the Fx trading workflow including credit checking, prime brokerage relationships, and the specific order types available on the Ebs venue.
+Messages are encoded in Cme's Simple Binary Encoding (SBE), the same wire format used across the Market Data Platform 3.0 family, and carried over UDP multicast with a nominal conflation interval that aggregates events within a small time window to keep bandwidth bounded while preserving market state fidelity. Each packet begins with the Cme BinaryPacketHeader providing a 32-bit packet sequence number and 64-bit sending time so receivers can detect gaps, compute latency, and order events across channels.
+
+Recovery follows the standard Cme market data pattern — subscribers request missed packets from the dedicated TCP replay service, refresh instrument state from the instrument definition channel, and join the market recovery snapshot multicast group to re-synchronise after a prolonged gap. Certification of consuming applications is performed via AutoCert+ using the Ebs Spectrum Market Data (Conflated UDP Ultra) test environment.
 
 ### Transport
 
-Tcp for persistent authenticated Ebs Spectrum sessions carrying order entry, modification, cancellation, and execution report messages for spot Fx currency pairs.
+Udp multicast for dual-feed A/B delivery of conflated SBE-encoded depth and trade summary messages. Cme's Market Data Platform wraps each datagram in the BinaryPacketHeader carrying packet sequence number and nanosecond sending time so subscribers can detect gaps and recover against the TCP replay service. Tcp for market data replay, market recovery snapshots, and instrument definition dissemination over the shared Cme Smart Stream / Market Data Platform services.
 
 ### Key Characteristics
 
-- **Spot Fx** - Major, minor, and emerging market currency pairs
-- **Ebs Spectrum venue** - Cme spot foreign exchange trading platform
-- **Session based** - Persistent authenticated Tcp session per participant
-- **Credit aware** - Pre-trade credit checking for bilateral counterparty relationships
-- **Binary encoded** - Compact fixed-width messages for low latency
+- **Spot foreign exchange** - Major, minor, and emerging market currency pairs traded on Cme Ebs Spectrum
+- **Depth of book** - Market by Price with configurable depth plus trade summary events
+- **SBE over UDP multicast** - Simple Binary Encoding carried over dual-feed UDP multicast for efficient dissemination
+- **Conflated** - Events aggregated within a short conflation window to bound bandwidth while preserving order-book state
+- **Packet sequenced** - BinaryPacketHeader packet sequence number and sending-time timestamp for gap detection
+- **Dual-feed** - Feed A and feed B multicast groups carry identical messages for arbitration on the receiver side
+- **TCP replay recovery** - Missed packets recovered via the dedicated Cme TCP market data replay service
+- **Instrument definition channel** - Separate multicast group delivers instrument reference data and trading status updates
 

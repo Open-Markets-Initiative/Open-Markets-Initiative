@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [BruceAts](BruceAts/) | 3 |
+| [BruceEquities](BruceEquities/) | 3 |
 
 ## Specifications
 

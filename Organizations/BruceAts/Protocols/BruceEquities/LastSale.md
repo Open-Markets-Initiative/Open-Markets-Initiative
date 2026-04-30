@@ -1,4 +1,4 @@
-## Last Sale: Bruce Ats Last Sale Trade Data
+## BruceEquities Last Sale: Bruce Ats Last Sale Trade Data
 
 Trade feed publishing executed trade reports and cancellations for securities traded on The Bruce Ats equities platform.
 
