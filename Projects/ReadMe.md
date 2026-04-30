@@ -1,27 +1,60 @@
-[![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/master/About)
+[![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/main/About)
 
-Index of Repositories for [The Open Markets Initiative](https://github.com/Open-Markets-Initiative/Directory/tree/main/About "About Omi")
+# Omi Projects
 
-## Omi Reference Articles and Knowledge Bases
+Index of repositories under the [Open Markets Initiative](https://github.com/Open-Markets-Initiative) GitHub organization.
 
-[Latency Reference:](https://github.com/Open-Markets-Initiative/omi-low-latency-reference "Latency reference articles and links") Reference documents for low latency programming 
+---
 
-[Exchange Reference:](https://github.com/Open-Markets-Initiative/omi-exchange-reference "Exchange reference articles and links") Reference documents for exchange implementations
+## Reference Material
 
+Curated knowledge bases and historical context.
 
-## Source Generated Omi Repositories
+| Repository | Description |
+| --- | --- |
+| [Directory](https://github.com/Open-Markets-Initiative/Directory) | General information about The Open Markets Initiative — the catalog you are reading |
+| [omi-low-latency-reference](https://github.com/Open-Markets-Initiative/omi-low-latency-reference) | Knowledge base for low latency programming |
+| [omi-markets-reference](https://github.com/Open-Markets-Initiative/omi-markets-reference) | Knowledge base for market data collection and analysis |
 
-[Lua Wireshark:](https://github.com/Open-Markets-Initiative/wireshark-lua "Lua Wireshark dissectors") Source generated lua wireshark dissectors.
+## Specifications & Data
 
-[C Structs:](https://github.com/Open-Markets-Initiative/c-structs "C style protocol structs") Source generated binary protocol c-style packed structs.
+Sample packet captures and protocol data used to drive the source generators below.
 
-[C# Structs:](https://github.com/Open-Markets-Initiative/CSharp.Packed.Structs "Source generated C# structs") Source generated castable C# binary protocol packed structs.
+| Repository | Description |
+| --- | --- |
+| [omi-data-packets](https://github.com/Open-Markets-Initiative/omi-data-packets) | Example protocol data captures |
+| [omi-data-pcaps](https://github.com/Open-Markets-Initiative/omi-data-pcaps) | Exchange pcaps for automated testing |
 
-[Java Classes:](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes "Java protocol classes") Source generated garbage collector friendly Java binary protocol classes.
+## Source-Generated Outputs
 
+Code-generated artifacts produced from the protocol specifications.
 
-## Source Generation and Monitoring Repositories
+| Repository | Language | Description |
+| --- | --- | --- |
+| [wireshark-lua](https://github.com/Open-Markets-Initiative/wireshark-lua) | Lua | Source generated cross platform Wireshark dissectors |
+| [c-structs](https://github.com/Open-Markets-Initiative/c-structs) | C | Source generated binary protocol c-style packed structs |
+| [cpp-packets](https://github.com/Open-Markets-Initiative/cpp-packets) | C++ | High performance inline modern C++ packet parsing |
+| [cpp-parsers](https://github.com/Open-Markets-Initiative/cpp-parsers) | C++ | Source generated C++ exchange parsers |
+| [omi-cpp-protocol-statistics](https://github.com/Open-Markets-Initiative/omi-cpp-protocol-statistics) | C++ | Code generated executables that gather statistics and gap detection on common exchange protocols |
+| [omi-cpp-parquet-wide](https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide) | C++ | Code generated Apache Parquet protocol transforms for common exchange protocols |
+| [CSharp.Sequential.Layout](https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout) | C# | Source generated castable C# binary protocol packed structs |
+| [CSharp.Hft.Structs](https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs) | C# | CSharp.Hft.Structs |
+| [Omi.CSharp.Parsers](https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers) | C# | Source generated high performance C# parsers for common exchange protocols *(Beta)* |
+| [omi.java.protocol.classes](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes) | Java | Garbage-collector friendly Java binary protocol classes |
+| [omi-python-classes](https://github.com/Open-Markets-Initiative/omi-python-classes) | Python | Stable Python deserialization for common exchange protocols |
 
-[FIX Generators:](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators "Composable Fix Source Generators") Composable tools for FIX code generation
+## Generators & Tooling
 
-[Latency Lab:](https://github.com/Open-Markets-Initiative/latency-lab "Composable tools for latency Measurement") Composable tools for latency Measurement
+The composable toolchain that drives the generated outputs above.
+
+| Repository | Description |
+| --- | --- |
+| [Omi.Fix.Generators](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators) | Composable FIX source generators |
+| [Omi.Fix.Fast.Generators](https://github.com/Open-Markets-Initiative/Omi.Fix.Fast.Generators) | Code generation for FIX FAST protocols |
+| [latency-lab](https://github.com/Open-Markets-Initiative/latency-lab) | Composable tools for automating latency measurement and reporting |
+| [hpcap](https://github.com/Open-Markets-Initiative/hpcap) | High performance pcap traversal |
+| [omi-pcap-to-json](https://github.com/Open-Markets-Initiative/omi-pcap-to-json) | Optimized pcap to JSON converters |
+
+---
+
+*Full org listing: [github.com/Open-Markets-Initiative](https://github.com/Open-Markets-Initiative)*
