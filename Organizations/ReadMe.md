@@ -37,6 +37,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Otc](Otc/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
 | [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
+| [Tadawul](Tadawul/) | Saudi Exchange | XSAU | [saudiexchange.sa](https://www.saudiexchange.sa) |
 | [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
 
