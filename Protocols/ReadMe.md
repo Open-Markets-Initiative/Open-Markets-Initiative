@@ -18,6 +18,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
+| [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Ats](Ats.md) | MarketData | Otc | OTC Markets ATS Protocol |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
@@ -28,6 +29,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Omd](Omd.md) | MarketData | Hkex | HKEX Orion Market Data |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
+| [Utp](Utp.md) | MarketData | Nasdaq | Unlisted Trading Privileges binary feed encoding |
 | [Xmt](Xmt.md) | MarketData | Tmx | eXtreme Message Transfer Protocol |
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
