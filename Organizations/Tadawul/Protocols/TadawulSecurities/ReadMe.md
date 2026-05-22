@@ -9,7 +9,9 @@ Saudi Exchange cash securities market covering Main Market and Nomu parallel mar
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Itch](Itch.md) | MarketData | Saudi Exchange X-stream Itch Order By Order Market Data |
+| [Basic](Basic.md) | MarketData | Saudi Exchange X-stream Itch Top Of Book Market Data |
+| [News](News.md) | MarketData | Saudi Exchange X-stream Itch News Dissemination |
+| [TotalView](TotalView.md) | MarketData | Saudi Exchange X-stream Itch Total View Order By Order Market Data |
 
 ## Specifications
 

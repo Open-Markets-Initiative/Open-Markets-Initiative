@@ -11,10 +11,10 @@
 | [Nasdaq](Nasdaq/) | 2 |
 | [NomOptions](NomOptions/) | 2 |
 | [NsmEquities](NsmEquities/) | 12 |
-| [NtxEquities](NtxEquities/) | 5 |
+| [NtxEquities](NtxEquities/) | 4 |
 | [NtxOptions](NtxOptions/) | 3 |
 | [PhlxOptions](PhlxOptions/) | 10 |
-| [PsxEquities](PsxEquities/) | 5 |
+| [PsxEquities](PsxEquities/) | 4 |
 
 ## Specifications
 

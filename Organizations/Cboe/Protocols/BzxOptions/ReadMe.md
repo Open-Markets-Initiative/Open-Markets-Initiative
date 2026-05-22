@@ -15,8 +15,8 @@ Cboe Bzx Options US options exchange offering a price time priority market for l
 | [ComplexMulticast](ComplexMulticast.md) | MarketData | Cboe BZX Options Complex Strategy Multicast Market Data |
 | [ComplexOptions](ComplexOptions.md) | OrderEntry | Cboe BZX Options Complex Order Entry |
 | [ComplexTop](ComplexTop.md) | MarketData | Cboe BZX Options Complex Strategy Top Of Book |
-| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe BZX Options Full Depth Of Book Data |
 | [Flex](Flex.md) | OrderEntry | Cboe BZX Options Flex Order Entry |
+| [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe BZX Options Full Depth Of Book Data |
 | [MulticastTop](MulticastTop.md) | MarketData | Cboe BZX Options Multicast Best Bid And Offer Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Cboe BZX Options Binary Order Entry |
 

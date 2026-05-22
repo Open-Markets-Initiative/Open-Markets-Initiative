@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [TadawulSecurities](TadawulSecurities/) | 1 |
+| [TadawulSecurities](TadawulSecurities/) | 3 |
 
 ## Specifications
 

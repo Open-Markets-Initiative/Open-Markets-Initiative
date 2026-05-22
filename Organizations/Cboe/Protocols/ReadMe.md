@@ -3,20 +3,22 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [ByxEquities](ByxEquities/) | 9 |
-| [BzxEquities](BzxEquities/) | 9 |
+| [BxeEquities](BxeEquities/) | 4 |
+| [ByxEquities](ByxEquities/) | 8 |
+| [BzxEquities](BzxEquities/) | 8 |
 | [BzxOptions](BzxOptions/) | 10 |
-| [C1Options](C1Options/) | 16 |
+| [C1Options](C1Options/) | 17 |
 | [C2Options](C2Options/) | 10 |
-| [CboeEurope](CboeEurope/) | 8 |
+| [CboeEurope](CboeEurope/) | 5 |
 | [CboeFx](CboeFx/) | 2 |
 | [CfeFutures](CfeFutures/) | 5 |
-| [EdgaEquities](EdgaEquities/) | 9 |
-| [EdgxEquities](EdgxEquities/) | 9 |
+| [CxeEquities](CxeEquities/) | 4 |
+| [DxeDerivatives](DxeDerivatives/) | 1 |
+| [EdgaEquities](EdgaEquities/) | 8 |
+| [EdgxEquities](EdgxEquities/) | 8 |
 | [EdgxOptions](EdgxOptions/) | 10 |
 | [Pitch](Pitch/) | 1 |
-| [TitaniumEquities](TitaniumEquities/) | 6 |
-| [TitaniumOptions](TitaniumOptions/) | 9 |
+| [TitaniumConsolidated](TitaniumConsolidated/) | 2 |
 
 ## Specifications
 

@@ -15,8 +15,8 @@ Cboe C2 Options US options exchange offering an all electronic pro rata market c
 | [ComplexMulticast](ComplexMulticast.md) | MarketData | Cboe C2 Options Complex Strategy Multicast Market Data |
 | [ComplexOptions](ComplexOptions.md) | OrderEntry | Cboe C2 Options Complex Order Entry |
 | [ComplexTop](ComplexTop.md) | MarketData | Cboe C2 Options Complex Strategy Top Of Book |
-| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe C2 Options Full Depth Of Book Data |
 | [Flex](Flex.md) | OrderEntry | Cboe C2 Options Flex Order Entry |
+| [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe C2 Options Full Depth Of Book Data |
 | [MulticastTop](MulticastTop.md) | MarketData | Cboe C2 Options Multicast Best Bid And Offer Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Cboe C2 Options Binary Order Entry |
 

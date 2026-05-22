@@ -10,13 +10,12 @@ Cboe Byx Exchange US cash equities venue acquired from Bats Global Markets offer
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [AuctionFeed](AuctionFeed.md) | MarketData | Cboe BYX Auction Event Data |
-| [DepthOfBook](DepthOfBook.md) | MarketData | Cboe BYX Full Depth Of Book Data |
 | [EtfImpliedLiquidity](EtfImpliedLiquidity.md) | MarketData | Cboe BYX Etf Implied Liquidity Data |
-| [LastSale](LastSale.md) | MarketData | Cboe BYX Trade Report Feed |
-| [OneFeed](OneFeed.md) | MarketData | Cboe BYX Consolidated Market Data Bundle |
+| [LastSale](LastSale.md) | MarketData | Cboe BYX Last Sale |
+| [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe BYX Full Depth Of Book Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Cboe BYX Binary Order Entry |
-| [SummaryDepth](SummaryDepth.md) | MarketData | Cboe BYX Aggregated Price Level Depth Of Book |
-| [TcpDepthOfBook](TcpDepthOfBook.md) | MarketData | Cboe BYX Tcp Full Depth Of Book Data |
+| [SummaryDepth](SummaryDepth.md) | MarketData | Cboe BYX Summary Depth |
+| [TcpDepthOfBook](TcpDepthOfBook.md) | MarketData | Cboe BYX Tcp Full Depth Of Book Data (Ascii Pitch over Soup 2.0) |
 | [Top](Top.md) | MarketData | Cboe BYX Best Bid And Offer Data |
 
 ## Specifications
