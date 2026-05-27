@@ -18,7 +18,7 @@
 | [EdgxEquities](EdgxEquities/) | 8 |
 | [EdgxOptions](EdgxOptions/) | 10 |
 | [Pitch](Pitch/) | 1 |
-| [TitaniumConsolidated](TitaniumConsolidated/) | 2 |
+| [TitaniumConsolidated](TitaniumConsolidated/) | 3 |
 
 ## Specifications
 

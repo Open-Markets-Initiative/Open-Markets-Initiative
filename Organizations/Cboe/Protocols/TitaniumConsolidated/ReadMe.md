@@ -9,6 +9,7 @@ Cboe Titanium Consolidated market data — cross-exchange aggregated feeds (Cboe
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [Indices](Indices.md) | MarketData | Cboe Global Indices Feed |
 | [OneEquities](OneEquities.md) | MarketData | Cboe One Equities |
 | [OneOptions](OneOptions.md) | MarketData | Cboe One Options |
 

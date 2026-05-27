@@ -6,6 +6,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | --- | --- | --- | --- |
 | [Boe3](Boe3.md) | Encoding | Cboe | Binary Order Entry 3 |
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
+| [Flex](Flex.md) | Encoding | Jpx | Japan Exchange Group arrowhead tag-stream binary encoding |
 | [Glimpse](Glimpse.md) | Encoding | Odx | Glimpse |
 | [iMpact](iMpact.md) | Encoding | Ice | Ice iMpact compact fixed-width binary message encoding used by the Mdf market data feed |
 | [Obi](Obi.md) | Encoding | Siac | Opra Binary Interface |
@@ -20,6 +21,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Ats](Ats.md) | MarketData | Otc | OTC Markets ATS Protocol |
+| [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
