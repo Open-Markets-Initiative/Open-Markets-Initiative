@@ -1,7 +1,7 @@
-## Nasdaq NTX Options
+## Nasdaq Texas Options
 
 
-Nasdaq Ntx Options Canadian options venue providing an alternative options market for interlisted securities.
+Nasdaq Texas US options exchange — successor to the Nasdaq Boston (BX) Options market following the relocation of operations to Texas.
 
 
 ### Protocols

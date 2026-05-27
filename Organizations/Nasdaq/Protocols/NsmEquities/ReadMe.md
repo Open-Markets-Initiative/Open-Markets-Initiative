@@ -15,7 +15,6 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | [Level2](Level2.md) | MarketData | Nasdaq Level Two Market Maker Quotation Data |
 | [MatchView](MatchView.md) | MarketData | Nasdaq Nasdaq Executed Trade Feed |
 | [NlsPlus](NlsPlus.md) | MarketData | Nasdaq Consolidated Last Sale Data |
-| [Noi](Noi.md) | MarketData | Nasdaq Nsm Equities Net Order Imbalance Indicator |
 | [Nois](Nois.md) | MarketData | Nasdaq Auction Imbalance Data |
 | [NoiView](NoiView.md) | MarketData | Nasdaq Auction Imbalance View |
 | [Orders](Orders.md) | OrderEntry | Nasdaq Order Entry |

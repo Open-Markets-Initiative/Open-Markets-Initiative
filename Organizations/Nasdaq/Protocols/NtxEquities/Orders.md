@@ -1,4 +1,4 @@
-## BxEquities Orders: Nasdaq BX Order Entry
+## NtxEquities Orders: Nasdaq BX Order Entry
 
 Ouch-based binary order entry protocol for submitting, replacing, and cancelling orders on Nasdaq BX Equities.
 

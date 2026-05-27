@@ -1,7 +1,7 @@
-## Nasdaq NTX
+## Nasdaq Texas
 
 
-Nasdaq Canada Ntx Equities venue providing an alternative Canadian equities market for interlisted securities.
+Nasdaq Texas US cash equities exchange — successor to the Nasdaq Boston (BX) Stock Market following the relocation of operations to Texas.
 
 
 ### Protocols
@@ -11,7 +11,8 @@ Nasdaq Canada Ntx Equities venue providing an alternative Canadian equities mark
 | --- | --- | --- |
 | [Bbo](Bbo.md) | MarketData | Nasdaq TX Top Of Book Quotation Data |
 | [Glimpse](Glimpse.md) | MarketData | Nasdaq Ntx Equities Snapshot Retransmission Service |
-| [Qbbo](Qbbo.md) | MarketData | Nasdaq Ntx Equities Attributed Best Bid And Offer |
+| [LastSale](LastSale.md) | MarketData | Nasdaq BX Trade Report Feed |
+| [Orders](Orders.md) | OrderEntry | Nasdaq BX Order Entry |
 | [TotalView](TotalView.md) | MarketData | Nasdaq TX Full Depth Of Book Market Data |
 
 ## Specifications

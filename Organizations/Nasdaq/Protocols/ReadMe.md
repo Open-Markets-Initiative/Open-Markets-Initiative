@@ -3,17 +3,15 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [BxEquities](BxEquities/) | 4 |
-| [BxOptions](BxOptions/) | 2 |
 | [GemxOptions](GemxOptions/) | 4 |
-| [IseOptions](IseOptions/) | 12 |
-| [MrxOptions](MrxOptions/) | 7 |
+| [IseOptions](IseOptions/) | 13 |
+| [MrxOptions](MrxOptions/) | 8 |
 | [Nasdaq](Nasdaq/) | 2 |
 | [NomOptions](NomOptions/) | 2 |
-| [NsmEquities](NsmEquities/) | 12 |
-| [NtxEquities](NtxEquities/) | 4 |
+| [NsmEquities](NsmEquities/) | 11 |
+| [NtxEquities](NtxEquities/) | 5 |
 | [NtxOptions](NtxOptions/) | 3 |
-| [PhlxOptions](PhlxOptions/) | 10 |
+| [PhlxOptions](PhlxOptions/) | 8 |
 | [PsxEquities](PsxEquities/) | 4 |
 
 ## Specifications
