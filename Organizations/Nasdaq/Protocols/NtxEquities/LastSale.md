@@ -1,4 +1,4 @@
-## BxEquities Last Sale: Nasdaq BX Trade Report Feed
+## NtxEquities Last Sale: Nasdaq BX Trade Report Feed
 
 Trade report feed publishing executed trade messages for equities traded on Nasdaq BX Equities.
 

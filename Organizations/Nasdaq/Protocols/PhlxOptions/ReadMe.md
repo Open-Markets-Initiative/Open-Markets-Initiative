@@ -10,14 +10,12 @@ Nasdaq Philadelphia Phlx Options US options exchange offering pro rata allocatio
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Phlx Options Depth Of Book Data |
-| [MarketDepth](MarketDepth.md) | MarketData | Nasdaq Phlx Options Depth Of Book Data |
-| [OrderFeed](OrderFeed.md) | MarketData | Nasdaq Phlx Options Order Level Market Data |
-| [Orders](Orders.md) | OrderEntry | Nasdaq PHLX Order Entry |
-| [SpreadDepth](SpreadDepth.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
-| [SpreadFeed](SpreadFeed.md) | MarketData | Nasdaq Phlx Options Complex Order Feed |
+| [Orders](Orders.md) | MarketData | Nasdaq PHLX Order Book Itch Market Data |
+| [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
+| [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |
 | [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Best Bid And Offer |
+| [SpreadTradeFeed](SpreadTradeFeed.md) | MarketData | Nasdaq Phlx Options Complex Strategy Trade Report Feed |
 | [Topo](Topo.md) | MarketData | Nasdaq Phlx Options Top Of Book Data |
-| [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Phlx Options Best Bid And Offer Data |
 | [TradeFeed](TradeFeed.md) | MarketData | Nasdaq Phlx Options Trade Report Data |
 
 ## Specifications

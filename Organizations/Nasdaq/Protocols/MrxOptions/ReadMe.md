@@ -11,9 +11,10 @@ Nasdaq Mrx Options US options exchange operating alongside Ise and Gemx within t
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Mrx Options Depth Of Book Data |
 | [OrderFeed](OrderFeed.md) | MarketData | Nasdaq Mrx Options Order Level Market Data |
-| [SpreadDepth](SpreadDepth.md) | MarketData | Nasdaq Mrx Options Complex Order Depth Of Book |
-| [SpreadFeed](SpreadFeed.md) | MarketData | Nasdaq Mrx Options Complex Order Feed |
-| [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Mrx Options Complex Order Best Bid And Offer |
+| [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
+| [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |
+| [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Best Bid And Offer |
+| [SpreadTradeFeed](SpreadTradeFeed.md) | MarketData | Nasdaq Phlx Options Complex Strategy Trade Report Feed |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Mrx Options Best Bid And Offer Data |
 | [TradeFeed](TradeFeed.md) | MarketData | Nasdaq Mrx Options Trade Report Data |
 

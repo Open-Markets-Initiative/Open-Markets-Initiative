@@ -10,6 +10,7 @@ Iex Exchange US cash equities venue designed with a 350 microsecond speed bump t
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Deep](Deep.md) | MarketData | Iex Equities Aggregated Depth Of Book Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Investors Exchange Fix Order Entry |
 | [Tops](Tops.md) | MarketData | Iex Equities Top Of Book Quotations And Trade Data |
 
 ## Specifications

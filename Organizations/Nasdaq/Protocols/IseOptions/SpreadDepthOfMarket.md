@@ -1,6 +1,6 @@
-## IseOptions Spread Depth: Nasdaq Ise Options Complex Order Depth Of Book
+## IseOptions Spread Depth Of Market: Nasdaq Phlx Options Complex Order Depth Of Book
 
-Depth of book market data feed for complex and spread orders for Ise Options.
+Depth of book market data feed for complex and spread orders for Phlx Options.
 
 ### Overview
 
@@ -12,9 +12,9 @@ Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binar
 
 ### Key Characteristics
 
-- **Spread depth** - Complex order book events for Ise Options
+- **Spread depth** - Complex order book events for Phlx Options
 - **Nasdaq Itch** - Industry-standard Itch binary format
 - **MoldUdp64 multicast** - Nasdaq multicast framing
 - **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Ise Options** - Coverage of Nasdaq Ise Options listed instruments
+- **Phlx Options** - Coverage of Nasdaq Phlx Options listed instruments
 

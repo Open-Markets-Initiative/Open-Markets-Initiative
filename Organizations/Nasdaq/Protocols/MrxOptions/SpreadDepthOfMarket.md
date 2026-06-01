@@ -1,10 +1,10 @@
-## MrxOptions Spread Feed: Nasdaq Mrx Options Complex Order Feed
+## MrxOptions Spread Depth Of Market: Nasdaq Phlx Options Complex Order Depth Of Book
 
-Market data feed for complex and spread order events for Mrx Options.
+Depth of book market data feed for complex and spread orders for Phlx Options.
 
 ### Overview
 
-Spread Feed is the complex order market data feed, publishing spread order add, modify, cancel, and execute events. It uses the Nasdaq Itch binary protocol over MoldUdp64 multicast.
+Spread Depth is the full depth of book feed for complex and spread orders, publishing order events and resting book state. It uses the Nasdaq Itch binary protocol over MoldUdp64 multicast.
 
 ### Transport
 
@@ -12,9 +12,9 @@ Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binar
 
 ### Key Characteristics
 
-- **Spread feed** - Complex order events for Mrx Options
+- **Spread depth** - Complex order book events for Phlx Options
 - **Nasdaq Itch** - Industry-standard Itch binary format
 - **MoldUdp64 multicast** - Nasdaq multicast framing
 - **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Mrx Options** - Coverage of Nasdaq Mrx Options listed instruments
+- **Phlx Options** - Coverage of Nasdaq Phlx Options listed instruments
 

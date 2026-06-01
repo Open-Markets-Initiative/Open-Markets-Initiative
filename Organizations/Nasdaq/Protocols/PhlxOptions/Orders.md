@@ -1,22 +1,22 @@
-## PhlxOptions Orders: Nasdaq PHLX Order Entry
+## PhlxOptions Orders: Nasdaq PHLX Order Book Itch Market Data
 
-Ouch-based binary order entry protocol for submitting, replacing, and cancelling orders on Nasdaq PHLX Options.
+Order-by-order Itch market data feed publishing every displayed order on the Nasdaq PHLX Options order book, including add, replace, and cancel events plus per-message timestamps.
 
 ### Overview
 
-Orders is the Nasdaq Ouch order entry protocol variant for Nasdaq PHLX Options, providing members with a low-latency binary interface to submit, replace, and cancel orders for options. The wire format is the Ouch message family with fixed-width binary fields and numeric token references for efficient order management.
+Orders is the order-by-order Itch market data feed for Nasdaq PHLX Options, publishing every displayed order on the book — add order, order replace, order cancel, and order execution events — using the Nasdaq Itch binary protocol. Subscribers can reconstruct the full order book from this feed and observe every market participant action.
 
-Messages are framed with SoupBinTcp over Tcp which provides session authentication, heartbeat monitoring, and sequence-based recovery. Inbound messages include Enter Order, Replace Order, Cancel Order, and Cancel By Order Id, and outbound messages report order accepted, replaced, cancelled, and executed events.
+The feed is delivered over MoldUdp64 multicast with a SoupBinTcp Glimpse snapshot and retransmission service for recovery. Every message carries both seconds (via a periodic Timestamp Seconds Message) and per-message nanoseconds for sub-microsecond timestamping.
 
 ### Transport
 
-Tcp via SoupBinTcp for persistent authenticated Ouch sessions carrying order submission, replacement, cancellation, and execution report messages.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary order events with per-packet sequence numbers and Timestamp Seconds Message anchors. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Nasdaq Ouch** - Industry-standard Ouch order entry protocol
-- **SoupBinTcp framed** - Session-authenticated Tcp with heartbeat and sequence recovery
-- **Full order lifecycle** - Enter, replace, cancel, accepted, replaced, cancelled, and executed
-- **Session based** - Persistent authenticated Tcp session per member
-- **Binary encoded** - Fixed-width Ouch binary messages for low latency
+- **Order by order** - Every displayed order on the PHLX Options book
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing with per-packet sequence numbers
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation and retransmission
+- **Per-message timestamps** - Composite seconds + nanoseconds wall-clock timestamps
 
