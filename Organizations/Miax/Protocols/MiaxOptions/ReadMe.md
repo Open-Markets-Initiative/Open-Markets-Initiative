@@ -1,4 +1,7 @@
-## MiaxOptions
+## MIAX Options
+
+
+MIAX Options is the flagship US options exchange in the MIAX Exchange Group offering price time priority trading of listed equity options.
 
 
 ### Protocols

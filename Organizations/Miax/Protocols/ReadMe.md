@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [EmeraldOptions](EmeraldOptions/) | 2 |
+| [EmeraldOptions](EmeraldOptions/) | 4 |
 | [MiaxOptions](MiaxOptions/) | 2 |
 | [OnyxFutures](OnyxFutures/) | 2 |
 | [PearlEquities](PearlEquities/) | 3 |

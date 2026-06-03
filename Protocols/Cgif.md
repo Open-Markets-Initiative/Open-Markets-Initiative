@@ -1,6 +1,6 @@
 ## Cgif: Cboe Global Indices Feed
 
-Streamlined binary market data protocol used by Cboe Global Indices Feed (CGIF) to disseminate index values, complex symbol descriptors, and channel mapping over Udp multicast under the Cboe Titanium infrastructure.
+Cboe Global Indices Feed (CGIF) — a Cboe-published binary market data protocol carrying calculated index values, deployed under the Cboe Titanium Consolidated infrastructure. Packet header announces version, length, sending time, message count, and first message sequence number; each message has a length + template id prefix dispatching to per-template payload types (Index Value, Heartbeat, Channel Reset, etc.).
 
 ### Overview
 
@@ -12,7 +12,7 @@ Cgif is delivered alongside other Cboe market data products under the Titanium i
 
 ### Transport
 
-Cgif is distributed over Udp multicast with per-packet sequence numbers and A and B feed redundancy. Each packet carries one or more MDEntry records, with variable-length Symbol, Description, and Channel fields preceded by length bytes.
+Cgif is delivered via UDP multicast. Each packet carries the standard Cgif packet header followed by a count of length-prefixed messages.
 
 ### Key Characteristics
 
