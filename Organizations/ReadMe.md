@@ -16,6 +16,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Cme](Cme/) | CME Group | XCME | [cmegroup.com](http://www.cmegroup.com) |
 | [Coinbase](Coinbase/) | Coinbase | CAND | [coinbase.com](https://www.coinbase.com/) |
 | [Currenex](Currenex/) | Currenex |  | [currenex.com](https://currenex.com) |
+| [ElectronX](ElectronX/) | ElectronX Markets |  | [electronx.com](https://www.electronx.com) |
 | [Eurex](Eurex/) | Eurex Exchange | XEUR | [eurex.com](https://www.eurex.com) |
 | [Euronext](Euronext/) | Euronext | XPAR | [euronext.com](https://www.euronext.com) |
 | [Finra](Finra/) | Financial Industry Regulatory Authority | FINR | [finra.org](https://www.finra.org) |
