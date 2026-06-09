@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [A2X](A2X/) | 1 |
+| [A2X](A2X/) | 2 |
 
 ## Specifications
 
