@@ -1,4 +1,4 @@
-## Optiq Drop Copy Fix: Euronext Optiq Fix 5.0 Drop Copy Service
+## Optiq Drop Copy: Euronext Optiq Fix 5.0 Drop Copy Service
 
 Fix 5.0 (SP2) drop copy service delivering near real-time copies of order and trade report messages produced by the Euronext Optiq matching engine, for risk management, back-office, and compliance use across cash and derivatives markets.
 
@@ -22,3 +22,4 @@ Tcp for a dedicated authenticated drop copy session delivering execution reports
 - **Multi-access scope** - One connection spanning multiple logical accesses and Optiq segments
 - **Dedicated session** - Separate authenticated drop copy connection independent of order entry
 - **Cash and derivatives** - Copies of activity across Euronext Optiq asset classes
+

@@ -1,4 +1,4 @@
-## Optiq Order Entry Fix: Euronext Optiq Fix 5.0 Order Entry
+## Optiq Order Entry: Euronext Optiq Fix 5.0 Order Entry
 
 Fix 5.0 (SP2) order entry interface to the Euronext Optiq Order Entry Gateway, providing order, quote, mass action, wholesale, and request-for-quote messaging across Euronext cash and derivatives markets as a tagged-value alternative to the Sbe binary encoding.
 
@@ -23,3 +23,4 @@ Tcp for persistent authenticated Optiq order entry sessions carrying Fix 5.0 adm
 - **Session based** - Authenticated Tcp session with bidirectional sequence tracking and gap recovery
 - **Cancel on disconnect** - Optional automatic cancellation of orders when the session drops
 - **Cash and derivatives** - Unified order entry across Euronext Optiq asset classes
+
