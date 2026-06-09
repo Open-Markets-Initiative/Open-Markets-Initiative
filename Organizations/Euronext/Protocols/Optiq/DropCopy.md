@@ -1,23 +1,24 @@
-## Optiq Drop Copy: Euronext Optiq Sbe Drop Copy
+## Optiq Drop Copy Fix: Euronext Optiq Fix 5.0 Drop Copy Service
 
-Sbe-encoded drop copy channel for the Euronext Optiq trading platform delivering a copy of all order entry and execution activity to back office and risk systems.
+Fix 5.0 (SP2) drop copy service delivering near real-time copies of order and trade report messages produced by the Euronext Optiq matching engine, for risk management, back-office, and compliance use across cash and derivatives markets.
 
 ### Overview
 
-Drop Copy is a read-only side channel of the Euronext Optiq Order Entry Gateway that mirrors order events and execution reports for a member firm, delivering them to back office, risk, and compliance systems without requiring those systems to connect to the primary order entry sessions. It provides real-time visibility into all order flow for the firm across Euronext Optiq markets.
+The Optiq Drop Copy Fix service provides participants with near real-time copies of the order and trade activity produced by Optiq, presented as Fix 5.0 (Service Pack 2) messages on a dedicated drop copy connection. It is intended for risk management, back-office, and compliance teams that need an independent, read-only view of order acknowledgements, modifications, cancellations, and executions without consuming the primary order entry session.
 
-The wire format is consistent with the Optiq order entry gateway, using Fix Simple Binary Encoding (Sbe) for fixed-width messages. Drop copy clients receive execution reports, order status updates, and cancellation confirmations but do not submit orders on the channel, which keeps the downstream systems strictly in a monitoring role.
+A drop copy configuration grants access to one or more logical accesses for a single participant, or across several Optiq segments, so that a single connection can observe activity spanning multiple order entry sessions. The feed reuses the standard Optiq Fix message structures (ExecutionReport, OrderCancelReject, and TradeCaptureReportAck) and field semantics from the order entry gateway; the same service is also offered in the Sbe binary encoding as a separate protocol.
 
 ### Transport
 
-Tcp for authenticated drop copy sessions carrying a read-only copy of order events and execution reports for back office, risk, and compliance systems.
+Tcp for a dedicated authenticated drop copy session delivering execution reports, order cancel rejects, and trade capture report acknowledgements as Fix 5.0 outbound copies, scoped to the client's configured logical accesses across Optiq segments.
 
 ### Key Characteristics
 
-- **Read-only** - Drop copy clients observe but do not submit orders
-- **Sbe encoded** - Same Sbe format as the Optiq order entry gateway
-- **Execution reports** - Full order lifecycle visibility for back office systems
-- **Back office target** - Designed for risk, compliance, and post-trade infrastructure
-- **Firm wide** - Mirrors all order activity for a member firm across Optiq markets
-- **Session based** - Authenticated Tcp session with sequence tracking
-
+- **Fix 5.0 SP2** - Standards-based tagged-value drop copy of Optiq order and trade activity
+- **Near real-time copies** - Order and trade report messages mirrored as they are produced by the matching engine
+- **Risk and compliance** - Independent read-only view for risk management, back-office, and compliance
+- **Execution reports** - Acknowledgement, modification, cancellation, and fill copies via ExecutionReport
+- **Trade capture** - Trade execution copies via TradeCaptureReportAck
+- **Multi-access scope** - One connection spanning multiple logical accesses and Optiq segments
+- **Dedicated session** - Separate authenticated drop copy connection independent of order entry
+- **Cash and derivatives** - Copies of activity across Euronext Optiq asset classes
