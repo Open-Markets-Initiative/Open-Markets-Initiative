@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Optiq](Optiq/) | 3 |
+| [Optiq](Optiq/) | 5 |
 
 ## Specifications
 

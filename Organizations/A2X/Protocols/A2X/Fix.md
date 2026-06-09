@@ -1,4 +1,4 @@
-## Fix: A2X Markets Order Entry Fix
+## Fix: A2X Markets Fix 4.2 Order Entry and Trade Reporting
 
 Fix 4.2 order entry protocol providing trading Members and third party vendors with order entry, order management, and negotiated trade reporting access to A2X Markets, implemented on Aquis Exchange software.
 
@@ -24,3 +24,4 @@ Tcp for authenticated Fix 4.2 sessions carrying order entry, order management, e
 - **Trade capture reporting** - Fix 4.4 trade capture reports for Large In Scale, Benchmark, and Matched Principal crosses
 - **Cancel on disconnect** - Open orders cancelled automatically when the session ends or the connection drops
 - **Self-trade prevention** - Optional cancellation of the resting order that would otherwise self-match
+
