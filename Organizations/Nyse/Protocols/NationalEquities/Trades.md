@@ -1,4 +1,4 @@
-## NationalEquities Trades: Nyse National Equities Trades
+## NationalEquities Trades: Trades
 
 Last sale and trade report feed for securities traded on Nyse National Equities.
 

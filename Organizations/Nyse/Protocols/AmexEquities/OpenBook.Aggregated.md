@@ -1,4 +1,4 @@
-## AmexEquities Open Book.Aggregated: Nyse Amex Equities Open Book Aggregated
+## AmexEquities Open Book.Aggregated: Open Book Aggregated
 
 Aggregated open book depth of market data for securities traded on Nyse American Equities.
 

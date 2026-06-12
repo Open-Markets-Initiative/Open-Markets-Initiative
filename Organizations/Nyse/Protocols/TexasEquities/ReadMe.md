@@ -9,13 +9,13 @@ Nyse Texas US cash equities exchange based in Dallas offering a regional listing
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Bbo](Bbo.md) | MarketData | Nyse Texas Equities Best Bid And Offer |
-| [BinaryGateway](BinaryGateway.md) | OrderEntry | Nyse Texas Equities Binary Gateway |
-| [Bqt](Bqt.md) | MarketData | Nyse Texas Equities Best Quote And Trade |
-| [DepthFeed](DepthFeed.md) | MarketData | Nyse Texas Equities Depth Feed |
-| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Nyse Texas Equities Imbalances Feed |
-| [IntegratedFeed](IntegratedFeed.md) | MarketData | Nyse Texas Equities Integrated Feed |
-| [Trades](Trades.md) | MarketData | Nyse Texas Equities Trades |
+| [Bbo](Bbo.md) | MarketData | Best Bid And Offer |
+| [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
+| [Bqt](Bqt.md) | MarketData | Best Quote And Trade |
+| [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
+| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
+| [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
 

@@ -1,4 +1,4 @@
-## C1Options Complex: Cboe C1 Options Complex
+## C1Options Complex: Complex
 
 Complex order multicast market data feed for Cboe C1 Options Exchange.
 

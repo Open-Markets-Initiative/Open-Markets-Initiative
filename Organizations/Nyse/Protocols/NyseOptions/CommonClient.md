@@ -1,4 +1,4 @@
-## NyseOptions Common Client: Nyse Options Common Client
+## NyseOptions Common Client: Common Client
 
 Common client header specification for Nyse Options Pillar binary protocols.
 

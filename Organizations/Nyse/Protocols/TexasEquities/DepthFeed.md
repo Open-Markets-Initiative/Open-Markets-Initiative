@@ -1,4 +1,4 @@
-## TexasEquities Depth Feed: Nyse Texas Equities Depth Feed
+## TexasEquities Depth Feed: Depth Feed
 
 Depth of book market data feed for securities traded on Nyse Texas Equities.
 

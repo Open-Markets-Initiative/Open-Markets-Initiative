@@ -1,4 +1,4 @@
-## TitaniumConsolidated One Equities: Cboe One Equities
+## TitaniumConsolidated One Equities: One Equities
 
 Cboe One Equities — consolidated equities market data feed combining top of book, last sale, and auction information across the four Cboe US equities exchanges (BZX, BYX, EDGA, EDGX).
 

@@ -1,4 +1,4 @@
-## EdgaEquities Last Sale: Cboe EDGA Last Sale
+## EdgaEquities Last Sale: Last Sale
 
 Ascii Pitch last-sale trade-tape feed publishing trade prints for equities traded on Cboe US Equities EDGA Exchange.
 

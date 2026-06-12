@@ -1,4 +1,4 @@
-## NyseEquities Open Book.Aggregated: Nyse Equities Open Book Aggregated
+## NyseEquities Open Book.Aggregated: Open Book Aggregated
 
 Aggregated open book depth of market data for securities traded on New York Stock Exchange.
 

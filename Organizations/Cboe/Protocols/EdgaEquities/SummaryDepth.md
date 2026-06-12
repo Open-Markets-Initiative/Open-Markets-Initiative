@@ -1,4 +1,4 @@
-## EdgaEquities Summary Depth: Cboe EDGA Summary Depth
+## EdgaEquities Summary Depth: Summary Depth
 
 Multicast Pitch summary depth feed publishing aggregated price-level depth for equities traded on Cboe US Equities EDGA Exchange.
 

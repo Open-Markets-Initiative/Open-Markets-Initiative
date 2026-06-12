@@ -1,4 +1,4 @@
-## AmexEquities Integrated Feed: Nyse Amex Equities Integrated Feed
+## AmexEquities Integrated Feed: Integrated Feed
 
 Integrated market data feed combining quotes, trades, and order imbalances for Nyse American Equities.
 

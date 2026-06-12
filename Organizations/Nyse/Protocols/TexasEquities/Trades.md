@@ -1,4 +1,4 @@
-## TexasEquities Trades: Nyse Texas Equities Trades
+## TexasEquities Trades: Trades
 
 Last sale and trade report feed for securities traded on Nyse Texas Equities.
 

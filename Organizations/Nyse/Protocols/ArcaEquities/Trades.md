@@ -1,4 +1,4 @@
-## ArcaEquities Trades: Nyse Arca Equities Trades
+## ArcaEquities Trades: Trades
 
 Last sale and trade report feed for securities traded on Nyse Arca Equities.
 

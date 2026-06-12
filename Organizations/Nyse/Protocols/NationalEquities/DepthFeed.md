@@ -1,4 +1,4 @@
-## NationalEquities Depth Feed: Nyse National Equities Depth Feed
+## NationalEquities Depth Feed: Depth Feed
 
 Depth of book market data feed for securities traded on Nyse National Equities.
 

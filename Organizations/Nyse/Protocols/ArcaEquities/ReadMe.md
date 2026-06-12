@@ -9,14 +9,14 @@ Nyse Arca Equities fully electronic US cash equities exchange and leading listin
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [ArcaBook](ArcaBook.md) | MarketData | Nyse Arca Equities ArcaBook |
-| [Bbo](Bbo.md) | MarketData | Nyse Arca Equities Best Bid And Offer |
-| [BinaryGateway](BinaryGateway.md) | OrderEntry | Nyse Arca Equities Binary Gateway |
-| [Bqt](Bqt.md) | MarketData | Nyse Arca Equities Best Quote And Trade |
-| [DepthFeed](DepthFeed.md) | MarketData | Nyse Arca Equities Depth Feed |
-| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Nyse Arca Equities Imbalances Feed |
-| [IntegratedFeed](IntegratedFeed.md) | MarketData | Nyse Arca Equities Integrated Feed |
-| [Trades](Trades.md) | MarketData | Nyse Arca Equities Trades |
+| [ArcaBook](ArcaBook.md) | MarketData | ArcaBook |
+| [Bbo](Bbo.md) | MarketData | Best Bid And Offer |
+| [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
+| [Bqt](Bqt.md) | MarketData | Best Quote And Trade |
+| [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
+| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
+| [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
 

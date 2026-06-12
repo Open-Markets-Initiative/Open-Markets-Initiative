@@ -1,4 +1,4 @@
-## AmexOptions Deep Feed: Nyse Amex Options Deep Feed
+## AmexOptions Deep Feed: Deep Feed
 
 Deep of book market data feed for options traded on Nyse American Options.
 

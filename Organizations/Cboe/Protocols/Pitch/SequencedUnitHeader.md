@@ -1,4 +1,4 @@
-## Pitch Sequenced Unit Header: Cboe Pitch Sequenced Unit Header
+## Pitch Sequenced Unit Header: Sequenced Unit Header
 
 Sequenced unit header specification for Cboe Pitch binary protocol Udp multicast framing.
 

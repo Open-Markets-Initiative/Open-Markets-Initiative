@@ -1,4 +1,4 @@
-## AmexOptions Complex Feed: Nyse Amex Options Complex Feed
+## AmexOptions Complex Feed: Complex Feed
 
 Complex order and strategy market data feed for Nyse American Options.
 

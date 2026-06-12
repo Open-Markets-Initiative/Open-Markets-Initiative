@@ -1,4 +1,4 @@
-## TexasEquities Imbalances Feed: Nyse Texas Equities Imbalances Feed
+## TexasEquities Imbalances Feed: Imbalances Feed
 
 Order imbalance information feed for auctions on Nyse Texas Equities.
 

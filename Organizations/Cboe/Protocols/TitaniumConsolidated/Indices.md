@@ -1,4 +1,4 @@
-## TitaniumConsolidated Indices: Cboe Global Indices Feed
+## TitaniumConsolidated Indices: Global Indices Feed
 
 Cboe Global Indices Feed — consolidated real-time index value, descriptor, and channel mapping feed for indices computed and published by Cboe Global Markets, delivered under the Cboe Titanium infrastructure.
 

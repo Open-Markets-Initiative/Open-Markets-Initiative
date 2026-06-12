@@ -1,4 +1,4 @@
-## ArcaOptions Complex Feed: Nyse Arca Options Complex Feed
+## ArcaOptions Complex Feed: Complex Feed
 
 Complex order and strategy market data feed for Nyse Arca Options.
 

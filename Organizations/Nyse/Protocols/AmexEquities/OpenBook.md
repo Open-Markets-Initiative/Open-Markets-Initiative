@@ -1,4 +1,4 @@
-## AmexEquities Open Book: Nyse Amex Equities Open Book
+## AmexEquities Open Book: Open Book
 
 Open book depth of market data for securities traded on Nyse American Equities.
 

@@ -1,4 +1,4 @@
-## ByxEquities Last Sale: Cboe BYX Last Sale
+## ByxEquities Last Sale: Last Sale
 
 Ascii Pitch last-sale trade-tape feed publishing trade prints for equities traded on Cboe US Equities BYX Exchange.
 

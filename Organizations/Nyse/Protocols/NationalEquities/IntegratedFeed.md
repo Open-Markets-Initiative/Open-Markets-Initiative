@@ -1,4 +1,4 @@
-## NationalEquities Integrated Feed: Nyse National Equities Integrated Feed
+## NationalEquities Integrated Feed: Integrated Feed
 
 Integrated market data feed combining quotes, trades, and order imbalances for Nyse National Equities.
 

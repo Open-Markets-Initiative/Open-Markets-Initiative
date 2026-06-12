@@ -6,7 +6,7 @@
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [StreamProtocol](StreamProtocol.md) | Infrastructure | Nyse Options Stream Protocol |
+| [StreamProtocol](StreamProtocol.md) | Infrastructure | Stream Protocol |
 
 ## Specifications
 

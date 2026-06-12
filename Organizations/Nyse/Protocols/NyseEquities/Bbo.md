@@ -1,4 +1,4 @@
-## NyseEquities Bbo: Nyse Equities Best Bid And Offer
+## NyseEquities Bbo: Best Bid And Offer
 
 Best bid and offer market data feed for securities traded on New York Stock Exchange.
 

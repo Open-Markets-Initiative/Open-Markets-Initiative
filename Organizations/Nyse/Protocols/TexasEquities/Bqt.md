@@ -1,4 +1,4 @@
-## TexasEquities Bqt: Nyse Texas Equities Best Quote And Trade
+## TexasEquities Bqt: Best Quote And Trade
 
 Consolidated best quote and last trade market data feed for securities traded on Nyse Texas Equities.
 

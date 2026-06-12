@@ -10,7 +10,7 @@ Cboe Options Exchange C1 the flagship US options exchange with hybrid floor and 
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [AuctionFeed](AuctionFeed.md) | MarketData | Cboe Options Auction Event Data |
-| [Complex](Complex.md) | MarketData | Cboe C1 Options Complex |
+| [Complex](Complex.md) | MarketData | Complex |
 | [ComplexAuction](ComplexAuction.md) | MarketData | Cboe Options Complex Order Auction Event Data |
 | [ComplexDepthOfBook](ComplexDepthOfBook.md) | MarketData | Cboe Options Complex Strategy Full Depth Of Book |
 | [ComplexMulticast](ComplexMulticast.md) | MarketData | Cboe Options Complex Strategy Multicast Market Data |
@@ -24,7 +24,7 @@ Cboe Options Exchange C1 the flagship US options exchange with hybrid floor and 
 | [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe Options Full Depth Of Book Data |
 | [MulticastTop](MulticastTop.md) | MarketData | Cboe Options Multicast Best Bid And Offer Data |
 | [OpeningAuction](OpeningAuction.md) | MarketData | Cboe Options Opening Auction Event Data |
-| [OpeningProcess](OpeningProcess.md) | MarketData | Cboe C1 Options Opening Process |
+| [OpeningProcess](OpeningProcess.md) | MarketData | Opening Process |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Options Binary Order Entry |
 
 ## Specifications

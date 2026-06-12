@@ -1,4 +1,4 @@
-## TexasEquities Integrated Feed: Nyse Texas Equities Integrated Feed
+## TexasEquities Integrated Feed: Integrated Feed
 
 Integrated market data feed combining quotes, trades, and order imbalances for Nyse Texas Equities.
 

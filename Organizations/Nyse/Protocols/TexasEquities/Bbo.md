@@ -1,4 +1,4 @@
-## TexasEquities Bbo: Nyse Texas Equities Best Bid And Offer
+## TexasEquities Bbo: Best Bid And Offer
 
 Best bid and offer market data feed for securities traded on Nyse Texas Equities.
 

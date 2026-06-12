@@ -6,7 +6,7 @@
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [SequencedUnitHeader](SequencedUnitHeader.md) | Infrastructure | Cboe Pitch Sequenced Unit Header |
+| [SequencedUnitHeader](SequencedUnitHeader.md) | Infrastructure | Sequenced Unit Header |
 
 ## Specifications
 

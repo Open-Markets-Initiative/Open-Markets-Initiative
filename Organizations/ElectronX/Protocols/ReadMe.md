@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [ElectronX](ElectronX/) | 2 |
+| [ElectricDerivatives](ElectricDerivatives/) | 2 |
 
 ## Specifications
 

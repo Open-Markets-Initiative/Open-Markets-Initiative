@@ -1,4 +1,4 @@
-## AmexEquities Trades: Nyse Amex Equities Trades
+## AmexEquities Trades: Trades
 
 Last sale and trade report feed for securities traded on Nyse American Equities.
 

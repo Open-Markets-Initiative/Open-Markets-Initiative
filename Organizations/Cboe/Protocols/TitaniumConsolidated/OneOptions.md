@@ -1,4 +1,4 @@
-## TitaniumConsolidated One Options: Cboe One Options
+## TitaniumConsolidated One Options: One Options
 
 Cboe One Options — consolidated options market data feed across the four Cboe US options exchanges (BZX Options, C1 Options, C2 Options, EDGX Options).
 

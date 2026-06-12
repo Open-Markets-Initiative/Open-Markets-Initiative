@@ -1,4 +1,4 @@
-## EdgxEquities Last Sale: Cboe EDGX Last Sale
+## EdgxEquities Last Sale: Last Sale
 
 Ascii Pitch last-sale trade-tape feed publishing trade prints for equities traded on Cboe US Equities EDGX Exchange.
 
