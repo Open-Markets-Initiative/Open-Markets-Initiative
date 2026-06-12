@@ -26,13 +26,21 @@ https://patents.google.com/patent/US7818732B2/en
 
 The system and method for defining messages of communication networks in a formal notation called Transfer Syntax Notation One (TSN.1) and compiling TSN.1 message definitions into a software message parser using a TSN.1 compiler are provided. 
 
+## Generating a format translator
+
+2010-08-10 to 2029-05-30
+
+https://patents.google.com/patent/US7774746B2/en
+
+Specifying a format translation pattern and providing a mechanism for automatically generating translator code. 
+
 ## Universal Binary Specification
 
 2022-10-13 to 2042-10-13
 
 https://patents.google.com/patent/US12101388B2/en
 
-A many-to-one approach that can normalize any binary interface description language or binary protocol documentation. 
+A many-to-one approach for normalizing any binary interface description language or binary protocol documentation. 
 
 ## Binary Data Model Compiler
 
@@ -40,4 +48,4 @@ A many-to-one approach that can normalize any binary interface description langu
 
 https://patents.google.com/patent/US20240419416A1/en
 
-A multistage, many-to-many, binary data model compiler using generic independent intermediate representations for binary data modeling. 
+A multistage, many-to-many, binary data model compiler using generic independent intermediate representations for binary data modelling. 
