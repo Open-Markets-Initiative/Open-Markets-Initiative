@@ -12,6 +12,7 @@
 | [CboeEurope](CboeEurope/) | 5 |
 | [CboeFx](CboeFx/) | 2 |
 | [CfeFutures](CfeFutures/) | 5 |
+| [CxaEquities](CxaEquities/) | 3 |
 | [CxeEquities](CxeEquities/) | 4 |
 | [DxeDerivatives](DxeDerivatives/) | 1 |
 | [EdgaEquities](EdgaEquities/) | 8 |
