@@ -57,6 +57,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 **Source-Generated Outputs** *(driven from the specifications)*
 - [wireshark-lua](https://github.com/Open-Markets-Initiative/wireshark-lua) — Wireshark dissectors in Lua
+- [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
 - [c-structs](https://github.com/Open-Markets-Initiative/c-structs) — C-style packed structs
 - [CSharp.Packed.Structs](https://github.com/Open-Markets-Initiative/CSharp.Packed.Structs) — C# castable packed structs
 - [omi.java.protocol.classes](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes) — GC-friendly Java protocol classes

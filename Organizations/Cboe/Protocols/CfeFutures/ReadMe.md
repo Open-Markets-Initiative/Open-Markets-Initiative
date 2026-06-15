@@ -9,10 +9,13 @@ Cboe Futures Exchange Cfe US futures venue trading VIX and proprietary futures p
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [BinaryOrderEntry](BinaryOrderEntry.md) | OrderEntry | Cboe Futures Binary Order Entry |
 | [CryptoFeed](CryptoFeed.md) | MarketData | Cfe Bitcoin And Ether Futures Market Data |
+| [DropCopy](DropCopy.md) | DropCopy | Cboe Futures Exchange Fix drop copy |
 | [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe Futures Full Depth Of Book Data |
 | [MulticastTop](MulticastTop.md) | MarketData | Futures Multicast Top |
-| [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Futures Binary Order Entry |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Futures Exchange Fix order entry |
+| [Purge](Purge.md) | OrderEntry | Cboe Futures Exchange Fix purge |
 | [Top](Top.md) | MarketData | Cboe Futures Best Bid And Offer Data |
 
 ## Specifications

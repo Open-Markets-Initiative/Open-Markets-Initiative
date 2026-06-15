@@ -1,10 +1,10 @@
-## CboeEurope Order Entry: Cboe Europe Binary Order Entry
+## ByxEquities Binary Order Entry: Cboe BYX Binary Order Entry
 
-Cboe Binary Order Entry (Boe) protocol for submitting, modifying, and cancelling orders on Cboe Europe Equities.
+Cboe Binary Order Entry (Boe) protocol for submitting, modifying, and cancelling orders on Cboe US Equities BYX Exchange.
 
 ### Overview
 
-Order Entry is the Cboe Binary Order Entry (Boe) protocol for Cboe Europe Equities, providing members with a low-latency binary interface to submit, modify, and cancel orders. The wire format uses compact fixed-width binary messages and a custom session layer with authentication, sequence tracking, and heartbeat monitoring.
+Order Entry is the Cboe Binary Order Entry (Boe) protocol for Cboe US Equities BYX Exchange, providing members with a low-latency binary interface to submit, modify, and cancel orders. The wire format uses compact fixed-width binary messages and a custom session layer with authentication, sequence tracking, and heartbeat monitoring.
 
 The protocol supports the full order lifecycle including new order submission, order modification, cancellation, mass cancellation, execution reports, and cancel rejects. Risk checks are applied inline before orders reach the matching engine, and the session layer provides reliable recovery after transient disconnects.
 
