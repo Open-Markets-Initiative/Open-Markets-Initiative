@@ -9,10 +9,10 @@ Nyse American Options US options exchange with an open outcry floor and electron
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [BinaryGateway](BinaryGateway.md) | OrderEntry | Nyse Amex Options Binary Gateway |
-| [ComplexFeed](ComplexFeed.md) | MarketData | Nyse Amex Options Complex Feed |
-| [DeepFeed](DeepFeed.md) | MarketData | Nyse Amex Options Deep Feed |
-| [TopFeed](TopFeed.md) | MarketData | Nyse Amex Options Top Feed |
+| [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
+| [ComplexFeed](ComplexFeed.md) | MarketData | Complex Feed |
+| [DeepFeed](DeepFeed.md) | MarketData | Deep Feed |
+| [TopFeed](TopFeed.md) | MarketData | Top Feed |
 
 ## Specifications
 

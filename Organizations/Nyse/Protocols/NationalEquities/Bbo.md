@@ -1,4 +1,4 @@
-## NationalEquities Bbo: Nyse National Equities Best Bid And Offer
+## NationalEquities Bbo: Best Bid And Offer
 
 Best bid and offer market data feed for securities traded on Nyse National Equities.
 

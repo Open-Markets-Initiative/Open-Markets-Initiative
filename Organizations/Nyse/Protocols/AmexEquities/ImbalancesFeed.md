@@ -1,4 +1,4 @@
-## AmexEquities Imbalances Feed: Nyse Amex Equities Imbalances Feed
+## AmexEquities Imbalances Feed: Imbalances Feed
 
 Order imbalance information feed for auctions on Nyse American Equities.
 

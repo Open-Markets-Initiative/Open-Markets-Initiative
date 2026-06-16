@@ -1,4 +1,4 @@
-## ArcaEquities Imbalances Feed: Nyse Arca Equities Imbalances Feed
+## ArcaEquities Imbalances Feed: Imbalances Feed
 
 Order imbalance information feed for auctions on Nyse Arca Equities.
 

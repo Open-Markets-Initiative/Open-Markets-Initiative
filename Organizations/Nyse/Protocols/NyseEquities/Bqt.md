@@ -1,4 +1,4 @@
-## NyseEquities Bqt: Nyse Equities Best Quote And Trade
+## NyseEquities Bqt: Best Quote And Trade
 
 Consolidated best quote and last trade market data feed for securities traded on New York Stock Exchange.
 

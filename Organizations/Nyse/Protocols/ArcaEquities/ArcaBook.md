@@ -1,4 +1,4 @@
-## ArcaEquities Arca Book: Nyse Arca Equities ArcaBook
+## ArcaEquities Arca Book: ArcaBook
 
 Full depth of book order-by-order market data feed for securities traded on Nyse Arca Equities.
 

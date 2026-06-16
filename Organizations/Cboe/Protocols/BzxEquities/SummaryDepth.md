@@ -1,4 +1,4 @@
-## BzxEquities Summary Depth: Cboe BZX Summary Depth
+## BzxEquities Summary Depth: Summary Depth
 
 Multicast Pitch summary depth feed publishing aggregated price-level depth for equities traded on Cboe US Equities BZX Exchange.
 

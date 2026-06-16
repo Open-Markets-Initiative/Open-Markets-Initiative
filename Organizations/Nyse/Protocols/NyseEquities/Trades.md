@@ -1,4 +1,4 @@
-## NyseEquities Trades: Nyse Equities Trades
+## NyseEquities Trades: Trades
 
 Last sale and trade report feed for securities traded on New York Stock Exchange.
 

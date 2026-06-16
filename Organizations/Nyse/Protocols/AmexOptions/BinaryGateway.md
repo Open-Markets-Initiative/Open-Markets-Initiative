@@ -1,4 +1,4 @@
-## AmexOptions Binary Gateway: Nyse Amex Options Binary Gateway
+## AmexOptions Binary Gateway: Binary Gateway
 
 Binary order entry gateway for submitting and managing orders on Nyse American Options.
 

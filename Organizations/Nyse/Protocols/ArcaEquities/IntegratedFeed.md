@@ -1,4 +1,4 @@
-## ArcaEquities Integrated Feed: Nyse Arca Equities Integrated Feed
+## ArcaEquities Integrated Feed: Integrated Feed
 
 Integrated market data feed combining quotes, trades, and order imbalances for Nyse Arca Equities.
 

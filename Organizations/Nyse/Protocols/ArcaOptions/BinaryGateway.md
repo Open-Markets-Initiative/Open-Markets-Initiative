@@ -1,4 +1,4 @@
-## ArcaOptions Binary Gateway: Nyse Arca Options Binary Gateway
+## ArcaOptions Binary Gateway: Binary Gateway
 
 Binary order entry gateway for submitting and managing orders on Nyse Arca Options.
 

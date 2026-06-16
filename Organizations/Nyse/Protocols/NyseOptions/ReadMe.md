@@ -9,7 +9,7 @@ New York Stock Exchange Options US options exchange with an open outcry floor an
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [CommonClient](CommonClient.md) | Infrastructure | Nyse Options Common Client |
+| [CommonClient](CommonClient.md) | Infrastructure | Common Client |
 
 ## Specifications
 

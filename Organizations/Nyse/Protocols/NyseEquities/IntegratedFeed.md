@@ -1,4 +1,4 @@
-## NyseEquities Integrated Feed: Nyse Equities Integrated Feed
+## NyseEquities Integrated Feed: Integrated Feed
 
 Integrated market data feed combining quotes, trades, and order imbalances for New York Stock Exchange.
 

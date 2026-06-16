@@ -1,4 +1,4 @@
-## NyseEquities Open Book: Nyse Equities Open Book
+## NyseEquities Open Book: Open Book
 
 Open book depth of market data for securities traded on New York Stock Exchange.
 

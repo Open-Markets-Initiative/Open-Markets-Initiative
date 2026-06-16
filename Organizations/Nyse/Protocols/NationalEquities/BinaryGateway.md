@@ -1,4 +1,4 @@
-## NationalEquities Binary Gateway: Nyse National Equities Binary Gateway
+## NationalEquities Binary Gateway: Binary Gateway
 
 Binary order entry gateway for submitting and managing orders on Nyse National Equities.
 

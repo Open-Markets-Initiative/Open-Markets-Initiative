@@ -9,15 +9,15 @@ New York Stock Exchange primary US cash equities listing market for large cap an
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Bbo](Bbo.md) | MarketData | Nyse Equities Best Bid And Offer |
-| [BinaryGateway](BinaryGateway.md) | OrderEntry | Nyse Equities Binary Gateway |
-| [Bqt](Bqt.md) | MarketData | Nyse Equities Best Quote And Trade |
-| [DepthFeed](DepthFeed.md) | MarketData | Nyse Equities Depth Feed |
-| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Nyse Equities Imbalances Feed |
-| [IntegratedFeed](IntegratedFeed.md) | MarketData | Nyse Equities Integrated Feed |
-| [OpenBook](OpenBook.md) | MarketData | Nyse Equities Open Book |
-| [OpenBook.Aggregated](OpenBook.Aggregated.md) | MarketData | Nyse Equities Open Book Aggregated |
-| [Trades](Trades.md) | MarketData | Nyse Equities Trades |
+| [Bbo](Bbo.md) | MarketData | Best Bid And Offer |
+| [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
+| [Bqt](Bqt.md) | MarketData | Best Quote And Trade |
+| [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
+| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
+| [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [OpenBook](OpenBook.md) | MarketData | Open Book |
+| [OpenBook.Aggregated](OpenBook.Aggregated.md) | MarketData | Open Book Aggregated |
+| [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
 

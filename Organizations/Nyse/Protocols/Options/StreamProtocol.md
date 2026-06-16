@@ -1,4 +1,4 @@
-## Options Stream Protocol: Nyse Options Stream Protocol
+## Options Stream Protocol: Stream Protocol
 
 Pillar stream protocol for retransmission and recovery for Nyse Options.
 

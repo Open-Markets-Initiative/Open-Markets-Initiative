@@ -1,4 +1,4 @@
-## ArcaOptions Deep Feed: Nyse Arca Options Deep Feed
+## ArcaOptions Deep Feed: Deep Feed
 
 Deep of book market data feed for options traded on Nyse Arca Options.
 

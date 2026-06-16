@@ -1,4 +1,4 @@
-## ArcaEquities Depth Feed: Nyse Arca Equities Depth Feed
+## ArcaEquities Depth Feed: Depth Feed
 
 Depth of book market data feed for securities traded on Nyse Arca Equities.
 

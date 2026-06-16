@@ -1,4 +1,4 @@
-## AmexOptions Top Feed: Nyse Amex Options Top Feed
+## AmexOptions Top Feed: Top Feed
 
 Top of book best bid and offer market data feed for Nyse American Options.
 

@@ -1,4 +1,4 @@
-## AmexEquities Bbo: Nyse Amex Equities Best Bid And Offer
+## AmexEquities Bbo: Best Bid And Offer
 
 Best bid and offer market data feed for securities traded on Nyse American Equities.
 

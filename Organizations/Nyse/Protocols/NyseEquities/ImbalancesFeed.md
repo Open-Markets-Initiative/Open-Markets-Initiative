@@ -1,4 +1,4 @@
-## NyseEquities Imbalances Feed: Nyse Equities Imbalances Feed
+## NyseEquities Imbalances Feed: Imbalances Feed
 
 Order imbalance information feed for auctions on New York Stock Exchange.
 

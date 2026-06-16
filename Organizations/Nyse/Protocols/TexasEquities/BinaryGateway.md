@@ -1,4 +1,4 @@
-## TexasEquities Binary Gateway: Nyse Texas Equities Binary Gateway
+## TexasEquities Binary Gateway: Binary Gateway
 
 Binary order entry gateway for submitting and managing orders on Nyse Texas Equities.
 

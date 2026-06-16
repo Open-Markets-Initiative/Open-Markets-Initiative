@@ -1,4 +1,4 @@
-## CfeFutures Multicast Top: Cboe Futures Multicast Top
+## CfeFutures Multicast Top: Futures Multicast Top
 
 Multicast top of book feed publishing best bid and offer quotations and last sale trades for futures traded on Cboe Futures Exchange (CFE).
 

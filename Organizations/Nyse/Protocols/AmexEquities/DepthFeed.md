@@ -1,4 +1,4 @@
-## AmexEquities Depth Feed: Nyse Amex Equities Depth Feed
+## AmexEquities Depth Feed: Depth Feed
 
 Depth of book market data feed for securities traded on Nyse American Equities.
 

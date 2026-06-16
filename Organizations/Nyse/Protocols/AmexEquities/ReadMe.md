@@ -9,15 +9,15 @@ Nyse American Equities US cash equities exchange focused on small and mid cap li
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Bbo](Bbo.md) | MarketData | Nyse Amex Equities Best Bid And Offer |
-| [BinaryGateway](BinaryGateway.md) | OrderEntry | Nyse Amex Equities Binary Gateway |
-| [Bqt](Bqt.md) | MarketData | Nyse Amex Equities Best Quote And Trade |
-| [DepthFeed](DepthFeed.md) | MarketData | Nyse Amex Equities Depth Feed |
-| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Nyse Amex Equities Imbalances Feed |
-| [IntegratedFeed](IntegratedFeed.md) | MarketData | Nyse Amex Equities Integrated Feed |
-| [OpenBook](OpenBook.md) | MarketData | Nyse Amex Equities Open Book |
-| [OpenBook.Aggregated](OpenBook.Aggregated.md) | MarketData | Nyse Amex Equities Open Book Aggregated |
-| [Trades](Trades.md) | MarketData | Nyse Amex Equities Trades |
+| [Bbo](Bbo.md) | MarketData | Best Bid And Offer |
+| [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
+| [Bqt](Bqt.md) | MarketData | Best Quote And Trade |
+| [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
+| [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
+| [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [OpenBook](OpenBook.md) | MarketData | Open Book |
+| [OpenBook.Aggregated](OpenBook.Aggregated.md) | MarketData | Open Book Aggregated |
+| [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
 

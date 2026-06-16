@@ -1,4 +1,4 @@
-## C1Options Opening Process: Cboe C1 Options Opening Process
+## C1Options Opening Process: Opening Process
 
 Cboe Titanium C1 Options Opening Process Pitch feed publishing the open-auction process events for options listed on Cboe Options Exchange (C1). Two WAN-Shaped multicast feeds (CCO/CDO) for A/B redundancy plus a Cert feed.
 

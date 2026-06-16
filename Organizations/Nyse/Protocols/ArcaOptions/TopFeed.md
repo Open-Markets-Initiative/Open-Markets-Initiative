@@ -1,4 +1,4 @@
-## ArcaOptions Top Feed: Nyse Arca Options Top Feed
+## ArcaOptions Top Feed: Top Feed
 
 Top of book best bid and offer market data feed for Nyse Arca Options.
 
