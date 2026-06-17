@@ -9,7 +9,7 @@ Tokyo Stock Exchange cash equities market operated by Japan Exchange Group on th
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Flex](Flex.md) | MarketData | Tokyo arrowhead Market by Order tag-stream feed |
+| [MarketByOrder](MarketByOrder.md) | MarketData | Tokyo arrowhead Market by Order tag-stream feed |
 
 ## Specifications
 

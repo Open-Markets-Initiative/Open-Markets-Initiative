@@ -1,4 +1,4 @@
-## TseEquities Flex: Tokyo arrowhead Market by Order tag-stream feed
+## TseEquities Market By Order: Tokyo arrowhead Market by Order tag-stream feed
 
 Tag-stream binary market data feed published by the Tokyo Stock Exchange arrowhead platform. Distributes order-by-order and execution events for cash equities on Tokyo, Nagoya, Fukuoka, and Sapporo exchanges using length-prefixed tags carried over Udp multicast with a Tcp retransmission and snapshot service.
 
