@@ -28,6 +28,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Jnx](Jnx/) | Japannext Securities | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
 | [Jpx](Jpx/) | Japan Exchange Group | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
 | [Lseg](Lseg/) | London Stock Exchange | XLON | [lseg.com](https://www.lseg.com) |
+| [Ltse](Ltse/) | Long-Term Stock Exchange | LTSE | [ltse.com](https://ltse.com) |
 | [Memx](Memx/) | The Members Exchange | MEMX | [memx.com](https://www.memx.com) |
 | [Miax](Miax/) | Miami International Holdings | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
 | [Nasdaq](Nasdaq/) | National Association of Securities Dealers Automated Quotations (Nasdaq) | XNAS | [nasdaq.com](https://www.nasdaq.com) |
@@ -38,7 +39,6 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Otc](Otc/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
 | [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
-| [Tadawul](Tadawul/) | Saudi Exchange | XSAU | [saudiexchange.sa](https://www.saudiexchange.sa) |
 | [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
 
