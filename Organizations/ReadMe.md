@@ -9,6 +9,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Aquis](Aquis/) | Aquis Exchange | AQXE | [aquis.eu](https://www.aquis.eu) |
 | [Asx](Asx/) | Australian Securities Exchange | XASX | [asx.com.au](https://www.asx.com.au) |
 | [B3](B3/) | Brasil, Bolsa, Balcão | BVMF | [b3.com.br](https://www.b3.com.br/en_us) |
+| [Bist](Bist/) | Borsa İstanbul A.Ş. | XIST | [borsaistanbul.com](https://www.borsaistanbul.com/en) |
 | [Boats](Boats/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
 | [Box](Box/) | Box Options Market | XBOX | [boxoptions.com](https://boxoptions.com) |
 | [BruceAts](BruceAts/) | Bruce ATS |  | [brucemarkets.com](https://www.brucemarkets.com) |
@@ -27,6 +28,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Imperative](Imperative/) | Imperative Execution |  | [imperativex.com](https://www.imperativex.com) |
 | [Jnx](Jnx/) | Japannext Securities | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
 | [Jpx](Jpx/) | Japan Exchange Group | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
+| [Koscom](Koscom/) | Koscom Co., Ltd. |  | [koscom.co.kr](https://www.koscom.co.kr) |
 | [Lseg](Lseg/) | London Stock Exchange | XLON | [lseg.com](https://www.lseg.com) |
 | [Ltse](Ltse/) | Long-Term Stock Exchange | LTSE | [ltse.com](https://ltse.com) |
 | [Memx](Memx/) | The Members Exchange | MEMX | [memx.com](https://www.memx.com) |

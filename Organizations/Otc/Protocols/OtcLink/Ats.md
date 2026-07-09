@@ -1,4 +1,4 @@
-## Ats: Otc Markets Alternative Trading System Data Feed
+## OtcLink Ats: Otc Markets Alternative Trading System Data Feed
 
 Market data feed publishing quotations, trade reports, and security status events for Otc securities traded on the Otc Markets alternative trading system.
 

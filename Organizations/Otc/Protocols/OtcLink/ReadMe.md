@@ -1,4 +1,7 @@
-## Otc
+## OTC Link
+
+
+OTC Link is OTC Markets Group's SEC registered alternative trading system hosting interdealer quotation, negotiation, and trade messaging for securities across the Pink, Otcqb, and Otcqx tiers.
 
 
 ### Protocols

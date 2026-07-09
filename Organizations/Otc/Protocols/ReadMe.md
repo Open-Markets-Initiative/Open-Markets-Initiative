@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Otc](Otc/) | 1 |
+| [OtcLink](OtcLink/) | 1 |
 
 ## Specifications
 
