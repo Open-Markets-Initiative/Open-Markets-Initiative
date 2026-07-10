@@ -20,18 +20,16 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
-| [Ats](Ats.md) | MarketData | Otc | OTC Markets ATS Protocol |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
 | [Itch](Itch.md) | MarketData | Nasdaq | Integrated Trading Channel Handlers |
+| [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Exchange ITCH |
-| [MoonAts](MoonAts.md) | MarketData | Otc | OTC Markets MOON ATS data feed binary protocol |
 | [Omd](Omd.md) | MarketData | Hkex | HKEX Orion Market Data |
-| [Overnight](Overnight.md) | MarketData | Otc | OTC Link Overnight OTC Inter-dealer Quotation System (IDQS) binary market-data protocol |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
