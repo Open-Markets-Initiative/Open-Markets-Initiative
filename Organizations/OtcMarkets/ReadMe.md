@@ -1,4 +1,4 @@
-[![Otc](https://github.com/Open-Markets-Initiative/Directory/blob/main/Organizations/Otc/Images/Logo.png)](https://www.otcmarkets.com)
+[![OtcMarkets](https://github.com/Open-Markets-Initiative/Directory/blob/main/Organizations/OtcMarkets/Images/Logo.png)](https://www.otcmarkets.com)
 
 ## OTC Markets Group
 
