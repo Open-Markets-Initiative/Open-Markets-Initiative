@@ -1,4 +1,4 @@
-## Genium Inet.Itch: Bist Genium Inet Itch Market Data
+## BorsaIstanbul Genium Inet.Itch: Bist Genium Inet Itch Market Data
 
 Binary market data protocol publishing real-time order book and trade events for securities traded on Borsa Istanbul's BISTECH platform, built on Nasdaq's Genium INET ITCH technology.
 
