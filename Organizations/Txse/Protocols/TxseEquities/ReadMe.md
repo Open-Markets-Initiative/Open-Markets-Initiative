@@ -9,8 +9,8 @@ Texas Stock Exchange Txse US cash equities exchange designed to provide a Texas 
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Feed](Feed.md) | MarketData | Txse Binary Market Data |
-| [Rake](Rake.md) | Transport | Txse Session And Framing Layer |
+| [Bale](Bale.md) | MarketData | Txse Binary Top-of-Book Market Data |
+| [Feed](Feed.md) | MarketData | Txse Binary Full-Depth Market Data |
 | [Seed](Seed.md) | OrderEntry | Txse Binary Order Entry |
 
 ## Specifications

@@ -1,24 +1,23 @@
-## TxseEquities Feed: Txse Binary Market Data
+## TxseEquities Feed: Txse Binary Full-Depth Market Data
 
-Binary market data feed publishing real-time order book, trade, and session events for equities traded on the Texas Stock Exchange using the Rake framing layer.
+Order-by-order full-depth market data feed publishing every add, modify, cancel, and execution event on the Texas Stock Exchange book, plus symbol/session status and auction lifecycle events. FEED is payload-only; framing and multicast distribution are provided by the RAKE UDP encoding.
 
 ### Overview
 
-Feed is the market data protocol for the Texas Stock Exchange (Txse), publishing real-time order book events, trade reports, and session state messages for every equity listed on the venue. The feed is delivered in a sequenced binary format over the Txse Rake framing layer which provides the packet headers, session identification, and sequence numbers used by subscribers to detect gaps.
+FEED is the full-depth market data protocol for the Texas Stock Exchange, exposing per-order events for complete order book reconstruction. It carries AddOrder, DeleteOrder, ExecuteOrder, ExecuteOrderWithPrice, ModifySizeDown, ReplaceOrder, Trade, and BreakTrade in addition to the shared status messages (TradingSessionStatus, DefineSymbol, SymbolStatus) and auction lifecycle messages (AuctionPreamble, AuctionBandWindow, AuctionPrint).
 
-The protocol carries order add, modify, delete, and execute events along with trade reports, instrument reference data, trading status, and auction messages. Multicast distribution provides low-latency real-time delivery, while a Tcp gap fill and snapshot service built on the Rake session layer gives subscribers a full recovery path for missed multicast messages or mid-day initialisation.
+FEED messages carry only application payload. Message framing, packet-level sequencing, and multicast distribution are handled by the RAKE UDP encoding layer. Subscribers that only need top-of-book with auction detail may prefer BALE, which shares the RAKE UDP transport and message conventions.
 
 ### Transport
 
-Udp multicast via the Txse Rake Udp framing for real-time delivery of sequenced market data messages with per-packet sequence numbers for gap detection. Tcp via the Txse Rake session layer for gap fill and snapshot recovery of messages missed on the multicast feed.
+UDP multicast via RAKE UDP framing for low-latency real-time distribution of sequenced messages with packet-level session/sequence identifiers for gap detection.
 
 ### Key Characteristics
 
-- **Order-by-order** - Full depth of book reconstruction from individual order events
-- **Rake framing** - Runs on top of the Txse session and framing transport
-- **Multicast delivery** - Real-time Udp multicast distribution with sequence numbers
-- **Snapshot and gap fill** - Tcp recovery services over the Rake session layer
-- **Trade reports** - Last sale messages published alongside the order book
-- **Reference data** - Instrument definitions and trading status integrated with the feed
+- **Order-by-order depth** - Full order book reconstruction from individual add/modify/cancel/execute events
+- **Trade prints** - Displayed and non-displayed executions with break support
+- **Auction lifecycle** - Accumulation-period preambles, band-window updates, and cross prints
+- **Presence-bit optionals** - Status messages declare optional halt-reason fields via a presenceBits bitmap
+- **RAKE UDP framing** - Runs over the RAKE UDP encoding for low-latency multicast delivery
 - **Equities focused** - Every equity listed on the Texas Stock Exchange
 
