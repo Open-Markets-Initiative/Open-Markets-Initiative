@@ -10,6 +10,8 @@ OTC Link ATS is OTC Markets Group's SEC registered alternative trading system fo
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Multicast](Multicast.md) | MarketData | OTC Markets Multicast Data Feeds — quote-based binary market data |
+| [Quotation](Quotation.md) | OrderEntry | OTC Link FIX Quotation Service — FIXIE Quote client interface |
+| [TradeMessaging](TradeMessaging.md) | TradeManagement | OTC Link FIX Messaging Service — FIXIE Trade client interface |
 
 ## Specifications
 

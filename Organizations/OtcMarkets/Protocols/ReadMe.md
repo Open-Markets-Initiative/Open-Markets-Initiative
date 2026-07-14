@@ -3,9 +3,10 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [LinkAts](LinkAts/) | 1 |
-| [LinkNqb](LinkNqb/) | 3 |
-| [MoonAts](MoonAts/) | 3 |
+| [LinkAts](LinkAts/) | 3 |
+| [LinkEcn](LinkEcn/) | 1 |
+| [LinkNqb](LinkNqb/) | 4 |
+| [MoonAts](MoonAts/) | 4 |
 | [Overnight](Overnight/) | 3 |
 
 ## Specifications
