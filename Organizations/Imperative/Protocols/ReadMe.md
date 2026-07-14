@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Imperative](Imperative/) | 1 |
+| [IntelligentCross](IntelligentCross/) | 1 |
 
 ## Specifications
 
