@@ -12,6 +12,8 @@ Nyse Arca Options fully electronic US options exchange offering a price time pri
 | [BinaryGateway](BinaryGateway.md) | OrderEntry | Binary Gateway |
 | [ComplexFeed](ComplexFeed.md) | MarketData | Complex Feed |
 | [DeepFeed](DeepFeed.md) | MarketData | Deep Feed |
+| [FloorBroker](FloorBroker.md) | OrderEntry | Floor Broker |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [TopFeed](TopFeed.md) | MarketData | Top Feed |
 
 ## Specifications

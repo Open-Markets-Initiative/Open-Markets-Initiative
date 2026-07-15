@@ -15,6 +15,8 @@ Nyse Texas US cash equities exchange based in Dallas offering a regional listing
 | [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
 | [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
 | [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [Ioi](Ioi.md) | OrderEntry | Indication Of Interest |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications

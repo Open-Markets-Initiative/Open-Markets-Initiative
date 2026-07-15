@@ -14,6 +14,8 @@ Nyse National US cash equities exchange operating a simplified maker taker marke
 | [Bqt](Bqt.md) | MarketData | Best Quote And Trade |
 | [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
 | [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [Ioi](Ioi.md) | OrderEntry | Indication Of Interest |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
