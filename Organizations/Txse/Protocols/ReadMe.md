@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [TxseEquities](TxseEquities/) | 3 |
+| [TxseEquities](TxseEquities/) | 4 |
 
 ## Specifications
 

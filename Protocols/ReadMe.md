@@ -10,7 +10,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Glimpse](Glimpse.md) | Encoding | Odx | Glimpse |
 | [iMpact](iMpact.md) | Encoding | Ice | Ice iMpact compact fixed-width binary message encoding used by the Mdf market data feed |
 | [Obi](Obi.md) | Encoding | Siac | Opra Binary Interface |
-| [Rake](Rake.md) | Encoding | Txse | Rake Protocol |
+| [Rake](Rake.md) | Encoding | Txse | Txse Session and Framing Layer |
 | [Sbe](Sbe.md) | Encoding | Fix | Simple Binary Encoding |
 | [T7](T7.md) | Encoding | Eurex | T7 Trading Architecture |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
@@ -20,6 +20,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
+| [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
@@ -40,7 +41,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Ouch](Ouch.md) | OrderEntry | Nasdaq | Order Update for Communication and Handling |
 | [PillarStream](PillarStream.md) | OrderEntry | Nyse | NYSE Pillar Binary Order Entry |
 | [Sail](Sail.md) | OrderEntry | Tmx | Sola Access Information Language |
-| [Seed](Seed.md) | OrderEntry | Txse | Stock Exchange Electronic Delivery |
 | [Bgw](Bgw.md) | Protocol | Ice | IceFutures Derivatives Trading Platform Sbe Order Entry |
 | [BinaryEntryPoint](BinaryEntryPoint.md) | Protocol | B3 | B3 Sbe Order Entry |
 | [BinaryUmdf](BinaryUmdf.md) | Protocol | B3 | B3 Sbe Multicast Market Data |

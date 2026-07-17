@@ -10,6 +10,7 @@ OTC Link NQB is OTC Markets Group's inter-dealer quotation system (IDQS) for day
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfBook](DepthOfBook.md) | MarketData | Order-by-order full depth channel for OTC Link NQB |
+| [OrderEntry](OrderEntry.md) | OrderEntry | OTC Link NQB IDQS FIX order entry |
 | [Retransmission](Retransmission.md) | MarketData | TCP binary retransmission service for OTC Link NQB recovery |
 | [TopOfBook](TopOfBook.md) | MarketData | Aggregated top-of-book channel for OTC Link NQB |
 

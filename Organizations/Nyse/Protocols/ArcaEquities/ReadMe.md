@@ -16,6 +16,8 @@ Nyse Arca Equities fully electronic US cash equities exchange and leading listin
 | [DepthFeed](DepthFeed.md) | MarketData | Depth Feed |
 | [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
 | [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
+| [Ioi](Ioi.md) | OrderEntry | Indication Of Interest |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
 ## Specifications
