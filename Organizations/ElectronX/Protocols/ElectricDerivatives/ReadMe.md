@@ -1,4 +1,7 @@
-## ElectricDerivatives
+## Electric Derivatives
+
+
+ElectronX exchange trading bounded futures and binary options via a FIX 5.0 SP2 order entry gateway (NLS).
 
 
 ### Protocols

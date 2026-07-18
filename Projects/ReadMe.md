@@ -16,9 +16,9 @@ Curated knowledge bases and historical context.
 | [omi-low-latency-reference](https://github.com/Open-Markets-Initiative/omi-low-latency-reference) | Knowledge base for low latency programming |
 | [omi-markets-reference](https://github.com/Open-Markets-Initiative/omi-markets-reference) | Knowledge base for market data collection and analysis |
 
-## Specifications and Data
+## Production Sample Data
 
-Sample packet captures and protocol data used to drive the source generators below.
+Example protocol data captures from production feeds.
 
 | Repository | Description |
 | --- | --- |
@@ -27,7 +27,7 @@ Sample packet captures and protocol data used to drive the source generators bel
 
 ## Dictionaries
 
-Source generated protocol dictionaries.
+Machine-readable protocol format dictionaries.
 
 | Repository | Language | Description |
 | --- | --- | --- |
