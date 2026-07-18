@@ -2,11 +2,9 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-37-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-50-green)](Protocols/) [![Status](https://img.shields.io/badge/status-active-brightgreen)]() [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-56-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
-
-This **Directory** is the catalog: a curated index of public protocol specifications, sample data, and reference material spanning **37 financial market organizations** and **50 wire protocols** — collected from publicly available sources and preserved here so the historical record survives even when exchanges retire or rename their feeds.
 
 ---
 
@@ -15,36 +13,23 @@ This **Directory** is the catalog: a curated index of public protocol specificat
 | Section | What's there |
 | --- | --- |
 | [Organizations/](Organizations/) | One folder per exchange / venue / regulator — links, MICs, and per-protocol spec entry points |
-| [Protocols/](Protocols/) | One markdown page per protocol — what it is, who runs it, encoding family, transport, and history |
+| [Protocols/](Protocols/) | One markdown page per protocol — encoding family, transport, and history |
 | [Glossary/](Glossary/) | Common protocol concepts shared across venues |
-| [Projects/](Projects/) | Index of related Omi GitHub repositories — code generators, dissectors, and research |
-| [Research/](Research/) | Academic papers and patents on parser generation, low-latency systems, and binary protocols |
+| [Projects/](Projects/) | Index of related Omi GitHub repositories |
+| [Research/](Research/) | Academic papers and patents on parser generation and low-latency systems |
 | [About/](About/) | Mission, philosophy, code of conduct, license |
 
 ---
 
-## Coverage
+## Organizations
 
-**Organizations** span US/EU/APAC equities, options, futures, and OTC venues:
+> [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Boats](Organizations/Boats/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Cboe](Organizations/Cboe/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [Omi](Organizations/Omi/) · [OtcMarkets](Organizations/OtcMarkets/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
 
-> 24X · A2X · Aquis · Asx · B3 · Boats · Box · BruceAts · Cboe · Cme · Coinbase · Currenex · Eurex · Euronext · Finra · Fix · Hkex · Ice · Iex · Imperative · Jnx · Jpx · Lse · Lseg · Memx · Miax · Nasdaq · Ndfex · NsxAustralia · Nyse · Odx · Omi · Otc · Siac · SmallX · Tmx · Txse
+---
 
-See the [organization table](Organizations/) for MICs and websites.
+## Exchanges, Ats, and Sips
 
-**Protocols** are categorized by role:
-
-| Category | Protocols |
-| --- | --- |
-| Encoding | Boe3, Csm, Glimpse, iMpact, Obi, Rake, Sbe, T7, Ultra, Xdp |
-| Framing | SimpleOpenFrame |
-| Market Data | Amd, Apf, Ats, Cta, Dfi, Hsvf, Itch, Mach, Mitch, Omd, Pillar, Pitch, Xmt |
-| Order Entry | Atp, Boe, Ouch, PillarStream, Sail, Seed |
-| Protocol Suite | Bgw, BinaryEntryPoint, BinaryUmdf, Eobi, Eti, iLink3, Mdf, Mdp3, Opra |
-| Session | CommonClient, SoupBinTcp |
-| Transport | BinaryPacket, BinaryPacketHeader, IexTp, MoldUdp, MoldUdp64 |
-| Trading | Cbp, Gtp |
-
-See the [full protocol table](Protocols/) for descriptions.
+> [24XEquities](Organizations/24X/Protocols/24XEquities/) · [A2XEquities](Organizations/A2X/Protocols/A2XEquities/) · [AmexEquities](Organizations/Nyse/Protocols/AmexEquities/) · [AmexOptions](Organizations/Nyse/Protocols/AmexOptions/) · [AquisEquities](Organizations/Aquis/Protocols/AquisEquities/) · [ArcaEquities](Organizations/Nyse/Protocols/ArcaEquities/) · [ArcaOptions](Organizations/Nyse/Protocols/ArcaOptions/) · [AsxSecurities](Organizations/Asx/Protocols/AsxSecurities/) · [B3Derivatives](Organizations/B3/Protocols/B3Derivatives/) · [B3Equities](Organizations/B3/Protocols/B3Equities/) · [BidsJapan](Organizations/Cboe/Protocols/BidsJapan/) · [BoatsEquities](Organizations/Boats/Protocols/BoatsEquities/) · [BorsaIstanbul](Organizations/Bist/Protocols/BorsaIstanbul/) · [BruceEquities](Organizations/BruceAts/Protocols/BruceEquities/) · [BxeEquities](Organizations/Cboe/Protocols/BxeEquities/) · [BxEquities](Organizations/Nasdaq/Protocols/BxEquities/) · [BxOptions](Organizations/Nasdaq/Protocols/BxOptions/) · [ByxEquities](Organizations/Cboe/Protocols/ByxEquities/) · [BzxEquities](Organizations/Cboe/Protocols/BzxEquities/) · [BzxOptions](Organizations/Cboe/Protocols/BzxOptions/) · [C1Options](Organizations/Cboe/Protocols/C1Options/) · [C2Options](Organizations/Cboe/Protocols/C2Options/) · [CboeEquities](Organizations/Cboe/Protocols/CboeEquities/) · [CboeEurope](Organizations/Cboe/Protocols/CboeEurope/) · [CfeFutures](Organizations/Cboe/Protocols/CfeFutures/) · [CmeFutures](Organizations/Cme/Protocols/CmeFutures/) · [CoinbaseDeribit](Organizations/Coinbase/Protocols/CoinbaseDeribit/) · [CoinbaseDerivatives](Organizations/Coinbase/Protocols/CoinbaseDerivatives/) · [Cqs](Organizations/Siac/Protocols/Cqs/) · [Cts](Organizations/Siac/Protocols/Cts/) · [CurrenexForex](Organizations/Currenex/Protocols/CurrenexForex/) · [CxaEquities](Organizations/Cboe/Protocols/CxaEquities/) · [CxeEquities](Organizations/Cboe/Protocols/CxeEquities/) · [CxjEquities](Organizations/Cboe/Protocols/CxjEquities/) · [CxjSor](Organizations/Cboe/Protocols/CxjSor/) · [DxeDerivatives](Organizations/Cboe/Protocols/DxeDerivatives/) · [EdgaEquities](Organizations/Cboe/Protocols/EdgaEquities/) · [EdgxEquities](Organizations/Cboe/Protocols/EdgxEquities/) · [EdgxOptions](Organizations/Cboe/Protocols/EdgxOptions/) · [ElectronX](Organizations/ElectronX/Protocols/ElectronX/) · [EmeraldOptions](Organizations/Miax/Protocols/EmeraldOptions/) · [FinraOrf](Organizations/Finra/Protocols/FinraOrf/) · [FinraOtc](Organizations/Finra/Protocols/FinraOtc/) · [FixedIncome](Organizations/Cboe/Protocols/FixedIncome/) · [FseEquities](Organizations/Jpx/Protocols/FseEquities/) · [GemxOptions](Organizations/Nasdaq/Protocols/GemxOptions/) · [GlobalOtc](Organizations/Nyse/Protocols/GlobalOtc/) · [IceEndex](Organizations/Ice/Protocols/IceEndex/) · [IceFutures](Organizations/Ice/Protocols/IceFutures/) · [IexEquities](Organizations/Iex/Protocols/IexEquities/) · [IexOptions](Organizations/Iex/Protocols/IexOptions/) · [IntelligentCross](Organizations/Imperative/Protocols/IntelligentCross/) · [IseOptions](Organizations/Nasdaq/Protocols/IseOptions/) · [JnxBonds](Organizations/Jnx/Protocols/JnxBonds/) · [JnxEquities](Organizations/Jnx/Protocols/JnxEquities/) · [Liffe](Organizations/Ice/Protocols/Liffe/) · [LinkAts](Organizations/OtcMarkets/Protocols/LinkAts/) · [LinkEcn](Organizations/OtcMarkets/Protocols/LinkEcn/) · [LinkNqb](Organizations/OtcMarkets/Protocols/LinkNqb/) · [LtseEquities](Organizations/Ltse/Protocols/LtseEquities/) · [MatchNow](Organizations/Cboe/Protocols/MatchNow/) · [MdcsRealtime](Organizations/Koscom/Protocols/MdcsRealtime/) · [MemxEquities](Organizations/Memx/Protocols/MemxEquities/) · [MemxOptions](Organizations/Memx/Protocols/MemxOptions/) · [MiaxOptions](Organizations/Miax/Protocols/MiaxOptions/) · [MoonAts](Organizations/OtcMarkets/Protocols/MoonAts/) · [MrxOptions](Organizations/Nasdaq/Protocols/MrxOptions/) · [NationalEquities](Organizations/Nyse/Protocols/NationalEquities/) · [NeoEquities](Organizations/Cboe/Protocols/NeoEquities/) · [NomOptions](Organizations/Nasdaq/Protocols/NomOptions/) · [NseEquities](Organizations/Jpx/Protocols/NseEquities/) · [NsmEquities](Organizations/Nasdaq/Protocols/NsmEquities/) · [NtxEquities](Organizations/Nasdaq/Protocols/NtxEquities/) · [NtxOptions](Organizations/Nasdaq/Protocols/NtxOptions/) · [NyseBonds](Organizations/Nyse/Protocols/NyseBonds/) · [NyseConsolidated](Organizations/Nyse/Protocols/NyseConsolidated/) · [NyseEquities](Organizations/Nyse/Protocols/NyseEquities/) · [NyseOptions](Organizations/Nyse/Protocols/NyseOptions/) · [OdxSecurityToken](Organizations/Odx/Protocols/OdxSecurityToken/) · [Opra](Organizations/Siac/Protocols/Opra/) · [OseDerivatives](Organizations/Jpx/Protocols/OseDerivatives/) · [Overnight](Organizations/OtcMarkets/Protocols/Overnight/) · [PearlOptions](Organizations/Miax/Protocols/PearlOptions/) · [PhlxOptions](Organizations/Nasdaq/Protocols/PhlxOptions/) · [PsxEquities](Organizations/Nasdaq/Protocols/PsxEquities/) · [SapphireOptions](Organizations/Miax/Protocols/SapphireOptions/) · [SseEquities](Organizations/Jpx/Protocols/SseEquities/) · [TexasEquities](Organizations/Nyse/Protocols/TexasEquities/) · [TseEquities](Organizations/Jpx/Protocols/TseEquities/) · [TxseEquities](Organizations/Txse/Protocols/TxseEquities/) · [Uqdf](Organizations/Nasdaq/Protocols/Uqdf/) · [Utdf](Organizations/Nasdaq/Protocols/Utdf/) · [Utp](Organizations/Nasdaq/Protocols/Utp/)
 
 ---
 
@@ -52,47 +37,35 @@ See the [full protocol table](Protocols/) for descriptions.
 
 The Directory is the human-readable catalog. The machine-readable specifications live elsewhere and drive the source-generated artifacts:
 
-**Specifications & Data**
-- [omi-data-packets](https://github.com/Open-Markets-Initiative/omi-data-packets) — Sample packet captures keyed to the protocols listed here
-
-**Source-Generated Outputs** *(driven from the specifications)*
-- [wireshark-lua](https://github.com/Open-Markets-Initiative/wireshark-lua) — Wireshark dissectors in Lua
-- [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
-- [c-structs](https://github.com/Open-Markets-Initiative/c-structs) — C-style packed structs
-- [CSharp.Packed.Structs](https://github.com/Open-Markets-Initiative/CSharp.Packed.Structs) — C# castable packed structs
-- [omi.java.protocol.classes](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes) — GC-friendly Java protocol classes
-
-**Generators & Tooling**
-- [Omi.Fix.Generators](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators) — Composable FIX code generators
-- [latency-lab](https://github.com/Open-Markets-Initiative/latency-lab) — Composable latency-measurement tools
-
 **Reference Material**
-- [omi-low-latency-reference](https://github.com/Open-Markets-Initiative/omi-low-latency-reference) — Low-latency programming articles
-- [omi-markets-reference](https://github.com/Open-Markets-Initiative/omi-markets-reference) — Markets reference articles and links
+
+- [omi-low-latency-reference](https://github.com/Open-Markets-Initiative/omi-low-latency-reference) — Knowledge base for low latency programming
+- [omi-markets-reference](https://github.com/Open-Markets-Initiative/omi-markets-reference) — Knowledge base for market data collection and analysis
+
+**Specifications and Data**
+
+- [omi-data-packets](https://github.com/Open-Markets-Initiative/omi-data-packets) — Example protocol data captures
+
+**Dictionaries**
+
+- [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
+
+**Source Generated Outputs**
+
+- [wireshark-lua](https://github.com/Open-Markets-Initiative/wireshark-lua) — Source generated cross platform Wireshark dissectors
+- [c-structs](https://github.com/Open-Markets-Initiative/c-structs) — Source generated binary protocol c-style packed structs
+
+**Generators and Tooling**
+
+- [Omi.Fix.Generators](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators) — Composable FIX source generators
+- [latency-lab](https://github.com/Open-Markets-Initiative/latency-lab) — Composable tools for automating latency measurement and reporting
 
 A complete list lives in [Projects/](Projects/).
 
 ---
 
-## Contributing
+Documentation is collected from publicly available sources — corrections and additions are welcome as issues or pull requests. Read more about the mission in [About/](About/).
 
-Documentation here is collected from publicly available sources. If you spot a stale link, a missing protocol version, or a venue we don't yet cover:
 
-1. Open an issue describing the gap or correction.
-2. Pull requests adding new organization / protocol entries are welcome — please follow the layout of an existing entry (see any folder under [Organizations/](Organizations/) for the template).
-3. Read the [Code of Conduct](About/Conduct.md) before contributing.
+*Specifications belong to their respective owners; this directory aggregates pointers and historical context only.*
 
----
-
-## Philosophy
-
-Omi is **market-neutral** — we do not take sides between exchanges, brokers, trading firms, or technology providers. We do, however, hold positions on two things:
-
-- **Transparency.** Public protocol specifications and test data should remain public and discoverable, even after a feed is retired.
-- **Best practices.** Source code in the Omi ecosystem follows automated builds, regression testing, clean code, and SOLID principles.
-
-Read more in [About/](About/).
-
----
-
-*Documentation sourced from publicly available materials. Specifications belong to their respective owners; this directory aggregates pointers and historical context only.*

@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Aquis](Aquis/) | 3 |
+| [AquisEquities](AquisEquities/) | 6 |
 
 ## Specifications
 

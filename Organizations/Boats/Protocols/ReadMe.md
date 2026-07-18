@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [BoatsEquities](BoatsEquities/) | 4 |
+| [BoatsEquities](BoatsEquities/) | 6 |
 
 ## Specifications
 

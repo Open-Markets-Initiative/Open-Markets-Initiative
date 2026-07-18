@@ -1,6 +1,6 @@
 ## Eti: Eurex T7 Order Entry
 
-Binary order entry interface for the Eurex T7 trading platform supporting order and quote submission for cash and derivatives markets.
+Binary order entry interface for the Eurex T7 trading platform supporting order and quote submission for derivatives markets.
 
 ETI is Eurex's binary order entry protocol on T7, used by trading participants for the full order lifecycle across Eurex derivatives products.
 

@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [24XEquities](24XEquities/) | 4 |
+| [24XEquities](24XEquities/) | 6 |
 
 ## Specifications
 

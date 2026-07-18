@@ -10,6 +10,7 @@ Nasdaq Philadelphia Phlx Options US options exchange offering pro rata allocatio
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Phlx Options Depth Of Book Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq PHLX Fix order entry |
 | [Orders](Orders.md) | MarketData | Nasdaq PHLX Order Book Itch Market Data |
 | [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
 | [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |

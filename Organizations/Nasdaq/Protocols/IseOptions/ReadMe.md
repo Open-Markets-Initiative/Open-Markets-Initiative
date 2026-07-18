@@ -12,6 +12,7 @@ Nasdaq Ise International Securities Exchange US options exchange offering a pric
 | [DepthComboFeed](DepthComboFeed.md) | MarketData | Ise Depth Combo Market Data Feed |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Ise Options Depth Of Book Data |
 | [OrderComboFeed](OrderComboFeed.md) | MarketData | Ise Order Combo Market Data Feed |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq ISE Fix order entry |
 | [OrderFeed](OrderFeed.md) | MarketData | Ise Order Feed Market Data |
 | [Otto](Otto.md) | OrderEntry | Ise Options Order Entry |
 | [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |

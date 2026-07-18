@@ -10,6 +10,7 @@ Nasdaq Mrx Options US options exchange operating alongside Ise and Gemx within t
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Mrx Options Depth Of Book Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq MRX Fix order entry |
 | [OrderFeed](OrderFeed.md) | MarketData | Nasdaq Mrx Options Order Level Market Data |
 | [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
 | [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |

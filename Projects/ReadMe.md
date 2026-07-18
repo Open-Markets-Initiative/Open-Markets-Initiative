@@ -16,7 +16,7 @@ Curated knowledge bases and historical context.
 | [omi-low-latency-reference](https://github.com/Open-Markets-Initiative/omi-low-latency-reference) | Knowledge base for low latency programming |
 | [omi-markets-reference](https://github.com/Open-Markets-Initiative/omi-markets-reference) | Knowledge base for market data collection and analysis |
 
-## Specifications & Data
+## Specifications and Data
 
 Sample packet captures and protocol data used to drive the source generators below.
 
@@ -25,7 +25,15 @@ Sample packet captures and protocol data used to drive the source generators bel
 | [omi-data-packets](https://github.com/Open-Markets-Initiative/omi-data-packets) | Example protocol data captures |
 | [omi-data-pcaps](https://github.com/Open-Markets-Initiative/omi-data-pcaps) | Exchange pcaps for automated testing |
 
-## Source-Generated Outputs
+## Dictionaries
+
+Source generated protocol dictionaries.
+
+| Repository | Language | Description |
+| --- | --- | --- |
+| [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
+
+## Source Generated Outputs
 
 Code-generated artifacts produced from the protocol specifications.
 
@@ -38,12 +46,12 @@ Code-generated artifacts produced from the protocol specifications.
 | [omi-cpp-protocol-statistics](https://github.com/Open-Markets-Initiative/omi-cpp-protocol-statistics) | C++ | Code generated executables that gather statistics and gap detection on common exchange protocols |
 | [omi-cpp-parquet-wide](https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide) | C++ | Code generated Apache Parquet protocol transforms for common exchange protocols |
 | [CSharp.Sequential.Layout](https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout) | C# | Source generated castable C# binary protocol packed structs |
-| [CSharp.Hft.Structs](https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs) | C# | CSharp.Hft.Structs |
-| [Omi.CSharp.Parsers](https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers) | C# | Source generated high performance C# parsers for common exchange protocols *(Beta)* |
+| [CSharp.Hft.Structs](https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs) | C# | High performance C# binary protocol ref structs |
+| [Omi.CSharp.Parsers](https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers) | C# | Source generated high performance C# parsers for common exchange protocols |
 | [omi.java.protocol.classes](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes) | Java | Garbage-collector friendly Java binary protocol classes |
 | [omi-python-classes](https://github.com/Open-Markets-Initiative/omi-python-classes) | Python | Stable Python deserialization for common exchange protocols |
 
-## Generators & Tooling
+## Generators and Tooling
 
 The composable toolchain that drives the generated outputs above.
 
@@ -58,3 +66,4 @@ The composable toolchain that drives the generated outputs above.
 ---
 
 *Full org listing: [github.com/Open-Markets-Initiative](https://github.com/Open-Markets-Initiative)*
+

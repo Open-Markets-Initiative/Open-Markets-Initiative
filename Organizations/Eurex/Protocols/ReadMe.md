@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Eurex](Eurex/) | 3 |
+| [T7](T7/) | 6 |
 
 ## Specifications
 
