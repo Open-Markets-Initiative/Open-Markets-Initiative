@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [BorsaIstanbul](BorsaIstanbul/) | 1 |
+| [BorsaIstanbul](BorsaIstanbul/) | 2 |
 
 ## Specifications
 

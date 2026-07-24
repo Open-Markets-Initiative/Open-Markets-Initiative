@@ -10,6 +10,7 @@ Borsa Istanbul's BISTECH trading venue, covering equity, debt securities, deriva
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [GeniumInet.Itch](GeniumInet.Itch.md) | MarketData | Bist Genium Inet Itch Market Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Borsa Istanbul Genium INET FIX order entry |
 
 ## Specifications
 
