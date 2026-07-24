@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="cb.deribit.gateway.sbe.codec.order"
+                   id="2101"
+                   version="11"
+                   semanticVersion="1.3"
+                   description="Deribit SBE Order Gateway API"
+                   byteOrder="littleEndian"
+                   headerType="DummyMessageHeader">
+    <types>
+        <composite name="MessageHeader" description="Message header (includes fields to satisfy FIX session protocol, plus standard SBE header)">
+            <type name="protocolId" primitiveType="uint8"/>
+            <set name="flags" encodingType="uint8">
+                <choice name="isResend">0</choice>
+            </set>
+            <type name="messageLength" primitiveType="uint16"/>
+            <type name="messageTypeId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+            <type name="sequenceNumber" primitiveType="int64"/>
+            <type name="lastProcessedSeqNo" primitiveType="int64"/>
+            <type name="sendTimeNs" primitiveType="int64" description="When message was sent from gateway in nanoseconds since epoch"/>
+        </composite>
+        <composite name="DummyMessageHeader" description="Unused but included to satisfy SBE schema parser">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+
+        <composite name="groupSizeEncoding" description="Repeating group dimensions">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint16" semanticType="NumInGroup"/>
+        </composite>
+        <composite name="Decimal72" description="Variable-precision quantity encoding">
+            <type name="mantissa" description="Mantissa (significant digits)" primitiveType="int64"/>
+            <type name="exponent" description="Exponent: value = mantissa × 10^exponent" primitiveType="int8"/>
+        </composite>
+        <composite name="Price9" description="Price with constant exponent -9">
+            <type name="price9" description="price" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+        </composite>
+        <composite name="AsciiString">
+            <type name="length" primitiveType="uint8"/>
+            <type name="varData" primitiveType="char" length="0"/>
+        </composite>
+        <type name="TimestampNanos" primitiveType="int64" description="Nanoseconds since Unix epoch."/>
+
+        <type name="Padding3" primitiveType="int8" length="3"/>
+
+        <type name="String16" length="16" primitiveType="char" semanticType="String"/>
+        <type name="String32" length="32" primitiveType="char" semanticType="String"/>
+        <type name="String48" length="48" primitiveType="char" semanticType="String"/>
+
+        <enum name="Bool" encodingType="int8">
+            <validValue name="FALSE">0</validValue>
+            <validValue name="TRUE">1</validValue>
+        </enum>
+
+        <enum name="RejectReason" encodingType="int8">
+            <validValue name="INVALID_SCHEMA_ID">1</validValue>
+            <validValue name="INVALID_TEMPLATE_ID">2</validValue>
+            <validValue name="INVALID_BLOCK_LENGTH">3</validValue>
+            <validValue name="INVALID_FIELD_VALUE">4</validValue>
+            <validValue name="MESSAGE_DISABLED" sinceVersion="11">5</validValue>
+        </enum>
+
+        <type name="InstrumentId" primitiveType="int64"/>
+        <type name="CurrencyPairId" primitiveType="int64"/>
+        <type name="EventId" primitiveType="int64"/>
+        <type name="OrderId" primitiveType="int64"/>
+        <type name="FillId" primitiveType="int64"/>
+        <type name="ClientOrderId" primitiveType="int64"/>
+
+        <set name="MultiPartEventFlags" encodingType="uint8">
+            <choice name="isLastMessage">0</choice>
+        </set>
+
+        <set name="OrderFlags" encodingType="uint16">
+            <choice name="cancelOnDisconnect" sinceVersion="7">0</choice>
+            <choice name="postOnly">1</choice>
+            <choice name="postOnlyReject">2</choice>
+            <choice name="marketLimit">3</choice>
+            <choice name="mmp">4</choice>
+            <choice name="resetMmp" sinceVersion="10">5</choice>
+        </set>
+        <set name="ReplaceOrderFlags" encodingType="uint16">
+            <choice name="postOnly">1</choice>
+            <choice name="postOnlyReject">2</choice>
+        </set>
+        <set name="MassQuoteFlags" encodingType="uint8">
+            <choice name="resetMmp">0</choice>
+        </set>
+        <enum name="Side" encodingType="int8">
+            <validValue name="BUY">1</validValue>
+            <validValue name="BOTH" description="for use as mass cancel filter criteria">0</validValue>
+            <validValue name="SELL">-1</validValue>
+        </enum>
+        <enum name="ProductType" encodingType="int8">
+            <validValue name="ALL">0</validValue>
+            <validValue name="OPTIONS">1</validValue>
+            <validValue name="FUTURES">2</validValue>
+            <validValue name="COMBO_FUTURES">3</validValue>
+            <validValue name="COMBO_OPTIONS">4</validValue>
+            <validValue name="SPOT">5</validValue>
+        </enum>
+        <enum name="SelfTradingMode" encodingType="int8">
+            <validValue name="CANCEL_TAKER">0</validValue>
+            <validValue name="CANCEL_MAKER">1</validValue>
+        </enum>
+        <enum name="OrderStatus" encodingType="int8">
+            <validValue name="ACTIVE">1</validValue>
+            <validValue name="FILLED">2</validValue>
+            <validValue name="CANCELED">3</validValue>
+            <validValue name="QUEUED">4</validValue>
+        </enum>
+        <enum name="QuoteStatus" encodingType="int8">
+            <validValue name="INACTIVE" description="no active quote in book (before or after update)">0</validValue>
+            <validValue name="UNMODIFIED" description="live in book with no change">1</validValue>
+            <validValue name="QTY_REDUCED">2</validValue>
+            <validValue name="UPDATED" description="live in book (possibly with fills)">3</validValue>
+            <validValue name="FILLED" description="fully filled">4</validValue>
+            <validValue name="CANCELED_BY_REQUEST" description="existing quote/order was canceled by client request or because update was rejected">5</validValue>
+            <validValue name="CANCELED_BY_MMP" description="quote was accepted then canceled because MMP was triggered">6</validValue>
+            <validValue name="CANCELED_BY_SELF_MATCH" description="quote was accepted then canceled due to self-match prevention">7</validValue>
+            <validValue name="SPEED_BUMPED" description="quote is speed bumped (pending in book)">8</validValue>
+        </enum>
+        <enum name="CancelReason" encodingType="int8">
+            <validValue name="UNKNOWN">0</validValue>
+            <validValue name="SELF_MATCH_PREVENTION">1</validValue>
+            <validValue name="TIME_IN_FORCE">2</validValue>
+            <validValue name="ADMIN">3</validValue>
+            <validValue name="MM_PROTECTION">4</validValue>
+            <validValue name="LIQUIDATION">5</validValue>
+            <validValue name="MARKET_STATE_TRANSITION">6</validValue>
+            <validValue name="CLIENT_DISCONNECT">7</validValue>
+            <validValue name="REDUCE_ONLY">8</validValue>
+            <validValue name="DELIVERED" description="Instrument status changed to DELIVERED">9</validValue>
+            <validValue name="SETTLEMENT" description="Instrument entered settlement">10</validValue>
+            <validValue name="BOOK_DEACTIVATED" description="Instrument status changed to INACTIVE">11</validValue>
+            <validValue name="BY_REQUEST">12</validValue>
+            <validValue name="RISK_CHECK_TIMED_OUT">13</validValue>
+            <validValue name="MMP_GROUP_DELETED">14</validValue>
+            <validValue name="PORTFOLIO_LOCKED">15</validValue>
+            <validValue name="POST_ONLY" description="post-only order would have crossed">16</validValue>
+            <validValue name="QTY_TICK_SIZE_RESCALE" sinceVersion="5" description="instrument qtyTickSize changed and this order's quantity is not exactly representable under the new tick">17</validValue>
+        </enum>
+        <enum name="OrderRejectReason" encodingType="int8">
+            <validValue name="SYSTEM_ERROR">0</validValue>
+            <validValue name="INVALID_INSTRUMENT">1</validValue>
+            <validValue name="INVALID_FIELD">2</validValue>
+            <validValue name="INSUFFICIENT_MARGIN">3</validValue>
+            <validValue name="DUPLICATE_CLIENT_ORDER_ID">4</validValue>
+            <validValue name="INVALID_QUANTITY">5</validValue>
+            <validValue name="INVALID_PRICE">6</validValue>
+            <validValue name="NOT_ALLOWED_BY_MARKET_STATE">7</validValue>
+            <validValue name="POST_ONLY">8</validValue>
+            <validValue name="TOO_MANY_OPEN_ORDERS" description="exceeded max open orders for instrument/side">9</validValue>
+            <validValue name="PERMISSION_ERROR">10</validValue>
+            <validValue name="PORTFOLIO_NOT_FOUND">11</validValue>
+            <validValue name="ORDER_NOT_FOUND" description="for replaces and eng responses">12</validValue>
+            <validValue name="MMP_NOT_CONFIGURED">13</validValue>
+            <validValue name="MMP_MAX_QUOTE_QTY_EXCEEDED">14</validValue>
+            <validValue name="MMP_GROUP_FROZEN">15</validValue>
+            <validValue name="INVALID_MARGIN_MODE">16</validValue>
+            <validValue name="IN_LIQUIDATION" description="Portfolio is in liquidation">17</validValue>
+            <validValue name="RISK_CHECK_TIMED_OUT">18</validValue>
+            <validValue name="TOO_MANY_PENDING_REPLACES">19</validValue>
+            <validValue name="ICEBERG_NOT_ALLOWED">20</validValue>
+            <validValue name="INVALID_ALLOCATIONS" description="Block trade error">21</validValue>
+            <validValue name="PRICE_TOO_HIGH" description="price exceeds upper price band limit">22</validValue>
+            <validValue name="PRICE_TOO_LOW" description="price exceeds lower price band limit">23</validValue>
+            <validValue name="PRICE_BAND_UNAVAILABLE" description="no price band or mark price available">24</validValue>
+            <validValue name="RATE_LIMIT" description="gateway rate limit exceeded">25</validValue>
+            <validValue name="PORTFOLIO_LOCKED" description="Portfolio is locked">26</validValue>
+            <validValue name="POSITION_LIMIT_EXCEEDED" description="future or options position size limit exceeded">27</validValue>
+            <validValue name="ORDER_SIZE_LIMIT_EXCEEDED" description="open order aggregate size limit exceeded">28</validValue>
+            <validValue name="MEMBER_SPEED_BUMP_LIMIT_EXCEEDED" sinceVersion="6" description="member has too many live speed-bumped orders">29</validValue>
+        </enum>
+        <enum name="MassQuoteRejectReason" encodingType="int8">
+            <validValue name="SYSTEM_ERROR">0</validValue>
+            <validValue name="INVALID_MMP_GROUP">1</validValue>
+            <validValue name="MMP_GROUP_DISABLED">2</validValue>
+            <validValue name="MMP_GROUP_FROZEN">3</validValue>
+            <validValue name="TOO_MANY_QUOTES">4</validValue>
+            <validValue name="INVALID_INSTRUMENT">5</validValue>
+            <validValue name="RATE_LIMIT" description="gateway rate limit exceeded">6</validValue>
+            <validValue name="PORTFOLIO_LOCKED" description="Portfolio is locked">7</validValue>
+            <validValue name="DUPLICATE_INSTRUMENT" sinceVersion="4" description="the same instrument appears in more than one entry of a single mass quote">8</validValue>
+        </enum>
+        <enum name="CancelOrderRejectReason" encodingType="int8">
+            <validValue name="ERROR">0</validValue>
+            <validValue name="UNKNOWN_ORDER">1</validValue>
+            <validValue name="CLIENT_PERMISSION_ERROR">2</validValue>
+            <validValue name="NOT_ALLOWED_BY_MARKET_STATE">3</validValue>
+            <validValue name="CANCEL_PENDING">4</validValue>
+            <validValue name="IN_LIQUIDATION" sinceVersion="2">5</validValue>
+            <validValue name="INVALID_INSTRUMENT" sinceVersion="2">6</validValue>
+            <validValue name="TIME_IN_FORCE" sinceVersion="9">7</validValue>
+            <validValue name="SPEED_BUMP_CONVERTED_TO_IOC" sinceVersion="9">8</validValue>
+        </enum>
+        <enum name="MassCancelRejectReason" encodingType="int8">
+            <validValue name="ERROR">0</validValue>
+            <validValue name="INVALID_MMP_GROUP">1</validValue>
+            <validValue name="CLIENT_PERMISSION_ERROR">2</validValue>
+            <validValue name="NOT_ALLOWED_BY_MARKET_STATE">3</validValue>
+        </enum>
+        <set name="FillFlags" encodingType="uint8">
+            <choice name="isQuote">0</choice>
+            <choice name="isFullyFilled">1</choice>
+        </set>
+        <set name="CancelFlags" encodingType="uint8">
+            <choice name="isQuote">0</choice>
+        </set>
+        <enum name="MmpTriggerType" encodingType="int8">
+            <validValue name="QUANTITY">0</validValue>
+            <validValue name="DELTA">1</validValue>
+            <validValue name="VEGA">2</validValue>
+        </enum>
+        <enum name="MmpStatusRejectReason" encodingType="int8">
+            <validValue name="SYSTEM_ERROR">0</validValue>
+            <validValue name="INVALID_MMP_GROUP">1</validValue>
+        </enum>
+    </types>
+
+    <!-- SESSION MESSAGES -->
+
+    <sbe:message name="Logon" id="1" description="Logon message to gateway">
+        <field name="clientId"       id="16" type="String16"/>
+        <field name="secret"         id="64" type="String48"/>
+        <field name="resetSeqNum"    id="65" type="Bool"/>
+    </sbe:message>
+
+    <sbe:message name="LogonConf" id="2" description="Logon confirmation message to client">
+        <field name="heartbeatIntervalSeconds" id="4" type="int32"/>
+    </sbe:message>
+
+    <sbe:message name="Logout" id="4" description="Logout message to gateway">
+        <data name="reason"      id="1000" type="AsciiString"/>
+    </sbe:message>
+    <sbe:message name="LoggedOut" id="5" description="Logout notification message from gateway to client">
+        <data name="reason"      id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="Heartbeat" id="10" description="Heartbeat sent in the absence of data to keep connection alive; can be sent by either client or gateway.">
+        <field name="correlationId"     id="8" type="int64" description="Set if this Heartbeat is in response to a TestRequest; 0 if not."/>
+    </sbe:message>
+    <sbe:message name="TestRequest" id="11" description="Request a heartbeat; can be sent by either client or gateway.">
+        <field name="correlationId"     id="8" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="ResendRequest" id="20" description="Resend request message from client to gateway">
+        <field name="fromSequenceNumber" id= "8" type="int64"/>
+        <field name="toSequenceNumber"   id="16" type="int64"/>
+    </sbe:message>
+    <sbe:message name="GapFill" id="21" description="Sent to client in lieu of admin/session messages while handling resend request">
+        <field name="newSequenceNumber"  id="8" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="Reject" id="30" description="Sent in response to an unrecognized or malformed message from client">
+        <field name="refSequenceNumber" id="8" type="int64"/>
+        <field name="reason"            id="9" type="RejectReason"/>
+        <data name="details"            id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <!-- APPLICATION MESSAGES -->
+
+    <sbe:message name="NewOrderRequest" id="100">
+        <field name="clientOrderId"         id= "8" type="ClientOrderId"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="instrumentId"          id="24" type="InstrumentId"/>
+        <field name="price"                 id="32" type="Price9"/>
+        <field name="quantity"              id="41" type="Decimal72"/>
+        <field name="showQty"               id="50" type="Decimal72" presence="optional"/>
+        <field name="selfMatchPreventionId" id="58" type="int64"/>
+        <field name="side"                  id="59" type="Side"/>
+        <field name="timeInForce"           id="60" type="int8" description="-2: IOC, -1: FOK, 0: GTC, >0: DAY (number of days)"/>
+        <field name="flags"                 id="62" type="OrderFlags"/>
+        <field name="selfTradingMode"       id="63" type="SelfTradingMode"/>
+    </sbe:message>
+
+    <sbe:message name="AmendOrderRequest" id="110">
+        <field name="clientOrderId"         id= "8" type="ClientOrderId"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="instrumentId"          id="24" type="InstrumentId"/>
+        <field name="price"                 id="32" type="Price9"/>
+        <field name="quantity"              id="41" type="Decimal72"/>
+        <field name="showQty"               id="50" type="Decimal72" presence="optional"/>
+        <field name="flags"                 id="52" type="ReplaceOrderFlags"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrderRequest" id="120">
+        <field name="clientOrderId"         id= "8" type="ClientOrderId"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="instrumentId"          id="24" type="InstrumentId"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrderByIdRequest" id="125" sinceVersion="3">
+        <field name="orderId"               id= "8" type="OrderId"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="instrumentId"          id="24" type="InstrumentId"/>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteRequest" id="130">
+        <field name="quoteId"               id= "8" type="ClientOrderId"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="mmpGroupId"            id="24" type="int64"/>
+        <field name="selfMatchPreventionId" id="32" type="int64"/>
+        <field name="flags"                 id="33" type="MassQuoteFlags"/>
+        <group name="quotes"                id="1000">
+            <field name="instrumentId"        id="1008" type="InstrumentId"/>
+            <field name="bidPrice"            id="1016" type="Price9" presence="optional"/>
+            <field name="askPrice"            id="1024" type="Price9" presence="optional"/>
+            <field name="bidQty"              id="1033" type="Decimal72"/>
+            <field name="askQty"              id="1042" type="Decimal72"/>
+            <field name="bidFlags"            id="1044" type="OrderFlags"/>
+            <field name="askFlags"            id="1046" type="OrderFlags"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MassCancelRequest" id="140">
+        <field name="correlationId"         id= "8" type="int64"/>
+        <field name="currencyPairId"        id="16" type="CurrencyPairId"/>
+        <field name="instrumentId"          id="24" type="InstrumentId" presence="optional"/>
+        <field name="productType"           id="25" type="ProductType"/>
+        <field name="side"                  id="26" type="Side"/>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteCancelRequest" id="145">
+        <field name="correlationId"         id= "8" type="int64"/>
+        <field name="mmpGroupId"            id="16" type="int64"/>
+        <field name="side"                  id="17" type="Side"/>
+    </sbe:message>
+
+    <sbe:message name="GetMassQuoteMmpStatusRequest" id="155" sinceVersion="10">
+        <field name="correlationId"         id= "8" type="int64"/>
+        <field name="mmpGroupId"            id="16" type="int64"/>
+    </sbe:message>
+
+    <sbe:message name="GetOrdersMmpStatusRequest" id="156" sinceVersion="10">
+        <field name="correlationId"         id= "8" type="int64"/>
+        <field name="currencyPairId"        id="16" type="CurrencyPairId"/>
+    </sbe:message>
+
+    <!-- Order Event Messages (Responses) -->
+    <sbe:message name="NewOrderResponse" id="200">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="price"              id="56" type="Price9"/>
+        <field name="quantity"           id="65" type="Decimal72"/>
+        <field name="totalFilled"        id="74" type="Decimal72"/>
+        <field name="visibleQty"         id="83" type="Decimal72" description="Amount currently visible in market data"/>
+        <field name="receiveTime"        id="91" type="TimestampNanos" description="receive time on gateway"/>
+        <field name="side"               id="92" type="Side"/>
+        <field name="status"             id="93" type="OrderStatus"/>
+        <field name="cancelReason"       id="94" type="CancelReason"/>
+        <group name="fills"              id="1000">
+            <field name="matchId"          id="1008" type="FillId"/>
+            <field name="fillPrice"        id="1016" type="Price9"/>
+            <field name="fillQty"          id="1025" type="Decimal72"/>
+        </group>
+        <group name="legs"               id="2000">
+            <field name="matchId"          id="2008" type="FillId"/>
+            <field name="instrumentId"     id="2016" type="FillId"/>
+            <field name="fillPrice"        id="2024" type="Price9"/>
+            <field name="fillQty"          id="2033" type="Decimal72"/>
+            <field name="legSide"          id="2034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="NewOrderReject" id="202" description="order rejected by PTR or ENG">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="reason"             id="49" type="OrderRejectReason"/>
+        <data  name="details"            id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="AmendOrderResponse" id="210">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="price"              id="56" type="Price9"/>
+        <field name="quantity"           id="65" type="Decimal72"/>
+        <field name="totalFilled"        id="74" type="Decimal72"/>
+        <field name="visibleQty"         id="83" type="Decimal72" description="Amount currently visible in market data"/>
+        <field name="receiveTime"        id="91" type="TimestampNanos" description="receive time on gateway"/>
+        <field name="status"             id="92" type="OrderStatus"/>
+        <field name="cancelReason"       id="93" type="CancelReason"/>
+        <group name="fills"              id="1000">
+            <field name="matchId"          id="1008" type="FillId"/>
+            <field name="fillPrice"        id="1016" type="Price9"/>
+            <field name="fillQty"          id="1025" type="Decimal72"/>
+        </group>
+        <group name="legs"               id="2000">
+            <field name="matchId"          id="2008" type="FillId"/>
+            <field name="instrumentId"     id="2016" type="FillId"/>
+            <field name="fillPrice"        id="2024" type="Price9"/>
+            <field name="fillQty"          id="2033" type="Decimal72"/>
+            <field name="legSide"          id="2034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="AmendOrderReject" id="212" description="order rejected by PTR or ENG">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="reason"             id="49" type="OrderRejectReason"/>
+        <data  name="details"            id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrderResponse" id="220">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="receiveTime"        id="56" type="TimestampNanos" description="receive time on gateway"/>
+    </sbe:message>
+
+    <sbe:message name="CancelOrderReject" id="222">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="correlationId"      id="32" type="int64"/>
+        <field name="orderId"            id="40" type="OrderId" presence="optional"/>
+        <field name="instrumentId"       id="48" type="InstrumentId"/>
+        <field name="reason"             id="49" type="CancelOrderRejectReason"/>
+        <data  name="details"            id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteResponse" id="230">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="quoteId"               id="24" type="ClientOrderId"/>
+        <field name="correlationId"         id="32" type="int64"/>
+        <field name="mmpGroupId"            id="40" type="int64"/>
+        <field name="receiveTime"           id="48" type="TimestampNanos" description="receive time on gateway"/>
+        <group name="quotes"                id="1000">
+            <field name="instrumentId"        id="1008" type="InstrumentId"/>
+            <field name="bidOrderId"          id="1016" type="OrderId"/>
+            <field name="askOrderId"          id="1024" type="OrderId"/>
+            <field name="bidPrice"            id="1032" type="Price9"/>
+            <field name="askPrice"            id="1040" type="Price9"/>
+            <field name="bidQty"              id="1049" type="Decimal72"/>
+            <field name="askQty"              id="1058" type="Decimal72"/>
+            <field name="bidFilledQty"        id="1067" type="Decimal72"/>
+            <field name="askFilledQty"        id="1076" type="Decimal72"/>
+            <field name="bidStatus"           id="1077" type="QuoteStatus"/>
+            <field name="askStatus"           id="1078" type="QuoteStatus"/>
+            <field name="bidRejectReason"     id="1079" type="OrderRejectReason"/>
+            <field name="askRejectReason"     id="1080" type="OrderRejectReason"/>
+        </group>
+        <group name="bidFills"              id="2000">
+            <field name="matchId"             id="2008" type="FillId"/>
+            <field name="instrumentId"        id="2016" type="InstrumentId"/>
+            <field name="fillPrice"           id="2024" type="Price9"/>
+            <field name="fillQty"             id="2033" type="Decimal72"/>
+        </group>
+        <group name="askFills"              id="3000">
+            <field name="matchId"             id="3008" type="FillId"/>
+            <field name="instrumentId"        id="3016" type="InstrumentId"/>
+            <field name="fillPrice"           id="3024" type="Price9"/>
+            <field name="fillQty"             id="3033" type="Decimal72"/>
+        </group>
+        <group name="legs"                  id="4000">
+            <field name="matchId"             id="4008" type="FillId"/>
+            <field name="instrumentId"        id="4016" type="FillId"/>
+            <field name="fillPrice"           id="4024" type="Price9"/>
+            <field name="fillQty"             id="4033" type="Decimal72"/>
+            <field name="legSide"             id="4034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteReject" id="232">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="quoteId"               id="24" type="ClientOrderId"/>
+        <field name="correlationId"         id="32" type="int64"/>
+        <field name="mmpGroupId"            id="40" type="int64"/>
+        <field name="reason"                id="41" type="MassQuoteRejectReason"/>
+        <data  name="details"               id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="MassCancelResponse" id="240">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="correlationId"         id="24" type="int64"/>
+        <field name="receiveTime"           id="32" type="TimestampNanos" description="receive time on gateway"/>
+        <field name="totalOrderCount"       id="36" type="int32" description="Total number of orders canceled"/>
+    </sbe:message>
+
+    <sbe:message name="MassCancelReject" id="242">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="correlationId"         id="24" type="int64"/>
+        <field name="reason"                id="25" type="MassCancelRejectReason"/>
+        <data  name="details"               id="1000" type="AsciiString"/>
+    </sbe:message>
+
+    <sbe:message name="GetMassQuoteMmpStatusResponse" id="280" sinceVersion="10">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="gateway send time"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="mmpGroupId"            id="24" type="int64"/>
+        <field name="frozenUntilTime"       id="32" type="TimestampNanos" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="GetMassQuoteMmpStatusReject" id="281" sinceVersion="10">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="gateway send time"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="reason"                id="17" type="MmpStatusRejectReason"/>
+    </sbe:message>
+
+    <sbe:message name="GetOrdersMmpStatusResponse" id="282" sinceVersion="10">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="gateway send time"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="currencyPairId"        id="24" type="CurrencyPairId"/>
+        <field name="frozenUntilTime"       id="32" type="TimestampNanos" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="GetOrdersMmpStatusReject" id="283" sinceVersion="10">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="gateway send time"/>
+        <field name="correlationId"         id="16" type="int64"/>
+        <field name="reason"                id="17" type="MmpStatusRejectReason"/>
+    </sbe:message>
+
+    <sbe:message name="OrderFilled" id="300" description="Notify that one or more resting orders were filled">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <group name="fills"                 id="1000">
+            <field name="clientOrderId"       id="1008" type="ClientOrderId"/>
+            <field name="orderId"             id="1016" type="OrderId"/>
+            <field name="instrumentId"        id="1024" type="InstrumentId"/>
+            <field name="matchId"             id="1032" type="FillId"/>
+            <field name="price"               id="1040" type="Price9"/>
+            <field name="fillQty"             id="1049" type="Decimal72"/>
+            <field name="totalFilled"         id="1058" type="Decimal72"/>
+            <field name="side"                id="1059" type="Side"/>
+            <field name="flags"               id="1060" type="FillFlags"/>
+        </group>
+        <group name="legs"                  id="2000">
+            <field name="matchId"             id="2008" type="FillId"/>
+            <field name="instrumentId"        id="2016" type="FillId"/>
+            <field name="price"               id="2024" type="Price9"/>
+            <field name="fillQty"             id="2033" type="Decimal72"/>
+            <field name="legSide"             id="2034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="OrdersCanceled" id="310" description="Unsolicited single order canceled">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="flags"                 id="17" type="MultiPartEventFlags"/>
+        <group name="orders"                id="1000">
+            <field name="clientOrderId"       id="1008" type="ClientOrderId"/>
+            <field name="orderId"             id="1016" type="OrderId"/>
+            <field name="instrumentId"        id="1024" type="InstrumentId"/>
+            <field name="totalFilled"         id="1033" type="Decimal72"/>
+            <field name="cancelReason"        id="1034" type="CancelReason"/>
+            <field name="flags"               id="1035" type="CancelFlags"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="OrderPlaced" id="312" description="Order completed speed bump and entered the book for matching">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="clientOrderId"      id="24" type="ClientOrderId"/>
+        <field name="orderId"            id="32" type="OrderId"/>
+        <field name="instrumentId"       id="40" type="InstrumentId"/>
+        <field name="price"              id="48" type="Price9"/>
+        <field name="quantity"           id="57" type="Decimal72"/>
+        <field name="totalFilled"        id="66" type="Decimal72"/>
+        <field name="visibleQty"         id="75" type="Decimal72" description="Amount currently visible in market data"/>
+        <field name="status"             id="76" type="OrderStatus"/>
+        <field name="cancelReason"       id="77" type="CancelReason"/>
+        <field name="padding3"           id="80" type="Padding3" sinceVersion="8" description="3-byte pad so correlationId starts at 8-byte-aligned offset 80."/>
+        <field name="correlationId"      id="88" type="int64"    sinceVersion="8" description="correlationId from the originating NewOrderRequest."/>
+        <group name="fills"              id="1000">
+            <field name="matchId"          id="1008" type="FillId"/>
+            <field name="fillPrice"        id="1016" type="Price9"/>
+            <field name="fillQty"          id="1025" type="Decimal72"/>
+        </group>
+        <group name="legs"               id="2000">
+            <field name="matchId"          id="2008" type="FillId"/>
+            <field name="instrumentId"     id="2016" type="FillId"/>
+            <field name="fillPrice"        id="2024" type="Price9"/>
+            <field name="fillQty"          id="2033" type="Decimal72"/>
+            <field name="legSide"          id="2034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteOrdersPlaced" id="314" description="Quote orders completed speed bump and entered the book for matching">
+        <field name="timestamp"          id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"             id="16" type="EventId"/>
+        <field name="mmpGroupId"         id="24" type="int64"/>
+        <group name="orders"             id="1000">
+            <field name="clientOrderId"    id="1008" type="ClientOrderId"/>
+            <field name="orderId"          id="1016" type="OrderId"/>
+            <field name="instrumentId"     id="1024" type="InstrumentId"/>
+            <field name="price"            id="1032" type="Price9"/>
+            <field name="quantity"         id="1041" type="Decimal72"/>
+            <field name="totalFilled"      id="1050" type="Decimal72"/>
+            <field name="visibleQty"       id="1059" type="Decimal72" description="Amount currently visible in market data"/>
+            <field name="side"             id="1060" type="Side"/>
+            <field name="status"           id="1061" type="OrderStatus"/>
+            <field name="cancelReason"     id="1062" type="CancelReason"/>
+        </group>
+        <group name="fills"              id="2000">
+            <field name="matchId"          id="2008" type="FillId"/>
+            <field name="orderId"          id="2016" type="FillId"/>
+            <field name="fillPrice"        id="2024" type="Price9"/>
+            <field name="fillQty"          id="2033" type="Decimal72"/>
+        </group>
+        <group name="legs"               id="3000">
+            <field name="matchId"          id="3008" type="FillId"/>
+            <field name="instrumentId"     id="3016" type="FillId"/>
+            <field name="fillPrice"        id="3024" type="Price9"/>
+            <field name="fillQty"          id="3033" type="Decimal72"/>
+            <field name="legSide"          id="3034" type="Side"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteMmpTriggered" id="320">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="mmpGroupId"            id="24" type="int64"/>
+        <field name="frozenUntil"           id="32" type="TimestampNanos"/>
+        <field name="quantityLevel"         id="40" type="double"/>
+        <field name="vegaLevel"             id="48" type="double"/>
+        <field name="deltaLevel"            id="56" type="double"/>
+        <field name="trigger"               id="57" type="MmpTriggerType"/>
+    </sbe:message>
+
+    <sbe:message name="OrdersMmpTriggered" id="322">
+        <field name="timestamp"             id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"                id="16" type="EventId"/>
+        <field name="currencyPairId"        id="24" type="int64"/>
+        <field name="frozenUntil"           id="32" type="TimestampNanos"/>
+        <field name="quantityLevel"         id="40" type="double"/>
+        <field name="vegaLevel"             id="48" type="double"/>
+        <field name="deltaLevel"            id="56" type="double"/>
+        <field name="trigger"               id="57" type="MmpTriggerType"/>
+    </sbe:message>
+
+    <sbe:message name="MassQuoteMmpUnfrozen" id="324" description="Mass quote MMP group was reset/unfrozen">
+        <field name="timestamp"       id= "8" type="TimestampNanos"/>
+        <field name="execId"          id="16" type="EventId"/>
+        <field name="mmpGroupId"      id="24" type="int64"/>
+        <field name="correlationId"   id="32" type="int64" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="OrdersMmpUnfrozen" id="326" description="Orders MMP group was reset/unfrozen">
+        <field name="timestamp"       id= "8" type="TimestampNanos"/>
+        <field name="execId"          id="16" type="EventId"/>
+        <field name="currencyPairId"  id="24" type="CurrencyPairId"/>
+        <field name="correlationId"   id="32" type="int64" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="DummyMessage" id="9999" description="Dummy message to generate message header">
+        <field name="header" id="32" type="MessageHeader"/>
+    </sbe:message>
+
+</sbe:messageSchema>
