@@ -30,7 +30,10 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Exchange ITCH |
-| [Omd](Omd.md) | MarketData | Hkex | HKEX Orion Market Data |
+| [Omd](Omd.md) | MarketData | Hkex | Orion Market Data |
+| [Omdc](Omdc.md) | MarketData | Hkex | Orion Market Data Cash |
+| [Omdcc](Omdcc.md) | MarketData | Hkex | Orion Market Data China Connect |
+| [Omdd](Omdd.md) | MarketData | Hkex | Orion Market Data Derivatives |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |

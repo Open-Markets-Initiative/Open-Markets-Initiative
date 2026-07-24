@@ -3,7 +3,8 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Hkex](Hkex/) | 1 |
+| [ChinaConnect](ChinaConnect/) | 6 |
+| [Securities](Securities/) | 15 |
 
 ## Specifications
 
