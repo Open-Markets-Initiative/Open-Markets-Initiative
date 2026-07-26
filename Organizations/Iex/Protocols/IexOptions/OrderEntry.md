@@ -1,23 +1,23 @@
-## IexOptions Order Entry: Iex Options Sbe Binary Order Entry
+## IexOptions Order Entry: Iex Options Fix Order Entry
 
-Sbe-encoded binary order entry protocol for Iex Options carrying order submission, cancel replace, mass cancel, purge, and execution reporting over a framed Tcp session with subsession support.
+Financial Information eXchange (Fix) 4.2 order entry interface for Iex Options carrying order submission, cancel replace, mass cancel with block and unblock, execution reporting, and trade bust and correction messages with Iex custom tags.
 
 ### Overview
 
-The Iex Options binary order entry protocol is built from two Sbe schemas sharing one Tcp session: a session schema handling login, heartbeats, logout, terminate, sequenced message delivery, and subsession management, and a business schema carrying new order single, cancel replace, cancel, mass cancel, purge, and the corresponding acknowledgement and execution report messages.
+The Iex Options Fix api is a Fix 4.2 subset for order entry on Iex Options. Members submit single-leg options orders with the full OCC clearing detail (CustomerOrFirm capacity, ClearingFirm, ClearingAccount, OptionalData), anti-internalization qualifiers, and display instructions. Cancel and cancel/replace target working orders while the same message type doubles as a mass cancel with per-MPID or per-session scope, optional symbol filtering, and block and unblock semantics.
 
-Each framed packet is a two-byte little-endian length followed by an Sbe message header whose schema id distinguishes session messages from business messages. Subsessions let a firm multiplex independently sequenced order flows over one physical connection.
+Execution reports cover acknowledgement, rejection, cancel, fills with contra party and OCC clearing attribution, replace, unsolicited repricing driven by price adjust and drill-through protection, pending states for routed orders, and mass cancel acknowledgement. A custom UCC message reports trade busts and corrections, and nanosecond-precision custom timestamps accompany every outbound event.
 
 ### Transport
 
-Tcp carrying length-framed Sbe packets — session schema messages for login, heartbeat, subsession join and leave, and terminate, plus business schema messages for the order lifecycle.
+Tcp for authenticated Fix 4.2 sessions with sequence-number gap recovery via Resend Request and Sequence Reset.
 
 ### Key Characteristics
 
-- **Options order entry** - Order submission, replace, cancel, and execution reports
-- **Sbe encoded** - Simple Binary Encoding session and business schemas
-- **Length-framed Tcp** - Two-byte length prefix then Sbe header on every packet
-- **Two schemas** - Session (20000) and business (20001) schemas share the session
-- **Subsessions** - Independently sequenced order flows multiplexed on one connection
-- **Mass cancel and purge** - Bulk risk controls alongside single-order operations
+- **Fix 4.2 session** - Standard Fix session layer with logon, heartbeat, and resend recovery
+- **Options order entry** - Single-leg options orders with OSI series identification
+- **OCC clearing detail** - Capacity, clearing firm, MMID, and optional data passed to the OCC
+- **Mass cancel** - Session or MPID scope with symbol filter, block, and unblock
+- **Trade bust and correction** - Custom UCC message reporting busts and corrections with contra detail
+- **Nanosecond timestamps** - Custom sending and transact times with nanosecond resolution
 
