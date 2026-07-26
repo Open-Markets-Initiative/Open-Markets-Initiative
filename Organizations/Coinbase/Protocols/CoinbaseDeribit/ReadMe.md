@@ -10,6 +10,7 @@ Coinbase Deribit cryptocurrency derivatives venue specializing in Bitcoin and Et
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [MarketDataApi](MarketDataApi.md) | MarketData | Coinbase Deribit Sbe Multicast Market Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Coinbase Deribit Fix Trading Api |
 | [OrdersApi](OrdersApi.md) | OrderEntry | Coinbase Deribit Sbe Order Entry |
 
 ## Specifications

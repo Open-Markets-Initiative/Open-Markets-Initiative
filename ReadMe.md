@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-246-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-248-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -49,6 +49,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 **Dictionaries**
 
 - [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
+- [omi-kaitai-struct-definitions](https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions) — Kaitai Struct definitions for common exchange binary protocols
 
 **Source Generated Outputs**
 

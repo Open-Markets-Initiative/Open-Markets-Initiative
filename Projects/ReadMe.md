@@ -32,6 +32,7 @@ Machine-readable protocol format dictionaries.
 | Repository | Language | Description |
 | --- | --- | --- |
 | [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
+| [omi-kaitai-struct-definitions](https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions) | Ksy | Kaitai Struct definitions for common exchange binary protocols |
 
 ## Source Generated Outputs
 
