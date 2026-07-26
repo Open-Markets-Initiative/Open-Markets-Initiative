@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   xmlns:xi="http://www.w3.org/2001/XInclude"
+                   package="iex.options.boe.session"
+                   id="20000"
+                   version="0"
+                   semanticVersion="1.0"
+                   description="IEX Options Binary Order Entry Session Schema"
+                   byteOrder="littleEndian">
+    <types>
+        <composite name="messageHeader" description="Message identifiers and length of message root.">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+
+        <composite name="sessionInfoGroupEncoding" description="Repeating group dimensions for SessionInfo.">
+            <type name="blockLength" primitiveType="uint8"/>
+            <type name="numInGroup" primitiveType="uint8" maxValue="20"/>
+        </composite>
+
+        <enum name="Boolean" encodingType="uint8" description="Boolean representation">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+
+        <enum name="Subsession" encodingType="int8" description="Subsession type">
+            <validValue name="ClientToGateway">0</validValue>
+            <validValue name="GatewayToClient">1</validValue>
+            <validValue name="ReferenceData">2</validValue>
+        </enum>
+
+        <enum name="Status" encodingType="uint8" description="Login response status">
+            <validValue name="Success">0</validValue>
+            <validValue name="SessionLevelReject">1</validValue>
+            <validValue name="LogoutRequested">2</validValue>
+            <validValue name="Unknown">3</validValue>
+            <validValue name="InvalidLogonId">4</validValue>
+            <validValue name="InvalidToken">5</validValue>
+            <validValue name="AlreadyLoggedIn">6</validValue>
+            <validValue name="LoginTimeout">7</validValue>
+            <validValue name="InvalidPacketLength">8</validValue>
+            <validValue name="InvalidMessage">9</validValue>
+            <validValue name="JoinRevoked">10</validValue>
+            <validValue name="HeartbeatTimeout">11</validValue>
+            <validValue name="MessageOutOfSequence">12</validValue>
+            <validValue name="InvalidSubsessionId">13</validValue>
+            <validValue name="SubsessionNotJoined">14</validValue>
+            <validValue name="DenialOfService">15</validValue>
+            <validValue name="InvalidArgument">16</validValue>
+            <validValue name="AlreadyJoined">17</validValue>
+        </enum>
+
+        <type name="SequenceNumber" primitiveType="uint32"/>
+        <type name="SubsessionId" primitiveType="uint64"/>
+        <type name="Timestamp" primitiveType="uint64"/>
+
+        <type name="LogonId" primitiveType="char" length="16"/>
+        <type name="Token" primitiveType="char" length="32"/>
+
+    </types>
+
+    <sbe:message name="LoginRequest" id="1" description="Login request fields">
+        <field name="logonId" type="LogonId" id="1"/>
+        <field name="token" type="Token" id="2"/>
+    </sbe:message>
+
+    <sbe:message name="LoginResponse" id="2" description="Login response fields">
+        <field name="logonId" type="LogonId" id="1"/>
+        <field name="status" type="Status" id="2"/>
+    </sbe:message>
+
+    <sbe:message name="GatewayHeartbeat" id="3" description="Heartbeat message from Gateway">
+        <field name="keepAlive" type="Boolean" id="1"/>
+        <group name="SubSessions" id="100" dimensionType="sessionInfoGroupEncoding">
+            <field name="subsessionType" type="Subsession" id="101"/>
+            <field name="subsessionId" type="SubsessionId" id="102"/>
+            <field name="joined" type="Boolean" id="103"/>
+            <field name="nextSeqNo" type="SequenceNumber" id="104"/>
+        </group>
+    </sbe:message>
+
+    <sbe:message name="ClientHeartbeat" id="4" description="Heartbeat message from Client" />
+
+    <sbe:message name="LogoutRequest" id="5" description="Logout Request from Client" />
+
+    <sbe:message name="Terminate" id="6" description="Termination fields">
+        <field name="reason" type="Status" id="1"/>
+    </sbe:message>
+
+    <sbe:message name="SequencedMessageHeader" id="7" description="Sequenced message header">
+        <field name="subsessionId" type="SubsessionId" id="1"/>
+        <field name="sequence" type="SequenceNumber" id="2"/>
+        <field name="timestamp" type="Timestamp" id="3"/>
+    </sbe:message>
+
+    <sbe:message name="SubsessionJoin" id="8" description="Subsession join request">
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="startSequence"   type="SequenceNumber" id="2"/>
+        <field name="endSequence"     type="SequenceNumber" id="3"/>
+    </sbe:message>
+
+    <sbe:message name="SubsessionJoinResponse" id="9" description="Subsession join response">
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="status"          type="Status"          id="2"/>
+    </sbe:message>
+
+    <sbe:message name="SubsessionLeave" id="10" description="Subsession leave request">
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+    </sbe:message>
+
+    <sbe:message name="SubsessionLeaveResponse" id="11" description="Subsession leave response">
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="reason"          type="Status"          id="2"/>
+    </sbe:message>
+
+
+
+</sbe:messageSchema>
