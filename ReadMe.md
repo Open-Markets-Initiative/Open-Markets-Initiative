@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-250-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-252-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -12,12 +12,12 @@
 
 | Section | What's there |
 | --- | --- |
-| [Organizations/](Organizations/) | One folder per exchange / venue / regulator — links, MICs, and per-protocol spec entry points |
-| [Protocols/](Protocols/) | One markdown page per protocol — encoding family, transport, and history |
-| [Glossary/](Glossary/) | Common protocol concepts shared across venues |
-| [Projects/](Projects/) | Index of related Omi GitHub repositories |
-| [Research/](Research/) | Academic papers and patents on parser generation and low-latency systems |
-| [About/](About/) | Mission, philosophy, code of conduct, license |
+| [Organizations](Organizations) | One folder per exchange / venue / regulator — links, MICs, and per-protocol spec entry points |
+| [Protocols](Protocols) | One markdown page per protocol — encoding family, transport, and history |
+| [Glossary](Glossary) | Common protocol concepts shared across venues |
+| [Projects](Projects) | Index of related Omi GitHub repositories |
+| [Research](Research) | Academic papers and patents on parser generation and low-latency systems |
+| [About](About) | Mission, philosophy, code of conduct, license |
 
 ---
 
@@ -45,6 +45,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 **Production Sample Data**
 
 - [omi-data-packets](https://github.com/Open-Markets-Initiative/omi-data-packets) — Example protocol data captures
+- [omi-data-pcaps](https://github.com/Open-Markets-Initiative/omi-data-pcaps) — Exchange pcaps for automated testing
 
 **Dictionaries**
 
@@ -61,11 +62,11 @@ The Directory is the human-readable catalog. The machine-readable specifications
 - [Omi.Fix.Generators](https://github.com/Open-Markets-Initiative/Omi.Fix.Generators) — Composable FIX source generators
 - [latency-lab](https://github.com/Open-Markets-Initiative/latency-lab) — Composable tools for automating latency measurement and reporting
 
-A complete list lives in [Projects/](Projects/).
+A complete list lives in [Projects](Projects).
 
 ---
 
-Documentation is collected from publicly available sources — corrections and additions are welcome as issues or pull requests. Read more about the mission in [About/](About/).
+Documentation is collected from publicly available sources — corrections and additions are welcome as issues or pull requests. Read more about the mission in [About](About).
 
 
 *Specifications belong to their respective owners; this directory aggregates pointers and historical context only.*
