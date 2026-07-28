@@ -1,7 +1,4 @@
-## Coinbase Deribit
-
-
-Coinbase Deribit cryptocurrency derivatives venue specializing in Bitcoin and Ether options and futures, acquired by Coinbase in 2025 and operated as a Coinbase division.
+## CoinbaseDeribit
 
 
 ### Protocols
