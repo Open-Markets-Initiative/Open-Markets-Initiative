@@ -1,6 +1,6 @@
 ## Omd: Orion Market Data
 
-Hkex Orion Market Data platform umbrella encoding. Two wire-format variants share the same 16-byte packet header structure but differ in the semantics of byte 3: v1 (OMD-D) uses Compression Mode; v2 (OMD-C and OMD-CC) uses a plain Filler byte with no payload compression. The full per-family message sets and product tiers live under Omdc, Omdd, and Omdcc encodings; the shared Omd encoding is used only for cross-family artefacts such as gap-detection observability dissectors.
+Hkex Orion Market Data platform encoding, shared across the Securities (OMD-C), China Connect (OMD-CC), and Derivatives (OMD-D) market data feeds and the Mainland Market Data Hub (MMDH). The UDP multicast feeds share a 16-byte packet header and differ only in the semantics of byte 3, captured as two packet-header versions: v1 (Derivatives) uses a Compression Mode indicator supporting optional payload compression; v2 (Securities and China Connect) uses a plain Filler byte with no payload compression. A third TCP header version, v3 (MMDH), replaces the multicast packet header with a stream-oriented 20-byte per-message session header for Mainland-China delivery. Individual feed identity (product tier, market segment) is carried by the Exchange and Protocol axes, not the encoding.
 
 ### Overview
 
