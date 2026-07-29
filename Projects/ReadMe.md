@@ -33,6 +33,7 @@ Machine-readable protocol format dictionaries.
 | --- | --- | --- |
 | [omi-fix-dictionaries](https://github.com/Open-Markets-Initiative/omi-fix-dictionaries) | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-kaitai-struct-definitions](https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions) | Ksy | Kaitai Struct definitions for common exchange binary protocols |
+| [omi-dfdl-definitions](https://github.com/Open-Markets-Initiative/omi-dfdl-definitions) | Dfdl | DFDL (Data Format Description Language) schemas for common exchange binary protocols |
 
 ## Source Generated Outputs
 

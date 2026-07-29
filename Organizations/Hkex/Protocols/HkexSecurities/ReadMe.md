@@ -12,6 +12,7 @@ The Hkex Securities Market is operated by The Stock Exchange of Hong Kong Limite
 | [Combined](Combined.md) | MarketData | Orion Market Data Cash Combined |
 | [CombinedRefresh](CombinedRefresh.md) | MarketData | Orion Market Data Cash Combined Refresh |
 | [CombinedRetrans](CombinedRetrans.md) | MarketData | Orion Market Data Cash Combined Retransmission |
+| [DropCopy](DropCopy.md) | DropCopy | Hkex Orion Central Gateway - Securities Market (OCG-C) FIX Drop Copy Interface |
 | [FullTick](FullTick.md) | MarketData | Orion Market Data Cash FullTick |
 | [FullTickRefresh](FullTickRefresh.md) | MarketData | Orion Market Data Cash FullTick Refresh |
 | [FullTickRetrans](FullTickRetrans.md) | MarketData | Orion Market Data Cash FullTick Retransmission |
