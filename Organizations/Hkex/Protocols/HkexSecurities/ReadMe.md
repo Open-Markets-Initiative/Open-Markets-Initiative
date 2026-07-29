@@ -19,6 +19,7 @@ The Hkex Securities Market is operated by The Stock Exchange of Hong Kong Limite
 | [IndexRefresh](IndexRefresh.md) | MarketData | Orion Market Data Cash Index Refresh |
 | [IndexRetrans](IndexRetrans.md) | MarketData | Orion Market Data Cash Index Retransmission |
 | [Mmdh](Mmdh.md) | MarketData | Orion Market Data Cash Mainland Market Data Hub |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Hkex Orion Central Gateway - Securities Market (OCG-C) FIX Trading Interface |
 | [Premium](Premium.md) | MarketData | Orion Market Data Cash Premium |
 | [PremiumRefresh](PremiumRefresh.md) | MarketData | Orion Market Data Cash Premium Refresh |
 | [PremiumRetrans](PremiumRetrans.md) | MarketData | Orion Market Data Cash Premium Retransmission |

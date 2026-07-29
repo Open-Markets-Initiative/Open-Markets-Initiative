@@ -4,7 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [HkexDerivatives](HkexDerivatives/) | 15 |
-| [HkexSecurities](HkexSecurities/) | 16 |
+| [HkexSecurities](HkexSecurities/) | 17 |
 | [MainlandMarketDataHub](MainlandMarketDataHub/) | 1 |
 | [Sse](Sse/) | 3 |
 | [Szse](Szse/) | 3 |
