@@ -1,7 +1,7 @@
-## Chicago Mercantile Exchange Futures
+## CME Globex
 
 
-CME Group futures markets including interest rate, equity index, foreign exchange, agricultural, and energy futures and options cleared by the Chicago Mercantile Exchange.
+CME Globex electronic trading platform hosting futures and options across CME Group markets including the Chicago Mercantile Exchange, Chicago Board of Trade, New York Mercantile Exchange, and Commodity Exchange, as well as BrokerTec fixed income and EBS foreign exchange markets.
 
 
 ### Protocols

@@ -1,4 +1,4 @@
-## CmeFutures Mdp3: Cme Globex Sbe Market Data
+## Globex Mdp3: Cme Globex Sbe Market Data
 
 Sbe-encoded multicast market data platform publishing real-time order book, trade, and reference data for futures and options traded on Cme Globex.
 

@@ -1,4 +1,4 @@
-## CmeFutures Ebs Spectrum: Cme Ebs Spectrum Spot Foreign Exchange Market Data
+## Globex Ebs Spectrum: Cme Ebs Spectrum Spot Foreign Exchange Market Data
 
 Cme Ebs Spectrum market data feed distributing spot foreign exchange price discovery, depth of book, and trade summary messages for major, minor, and emerging market currency pairs traded on the Cme Ebs Spectrum platform. Delivered as conflated SBE messages over UDP multicast.
 

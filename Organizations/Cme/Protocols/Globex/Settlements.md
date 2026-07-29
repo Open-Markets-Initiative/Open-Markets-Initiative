@@ -1,4 +1,4 @@
-## CmeFutures Settlements: Cme End Of Day Settlement Data
+## Globex Settlements: Cme End Of Day Settlement Data
 
 End-of-day settlement price and open interest feed publishing official settlement data for futures and options traded on Cme Globex.
 

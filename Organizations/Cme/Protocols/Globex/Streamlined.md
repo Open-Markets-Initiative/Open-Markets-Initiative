@@ -1,4 +1,4 @@
-## CmeFutures Streamlined: Cme Globex Streamlined Top Of Book Data
+## Globex Streamlined: Cme Globex Streamlined Top Of Book Data
 
 Sbe-encoded lightweight top of book market data feed publishing best bid and offer quotations for futures and options traded on Cme Globex.
 

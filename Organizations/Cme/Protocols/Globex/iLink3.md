@@ -1,4 +1,4 @@
-## CmeFutures i Link3: Cme Globex Sbe Order Entry
+## Globex i Link3: Cme Globex Sbe Order Entry
 
 Sbe-encoded binary order entry protocol for submitting, modifying, and cancelling orders on the Cme Globex electronic trading platform with Fixp session layer.
 

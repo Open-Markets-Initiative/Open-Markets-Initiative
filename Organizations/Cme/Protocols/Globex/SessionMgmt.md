@@ -1,4 +1,4 @@
-## CmeFutures Session Mgmt: Cme Mdp Session Recovery Service
+## Globex Session Mgmt: Cme Mdp Session Recovery Service
 
 Tcp session management protocol used by Cme market data subscribers to perform recovery operations including market recovery, instrument definition, and snapshot recovery.
 
