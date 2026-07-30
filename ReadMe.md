@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-268-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-269-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -57,6 +57,8 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 - [wireshark-lua](https://github.com/Open-Markets-Initiative/wireshark-lua) — Source generated cross platform Wireshark dissectors
 - [c-structs](https://github.com/Open-Markets-Initiative/c-structs) — Source generated binary protocol c-style packed structs
+- [omi-csharp-protocols](https://github.com/Open-Markets-Initiative/omi-csharp-protocols) — Source generated C# protocol parsers, fixed-layout structs and immutable classes
+- [omi-rust-protocols](https://github.com/Open-Markets-Initiative/omi-rust-protocols) — Zero-copy Rust message views, one crate per protocol version
 
 **Generators and Tooling**
 

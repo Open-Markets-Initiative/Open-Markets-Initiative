@@ -50,6 +50,8 @@ Code-generated artifacts produced from the protocol specifications.
 | [CSharp.Sequential.Layout](https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout) | C# | Source generated castable C# binary protocol packed structs |
 | [CSharp.Hft.Structs](https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs) | C# | High performance C# binary protocol ref structs |
 | [Omi.CSharp.Parsers](https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers) | C# | Source generated high performance C# parsers for common exchange protocols |
+| [omi-csharp-protocols](https://github.com/Open-Markets-Initiative/omi-csharp-protocols) | C# | Source generated C# protocol parsers — fixed-layout structs and immutable classes per protocol version |
+| [omi-rust-protocols](https://github.com/Open-Markets-Initiative/omi-rust-protocols) | Rust | Zero-copy Rust message views generated from compiled binary data models — one crate per protocol version |
 | [omi.java.protocol.classes](https://github.com/Open-Markets-Initiative/omi.java.protocol.classes) | Java | Garbage-collector friendly Java binary protocol classes |
 | [omi-python-classes](https://github.com/Open-Markets-Initiative/omi-python-classes) | Python | Stable Python deserialization for common exchange protocols |
 
