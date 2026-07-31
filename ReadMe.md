@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-39-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-271-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-40-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-272-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -23,7 +23,7 @@
 
 ## Organizations
 
-> [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Boats](Organizations/Boats/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Cboe](Organizations/Cboe/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [Omi](Organizations/Omi/) · [OtcMarkets](Organizations/OtcMarkets/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
+> [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Boats](Organizations/Boats/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Cboe](Organizations/Cboe/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [Omi](Organizations/Omi/) · [OtcMarkets](Organizations/OtcMarkets/) · [Sgx](Organizations/Sgx/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
 
 ---
 
@@ -51,7 +51,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 - [omi-fix-dictionaries][omi-fix-dictionaries] — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
 - [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] — Kaitai Struct definitions for common exchange binary protocols
-- [omi-dfdl-definitions][omi-dfdl-definitions] — DFDL (Data Format Description Language) schemas for common exchange binary protocols
+- [omi-dfdl-definitions][omi-dfdl-definitions] — Data Format Description Language schemas for common exchange protocols
 
 **Source Generated Outputs**
 
@@ -81,7 +81,7 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
-[omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "DFDL (Data Format Description Language) schemas for common exchange binary protocols"
+[omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"

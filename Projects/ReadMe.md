@@ -33,7 +33,7 @@ Machine-readable protocol format dictionaries.
 | --- | --- | --- |
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] | Ksy | Kaitai Struct definitions for common exchange binary protocols |
-| [omi-dfdl-definitions][omi-dfdl-definitions] | Dfdl | DFDL (Data Format Description Language) schemas for common exchange binary protocols |
+| [omi-dfdl-definitions][omi-dfdl-definitions] | Dfdl | Data Format Description Language schemas for common exchange protocols |
 
 ## Source Generated Outputs
 
@@ -79,7 +79,7 @@ The composable toolchain that drives the generated outputs above.
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
-[omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "DFDL (Data Format Description Language) schemas for common exchange binary protocols"
+[omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
