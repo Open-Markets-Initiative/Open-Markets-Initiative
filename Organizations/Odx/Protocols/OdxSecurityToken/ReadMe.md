@@ -9,6 +9,7 @@ Osaka Digital Exchange security token trading venue offering electronic trading 
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Odx Pts FIX Trading Specification for Security Token |
 | [Pts](Pts.md) | MarketData | Odx Security Token Itch Market Data |
 
 ## Specifications
