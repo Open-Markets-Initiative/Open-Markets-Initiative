@@ -37,7 +37,6 @@ Repository of definitions and protocol specifications of the organizations cover
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNSX | [nsx.com.au](https://www.nsx.com.au) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |
 | [Odx](Odx/) | Osaka Digital Exchange |  | [odx.co.jp](https://www.odx.co.jp/en) |
-| [Omi](Omi/) | Open Markets Initiative |  | [openmarketsinitiative.com](https://openmarketsinitiative.com) |
 | [OtcMarkets](OtcMarkets/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
 | [Sgx](Sgx/) | Singapore Exchange | XSES | [sgx.com](https://www.sgx.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
