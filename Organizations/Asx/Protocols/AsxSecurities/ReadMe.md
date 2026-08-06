@@ -11,7 +11,9 @@ Australian Securities Exchange cash securities market covering equities, exchang
 | --- | --- | --- |
 | [Ntp](Ntp.md) | MarketData | Asx Ntp Itch Market Data |
 | [T24](T24.md) | MarketData | Asx 24 Itch Market Data |
+| [Trade.DropCopy](Trade.DropCopy.md) | DropCopy | Asx Trade Equities Fix Drop Copy |
 | [Trade.Itch](Trade.Itch.md) | MarketData | Asx Trade Equities Itch Market Data |
+| [Trade.OrderEntry](Trade.OrderEntry.md) | OrderEntry | Asx Trade Equities Fix Order Entry |
 | [Trade.Ouch](Trade.Ouch.md) | OrderEntry | Asx Trade Equities Ouch Order Entry |
 
 ## Specifications

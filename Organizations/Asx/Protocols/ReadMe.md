@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [AsxSecurities](AsxSecurities/) | 4 |
+| [AsxSecurities](AsxSecurities/) | 6 |
 
 ## Specifications
 
