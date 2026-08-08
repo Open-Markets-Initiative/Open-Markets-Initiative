@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [IexEquities](IexEquities/) | 4 |
+| [IexEquities](IexEquities/) | 5 |
 | [IexOptions](IexOptions/) | 4 |
 
 ## Specifications

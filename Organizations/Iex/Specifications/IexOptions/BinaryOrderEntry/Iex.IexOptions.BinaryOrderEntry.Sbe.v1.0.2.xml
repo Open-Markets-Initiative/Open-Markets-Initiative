@@ -103,7 +103,7 @@
       <validValue name="MissingClearingAccount">47</validValue>
       <validValue name="InvalidClearingAccount">48</validValue>
       <validValue name="InvalidAccount">49</validValue>
-      <validValue name="PriceSlideCancel">50</validValue>
+      <validValue name="QuoteNotMarketable">50</validValue>
       <validValue name="ConstrainedByDrillThroughProtection">51</validValue>
       <validValue name="InvalidOptionalData">52</validValue>
       <validValue name="DrillThroughProtectionCancel">53</validValue>
@@ -163,6 +163,7 @@
       <validValue name="ArbitrageBreach">107</validValue>
       <validValue name="ABRCBreach">108</validValue>
       <validValue name="AdminCancel">109</validValue>
+      <validValue name="InvalidReserved">110</validValue>
     </enum>
     <enum name="AckType" encodingType="int8" description="Acknowledgment types">
       <validValue name="NewInterest">1</validValue>
@@ -280,6 +281,7 @@
       <validValue name="GRMP">4</validValue>
       <validValue name="PurgeLockoutReset">5</validValue>
       <validValue name="IntrinsicValueAndArbitrage">6</validValue>
+      <validValue name="AllBlocksForUnderlying">7</validValue>
     </enum>
     <enum name="IOCAttribution" encodingType="int8" description="Include or exclude IOC orders in risk calculations">
       <validValue name="IncludeIOC">1</validValue>
@@ -567,7 +569,7 @@
     <field name="clOrdId" id="5" description="Unique identifier of the order as assigned by the Client." type="ClOrdId"/>
     <field name="orderId" id="6" description="Unique order identifier assigned by IEX" type="OrderId"/>
     <field name="side" id="7" description="Order side" type="Side"/>
-    <field name="price" id="8" description="Order price" type="Price8"/>
+    <field name="price" id="8" description="Order price" type="Price4"/>
     <field name="reasonCode" id="9" description="Reason for order execution or reject" type="ReasonCode"/>
     <field name="ackType" id="10" description="Type of acknowledgment for order" type="AckType"/>
     <field name="delta" id="11" description="Populated with Exchange-calculated Delta on unsolicited Quote Restated or Quote Canceled messages sent in response to the triggering of ORP, otherwise 0." type="Delta"/>
