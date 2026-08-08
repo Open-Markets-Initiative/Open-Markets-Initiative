@@ -9,8 +9,8 @@ Australian Securities Exchange cash securities market covering equities, exchang
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [Ntp](Ntp.md) | MarketData | Asx Ntp Itch Market Data |
-| [T24](T24.md) | MarketData | Asx 24 Itch Market Data |
+| [MarketPoint](MarketPoint.md) | MarketData | Asx Trade MarketPoint Fix Market Data |
+| [SignalB](SignalB.md) | TradeReporting | Asx Signal B Fix Trade Confirmations |
 | [Trade.DropCopy](Trade.DropCopy.md) | DropCopy | Asx Trade Equities Fix Drop Copy |
 | [Trade.Itch](Trade.Itch.md) | MarketData | Asx Trade Equities Itch Market Data |
 | [Trade.OrderEntry](Trade.OrderEntry.md) | OrderEntry | Asx Trade Equities Fix Order Entry |

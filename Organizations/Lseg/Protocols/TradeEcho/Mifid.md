@@ -1,4 +1,4 @@
-## TradeEcho Mifid: Lseg Trade Echo Mifid Post Trade Data
+## TradeEcho Mifid: MiFID II Post Trade
 
 MiFID II post-trade transparency feed published via the Lseg Trade Echo service.
 

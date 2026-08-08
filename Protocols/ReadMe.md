@@ -4,6 +4,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 
 | Protocol | Category | Organization | Description |
 | --- | --- | --- | --- |
+| [Snap](Snap.md) | Binary | Iex | IEX Snapshot Recovery Protocol |
 | [Boe3](Boe3.md) | Encoding | Cboe | Binary Order Entry 3 |
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
 | [Fbe](Fbe.md) | Encoding | Eurex | Flat Binary Encoding |
@@ -25,11 +26,12 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
+| [Gtp](Gtp.md) | MarketData | Lseg | Group Ticker Plant |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
 | [Itch](Itch.md) | MarketData | Nasdaq | Integrated Trading Channel Handlers |
 | [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
-| [Mitch](Mitch.md) | MarketData | Lseg | Millennium Exchange ITCH |
+| [Mitch](Mitch.md) | MarketData | Lseg | Millennium Itch |
 | [Omd](Omd.md) | MarketData | Hkex | Orion Market Data |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
@@ -54,7 +56,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [CommonClient](CommonClient.md) | Session | Nyse | Pillar TCP framing and session layer |
 | [SoupBinTcp](SoupBinTcp.md) | Session | Nasdaq | TCP Session Layer |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |
-| [Gtp](Gtp.md) | Trading Gateway | Lseg | Group Ticker Plant |
 | [BinaryPacket](BinaryPacket.md) | Transport | B3 | UMDF UDP packet framing |
 | [BinaryPacketHeader](BinaryPacketHeader.md) | Transport | Cme | MDP 3.0 UDP packet framing |
 | [IexTp](IexTp.md) | Transport | Iex | IEX Transport Protocol |

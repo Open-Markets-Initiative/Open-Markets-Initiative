@@ -3,8 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Lseg](Lseg/) | 2 |
-| [TradeEcho](TradeEcho/) | 2 |
+| [Lse](Lse/) | 17 |
+| [TradeEcho](TradeEcho/) | 7 |
+| [Turquoise](Turquoise/) | 4 |
 
 ## Specifications
 
