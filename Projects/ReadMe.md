@@ -34,6 +34,7 @@ Machine-readable protocol format dictionaries.
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] | Ksy | Kaitai Struct definitions for common exchange binary protocols |
 | [omi-dfdl-definitions][omi-dfdl-definitions] | Dfdl | Data Format Description Language schemas for common exchange protocols |
+| [omi-p4-definitions][omi-p4-definitions] | P4 | Target independent P4 programs that parse common exchange protocols on software and hardware data planes |
 
 ## Source Generated Outputs
 
@@ -47,6 +48,7 @@ Code-generated artifacts produced from the protocol specifications.
 | [omi-rust-protocols][omi-rust-protocols] | Rust | Zero-copy Rust message views, one crate per protocol version |
 | [cpp-packets][cpp-packets] | C++ | High performance inline modern C++ packet parsing |
 | [cpp-parsers][cpp-parsers] | C++ | Source generated C++ exchange parsers |
+| [omi-cpp-exchanges][omi-cpp-exchanges] | C++ | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
 | [omi-cpp-protocol-statistics][omi-cpp-protocol-statistics] | C++ | Code generated executables that gather statistics and gap detection on common exchange protocols |
 | [omi-cpp-parquet-wide][omi-cpp-parquet-wide] | C++ | Code generated Apache Parquet protocol transforms for common exchange protocols |
 | [CSharp.Sequential.Layout][CSharp.Sequential.Layout] | C# | Source generated castable C# binary protocol packed structs |
@@ -80,12 +82,14 @@ The composable toolchain that drives the generated outputs above.
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
+[omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "Target independent P4 programs that parse common exchange protocols on software and hardware data planes"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [cpp-packets]: https://github.com/Open-Markets-Initiative/cpp-packets "High performance inline modern C++ packet parsing"
 [cpp-parsers]: https://github.com/Open-Markets-Initiative/cpp-parsers "Source generated C++ exchange parsers"
+[omi-cpp-exchanges]: https://github.com/Open-Markets-Initiative/omi-cpp-exchanges "Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers"
 [omi-cpp-protocol-statistics]: https://github.com/Open-Markets-Initiative/omi-cpp-protocol-statistics "Code generated executables that gather statistics and gap detection on common exchange protocols"
 [omi-cpp-parquet-wide]: https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide "Code generated Apache Parquet protocol transforms for common exchange protocols"
 [CSharp.Sequential.Layout]: https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout "Source generated castable C# binary protocol packed structs"
