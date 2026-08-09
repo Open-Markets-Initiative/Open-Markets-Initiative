@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Derivatives](Derivatives/) | 1 |
+| [TaifexDerivatives](TaifexDerivatives/) | 1 |
 
 ## Specifications
 

@@ -1,4 +1,4 @@
-## Derivatives Order Entry: Taifex Tcp Ip Fix Messaging Specification
+## TaifexDerivatives Order Entry: Taifex Tcp Ip Fix Messaging Specification
 
 Financial Information eXchange encoding of the Taiwan Futures Exchange order entry interface, used by futures commission merchants to submit, decrease and reprice single and multi-leg futures and options orders, enter and cancel market maker quotes, request quotes and Flex product definitions, query trading session status, exchange bulletins and file requests by Email, and receive execution reports over the Taifex Fix session.
 
