@@ -41,6 +41,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Sgx](Sgx/) | Singapore Exchange | XSES | [sgx.com](https://www.sgx.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
 | [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
+| [Taifex](Taifex/) | Taiwan Futures Exchange | XTAF | [taifex.com.tw](https://www.taifex.com.tw) |
 | [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
 
