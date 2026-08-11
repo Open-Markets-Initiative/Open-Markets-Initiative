@@ -25,16 +25,16 @@ Example protocol data captures from production feeds.
 | [omi-data-packets][omi-data-packets] | Example protocol data captures |
 | [omi-data-pcaps][omi-data-pcaps] | Exchange pcaps for automated testing |
 
-## Dictionaries
+## Definitions
 
-Machine-readable protocol format dictionaries.
+Domain specific language definitions
 
 | Repository | Language | Description |
 | --- | --- | --- |
-| [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] | Ksy | Kaitai Struct definitions for common exchange binary protocols |
 | [omi-dfdl-definitions][omi-dfdl-definitions] | Dfdl | Data Format Description Language schemas for common exchange protocols |
 | [omi-p4-definitions][omi-p4-definitions] | P4 | Target independent P4 programs that parse common exchange protocols on software and hardware data planes |
+| [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 
 ## Source Generated Outputs
 
@@ -54,7 +54,7 @@ Code-generated artifacts produced from the protocol specifications.
 | [CSharp.Sequential.Layout][CSharp.Sequential.Layout] | C# | Source generated castable C# binary protocol packed structs |
 | [CSharp.Hft.Structs][CSharp.Hft.Structs] | C# | High performance C# binary protocol ref structs |
 | [Omi.CSharp.Parsers][Omi.CSharp.Parsers] | C# | Source generated high performance C# parsers for common exchange protocols |
-| [omi.java.protocol.classes][omi.java.protocol.classes] | Java | Garbage-collector friendly Java binary protocol classes |
+| [omi-java-protocols][omi-java-protocols] | Java | Garbage-collector friendly Java binary protocol classes |
 | [omi-python-classes][omi-python-classes] | Python | Stable Python deserialization for common exchange protocols |
 
 ## Generators and Tooling
@@ -79,10 +79,10 @@ The composable toolchain that drives the generated outputs above.
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
-[omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
 [omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "Target independent P4 programs that parse common exchange protocols on software and hardware data planes"
+[omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
@@ -95,7 +95,7 @@ The composable toolchain that drives the generated outputs above.
 [CSharp.Sequential.Layout]: https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout "Source generated castable C# binary protocol packed structs"
 [CSharp.Hft.Structs]: https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs "High performance C# binary protocol ref structs"
 [Omi.CSharp.Parsers]: https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers "Source generated high performance C# parsers for common exchange protocols"
-[omi.java.protocol.classes]: https://github.com/Open-Markets-Initiative/omi.java.protocol.classes "Garbage-collector friendly Java binary protocol classes"
+[omi-java-protocols]: https://github.com/Open-Markets-Initiative/omi-java-protocols "Garbage-collector friendly Java binary protocol classes"
 [omi-python-classes]: https://github.com/Open-Markets-Initiative/omi-python-classes "Stable Python deserialization for common exchange protocols"
 [Omi.Fix.Generators]: https://github.com/Open-Markets-Initiative/Omi.Fix.Generators "Composable FIX source generators"
 [Omi.Fix.Fast.Generators]: https://github.com/Open-Markets-Initiative/Omi.Fix.Fast.Generators "Code generation for FIX FAST protocols"
