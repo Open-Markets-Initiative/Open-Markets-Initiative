@@ -1,6 +1,6 @@
-## TradeEcho Level2Replay: Level 2 Replay
+## TradeEcho Mifid2Post Trade Replay: MiFID II Post Trade Replay
 
-Replay service retransmitting recently disseminated Trade Echo Level 2 messages over a Tcp session using Group Ticker Plant framing.
+Replay service retransmitting recently disseminated Trade Echo MiFID II post trade messages over a Tcp session using Group Ticker Plant framing.
 
 ### Overview
 

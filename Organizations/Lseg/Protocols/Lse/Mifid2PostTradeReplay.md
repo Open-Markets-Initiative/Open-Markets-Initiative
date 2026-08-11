@@ -1,4 +1,4 @@
-## Lse Mifid Replay: MiFID II Post Trade Replay
+## Lse Mifid2Post Trade Replay: MiFID II Post Trade Replay
 
 Replay service for the London Stock Exchange MiFID II Post Trade market data gateway, carrying MiFID II post trade transparency reports over a Tcp session using Group Ticker Plant framing.
 

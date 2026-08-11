@@ -23,9 +23,9 @@ London Stock Exchange cash equities venue operated by London Stock Exchange Grou
 | [Level2Mbp](Level2Mbp.md) | MarketData | Level 2 MBP |
 | [Level2MbpRecovery](Level2MbpRecovery.md) | MarketData | Level 2 MBP Recovery |
 | [Level2MbpReplay](Level2MbpReplay.md) | MarketData | Level 2 MBP Replay |
-| [Mifid](Mifid.md) | MarketData | MiFID II Post Trade |
-| [MifidRecovery](MifidRecovery.md) | MarketData | MiFID II Post Trade Recovery |
-| [MifidReplay](MifidReplay.md) | MarketData | MiFID II Post Trade Replay |
+| [Mifid2PostTrade](Mifid2PostTrade.md) | MarketData | MiFID II Post Trade |
+| [Mifid2PostTradeRecovery](Mifid2PostTradeRecovery.md) | MarketData | MiFID II Post Trade Recovery |
+| [Mifid2PostTradeReplay](Mifid2PostTradeReplay.md) | MarketData | MiFID II Post Trade Replay |
 
 ## Specifications
 

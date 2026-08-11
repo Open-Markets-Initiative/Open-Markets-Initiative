@@ -1,4 +1,4 @@
-## Lse Mifid Recovery: MiFID II Post Trade Recovery
+## Lse Mifid2Post Trade Recovery: MiFID II Post Trade Recovery
 
 Recovery service for the London Stock Exchange MiFID II Post Trade market data gateway, carrying MiFID II post trade transparency reports over a Tcp session using Group Ticker Plant framing.
 

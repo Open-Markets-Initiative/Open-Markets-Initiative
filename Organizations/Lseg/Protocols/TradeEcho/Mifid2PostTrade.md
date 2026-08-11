@@ -1,10 +1,10 @@
-## TradeEcho Level2: Lseg Trade Echo Depth Of Book Data
+## TradeEcho Mifid2Post Trade: MiFID II Post Trade
 
-Level 2 depth of book feed published via the Trade Echo service for securities traded on Lseg venues.
+MiFID II post-trade transparency feed published via the Lseg Trade Echo service.
 
 ### Overview
 
-Trade Echo Level 2 is a market data feed from the Lseg Trade Echo service, delivered via the Lseg Group Ticker Plant (Gtp) binary format over Ip multicast. Trade Echo provides a consolidated view across Lseg venues.
+Trade Echo MiFID II Post Trade is a market data feed from the Lseg Trade Echo service, delivered via the Lseg Group Ticker Plant (Gtp) binary format over Ip multicast. Trade Echo provides a consolidated view across Lseg venues.
 
 ### Transport
 

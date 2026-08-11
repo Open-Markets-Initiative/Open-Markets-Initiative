@@ -1,4 +1,4 @@
-## TradeEcho Mifid Recovery: MiFID II Post Trade Recovery
+## TradeEcho Mifid2Post Trade Recovery: MiFID II Post Trade Recovery
 
 Recovery service publishing Trade Echo reference data, instrument status, statistics snapshot and MiFID II trade report messages over a Tcp session using Group Ticker Plant framing.
 

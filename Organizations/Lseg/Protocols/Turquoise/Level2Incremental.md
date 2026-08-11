@@ -1,10 +1,10 @@
-## Turquoise Mifid: MiFID II Post Trade
+## Turquoise Level2Incremental: Level 2 Incremental
 
-MiFID II post-trade transparency feed publishing trade reports for regulatory compliance from the Lseg Turquoise Mtf.
+Level 2 Incremental order by order feed publishing add, modify and delete instructions for securities traded on the Lseg Turquoise Mtf.
 
 ### Overview
 
-Turquoise MiFID II Post Trade is a market data feed for the London Stock Exchange Turquoise Multilateral Trading Facility (Mtf), delivered via the Lseg Group Ticker Plant (Gtp) binary format. The feed is distributed over Ip multicast with Tcp recovery services for gap fill.
+Turquoise Level 2 Incremental is a market data feed for the London Stock Exchange Turquoise Multilateral Trading Facility (Mtf), delivered via the Lseg Group Ticker Plant (Gtp) binary format. The feed is distributed over Ip multicast with Tcp recovery services for gap fill.
 
 ### Transport
 

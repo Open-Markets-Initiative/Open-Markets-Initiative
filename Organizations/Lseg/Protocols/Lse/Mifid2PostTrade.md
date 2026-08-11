@@ -1,4 +1,4 @@
-## Lse Mifid: MiFID II Post Trade
+## Lse Mifid2Post Trade: MiFID II Post Trade
 
 MiFID II post trade transparency service publishing regulatory trade reports for London Stock Exchange instruments over the Group Ticker Plant.
 
