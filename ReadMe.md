@@ -51,7 +51,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 - [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] — Kaitai Struct definitions for common exchange binary protocols
 - [omi-dfdl-definitions][omi-dfdl-definitions] — Data Format Description Language schemas for common exchange protocols
-- [omi-p4-definitions][omi-p4-definitions] — Target independent P4 programs that parse common exchange protocols on software and hardware data planes
+- [omi-p4-definitions][omi-p4-definitions] — P4 definitions for common exchange protocols for software and hardware data planes
 - [omi-fix-dictionaries][omi-fix-dictionaries] — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
 
 **Source Generated Outputs**
@@ -82,7 +82,7 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
-[omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "Target independent P4 programs that parse common exchange protocols on software and hardware data planes"
+[omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "P4 definitions for common exchange protocols for software and hardware data planes"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
