@@ -1,10 +1,10 @@
-## BoatsEquities Memoir Last Sale: Boats Last Sale Trade Data
+## BlueEquities Memoir Last Sale: Blue Ocean Last Sale Trade Data
 
-Real-time trade feed reporting executions, cancellations, and corrections for securities traded on Blue Ocean Ats.
+Real-time trade feed reporting executions, cancellations, and corrections for securities traded on Blue Ocean ATS.
 
 ### Overview
 
-Memoir Last Sale is an event-based market data protocol that publishes trade activity for every instrument traded on Blue Ocean Ats. The feed delivers trade reporting, trade cancellation, and trade correction events along with trading session state, enabling subscribers to consume a clean last-sale stream without needing full depth of book.
+Memoir Last Sale is an event-based market data protocol that publishes trade activity for every instrument traded on Blue Ocean ATS. The feed delivers trade reporting, trade cancellation, and trade correction events along with trading session state, enabling subscribers to consume a clean last-sale stream without needing full depth of book.
 
 Messages are encoded using the Fix Trading Community Simple Binary Encoding standard and distributed as a sequenced fixed-width stream over the Memx-Udp multicast channel. Gap fill replay is available over the Memx-Tcp channel for subscribers that miss packets or need to resynchronize. The protocol is unidirectional and cannot be used to submit orders.
 

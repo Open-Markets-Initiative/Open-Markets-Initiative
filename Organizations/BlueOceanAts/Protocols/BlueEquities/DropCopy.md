@@ -1,4 +1,4 @@
-## BoatsEquities Drop Copy: Boats Fix Drop Copy (MEMO FIX Drop)
+## BlueEquities Drop Copy: Blue Ocean ATS Fix Drop Copy (MEMO FIX Drop)
 
 Financial Information eXchange (Fix) drop copy feed for Blue Ocean ATS, delivering a read-only copy of execution reports, trades, and order state changes over the Memx-Tcp Fix session.
 

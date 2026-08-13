@@ -1,10 +1,10 @@
-## BoatsEquities Memoir Top Of Book: Boats Best Bid And Offer Data
+## BlueEquities Memoir Top Of Book: Blue Ocean Best Bid And Offer Data
 
-Real-time top of book feed providing best bid and offer quotations for securities traded on Blue Ocean Ats.
+Real-time top of book feed providing best bid and offer quotations for securities traded on Blue Ocean ATS.
 
 ### Overview
 
-Memoir Top Of Book is a unidirectional event-based market data feed that publishes the best bid and best offer for every instrument traded on Blue Ocean Ats. The protocol delivers top of book updates, instrument directory entries, trading session status, trading action notifications, and Reg SHO short sale restriction events. It cannot be used to submit orders.
+Memoir Top Of Book is a unidirectional event-based market data feed that publishes the best bid and best offer for every instrument traded on Blue Ocean ATS. The protocol delivers top of book updates, instrument directory entries, trading session status, trading action notifications, and Reg SHO short sale restriction events. It cannot be used to submit orders.
 
 Messages are encoded using the FIX Trading Community Simple Binary Encoding (Sbe) standard and distributed over the Memx-Udp multicast channel as a sequenced fixed-width stream. A session identifier is issued at the start of the trading day and sequence numbers begin at 1, with an Instrument Directory spin mapping each tradable symbol to a short locate code used for the remainder of the session. Gap fill and snapshot recovery are available over the Memx-Tcp channel for subscribers that miss packets or need to rebuild state.
 
@@ -14,7 +14,7 @@ Udp multicast via the Memx-Udp channel for real-time delivery of sequenced Sbe m
 
 ### Key Characteristics
 
-- **Top of book** - Best bid and best offer quotations for every Boats-listed instrument
+- **Top of book** - Best bid and best offer quotations for every Blue Ocean listed instrument
 - **Sbe encoded** - FIX Simple Binary Encoding for fixed-width low-latency parsing
 - **Udp multicast delivery** - Real-time publication over the Memx-Udp channel with sequence numbers
 - **Tcp recovery** - Gap fill and snapshot recovery over the Memx-Tcp channel

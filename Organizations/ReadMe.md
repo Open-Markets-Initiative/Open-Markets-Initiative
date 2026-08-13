@@ -10,7 +10,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Asx](Asx/) | Australian Securities Exchange | XASX | [asx.com.au](https://www.asx.com.au) |
 | [B3](B3/) | Brasil, Bolsa, Balcão | BVMF | [b3.com.br](https://www.b3.com.br/en_us) |
 | [Bist](Bist/) | Borsa İstanbul A.Ş. | XIST | [borsaistanbul.com](https://www.borsaistanbul.com/en) |
-| [Boats](Boats/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
+| [BlueOceanAts](BlueOceanAts/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
 | [Box](Box/) | Box Options Market | XBOX | [boxoptions.com](https://boxoptions.com) |
 | [BruceAts](BruceAts/) | Bruce ATS |  | [brucemarkets.com](https://www.brucemarkets.com) |
 | [Cboe](Cboe/) | Chicago Board Options Exchange | XCBO | [cboe.com](https://www.cboe.com) |

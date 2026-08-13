@@ -1,9 +1,9 @@
-## Boats Protocols
+## BlueOceanAts Protocols
 
 
 | Exchange | Protocols |
 | --- | --- |
-| [BoatsEquities](BoatsEquities/) | 6 |
+| [BlueEquities](BlueEquities/) | 6 |
 
 ## Specifications
 
