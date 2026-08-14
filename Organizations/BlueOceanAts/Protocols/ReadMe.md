@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [BlueEquities](BlueEquities/) | 6 |
+| [BlueEquities](BlueEquities/) | 7 |
 
 ## Specifications
 
