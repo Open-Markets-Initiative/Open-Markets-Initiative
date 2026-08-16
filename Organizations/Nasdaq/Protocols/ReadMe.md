@@ -11,7 +11,7 @@
 | [Nasdaq](Nasdaq/) | 2 |
 | [NomOptions](NomOptions/) | 3 |
 | [NsmEquities](NsmEquities/) | 17 |
-| [NtxEquities](NtxEquities/) | 9 |
+| [NtxEquities](NtxEquities/) | 8 |
 | [NtxOptions](NtxOptions/) | 3 |
 | [PhlxOptions](PhlxOptions/) | 9 |
 | [PsxEquities](PsxEquities/) | 8 |
