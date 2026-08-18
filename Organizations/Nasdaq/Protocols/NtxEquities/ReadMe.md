@@ -10,7 +10,6 @@ Nasdaq Texas US cash equities exchange — successor to the Nasdaq Boston (BX) S
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Bbo](Bbo.md) | MarketData | Nasdaq TX Top Of Book Quotation Data |
-| [Glimpse](Glimpse.md) | MarketData | Nasdaq Ntx Equities Snapshot Retransmission Service |
 | [LastSale](LastSale.md) | MarketData | Nasdaq BX Trade Report Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq Texas Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq BX Order Entry |

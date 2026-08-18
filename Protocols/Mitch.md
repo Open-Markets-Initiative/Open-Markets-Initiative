@@ -1,4 +1,4 @@
-## Mitch: Millennium Exchange ITCH
+## Mitch: Millennium Itch
 
 Proprietary binary market data protocol developed by LSEG (London Stock Exchange Group) for Level 2 order-by-order market data dissemination on the Millennium Exchange platform, conceptually inspired by Nasdaq's ITCH protocol.
 

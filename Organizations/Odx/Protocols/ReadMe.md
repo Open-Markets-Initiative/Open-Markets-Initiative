@@ -3,8 +3,8 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [OdxEquities](OdxEquities/) | 1 |
-| [OdxSecurityToken](OdxSecurityToken/) | 1 |
+| [OdxEquities](OdxEquities/) | 3 |
+| [OdxSecurityToken](OdxSecurityToken/) | 2 |
 
 ## Specifications
 

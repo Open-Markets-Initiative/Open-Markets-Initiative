@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   xmlns:xi="http://www.w3.org/2001/XInclude"
+                   package="iex.options.codec.sbe.marketdata"
+                   id="10000"
+                   version="0"
+                   semanticVersion="1.0"
+                   description="IEX Options Market Data Schema"
+                   byteOrder="littleEndian">
+
+    <types>
+        <composite name="messageHeader" description="Message identifiers and length of message root.">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint16"/>
+            <type name="schemaId" primitiveType="uint16"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+
+        <composite name="messageListGroupEncoding" description="Repeating group dimensions.">
+            <type name="blockLength" primitiveType="uint8"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+
+        <composite name="varDataEncoding" description="Variable length binary blob.">
+            <type name="length" primitiveType="uint16"/>
+            <type name="varData" primitiveType="uint8" length="0"/>
+        </composite>
+
+        <type name="ChannelId" primitiveType="uint32" description="Channel identifier for the transport stream."/>
+        <type name="EpochNanos" primitiveType="uint64" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <type name="EventId" primitiveType="uint32" description="Day-specific identifier assigned to this liquidity event"/>
+        <type name="ExchangeCode" primitiveType="char"/>
+        <type name="InstrumentId" primitiveType="uint32" description="Exchange-defined identification number assigned to the security."/>
+        <type name="LogonId" primitiveType="char" length="16" description="Login identifier"/>
+        <type name="OrderId" primitiveType="uint64"/>
+        <type name="PacketCount" primitiveType="uint32"/>
+        <type name="Quantity" primitiveType="uint32"/>
+        <type name="RequestId" primitiveType="uint32" description="Monotonically increasing identifier to correlate retransmission requests."/>
+        <type name="SequenceNumber" primitiveType="uint64" description="Transport sequence number for ordered messages."/>
+        <type name="SnapshotId" primitiveType="uint32" description="Identifier that uniquely distinguishes a snapshot instance for a channel."/>
+        <type name="String4" primitiveType="char" length="4"/>
+        <type name="String8" primitiveType="char" length="8"/>
+        <type name="String32" primitiveType="char" length="32"/>
+        <type name="TimeOffset" primitiveType="uint32" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <type name="TradeId" primitiveType="uint64"/>
+        <type name="UnderlyingId" primitiveType="uint32" description="Exchange-defined identification number assigned to the underlying security."/>
+        <type name="UnderlyingSymbol" primitiveType="char" length="16"/>
+
+        <composite name="Price8" description="Price with fixed exponent -8">
+            <type name="mantissa" primitiveType="int64"/>
+            <type name="exponent" presence="constant" primitiveType="int8">-8</type>
+        </composite>
+
+        <enum name="AuctionType" encodingType="int8" description="Enumerates the different types of actions">
+            <validValue name="Opening">0</validValue>
+            <validValue name="HaltReOpening">1</validValue>
+        </enum>
+
+        <enum name="BooleanType" encodingType="uint8" description="Boolean representation">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+
+        <enum name="CapacityType" encodingType="int8" description="Capacity of the order">
+            <validValue name="Customer">0</validValue>
+            <validValue name="Firm">1</validValue>
+            <validValue name="BrokerDealer">2</validValue>
+            <validValue name="MarketMaker">3</validValue>
+            <validValue name="AwayMarketMaker">4</validValue>
+            <validValue name="ProfCustomer">5</validValue>
+            <validValue name="NotDisclosed">6</validValue>
+        </enum>
+
+        <enum name="CloseIndicatorType" encodingType="int8" description="Indicates whether an underlying is closed">
+            <validValue name="Default">0</validValue>
+            <validValue name="UnderlyingClosed">1</validValue>
+        </enum>
+
+        <enum name="CustIndType" encodingType="int8" description="Customer or non-customer types">
+            <validValue name="Customer">0</validValue>
+            <validValue name="NonCustomer">1</validValue>
+        </enum>
+
+        <enum name="FeedType" encodingType="int8" description="Market data feed type">
+            <validValue name="DEEP">0</validValue>
+            <validValue name="TOPS">1</validValue>
+        </enum>
+
+        <enum name="LiquidityEventType" encodingType="int8" description="Type of liquidity event">
+            <validValue name="SUM">0</validValue>
+        </enum>
+
+        <enum name="ModFlagType" encodingType="int8" description="Indicates whether an order maintains or resets priority">
+            <validValue name="ResetPriority">0</validValue>
+            <validValue name="MaintainPriority">1</validValue>
+        </enum>
+
+        <enum name="MPVType" encodingType="int8" description="Minimum price variation types">
+            <validValue name="AllPenny">0</validValue>
+            <validValue name="PennyNickel">1</validValue>
+            <validValue name="NickelDime">2</validValue>
+        </enum>
+
+        <enum name="OptionType" encodingType="int8" description="Option type">
+            <validValue name="Put">0</validValue>
+            <validValue name="Call">1</validValue>
+        </enum>
+
+        <enum name="ORPType" encodingType="int8" description="Indicates whether an instrument has ORP protection enabled">
+            <validValue name="ORPProtectionEnabled">0</validValue>
+            <validValue name="ORPProtectionDisabled">1</validValue>
+        </enum>
+
+        <enum name="RetransmissionStatusType" encodingType="uint8" description="Retransmission response status">
+            <validValue name="Success">0</validValue>
+            <validValue name="InvalidChannelId">1</validValue>
+            <validValue name="InvalidFeed">2</validValue>
+            <validValue name="InvalidLogonId">3</validValue>
+            <validValue name="InvalidRequestId">4</validValue>
+            <validValue name="InvalidPacketLength">5</validValue>
+            <validValue name="InvalidMessage">6</validValue>
+            <validValue name="InvalidSeqNumRange">7</validValue>
+            <validValue name="DenialOfService">8</validValue>
+            <validValue name="MaxDailyRequestsExceeded">9</validValue>
+            <validValue name="MaxSeqNumRangeExceeded">10</validValue>
+            <validValue name="SeqNumTTLExpired">11</validValue>
+            <validValue name="InternalError">12</validValue>
+        </enum>
+
+        <enum name="SideType" encodingType="int8" description="Bid (buy) or offer (sell)">
+            <validValue name="Buy">1</validValue>
+            <validValue name="Sell">2</validValue>
+        </enum>
+
+        <enum name="StatusType" encodingType="int8" description="Quote status">
+            <validValue name="RegularTrading">0</validValue>
+            <validValue name="TradingHalted">1</validValue>
+        </enum>
+
+        <enum name="TradingStatusType" encodingType="int8" description="Trading state of an instrument">
+            <validValue name="Halted">0</validValue>
+            <validValue name="PreOpening">1</validValue>
+            <validValue name="OpeningProcess">2</validValue>
+            <validValue name="ContinuousTrading">3</validValue>
+            <validValue name="ReOpeningProcess">4</validValue>
+            <validValue name="Suspended">5</validValue>
+            <validValue name="Queueing">6</validValue>
+        </enum>
+    </types>
+
+    <!-- Common messages-->
+    <sbe:message name="UnderlyingRefData" id="1" description="Underlying symbol definition">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="underlyingId" type="UnderlyingId" id="2" description="Unique identifier for this underlying"/>
+        <field name="underlyingSymbol" type="UnderlyingSymbol" id="3" description="ASCII string representing the underlying symbol"/>
+        <field name="exchangeCode" type="ExchangeCode" id="4" description="Market where the symbol is listed"/>
+        <field name="mpvGroup" type="MPVType" id="5" description="Minimum price variation for the underlying"/>
+        <field name="closeIndicator" type="CloseIndicatorType" id="6" description="Indicates whether all instruments belonging to this underlying are closed"/>
+    </sbe:message>
+    <sbe:message name="SymbolMapping" id="2" description="Defines InstrumentID for each series and maps to its underlying">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Unique identifier for this options series"/>
+        <field name="osiSymbol" type="String32" id="3" description="OSI symbol of this options series"/>
+        <field name="tradingRing" type="int8" id="4" description="Trading ring this instrument is traded within"/>
+        <field name="closingOnlySeries" type="BooleanType" id="5" description="Whether this instrument is closing-only"/>
+        <field name="underlyingId" type="UnderlyingId" id="6" description="ID of the underlying symbol"/>
+        <field name="maturityDate" type="String8" id="7" description="Option maturity date: YYYYMMDD"/>
+        <field name="optionType" type="OptionType" id="8" description="Put or call"/>
+        <field name="strikePrice" type="Price8" id="9" description="Strike price of this options series"/>
+        <field name="orpEnablement" type="ORPType" id="10" description="Whether ORP protection is enabled for this options series"/>
+    </sbe:message>
+    <sbe:message name="InstrumentClear" id="3" description="Clears the book for an instrument">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+    </sbe:message>
+    <sbe:message name="TradingStatus" id="4" description="Updates trading state of an instrument">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="tradingStatus" type="TradingStatusType" id="3" description="Current trading status for this instrument"/>
+    </sbe:message>
+    <sbe:message name="OptionsAuctionSummary" id="5" description="Publishes result of an auction event">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="auctionSummaryType" type="AuctionType" id="3" description="Type of this auction"/>
+        <field name="price" type="Price8" id="4" description="Auction price"/>
+        <field name="contracts" type="Quantity" id="5" description="Cumulative number of contracts executed during the auction match"/>
+    </sbe:message>
+    <sbe:message name="OptionsAuctionWidthUpdate" id="6" description="Publishes result of an auction event">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="underlyingId" type="UnderlyingId" id="2" description="ID of the underlying symbol"/>
+        <field name="quoteReliefMultiplier" type="uint8" id="3" description="Integer multiplier"/>
+    </sbe:message>
+    <sbe:message name="LiquidityEventNotification" id="7" description="Used to disseminate order details of a liquidity event ">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="eventId" type="EventId" id="3" description="Day-specific identifier assigned to this liquidity event"/>
+        <field name="liquidityEventType" type="LiquidityEventType" id="4" description="Type of liquidity event"/>
+        <field name="side" type="SideType" id="5" description="The side of this liquidity event"/>
+        <field name="price" type="Price8" id="6" description="When Auction Type = SUM, Price = NBBO price of opposite side of liquidity event at the time of entry"/>
+        <field name="contracts" type="Quantity" id="7" description="Number of contracts available in the liquidity event"/>
+        <field name="capacity" type="CapacityType" id="8" description="Capacity specified with the liquidity event"/>
+        <field name="participantId" type="String4" id="9" description="Executing Broker (optional) of firm attributed to this quote"/>
+        <field name="eventEndOffset" type="TimeOffset" id="10" description="End time of event, offset from last Time message"/>
+    </sbe:message>
+    <sbe:message name="LiquidityEventExecution" id="8" description="Used to disseminate executions resulting from a liquidity event">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="eventId" type="EventId" id="3" description="Day-specific identifier assigned to this liquidity event"/>
+        <field name="tradeId" type="TradeId" id="4" description="Day-specific identifier assigned to this execution"/>
+        <field name="price" type="Price8" id="5" description="Trade price"/>
+        <field name="contracts" type="Quantity" id="6" description="Number of contracts traded"/>
+    </sbe:message>
+    <sbe:message name="LiquidityEventCancel" id="9" description="Used to disseminate the cancellation or conclusion of a liquidity event">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="eventId" type="EventId" id="3" description="Day-specific identifier assigned to this liquidity event"/>
+    </sbe:message>
+
+    <!-- DEEP messages-->
+    <sbe:message name="AddOrderNonCustomer" id="100" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="orderId" type="OrderId" id="3" description=""/>
+        <field name="side" type="SideType" id="4" description=""/>
+        <field name="price" type="Price8" id="5" description=""/>
+        <field name="contracts" type="Quantity" id="6" description=""/>
+    </sbe:message>
+    <sbe:message name="AddOrderCustomer" id="101" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="orderId" type="OrderId" id="3" description=""/>
+        <field name="side" type="SideType" id="4" description=""/>
+        <field name="price" type="Price8" id="5" description=""/>
+        <field name="contracts" type="Quantity" id="6" description=""/>
+        <field name="customerIndicator" type="CustIndType" id="7" description=""/>
+    </sbe:message>
+    <sbe:message name="ModifyOrder" id="102" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="orderId" type="OrderId" id="3" description=""/>
+        <field name="price" type="Price8" id="4" description=""/>
+        <field name="contracts" type="Quantity" id="5" description=""/>
+        <field name="modFlag" type="ModFlagType" id="6" description=""/>
+    </sbe:message>
+    <sbe:message name="DeleteOrder" id="103" description="Used to denote that a booked order has been cancelled by the Member or unsolicited by the Exchange">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="orderId" type="OrderId" id="3" description=""/>
+    </sbe:message>
+    <sbe:message name="OrderExecution" id="104" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="orderId" type="OrderId" id="4" description=""/>
+        <field name="tradeId" type="TradeId" id="5" description=""/>
+        <field name="price" type="Price8" id="6" description=""/>
+        <field name="executedContracts" type="Quantity" id="7" description=""/>
+        <field name="remainingContracts" type="Quantity" id="8" description=""/>
+        <field name="tradeCondition" type="char" id="9" description=""/>
+    </sbe:message>
+    <sbe:message name="DEEPTradeBreak" id="105" description="Used to denote a canceled trade">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="tradeId" type="TradeId" id="3" description=""/>
+    </sbe:message>
+
+    <!-- TOPS messages-->
+    <sbe:message name="QuoteUpdateNoCustomerInterest" id="200" description="Used to denote when any event results in a new top of book value on either side of the market">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="bidSize" type="Quantity" id="3" description=""/>
+        <field name="bidPrice" type="Price8" id="4" description=""/>
+        <field name="askSize" type="Quantity" id="5" description=""/>
+        <field name="askPrice" type="Price8" id="6" description=""/>
+        <field name="status" type="StatusType" id="7" description=""/>
+    </sbe:message>
+    <sbe:message name="QuoteUpdateCustomerInterest" id="201" description="Used to denote when any event results in a new top of book value on either side of the market">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description="Instrument ID of options series"/>
+        <field name="bidSize" type="Quantity" id="3" description=""/>
+        <field name="bidCustomerSize" type="Quantity" id="4" description=""/>
+        <field name="bidPrice" type="Price8" id="5" description=""/>
+        <field name="askSize" type="Quantity" id="6" description=""/>
+        <field name="askCustomerSize" type="Quantity" id="7" description=""/>
+        <field name="askPrice" type="Price8" id="8" description=""/>
+        <field name="status" type="StatusType" id="9" description=""/>
+    </sbe:message>
+    <sbe:message name="Trade" id="202" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="tradeId" type="TradeId" id="3" description=""/>
+        <field name="price" type="Price8" id="4" description=""/>
+        <field name="contracts" type="Quantity" id="5" description=""/>
+        <field name="tradeCondition" type="char" id="6" description=""/>
+    </sbe:message>
+    <sbe:message name="TradeCorrection" id="203" description="">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="originalTradeId" type="TradeId" id="3" description=""/>
+        <field name="tradeId" type="TradeId" id="4" description=""/>
+        <field name="price" type="Price8" id="5" description=""/>
+        <field name="contracts" type="Quantity" id="6" description=""/>
+        <field name="tradeCondition" type="char" id="7" description=""/>
+    </sbe:message>
+    <sbe:message name="TOPSTradeBreak" id="204" description="Used to denote a canceled trade">
+        <field name="time" type="EpochNanos" id="1" description="Number of nanoseconds since the Epoch (midnight January 1, 1970 UTC)"/>
+        <field name="instrumentId" type="InstrumentId" id="2" description=""/>
+        <field name="tradeId" type="TradeId" id="3" description=""/>
+        <field name="tradeCondition" type="char" id="4" description=""/>
+    </sbe:message>
+
+    <!-- Transport stream messages (UDP framing)-->
+    <sbe:message name="Heartbeat" id="300" description="Transport heartbeat packet">
+        <field name="channelId" type="ChannelId" id="1" description="Channel identifier"/>
+        <field name="sequenceNumber" type="SequenceNumber" id="2" description="Sequence number"/>
+    </sbe:message>
+    <sbe:message name="SequencedPacket" id="301" description="Transport sequenced packet">
+        <field name="channelId" type="ChannelId" id="1" description="Channel identifier"/>
+        <field name="sequenceNumber" type="SequenceNumber" id="2" description="Sequence number of first message"/>
+        <group name="messages" dimensionType="messageListGroupEncoding" id="100">
+            <data name="message" type="varDataEncoding" id="101" description="Business message" />
+        </group>
+    </sbe:message>
+    <sbe:message name="SessionShutdown" id="302" description="Transport shutdown packet">
+        <field name="channelId" type="ChannelId" id="1" description="Channel identifier"/>
+        <field name="sequenceNumber" type="SequenceNumber" id="2" description="Sequence number"/>
+    </sbe:message>
+
+    <!-- Transport control messages-->
+    <sbe:message name="ServerHeartbeat" id="400" description="Control plane heartbeat message">
+    </sbe:message>
+    <sbe:message name="ClientHeartbeat" id="401" description="Control plane heartbeat response">
+    </sbe:message>
+    <sbe:message name="RetransmissionRequest" id="402" description="Retransmission request sent over the control plane">
+        <field name="beginSequence" type="SequenceNumber" id="1" description="Inclusive beginning sequence number"/>
+        <field name="endSequence" type="SequenceNumber" id="2" description="Inclusive ending sequence number"/>
+        <field name="logonId" type="LogonId" id="3" description="Logon identifier"/>
+        <field name="requestId" type="RequestId" id="4" description="Monotonically increasing sequence number to correlate request/response"/>
+        <field name="channelId" type="ChannelId" id="5" description="Channel identifier"/>
+        <field name="feed" type="FeedType" id="6" description="Market data feed"/>
+    </sbe:message>
+    <sbe:message name="RetransmissionResponse" id="403" description="Retransmission response delivered over multicast or TCP">
+        <field name="logonId" type="LogonId" id="1" description="Logon identifier"/>
+        <field name="requestId" type="RequestId" id="2" description="Identifier to correlate response"/>
+        <field name="channelId" type="ChannelId" id="3" description="Channel identifier"/>
+        <field name="feed" type="FeedType" id="4" description="Market data feed"/>
+        <field name="status" type="RetransmissionStatusType" id="5" description="Status of the retransmission request"/>
+    </sbe:message>
+
+    <!-- Snapshot control messages-->
+    <sbe:message name="SnapshotHeader" id="601" description="Snapshot metadata">
+        <field name="snapshotId" type="SnapshotId" id="1" description="Snapshot cycle identifier"/>
+        <field name="currentPacketNumber" type="PacketCount" id="2" description="Identifies packet number within snapshot cycle"/>
+        <field name="totalPacketCount" type="PacketCount" id="3" description="Total number of packets within snapshot cycle"/>
+        <field name="asOfSequenceNumber" type="SequenceNumber" id="4" description="real-time sequence number fully reflected in the snapshot"/>
+    </sbe:message>
+</sbe:messageSchema>

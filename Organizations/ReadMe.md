@@ -10,7 +10,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Asx](Asx/) | Australian Securities Exchange | XASX | [asx.com.au](https://www.asx.com.au) |
 | [B3](B3/) | Brasil, Bolsa, Balcão | BVMF | [b3.com.br](https://www.b3.com.br/en_us) |
 | [Bist](Bist/) | Borsa İstanbul A.Ş. | XIST | [borsaistanbul.com](https://www.borsaistanbul.com/en) |
-| [Boats](Boats/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
+| [BlueOceanAts](BlueOceanAts/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
 | [Box](Box/) | Box Options Market | XBOX | [boxoptions.com](https://boxoptions.com) |
 | [BruceAts](BruceAts/) | Bruce ATS |  | [brucemarkets.com](https://www.brucemarkets.com) |
 | [Cboe](Cboe/) | Chicago Board Options Exchange | XCBO | [cboe.com](https://www.cboe.com) |
@@ -37,10 +37,11 @@ Repository of definitions and protocol specifications of the organizations cover
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNSX | [nsx.com.au](https://www.nsx.com.au) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |
 | [Odx](Odx/) | Osaka Digital Exchange |  | [odx.co.jp](https://www.odx.co.jp/en) |
-| [Omi](Omi/) | Open Markets Initiative |  | [openmarketsinitiative.com](https://openmarketsinitiative.com) |
 | [OtcMarkets](OtcMarkets/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
+| [Sgx](Sgx/) | Singapore Exchange | XSES | [sgx.com](https://www.sgx.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
 | [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
+| [Taifex](Taifex/) | Taiwan Futures Exchange | XTAF | [taifex.com.tw](https://www.taifex.com.tw) |
 | [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
 

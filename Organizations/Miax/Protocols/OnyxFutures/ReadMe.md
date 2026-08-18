@@ -7,6 +7,7 @@
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Miax Onyx Futures Full Depth Of Book Feed |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Miax Futures Onyx FIX Order Interface (FOI) |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Miax Onyx Futures Best Bid And Offer Feed |
 
 ## Specifications

@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [CmeFutures](CmeFutures/) | 7 |
+| [Globex](Globex/) | 7 |
 
 ## Specifications
 
