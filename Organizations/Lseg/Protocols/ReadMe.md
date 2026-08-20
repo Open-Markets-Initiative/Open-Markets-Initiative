@@ -4,7 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [Lse](Lse/) | 17 |
-| [Millennium](Millennium/) | 3 |
+| [Millennium](Millennium/) | 4 |
 | [TradeEcho](TradeEcho/) | 6 |
 | [Turquoise](Turquoise/) | 8 |
 

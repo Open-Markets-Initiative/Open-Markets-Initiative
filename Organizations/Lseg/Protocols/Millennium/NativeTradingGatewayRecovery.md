@@ -1,4 +1,4 @@
-## Millennium Trading Recovery: Native Trading Gateway Recovery
+## Millennium Native Trading Gateway Recovery: Native Trading Gateway Recovery
 
 Recovery channel of the Native Trading Gateway on the Lseg Millennium Exchange platform, replaying order and quote messages missed while disconnected from the Real Time Channel.
 

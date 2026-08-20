@@ -1,24 +1,24 @@
-## Millennium Trading: Native Trading Gateway
+## Millennium Trading: Fix Trading Gateway
 
-Native Trading Gateway order entry interface for the Lseg Millennium Exchange platform, carrying order and quote submission, amendment and cancellation over a bidirectional Tcp session.
+Fix Trading Gateway order entry interface for the Lseg Millennium Exchange platform, enabling member firms to submit orders and quotes and to receive real time information on executed trades.
 
 ### Overview
 
-The Native Trading Gateway is the low latency binary order entry interface to the Millennium Exchange matching engine, documented as MIT203. Clients submit new orders, cancels, cancel/replaces and mass cancels, and receive execution reports covering acceptance, rejection, execution, expiry, cancellation and restatement.
+The Fix Trading Gateway is the tagged Ascii order entry interface to the Millennium Exchange matching engine, documented as MIT202. It is the counterpart to the Native Trading Gateway of MIT203, offering the same trading services over industry standard Fix rather than a proprietary binary encoding.
 
-The gateway also carries the request for quote workflow. A Requester submits an RFQ, market makers respond with quotes, and the server relays requests, quotes, acknowledgements and execution reports between the two sides. Several of these message types travel in both directions with the same wire layout, distinguished only by which side transmitted them.
+The gateway carries order handling and quote handling, including the request for quote models, alongside security identification, party identification and market operations. Auto cancel on disconnect and mass cancellation on disconnect protect resting interest when a session drops.
 
-Sessions are established with a Logon carrying a user name and password, maintained with heartbeats, and terminated with a Logout. Messages missed during a disconnect are recovered by logging into the recovery channel and issuing a Missed Message Request, which the server acknowledges and completes with a report.
+A client initiates a session each trading day with a Logon identifying itself by SenderCompID, which the server validates together with the password and the source IP address. Client and server each maintain independent inbound and outbound sequence numbers, initialised to one at the start of the day, and missed messages are recovered in session through Fix Resend Requests. A Fix session does not continue into the next trading day.
 
 ### Transport
 
-Bidirectional Tcp session between the client and the trading gateway, framed by a four byte message header and recovered through a separate recovery channel that replays missed messages.
+Point to point Tcp session carrying a Fix 5.0 Service Pack 2 application layer over a FIXT 1.1 session layer, with each client assigned an IP address and port.
 
 ### Key Characteristics
 
-- **Native binary** - Fixed width little endian binary messages rather than Fix tags
-- **Bidirectional session** - Client and server both transmit; several message types are shared by both sides
+- **Fix 5.0 SP2** - Fix 5.0 Service Pack 2 application layer over a FIXT 1.1 session layer
+- **Tagged Ascii** - Self describing tag equals value fields rather than the fixed width binary of the Native gateway
 - **Order and quote handling** - Order submission and amendment alongside the request for quote workflow
-- **Message recovery** - A separate recovery channel replays messages missed during a disconnect
-- **Partitioned** - Instruments are distributed across matching partitions, identified per message
+- **In session recovery** - Missed messages are replayed through Fix Resend Requests rather than a separate recovery channel
+- **Daily sequence numbers** - Sequence numbers are initialised to one at the start of each trading day and a session does not span days
 
