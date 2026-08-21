@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [CixAspen](CixAspen/) | 2 |
+| [CixAspen](CixAspen/) | 4 |
 
 ## Specifications
 

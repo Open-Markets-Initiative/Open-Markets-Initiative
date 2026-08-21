@@ -11,6 +11,8 @@ Aspen is the trading platform operated by CIX Trading Inc. powering the CIX alte
 | --- | --- | --- |
 | [MarketDataFeed](MarketDataFeed.md) | MarketData | CIX Market Data Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | CIX ATS1 Fix 4.2 Order Entry |
+| [Rerequest](Rerequest.md) | MarketData | CIX Udp Message Recovery |
+| [Snapshot](Snapshot.md) | MarketData | CIX Tcp Snapshot Recovery |
 
 ## Specifications
 
