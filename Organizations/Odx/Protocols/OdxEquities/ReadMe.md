@@ -1,4 +1,7 @@
-## OdxEquities
+## Odx Equities
+
+
+Osaka Digital Exchange equities proprietary trading system offering electronic trading of Japanese listed equities outside the primary exchange session.
 
 
 ### Protocols

@@ -10,8 +10,9 @@ Millennium Exchange is the Lseg matching and trading platform acquired through M
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Level2](Level2.md) | MarketData | Level 2 |
-| [Trading](Trading.md) | OrderEntry | Native Trading Gateway |
-| [TradingRecovery](TradingRecovery.md) | OrderEntry | Native Trading Gateway Recovery |
+| [NativeTradingGateway](NativeTradingGateway.md) | OrderEntry | Native Trading Gateway |
+| [NativeTradingGatewayRecovery](NativeTradingGatewayRecovery.md) | OrderEntry | Native Trading Gateway Recovery |
+| [Trading](Trading.md) | OrderEntry | Fix Trading Gateway |
 
 ## Specifications
 
