@@ -35,6 +35,8 @@ Domain specific language definitions
 | [omi-dfdl-definitions][omi-dfdl-definitions] | Dfdl | Data Format Description Language schemas for common exchange protocols |
 | [omi-p4-definitions][omi-p4-definitions] | P4 | P4 definitions for common exchange protocols for software and hardware data planes |
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
+| [omi-spicy-definitions][omi-spicy-definitions] | Spicy | Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek |
+| [omi-xml-specifications][omi-xml-specifications] | Xml | Omi universal XML binary specifications for common exchange protocols |
 
 ## Source Generated Outputs
 
@@ -83,6 +85,8 @@ The composable toolchain that drives the generated outputs above.
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
 [omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "P4 definitions for common exchange protocols for software and hardware data planes"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
+[omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
+[omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "Omi universal XML binary specifications for common exchange protocols"
 [wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
