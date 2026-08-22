@@ -9,7 +9,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
 | [Fbe](Fbe.md) | Encoding | Eurex | Flat Binary Encoding |
 | [Flex](Flex.md) | Encoding | Jpx | Japan Exchange Group arrowhead tag-stream binary encoding |
-| [Glimpse](Glimpse.md) | Encoding | Odx | Glimpse |
 | [iMpact](iMpact.md) | Encoding | Ice | Ice iMpact compact fixed-width binary message encoding used by the Mdf market data feed |
 | [Obi](Obi.md) | Encoding | Siac | Opra Binary Interface |
 | [Rake](Rake.md) | Encoding | Txse | Txse Session and Framing Layer |
@@ -26,6 +25,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
+| [Glimpse](Glimpse.md) | MarketData | Nasdaq | Point in time order book snapshot service |
 | [Gtp](Gtp.md) | MarketData | Lseg | Group Ticker Plant |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
 | [Itch](Itch.md) | MarketData | Nasdaq | Integrated Trading Channel Handlers |
@@ -36,10 +36,12 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
+| [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
 | [Utp](Utp.md) | MarketData | Nasdaq | Unlisted Trading Privileges binary feed encoding |
 | [Xmt](Xmt.md) | MarketData | Tmx | eXtreme Message Transfer Protocol |
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
+| [Ntgi](Ntgi.md) | OrderEntry | Lseg | Native Trading Gateway Interface |
 | [Ouch](Ouch.md) | OrderEntry | Nasdaq | Order Update for Communication and Handling |
 | [PillarStream](PillarStream.md) | OrderEntry | Nyse | NYSE Pillar Binary Order Entry |
 | [Sail](Sail.md) | OrderEntry | Tmx | Sola Access Information Language |

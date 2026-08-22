@@ -16,7 +16,7 @@ Nasdaq Philadelphia Phlx Options US options exchange offering pro rata allocatio
 | [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |
 | [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Best Bid And Offer |
 | [SpreadTradeFeed](SpreadTradeFeed.md) | MarketData | Nasdaq Phlx Options Complex Strategy Trade Report Feed |
-| [Topo](Topo.md) | MarketData | Nasdaq Phlx Options Top Of Book Data |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Phlx Options Top Of Book Data |
 | [TradeFeed](TradeFeed.md) | MarketData | Nasdaq Phlx Options Trade Report Data |
 
 ## Specifications

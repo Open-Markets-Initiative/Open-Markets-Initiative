@@ -10,10 +10,12 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Asx](Asx/) | Australian Securities Exchange | XASX | [asx.com.au](https://www.asx.com.au) |
 | [B3](B3/) | Brasil, Bolsa, Balcão | BVMF | [b3.com.br](https://www.b3.com.br/en_us) |
 | [Bist](Bist/) | Borsa İstanbul A.Ş. | XIST | [borsaistanbul.com](https://www.borsaistanbul.com/en) |
+| [Biva](Biva/) | Bolsa Institucional de Valores | BIVA | [biva.mx](https://www.biva.mx) |
 | [BlueOceanAts](BlueOceanAts/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
 | [Box](Box/) | Box Options Market | XBOX | [boxoptions.com](https://boxoptions.com) |
 | [BruceAts](BruceAts/) | Bruce ATS |  | [brucemarkets.com](https://www.brucemarkets.com) |
 | [Cboe](Cboe/) | Chicago Board Options Exchange | XCBO | [cboe.com](https://www.cboe.com) |
+| [CixAts](CixAts/) | CIX Trading Inc. |  | [thecix.ca](https://www.thecix.ca) |
 | [Cme](Cme/) | CME Group | XCME | [cmegroup.com](http://www.cmegroup.com) |
 | [Coinbase](Coinbase/) | Coinbase | CAND | [coinbase.com](https://www.coinbase.com/) |
 | [Currenex](Currenex/) | Currenex |  | [currenex.com](https://currenex.com) |
@@ -34,6 +36,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Memx](Memx/) | The Members Exchange | MEMX | [memx.com](https://www.memx.com) |
 | [Miax](Miax/) | Miami International Holdings | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
 | [Nasdaq](Nasdaq/) | National Association of Securities Dealers Automated Quotations (Nasdaq) | XNAS | [nasdaq.com](https://www.nasdaq.com) |
+| [Nse](Nse/) | National Stock Exchange of India Ltd | XNSE | [nseindia.com](https://www.nseindia.com) |
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNSX | [nsx.com.au](https://www.nsx.com.au) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |
 | [Odx](Odx/) | Osaka Digital Exchange |  | [odx.co.jp](https://www.odx.co.jp/en) |

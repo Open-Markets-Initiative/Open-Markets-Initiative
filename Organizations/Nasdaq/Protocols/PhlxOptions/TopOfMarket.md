@@ -1,10 +1,10 @@
-## PhlxOptions Topo: Nasdaq Phlx Options Top Of Book Data
+## PhlxOptions Top Of Market: Nasdaq Phlx Options Top Of Book Data
 
 Top of book market data feed publishing best bid and offer quotations for options listed on the Nasdaq Phlx Options Exchange.
 
 ### Overview
 
-Topo is the Nasdaq Phlx top of book market data feed, publishing best bid and offer quotations and trade reports for every option listed on the Nasdaq Phlx Options Exchange. It is a lightweight alternative to the full Market Depth feed.
+Top Of Market is the Nasdaq Phlx top of book market data feed, publishing best bid and offer quotations and trade reports for every option listed on the Nasdaq Phlx Options Exchange. It is a lightweight alternative to the full Market Depth feed.
 
 ### Transport
 
