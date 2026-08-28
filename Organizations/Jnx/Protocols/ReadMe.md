@@ -3,8 +3,8 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [JnxBonds](JnxBonds/) | 2 |
-| [JnxEquities](JnxEquities/) | 2 |
+| [JnxBonds](JnxBonds/) | 4 |
+| [JnxEquities](JnxEquities/) | 4 |
 
 ## Specifications
 

@@ -9,8 +9,10 @@ Japannext Proprietary Trading System for equities providing an alternative venue
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [DropCopy](DropCopy.md) | DropCopy | Japannext Fix Drop Copy Specification Equities |
 | [Itch](Itch.md) | MarketData | Japannext Pts Equities Order By Order Market Data |
 | [Ouch](Ouch.md) | OrderEntry | Japannext Pts Equities Order Entry |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Japannext Fix Trading Specification Equities |
 
 ## Specifications
 
