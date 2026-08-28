@@ -3,6 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
+| [](/) | 4 |
 | [BidsJapan](BidsJapan/) | 2 |
 | [BxeEquities](BxeEquities/) | 9 |
 | [ByxEquities](ByxEquities/) | 11 |
@@ -25,7 +26,6 @@
 | [MatchNow](MatchNow/) | 2 |
 | [NeoEquities](NeoEquities/) | 2 |
 | [Pitch](Pitch/) | 1 |
-| [TitaniumConsolidated](TitaniumConsolidated/) | 4 |
 
 ## Specifications
 

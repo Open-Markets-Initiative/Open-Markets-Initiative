@@ -35,13 +35,13 @@
 
 ## Consolidators and Sips
 
-> [Cqs](Organizations/Siac/Protocols/Cqs/) · [Cts](Organizations/Siac/Protocols/Cts/) · [MdcsRealtime](Organizations/Koscom/Protocols/MdcsRealtime/) · [NyseConsolidated](Organizations/Nyse/Protocols/NyseConsolidated/) · [Opra](Organizations/Siac/Protocols/Opra/) · [Uqdf](Organizations/Nasdaq/Protocols/Uqdf/) · [Utdf](Organizations/Nasdaq/Protocols/Utdf/) · [Utp](Organizations/Nasdaq/Protocols/Utp/)
+> [Cqs](Organizations/Siac/Protocols/Cqs/) · [Cts](Organizations/Siac/Protocols/Cts/) · [MdcsRealtime](Organizations/Koscom/Protocols/MdcsRealtime/) · [NyseConsolidated](Organizations/Nyse/Protocols/NyseConsolidated/) · [Opra](Organizations/Siac/Protocols/Opra/) · [TitaniumConsolidated](Organizations/Cboe/Protocols/TitaniumConsolidated/) · [Uqdf](Organizations/Nasdaq/Protocols/Uqdf/) · [Utdf](Organizations/Nasdaq/Protocols/Utdf/) · [Utp](Organizations/Nasdaq/Protocols/Utp/)
 
 ---
 
 ## Platforms
 
-> [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitaniumConsolidated](Organizations/Cboe/Protocols/TitaniumConsolidated/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
+> [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
 
 ---
 

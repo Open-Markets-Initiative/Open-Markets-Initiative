@@ -1,6 +1,6 @@
-## TitaniumConsolidated One Equities: One Equities
+## One Options: One Options
 
-Cboe One Equities — consolidated equities market data feed combining top of book, last sale, and auction information across the four Cboe US equities exchanges (BZX, BYX, EDGA, EDGX).
+Cboe One Options — consolidated options market data feed across the four Cboe US options exchanges (BZX Options, C1 Options, C2 Options, EDGX Options).
 
 ### Transport
 
