@@ -30,6 +30,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Imperative](Imperative/) | Imperative Execution |  | [imperativex.com](https://www.imperativex.com) |
 | [Jnx](Jnx/) | Japannext Securities | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
 | [Jpx](Jpx/) | Japan Exchange Group | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
+| [Jse](Jse/) | JSE Limited |  | [jse.co.za](https://www.jse.co.za) |
 | [Koscom](Koscom/) | Koscom Co., Ltd. |  | [koscom.co.kr](https://www.koscom.co.kr) |
 | [Lseg](Lseg/) | London Stock Exchange | XLON | [lseg.com](https://www.lseg.com) |
 | [Ltse](Ltse/) | Long-Term Stock Exchange | LTSE | [ltse.com](https://ltse.com) |

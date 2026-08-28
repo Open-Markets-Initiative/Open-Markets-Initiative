@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-43-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-320-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-44-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-320-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -23,7 +23,7 @@
 
 ## Organizations
 
-> [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Biva](Organizations/Biva/) · [BlueOceanAts](Organizations/BlueOceanAts/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Cboe](Organizations/Cboe/) · [CixAts](Organizations/CixAts/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [Nse](Organizations/Nse/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [OtcMarkets](Organizations/OtcMarkets/) · [Sgx](Organizations/Sgx/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Taifex](Organizations/Taifex/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
+> [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Biva](Organizations/Biva/) · [BlueOceanAts](Organizations/BlueOceanAts/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Cboe](Organizations/Cboe/) · [CixAts](Organizations/CixAts/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Jse](Organizations/Jse/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [Nse](Organizations/Nse/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [OtcMarkets](Organizations/OtcMarkets/) · [Sgx](Organizations/Sgx/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Taifex](Organizations/Taifex/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
 
 ---
 
@@ -41,7 +41,7 @@
 
 ## Platforms
 
-> [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
+> [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Itac](Organizations/Jse/Protocols/Itac/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
 
 ---
 
