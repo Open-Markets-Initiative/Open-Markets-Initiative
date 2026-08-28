@@ -44,7 +44,7 @@ Code-generated artifacts produced from the protocol specifications.
 
 | Repository | Language | Description |
 | --- | --- | --- |
-| [wireshark-lua][wireshark-lua] | Lua | Source generated cross platform Wireshark dissectors |
+| [omi-wireshark-lua][omi-wireshark-lua] | Lua | Source generated cross platform Wireshark dissectors |
 | [c-structs][c-structs] | C | Source generated binary protocol c-style packed structs |
 | [omi-csharp-protocols][omi-csharp-protocols] | C# | Source generated C# protocol parsers, fixed-layout structs and immutable classes |
 | [omi-rust-protocols][omi-rust-protocols] | Rust | Zero-copy Rust message views, one crate per protocol version |
@@ -87,7 +87,7 @@ The composable toolchain that drives the generated outputs above.
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "Omi universal XML binary specifications for common exchange protocols"
-[wireshark-lua]: https://github.com/Open-Markets-Initiative/wireshark-lua "Source generated cross platform Wireshark dissectors"
+[omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [c-structs]: https://github.com/Open-Markets-Initiative/c-structs "Source generated binary protocol c-style packed structs"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
