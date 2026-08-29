@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [SmallX](SmallX/) | 1 |
+| [SmallFutures](SmallFutures/) | 3 |
 
 ## Specifications
 
