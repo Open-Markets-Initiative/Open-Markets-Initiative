@@ -21,6 +21,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |
+| [Binary](Binary.md) | MarketData | Nse | Binary |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
@@ -32,6 +33,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Itch |
+| [NnfBcast](NnfBcast.md) | MarketData | Nse | Non-Neat Front End Broadcast |
 | [Omd](Omd.md) | MarketData | Hkex | Orion Market Data |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
@@ -41,6 +43,9 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Xmt](Xmt.md) | MarketData | Tmx | eXtreme Message Transfer Protocol |
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
+| [Nnf](Nnf.md) | OrderEntry | Nse | Non-Neat Front End |
+| [NnfDirect](NnfDirect.md) | OrderEntry | Nse | Non-Neat Front End Direct Interface |
+| [NnfTrimmed](NnfTrimmed.md) | OrderEntry | Nse | Non-Neat Front End Trimmed |
 | [Ntgi](Ntgi.md) | OrderEntry | Lseg | Native Trading Gateway Interface |
 | [Ouch](Ouch.md) | OrderEntry | Nasdaq | Order Update for Communication and Handling |
 | [PillarStream](PillarStream.md) | OrderEntry | Nyse | NYSE Pillar Binary Order Entry |

@@ -14,6 +14,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [BlueOceanAts](BlueOceanAts/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |
 | [Box](Box/) | Box Options Market | XBOX | [boxoptions.com](https://boxoptions.com) |
 | [BruceAts](BruceAts/) | Bruce ATS |  | [brucemarkets.com](https://www.brucemarkets.com) |
+| [Bse](Bse/) | BSE Limited | XBOM | [bseindia.com](https://www.bseindia.com) |
 | [Cboe](Cboe/) | Chicago Board Options Exchange | XCBO | [cboe.com](https://www.cboe.com) |
 | [CixAts](CixAts/) | CIX Trading Inc. |  | [thecix.ca](https://www.thecix.ca) |
 | [Cme](Cme/) | CME Group | XCME | [cmegroup.com](http://www.cmegroup.com) |
