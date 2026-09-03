@@ -2,7 +2,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-45-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-324-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-45-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-325-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
