@@ -11,7 +11,7 @@ Nasdaq Nordic cash equities markets in Stockholm Copenhagen Helsinki and Iceland
 | --- | --- | --- |
 | [LastSale](LastSale.md) | MarketData | Nasdaq Nordic Trade Report Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nordic Order Entry Protocol |
-| [OrderEntryPureStream](OrderEntryPureStream.md) | OrderEntry | Nasdaq Nordic Order Entry Protocol, PureStream Variant |
+| [PureStream](PureStream.md) | OrderEntry | Nasdaq Nordic Order Entry Protocol, PureStream Variant |
 | [TotalView](TotalView.md) | MarketData | Nasdaq Nordic Full Depth Of Book Feed |
 | [TotalViewPureStream](TotalViewPureStream.md) | MarketData | Nasdaq Nordic Full Depth Of Book Feed, PureStream Variant |
 

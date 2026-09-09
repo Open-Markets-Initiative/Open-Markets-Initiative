@@ -1,4 +1,4 @@
-## NordicEquities Order Entry Pure Stream: Nasdaq Nordic Order Entry Protocol, PureStream Variant
+## NordicEquities Pure Stream: Nasdaq Nordic Order Entry Protocol, PureStream Variant
 
 Order entry protocol for the Nasdaq Nordic equities markets running on the Inet Nordic platform.
 
