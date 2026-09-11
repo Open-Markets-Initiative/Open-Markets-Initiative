@@ -9,7 +9,7 @@
 | [MrxOptions](MrxOptions/) | 9 |
 | [Nasdaq](Nasdaq/) | 2 |
 | [NomOptions](NomOptions/) | 3 |
-| [NordicEquities](NordicEquities/) | 5 |
+| [NordicEquities](NordicEquities/) | 3 |
 | [NsmEquities](NsmEquities/) | 17 |
 | [NtxEquities](NtxEquities/) | 8 |
 | [NtxOptions](NtxOptions/) | 4 |
