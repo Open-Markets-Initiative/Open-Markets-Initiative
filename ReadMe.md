@@ -1,4 +1,9 @@
-[![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/main/About)
+<a href="About/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="About/Banners/Dark.png">
+    <img alt="Open Markets Initiative — Democratizing access to Modern Electronic Markets" src="About/Banners/Color.png">
+  </picture>
+</a>
 
 # The Open Markets Initiative
 
