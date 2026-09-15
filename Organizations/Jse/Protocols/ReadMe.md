@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Itac](Itac/) | 1 |
+| [Itac](Itac/) | 5 |
 
 ## Specifications
 
