@@ -1,4 +1,4 @@
-[![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/main/About)
+[![Omi](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/About)
 
 # Omi Projects
 
