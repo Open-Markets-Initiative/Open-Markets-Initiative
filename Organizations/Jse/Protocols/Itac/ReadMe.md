@@ -9,6 +9,10 @@ Itac is the JSE trading and information solution, built on Millennium IT, that c
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [BasicNativeTrading](BasicNativeTrading.md) | OrderEntry | Basic Native Trading Gateway |
+| [BasicNativeTradingRecovery](BasicNativeTradingRecovery.md) | OrderEntry | Basic Native Trading Recovery |
+| [EnhancedNativeTrading](EnhancedNativeTrading.md) | OrderEntry | Enhanced Native Trading Gateway |
+| [EnhancedNativeTradingRecovery](EnhancedNativeTradingRecovery.md) | OrderEntry | Enhanced Native Trading Recovery |
 | [MarketData](MarketData.md) | MarketData | Market Data |
 
 ## Specifications
