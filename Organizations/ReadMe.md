@@ -17,7 +17,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Bse](Bse/) | BSE Limited | XBOM | [bseindia.com](https://www.bseindia.com) |
 | [Cboe](Cboe/) | Chicago Board Options Exchange | XCBO | [cboe.com](https://www.cboe.com) |
 | [CixAts](CixAts/) | CIX Trading Inc. |  | [thecix.ca](https://www.thecix.ca) |
-| [Cme](Cme/) | CME Group | XCME | [cmegroup.com](http://www.cmegroup.com) |
+| [Cme](Cme/) | CME Group | XCME | [cmegroup.com](https://www.cmegroup.com) |
 | [Coinbase](Coinbase/) | Coinbase | CAND | [coinbase.com](https://www.coinbase.com/) |
 | [Currenex](Currenex/) | Currenex |  | [currenex.com](https://currenex.com) |
 | [ElectronX](ElectronX/) | ElectronX Markets |  | [electronx.com](https://www.electronx.com) |
@@ -26,8 +26,8 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Finra](Finra/) | Financial Industry Regulatory Authority | FINR | [finra.org](https://www.finra.org) |
 | [Fix](Fix/) | FIX Trading Community |  | [fixtrading.org](https://www.fixtrading.org) |
 | [Hkex](Hkex/) | Hong Kong Exchanges and Clearing | XHKG | [hkex.com.hk](https://www.hkex.com.hk) |
-| [Ice](Ice/) | Intercontinental Exchange | IFUS | [theice.com](https://www.theice.com) |
-| [Iex](Iex/) | Investors Exchange | IEXG | [iexexchange.io](https://www.iexexchange.io) |
+| [Ice](Ice/) | Intercontinental Exchange | IFUS | [ice.com](https://www.ice.com) |
+| [Iex](Iex/) | Investors Exchange | IEXG | [iex.io](https://www.iex.io) |
 | [Imperative](Imperative/) | Imperative Execution |  | [imperativex.com](https://www.imperativex.com) |
 | [Jnx](Jnx/) | Japannext Securities | XJPX | [japannext.co.jp](https://www.japannext.co.jp/en) |
 | [Jpx](Jpx/) | Japan Exchange Group | XOSE | [jpx.co.jp](https://www.jpx.co.jp/english) |
@@ -45,7 +45,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [OtcMarkets](OtcMarkets/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
 | [Sgx](Sgx/) | Singapore Exchange | XSES | [sgx.com](https://www.sgx.com) |
 | [Siac](Siac/) | The Securities Industry Automation Corporation |  | [en.wikipedia.org](https://en.wikipedia.org/wiki/Securities_Industry_Automation_Corporation) |
-| [SmallX](SmallX/) | The Small Exchange |  | [thesmallexchange.com](https://www.thesmallexchange.com) |
+| [SmallX](SmallX/) | The Small Exchange |  | [smallexchange.com](https://smallexchange.com) |
 | [Taifex](Taifex/) | Taiwan Futures Exchange | XTAF | [taifex.com.tw](https://www.taifex.com.tw) |
 | [Tmx](Tmx/) | TMX Group | XTSE | [tmx.com](https://www.tmx.com/) |
 | [Txse](Txse/) | Texas Stock Exchange | TXSE | [txse.com](https://www.txse.com) |
