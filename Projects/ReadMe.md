@@ -36,6 +36,7 @@ Domain specific language definitions
 | [omi-p4-definitions][omi-p4-definitions] | P4 | P4 definitions for common exchange protocols for software and hardware data planes |
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-spicy-definitions][omi-spicy-definitions] | Spicy | Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek |
+| [omi-lean-definitions][omi-lean-definitions] | Lean | Lean 4 definitions of common exchange binary protocols, each message carrying a machine checked proof that its decoder and encoder agree |
 | [omi-xml-specifications][omi-xml-specifications] | Xml | Omi universal XML binary specifications for common exchange protocols |
 
 ## Source Generated Outputs
@@ -85,6 +86,7 @@ The composable toolchain that drives the generated outputs above.
 [omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "P4 definitions for common exchange protocols for software and hardware data planes"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
+[omi-lean-definitions]: https://github.com/Open-Markets-Initiative/omi-lean-definitions "Lean 4 definitions of common exchange binary protocols, each message carrying a machine checked proof that its decoder and encoder agree"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "Omi universal XML binary specifications for common exchange protocols"
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
