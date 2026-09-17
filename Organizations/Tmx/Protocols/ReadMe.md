@@ -3,7 +3,10 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Tmx](Tmx/) | 7 |
+| [Mx](Mx/) | 3 |
+| [Tmx](Tmx/) | 1 |
+| [Tsx](Tsx/) | 3 |
+| [TsxAlpha](TsxAlpha/) | 1 |
 
 ## Specifications
 

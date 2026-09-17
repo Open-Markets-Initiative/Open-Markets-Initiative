@@ -1,4 +1,4 @@
-## Stamp: Tmx Toronto Stock Exchange Tagged Order Entry
+## Tsx Stamp: Tmx Toronto Stock Exchange Tagged Order Entry
 
 Tagged-value order entry protocol for submitting, modifying, and cancelling orders on the Tmx Toronto Stock Exchange and Tsx Venture Exchange.
 

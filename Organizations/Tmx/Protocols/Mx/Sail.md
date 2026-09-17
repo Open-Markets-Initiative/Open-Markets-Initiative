@@ -1,4 +1,4 @@
-## Sail: Tmx Montreal Exchange Order Entry
+## Mx Sail: Tmx Montreal Exchange Order Entry
 
 Order entry protocol for submitting, modifying, and cancelling orders on the Tmx Montreal Exchange derivatives markets.
 

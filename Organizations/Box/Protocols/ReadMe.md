@@ -4,7 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [Box](Box/) | 1 |
-| [Options](Options/) | 1 |
+| [BoxOptions](BoxOptions/) | 1 |
 
 ## Specifications
 

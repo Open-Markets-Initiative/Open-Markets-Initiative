@@ -1,4 +1,7 @@
-## PearlEquities
+## MIAX Pearl Equities
+
+
+MIAX Pearl Equities is a US cash equities exchange in the MIAX Exchange Group offering price time priority trading of NMS securities.
 
 
 ### Protocols

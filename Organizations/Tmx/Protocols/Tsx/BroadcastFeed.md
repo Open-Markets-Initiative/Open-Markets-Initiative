@@ -1,4 +1,4 @@
-## Broadcast Feed: Tmx Toronto Stock Exchange Broadcast Market Data
+## Tsx Broadcast Feed: Tmx Toronto Stock Exchange Broadcast Market Data
 
 Market data feed publishing real-time quotes and trades for securities traded on the Tmx Toronto Stock Exchange and Tsx Venture Exchange.
 

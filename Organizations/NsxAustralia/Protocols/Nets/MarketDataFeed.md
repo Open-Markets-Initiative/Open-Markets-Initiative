@@ -1,10 +1,10 @@
-## Nets: Nsx Australia Equities Market Data
+## Nets Market Data Feed: Nsx Australia Equities Market Data
 
 Itch-based market data feed publishing real-time order book and trade events for equities traded on the National Stock Exchange of Australia.
 
 ### Overview
 
-Nets Itch is the market data protocol for the National Stock Exchange of Australia (Nsx), delivering real-time order-by-order events for equities listed on the Nsx venue. The feed publishes order add, modify, delete, and trade messages using the Nasdaq Itch binary protocol.
+The NSX Market Data Feed is the market data protocol of the NETS trading system for the National Stock Exchange of Australia (Nsx), delivering real-time order-by-order events for equities listed on the Nsx venue. The feed publishes order add, modify, delete, and trade messages using the Nasdaq Itch binary protocol.
 
 ### Transport
 
