@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [NsxAustralia](NsxAustralia/) | 1 |
+| [Nets](Nets/) | 1 |
 
 ## Specifications
 
