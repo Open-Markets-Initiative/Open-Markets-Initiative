@@ -79,11 +79,9 @@ The Directory is the human-readable catalog. The machine-readable specifications
 - [omi-wireshark-lua][omi-wireshark-lua] — Source generated cross platform Wireshark dissectors
 - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
 - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
-
-**Generators and Tooling**
-
-- [Omi.Fix.Generators][Omi.Fix.Generators] — Composable FIX source generators
-- [latency-lab][latency-lab] — Composable tools for automating latency measurement and reporting
+- [omi-wireshark-c][omi-wireshark-c] — Source generated Wireshark dissectors in C, built in to Wireshark
+- [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
+- [omi-cpp-formats][omi-cpp-formats] — Source generated C++ that translates packet captures into formats like JSON and Parquet
 
 A complete list lives in [Projects](Projects).
 
@@ -109,5 +107,6 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
-[Omi.Fix.Generators]: https://github.com/Open-Markets-Initiative/Omi.Fix.Generators "Composable FIX source generators"
-[latency-lab]: https://github.com/Open-Markets-Initiative/latency-lab "Composable tools for automating latency measurement and reporting"
+[omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
+[omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
+[omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ that translates packet captures into formats like JSON and Parquet"
