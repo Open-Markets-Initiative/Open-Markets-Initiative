@@ -9,6 +9,7 @@ SGX Titan derivatives trading platform built on the Nasdaq Financial Framework, 
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [DepthOfBook](DepthOfBook.md) | MarketData | Depth Of Book |
 | [MarketData](MarketData.md) | MarketData | Sgx Titan GeniumFIX Market Data |
 | [ReferenceData](ReferenceData.md) | ReferenceData | Sgx Titan GeniumFIX Reference Data |
 

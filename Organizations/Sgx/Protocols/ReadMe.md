@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [TitanDt](TitanDt/) | 2 |
+| [TitanDt](TitanDt/) | 3 |
 | [TitanOtc](TitanOtc/) | 1 |
 
 ## Specifications
