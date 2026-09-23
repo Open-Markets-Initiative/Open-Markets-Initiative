@@ -3,9 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [FinraOrf](FinraOrf/) | 2 |
+| [FinraOrf](FinraOrf/) | 1 |
 | [FinraOtc](FinraOtc/) | 1 |
-| [Trace](Trace/) | 2 |
+| [Trace](Trace/) | 3 |
 
 ## Specifications
 

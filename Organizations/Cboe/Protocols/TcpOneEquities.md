@@ -1,4 +1,4 @@
-## One Equities Tcp: One Equities Tcp
+## Tcp One Equities: Tcp One Equities
 
 Cboe One Equities over Tcp — the Grp Gap Request Proxy service carrying the One Equities market data messages together with the login, gap request and replay session messages used to recover messages missed on the multicast feed.
 
