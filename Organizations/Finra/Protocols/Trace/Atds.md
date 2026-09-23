@@ -1,4 +1,4 @@
-## FinraOrf Atds: Finra Trace Agency Debt Trade Dissemination
+## Trace Atds: Agency Debt Trade Dissemination Service
 
 Trace-based trade dissemination service publishing real-time agency debt transaction reports collected under Finra Rule 6700 through the Trade Reporting And Compliance Engine.
 
