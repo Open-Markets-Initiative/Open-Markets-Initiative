@@ -5,7 +5,7 @@
 | --- | --- |
 | [FinraOrf](FinraOrf/) | 1 |
 | [FinraOtc](FinraOtc/) | 1 |
-| [Trace](Trace/) | 3 |
+| [Trace](Trace/) | 4 |
 
 ## Specifications
 

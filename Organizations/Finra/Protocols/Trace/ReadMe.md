@@ -12,6 +12,7 @@ Finra Trade Reporting And Compliance Engine, the facility through which Finra me
 | [Atds](Atds.md) | MarketData | Agency Debt Trade Dissemination Service |
 | [Btds](Btds.md) | MarketData | Bond Trade Dissemination Service |
 | [Btds144A](Btds144A.md) | MarketData | Bond Trade Dissemination Service for 144A Transactions |
+| [Spds](Spds.md) | MarketData | Securitized Products Dissemination Service |
 
 ## Specifications
 
