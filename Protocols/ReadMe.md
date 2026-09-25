@@ -5,6 +5,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | Protocol | Category | Organization | Description |
 | --- | --- | --- | --- |
 | [Snap](Snap.md) | Binary | Iex | IEX Snapshot Recovery Protocol |
+| [Atr](Atr.md) | DropCopy | Tmx | Automated Trade Reporting |
 | [Boe3](Boe3.md) | Encoding | Cboe | Binary Order Entry 3 |
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
 | [Fbe](Fbe.md) | Encoding | Eurex | Flat Binary Encoding |
@@ -39,6 +40,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
 | [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
+| [Tip](Tip.md) | MarketData | Nasdaq | Transaction Information Protocol |
 | [Utp](Utp.md) | MarketData | Nasdaq | Unlisted Trading Privileges binary feed encoding |
 | [Xmt](Xmt.md) | MarketData | Tmx | eXtreme Message Transfer Protocol |
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
