@@ -27,6 +27,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
+| [GeniumAmd](GeniumAmd.md) | MarketData | Nasdaq | Nasdaq Genium INET AMD |
 | [Glimpse](Glimpse.md) | MarketData | Nasdaq | Point in time order book snapshot service |
 | [Gtp](Gtp.md) | MarketData | Lseg | Group Ticker Plant |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
