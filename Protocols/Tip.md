@@ -10,7 +10,7 @@ Basic data messages provide reference data such as exchanges, markets and tradab
 
 ### Transport
 
-TIP messages are carried in a Nasdaq session protocol over TCP: SoupBinTCP sequenced data packets at Borsa Istanbul, and Xmp framing on X-stream venues, which provide login, sequencing and recovery.
+TIP messages are carried in a Nasdaq session protocol over TCP: SoupBinTCP sequenced data packets at Borsa Istanbul and on the Nasdaq Nordic Genium Consolidated Feed, and Xmp framing on X-stream venues, which provide login, sequencing and recovery.
 
 ### Key Characteristics
 
