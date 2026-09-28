@@ -1,4 +1,4 @@
-## Market Data: Nasdaq Nordic Genium INET AMD
+## NordicDerivatives Market Data: Nasdaq Nordic Genium INET AMD
 
 Binary auxiliary market data feed of the Nasdaq Nordic Genium INET platform, carrying the order book and market directories, the tick size table, reported and broken trades, quote requests, open interest, prices, market depth by level and underlying prices.
 

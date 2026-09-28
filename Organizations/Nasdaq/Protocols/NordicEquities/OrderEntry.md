@@ -10,7 +10,7 @@ Orders carry the MiFid II short codes for client, investment decision maker and 
 
 ### Transport
 
-Tcp session framed by SoupBin Tcp, with client requests carried in unsequenced data packets and exchange responses in sequenced data packets.
+Tcp session framed by SoupBin Tcp, with client requests carried in unsequenced data packets and exchange responses in sequenced data packets. Fix 5.0 SP2 order entry session framed by the Nasdaq Nordic Fixt 1.1 transport layer, with sequence number recovery through Resend Request and Sequence Reset.
 
 ### Key Characteristics
 
