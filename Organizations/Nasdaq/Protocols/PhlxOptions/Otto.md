@@ -1,6 +1,6 @@
-## IseOptions Otto: Nasdaq ISE Ouch to Trade Options (OTTO)
+## PhlxOptions Otto: Nasdaq PHLX Ouch to Trade Options (OTTO)
 
-Ouch-based binary order entry protocol for simple, complex and cross orders, auctions and auction responses, complex instrument creation, mass cancel and post trade modification on Nasdaq ISE.
+Ouch-based binary order entry protocol for simple, complex and cross orders, auctions and auction responses, complex instrument creation, mass cancel and post trade modification on Nasdaq PHLX.
 
 ### Overview
 

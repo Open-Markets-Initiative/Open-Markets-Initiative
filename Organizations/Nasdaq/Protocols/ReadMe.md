@@ -5,19 +5,20 @@
 | --- | --- |
 | [](/) | 1 |
 | [BxEquities](BxEquities/) | 4 |
-| [GemxOptions](GemxOptions/) | 5 |
-| [IseOptions](IseOptions/) | 14 |
-| [MrxOptions](MrxOptions/) | 9 |
+| [GemxOptions](GemxOptions/) | 9 |
+| [IseOptions](IseOptions/) | 17 |
+| [MrxOptions](MrxOptions/) | 13 |
 | [Nasdaq](Nasdaq/) | 2 |
+| [NasdaqCanada](NasdaqCanada/) | 3 |
 | [NfxFutures](NfxFutures/) | 1 |
 | [NlxDerivatives](NlxDerivatives/) | 1 |
-| [NomOptions](NomOptions/) | 3 |
+| [NomOptions](NomOptions/) | 7 |
 | [NordicDerivatives](NordicDerivatives/) | 3 |
 | [NordicEquities](NordicEquities/) | 7 |
-| [NsmEquities](NsmEquities/) | 17 |
-| [NtxEquities](NtxEquities/) | 8 |
-| [NtxOptions](NtxOptions/) | 4 |
-| [PhlxOptions](PhlxOptions/) | 9 |
+| [NsmEquities](NsmEquities/) | 19 |
+| [NtxEquities](NtxEquities/) | 9 |
+| [NtxOptions](NtxOptions/) | 7 |
+| [PhlxOptions](PhlxOptions/) | 13 |
 | [PsxEquities](PsxEquities/) | 8 |
 
 ## Specifications

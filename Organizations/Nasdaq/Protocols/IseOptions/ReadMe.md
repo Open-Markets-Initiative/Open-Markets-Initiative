@@ -9,12 +9,15 @@ Nasdaq Ise International Securities Exchange US options exchange offering a pric
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [Cti](Cti.md) | DropCopy | Nasdaq ISE Clearing Trade Interface (CTI) |
 | [DepthComboFeed](DepthComboFeed.md) | MarketData | Ise Depth Combo Market Data Feed |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Ise Options Depth Of Book Data |
+| [DropCopy](DropCopy.md) | DropCopy | Nasdaq ISE FIX DROP |
 | [OrderComboFeed](OrderComboFeed.md) | MarketData | Ise Order Combo Market Data Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq ISE Fix order entry |
 | [OrderFeed](OrderFeed.md) | MarketData | Ise Order Feed Market Data |
-| [Otto](Otto.md) | OrderEntry | Ise Options Order Entry |
+| [Otto](Otto.md) | OrderEntry | Nasdaq ISE Ouch to Trade Options (OTTO) |
+| [Quoting](Quoting.md) | OrderEntry | Nasdaq ISE Specialized Quote Interface (SQF) |
 | [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
 | [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |
 | [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Best Bid And Offer |
