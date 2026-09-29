@@ -10,6 +10,7 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Aggregated](Aggregated.md) | MarketData | Nasdaq Aggregated Depth Of Book Data |
+| [BasicPlus](BasicPlus.md) | MarketData | Nasdaq Consolidated Best Bid And Offer Quotation Data |
 | [Bbo](Bbo.md) | MarketData | Nasdaq Top Of Book Quotation Data |
 | [Etmf](Etmf.md) | OrderEntry | Nasdaq Nsm Equities Fix etmf |
 | [LastSale](LastSale.md) | MarketData | Nasdaq Trade Report Feed |
@@ -25,6 +26,7 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | [RashDrop](RashDrop.md) | DropCopy | Nasdaq Nsm Equities Fix rash drop |
 | [SumoOrders](SumoOrders.md) | OrderEntry | Nasdaq Nsm Equities Fix sumo orders |
 | [TotalView](TotalView.md) | MarketData | Nasdaq Full Depth Of Book Market Data |
+| [TotalViewPlus](TotalViewPlus.md) | MarketData | Nasdaq Multi Market Full Depth Of Book Market Data |
 | [TradeReporting](TradeReporting.md) | TradeReporting | Nasdaq Nsm Equities Fix trade reporting |
 
 ## Specifications
