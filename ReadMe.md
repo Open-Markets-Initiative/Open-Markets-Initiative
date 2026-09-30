@@ -13,19 +13,6 @@
 
 ---
 
-## Quick Navigation
-
-| Section | What's there |
-| --- | --- |
-| [Organizations](Organizations) | One folder per exchange / venue / regulator — links, MICs, and per-protocol spec entry points |
-| [Protocols](Protocols) | One markdown page per protocol — encoding family, transport, and history |
-| [Glossary](Glossary) | Common protocol concepts shared across venues |
-| [Projects](Projects) | Index of related Omi GitHub repositories |
-| [Research](Research) | Academic papers and patents on parser generation and low-latency systems |
-| [About](About) | Mission, philosophy, code of conduct, license |
-
----
-
 ## Organizations
 
 > [24X](Organizations/24X/) · [A2X](Organizations/A2X/) · [Aquis](Organizations/Aquis/) · [Asx](Organizations/Asx/) · [B3](Organizations/B3/) · [Bist](Organizations/Bist/) · [Biva](Organizations/Biva/) · [BlueOceanAts](Organizations/BlueOceanAts/) · [Box](Organizations/Box/) · [BruceAts](Organizations/BruceAts/) · [Bse](Organizations/Bse/) · [Cboe](Organizations/Cboe/) · [CixAts](Organizations/CixAts/) · [Cme](Organizations/Cme/) · [Coinbase](Organizations/Coinbase/) · [Currenex](Organizations/Currenex/) · [ElectronX](Organizations/ElectronX/) · [Eurex](Organizations/Eurex/) · [Euronext](Organizations/Euronext/) · [Finra](Organizations/Finra/) · [Fix](Organizations/Fix/) · [Hkex](Organizations/Hkex/) · [Ice](Organizations/Ice/) · [Iex](Organizations/Iex/) · [Imperative](Organizations/Imperative/) · [Jnx](Organizations/Jnx/) · [Jpx](Organizations/Jpx/) · [Jse](Organizations/Jse/) · [Koscom](Organizations/Koscom/) · [Lseg](Organizations/Lseg/) · [Ltse](Organizations/Ltse/) · [Memx](Organizations/Memx/) · [Miax](Organizations/Miax/) · [Nasdaq](Organizations/Nasdaq/) · [Nse](Organizations/Nse/) · [NsxAustralia](Organizations/NsxAustralia/) · [Nyse](Organizations/Nyse/) · [Odx](Organizations/Odx/) · [OtcMarkets](Organizations/OtcMarkets/) · [Sgx](Organizations/Sgx/) · [Siac](Organizations/Siac/) · [SmallX](Organizations/SmallX/) · [Taifex](Organizations/Taifex/) · [Tmx](Organizations/Tmx/) · [Txse](Organizations/Txse/)
@@ -54,17 +41,7 @@
 
 The Directory is the human-readable catalog. The machine-readable specifications live elsewhere and drive the source-generated artifacts:
 
-**Reference Material**
-
-- [omi-low-latency-reference][omi-low-latency-reference] — Knowledge base for low latency programming
-- [omi-markets-reference][omi-markets-reference] — Knowledge base for market data collection and analysis
-
-**Production Sample Data**
-
-- [omi-data-packets][omi-data-packets] — Example protocol data captures
-- [omi-data-pcaps][omi-data-pcaps] — Exchange pcaps for automated testing
-
-**Definitions**
+**Generated Definitions**
 
 - [omi-kaitai-struct-definitions][omi-kaitai-struct-definitions] — Kaitai Struct definitions for common exchange binary protocols
 - [omi-dfdl-definitions][omi-dfdl-definitions] — Data Format Description Language schemas for common exchange protocols
@@ -76,14 +53,27 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 **Source Generated Outputs**
 
-- [omi-wireshark-lua][omi-wireshark-lua] — Source generated cross platform Wireshark dissectors
 - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
 - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
-- [omi-wireshark-c][omi-wireshark-c] — Source generated Wireshark dissectors in C, built in to Wireshark
 - [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
 - [omi-cpp-formats][omi-cpp-formats] — Source generated C++ that translates packet captures into formats like JSON and Parquet
 
-A complete list lives in [Projects](Projects).
+**Telemetry**
+
+- [omi-wireshark-lua][omi-wireshark-lua] — Source generated cross platform Wireshark dissectors
+- [omi-wireshark-c][omi-wireshark-c] — Source generated Wireshark dissectors in C, built in to Wireshark
+
+**Reference Material**
+
+- [omi-low-latency-reference][omi-low-latency-reference] — Knowledge base for low latency programming
+- [omi-markets-reference][omi-markets-reference] — Knowledge base for market data collection and analysis
+
+**Production Sample Data**
+
+- [omi-data-packets][omi-data-packets] — Example protocol data captures
+- [omi-data-pcaps][omi-data-pcaps] — Exchange pcaps for automated testing
+
+A complete list lives in [Repositories](Repositories).
 
 ---
 
@@ -93,10 +83,6 @@ Documentation is collected from publicly available sources — corrections and a
 *Specifications belong to their respective owners; this directory aggregates pointers and historical context only.*
 
 
-[omi-low-latency-reference]: https://github.com/Open-Markets-Initiative/omi-low-latency-reference "Knowledge base for low latency programming"
-[omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
-[omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
-[omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
 [omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "P4 definitions for common exchange protocols for software and hardware data planes"
@@ -104,9 +90,13 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
 [omi-lean-definitions]: https://github.com/Open-Markets-Initiative/omi-lean-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "Omi universal XML binary specifications for common exchange protocols"
-[omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
-[omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
 [omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ that translates packet captures into formats like JSON and Parquet"
+[omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
+[omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
+[omi-low-latency-reference]: https://github.com/Open-Markets-Initiative/omi-low-latency-reference "Knowledge base for low latency programming"
+[omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
+[omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
+[omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
