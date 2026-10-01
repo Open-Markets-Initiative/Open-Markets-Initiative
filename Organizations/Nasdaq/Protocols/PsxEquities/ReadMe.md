@@ -10,14 +10,15 @@ Nasdaq Psx US cash equities exchange offering a price size market model rewardin
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Bbo](Bbo.md) | MarketData | Nasdaq PSX Top Of Book Quotation Data |
+| [CoreDropCopy](CoreDropCopy.md) | DropCopy | Nasdaq Psx Equities Fix core drop copy |
 | [Drop](Drop.md) | DropCopy | Nasdaq Psx Drop |
 | [Flite](Flite.md) | OrderEntry | Nasdaq PSX Equities Fix Lite order entry |
 | [LastSale](LastSale.md) | MarketData | Nasdaq PSX Trade Report Feed |
+| [MatchView](MatchView.md) | MarketData | Nasdaq PSX View Of Away Market Best Bid And Offer |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq PSX Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq PSX Order Entry |
-| [OuchDrop](OuchDrop.md) | DropCopy | Nasdaq Psx Equities Fix ouch drop |
 | [Rash](Rash.md) | OrderEntry | Nasdaq Psx Rash |
-| [RashDrop](RashDrop.md) | DropCopy | Nasdaq Psx Equities Fix rash drop |
+| [RashDropCopy](RashDropCopy.md) | DropCopy | Nasdaq Psx Equities Fix rash drop copy |
 | [SumoOrders](SumoOrders.md) | OrderEntry | Nasdaq Psx Equities Fix sumo orders |
 | [TotalView](TotalView.md) | MarketData | Nasdaq PSX Full Depth Of Book Market Data |
 
