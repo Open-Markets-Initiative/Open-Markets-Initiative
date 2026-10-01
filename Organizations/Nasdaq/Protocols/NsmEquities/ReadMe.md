@@ -12,7 +12,10 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | [Aggregated](Aggregated.md) | MarketData | Nasdaq Aggregated Depth Of Book Data |
 | [BasicPlus](BasicPlus.md) | MarketData | Nasdaq Consolidated Best Bid And Offer Quotation Data |
 | [Bbo](Bbo.md) | MarketData | Nasdaq Top Of Book Quotation Data |
+| [Ctci](Ctci.md) | OrderEntry | Nasdaq Nsm Equities Ctci |
+| [Drop](Drop.md) | DropCopy | Nasdaq Nsm Drop |
 | [Etmf](Etmf.md) | OrderEntry | Nasdaq Nsm Equities Fix etmf |
+| [Flite](Flite.md) | OrderEntry | Nasdaq NSM Equities Fix Lite order entry |
 | [LastSale](LastSale.md) | MarketData | Nasdaq Trade Report Feed |
 | [Level2](Level2.md) | MarketData | Nasdaq Level Two Market Maker Quotation Data |
 | [MatchView](MatchView.md) | MarketData | Nasdaq Nasdaq Executed Trade Feed |
@@ -23,6 +26,7 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | [Orders](Orders.md) | OrderEntry | Nasdaq Order Entry |
 | [OuchDrop](OuchDrop.md) | DropCopy | Nasdaq Nsm Equities Fix ouch drop |
 | [Qbbo](Qbbo.md) | MarketData | Nasdaq Nsm Equities Attributed Best Bid And Offer |
+| [Rash](Rash.md) | OrderEntry | Nasdaq Nsm Rash |
 | [RashDrop](RashDrop.md) | DropCopy | Nasdaq Nsm Equities Fix rash drop |
 | [SumoOrders](SumoOrders.md) | OrderEntry | Nasdaq Nsm Equities Fix sumo orders |
 | [TotalView](TotalView.md) | MarketData | Nasdaq Full Depth Of Book Market Data |

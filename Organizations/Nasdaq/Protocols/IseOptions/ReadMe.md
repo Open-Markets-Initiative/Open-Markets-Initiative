@@ -18,10 +18,10 @@ Nasdaq Ise International Securities Exchange US options exchange offering a pric
 | [OrderFeed](OrderFeed.md) | MarketData | Ise Order Feed Market Data |
 | [Otto](Otto.md) | OrderEntry | Nasdaq ISE Ouch to Trade Options (OTTO) |
 | [Quoting](Quoting.md) | OrderEntry | Nasdaq ISE Specialized Quote Interface (SQF) |
-| [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Depth Of Book |
-| [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq Phlx Options Complex Order Component |
-| [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq Phlx Options Complex Order Best Bid And Offer |
-| [SpreadTradeFeed](SpreadTradeFeed.md) | MarketData | Nasdaq Phlx Options Complex Strategy Trade Report Feed |
+| [SpreadDepthOfMarket](SpreadDepthOfMarket.md) | MarketData | Nasdaq ISE Complex Order Depth Of Book |
+| [SpreadOrders](SpreadOrders.md) | MarketData | Nasdaq ISE Complex Order Component |
+| [SpreadTopOfMarket](SpreadTopOfMarket.md) | MarketData | Nasdaq ISE Complex Order Best Bid And Offer |
+| [SpreadTradeFeed](SpreadTradeFeed.md) | MarketData | Nasdaq ISE Complex Strategy Trade Report Feed |
 | [TopComboQuoteFeed](TopComboQuoteFeed.md) | MarketData | Ise Top Combo Quote Feed |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Ise Options Best Bid And Offer Data |
 | [TradeComboFeed](TradeComboFeed.md) | MarketData | Ise Trade Combo Feed |

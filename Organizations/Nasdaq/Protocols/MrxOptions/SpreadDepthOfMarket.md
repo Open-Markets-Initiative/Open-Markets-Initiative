@@ -1,6 +1,6 @@
-## MrxOptions Spread Depth Of Market: Nasdaq Phlx Options Complex Order Depth Of Book
+## MrxOptions Spread Depth Of Market: Nasdaq MRX Complex Order Depth Of Book
 
-Depth of book market data feed for complex and spread orders for Phlx Options.
+Depth of book market data feed for complex and spread orders for MRX Options.
 
 ### Overview
 
@@ -12,9 +12,9 @@ Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binar
 
 ### Key Characteristics
 
-- **Spread depth** - Complex order book events for Phlx Options
+- **Spread depth** - Complex order book events for MRX Options
 - **Nasdaq Itch** - Industry-standard Itch binary format
 - **MoldUdp64 multicast** - Nasdaq multicast framing
 - **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Phlx Options** - Coverage of Nasdaq Phlx Options listed instruments
+- **MRX Options** - Coverage of Nasdaq MRX listed instruments
 
