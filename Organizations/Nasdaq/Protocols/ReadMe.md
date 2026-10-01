@@ -19,7 +19,7 @@
 | [NtxEquities](NtxEquities/) | 12 |
 | [NtxOptions](NtxOptions/) | 7 |
 | [PhlxOptions](PhlxOptions/) | 13 |
-| [PsxEquities](PsxEquities/) | 11 |
+| [PsxEquities](PsxEquities/) | 12 |
 
 ## Specifications
 

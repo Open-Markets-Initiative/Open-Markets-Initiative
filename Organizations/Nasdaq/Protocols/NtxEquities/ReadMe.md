@@ -10,15 +10,15 @@ Nasdaq Texas US cash equities exchange — successor to the Nasdaq Boston (BX) S
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [Bbo](Bbo.md) | MarketData | Nasdaq TX Top Of Book Quotation Data |
+| [CoreDropCopy](CoreDropCopy.md) | DropCopy | Nasdaq Ntx Equities Fix core drop copy |
 | [Drop](Drop.md) | DropCopy | Nasdaq Ntx Drop |
 | [Flite](Flite.md) | OrderEntry | Nasdaq Texas Equities Fix Lite order entry |
 | [LastSale](LastSale.md) | MarketData | Nasdaq BX Trade Report Feed |
 | [MatchView](MatchView.md) | MarketData | Nasdaq Texas View Of Away Market Best Bid And Offer |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq Texas Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq BX Order Entry |
-| [OuchDrop](OuchDrop.md) | DropCopy | Nasdaq Ntx Equities Fix ouch drop |
 | [Rash](Rash.md) | OrderEntry | Nasdaq Ntx Rash |
-| [RashDrop](RashDrop.md) | DropCopy | Nasdaq Ntx Equities Fix rash drop |
+| [RashDropCopy](RashDropCopy.md) | DropCopy | Nasdaq Ntx Equities Fix rash drop copy |
 | [SumoOrders](SumoOrders.md) | OrderEntry | Nasdaq Ntx Equities Fix sumo orders |
 | [TotalView](TotalView.md) | MarketData | Nasdaq TX Full Depth Of Book Market Data |
 
