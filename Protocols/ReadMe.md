@@ -48,6 +48,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [AsciiRash](AsciiRash.md) | OrderEntry | Nasdaq | Nasdaq Routing And Special Handling (RASH) message format (fixed length ascii) |
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
+| [Ctci](Ctci.md) | OrderEntry | Nasdaq | Nasdaq CTCI line-oriented text messages in a binary TCP/IP envelope |
 | [Nnf](Nnf.md) | OrderEntry | Nse | Non-Neat Front End |
 | [NnfDirect](NnfDirect.md) | OrderEntry | Nse | Non-Neat Front End Direct Interface |
 | [NnfTrimmed](NnfTrimmed.md) | OrderEntry | Nse | Non-Neat Front End Trimmed |
