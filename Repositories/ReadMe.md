@@ -18,7 +18,7 @@ Domain specific language definitions
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-spicy-definitions][omi-spicy-definitions] | Spicy | Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek |
 | [omi-lean-definitions][omi-lean-definitions] | Lean | Lean 4 definitions of common exchange binary protocols, with proofs |
-| [omi-xml-specifications][omi-xml-specifications] | Xml | Omi universal XML binary specifications for common exchange protocols |
+| [omi-xml-specifications][omi-xml-specifications] | Xml | XML specifications for common exchange protocols |
 
 ## Source Generated Outputs
 
@@ -80,7 +80,7 @@ Example protocol data captures from production feeds.
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
 [omi-lean-definitions]: https://github.com/Open-Markets-Initiative/omi-lean-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
-[omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "Omi universal XML binary specifications for common exchange protocols"
+[omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "XML specifications for common exchange protocols"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"

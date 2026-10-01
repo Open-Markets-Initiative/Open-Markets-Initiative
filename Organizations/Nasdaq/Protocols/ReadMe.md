@@ -4,7 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [](/) | 1 |
-| [BxEquities](BxEquities/) | 4 |
+| [BxEquities](BxEquities/) | 6 |
 | [GemxOptions](GemxOptions/) | 9 |
 | [IseOptions](IseOptions/) | 17 |
 | [MrxOptions](MrxOptions/) | 13 |
@@ -15,11 +15,11 @@
 | [NomOptions](NomOptions/) | 7 |
 | [NordicDerivatives](NordicDerivatives/) | 3 |
 | [NordicEquities](NordicEquities/) | 7 |
-| [NsmEquities](NsmEquities/) | 19 |
-| [NtxEquities](NtxEquities/) | 9 |
+| [NsmEquities](NsmEquities/) | 23 |
+| [NtxEquities](NtxEquities/) | 12 |
 | [NtxOptions](NtxOptions/) | 7 |
 | [PhlxOptions](PhlxOptions/) | 13 |
-| [PsxEquities](PsxEquities/) | 8 |
+| [PsxEquities](PsxEquities/) | 11 |
 
 ## Specifications
 

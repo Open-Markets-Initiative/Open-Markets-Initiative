@@ -1,6 +1,6 @@
-## MrxOptions Spread Top Of Market: Nasdaq Phlx Options Complex Order Best Bid And Offer
+## MrxOptions Spread Top Of Market: Nasdaq MRX Complex Order Best Bid And Offer
 
-Top of book market data feed for complex and spread orders publishing best bid and offer quotations for Phlx Options.
+Top of book market data feed for complex and spread orders publishing best bid and offer quotations for MRX Options.
 
 ### Overview
 
@@ -12,9 +12,9 @@ Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binar
 
 ### Key Characteristics
 
-- **Spread top of book** - Best bid and offer for complex orders for Phlx Options
+- **Spread top of book** - Best bid and offer for complex orders for MRX Options
 - **Nasdaq Itch** - Industry-standard Itch binary format
 - **MoldUdp64 multicast** - Nasdaq multicast framing
 - **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Phlx Options** - Coverage of Nasdaq Phlx Options listed instruments
+- **MRX Options** - Coverage of Nasdaq MRX listed instruments
 
