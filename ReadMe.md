@@ -7,7 +7,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-45-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-352-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-45-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-356-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -27,7 +27,7 @@
 
 ## Consolidators and Sips
 
-> [Cqs](Organizations/Siac/Protocols/Cqs/) · [Cts](Organizations/Siac/Protocols/Cts/) · [MdcsRealtime](Organizations/Koscom/Protocols/MdcsRealtime/) · [NordicMarkets](Organizations/Nasdaq/Protocols/NordicMarkets/) · [NyseConsolidated](Organizations/Nyse/Protocols/NyseConsolidated/) · [Opra](Organizations/Siac/Protocols/Opra/) · [TitaniumConsolidated](Organizations/Cboe/Protocols/TitaniumConsolidated/) · [Uqdf](Organizations/Nasdaq/Protocols/Uqdf/) · [Utdf](Organizations/Nasdaq/Protocols/Utdf/) · [Utp](Organizations/Nasdaq/Protocols/Utp/)
+> [Cqs](Organizations/Siac/Protocols/Cqs/) · [Cts](Organizations/Siac/Protocols/Cts/) · [FundNetwork](Organizations/Nasdaq/Protocols/FundNetwork/) · [Index](Organizations/Nasdaq/Protocols/Index/) · [MdcsRealtime](Organizations/Koscom/Protocols/MdcsRealtime/) · [NordicMarkets](Organizations/Nasdaq/Protocols/NordicMarkets/) · [NyseConsolidated](Organizations/Nyse/Protocols/NyseConsolidated/) · [Opra](Organizations/Siac/Protocols/Opra/) · [TitaniumConsolidated](Organizations/Cboe/Protocols/TitaniumConsolidated/) · [Uqdf](Organizations/Nasdaq/Protocols/Uqdf/) · [Utdf](Organizations/Nasdaq/Protocols/Utdf/) · [Utp](Organizations/Nasdaq/Protocols/Utp/)
 
 ---
 

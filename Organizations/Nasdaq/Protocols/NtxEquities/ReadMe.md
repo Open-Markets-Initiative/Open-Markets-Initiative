@@ -13,7 +13,7 @@ Nasdaq Texas US cash equities exchange — successor to the Nasdaq Boston (BX) S
 | [CoreDropCopy](CoreDropCopy.md) | DropCopy | Nasdaq Ntx Equities Fix core drop copy |
 | [Drop](Drop.md) | DropCopy | Nasdaq Ntx Drop |
 | [Flite](Flite.md) | OrderEntry | Nasdaq Texas Equities Fix Lite order entry |
-| [LastSale](LastSale.md) | MarketData | Nasdaq BX Trade Report Feed |
+| [LastSale](LastSale.md) | MarketData | Nasdaq Texas Last Sale, formerly Nasdaq BX Last Sale (BLS) |
 | [MatchView](MatchView.md) | MarketData | Nasdaq Texas View Of Away Market Best Bid And Offer |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq Texas Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq BX Order Entry |

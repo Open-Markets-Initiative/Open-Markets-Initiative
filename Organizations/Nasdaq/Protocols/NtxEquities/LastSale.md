@@ -1,22 +1,22 @@
-## NtxEquities Last Sale: Nasdaq BX Trade Report Feed
+## NtxEquities Last Sale: Nasdaq Texas Last Sale, formerly Nasdaq BX Last Sale (BLS)
 
-Trade report feed publishing executed trade messages for equities traded on Nasdaq BX Equities.
+Real-time, intra-day trade data feed from the Nasdaq Texas execution system, formerly Nasdaq BX Last Sale.
 
 ### Overview
 
-Last Sale is the trade report market data feed for Nasdaq BX Equities, publishing executed trade messages with price, size, and condition codes as trades occur. It provides a clean last-sale stream for subscribers that need trade information without the overhead of a full depth of book feed.
+Nasdaq Texas Last Sale, formerly Nasdaq BX Last Sale (BLS), is a direct data feed of real-time, intra-day trade data from the Nasdaq Texas execution system, covering Nasdaq, NYSE and other US exchange listed securities. The current feed is documented in the unified Nasdaq Last Sale Products specification.
 
-Messages are delivered in the Cboe Pitch binary format over Ip multicast with A and B feed redundancy, and a Tcp gap request proxy service is available for recovery of messages missed on the multicast feed. Trade cancellations and corrections are published alongside trade reports.
+The messages are a series of sequenced, variable length binary messages: system events, trade reports, trade cancel/error and trade correction messages, and administrative messages. They are offered over MoldUdp64 and SoupBinTcp.
 
 ### Transport
 
-Udp multicast via the Cboe Pitch framing for real-time delivery of sequenced binary market data messages with per-packet sequence numbers and A and B feed redundancy. Tcp for the Cboe Grp Gap Request Proxy service used by subscribers to recover messages missed on the multicast feed.
+Udp multicast via MoldUdp64, a single broadcast channel with A and B feeds and a rerequest service for missed messages. Tcp via SoupBinTcp for sequenced delivery of the same messages.
 
 ### Key Characteristics
 
-- **Last sale** - Executed trade stream for Nasdaq BX Equities
-- **Trade lifecycle** - Trade report, cancellation, and correction messages
-- **Cboe Pitch** - Native Cboe binary message format
-- **Multicast delivery** - Udp multicast with A and B feed redundancy
-- **Gap request proxy** - Tcp recovery service for missed multicast messages
+- **Last sale** - Trades from the Nasdaq Texas execution system
+- **Trade lifecycle** - Trade report, trade cancel/error and trade correction messages
+- **Administrative messages** - Stock trading action, Reg SHO, stock directory, MWCB and operational halt messages
+- **Nasdaq Itch** - Variable length sequenced binary messages, big endian integers and nanosecond timestamps
+- **MoldUdp64 and SoupBinTcp** - MoldUdp64 multicast and SoupBinTcp
 

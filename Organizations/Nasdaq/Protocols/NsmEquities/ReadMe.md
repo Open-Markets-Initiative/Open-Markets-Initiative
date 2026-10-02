@@ -11,21 +11,22 @@ Nasdaq Stock Market primary US cash equities listing exchange providing the refe
 | --- | --- | --- |
 | [Aggregated](Aggregated.md) | MarketData | Nasdaq Aggregated Depth Of Book Data |
 | [BasicPlus](BasicPlus.md) | MarketData | Nasdaq Consolidated Best Bid And Offer Quotation Data |
-| [Bbo](Bbo.md) | MarketData | Nasdaq Top Of Book Quotation Data |
 | [CoreDropCopy](CoreDropCopy.md) | DropCopy | Nasdaq Nsm Equities Fix core drop copy |
 | [Ctci](Ctci.md) | OrderEntry | Nasdaq NSM Equities Computer to Computer Interface (CTCI) |
 | [Drop](Drop.md) | DropCopy | Nasdaq Nsm Drop |
 | [Etmf](Etmf.md) | OrderEntry | Nasdaq Nsm Equities Fix etmf |
 | [Flite](Flite.md) | OrderEntry | Nasdaq NSM Equities Fix Lite order entry |
-| [LastSale](LastSale.md) | MarketData | Nasdaq Trade Report Feed |
+| [LastSale](LastSale.md) | MarketData | Nasdaq Last Sale (NLS) |
+| [LastSaleTradesFilterView](LastSaleTradesFilterView.md) | MarketData | Nasdaq FilterView, the Nasdaq Last Sale trades of the Nasdaq execution system |
+| [LastSaleTrfTradesFilterView](LastSaleTrfTradesFilterView.md) | MarketData | TRF FilterView, the Nasdaq Last Sale trades of the Nasdaq/FINRA Trade Reporting Facilities |
 | [Level2](Level2.md) | MarketData | Nasdaq Level Two Market Maker Quotation Data |
-| [MatchView](MatchView.md) | MarketData | Nasdaq Nasdaq Executed Trade Feed |
+| [MatchView](MatchView.md) | MarketData | Nasdaq View Of Away Market Best Bid And Offer |
 | [NlsPlus](NlsPlus.md) | MarketData | Nasdaq Consolidated Last Sale Data |
 | [Nois](Nois.md) | MarketData | Nasdaq Auction Imbalance Data |
 | [NoiView](NoiView.md) | MarketData | Nasdaq Auction Imbalance View |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq Stock Market Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq Order Entry |
-| [Qbbo](Qbbo.md) | MarketData | Nasdaq Nsm Equities Attributed Best Bid And Offer |
+| [Qbbo](Qbbo.md) | MarketData | Nasdaq Top Of Book Quotation Data |
 | [Rash](Rash.md) | OrderEntry | Nasdaq Nsm Rash |
 | [RashDropCopy](RashDropCopy.md) | DropCopy | Nasdaq Nsm Equities Fix rash drop copy |
 | [SumoOrders](SumoOrders.md) | OrderEntry | Nasdaq Nsm Equities Fix sumo orders |
