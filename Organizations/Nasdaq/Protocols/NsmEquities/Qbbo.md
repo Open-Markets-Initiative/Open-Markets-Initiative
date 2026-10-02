@@ -1,20 +1,23 @@
-## NsmEquities Qbbo: Nasdaq Nsm Equities Attributed Best Bid And Offer
+## NsmEquities Qbbo: Nasdaq Top Of Book Quotation Data
 
-Top of book market data feed publishing attributed best bid and offer quotations with participant identification for Nsm Equities.
+Top of book Itch-based market data feed publishing best bid and offer quotations for equities traded on Nasdaq Stock Market.
 
 ### Overview
 
-Qbbo is the attributed top of book feed, publishing best bid and offer quotations with participant attribution. It uses the Nasdaq Itch binary protocol over MoldUdp64 multicast.
+Bbo is the top of book market data feed for Nasdaq Stock Market, publishing best bid and best offer updates for every listed equity instrument. It is a lightweight alternative to the full TotalView depth feed, providing current quotations without the overhead of order-by-order events.
+
+Messages use the Nasdaq Itch binary format and are distributed over Ip multicast via MoldUdp64. A companion SoupBinTcp glimpse snapshot and retransmission service is available for gap recovery and mid-day initialisation.
 
 ### Transport
 
-Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Attributed quotes** - Best bid and offer with participant identification for Nsm Equities
-- **Nasdaq Itch** - Industry-standard Itch binary format
-- **MoldUdp64 multicast** - Nasdaq multicast framing
-- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Nsm Equities** - Coverage of Nasdaq Nsm Equities listed instruments
+- **Top of book** - Best bid and best offer for every listed instrument
+- **Nasdaq Itch** - Industry-standard Itch binary message format
+- **MoldUdp64** - Packaged over the Nasdaq MoldUdp64 multicast framing
+- **Glimpse snapshot** - Tcp snapshot service for mid-day initialisation
+- **Retransmission** - Tcp service for recovery of missed multicast messages
+- **Lightweight** - Low bandwidth alternative to full depth of book
 

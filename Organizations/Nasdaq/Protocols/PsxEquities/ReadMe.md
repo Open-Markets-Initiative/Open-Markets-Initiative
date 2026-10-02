@@ -13,7 +13,7 @@ Nasdaq Psx US cash equities exchange offering a price size market model rewardin
 | [CoreDropCopy](CoreDropCopy.md) | DropCopy | Nasdaq Psx Equities Fix core drop copy |
 | [Drop](Drop.md) | DropCopy | Nasdaq Psx Drop |
 | [Flite](Flite.md) | OrderEntry | Nasdaq PSX Equities Fix Lite order entry |
-| [LastSale](LastSale.md) | MarketData | Nasdaq PSX Trade Report Feed |
+| [LastSale](LastSale.md) | MarketData | Nasdaq PSX Last Sale (PLS) |
 | [MatchView](MatchView.md) | MarketData | Nasdaq PSX View Of Away Market Best Bid And Offer |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq PSX Fix order entry |
 | [Orders](Orders.md) | OrderEntry | Nasdaq PSX Order Entry |
