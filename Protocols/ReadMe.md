@@ -20,7 +20,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [SimpleOpenFrame](SimpleOpenFrame.md) | Framing | Fix | FIX-standard length and encoding-type prefix for stream transports |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
-| [Apf](Apf.md) | MarketData | Cboe | Cboe Europe Ascii Price Feed |
 | [AsciiItch](AsciiItch.md) | MarketData | Nasdaq | Nasdaq ascii market data message format (fixed length ascii lines) |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |

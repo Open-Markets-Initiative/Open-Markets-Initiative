@@ -6,7 +6,7 @@ Line-oriented ASCII variant of the Cboe Pitch market data protocol. Carries the 
 
 ASCII Pitch is the line-oriented text variant of the Cboe Pitch family. Where binary Pitch packs each event into a fixed-length little-endian binary record delivered over UDP multicast, ASCII Pitch encodes the same event types (add order, cancel, execute, trade, status, …) as printable ASCII fields terminated by a newline, and delivers them over TCP. The trade-off is reduced bandwidth efficiency in exchange for human-readable wire bytes and connection-oriented reliable delivery.
 
-The encoding underpins Cboe's TCP-delivered market data products including Top of Book, TCP Depth of Book, Auction Feed, and Last Sale across the BYX, BZX, EDGA, EDGX equity exchanges and the Titanium consolidated equities and options books. Two TCP framing variants are observed in the wild: plain unsequenced TCP (Top of Book and similar low-rate feeds) and Cboe Soup 2.0 framing (higher-rate feeds where sequencing and replay are required).
+The encoding underpins Cboe's TCP-delivered market data products including Top of Book, TCP Depth of Book, Auction Feed, and Last Sale across the BYX, BZX, EDGA, EDGX equity exchanges, the Cboe Europe BXE and CXE books and the Titanium consolidated equities and options books. Two TCP framing variants are observed in the wild: plain unsequenced TCP (Top of Book and similar low-rate feeds) and Cboe Soup 2.0 framing (higher-rate feeds where sequencing and replay are required).
 
 Message types and field layouts mirror binary Pitch closely — each ASCII record begins with a single-character message type code identifying the event, followed by fixed-width ASCII fields for timestamps (nanoseconds since midnight), prices (decimal with implied precision), quantities, order IDs, and so on. Subscribers parse one record per newline and apply the same order-book reconstruction logic used for binary Pitch.
 
@@ -21,5 +21,5 @@ Direct TCP unicast — each subscriber connects to a Cboe-assigned host/port and
 - **Pitch event semantics** - Carries the same add/modify/cancel/execute/trade/status events as binary Pitch
 - **Spin recovery** - On the unsequenced TCP variant, reconnect-and-spin replays the current state
 - **Soup 2.0 recovery** - On the framed variant, Cboe Soup 2.0 supplies sequence numbers and replay over a single session
-- **Multi-platform coverage** - Used across BYX, BZX, EDGA, EDGX, and Titanium consolidated equities and options books
+- **Multi-platform coverage** - Used across BYX, BZX, EDGA, EDGX, Cboe Europe BXE and CXE, and Titanium consolidated equities and options books
 
