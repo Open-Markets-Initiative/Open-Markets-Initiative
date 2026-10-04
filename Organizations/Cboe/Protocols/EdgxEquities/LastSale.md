@@ -4,5 +4,5 @@ Ascii Pitch last-sale trade-tape feed publishing trade prints for equities trade
 
 ### Transport
 
-Udp multicast for real-time delivery of last-sale trade messages.
+Tcp delivery via Soup 2.0, which handles sequencing and delivery integrity, including login requests, client/server heartbeats and logout requests, for the fixed-length non-control Ascii last-sale messages.
 
