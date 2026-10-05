@@ -41,9 +41,12 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Itch |
 | [Nfn](Nfn.md) | MarketData | Nasdaq | NFN Data Service ascii message blocks |
 | [NnfBcast](NnfBcast.md) | MarketData | Nse | Non-Neat Front End Broadcast |
+| [NxtAscii](NxtAscii.md) | MarketData | Nextrade | Nextrade Ascii fixed-width Udp multicast market data |
+| [NxtBinary](NxtBinary.md) | MarketData | Nextrade | Nextrade native fixed-width Udp multicast market data |
 | [Omd](Omd.md) | MarketData | Hkex | Orion Market Data |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
+| [SesM](SesM.md) | MarketData | Miax | Session Management |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
 | [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
 | [Tip](Tip.md) | MarketData | Nasdaq | Transaction Information Protocol |
