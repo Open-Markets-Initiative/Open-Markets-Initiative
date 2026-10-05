@@ -38,6 +38,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Memx](Memx/) | The Members Exchange | MEMX | [memx.com](https://www.memx.com) |
 | [Miax](Miax/) | Miami International Holdings | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
 | [Nasdaq](Nasdaq/) | National Association of Securities Dealers Automated Quotations (Nasdaq) | XNAS | [nasdaq.com](https://www.nasdaq.com) |
+| [Nextrade](Nextrade/) | Nextrade | XNXT | [nextrade.co.kr](https://nextrade.co.kr) |
 | [Nse](Nse/) | National Stock Exchange of India Ltd | XNSE | [nseindia.com](https://www.nseindia.com) |
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNSX | [nsx.com.au](https://www.nsx.com.au) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |
