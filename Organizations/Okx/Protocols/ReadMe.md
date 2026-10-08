@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Okx](Okx/) | 3 |
+| [OkxDigital](OkxDigital/) | 3 |
 
 ## Specifications
 
