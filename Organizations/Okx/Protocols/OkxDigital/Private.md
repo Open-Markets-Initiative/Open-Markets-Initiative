@@ -1,4 +1,4 @@
-## Private: Okx Sbe WebSocket Private Orders and Fills
+## OkxDigital Private: Okx Sbe WebSocket Private Orders and Fills
 
 Sbe-encoded WebSocket private pushes from Okx reporting a user's orders and fills.
 

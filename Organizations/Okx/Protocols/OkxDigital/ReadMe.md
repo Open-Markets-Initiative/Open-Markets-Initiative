@@ -1,4 +1,4 @@
-## OKX
+## OKX Digital
 
 
 OKX crypto exchange trading spot, margin, perpetual swaps, futures and options on one venue, with JSON and Sbe WebSocket APIs.

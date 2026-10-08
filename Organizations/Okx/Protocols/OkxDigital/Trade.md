@@ -1,4 +1,4 @@
-## Trade: Okx Sbe WebSocket Order Entry
+## OkxDigital Trade: Okx Sbe WebSocket Order Entry
 
 Sbe-encoded WebSocket order entry for Okx placing, amending and cancelling orders singly and in batches, with their responses.
 
