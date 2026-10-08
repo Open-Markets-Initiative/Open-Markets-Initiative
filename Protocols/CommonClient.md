@@ -1,6 +1,6 @@
-## CommonClient: Pillar TCP framing and session layer
+## CommonClient: Common Client
 
-NYSE Pillar's shared client-facing session and framing header, serving as the message envelope beneath Pillar BinaryGateway order entry and other client-to-exchange protocols across NYSE, NYSE American, NYSE Arca, NYSE National, NYSE Texas, and NYSE options markets.
+Common client header specification for Nyse Options Pillar binary protocols.
 
 ### Overview
 
@@ -12,7 +12,7 @@ Heartbeat frames are exchanged in both directions during idle periods and functi
 
 ### Transport
 
-CommonClient operates over TCP providing reliable ordered delivery between an authorized client and the Pillar gateway. Every frame carries a little-endian packet header containing the packet length, message count, and sequence metadata, followed by a sequence of length-prefixed Pillar application messages.
+Udp multicast common client header for Pillar binary market data.
 
 ### Key Characteristics
 

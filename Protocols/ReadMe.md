@@ -17,8 +17,18 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Sbe](Sbe.md) | Encoding | Fix | Simple Binary Encoding |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
 | [Xdp](Xdp.md) | Encoding | Nyse | Exchange Data Publisher |
-| [SimpleOpenFrame](SimpleOpenFrame.md) | Framing | Fix | FIX-standard length and encoding-type prefix for stream transports |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
+| [BinaryPacket](BinaryPacket.md) | Header | B3 | UMDF UDP packet framing |
+| [BinaryPacketHeader](BinaryPacketHeader.md) | Header | Cme | MDP 3.0 UDP packet framing |
+| [CommonClient](CommonClient.md) | Header | Nyse | Common Client |
+| [MoldUdp](MoldUdp.md) | Header | Nasdaq | Nasdaq Reliable Multicast Transport Layer |
+| [MoldUdp64](MoldUdp64.md) | Header | Nasdaq | 64-bit Sequenced Multicast Transport |
+| [SequencedUnitHeader](SequencedUnitHeader.md) | Header | Cboe | Sequenced Unit Header |
+| [Session](Session.md) | Header | Iex | Iex Options Binary Session Layer |
+| [Session](Session.md) | Header | Coinbase | Coinbase Derivatives Sbe Session Layer |
+| [SimpleOpenFrame](SimpleOpenFrame.md) | Header | Fix | FIX-standard length and encoding-type prefix for stream transports |
+| [SoupBinTcp](SoupBinTcp.md) | Header | Nasdaq | Nasdaq Session Authenticated Tcp Transport |
+| [StreamProtocol](StreamProtocol.md) | Header | Nyse | Stream Protocol |
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [AsciiItch](AsciiItch.md) | MarketData | Nasdaq | Nasdaq ascii market data message format (fixed length ascii lines) |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
@@ -74,12 +84,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |
 | [Xti](Xti.md) | Protocol | Eurex | Eurex T7 Order Entry |
-| [CommonClient](CommonClient.md) | Session | Nyse | Pillar TCP framing and session layer |
-| [SoupBinTcp](SoupBinTcp.md) | Session | Nasdaq | TCP Session Layer |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |
-| [BinaryPacket](BinaryPacket.md) | Transport | B3 | UMDF UDP packet framing |
-| [BinaryPacketHeader](BinaryPacketHeader.md) | Transport | Cme | MDP 3.0 UDP packet framing |
 | [IexTp](IexTp.md) | Transport | Iex | IEX Transport Protocol |
-| [MoldUdp](MoldUdp.md) | Transport | Nasdaq | Original Sequenced Multicast Transport |
-| [MoldUdp64](MoldUdp64.md) | Transport | Nasdaq | 64-bit Sequenced Multicast Transport |
 

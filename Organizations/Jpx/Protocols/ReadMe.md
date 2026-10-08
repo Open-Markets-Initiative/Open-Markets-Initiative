@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Jpx](Jpx/) | 2 |
+| [OseDerivatives](OseDerivatives/) | 2 |
 | [TseEquities](TseEquities/) | 1 |
 
 ## Specifications
