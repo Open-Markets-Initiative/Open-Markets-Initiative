@@ -3,7 +3,9 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Siac](Siac/) | 3 |
+| [Cqs](Cqs/) | 1 |
+| [Cts](Cts/) | 1 |
+| [Opra](Opra/) | 1 |
 
 ## Specifications
 
