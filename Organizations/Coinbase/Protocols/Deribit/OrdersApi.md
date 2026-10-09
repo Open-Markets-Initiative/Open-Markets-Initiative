@@ -1,4 +1,4 @@
-## CoinbaseDeribit Orders Api: Coinbase Deribit Sbe Order Entry
+## Deribit Orders Api: Coinbase Deribit Sbe Order Entry
 
 Sbe-encoded binary order entry api used by market makers and direct trading firms to submit, modify, and cancel orders on Coinbase Deribit crypto derivatives.
 
