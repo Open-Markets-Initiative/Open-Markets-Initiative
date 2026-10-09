@@ -1,4 +1,4 @@
-## CoinbaseDeribit Market Data Api: Coinbase Deribit Sbe Multicast Market Data
+## Deribit Market Data Api: Coinbase Deribit Sbe Multicast Market Data
 
 Sbe-encoded multicast Udp market data api for Coinbase Deribit publishing orders, trades, market state changes, and instrument definitions for crypto options and futures.
 

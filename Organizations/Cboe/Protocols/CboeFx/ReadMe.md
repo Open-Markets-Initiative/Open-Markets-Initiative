@@ -1,4 +1,7 @@
-## CboeFx
+## Cboe FX
+
+
+Cboe institutional spot foreign exchange marketplace, the former Hotspot FX electronic communication network.
 
 
 ### Protocols

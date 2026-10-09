@@ -1,4 +1,4 @@
-## CoinbaseDeribit Order Entry: Coinbase Deribit Fix Trading Api
+## Deribit Order Entry: Coinbase Deribit Fix Trading Api
 
 Financial Information eXchange (Fix) 4.4 subset for institutional trading on Coinbase Deribit covering order entry, mass quoting, market data subscription, security reference, trade capture, position reporting, and market maker protection with Deribit custom tags.
 

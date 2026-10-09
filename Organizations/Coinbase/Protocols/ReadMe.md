@@ -3,8 +3,8 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [CoinbaseDeribit](CoinbaseDeribit/) | 3 |
 | [CoinbaseDerivatives](CoinbaseDerivatives/) | 4 |
+| [Deribit](Deribit/) | 3 |
 
 ## Specifications
 

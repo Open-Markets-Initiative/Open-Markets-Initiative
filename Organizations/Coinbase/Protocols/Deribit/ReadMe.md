@@ -1,4 +1,7 @@
-## CoinbaseDeribit
+## Deribit
+
+
+Deribit cryptocurrency derivatives exchange offering options, futures, and perpetuals on Bitcoin, Ether, and other digital assets, acquired by Coinbase.
 
 
 ### Protocols
