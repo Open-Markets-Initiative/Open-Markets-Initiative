@@ -1,4 +1,4 @@
-## CoinbaseDerivatives Session: Coinbase Derivatives Sbe Session Layer
+## SbeSession: Coinbase Derivatives Sbe Session Layer
 
 Binary session layer protocol handling connection lifecycle, authentication, and heartbeat for Coinbase Derivatives market data and order entry interfaces.
 

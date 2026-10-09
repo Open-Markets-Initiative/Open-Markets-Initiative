@@ -20,12 +20,12 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [BinaryPacket](BinaryPacket.md) | Header | B3 | UMDF UDP packet framing |
 | [BinaryPacketHeader](BinaryPacketHeader.md) | Header | Cme | MDP 3.0 UDP packet framing |
+| [BinarySession](BinarySession.md) | Header | Iex | Iex Options Binary Session Layer |
 | [CommonClient](CommonClient.md) | Header | Nyse | Common Client |
 | [MoldUdp](MoldUdp.md) | Header | Nasdaq | Nasdaq Reliable Multicast Transport Layer |
 | [MoldUdp64](MoldUdp64.md) | Header | Nasdaq | 64-bit Sequenced Multicast Transport |
+| [SbeSession](SbeSession.md) | Header | Coinbase | Coinbase Derivatives Sbe Session Layer |
 | [SequencedUnitHeader](SequencedUnitHeader.md) | Header | Cboe | Sequenced Unit Header |
-| [Session](Session.md) | Header | Iex | Iex Options Binary Session Layer |
-| [Session](Session.md) | Header | Coinbase | Coinbase Derivatives Sbe Session Layer |
 | [SimpleOpenFrame](SimpleOpenFrame.md) | Header | Fix | FIX-standard length and encoding-type prefix for stream transports |
 | [SoupBinTcp](SoupBinTcp.md) | Header | Nasdaq | Nasdaq Session Authenticated Tcp Transport |
 | [StreamProtocol](StreamProtocol.md) | Header | Nyse | Stream Protocol |

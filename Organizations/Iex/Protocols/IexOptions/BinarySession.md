@@ -1,4 +1,4 @@
-## IexOptions Session: Iex Options Binary Session Layer
+## IexOptions Binary Session: Iex Options Binary Session Layer
 
 Sbe-encoded binary session layer for Iex Options order entry handling login, heartbeat, logout, terminate, sequenced message delivery, and subsession join and leave.
 

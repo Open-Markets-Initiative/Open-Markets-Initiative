@@ -12,7 +12,7 @@ Coinbase Derivatives Exchange regulated US futures venue offering nano sized Bit
 | [DropCopy](DropCopy.md) | DropCopy | Coinbase Derivatives Fix Drop Copy |
 | [MarketDataApi](MarketDataApi.md) | MarketData | Coinbase Derivatives Sbe Multicast Market Data |
 | [OrdersApi](OrdersApi.md) | OrderEntry | Coinbase Derivatives Sbe Order Entry |
-| [Session](Session.md) | Session | Coinbase Derivatives Sbe Session Layer |
+| [SbeSession](SbeSession.md) | Session | Coinbase Derivatives Sbe Session Layer |
 
 ## Specifications
 
