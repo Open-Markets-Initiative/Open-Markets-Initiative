@@ -49,6 +49,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 - [omi-fix-dictionaries][omi-fix-dictionaries] — FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)
 - [omi-spicy-definitions][omi-spicy-definitions] — Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek
 - [omi-lean-definitions][omi-lean-definitions] — Lean 4 definitions of common exchange binary protocols, with proofs
+- [omi-tlaplus-definitions][omi-tlaplus-definitions] — TLA+ definitions of common exchange binary protocols, model checked with TLC
 - [omi-xml-specifications][omi-xml-specifications] — XML specifications for common exchange protocols
 
 **Source Generated Outputs**
@@ -89,6 +90,7 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
 [omi-lean-definitions]: https://github.com/Open-Markets-Initiative/omi-lean-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
+[omi-tlaplus-definitions]: https://github.com/Open-Markets-Initiative/omi-tlaplus-definitions "TLA+ definitions of common exchange binary protocols, model checked with TLC"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "XML specifications for common exchange protocols"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
