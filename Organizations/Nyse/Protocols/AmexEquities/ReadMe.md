@@ -21,6 +21,7 @@ Nyse American Equities US cash equities exchange focused on small and mid cap li
 | [IntegratedFeedRefresh](IntegratedFeedRefresh.md) | MarketData | Integrated Feed Refresh |
 | [IntegratedFeedRequest](IntegratedFeedRequest.md) | MarketData | Integrated Feed Request |
 | [IntegratedFeedRetransmission](IntegratedFeedRetransmission.md) | MarketData | Integrated Feed Retransmission |
+| [IntegratedFeedStockSummary](IntegratedFeedStockSummary.md) | MarketData | Integrated Feed Stock Summary |
 | [Ioi](Ioi.md) | OrderEntry | Indication Of Interest |
 | [OpenBook](OpenBook.md) | MarketData | Open Book |
 | [OpenBook.Aggregated](OpenBook.Aggregated.md) | MarketData | Open Book Aggregated |

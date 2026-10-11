@@ -20,6 +20,7 @@ Nyse National US cash equities exchange operating a simplified maker taker marke
 | [IntegratedFeedRefresh](IntegratedFeedRefresh.md) | MarketData | Integrated Feed Refresh |
 | [IntegratedFeedRequest](IntegratedFeedRequest.md) | MarketData | Integrated Feed Request |
 | [IntegratedFeedRetransmission](IntegratedFeedRetransmission.md) | MarketData | Integrated Feed Retransmission |
+| [IntegratedFeedStockSummary](IntegratedFeedStockSummary.md) | MarketData | Integrated Feed Stock Summary |
 | [Ioi](Ioi.md) | OrderEntry | Indication Of Interest |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |

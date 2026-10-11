@@ -4,15 +4,15 @@
 | Exchange | Protocols |
 | --- | --- |
 | [](/) | 1 |
-| [AmexEquities](AmexEquities/) | 17 |
+| [AmexEquities](AmexEquities/) | 18 |
 | [AmexOptions](AmexOptions/) | 6 |
-| [ArcaEquities](ArcaEquities/) | 16 |
+| [ArcaEquities](ArcaEquities/) | 17 |
 | [ArcaOptions](ArcaOptions/) | 6 |
-| [NationalEquities](NationalEquities/) | 14 |
+| [NationalEquities](NationalEquities/) | 15 |
 | [NyseBonds](NyseBonds/) | 3 |
-| [NyseEquities](NyseEquities/) | 19 |
+| [NyseEquities](NyseEquities/) | 20 |
 | [NyseOptions](NyseOptions/) | 1 |
-| [TexasEquities](TexasEquities/) | 15 |
+| [TexasEquities](TexasEquities/) | 16 |
 
 ## Specifications
 
