@@ -15,6 +15,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Obi](Obi.md) | Encoding | Siac | Opra Binary Interface |
 | [Rake](Rake.md) | Encoding | Txse | Txse Session and Framing Layer |
 | [Sbe](Sbe.md) | Encoding | Fix | Simple Binary Encoding |
+| [SzseBinary](SzseBinary.md) | Encoding | Szse | Szse Binary Market Data Feed |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
 | [Xdp](Xdp.md) | Encoding | Nyse | Exchange Data Publisher |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
