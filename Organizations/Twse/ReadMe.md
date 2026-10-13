@@ -1,5 +1,3 @@
-[![Twse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Twse/Images/Logo.png)](https://www.twse.com.tw)
-
 ## Taiwan Stock Exchange Corporation
 
 Taiwan Stock Exchange Corporation, trading Taiwanese listed equities, warrants and exchange traded funds. Real time market data is published over the TWSE IP feed and a FIX FAST interface.

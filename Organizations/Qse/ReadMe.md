@@ -1,5 +1,3 @@
-[![Qse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Qse/Images/Logo.png)](https://www.qe.com.qa)
-
 ## Qatar Stock Exchange
 
 Qatar Stock Exchange, trading Qatari cash equities, treasury bills, bonds and sukuk and indices. The exchange ran NYSE Technologies Universal Trading Platform with XDP market data before migrating to LSEG Technology, and now publishes its full order depth feed over MITCH.

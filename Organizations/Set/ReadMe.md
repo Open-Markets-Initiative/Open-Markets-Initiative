@@ -1,5 +1,3 @@
-[![Set](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Set/Images/Logo.png)](https://www.set.or.th)
-
 ## The Stock Exchange of Thailand
 
 The Stock Exchange of Thailand, trading Thai cash equities on the SET and mai boards, together with its futures subsidiary Thailand Futures Exchange which lists SET50 index, single stock, sector, precious metals, rubber, interest rate and currency futures and options.

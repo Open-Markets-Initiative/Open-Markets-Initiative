@@ -1,5 +1,3 @@
-[![Ljse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Ljse/Images/Logo.png)](https://ljse.si)
-
 ## Ljubljana Stock Exchange
 
 Ljubljana Stock Exchange, trading Slovenian cash equities and bonds. Part of the Zagreb Stock Exchange group, it publishes market data over the Deutsche Boerse Xetra T7 interfaces.

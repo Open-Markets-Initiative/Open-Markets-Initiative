@@ -13,7 +13,3 @@ Bruce ATS cash equities alternative trading system targeting institutional block
 | [DepthOfBook](DepthOfBook.md) | MarketData | Bruce Ats Depth Of Book Data |
 | [LastSale](LastSale.md) | MarketData | Bruce Ats Last Sale Trade Data |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

@@ -1,5 +1,3 @@
-[![Tase](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Tase/Images/Logo.png)](https://www.tase.co.il)
-
 ## Tel Aviv Stock Exchange
 
 Tel Aviv Stock Exchange, trading Israeli cash equities, bonds and exchange traded funds together with derivatives including the active TA-35 index options and futures and USD/ILS options. Market data is published over the MDIL interface.

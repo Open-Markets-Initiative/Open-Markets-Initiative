@@ -16,7 +16,3 @@ Members Exchange Memx US cash equities exchange founded by a consortium of broke
 | [MemoirTop](MemoirTop.md) | MarketData | Memx Best Bid And Offer Data |
 | [RiskControl](RiskControl.md) | RiskControl | Memx Pre Trade Risk Configuration |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

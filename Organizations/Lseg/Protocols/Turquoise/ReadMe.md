@@ -18,7 +18,3 @@ Turquoise is the Lseg pan European multilateral trading facility (Mtf), operatin
 | [Recovery](Recovery.md) | MarketData | Recovery |
 | [Replay](Replay.md) | MarketData | Replay |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

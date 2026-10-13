@@ -16,7 +16,3 @@ TRADEcho is the Lseg trade reporting and publication service, operating an Appro
 | [Mifid2PostTradeRecovery](Mifid2PostTradeRecovery.md) | MarketData | MiFID II Post Trade Recovery |
 | [Mifid2PostTradeReplay](Mifid2PostTradeReplay.md) | MarketData | MiFID II Post Trade Replay |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

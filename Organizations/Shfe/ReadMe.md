@@ -1,5 +1,3 @@
-[![Shfe](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Shfe/Images/Logo.png)](https://www.shfe.com.cn)
-
 ## Shanghai Futures Exchange
 
 Shanghai Futures Exchange, trading Chinese commodity futures and options in metals, energy and rubber, together with combinations, spot, exchange for physicals, trade at settlement, spreads and indices. Market data is published over the SHFE Market Data Platform.

@@ -11,7 +11,3 @@ SGX Titan OTC trade registration platform for over-the-counter derivatives inclu
 | --- | --- | --- |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Sgx Titan OTC FIX API |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

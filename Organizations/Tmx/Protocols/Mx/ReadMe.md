@@ -13,7 +13,3 @@ Montreal Exchange is the Canadian derivatives exchange of TMX Group listing equi
 | [Sail](Sail.md) | OrderEntry | Tmx Montreal Exchange Order Entry |
 | [Tms](Tms.md) | TradeManagement | Tmx Montreal Exchange Trade Management System |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

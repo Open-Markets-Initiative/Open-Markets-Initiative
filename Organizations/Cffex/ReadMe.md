@@ -1,5 +1,3 @@
-[![Cffex](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Cffex/Images/Logo.png)](http://www.cffex.com.cn)
-
 ## China Financial Futures Exchange
 
 China Financial Futures Exchange, trading CSI 300, SSE 50 and CSI 1000 index futures and index options together with government bond futures.

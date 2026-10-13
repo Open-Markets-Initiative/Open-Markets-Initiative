@@ -1,5 +1,3 @@
-[![Msx](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Msx/Images/Logo.png)](https://www.msx.om)
-
 ## Muscat Stock Exchange
 
 Muscat Stock Exchange, the national exchange of Oman and known as the Muscat Securities Market until its 2021 renaming, trading cash equities, bonds and sukuk across a regular market, a parallel market and a debt market. Trading runs Sunday to Thursday on Euronext technology.

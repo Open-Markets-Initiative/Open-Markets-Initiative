@@ -12,7 +12,3 @@ ICE Futures markets covering energy, agricultural, financial, equity index, curr
 | [Bgw](Bgw.md) | OrderEntry | IceFutures Derivatives Trading Platform Sbe Order Entry |
 | [Mdf](Mdf.md) | MarketData | IceFutures Global Markets Multicast Market Data over iMpact |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

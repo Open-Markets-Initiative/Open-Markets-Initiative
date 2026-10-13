@@ -17,7 +17,3 @@ Blue Ocean ATS US equities alternative trading system operating overnight sessio
 | [OrderEntry](OrderEntry.md) | OrderEntry | Blue Ocean Fix Order Entry (MEMO FIX) |
 | [TopOfBook](TopOfBook.md) | MarketData | Blue Ocean Fix Best Bid And Offer Data |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

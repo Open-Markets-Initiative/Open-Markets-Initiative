@@ -23,7 +23,3 @@ Koscom Market Data Service (MDCS) realtime UDP multicast distribution of Korea E
 | [SecuritiesB](SecuritiesB.md) | MarketData | Koscom Market Data Service Realtime Securities B product feed |
 | [SecuritiesC](SecuritiesC.md) | MarketData | Koscom Market Data Service Realtime Securities C product feed |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

@@ -1,5 +1,3 @@
-[![Cyse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Cyse/Images/Logo.png)](https://www.cse.com.cy)
-
 ## Cyprus Stock Exchange
 
 Cyprus Stock Exchange, trading Cypriot cash equities, bonds and exchange traded funds. The exchange runs the ATHEX OASIS trading system under its common platform arrangement with the Athens Exchange Group, and publishes market data over the OASIS feeds.

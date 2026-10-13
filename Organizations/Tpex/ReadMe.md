@@ -1,5 +1,3 @@
-[![Tpex](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Tpex/Images/Logo.png)](https://www.tpex.org.tw)
-
 ## Taipei Exchange
 
 Taipei Exchange, trading Taiwanese over the counter equities on the Main Board and Emerging board, bonds, and bond and interest rate derivatives including forward rate agreements and interest rate swaps, plus indices. Market data is published over the TPEx IP feed.

@@ -1,5 +1,3 @@
-[![Adx](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Adx/Images/Logo.png)](https://www.adx.ae)
-
 ## Abu Dhabi Securities Exchange
 
 Abu Dhabi Securities Exchange, trading United Arab Emirates equities, exchange traded funds, bonds, sukuk and derivatives, regulated by the Securities and Commodities Authority.

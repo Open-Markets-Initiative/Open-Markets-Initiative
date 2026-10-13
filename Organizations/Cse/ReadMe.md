@@ -1,5 +1,3 @@
-[![Cse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Cse/Images/Logo.png)](https://www.cse.lk)
-
 ## Colombo Stock Exchange
 
 Colombo Stock Exchange, the national exchange of Sri Lanka, trading cash equities, corporate debt and unit trusts on the Millennium Exchange platform supplied by LSEG Technology. Market data is published over MITCH.

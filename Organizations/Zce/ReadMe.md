@@ -1,5 +1,3 @@
-[![Zce](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Zce/Images/Logo.png)](http://www.czce.com.cn)
-
 ## Zhengzhou Commodity Exchange
 
 Zhengzhou Commodity Exchange, also written CZCE, trading Chinese commodity futures and options across agricultural products such as cotton, sugar, rapeseed and apple, and industrials including PTA, methanol, glass and soda ash.

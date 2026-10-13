@@ -1,5 +1,3 @@
-[![Sse](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Sse/Images/Logo.png)](https://www.sse.com.cn)
-
 ## Shanghai Stock Exchange
 
 Shanghai Stock Exchange, trading Chinese A and B shares, funds including public REITs, bonds and repo, indices and stock options. The specifications also cover pre issue government bond trading and after hours fixed price trading. Market data is published over the BINARY and STEP gateway interfaces and the low latency LDDS system by SSE Infonet.

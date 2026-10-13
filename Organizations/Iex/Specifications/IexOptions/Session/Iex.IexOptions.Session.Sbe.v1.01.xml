@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   xmlns:xi="http://www.w3.org/2001/XInclude"
                    package="iex.options.boe.session"
                    id="20000"
                    version="0"
@@ -80,9 +81,9 @@
         </group>
     </sbe:message>
 
-    <sbe:message name="ClientHeartbeat" id="4" description="Heartbeat message from Client"/>
+    <sbe:message name="ClientHeartbeat" id="4" description="Heartbeat message from Client" />
 
-    <sbe:message name="LogoutRequest" id="5" description="Logout Request from Client"/>
+    <sbe:message name="LogoutRequest" id="5" description="Logout Request from Client" />
 
     <sbe:message name="Terminate" id="6" description="Termination fields">
         <field name="reason" type="Status" id="1"/>
@@ -95,24 +96,25 @@
     </sbe:message>
 
     <sbe:message name="SubsessionJoin" id="8" description="Subsession join request">
-        <field name="subsessionId" type="SubsessionId" id="1"/>
-        <field name="startSequence" type="SequenceNumber" id="2"/>
-        <field name="endSequence" type="SequenceNumber" id="3"/>
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="startSequence"   type="SequenceNumber" id="2"/>
+        <field name="endSequence"     type="SequenceNumber" id="3"/>
     </sbe:message>
 
     <sbe:message name="SubsessionJoinResponse" id="9" description="Subsession join response">
-        <field name="subsessionId" type="SubsessionId" id="1"/>
-        <field name="status" type="Status" id="2"/>
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="status"          type="Status"          id="2"/>
     </sbe:message>
 
     <sbe:message name="SubsessionLeave" id="10" description="Subsession leave request">
-        <field name="subsessionId" type="SubsessionId" id="1"/>
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
     </sbe:message>
 
     <sbe:message name="SubsessionLeaveResponse" id="11" description="Subsession leave response">
-        <field name="subsessionId" type="SubsessionId" id="1"/>
-        <field name="reason" type="Status" id="2"/>
+        <field name="subsessionId"    type="SubsessionId"   id="1"/>
+        <field name="reason"          type="Status"          id="2"/>
     </sbe:message>
+
 
 
 </sbe:messageSchema>

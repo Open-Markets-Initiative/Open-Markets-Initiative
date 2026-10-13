@@ -1,5 +1,3 @@
-[![Lme](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Lme/Images/Logo.png)](https://www.lme.com)
-
 ## The London Metal Exchange
 
 The London Metal Exchange, trading metals futures and options. Market data is published over the LMEsource client interface, covering price depth, order level data and the LBMA precious metals auction prices.

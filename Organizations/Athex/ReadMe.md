@@ -1,5 +1,3 @@
-[![Athex](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Athex/Images/Logo.png)](https://www.athexgroup.gr)
-
 ## Athens Exchange Group
 
 Athens Exchange Group, trading Greek cash equities and derivatives including FTSE Athex Large Cap index futures and options and single stock futures and options, on the OASIS trading system. The derivatives market was formerly ADEX, merged in 2002. Now within the Euronext group.

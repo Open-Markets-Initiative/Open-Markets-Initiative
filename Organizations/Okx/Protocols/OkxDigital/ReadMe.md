@@ -13,7 +13,3 @@ OKX crypto exchange trading spot, margin, perpetual swaps, futures and options o
 | [Private](Private.md) | DropCopy | Okx Sbe WebSocket Private Orders and Fills |
 | [Trade](Trade.md) | OrderEntry | Okx Sbe WebSocket Order Entry |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

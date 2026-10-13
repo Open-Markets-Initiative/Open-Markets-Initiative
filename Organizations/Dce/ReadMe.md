@@ -1,5 +1,3 @@
-[![Dce](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Dce/Images/Logo.png)](http://www.dce.com.cn)
-
 ## Dalian Commodity Exchange
 
 Dalian Commodity Exchange, trading Chinese commodity futures and options across agricultural products such as soybean, corn and palm oil, iron ore, coking coal and coke, and petrochemicals including LLDPE and polypropylene.

@@ -132,10 +132,9 @@
         <type name="QuantityMantissa" primitiveType="int64"/>
     </types>
 
-  <!-- removed by omi
     <sbe:message name="DummyMessage" id="1" description="Dummy message so that mdMessageHeader encoder/decoder will be generated">
         <field name="mdMsgHdr"                 id="16" type="mdMessageHeader"/>
-    </sbe:message> -->
+    </sbe:message>
 
     <!-- INCREMENTAL channel messages -->
 
@@ -169,12 +168,16 @@
         <field name="name"                     id="136" type="char128"/>
     </sbe:message>
 
-    <sbe:message name="InstrumentInfo" id="14" description="frequently updated fields">
+    <sbe:message name="IndexInfo" id="12" description="per-currency-pair index price (shared across the pair's instruments)">
+        <field name="indexId"                  id= "8" type="int64" description="currencyPairId"/>
+        <field name="indexPrice"               id="16" type="Price9"/>
+    </sbe:message>
+
+    <sbe:message name="InstrumentInfo" id="14" description="frequently updated per-instrument fields">
         <field name="instrumentId"             id= "8" type="int64"/>
         <field name="minSellPrice"             id="16" type="Price9"/>
         <field name="maxBuyPrice"              id="24" type="Price9"/>
-        <field name="indexPrice"               id="32" type="Price9"/>
-        <field name="markPrice"                id="40" type="Price9"/>
+        <field name="markPrice"                id="32" type="Price9"/>
     </sbe:message>
 
     <sbe:message name="InstrumentRef" id="15" description="less frequently updated fields">
@@ -184,6 +187,7 @@
         <field name="estimatedDeliveryPrice"   id="32" type="Price9" presence="optional"/>
         <field name="deliveryPrice"            id="40" type="Price9" presence="optional" />
         <field name="settlementPrice"          id="48" type="Price9" presence="optional" />
+        <field name="openInterest"             id="56" type="double" presence="optional" />
     </sbe:message>
 
     <sbe:message name="InstrumentStatusUpdate" id="16" description="Instrument trading status updated">
@@ -260,6 +264,9 @@
     <!-- SNAPSHOT channel messages
            - Same PacketHeader and MessageHeader as incremental channel.
            - Separate/independent seqNum sequence from incremental.
+
+         At cycle start (IndexInfo for each known index price on the channel, batched into as few packets as fit):
+            IndexInfo
 
          Per Instrument:
             SnapshotHeader

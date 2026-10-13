@@ -1,5 +1,3 @@
-[![Wbag](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Wbag/Images/Logo.png)](https://www.wienerborse.at)
-
 ## Wiener Börse AG
 
 Wiener Boerse AG, the Vienna Stock Exchange, trading Austrian cash equities, bonds, certificates and structured products. It runs the Deutsche Boerse Xetra T7 platform and publishes market data over the T7 EMDI and EOBI interfaces, and also operates the Prague and Ljubljana exchanges.

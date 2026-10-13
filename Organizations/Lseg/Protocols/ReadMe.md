@@ -8,7 +8,3 @@
 | [TradeEcho](TradeEcho/) | 6 |
 | [Turquoise](Turquoise/) | 8 |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../Specifications) directory.
-

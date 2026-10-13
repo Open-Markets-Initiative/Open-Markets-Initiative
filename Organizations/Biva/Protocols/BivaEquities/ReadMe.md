@@ -16,7 +16,3 @@ Biva equities market trading Mexican listed shares and exchange traded funds on 
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [TotalView](TotalView.md) | MarketData | Total View |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

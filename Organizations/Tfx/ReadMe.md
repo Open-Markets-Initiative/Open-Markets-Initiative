@@ -1,5 +1,3 @@
-[![Tfx](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Tfx/Images/Logo.png)](https://www.tfx.co.jp)
-
 ## Tokyo Financial Exchange
 
 Tokyo Financial Exchange, trading foreign exchange margin contracts under the Click 365 brand, Japanese government bond futures, equity index futures and TONA interest rate futures. Market data is published over the ITAWAVE interface.

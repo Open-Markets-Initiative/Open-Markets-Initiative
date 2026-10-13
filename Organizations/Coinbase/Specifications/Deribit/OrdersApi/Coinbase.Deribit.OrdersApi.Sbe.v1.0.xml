@@ -2,7 +2,7 @@
 <sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
                    package="cb.deribit.gateway.sbe.codec.order"
                    id="2101"
-                   version="0"
+                   version="1"
                    semanticVersion="1.0"
                    description="Deribit SBE Order Gateway API"
                    byteOrder="littleEndian"
@@ -610,9 +610,8 @@
         <field name="correlationId"   id="32" type="int64" presence="optional"/>
     </sbe:message>
 
-  <!-- commented out by omi
     <sbe:message name="DummyMessage" id="9999" description="Dummy message to generate message header">
         <field name="header" id="32" type="MessageHeader"/>
-    </sbe:message> -->
+    </sbe:message>
 
 </sbe:messageSchema>

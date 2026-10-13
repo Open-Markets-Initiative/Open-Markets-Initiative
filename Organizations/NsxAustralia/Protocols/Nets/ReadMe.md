@@ -11,7 +11,3 @@ NETS is the trading system of the National Stock Exchange of Australia, publishi
 | --- | --- | --- |
 | [MarketDataFeed](MarketDataFeed.md) | MarketData | Nsx Australia Equities Market Data |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

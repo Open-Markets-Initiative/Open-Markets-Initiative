@@ -1,5 +1,3 @@
-[![Tradelogiq](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Tradelogiq/Images/Logo.png)](https://tradelogiq.com)
-
 ## Tradelogiq Markets Inc.
 
 Canadian operator of the Omega ATS and Lynx ATS alternative trading systems, trading securities listed on TSX, TSX Venture, CSE, Nasdaq Canada and Cboe Canada.

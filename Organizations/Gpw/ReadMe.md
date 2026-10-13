@@ -1,5 +1,3 @@
-[![Gpw](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Gpw/Images/Logo.png)](https://www.gpw.pl)
-
 ## Giełda Papierów Wartościowych w Warszawie
 
 Gielda Papierow Wartosciowych w Warszawie, the Warsaw Stock Exchange, trading Polish cash equities, exchange traded funds, certificates, fixed income and derivatives including WIG20 index futures and options, single stock futures and options and currency and bond derivatives, on the WATS trading platform. BondSpot operates the fixed income market.

@@ -1,5 +1,3 @@
-[![Hnx](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Hnx/Images/Logo.png)](https://www.hnx.vn)
-
 ## Hanoi Stock Exchange
 
 Hanoi Stock Exchange, a subsidiary of Vietnam Exchange, trading listed equities, the UPCoM unlisted market, corporate bonds and derivatives including index and bond futures. The whole Vietnamese market moved to the KRX System, built by Korea Exchange, at go live on 5 May 2025.
