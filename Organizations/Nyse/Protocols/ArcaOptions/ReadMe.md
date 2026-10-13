@@ -16,7 +16,3 @@ Nyse Arca Options fully electronic US options exchange offering a price time pri
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [TopFeed](TopFeed.md) | MarketData | Top Feed |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

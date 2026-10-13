@@ -26,7 +26,3 @@ Nyse Texas US cash equities exchange based in Dallas offering a regional listing
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

@@ -17,7 +17,7 @@ Domain specific language definitions
 | [omi-p4-definitions][omi-p4-definitions] | P4 | P4 definitions for common exchange protocols for software and hardware data planes |
 | [omi-fix-dictionaries][omi-fix-dictionaries] | Xml | FIX protocol dictionaries (QuickFIX-format XML, one per FIX version) |
 | [omi-spicy-definitions][omi-spicy-definitions] | Spicy | Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek |
-| [omi-lean-definitions][omi-lean-definitions] | Lean | Lean 4 definitions of common exchange binary protocols, with proofs |
+| [omi-lean4-definitions][omi-lean4-definitions] | Lean | Lean 4 definitions of common exchange binary protocols, with proofs |
 | [omi-tlaplus-definitions][omi-tlaplus-definitions] | TLA+ | TLA+ definitions of common exchange binary protocols, model checked with TLC |
 | [omi-xml-specifications][omi-xml-specifications] | Xml | XML specifications for common exchange protocols |
 
@@ -80,7 +80,7 @@ Example protocol data captures from production feeds.
 [omi-p4-definitions]: https://github.com/Open-Markets-Initiative/omi-p4-definitions "P4 definitions for common exchange protocols for software and hardware data planes"
 [omi-fix-dictionaries]: https://github.com/Open-Markets-Initiative/omi-fix-dictionaries "FIX protocol dictionaries (QuickFIX-format XML, one per FIX version)"
 [omi-spicy-definitions]: https://github.com/Open-Markets-Initiative/omi-spicy-definitions "Spicy grammars for common exchange binary protocols, for the Spicy toolchain and Zeek"
-[omi-lean-definitions]: https://github.com/Open-Markets-Initiative/omi-lean-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
+[omi-lean4-definitions]: https://github.com/Open-Markets-Initiative/omi-lean4-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
 [omi-tlaplus-definitions]: https://github.com/Open-Markets-Initiative/omi-tlaplus-definitions "TLA+ definitions of common exchange binary protocols, model checked with TLC"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "XML specifications for common exchange protocols"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
