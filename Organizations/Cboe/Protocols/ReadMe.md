@@ -4,6 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [](/) | 1 |
+| [BidsEurope](BidsEurope/) | 1 |
 | [BidsJapan](BidsJapan/) | 2 |
 | [BxeEquities](BxeEquities/) | 9 |
 | [ByxEquities](ByxEquities/) | 11 |
@@ -18,7 +19,7 @@
 | [CxeEquities](CxeEquities/) | 9 |
 | [CxjEquities](CxjEquities/) | 3 |
 | [CxjSor](CxjSor/) | 1 |
-| [DxeDerivatives](DxeDerivatives/) | 2 |
+| [DxeDerivatives](DxeDerivatives/) | 6 |
 | [EdgaEquities](EdgaEquities/) | 11 |
 | [EdgxEquities](EdgxEquities/) | 11 |
 | [EdgxOptions](EdgxOptions/) | 13 |
