@@ -1,6 +1,6 @@
-## TaifexDerivatives Order Entry: Taifex Tcp Ip Fix Messaging Specification
+## TaifexDerivatives Order Entry: Taifex Tcp Ip Tmp and Fix Messaging Specifications
 
-Financial Information eXchange encoding of the Taiwan Futures Exchange order entry interface, used by futures commission merchants to submit, decrease and reprice single and multi-leg futures and options orders, enter and cancel market maker quotes, request quotes and Flex product definitions, query trading session status, exchange bulletins and file requests by Email, and receive execution reports over the Taifex Fix session.
+Order entry interface of the Taiwan Futures Exchange, used by futures commission merchants to submit, decrease and reprice single and multi-leg futures and options orders, enter and cancel market maker quotes, request quotes and Flex product definitions, query trading session status, exchange bulletins and file requests, and receive order status and execution reports. The interface is published in two encodings over the same Tcp line: the native binary Taifex Message Protocol, whose order and execution report line also carries the Link Subsystem that establishes a session, and a Financial Information eXchange binding of the same order, quote and report flows.
 
 ### Overview
 
@@ -12,7 +12,7 @@ Taifex departs from standard Fix order handling in that no pending message is se
 
 ### Transport
 
-Tcp via the Taifex Fix session for reliable ordered delivery of order entry, quote, and execution report messages, with separate sessions addressed by TargetCompID for the futures and options markets in regular and after hours trading.
+Tcp for reliable ordered delivery of order entry, quote, and execution report messages, with separate sessions for the futures and options markets in regular and after hours trading, addressed by TargetCompID under the Fix encoding and by the system type and the futures commission merchant and session identifiers of the common message header under Tmp.
 
 ### Key Characteristics
 

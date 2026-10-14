@@ -9,7 +9,10 @@ Taiwan Futures Exchange derivatives market, covering index futures and options, 
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [OrderEntry](OrderEntry.md) | OrderEntry | Taifex Tcp Ip Fix Messaging Specification |
+| [ClearingMember](ClearingMember.md) | DropCopy | Taifex Tcp Ip Tmp Messaging Specifications |
+| [DropCopy](DropCopy.md) | DropCopy | Taifex Tcp Ip Tmp Messaging Specifications |
+| [MarketData](MarketData.md) | MarketData | Taifex Market Data Transmission Manual |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Taifex Tcp Ip Tmp and Fix Messaging Specifications |
 
 ## Specifications
 

@@ -9,6 +9,7 @@ Cboe Europe Derivatives (DXE, MIC CEDX), the Cboe Europe regulated derivatives v
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [BinaryOrderEntry](BinaryOrderEntry.md) | OrderEntry | Cboe Europe Derivatives Binary Order Entry |
 | [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe Europe Derivatives Full Depth Of Book Data |
 
 ## Specifications
