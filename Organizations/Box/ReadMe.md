@@ -1,4 +1,4 @@
-[![Box](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Box/Images/Logo.png)](https://boxoptions.com)
+[![Box](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/Box/Images/Logo.png)](https://boxoptions.com)
 
 ## Box Options Market
 

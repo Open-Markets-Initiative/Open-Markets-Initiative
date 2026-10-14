@@ -1,4 +1,4 @@
-[![Hkex](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Hkex/Images/Logo.png)](https://www.hkex.com.hk)
+[![Hkex](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/Hkex/Images/Logo.png)](https://www.hkex.com.hk)
 
 ## Hong Kong Exchanges and Clearing
 

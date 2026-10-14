@@ -1,4 +1,4 @@
-[![B3](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/B3/Images/Logo.png)](https://www.b3.com.br/en_us)
+[![B3](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/B3/Images/Logo.png)](https://www.b3.com.br/en_us)
 
 ## Brasil, Bolsa, Balcão
 

@@ -1,4 +1,4 @@
-[![ElectronX](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/ElectronX/Images/Logo.png)](https://www.electronx.com)
+[![ElectronX](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/ElectronX/Images/Logo.png)](https://www.electronx.com)
 
 ## ElectronX Markets
 

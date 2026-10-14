@@ -1,4 +1,4 @@
-[![Fix](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Fix/Images/Logo.png)](https://www.fixtrading.org)
+[![Fix](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/Fix/Images/Logo.png)](https://www.fixtrading.org)
 
 ## FIX Trading Community
 

@@ -1,4 +1,4 @@
-[![Aquis](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Aquis/Images/Logo.png)](https://www.aquis.eu)
+[![Aquis](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/Aquis/Images/Logo.png)](https://www.aquis.eu)
 
 ## Aquis Exchange
 

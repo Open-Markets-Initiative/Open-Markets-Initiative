@@ -1,4 +1,4 @@
-[![Nasdaq](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/blob/main/Organizations/Nasdaq/Images/Logo.png)](https://www.nasdaq.com)
+[![Nasdaq](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/Organizations/Nasdaq/Images/Logo.png)](https://www.nasdaq.com)
 
 ## National Association of Securities Dealers Automated Quotations (Nasdaq)
 
