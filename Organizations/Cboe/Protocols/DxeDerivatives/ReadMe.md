@@ -1,7 +1,7 @@
 ## Cboe Europe Derivatives
 
 
-Cboe Europe Derivatives (DXE, MIC CEDX), the Cboe Europe regulated derivatives venue for equity index and single stock futures and options, formerly branded CEDX.
+Cboe Europe Derivatives (MIC CEDX), the Cboe Europe regulated derivatives venue for equity index and single stock futures and options.
 
 
 ### Protocols

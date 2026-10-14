@@ -20,6 +20,7 @@
 | [CxjEquities](CxjEquities/) | 3 |
 | [CxjSor](CxjSor/) | 1 |
 | [DxeDerivatives](DxeDerivatives/) | 6 |
+| [DxeEquities](DxeEquities/) | 1 |
 | [EdgaEquities](EdgaEquities/) | 11 |
 | [EdgxEquities](EdgxEquities/) | 11 |
 | [EdgxOptions](EdgxOptions/) | 13 |
