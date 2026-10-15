@@ -1,4 +1,4 @@
-## DxeDerivatives Multicast Depth Of Book: Cboe Europe Derivatives Full Depth Of Book Data
+## CedxDerivatives Multicast Depth Of Book: Cboe Europe Derivatives Full Depth Of Book Data
 
 Full depth of book Cboe Pitch multicast feed publishing order add, modify, cancel and execute events for instruments traded on Cboe Europe Derivatives (MIC CEDX). Defined by the Cboe Europe CEDX Multicast PITCH specification.
 

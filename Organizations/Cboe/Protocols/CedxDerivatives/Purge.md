@@ -1,4 +1,4 @@
-## DxeDerivatives Purge: Cboe Europe Derivatives (CEDX) Fix purge
+## CedxDerivatives Purge: Cboe Europe Derivatives (CEDX) Fix purge
 
 Financial Information eXchange (Fix) purge port protocol for Cboe Europe Derivatives (CEDX), providing mass-cancel of resting orders and, where supported, cross-port order amend, with purge and amend acknowledgement and reject responses.
 

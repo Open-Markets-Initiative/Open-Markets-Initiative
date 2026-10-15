@@ -1,4 +1,4 @@
-## DxeDerivatives Order Entry: Cboe Europe Derivatives (CEDX) Fix order entry
+## CedxDerivatives Order Entry: Cboe Europe Derivatives (CEDX) Fix order entry
 
 Financial Information eXchange (Fix) order entry protocol for submitting, modifying, and cancelling orders on Cboe Europe Derivatives (CEDX), covering new order, order cancel, order cancel/replace, execution report, and cancel reject messages.
 

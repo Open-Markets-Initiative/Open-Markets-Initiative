@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" byteOrder="bigEndian" id="3" package="com.memx.us_equities.memoir.top.sbe.v2_0" semanticVersion="2.0" version="512" xsi:schemaLocation="http://fixprotocol.io/2016/sbe">
+    <types>
+        <enum encodingType="uint8" name="BooleanType">
+            <validValue name="False">0</validValue>
+            <validValue name="True">1</validValue>
+        </enum>
+        <composite name="Price">
+            <type name="Exponent" presence="constant" primitiveType="int8">-6</type>
+            <type name="Mantissa" primitiveType="int64"/>
+        </composite>
+        <composite name="ShortPrice">
+            <type name="Exponent" presence="constant" primitiveType="int8">-2</type>
+            <type name="Mantissa" primitiveType="int16"/>
+        </composite>
+        <composite name="UTCTimestampNanos">
+            <type name="Unit" presence="constant" primitiveType="uint8">9</type>
+            <type name="Time" primitiveType="uint64"/>
+        </composite>
+        <set encodingType="uint8" name="BidFlagsType">
+            <choice name="RetailPresentOnBid">0</choice>
+        </set>
+        <set encodingType="uint8" name="OfferFlagsType">
+            <choice name="RetailPresentOnOffer">0</choice>
+        </set>
+        <enum encodingType="char" name="SideType">
+            <validValue name="Buy">B</validValue>
+            <validValue name="Sell">S</validValue>
+        </enum>
+        <enum encodingType="char" name="SecurityTradingStatusType">
+            <validValue name="Halted">H</validValue>
+            <validValue name="Paused">P</validValue>
+            <validValue name="Quoting">Q</validValue>
+            <validValue name="Trading">T</validValue>
+        </enum>
+        <enum encodingType="char" name="SecurityTradingStatusReasonType">
+            <validValue name="None">X</validValue>
+            <validValue name="Regulatory">R</validValue>
+            <validValue name="Administrative">A</validValue>
+        </enum>
+        <enum encodingType="char" name="TradingSessionType">
+            <validValue name="Overnight">0</validValue>
+            <validValue name="Opening">1</validValue>
+            <validValue name="Trading">2</validValue>
+            <validValue name="PostTrading">3</validValue>
+            <validValue name="Closed">4</validValue>
+        </enum>
+        <enum encodingType="char" name="AuctionType">
+            <validValue name="Unknown"> </validValue>
+            <validValue name="Opening">O</validValue>
+            <validValue name="Closing">C</validValue>
+            <validValue name="Halt">H</validValue>
+            <validValue name="IPO">I</validValue>
+            <validValue name="Pause">P</validValue>
+        </enum>
+        <enum encodingType="char" name="SCSettlementType">
+            <validValue name="RegularTrade">@</validValue>
+        </enum>
+        <enum encodingType="char" name="SCTradeThroughExemptionType">
+            <validValue name="NotApplicable"> </validValue>
+            <validValue name="MarketCenterOpeningTrade">O</validValue>
+            <validValue name="MarketCenterReopeningTrade">5</validValue>
+            <validValue name="MarketCenterClosingTrade">6</validValue>
+        </enum>
+        <enum encodingType="char" name="SCExtendedHoursOrSoldType">
+            <validValue name="NotApplicable"> </validValue>
+            <validValue name="FormT">T</validValue>
+        </enum>
+        <enum encodingType="char" name="SCSROTradeDetailType">
+            <validValue name="NotApplicable"> </validValue>
+            <validValue name="PriceVariationTrade">H</validValue>
+            <validValue name="OddLotTrade">I</validValue>
+            <validValue name="AuctionTrade">X</validValue>
+        </enum>
+        <enum encodingType="uint8" name="HaltReasonType">
+            <validValue name="Unknown">0</validValue>
+            <validValue name="Admin">1</validValue>
+            <validValue name="AdditionalInfoRequested">2</validValue>
+            <validValue name="RegulatoryConcern">3</validValue>
+            <validValue name="NewsReleased">4</validValue>
+            <validValue name="MergerEffective">5</validValue>
+            <validValue name="ETFComponentPricesNotAvailable">6</validValue>
+            <validValue name="OrderImbalance">7</validValue>
+            <validValue name="LULDTradingPause">8</validValue>
+            <validValue name="CorporateAction">9</validValue>
+            <validValue name="NewSecurityOffering">10</validValue>
+            <validValue name="NewsPending">11</validValue>
+            <validValue name="IntradayIndicativeValueNotAvailable">12</validValue>
+            <validValue name="Operational">13</validValue>
+            <validValue name="SubPennyTrading">14</validValue>
+            <validValue name="MarketWideCircuitBreakerLevel1">15</validValue>
+            <validValue name="MarketWideCircuitBreakerLevel2">16</validValue>
+            <validValue name="MarketWideCircuitBreakerLevel3">17</validValue>
+        </enum>
+        <composite name="messageHeader">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="templateId" primitiveType="uint8"/>
+            <type name="schemaId" primitiveType="uint8"/>
+            <type name="version" primitiveType="uint16"/>
+        </composite>
+        <type length="6" name="InstrumentDirectorySymbol" primitiveType="char"/>
+        <type length="6" name="InstrumentDirectorySymbolSfx" primitiveType="char"/>
+    </types>
+    <sbe:message blockLength="27" id="1" name="InstrumentDirectory">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="Symbol" type="InstrumentDirectorySymbol"/>
+        <field id="4" name="SymbolSfx" type="InstrumentDirectorySymbolSfx"/>
+        <field id="5" name="RoundLot" type="uint32"/>
+        <field id="6" name="IsTestSymbol" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="11" id="2" name="RegSHORestriction">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="ShortSaleRestriction" type="BooleanType"/>
+    </sbe:message>
+    <sbe:message blockLength="13" id="3" name="SecurityTradingStatus">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="SecurityTradingStatus" type="SecurityTradingStatusType"/>
+        <field id="4" name="SecurityTradingStatusReason" type="SecurityTradingStatusReasonType"/>
+        <field id="5" name="HaltReason" type="HaltReasonType"/>
+    </sbe:message>
+    <sbe:message blockLength="16" id="4" name="SnapshotComplete">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="AsOfSequenceNumber" type="uint64"/>
+    </sbe:message>
+    <sbe:message blockLength="9" id="5" name="TradingSessionStatus">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="TradingSession" type="TradingSessionType"/>
+    </sbe:message>
+    <sbe:message blockLength="36" id="10" name="BestBidOffer">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="BidSize" type="uint32"/>
+        <field id="4" name="BidPrice" type="Price"/>
+        <field id="5" name="OfferSize" type="uint32"/>
+        <field id="6" name="OfferPrice" type="Price"/>
+        <field id="7" name="BidFlags" type="BidFlagsType"/>
+        <field id="8" name="OfferFlags" type="OfferFlagsType"/>
+    </sbe:message>
+    <sbe:message blockLength="23" id="11" name="BestBid">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="BidSize" type="uint32"/>
+        <field id="4" name="BidPrice" type="Price"/>
+        <field id="5" name="BidFlags" type="BidFlagsType"/>
+    </sbe:message>
+    <sbe:message blockLength="23" id="12" name="BestOffer">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="OfferSize" type="uint32"/>
+        <field id="4" name="OfferPrice" type="Price"/>
+        <field id="5" name="OfferFlags" type="OfferFlagsType"/>
+    </sbe:message>
+    <sbe:message blockLength="15" id="13" name="BestBidShort">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="BidSize" type="uint16"/>
+        <field id="4" name="BidPrice" type="ShortPrice"/>
+        <field id="5" name="BidFlags" type="BidFlagsType"/>
+    </sbe:message>
+    <sbe:message blockLength="15" id="14" name="BestOfferShort">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="OfferSize" type="uint16"/>
+        <field id="4" name="OfferPrice" type="ShortPrice"/>
+        <field id="5" name="OfferFlags" type="OfferFlagsType"/>
+    </sbe:message>
+    <sbe:message blockLength="10" id="15" name="ClearBook">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+    </sbe:message>
+    <sbe:message blockLength="47" id="16" name="AuctionTrade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="AuctionID" type="uint64"/>
+        <field id="4" name="AuctionType" type="AuctionType"/>
+        <field id="5" name="AuctionQuantity" type="uint64"/>
+        <field id="6" name="AuctionPrice" type="Price"/>
+        <field id="7" name="TradeID" type="uint64"/>
+        <field id="8" name="SaleCondition1" type="SCSettlementType"/>
+        <field id="9" name="SaleCondition2" type="SCTradeThroughExemptionType"/>
+        <field id="10" name="SaleCondition3" type="SCExtendedHoursOrSoldType"/>
+        <field id="11" name="SaleCondition4" type="SCSROTradeDetailType"/>
+    </sbe:message>
+    <sbe:message blockLength="42" id="17" name="BrokenAuctionTrade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="AuctionID" type="uint64"/>
+        <field id="4" name="TradeID" type="uint64"/>
+        <field id="5" name="OriginalAuctionQuantity" type="uint64"/>
+        <field id="6" name="OriginalAuctionPrice" type="Price"/>
+    </sbe:message>
+    <sbe:message blockLength="66" id="18" name="CorrectedAuctionTrade">
+        <field id="1" name="Timestamp" type="UTCTimestampNanos"/>
+        <field id="2" name="SecurityID" type="uint16"/>
+        <field id="3" name="AuctionID" type="uint64"/>
+        <field id="4" name="TradeID" type="uint64"/>
+        <field id="5" name="OriginalAuctionQuantity" type="uint64"/>
+        <field id="6" name="OriginalAuctionPrice" type="Price"/>
+        <field id="7" name="OriginalSaleCondition1" type="SCSettlementType"/>
+        <field id="8" name="OriginalSaleCondition2" type="SCTradeThroughExemptionType"/>
+        <field id="9" name="OriginalSaleCondition3" type="SCExtendedHoursOrSoldType"/>
+        <field id="10" name="OriginalSaleCondition4" type="SCSROTradeDetailType"/>
+        <field id="11" name="CorrectedAuctionQuantity" type="uint64"/>
+        <field id="12" name="CorrectedAuctionPrice" type="Price"/>
+        <field id="13" name="CorrectedSaleCondition1" type="SCSettlementType"/>
+        <field id="14" name="CorrectedSaleCondition2" type="SCTradeThroughExemptionType"/>
+        <field id="15" name="CorrectedSaleCondition3" type="SCExtendedHoursOrSoldType"/>
+        <field id="16" name="CorrectedSaleCondition4" type="SCSROTradeDetailType"/>
+    </sbe:message>
+</sbe:messageSchema>

@@ -14,6 +14,8 @@ Cboe Futures Exchange Cfe US futures venue trading VIX and proprietary futures p
 | [DropCopy](DropCopy.md) | DropCopy | Cboe Futures Exchange Fix drop copy |
 | [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe Futures Full Depth Of Book Data |
 | [MulticastTop](MulticastTop.md) | MarketData | Futures Multicast Top |
+| [OofMulticastDepthOfBook](OofMulticastDepthOfBook.md) | MarketData | Cboe Futures Options On Futures Depth Of Book Data |
+| [OofMulticastTop](OofMulticastTop.md) | MarketData | Cboe Futures Options On Futures Top Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Cboe Futures Exchange Fix order entry |
 | [Purge](Purge.md) | OrderEntry | Cboe Futures Exchange Fix purge |
 | [Top](Top.md) | MarketData | Cboe Futures Best Bid And Offer Data |

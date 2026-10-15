@@ -1,4 +1,4 @@
-## DxeDerivatives Trade Capture: Cboe Europe Derivatives (CEDX) Fix trade capture
+## CedxDerivatives Trade Capture: Cboe Europe Derivatives (CEDX) Fix trade capture
 
 Financial Information eXchange (Fix) Trade Capture Report protocol for Cboe Europe Derivatives (CEDX), used to submit off-book and reported trades and to receive trade capture report acknowledgements and exchange-published trade capture reports.
 

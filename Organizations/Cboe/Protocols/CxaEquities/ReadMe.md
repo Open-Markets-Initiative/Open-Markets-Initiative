@@ -9,6 +9,7 @@ Cboe Australia (formerly Chi-X Australia) equities market operating lit and dark
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [BinaryOrderEntry](BinaryOrderEntry.md) | OrderEntry | Cboe Australia Binary Order Entry |
 | [DropCopy](DropCopy.md) | DropCopy | Cboe Australia Fix drop copy |
 | [MulticastDepthOfBook](MulticastDepthOfBook.md) | MarketData | Cboe Australia Full Depth Of Book Data |
 | [MulticastTopOfBook](MulticastTopOfBook.md) | MarketData | Cboe Australia Top Of Book Data |

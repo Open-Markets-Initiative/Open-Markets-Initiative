@@ -1,4 +1,4 @@
-## DxeDerivatives Binary Order Entry: Cboe Europe Derivatives Binary Order Entry
+## CedxDerivatives Binary Order Entry: Cboe Europe Derivatives Binary Order Entry
 
 Cboe Binary Order Entry (Boe) protocol for submitting, modifying, and cancelling orders, quotes, complex instruments and trade reports on Cboe Europe Derivatives (MIC CEDX), specified in the CEDX BOE2 Specification.
 

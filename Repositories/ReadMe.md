@@ -57,7 +57,7 @@ Curated knowledge bases and historical context.
 
 | Repository | Description |
 | --- | --- |
-| [Directory][Directory] | General information about The Open Markets Initiative — the catalog you are reading |
+| [Open-Markets-Initiative][Open-Markets-Initiative] | General information about The Open Markets Initiative — the catalog you are reading |
 | [omi-low-latency-reference][omi-low-latency-reference] | Knowledge base for low latency programming |
 | [omi-markets-reference][omi-markets-reference] | Knowledge base for market data collection and analysis |
 
@@ -99,7 +99,7 @@ Example protocol data captures from production feeds.
 [omi-python-classes]: https://github.com/Open-Markets-Initiative/omi-python-classes "Stable Python deserialization for common exchange protocols"
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
-[Directory]: https://github.com/Open-Markets-Initiative/Directory "General information about The Open Markets Initiative — the catalog you are reading"
+[Open-Markets-Initiative]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative "General information about The Open Markets Initiative — the catalog you are reading"
 [omi-low-latency-reference]: https://github.com/Open-Markets-Initiative/omi-low-latency-reference "Knowledge base for low latency programming"
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"

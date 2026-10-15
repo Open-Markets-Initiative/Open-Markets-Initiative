@@ -1,4 +1,4 @@
-## DxeDerivatives Drop Copy: Cboe Europe Derivatives (CEDX) Fix drop copy
+## CedxDerivatives Drop Copy: Cboe Europe Derivatives (CEDX) Fix drop copy
 
 Financial Information eXchange (Fix) drop copy protocol for Cboe Europe Derivatives (CEDX).
 
