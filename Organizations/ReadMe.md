@@ -12,6 +12,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Athex](Athex/) | Athens Exchange Group | XATH | [athexgroup.gr](https://www.athexgroup.gr) |
 | [B3](B3/) | Brasil, Bolsa, Balcão | BVMF | [b3.com.br](https://www.b3.com.br/en_us) |
 | [Bet](Bet/) | Budapest Stock Exchange | XBUD | [bse.hu](https://bse.hu) |
+| [Binance](Binance/) | Binance |  | [binance.com](https://www.binance.com/en) |
 | [Bist](Bist/) | Borsa İstanbul A.Ş. | XIST | [borsaistanbul.com](https://www.borsaistanbul.com/en) |
 | [Biva](Biva/) | Bolsa Institucional de Valores | BIVA | [biva.mx](https://www.biva.mx) |
 | [BlueOceanAts](BlueOceanAts/) | Blue Ocean Technologies | BOAT | [blueocean-tech.io](https://blueocean-tech.io/) |

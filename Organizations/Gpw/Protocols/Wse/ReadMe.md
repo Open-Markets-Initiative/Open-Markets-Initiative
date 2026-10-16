@@ -16,3 +16,7 @@ The Warsaw Stock Exchange, trading Polish cash equities on the main market and o
 | [PricesAndTrades](PricesAndTrades.md) | MarketData | Warsaw Stock Exchange Prices and Trades |
 | [Quotes](Quotes.md) | MarketData | Warsaw Stock Exchange Quotes |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

@@ -16,3 +16,7 @@ BondSpot, the fixed income market of the Warsaw Stock Exchange group, operating 
 | [PricesAndTrades](PricesAndTrades.md) | MarketData | BondSpot Prices and Trades |
 | [Quotes](Quotes.md) | MarketData | BondSpot Quotes |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

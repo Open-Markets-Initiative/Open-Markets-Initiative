@@ -27,3 +27,7 @@ Nyse Arca Equities fully electronic US cash equities exchange and leading listin
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+
