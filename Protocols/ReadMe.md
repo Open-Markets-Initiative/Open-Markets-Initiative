@@ -39,6 +39,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |
 | [Binary](Binary.md) | MarketData | Nse | Binary |
+| [BmeGate](BmeGate.md) | MarketData | Bme | BMEGate Binary Interface |
 | [CboeOne](CboeOne.md) | MarketData | Cboe | Cboe One consolidated equities feed protocol |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Csdp](Csdp.md) | MarketData | Cboe | Cboe Summary Depth feed protocol |
