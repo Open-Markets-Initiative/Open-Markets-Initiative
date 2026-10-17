@@ -13,8 +13,15 @@ The Warsaw Stock Exchange, trading Polish cash equities on the main market and o
 | [Indices](Indices.md) | MarketData | Warsaw Stock Exchange Indices |
 | [MarketInformation](MarketInformation.md) | MarketData | Warsaw Stock Exchange Market Information |
 | [OrderBook](OrderBook.md) | MarketData | Warsaw Stock Exchange Order Book |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Warsaw Stock Exchange Native Order Gateway |
 | [PricesAndTrades](PricesAndTrades.md) | MarketData | Warsaw Stock Exchange Prices and Trades |
 | [Quotes](Quotes.md) | MarketData | Warsaw Stock Exchange Quotes |
+| [ReplayBbo](ReplayBbo.md) | MarketData | Warsaw Stock Exchange BBO Replay |
+| [ReplayFullDepth](ReplayFullDepth.md) | MarketData | Warsaw Stock Exchange Full Depth Replay |
+| [SnapshotBbo](SnapshotBbo.md) | MarketData | Warsaw Stock Exchange BBO Snapshot |
+| [SnapshotFullDepth](SnapshotFullDepth.md) | MarketData | Warsaw Stock Exchange Full Depth Snapshot |
+| [StreamBbo](StreamBbo.md) | MarketData | Warsaw Stock Exchange BBO Stream |
+| [StreamFullDepth](StreamFullDepth.md) | MarketData | Warsaw Stock Exchange Full Depth Stream |
 
 ## Specifications
 

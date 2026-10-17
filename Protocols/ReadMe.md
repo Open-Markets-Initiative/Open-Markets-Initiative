@@ -20,6 +20,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [SzseBinary](SzseBinary.md) | Encoding | Szse | Szse Binary Market Data Feed |
 | [Tmp](Tmp.md) | Encoding | Taifex | Taifex Message Protocol |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
+| [Wats](Wats.md) | Encoding | Gpw | Warsaw Automated Trading System |
 | [Xdp](Xdp.md) | Encoding | Nyse | Exchange Data Publisher |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [BinaryPacket](BinaryPacket.md) | Header | B3 | UMDF UDP packet framing |
