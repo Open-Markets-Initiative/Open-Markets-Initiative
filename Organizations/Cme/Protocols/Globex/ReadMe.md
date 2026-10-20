@@ -9,8 +9,6 @@ CME Globex electronic trading platform hosting futures and options across CME Gr
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [BrokerTecUst](BrokerTecUst.md) | MarketData | Cme BrokerTec U.S. Treasury Fixed Income Market Data |
-| [EbsSpectrum](EbsSpectrum.md) | MarketData | Cme Ebs Spectrum Spot Foreign Exchange Market Data |
 | [iLink3](iLink3.md) | OrderEntry | Cme Globex Sbe Order Entry |
 | [Mdp3](Mdp3.md) | MarketData | Cme Globex Sbe Market Data |
 | [SessionMgmt](SessionMgmt.md) | Session | Cme Mdp Session Recovery Service |
