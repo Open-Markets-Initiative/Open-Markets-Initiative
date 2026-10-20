@@ -52,6 +52,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Glimpse](Glimpse.md) | MarketData | Nasdaq | Point in time order book snapshot service |
 | [Gtp](Gtp.md) | MarketData | Lseg | Group Ticker Plant |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
+| [Ids](Ids.md) | MarketData | Athex | Information Dissemination System |
 | [Itch](Itch.md) | MarketData | Nasdaq | Integrated Trading Channel Handlers |
 | [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
