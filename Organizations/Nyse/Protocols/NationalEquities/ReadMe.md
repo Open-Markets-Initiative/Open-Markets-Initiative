@@ -25,3 +25,7 @@ Nyse National US cash equities exchange operating a simplified maker taker marke
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

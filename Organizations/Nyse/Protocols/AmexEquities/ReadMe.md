@@ -28,3 +28,7 @@ Nyse American Equities US cash equities exchange focused on small and mid cap li
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

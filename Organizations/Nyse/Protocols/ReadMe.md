@@ -14,3 +14,7 @@
 | [NyseOptions](NyseOptions/) | 1 |
 | [TexasEquities](TexasEquities/) | 16 |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../Specifications) directory.
+

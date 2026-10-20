@@ -16,6 +16,7 @@ Cboe Options Exchange C1 the flagship US options exchange with hybrid floor and 
 | [ComplexDepthOfBook](ComplexDepthOfBook.md) | MarketData | Cboe Options Complex Strategy Full Depth Of Book |
 | [ComplexMulticast](ComplexMulticast.md) | MarketData | Cboe Options Complex Strategy Multicast Market Data |
 | [ComplexOptions](ComplexOptions.md) | OrderEntry | Cboe Options Complex Order Entry |
+| [ComplexOptionsFutures](ComplexOptionsFutures.md) | MarketData | Complex Options Futures |
 | [ComplexTop](ComplexTop.md) | MarketData | Cboe Options Complex Strategy Top Of Book |
 | [CsmiIndex](CsmiIndex.md) | MarketData | Cboe Streaming Index Value Data |
 | [DropCopy](DropCopy.md) | DropCopy | Cboe C1 Options Fix drop copy |

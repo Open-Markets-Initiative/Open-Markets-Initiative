@@ -20,6 +20,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [SzseBinary](SzseBinary.md) | Encoding | Szse | Szse Binary Market Data Feed |
 | [Tmp](Tmp.md) | Encoding | Taifex | Taifex Message Protocol |
 | [Ultra](Ultra.md) | Encoding | Nyse | Openbook Ultra |
+| [Wats](Wats.md) | Encoding | Gpw | Warsaw Automated Trading System |
 | [Xdp](Xdp.md) | Encoding | Nyse | Exchange Data Publisher |
 | [Fix](Fix.md) | General | Fix | Financial Information eXchange |
 | [BinaryPacket](BinaryPacket.md) | Header | B3 | UMDF UDP packet framing |
@@ -39,6 +40,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |
 | [Binary](Binary.md) | MarketData | Nse | Binary |
+| [BmeGate](BmeGate.md) | MarketData | Bme | BMEGate Binary Interface |
 | [CboeOne](CboeOne.md) | MarketData | Cboe | Cboe One consolidated equities feed protocol |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Csdp](Csdp.md) | MarketData | Cboe | Cboe Summary Depth feed protocol |
@@ -50,6 +52,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Glimpse](Glimpse.md) | MarketData | Nasdaq | Point in time order book snapshot service |
 | [Gtp](Gtp.md) | MarketData | Lseg | Group Ticker Plant |
 | [Hsvf](Hsvf.md) | MarketData | Tmx | High Speed Vendor Feed |
+| [Ids](Ids.md) | MarketData | Athex | Information Dissemination System |
 | [Itch](Itch.md) | MarketData | Nasdaq | Integrated Trading Channel Handlers |
 | [Link](Link.md) | MarketData | OtcMarkets | OTC Markets shared binary market data encoding across all OTC Link and MOON ATS multicast feeds |
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
@@ -62,6 +65,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Pdp](Pdp.md) | MarketData | Nyse | NYSE Pdp |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
+| [Qrtmd](Qrtmd.md) | MarketData | Tmx | Quantum Real Time Market Data |
 | [SesM](SesM.md) | MarketData | Miax | Session Management |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
 | [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
