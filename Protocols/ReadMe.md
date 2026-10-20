@@ -64,6 +64,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Pdp](Pdp.md) | MarketData | Nyse | NYSE Pdp |
 | [Pillar](Pillar.md) | MarketData | Nyse | NYSE Pillar Market Data |
 | [Pitch](Pitch.md) | MarketData | Cboe | Cboe Multicast Depth of Book |
+| [Qrtmd](Qrtmd.md) | MarketData | Tmx | Quantum Real Time Market Data |
 | [SesM](SesM.md) | MarketData | Miax | Session Management |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
 | [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
