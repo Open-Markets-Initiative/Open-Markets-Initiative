@@ -1,8 +1,8 @@
 ## The Open Markets Initiative
 
-[![Omi](https://github.com/Open-Markets-Initiative/Directory/blob/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Directory/tree/master/About)
+[![Omi](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/raw/main/About/Images/Logo.png)](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/About)
 
-[The Open Markets Initiative](https://github.com/Open-Markets-Initiative/Directory/tree/master/About "About Omi") (Omi) is an organization dedicated to enhancing the stability of electronic financial markets using modern development methods.
+[The Open Markets Initiative](https://github.com/Open-Markets-Initiative/Open-Markets-Initiative/tree/main/About "About Omi") (Omi) is an organization dedicated to enhancing the stability of electronic financial markets using modern development methods.
 
 ## Omi Philosophy
 

@@ -1,6 +1,6 @@
 ## QseCash Market Data: Qse Cash Market Data
 
-Real time market data of the Qatar Stock Exchange cash market over the NYSE Technologies Universal Trading Platform, delivered as fixed layout binary messages on multicast streams. One specification serves Euronext and Qatar Exchange together and separates them by service id, Qatar Exchange taking 201 to 209 and system ids 101 to 109, so a Qatar feed carries the message set documented here minus the messages the document marks as used only with TCS or NSC.
+Real time market data of the Qatar Stock Exchange cash market over the NYSE Technologies Universal Trading Platform, delivered as fixed layout binary messages on multicast streams. One specification serves Euronext and Qatar Exchange together and separates them by service id, Qatar Exchange taking 201 to 209 and system ids 101 to 109; this spec carries the 24 messages the document's per feed message type lists name for Qatar Exchange, and omits the eleven it marks as not used for Qatar or not disseminated at all.
 
 ### Overview
 
