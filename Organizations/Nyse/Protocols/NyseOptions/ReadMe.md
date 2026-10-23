@@ -11,7 +11,3 @@ New York Stock Exchange Options US options exchange with an open outcry floor an
 | --- | --- | --- |
 | [CommonClient](CommonClient.md) | Infrastructure | Common Client |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

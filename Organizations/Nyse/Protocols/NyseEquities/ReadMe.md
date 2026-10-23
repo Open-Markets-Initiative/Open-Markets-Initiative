@@ -30,7 +30,3 @@ New York Stock Exchange primary US cash equities listing market for large cap an
 | [OrderEntry](OrderEntry.md) | OrderEntry | Order Entry |
 | [Trades](Trades.md) | MarketData | Trades |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-
