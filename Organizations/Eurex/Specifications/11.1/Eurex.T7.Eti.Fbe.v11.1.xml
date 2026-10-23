@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Model name="eti_Derivatives" version="11.1" subVersion="D0003" buildNumber="111.470.1.ga-111004070-17">
+<Model name="eti_Derivatives" version="11.1" subVersion="D0001" buildNumber="111.340.0.ga-111003040-57">
   <MessageFlows>
     <!-- *************************************** Abstraction Layer 3 ****************************************
 		 		This XML section describes the system behaviour from the user's point of view.
@@ -3322,7 +3322,7 @@
       </Member>
       <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="eti_Derivatives" numericID="1408" usage="mandatory" offset="65" cardinality="1" description=""/>
       <Member name="DefaultCstmApplVerSubID" type="DefaultCstmApplVerSubID" package="eti_Derivatives" numericID="28763" usage="mandatory" offset="95" cardinality="1" description="">
-        <ValidValue name="Derivatives" value="D0003" description="Derivatives subversion"/>
+        <ValidValue name="Derivatives" value="D0001" description="Derivatives subversion"/>
       </Member>
       <Member name="PublicKey" type="PublicKey" package="eti_Derivatives" numericID="25233" usage="optional" offset="100" cardinality="1" counter="PublicKeyLen" description=""/>
       <Member name="Pad6" type="Pad6" package="eti_Derivatives" numericID="39060" usage="unused" offset="0" offsetBase="PublicKey" cardinality="1" description=""/>
@@ -3438,7 +3438,7 @@
         <ValidValue name="OpenSize" value="2" description="Open Size(Quote Entry)"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="mandatory" offset="61" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
         <ValidValue name="Tradeable_BOC" value="100" description="Tradeable(BOC)"/>
       </Member>
@@ -6562,7 +6562,7 @@
       <Member name="NumberOfRespondents" type="NumberOfRespondents" package="eti_Derivatives" numericID="25150" usage="optional" offset="132" cardinality="1" description=""/>
       <Member name="TradeToQuoteRatioPosition" type="TradeToQuoteRatioPosition" package="eti_Derivatives" numericID="25202" usage="optional" offset="136" cardinality="1" description=""/>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="mandatory" offset="138" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="mandatory" offset="139" cardinality="1" description="">
@@ -6641,7 +6641,7 @@
       <Member name="NegotiationID" type="NegotiationID" package="eti_Derivatives" numericID="28758" usage="mandatory" offset="144" cardinality="1" description=""/>
       <Member name="NumberOfRespondents" type="NumberOfRespondents" package="eti_Derivatives" numericID="25150" usage="optional" offset="148" cardinality="1" description=""/>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="mandatory" offset="152" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="mandatory" offset="153" cardinality="1" description="">
@@ -6816,7 +6816,7 @@
       <Member name="NumberOfRespondents" type="NumberOfRespondents" package="eti_Derivatives" numericID="25150" usage="optional" offset="156" cardinality="1" description=""/>
       <Member name="TradeToQuoteRatioPosition" type="TradeToQuoteRatioPosition" package="eti_Derivatives" numericID="25202" usage="optional" offset="160" cardinality="1" description=""/>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="mandatory" offset="162" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="mandatory" offset="163" cardinality="1" description="">
@@ -6903,7 +6903,7 @@
       <Member name="MarketSegmentID" type="MarketSegmentID" package="eti_Derivatives" numericID="1300" usage="mandatory" offset="80" cardinality="1" description=""/>
       <Member name="SecuritySubType" type="SecuritySubType" package="eti_Derivatives" numericID="762" usage="optional" offset="84" cardinality="1" description=""/>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="optional" offset="88" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="optional" offset="89" cardinality="1" description="">
@@ -7073,7 +7073,7 @@
       <Member name="SecuritySubType" type="SecuritySubType" package="eti_Derivatives" numericID="762" usage="optional" offset="136" cardinality="1" description=""/>
       <Member name="NumberOfRespondents" type="NumberOfRespondents" package="eti_Derivatives" numericID="25150" usage="optional" offset="140" cardinality="1" description=""/>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="mandatory" offset="144" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="mandatory" offset="145" cardinality="1" description="">
@@ -7518,7 +7518,7 @@
         <ValidValue name="Yes" value="1" description="Yes"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Derivatives" numericID="537" usage="optional" offset="76" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteSubType" type="QuoteSubType" package="eti_Derivatives" numericID="28786" usage="optional" offset="77" cardinality="1" description="">
@@ -12837,7 +12837,7 @@
     <DataType name="CxlSize" type="Qty" rootType="floatDecimal" numericID="28788" package="eti_Derivatives" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
     <DataType name="DefaultCstmApplVerID" type="Freetext" rootType="String" numericID="1408" package="eti_Derivatives" size="30" isTerminable="true" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00"/>
     <DataType name="DefaultCstmApplVerSubID" type="Freetext" rootType="String" numericID="28763" package="eti_Derivatives" size="5" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00">
-      <ValidValue name="Derivatives" value="D0003" description="Derivatives subversion"/>
+      <ValidValue name="Derivatives" value="D0001" description="Derivatives subversion"/>
     </DataType>
     <DataType name="DeleteReason" type="int" rootType="int" numericID="285" package="eti_Derivatives" size="1" description="" minValue="100" maxValue="111" noValue="0xFF">
       <ValidValue name="No_special_reason" value="100" description="Deletion via the TES Delete Request"/>
@@ -13345,6 +13345,7 @@
     <DataType name="Pad1_2" type="String" rootType="String" numericID="39002" package="eti_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad1_3" type="String" rootType="String" numericID="39003" package="eti_Derivatives" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad2" type="String" rootType="String" numericID="39020" package="eti_Derivatives" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad2_1" type="String" rootType="String" numericID="39021" package="eti_Derivatives" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad2_2" type="String" rootType="String" numericID="39022" package="eti_Derivatives" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad3" type="String" rootType="String" numericID="39030" package="eti_Derivatives" size="3" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad3_2" type="String" rootType="String" numericID="39032" package="eti_Derivatives" size="3" description="" range="\x01-\x7E" noValue="0x00"/>
@@ -13558,7 +13559,7 @@
       <ValidValue name="VolaStrategyNegotiateUnderlying" value="6" description="Option Volatility Strategy - Underlying price is negotiated on exchange"/>
     </DataType>
     <DataType name="QuoteType" type="int" rootType="int" numericID="537" package="eti_Derivatives" size="1" description="" minValue="0" maxValue="104" noValue="0xFF">
-      <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+      <ValidValue name="Indicative" value="0" description="Indicative"/>
       <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       <ValidValue name="Tradeable_BOC" value="100" description="Tradeable(BOC)"/>
     </DataType>

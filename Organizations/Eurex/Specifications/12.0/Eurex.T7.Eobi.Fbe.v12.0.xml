@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Model name="eobi" version="12.0" buildNumber="120.470.0.ga-120005011-38">
+<Model name="eobi" version="12.0" buildNumber="120.360.3.ga-120003061-323">
   <MessageFlows>
     <!-- *************************************** Abstraction Layer 3 ****************************************
 		 		This XML section describes the system behaviour from the user's point of view.
@@ -593,7 +593,6 @@
         <ValidValue name="Strip" value="9" description=""/>
         <ValidValue name="FlexibleInstrument" value="10" description=""/>
         <ValidValue name="CommodityStrip" value="11" description=""/>
-        <ValidValue name="ScaledSimpleInstrument" value="12" description=""/>
       </Member>
       <Member name="SecurityMassStatus" type="SecurityMassStatus" package="eobi" numericID="30965" usage="mandatory" offset="9" cardinality="1" description="">
         <ValidValue name="Active" value="1" description=""/>
@@ -1718,7 +1717,7 @@
     <DataType name="InputSource" type="int" rootType="int" numericID="979" package="eobi" size="1" description="" minValue="1" maxValue="1" noValue="0xFF">
       <ValidValue name="CLIPClientBroker" value="1" description=""/>
     </DataType>
-    <DataType name="InstrumentScopeProductComplex" type="int" rootType="int" numericID="1544" package="eobi" size="1" description="" minValue="1" maxValue="12" noValue="0xFF">
+    <DataType name="InstrumentScopeProductComplex" type="int" rootType="int" numericID="1544" package="eobi" size="1" description="" minValue="1" maxValue="11" noValue="0xFF">
       <ValidValue name="SimpleInstrument" value="1" description=""/>
       <ValidValue name="StandardOptionStrategy" value="2" description=""/>
       <ValidValue name="NonStandardOptionStrategy" value="3" description=""/>
@@ -1730,7 +1729,6 @@
       <ValidValue name="Strip" value="9" description=""/>
       <ValidValue name="FlexibleInstrument" value="10" description=""/>
       <ValidValue name="CommodityStrip" value="11" description=""/>
-      <ValidValue name="ScaledSimpleInstrument" value="12" description=""/>
     </DataType>
     <DataType name="LastFragment" type="int" rootType="int" numericID="893" package="eobi" size="1" description="" minValue="0" maxValue="1" noValue="0xFF">
       <ValidValue name="N" value="0" description=""/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Model name="eti_Cash" version="11.1" subVersion="C0003" buildNumber="111.470.1.ga-111004070-17">
+<Model name="eti_Cash" version="11.1" subVersion="C0001" buildNumber="111.340.0.ga-111003040-57">
   <MessageFlows>
     <!-- *************************************** Abstraction Layer 3 ****************************************
 		 		This XML section describes the system behaviour from the user's point of view.
@@ -1912,7 +1912,7 @@
       </Member>
       <Member name="DefaultCstmApplVerID" type="DefaultCstmApplVerID" package="eti_Cash" numericID="1408" usage="mandatory" offset="65" cardinality="1" description=""/>
       <Member name="DefaultCstmApplVerSubID" type="DefaultCstmApplVerSubID" package="eti_Cash" numericID="28763" usage="mandatory" offset="95" cardinality="1" description="">
-        <ValidValue name="Cash" value="C0003" description="Cash subversion"/>
+        <ValidValue name="Cash" value="C0001" description="Cash subversion"/>
       </Member>
       <Member name="PublicKey" type="PublicKey" package="eti_Cash" numericID="25233" usage="optional" offset="100" cardinality="1" counter="PublicKeyLen" description=""/>
       <Member name="Pad6" type="Pad6" package="eti_Cash" numericID="39060" usage="unused" offset="0" offsetBase="PublicKey" cardinality="1" description=""/>
@@ -1985,7 +1985,7 @@
         <ValidValue name="OpenSize" value="2" description="Open Size(Quote Entry)"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="mandatory" offset="62" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
         <ValidValue name="Tradeable_Matching" value="101" description="Tradeable(Matching) - for Continuous Auction trading models only"/>
         <ValidValue name="Tradeable_PWT" value="102" description="Tradeable(Price without turnover) - for Continuous Auction trading models only"/>
@@ -2175,11 +2175,8 @@
         <ValidValue name="Not_delayed" value="0" description="Transaction not delayed"/>
         <ValidValue name="Delayed" value="1" description="Transaction delayed"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="147" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="148" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="149" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="147" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="148" cardinality="1" description=""/>
       <Group name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description="">
         <Member name="OrderEventPx" type="OrderEventPx" package="eti_Cash" numericID="1799" usage="mandatory" offset="152" cardinality="1" description=""/>
         <Member name="OrderEventQty" type="OrderEventQty" package="eti_Cash" numericID="1800" usage="mandatory" offset="160" cardinality="1" description=""/>
@@ -2264,11 +2261,8 @@
         <ValidValue name="Not_delayed" value="0" description="Transaction not delayed"/>
         <ValidValue name="Delayed" value="1" description="Transaction delayed"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="171" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="172" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="173" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="171" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="172" cardinality="1" description=""/>
       <Group name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description="">
         <Member name="OrderEventPx" type="OrderEventPx" package="eti_Cash" numericID="1799" usage="mandatory" offset="176" cardinality="1" description=""/>
         <Member name="OrderEventQty" type="OrderEventQty" package="eti_Cash" numericID="1800" usage="mandatory" offset="184" cardinality="1" description=""/>
@@ -2579,11 +2573,8 @@
         <ValidValue name="Not_delayed" value="0" description="Transaction not delayed"/>
         <ValidValue name="Delayed" value="1" description="Transaction delayed"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="115" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="116" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="117" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="115" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="116" cardinality="1" description=""/>
       <Group name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description="">
         <Member name="OrderEventPx" type="OrderEventPx" package="eti_Cash" numericID="1799" usage="mandatory" offset="120" cardinality="1" description=""/>
         <Member name="OrderEventQty" type="OrderEventQty" package="eti_Cash" numericID="1800" usage="mandatory" offset="128" cardinality="1" description=""/>
@@ -2662,11 +2653,8 @@
         <ValidValue name="Not_delayed" value="0" description="Transaction not delayed"/>
         <ValidValue name="Delayed" value="1" description="Transaction delayed"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="147" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="148" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="149" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="147" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="148" cardinality="1" description=""/>
       <Group name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description="">
         <Member name="OrderEventPx" type="OrderEventPx" package="eti_Cash" numericID="1799" usage="mandatory" offset="152" cardinality="1" description=""/>
         <Member name="OrderEventQty" type="OrderEventQty" package="eti_Cash" numericID="1800" usage="mandatory" offset="160" cardinality="1" description=""/>
@@ -2987,12 +2975,10 @@
         <ValidValue name="No_crossing" value="0" description="No crossing (Order not subject to crossing)"/>
         <ValidValue name="Cross_rejected" value="1" description="Cross rejected (Order subject to crossing and match prevented)"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="153" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="FIXClOrdID" type="FIXClOrdID" package="eti_Cash" numericID="30011" usage="optional" offset="154" cardinality="1" description=""/>
-      <Member name="NoFills" type="NoFills" package="eti_Cash" numericID="1362" usage="mandatory" offset="174" cardinality="1" description=""/>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="175" cardinality="1" description=""/>
+      <Member name="FIXClOrdID" type="FIXClOrdID" package="eti_Cash" numericID="30011" usage="optional" offset="153" cardinality="1" description=""/>
+      <Member name="NoFills" type="NoFills" package="eti_Cash" numericID="1362" usage="mandatory" offset="173" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="174" cardinality="1" description=""/>
+      <Member name="Pad1" type="Pad1" package="eti_Cash" numericID="39000" usage="unused" offset="175" cardinality="1" description=""/>
       <Group name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description="">
         <Member name="FillPx" type="FillPx" package="eti_Cash" numericID="1364" usage="mandatory" offset="176" cardinality="1" description=""/>
         <Member name="FillQty" type="FillQty" package="eti_Cash" numericID="1365" usage="mandatory" offset="184" cardinality="1" description=""/>
@@ -3206,10 +3192,7 @@
         <ValidValue name="No" value="0" description="No"/>
         <ValidValue name="Yes" value="1" description="Yes"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="357" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="Pad2" type="Pad2" package="eti_Cash" numericID="39020" usage="unused" offset="358" cardinality="1" description=""/>
+      <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="357" cardinality="1" description=""/>
       <Group name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description="">
         <Member name="FillPx" type="FillPx" package="eti_Cash" numericID="1364" usage="mandatory" offset="360" cardinality="1" description=""/>
         <Member name="FillQty" type="FillQty" package="eti_Cash" numericID="1365" usage="optional" offset="368" cardinality="1" description=""/>
@@ -3315,12 +3298,9 @@
         <ValidValue name="Not_delayed" value="0" description="Transaction not delayed"/>
         <ValidValue name="Delayed" value="1" description="Transaction delayed"/>
       </Member>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="177" cardinality="1" description="">
-        <ValidValue name="Yes" value="1" description="Yes"/>
-      </Member>
-      <Member name="NoFills" type="NoFills" package="eti_Cash" numericID="1362" usage="mandatory" offset="178" cardinality="1" description=""/>
-      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="179" cardinality="1" description=""/>
-      <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="180" cardinality="1" description=""/>
+      <Member name="NoFills" type="NoFills" package="eti_Cash" numericID="1362" usage="mandatory" offset="177" cardinality="1" description=""/>
+      <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" numericID="28790" usage="mandatory" offset="178" cardinality="1" description=""/>
+      <Member name="Pad5" type="Pad5" package="eti_Cash" numericID="39050" usage="unused" offset="179" cardinality="1" description=""/>
       <Group name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description="">
         <Member name="FillPx" type="FillPx" package="eti_Cash" numericID="1364" usage="mandatory" offset="184" cardinality="1" description=""/>
         <Member name="FillQty" type="FillQty" package="eti_Cash" numericID="1365" usage="mandatory" offset="192" cardinality="1" description=""/>
@@ -3741,16 +3721,13 @@
           <ValidValue name="Removed_Liquidity" value="2" description="Removed Liquidity"/>
           <ValidValue name="Auction" value="4" description="Auction"/>
         </Member>
-        <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" numericID="25245" usage="optional" offset="123" cardinality="1" description="">
-          <ValidValue name="Yes" value="1" description="Yes"/>
-        </Member>
-        <Member name="QuoteEventReason" type="QuoteEventReason" package="eti_Cash" numericID="28733" usage="optional" offset="124" cardinality="1" description="">
+        <Member name="QuoteEventReason" type="QuoteEventReason" package="eti_Cash" numericID="28733" usage="optional" offset="123" cardinality="1" description="">
           <ValidValue name="Pending_cancellation_executed" value="14" description=""/>
           <ValidValue name="Invalid_price" value="15" description=""/>
           <ValidValue name="Cross_rejected" value="16" description="Quote subject to crossing and match prevented"/>
           <ValidValue name="PLP" value="18" description="Quote deleted due to passive liquidity protection"/>
         </Member>
-        <Member name="Pad3" type="Pad3" package="eti_Cash" numericID="39030" usage="unused" offset="125" cardinality="1" description=""/>
+        <Member name="Pad4" type="Pad4" package="eti_Cash" numericID="39040" usage="unused" offset="124" cardinality="1" description=""/>
       </Group>
     </ApplicationMessage>
     <ApplicationMessage name="RFQBroadcast" package="eti_Cash" type="RFQBroadcast" numericID="10415" description="" functionalCategory="Quote Handling" alias="Request For Quote Notification">
@@ -4223,7 +4200,7 @@
         <ValidValue name="OpenSize" value="2" description="Open Size(Quote Entry)"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="mandatory" offset="108" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
         <ValidValue name="Tradeable_Matching" value="101" description="Tradeable(Matching) - for Continuous Auction trading models only"/>
         <ValidValue name="Tradeable_PWT" value="102" description="Tradeable(Price without turnover) - for Continuous Auction trading models only"/>
@@ -5226,7 +5203,6 @@
         <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
         <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
         <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-        <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
       </Member>
       <Member name="RootPartySettlementFirm" type="RootPartySettlementFirm" package="eti_Cash" numericID="22490" usage="mandatory" offset="324" cardinality="1" description=""/>
       <Member name="RootPartyContraFirm" type="RootPartyContraFirm" package="eti_Cash" numericID="22417" usage="optional" offset="329" cardinality="1" description=""/>
@@ -5252,7 +5228,6 @@
         <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
         <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
         <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-        <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
       </Member>
       <Member name="RootPartyIDExecutionVenue" type="RootPartyIDExecutionVenue" package="eti_Cash" numericID="20473" usage="optional" offset="381" cardinality="1" description=""/>
       <Member name="RegulatoryTradeID" type="RegulatoryTradeID" package="eti_Cash" numericID="1903" usage="optional" offset="385" cardinality="1" description=""/>
@@ -5530,7 +5505,6 @@
         <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
         <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
         <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-        <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
       </Member>
       <Member name="RootPartySettlementFirm" type="RootPartySettlementFirm" package="eti_Cash" numericID="22490" usage="mandatory" offset="377" cardinality="1" description=""/>
       <Member name="RootPartyContraFirm" type="RootPartyContraFirm" package="eti_Cash" numericID="22417" usage="optional" offset="382" cardinality="1" description=""/>
@@ -5556,7 +5530,6 @@
         <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
         <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
         <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-        <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
       </Member>
       <Member name="PartySpecialistFirm" type="PartySpecialistFirm" package="eti_Cash" numericID="22661" usage="optional" offset="434" cardinality="1" description=""/>
       <Member name="PartySpecialistTrader" type="PartySpecialistTrader" package="eti_Cash" numericID="22066" usage="optional" offset="439" cardinality="1" description=""/>
@@ -6241,7 +6214,7 @@
         <ValidValue name="Sell" value="2" description="Sell"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="optional" offset="85" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="QuoteCondition" type="QuoteCondition" package="eti_Cash" numericID="276" usage="mandatory" offset="86" cardinality="1" description="">
@@ -6313,7 +6286,7 @@
         <ValidValue name="Sell" value="2" description="Sell"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="optional" offset="175" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="RespondentType" type="RespondentType" package="eti_Cash" numericID="1172" usage="optional" offset="176" cardinality="1" description="">
@@ -6457,7 +6430,7 @@
         <ValidValue name="Sell" value="2" description="Sell"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="optional" offset="113" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="RespondentType" type="RespondentType" package="eti_Cash" numericID="1172" usage="mandatory" offset="114" cardinality="1" description="">
@@ -6637,7 +6610,7 @@
         <ValidValue name="Sell" value="2" description="Sell"/>
       </Member>
       <Member name="QuoteType" type="QuoteType" package="eti_Cash" numericID="537" usage="optional" offset="170" cardinality="1" description="">
-        <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+        <ValidValue name="Indicative" value="0" description="Indicative"/>
         <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       </Member>
       <Member name="NumberOfRespDisclosureInstruction" type="NumberOfRespDisclosureInstruction" package="eti_Cash" numericID="25145" usage="mandatory" offset="171" cardinality="1" description="">
@@ -7693,9 +7666,8 @@
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TransactionDelayIndicator" type="TransactionDelayIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
     <Structure name="ModifyOrderResponse" type="Message" numericID="10107" package="eti_Cash" description="">
@@ -7719,9 +7691,8 @@
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TransactionDelayIndicator" type="TransactionDelayIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
     <Structure name="ModifyOrderSingleRequest" type="Message" numericID="10106" package="eti_Cash" description="">
@@ -7848,9 +7819,8 @@
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TransactionDelayIndicator" type="TransactionDelayIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
     <Structure name="NewOrderResponse" type="Message" numericID="10101" package="eti_Cash" description="">
@@ -7871,9 +7841,8 @@
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TransactionDelayIndicator" type="TransactionDelayIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
     <Structure name="NewOrderSingleRequest" type="Message" numericID="10100" package="eti_Cash" description="">
@@ -8004,10 +7973,10 @@
       <Member name="MatchType" type="MatchType" package="eti_Cash" cardinality="1" description=""/>
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="FIXClOrdID" type="FIXClOrdID" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoFills" type="NoFills" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad1" type="Pad1" package="eti_Cash" cardinality="1" description=""/>
       <Member name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
@@ -8068,8 +8037,7 @@
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TradeAtCloseOptIn" type="TradeAtCloseOptIn" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad2" type="Pad2" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
       <Member name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
@@ -8097,10 +8065,9 @@
       <Member name="Triggered" type="Triggered" package="eti_Cash" cardinality="1" description=""/>
       <Member name="CrossedIndicator" type="CrossedIndicator" package="eti_Cash" cardinality="1" description=""/>
       <Member name="TransactionDelayIndicator" type="TransactionDelayIndicator" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoFills" type="NoFills" package="eti_Cash" cardinality="1" description=""/>
       <Member name="NoOrderEvents" type="NoOrderEvents" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad5" type="Pad5" package="eti_Cash" cardinality="1" description=""/>
       <Member name="FillsGrp" type="FillsGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoFills" description=""/>
       <Member name="OrderEventGrp" type="OrderEventGrpComp" package="eti_Cash" minCardinality="0" cardinality="100" counter="NoOrderEvents" description=""/>
     </Structure>
@@ -8230,9 +8197,8 @@
       <Member name="QuoteEventType" type="QuoteEventType" package="eti_Cash" cardinality="1" description=""/>
       <Member name="QuoteEventSide" type="QuoteEventSide" package="eti_Cash" cardinality="1" description=""/>
       <Member name="QuoteEventLiquidityInd" type="QuoteEventLiquidityInd" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="BBOSetting" type="BBOSetting" package="eti_Cash" cardinality="1" description=""/>
       <Member name="QuoteEventReason" type="QuoteEventReason" package="eti_Cash" cardinality="1" description=""/>
-      <Member name="Pad3" type="Pad3" package="eti_Cash" cardinality="1" description=""/>
+      <Member name="Pad4" type="Pad4" package="eti_Cash" cardinality="1" description=""/>
     </Structure>
     <Structure name="QuoteExecutionReport" type="Message" numericID="10407" package="eti_Cash" description="">
       <Member name="MessageHeaderOut" type="MessageHeaderOutComp" package="eti_Cash" cardinality="1" description=""/>
@@ -9578,9 +9544,6 @@
       <ValidValue name="BestAsk" value="3" description="Best ask price"/>
       <ValidValue name="LimitPrice" value="4" description="Limit price"/>
     </DataType>
-    <DataType name="BBOSetting" type="int" rootType="int" numericID="25245" package="eti_Cash" size="1" description="" minValue="1" maxValue="1" noValue="0xFF">
-      <ValidValue name="Yes" value="1" description="Yes"/>
-    </DataType>
     <DataType name="BestBidPx" type="PriceType" rootType="floatDecimal" numericID="25132" package="eti_Cash" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
     <DataType name="BestBidSize" type="Qty" rootType="floatDecimal" numericID="25134" package="eti_Cash" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
     <DataType name="BestOfferPx" type="PriceType" rootType="floatDecimal" numericID="25133" package="eti_Cash" size="8" description="" minValue="-92233720368.54775807" maxValue="92233720368.54775807" precision="8" noValue="0x8000000000000000"/>
@@ -9611,7 +9574,7 @@
     <DataType name="CxlSize" type="Qty" rootType="floatDecimal" numericID="28788" package="eti_Cash" size="8" description="" minValue="-922337203685477.5807" maxValue="922337203685477.5807" precision="4" noValue="0x8000000000000000"/>
     <DataType name="DefaultCstmApplVerID" type="Freetext" rootType="String" numericID="1408" package="eti_Cash" size="30" isTerminable="true" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00"/>
     <DataType name="DefaultCstmApplVerSubID" type="Freetext" rootType="String" numericID="28763" package="eti_Cash" size="5" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00">
-      <ValidValue name="Cash" value="C0003" description="Cash subversion"/>
+      <ValidValue name="Cash" value="C0001" description="Cash subversion"/>
     </DataType>
     <DataType name="DeleteReason" type="int" rootType="int" numericID="285" package="eti_Cash" size="1" description="" minValue="100" maxValue="111" noValue="0xFF">
       <ValidValue name="No_special_reason" value="100" description="Deletion via the TES Delete Request"/>
@@ -10064,6 +10027,7 @@
     <DataType name="Pad1_2" type="String" rootType="String" numericID="39002" package="eti_Cash" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad1_3" type="String" rootType="String" numericID="39003" package="eti_Cash" size="1" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad2" type="String" rootType="String" numericID="39020" package="eti_Cash" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
+    <DataType name="Pad2_1" type="String" rootType="String" numericID="39021" package="eti_Cash" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad2_2" type="String" rootType="String" numericID="39022" package="eti_Cash" size="2" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad3" type="String" rootType="String" numericID="39030" package="eti_Cash" size="3" description="" range="\x01-\x7E" noValue="0x00"/>
     <DataType name="Pad3_2" type="String" rootType="String" numericID="39032" package="eti_Cash" size="3" description="" range="\x01-\x7E" noValue="0x00"/>
@@ -10249,7 +10213,7 @@
       <ValidValue name="OpenSize" value="2" description="Open Size(Quote Entry)"/>
     </DataType>
     <DataType name="QuoteType" type="int" rootType="int" numericID="537" package="eti_Cash" size="1" description="" minValue="0" maxValue="104" noValue="0xFF">
-      <ValidValue name="Indicative" value="0" description="Indicative (for Continuous Auction Issuer trading model and Eurex/Xetra EnLight only)"/>
+      <ValidValue name="Indicative" value="0" description="Indicative"/>
       <ValidValue name="Tradeable" value="1" description="Tradeable"/>
       <ValidValue name="Tradeable_Matching" value="101" description="Tradeable(Matching) - for Continuous Auction trading models only"/>
       <ValidValue name="Tradeable_PWT" value="102" description="Tradeable(Price without turnover) - for Continuous Auction trading models only"/>
@@ -10376,7 +10340,6 @@
       <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
       <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
       <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-      <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
     </DataType>
     <DataType name="RootPartyContraTrader" type="AlphaNumeric" rootType="String" numericID="22437" package="eti_Cash" size="6" description="" range="A-Z,0-9,\x20" noValue="0x00"/>
     <DataType name="RootPartyEnteringTrader" type="Freetext" rootType="String" numericID="22436" package="eti_Cash" size="6" description="" range="\x20,\x22-\x7B,\x7D,\x7E" noValue="0x00"/>
@@ -10418,7 +10381,6 @@
       <ValidValue name="VPC" value="VPC" description="VPC - Euroclear Sweden"/>
       <ValidValue name="VPD" value="VPD" description="VPD - VP Denmark"/>
       <ValidValue name="VPS" value="VPS" description="VPS - VPS Norway"/>
-      <ValidValue name="CFG" value="CFG" description="CFG - Crypto Finance Germany"/>
     </DataType>
     <DataType name="SRQSRelatedTradeID" type="int" rootType="int" numericID="25152" package="eti_Cash" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
     <DataType name="SecondaryGatewayID" type="int" rootType="int" numericID="28725" package="eti_Cash" size="4" description="" minValue="0" maxValue="4294967294" noValue="0xFFFFFFFF"/>
