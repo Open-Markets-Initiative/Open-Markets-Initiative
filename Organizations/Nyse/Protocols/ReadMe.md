@@ -5,9 +5,9 @@
 | --- | --- |
 | [](/) | 1 |
 | [AmexEquities](AmexEquities/) | 18 |
-| [AmexOptions](AmexOptions/) | 6 |
+| [AmexOptions](AmexOptions/) | 7 |
 | [ArcaEquities](ArcaEquities/) | 17 |
-| [ArcaOptions](ArcaOptions/) | 6 |
+| [ArcaOptions](ArcaOptions/) | 7 |
 | [NationalEquities](NationalEquities/) | 15 |
 | [NyseBonds](NyseBonds/) | 3 |
 | [NyseEquities](NyseEquities/) | 20 |
