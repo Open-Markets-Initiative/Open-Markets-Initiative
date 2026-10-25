@@ -16,6 +16,7 @@ Nyse National US cash equities exchange operating a simplified maker taker marke
 | [DepthFeedRefresh](DepthFeedRefresh.md) | MarketData | Depth Feed Refresh |
 | [DepthFeedRequest](DepthFeedRequest.md) | MarketData | Depth Feed Request |
 | [DepthFeedRetransmission](DepthFeedRetransmission.md) | MarketData | Depth Feed Retransmission |
+| [DropCopy](DropCopy.md) | DropCopy | Drop Copy |
 | [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
 | [IntegratedFeedRefresh](IntegratedFeedRefresh.md) | MarketData | Integrated Feed Refresh |
 | [IntegratedFeedRequest](IntegratedFeedRequest.md) | MarketData | Integrated Feed Request |

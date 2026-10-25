@@ -17,6 +17,7 @@ New York Stock Exchange primary US cash equities listing market for large cap an
 | [DepthFeedRefresh](DepthFeedRefresh.md) | MarketData | Depth Feed Refresh |
 | [DepthFeedRequest](DepthFeedRequest.md) | MarketData | Depth Feed Request |
 | [DepthFeedRetransmission](DepthFeedRetransmission.md) | MarketData | Depth Feed Retransmission |
+| [DropCopy](DropCopy.md) | DropCopy | Drop Copy |
 | [FloorBroker](FloorBroker.md) | OrderEntry | Floor Broker |
 | [ImbalancesFeed](ImbalancesFeed.md) | MarketData | Imbalances Feed |
 | [IntegratedFeed](IntegratedFeed.md) | MarketData | Integrated Feed |
