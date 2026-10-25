@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--suppress XmlDefaultAttributeValue -->
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
+                   package="fairx.gateway.sbe.codec.session"
+                   id="1100"
+                   version="2"
+                   semanticVersion="1.2"
+                   description="SBE admin/session messages (roughly equivalent to FIX admin messages)"
+                   byteOrder="littleEndian">
+  <types>
+    <composite name="messageHeader" description="Message header (includes fields to satisfy FIX session protocol, plus standard SBE header)">
+      <type name="protocolId" primitiveType="uint8"/>
+      <set name="flags" encodingType="uint8">
+        <choice name="isResend">0</choice>
+      </set>
+      <type name="messageLength" primitiveType="uint16"/>
+      <type name="sequenceNumber" primitiveType="uint32"/>
+      <type name="lastProcessedSeqNo" primitiveType="uint32"/>
+      <type name="reserved" primitiveType="uint32"/>
+      <type name="sendTimeEpochNanos" primitiveType="int64"/>
+      <type name="blockLength" primitiveType="uint16"/>
+      <type name="templateId" primitiveType="uint16"/>
+      <type name="schemaId" primitiveType="uint16"/>
+      <type name="version" primitiveType="uint16"/>
+    </composite>
+    <composite name="VarData" description="Variable length data blob">
+      <type name="length" primitiveType="uint8"/>
+      <type name="varData" primitiveType="int8"/>
+    </composite>
+
+    <type name="String16" length="16" primitiveType="char" semanticType="String"/>
+    <type name="String32" length="32" primitiveType="char" semanticType="String"/>
+    <type name="String64" length="64" primitiveType="char" semanticType="String"/>
+    <type name="CorrelationId" primitiveType="int64"/>
+    <type name="TimestampNanos" primitiveType="int64" description="Nanoseconds since Unix epoch."/>
+
+    <enum name="Bool" encodingType="int8">
+      <validValue name="FALSE">0</validValue>
+      <validValue name="TRUE">1</validValue>
+    </enum>
+
+    <enum name="RejectReason" encodingType="int32" sinceVersion="1">
+      <validValue name="INVALID_SCHEMA_ID">1</validValue>
+      <validValue name="INVALID_TEMPLATE_ID">2</validValue>
+      <validValue name="INVALID_BLOCK_LENGTH">3</validValue>
+      <validValue name="INVALID_FIELD_VALUE" sinceVersion="2">4</validValue>
+    </enum>
+  </types>
+
+  <sbe:message name="Logon" id="100" description="Logon message to gateway">
+    <field name="username" id="1" type="String16"/>
+    <field name="password" id="2" type="String32"/>
+    <field name="resetSeqNum" id="3" type="Bool"/>
+  </sbe:message>
+
+  <sbe:message name="LogonConf" id="200" description="Logon confirmation message to client">
+    <field name="heartbeatIntervalSeconds" id="1" type="int32"/>
+  </sbe:message>
+
+  <sbe:message name="Logout" id="101" description="Logout message to gateway">
+    <field name="reason" id="1" type="String64"/>
+  </sbe:message>
+  <sbe:message name="LoggedOut" id="201" description="Logout notification message from gateway to client">
+    <field name="reason" id="1" type="String64"/>
+  </sbe:message>
+
+  <sbe:message name="Heartbeat" id="10" description="Heartbeat sent in the absence of data to keep connection alive; can be sent by either client or gateway.">
+    <field name="correlationId"     id="1" type="int64" description="Set if this Heartbeat is in response to a TestRequest; 0 if not."/>
+  </sbe:message>
+  <sbe:message name="TestRequest" id="11" description="Request a heartbeat; can be sent by either client or gateway.">
+    <field name="correlationId"     id="1" type="int64"/>
+  </sbe:message>
+
+  <sbe:message name="ResendRequest" id="102" description="Resend request message from client to gateway">
+    <field name="fromSequenceNumber" id="1" type="uint32"/>
+    <field name="toSequenceNumber"   id="2" type="uint32"/>
+  </sbe:message>
+  <sbe:message name="GapFill" id="202" description="Sent to client in lieu of admin/session messages while handling resend request">
+    <field name="newSequenceNumber" id="1" type="uint32"/>
+    <field name="padding"           id="2" type="uint32"/>
+  </sbe:message>
+
+  <sbe:message name="Reject" id="210" sinceVersion="1" description="Sent in response to an unrecognized or malformed message from client">
+    <field name="refSequenceNumber" id="1" type="uint32"/>
+    <field name="reason"            id="2" type="RejectReason"/>
+    <field name="details"           id="3" type="String64"/>
+  </sbe:message>
+</sbe:messageSchema>
