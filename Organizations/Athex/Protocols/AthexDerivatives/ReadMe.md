@@ -12,3 +12,7 @@ The derivatives market of the Athens Exchange, formerly the Athens Derivatives E
 | [RealTime](RealTime.md) | MarketData | Athens Exchange Derivatives Market Real Time Channel |
 | [Relaxed](Relaxed.md) | MarketData | Athens Exchange Derivatives Market Relaxed Channel |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

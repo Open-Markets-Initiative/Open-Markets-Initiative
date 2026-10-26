@@ -12,3 +12,7 @@ The securities market of the Athens Exchange, trading Greek cash equities, bonds
 | [RealTime](RealTime.md) | MarketData | Athens Exchange Securities Market Real Time Channel |
 | [Relaxed](Relaxed.md) | MarketData | Athens Exchange Securities Market Relaxed Channel |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+
