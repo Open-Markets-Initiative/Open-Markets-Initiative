@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="sbe_schema.xsl" type="text/xsl"?>
+<sbe:messageSchema package="moex_spectra_simba" byteOrder="littleEndian" id="19780" version="9" semanticVersion="FIX5SP2" description="20201005" xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://fixprotocol.io/2016/sbe sbe.xsd">
+    <types>
+        <type name="uInt8" primitiveType="uint8"/>
+        <type name="uInt8NULL" presence="optional" primitiveType="uint8"/>
+        <type name="uInt32" primitiveType="uint32"/>
+        <type name="uInt32NULL" presence="optional" primitiveType="uint32"/>
+        <type name="uInt64" primitiveType="uint64"/>
+        <type name="uInt64NULL" presence="optional" primitiveType="uint64"/>
+        <type name="Int32" primitiveType="int32"/>
+        <type name="Int32NULL" presence="optional" primitiveType="int32"/>
+        <type name="Int64" primitiveType="int64"/>
+        <type name="Int64NULL" presence="optional" primitiveType="int64"/>
+        <type name="Char" primitiveType="char"/>
+        <type name="String3" length="3" primitiveType="char"/>
+        <type name="String4" length="4" primitiveType="char"/>
+        <type name="String6" length="6" primitiveType="char"/>
+        <type name="String25" length="25" primitiveType="char"/>
+        <type name="String31" length="31" primitiveType="char"/>
+        <type name="String256" length="256" primitiveType="char"/>
+        <type name="DoubleNULL" presence="optional" primitiveType="double"/>
+        <type name="SecurityIDSource" presence="constant" length="1" primitiveType="char">8</type>
+        <type name="MarketID" presence="constant" length="4" primitiveType="char">MOEX</type>
+
+        <set name="MsgFlagsSet" encodingType="uint16">
+            <choice name="LastFragment"          description="Message fragmentation flag"                                      >0</choice>
+            <choice name="StartOfSnapshot"       description="Flag of the first message in the snapshot for the instrument"    >1</choice>
+            <choice name="EndOfSnapshot"         description="Flag of the last message in the snapshot for the instrument"     >2</choice>
+            <choice name="IncrementalPacket"     description="Incremental packet flag"                                         >3</choice>
+            <choice name="PossDupFlag"           description="Flag of the order book retransmission in the incremental stream" >4</choice>
+        </set>
+
+        <composite name="MarketDataPacketHeader" description="Market Data Packet Header">
+            <type name="MsgSeqNum"    primitiveType="uint32" description="Message sequence number"/>
+            <type name="MsgSize"      primitiveType="uint16" description="Message size includes size of Market Data Packet Header"/>
+            <ref  name="MsgFlags"     type="MsgFlagsSet"     />
+            <type name="SendingTime"  primitiveType="uint64" description="Sending time in number of nanoseconds since Unix epoch, UTC timezone"/>
+        </composite>
+
+        <composite name="IncrementalPacketHeader" description="Incremental Packet Header">
+            <type name="TransactTime"              primitiveType="uint64" description="Start of event processing time in number of nanoseconds since Unix epoch, UTC timezone"/>
+            <type name="ExchangeTradingSessionID"  primitiveType="uint32" presence="optional" nullValue="4294967295" description="Trading session ID"/>
+        </composite>
+
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength"    primitiveType="uint16"/>
+            <type name="templateId"     primitiveType="uint16"/>
+            <type name="schemaId"       primitiveType="uint16"/>
+            <type name="version"        primitiveType="uint16"/>
+        </composite>
+
+        <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint8"/>
+        </composite>
+
+        <composite name="groupSize2" description="Repeating group dimensions" semanticType="NumInGroup">
+            <type name="blockLength" primitiveType="uint16"/>
+            <type name="numInGroup" primitiveType="uint16"/>
+        </composite>
+
+        <composite name="Utf8String" description="Variable-length UTF-8 string">
+            <type name="length" primitiveType="uint16" semanticType="Length"/>
+            <type name="varData" length="0" primitiveType="uint8" semanticType="data" characterEncoding="UTF-8"/>
+        </composite>
+
+        <composite name="VarString" description="Variable-length ASCII string">
+            <type name="length" primitiveType="uint16" semanticType="Length"/>
+            <type name="varData" length="0" primitiveType="uint8" semanticType="data" characterEncoding="US-ASCII"/>
+        </composite>
+
+        <composite name="Decimal5" description="Price type in Spectra" semanticType="Price">
+            <type name="mantissa" description="mantissa" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-5</type>
+        </composite>
+
+        <composite name="Decimal5NULL" description="Price type in Spectra" semanticType="Price">
+            <type name="mantissa" description="mantissa" presence="optional" minValue="-9223372036854775808" maxValue="9223372036854775806" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-5</type>
+        </composite>
+
+        <composite name="Decimal2NULL" description="Price type in Spectra" semanticType="Price">
+            <type name="mantissa" description="mantissa" presence="optional" minValue="-9223372036854775808" maxValue="9223372036854775806" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-2</type>
+        </composite>
+
+        <enum name="MDUpdateAction" encodingType="uInt8">
+            <validValue name="New"    description="New"   >0</validValue>
+            <validValue name="Change" description="Change">1</validValue>
+            <validValue name="Delete" description="Delete">2</validValue>
+        </enum>
+
+        <enum name="MDEntryType" encodingType="Char">
+            <validValue name="Bid"          description="Bid"       >0</validValue>
+            <validValue name="Offer"        description="Offer"     >1</validValue>
+            <validValue name="EmptyBook"    description="Empty Book">J</validValue>
+        </enum>
+
+        <enum name="SecurityAltIDSource" encodingType="Char">
+            <validValue name="ISIN"           description="ISIN"           >4</validValue>
+            <validValue name="ExchangeSymbol" description="Exchange symbol">8</validValue>
+        </enum>
+
+        <enum name="SecurityTradingStatus" encodingType="uInt8NULL">
+            <validValue name="TradingHalt"                  description="Trading halt"                    >2</validValue>
+            <validValue name="ReadyToTrade"                 description="Ready to trade"                  >17</validValue>
+            <validValue name="NotAvailableForTrading"       description="Not available for trading"       >18</validValue>
+            <validValue name="NotTradedOnThisMarket"        description="Not traded on this market"       >19</validValue>
+            <validValue name="UnknownOrInvalid"             description="Unknown or Invalid status"       >20</validValue>
+            <validValue name="PreOpen"                      description="Pre-open"                        >21</validValue>
+            <validValue name="DiscreteAuctionOpen"          description="Discrete auction started"        >119</validValue>
+            <validValue name="DiscreteAuctionClose"         description="Discrete auction ended"          >121</validValue>
+            <validValue name="InstrumentHalt"               description="Instrument halt"                 >122</validValue>
+            <validValue name="ClosePosition"                description="Ready to trade. Close position"  >123</validValue>
+            <validValue name="DiscreteAuctionClosePosition" description="Discrete auction. Close position">124</validValue>
+       </enum>
+
+        <enum name="TradingSessionID" encodingType="uInt8NULL">
+            <validValue name="Day"     description="Day session"    >1</validValue>
+            <validValue name="Morning" description="Morning session">3</validValue>
+            <validValue name="Evening" description="Evening session">5</validValue>
+            <validValue name="Weekend" description="Weekend session">100</validValue>
+        </enum>
+
+        <enum name="MarketSegmentID" encodingType="Char">
+            <validValue name="Derivatives" description="Derivatives">D</validValue>
+        </enum>
+
+        <enum name="TradSesStatus" encodingType="uInt8">
+            <validValue name="Halted"               description="Session paused"          >1</validValue>
+            <validValue name="Open"                 description="Session started"         >2</validValue>
+            <validValue name="Closed"               description="Session ended"           >3</validValue>
+            <validValue name="PreOpen"              description="Session initiated"       >4</validValue>
+        </enum>
+
+        <enum name="TradSesEvent" encodingType="uInt8NULL">
+            <validValue name="TradingResumes"         description="Trading resumed after intraday clearing session">0</validValue>
+            <validValue name="ChangeOfTradingSession" description="Start and end of trading session"               >1</validValue>
+            <validValue name="ChangeOfTradingStatus"  description="Trading session status change"                  >3</validValue>
+        </enum>
+
+        <enum name="NegativePrices" encodingType="uInt8">
+            <validValue name="NotEligible" description="Futures prices, price limits and options strikes are limited to be positive only">0</validValue>
+            <validValue name="Eligible"    description="Futures prices and options strikes are not limited"                              >1</validValue>
+        </enum>
+
+        <enum name="HaltType" encodingType="uInt8">
+            <validValue name="EmptyHalts"                                 description="Empty all halts on client"                             >0</validValue>
+            <validValue name="Session"                                    description="Session"                                               >1</validValue>
+            <validValue name="Section"                                    description="Section"                                               >2</validValue>
+            <validValue name="SectionAndTradeMode"                        description="Section and trade mode"                                >3</validValue>
+            <validValue name="FutBaseContract"                            description="Futures base contract"                                 >4</validValue>
+            <validValue name="InstrumentsFromTradeMode"                   description="Instruments from trade mode"                           >5</validValue>
+            <validValue name="InstrumentsFromTradeModeAndFutBaseContract" description="Instruments from trade mode and futures base contract" >6</validValue>
+            <validValue name="GroupInstruments"                           description="Group instruments"                                     >7</validValue>
+            <validValue name="GroupInstrumentsAndFutBaseContract"         description="Group instruments and futures base contract"           >8</validValue>
+        </enum>
+
+        <set name="MDFlagsSet" encodingType="uInt64">
+            <choice name="Day"                   description="Orders and Trades: Day order"                                                           >0</choice>
+            <choice name="IOC"                   description="Orders and Trades: IOC order"                                                           >1</choice>
+            <choice name="NonQuote"              description="Orders and Trades: Non quote entry"                                                     >2</choice>
+            <choice name="EndOfTransaction"      description="Orders and Trades: The end of matching transaction"                                     >12</choice>
+            <choice name="DueToCrossCancel"      description="Orders: The record results from cancelling the order due to cross"                      >13</choice>
+            <choice name="SecondLeg"             description="Trades: Second leg of multileg trade"                                                   >14</choice>
+            <choice name="FOK"                   description="Orders: FOK order"                                                                      >19</choice>
+            <choice name="Replace"               description="Orders: The record results from replacing the order"                                    >20</choice>
+            <choice name="Cancel"                description="Orders: The record results from cancelling the order"                                   >21</choice>
+            <choice name="MassCancel"            description="Orders: The record results from mass cancelling"                                        >22</choice>
+            <choice name="Negotiated"            description="Trades: Negotiated trade"                                                               >26</choice>
+            <choice name="MultiLeg"              description="Trades: Multileg trade"                                                                 >27</choice>
+            <choice name="CrossTrade"            description="Orders: Flag of cancelling the left balance of the order because of a cross-trade"      >29</choice>
+            <choice name="NegotiatedMatchByRef"  description="Orders and Trades: Negotiated order or trade matched by reference"                      >31</choice>
+            <choice name="COD"                   description="Orders: The record results from cancelling an order via 'Cancel on Disconnect' service" >32</choice>
+            <choice name="ActiveSide"            description="Trades: Flag of aggressive side"                                                        >41</choice>
+            <choice name="PassiveSide"           description="Trades: Flag of passive side"                                                           >42</choice>
+            <choice name="Synthetic"             description="Orders and Trades: Flag of the synthetic order"                                         >45</choice>
+            <choice name="RFS"                   description="Orders and Trades: RFS is the source of entry"                                          >46</choice>
+            <choice name="SyntheticPassive"      description="Orders: Flag of the passive synthetic order"                                            >57</choice>
+            <choice name="BOC"                   description="Orders and Trades: Book or Cancel order"                                                >60</choice>
+            <choice name="DuringDiscreteAuction" description="Orders and Trades: The record formed in the process of discrete auction"                >62</choice>
+        </set>
+
+        <set name="MDFlags2Set" encodingType="uInt64">
+            <choice name="Zero"                  description="Empty set">0</choice>
+        </set>
+
+        <set name="FlagsSet" encodingType="uInt64">
+            <choice name="AnonymousTrading"        description="Anonymous trading"                        >4</choice>
+            <choice name="PrivateTrading"          description="Private trading"                          >5</choice>
+            <choice name="MultiLeg"                description="MultiLeg instrument"                      >8</choice>
+            <choice name="Collateral"              description="Collateral instrument"                    >18</choice>
+            <choice name="IntradayExercise"        description="Exercise in the intraday on schedule"     >19</choice>
+        </set>
+
+        <set name="TradePeriodAccessSet" encodingType="uInt64">
+            <choice name="DaySession"              description="Trading in the day session"    >0</choice>
+            <choice name="EveningSession"          description="Trading in the evening session">1</choice>
+            <choice name="WeekendSession"          description="Trading in the weekend session">2</choice>
+            <choice name="MorningSession"          description="Trading in the morning session">3</choice>
+        </set>
+    </types>
+
+    <sbe:message name="Heartbeat" id="1" description="Heartbeat" semanticType="0"/>
+
+    <sbe:message name="SequenceReset" id="2" description="SequenceReset" semanticType="4">
+        <field name="NewSeqNo"                     id="36"    type="uInt32"             description="New sequence number"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Best Prices message -->
+    <sbe:message name="BestPrices" id="14" semanticType="X">
+        <group name="NoMDEntries"              id="268"   dimensionType="groupSize" description="Number of entries in Best Prices message">
+            <field name="MktBidPx"             id="645"   type="Decimal5NULL"       description="Best bid price"/>
+            <field name="MktOfferPx"           id="646"   type="Decimal5NULL"       description="Best offer price"/>
+            <field name="MktBidSize"           id="22001" type="Int64NULL"          description="Total qty in best bid"/>
+            <field name="MktOfferSize"         id="22002" type="Int64NULL"          description="Total qty in best offer"/>
+            <field name="SecurityID"           id="48"    type="Int32"              description="Instrument numeric code"/>
+        </group>
+    </sbe:message>
+
+    <!-- Derivatives Market - Empty Book message -->
+    <sbe:message name="EmptyBook" id="4" semanticType="X">
+        <field name="LastMsgSeqNumProcessed"   id="369"   type="uInt32NULL"     description="Sequence number of the last valid Incremental feed packet"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - New Order message or Delete Order message-->
+    <sbe:message name="OrderUpdate" id="15" semanticType="X">
+        <field name="MDEntryID"                id="278"   type="Int64"          description="Order ID"/>
+        <field name="MDEntryPx"                id="270"   type="Decimal5"       description="Order price"/>
+        <field name="MDEntrySize"              id="271"   type="Int64"          description="Market Data entry size"/>
+        <field name="MDFlags"                  id="20017" type="MDFlagsSet"     description="The field is a bit mask"/>
+        <field name="MDFlags2"                 id="20050" type="MDFlags2Set"    description="The field 2 is a bit mask"/>
+        <field name="SecurityID"               id="48"    type="Int32"          description="Instrument numeric code"/>
+        <field name="RptSeq"                   id="83"    type="uInt32"         description="Market Data entry sequence number per instrument update"/>
+        <field name="MDUpdateAction"           id="279"   type="MDUpdateAction" description="Market Data update action"/>
+        <field name="MDEntryType"              id="269"   type="MDEntryType"    description="Market Data entry type"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Order Execution message -->
+    <sbe:message name="OrderExecution" id="16" semanticType="X">
+        <field name="MDEntryID"                id="278"   type="Int64"          description="Order ID"/>
+        <field name="MDEntryPx"                id="270"   type="Decimal5NULL"   description="Order price"/>
+        <field name="MDEntrySize"              id="271"   type="Int64NULL"      description="Market Data entry size"/>
+        <field name="LastPx"                   id="31"    type="Decimal5"       description="Matched trade price"/>
+        <field name="LastQty"                  id="32"    type="Int64"          description="Trade volume"/>
+        <field name="TradeID"                  id="1003"  type="Int64"          description="Trade ID"/>
+        <field name="MDFlags"                  id="20017" type="MDFlagsSet"     description="The field is a bit mask"/>
+        <field name="MDFlags2"                 id="20050" type="MDFlags2Set"    description="The field 2 is a bit mask"/>
+        <field name="SecurityID"               id="48"    type="Int32"          description="Instrument numeric code"/>
+        <field name="RptSeq"                   id="83"    type="uInt32"         description="Market Data entry sequence number per instrument update"/>
+        <field name="MDUpdateAction"           id="279"   type="MDUpdateAction" description="Market Data update action"/>
+        <field name="MDEntryType"              id="269"   type="MDEntryType"    description="Market Data entry type"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Snapshot of order book -->
+    <sbe:message name="OrderBookSnapshot" id="17" semanticType="W">
+        <field name="SecurityID"                   id="48"    type="Int32"              description="Instrument numeric code"/>
+        <field name="LastMsgSeqNumProcessed"       id="369"   type="uInt32"             description="Sequence number of the last Incremental feed packet processed. This value is used to synchronize the snapshot loop with the real-time feed"/>
+        <field name="RptSeq"                       id="83"    type="uInt32"             description="Market Data entry sequence number per instrument update"/>
+        <field name="ExchangeTradingSessionID"     id="5842"  type="uInt32"             description="Trading session ID"/>
+        <group name="NoMDEntries"                  id="268"   dimensionType="groupSize" description="Number of entries in Market Data message">
+            <field name="MDEntryID"                id="278"   type="Int64NULL"          description="Order ID"/>
+            <field name="TransactTime"             id="60"    type="uInt64"             description="Start of event processing time in number of nanoseconds since Unix epoch, UTC timezone"/>
+            <field name="MDEntryPx"                id="270"   type="Decimal5NULL"       description="Order price"/>
+            <field name="MDEntrySize"              id="271"   type="Int64NULL"          description="Market Data entry size"/>
+            <field name="TradeID"                  id="1003"  type="Int64NULL"          description="Trade ID"/>
+            <field name="MDFlags"                  id="20017" type="MDFlagsSet"         description="The field is a bit mask"/>
+            <field name="MDFlags2"                 id="20050" type="MDFlags2Set"        description="The field 2 is a bit mask"/>
+            <field name="MDEntryType"              id="269"   type="MDEntryType"        description="Market Data entry type"/>
+        </group>
+    </sbe:message>
+
+    <!-- Derivatives Market - Instrument definition -->
+    <sbe:message name="SecurityDefinition" id="27" semanticType="d">
+        <field name="TotNumReports"                id="911"   type="uInt32"                description="Total messages number in the current list"/>
+        <field name="Symbol"                       id="55"    type="String25"              description="Symbol code of the instrument"/>
+        <field name="SecurityID"                   id="48"    type="Int32"                 description="Instrument numeric code"/>
+        <field name="SecurityIDSource"             id="22"    type="SecurityIDSource"      description="Identifies class or source of tag 48-SecurityID value"/>
+        <field name="SecurityAltID"                id="455"   type="String25"              description="Instrument symbol code"/>
+        <field name="SecurityAltIDSource"          id="456"   type="SecurityAltIDSource"   description="Class of tag 455-SecurityAltID"/>
+        <field name="SecurityType"                 id="167"   type="String4"               description="Multileg type"/>
+        <field name="CFICode"                      id="461"   type="String6"               description="Financial instrument class according to ISO-10962"/>
+        <field name="StrikePrice"                  id="202"   type="Decimal5NULL"          description="Strike price"/>
+        <field name="ContractMultiplier"           id="231"   type="Int32NULL"             description="Units of underlying asset in instrument"/>
+        <field name="SecurityTradingStatus"        id="326"   type="SecurityTradingStatus" description="Identifies the trading status of instrument"/>
+        <field name="Currency"                     id="15"    type="String3"               description="Currency"/>
+        <field name="MarketID"                     id="1301"  type="MarketID"              description="Identifies the market"/>
+        <field name="MarketSegmentID"              id="1300"  type="MarketSegmentID"       description="Identifies the market segment"/>
+        <field name="TradingSessionID"             id="336"   type="TradingSessionID"      description="Trading session type"/>
+        <field name="ExchangeTradingSessionID"     id="5842"  type="Int32NULL"             description="Trading session ID"/>
+        <field name="Volatility"                   id="5678"  type="Decimal5NULL"          description="Option volatility"/>
+        <field name="HighLimitPx"                  id="1149"  type="Decimal5NULL"          description="Upper price limit"/>
+        <field name="LowLimitPx"                   id="1148"  type="Decimal5NULL"          description="Lower price limit"/>
+        <field name="MinPriceIncrement"            id="969"   type="Decimal5NULL"          description="Minimum price step"/>
+        <field name="MinPriceIncrementAmount"      id="1146"  type="Decimal5NULL"          description="Price step cost in RUB"/>
+        <field name="InitialMarginOnBuy"           id="20002" type="Decimal2NULL"          description="Initial margin"/>
+        <field name="InitialMarginOnSell"          id="20000" type="Decimal2NULL"          description="Initial margin"/>
+        <field name="InitialMarginSyntetic"        id="20001" type="Decimal2NULL"          description="Underlying collateral for one uncovered position (RUB)"/>
+        <field name="TheorPrice"                   id="20006" type="Decimal5NULL"          description="Option theoretical price"/>
+        <field name="TheorPriceLimit"              id="20007" type="Decimal5NULL"          description="Option theoretical price (limits adjusted)"/>
+        <field name="UnderlyingQty"                id="879"   type="Decimal5NULL"          description="Security nominal value"/>
+        <field name="UnderlyingCurrency"           id="318"   type="String3"               description="Code of currency of the security nominal value"/>
+        <field name="Flags"                        id="20008" type="FlagsSet"              description="Flags of instrument"/>
+        <field name="MinPriceIncrementAmountCurr"  id="20040" type="Decimal5NULL"          description="Value of the minimum increment in foreign currency"/>
+        <field name="SettlPriceOpen"               id="20041" type="Decimal5NULL"          description="Settlement price at the start of the session"/>
+        <field name="ValuationMethod"              id="1197"  type="String4"               description="Specifies the type of valuation method applied"/>
+        <field name="RiskFreeRate"                 id="1190"  type="DoubleNULL"            description="Risk free interest rate"/>
+        <field name="FixedSpotDiscount"            id="20042" type="DoubleNULL"            description="The sum of the discounted values of the declared cash flows"/>
+        <field name="ProjectedSpotDiscount"        id="20043" type="DoubleNULL"            description="The sum of the discounted values of the projected cash flows"/>
+        <field name="SettlCurrency"                id="120"   type="String3"               description="Settlement currency"/>
+        <field name="NegativePrices"               id="20044" type="NegativePrices"        description="Negative prices eligibility"/>
+        <field name="DerivativeContractMultiplier" id="1266"  type="Int32NULL"             description="Coefficient indicating the volume of the underlying asset in the contract quote and strikes of option series"/>
+        <field name="InterestRateRiskUp"           id="20053" type="DoubleNULL"            description="Interest risk variable rate on rate up scenario"/>
+        <field name="InterestRateRiskDown"         id="20054" type="DoubleNULL"            description="Interest risk variable rate on rate down scenario"/>
+        <field name="RiskFreeRate2"                id="20055" type="DoubleNULL"            description="Risk free interest rate 2"/>
+        <field name="InterestRate2RiskUp"          id="20056" type="DoubleNULL"            description="Interest rate risk up scenario for RiskFreeRate2"/>
+        <field name="InterestRate2RiskDown"        id="20057" type="DoubleNULL"            description="Interest rate risk down scenario for RiskFreeRate2"/>
+        <field name="SettlPrice"                   id="730"   type="Decimal5NULL"          description="Settlement price at the end of last clearing session"/>
+        <field name="TradeModeID"                  id="20063" type="Int32"                 description="Trade mode id"/>
+        <field name="GroupMask"                    id="20060" type="Int64"                 description="Bit-mask of groups"/>
+        <field name="SectionID"                    id="20061" type="Int32"                 description="Identifier of section"/>
+        <field name="BaseContractID"               id="20062" type="Int32"                 description="Identifier of base contract"/>
+        <field name="TradePeriodAccess"            id="20065" type="TradePeriodAccessSet"  description="Flags of instrument's trade periods"/>
+        <field name="HighLimitPxWeekend"           id="20071" type="Decimal5NULL"          description="Upper price limit on weekend session"/>
+        <field name="LowLimitPxWeekend"            id="20072" type="Decimal5NULL"          description="Lower price limit on weekend session"/>
+        <field name="ClearingSettlPrice"           id="2528"  type="Decimal5NULL"          description="Settlement price for the future clearing session"/>
+        <group name="NoMDFeedTypes"                id="1141"  dimensionType="groupSize"    description="Number of feed types">
+            <field name="MDFeedType"               id="1022"  type="String25"              description="Feed type"/>
+            <field name="MarketDepth"              id="264"   type="uInt32NULL"            description="Order-book depth"/>
+            <field name="MDBookType"               id="1021"  type="uInt32NULL"            description="Order-book type"/>
+        </group>
+        <group name="NoUnderlyings"                id="711"   dimensionType="groupSize"    description="Number of underlyings">
+            <field name="UnderlyingSymbol"         id="311"   type="String25"              description="Underlying asset code"/>
+            <field name="UnderlyingBoard"          id="20045" type="String4"               description="Underlying board code"/>
+            <field name="UnderlyingSecurityID"     id="309"   type="Int32NULL"             description="Futures instrument ID"/>
+            <field name="UnderlyingFutureID"       id="2620"  type="Int32NULL"             description="ID of the base futures instrument, applicable to options only"/>
+        </group>
+        <group name="NoLegs"                       id="555"   dimensionType="groupSize"    description="Nymber of legs">
+            <field name="LegSymbol"                id="600"   type="String25"              description="Multileg instrument's individual security's Symbol"/>
+            <field name="LegSecurityID"            id="602"   type="Int32"                 description="Multileg instrument's individual security's SecurityID"/>
+            <field name="LegRatioQty"              id="623"   type="Int32"                 description="The ratio of quantity for this individual leg relative to the entire multileg security"/>
+        </group>
+        <group name="NoInstrAttrib"                id="870"   dimensionType="groupSize"    description="Number of attributes">
+            <field name="InstrAttribType"          id="871"   type="Int32"                 description="Code to represent the type of instrument attribute"/>
+            <field name="InstrAttribValue"         id="872"   type="String31"              description="Attribute value appropriate to tag 87-InstrAttribType"/>
+        </group>
+        <group name="NoEvents"                     id="864"   dimensionType="groupSize"    description="Number of events">
+            <field name="EventType"                id="865"   type="Int32"                 description="Code to represent the type of event"/>
+            <field name="EventDate"                id="866"   type="uInt32"                description="Date of event"/>
+            <field name="EventTime"                id="1145"  type="uInt64"                description="Time of event"/>
+        </group>
+        <data name="SecurityDesc"                 id="107"   type="Utf8String"             description="Instrument name"/>
+        <data name="QuotationList"                id="20005" type="VarString"              description="Quotation list"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Instrument status -->
+    <sbe:message name="SecurityStatus" id="28" semanticType="f">
+        <field name="SecurityID"                   id="48"    type="Int32"                 description="Instrument numeric code"/>
+        <field name="SecurityIDSource"             id="22"    type="SecurityIDSource"      description="Identifies class or source of tag 48-SecurityID value"/>
+        <field name="Symbol"                       id="55"    type="String25"              description="Symbol code of the instrument"/>
+        <field name="SecurityTradingStatus"        id="326"   type="SecurityTradingStatus" description="Identifies the trading status of instrument"/>
+        <field name="HighLimitPx"                  id="1149"  type="Decimal5NULL"          description="Upper price limit"/>
+        <field name="LowLimitPx"                   id="1148"  type="Decimal5NULL"          description="Lower price limit"/>
+        <field name="InitialMarginOnBuy"           id="20002" type="Decimal2NULL"          description="Initial margin"/>
+        <field name="InitialMarginOnSell"          id="20000" type="Decimal2NULL"          description="Initial margin"/>
+        <field name="InitialMarginSyntetic"        id="20001" type="Decimal2NULL"          description="Underlying collateral for one uncovered position (RUB)"/>
+        <field name="HighLimitPxWeekend"           id="20071"  type="Decimal5NULL"         description="Upper price limit on weekend session"/>
+        <field name="LowLimitPxWeekend"            id="20072"  type="Decimal5NULL"         description="Lower price limit on weekend session"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Option update -->
+    <sbe:message name="SecurityDefinitionUpdateReport" id="10" semanticType="BP">
+        <field name="SecurityID"                   id="48"    type="Int32"                 description="Instrument numeric code"/>
+        <field name="SecurityIDSource"             id="22"    type="SecurityIDSource"      description="Identifies class or source of tag 48-SecurityID value"/>
+        <field name="Volatility"                   id="5678"  type="Decimal5NULL"          description="Option volatility"/>
+        <field name="TheorPrice"                   id="20006" type="Decimal5NULL"          description="Option theoretical price"/>
+        <field name="TheorPriceLimit"              id="20007" type="Decimal5NULL"          description="Option theoretical price (limits adjusted)"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Trading session status -->
+    <sbe:message name="TradingSessionStatus" id="26" semanticType="f">
+        <field name="TradSesOpenTime"                id="342"   type="uInt64"                description="Trading session open date and time"/>
+        <field name="TradSesCloseTime"               id="344"   type="uInt64"                description="Trading session close date and time"/>
+        <field name="TradingSessionID"               id="336"   type="TradingSessionID"      description="Trading session type"/>
+        <field name="ExchangeTradingSessionID"       id="5842"  type="Int32NULL"             description="Trading session ID"/>
+        <field name="TradSesStatus"                  id="340"   type="TradSesStatus"         description="State of the trading session"/>
+        <field name="MarketID"                       id="1301"  type="MarketID"              description="Identifies the market"/>
+        <field name="MarketSegmentID"                id="1300"  type="MarketSegmentID"       description="Identifies the market segment"/>
+        <field name="TradSesEvent"                   id="1368"  type="TradSesEvent"          description="Identifies an event related to tag 340-TradSesStatus"/>
+        <field name="TradePeriodID"                  id="20066" type="Int64"                 description="Identifies the trade period"/>
+        <field name="SettlSessBegin"                 id="20069" type="uInt64"                description="Settlement session start date and time"/>
+        <field name="ClrSessBegin"                   id="20070" type="uInt64"                description="Clearing session start date and time"/>
+    </sbe:message>
+
+    <!-- Derivatives Market - Discrete auction -->
+    <sbe:message name="DiscreteAuction" id="24" semanticType="U1">
+        <field name="TradSesOpenTime"                id="342"   type="uInt64"                description="Discrete auction open date and time"/>
+        <field name="TradSesCloseTimeFrom"           id="20046" type="uInt64"                description="Discrete auction closing interval start date and time"/>
+        <field name="TradSesCloseTimeTill"           id="20047" type="uInt64"                description="Discrete auction closing interval end date and time"/>
+        <field name="AuctionID"                      id="21002" type="Int64"                 description="Discrete auction ID"/>
+        <field name="ExchangeTradingSessionID"       id="5842"  type="Int32"                 description="Trading session ID"/>
+        <field name="EventIDOpen"                    id="20048" type="Int32"                 description="Discrete auction open event ID"/>
+        <field name="EventIDClose"                   id="20049" type="Int32"                 description="Discrete auction close event ID"/>
+        <field name="TradePeriodID"                  id="20066" type="Int64"                 description="Identifies the trade period"/>
+        <group name="NoUnderlyings"                  id="711"   dimensionType="groupSize"    description="Number of underlyings">
+            <data name="UnderlyingSymbol"            id="311"   type="VarString"             description="Underlying asset code"/>
+        </group>
+    </sbe:message>
+
+    <!-- Derivatives Market - Packet of instrument statuses -->
+    <sbe:message name="SecurityMassStatus" id="19" semanticType="CO">
+        <group name="NoRelatedSym"                   id="146"   dimensionType="groupSize2"   description="Number of statuses">
+            <field name="SecurityID"                 id="48"    type="Int32"                 description="Instrument numeric code"/>
+            <field name="SecurityIDSource"           id="22"    type="SecurityIDSource"      description="Identifies class or source of tag 48-SecurityID value"/>
+            <field name="SecurityTradingStatus"      id="326"   type="SecurityTradingStatus" description="Identifies the trading status of instrument"/>
+        </group>
+    </sbe:message>
+
+    <!-- Derivatives Market - Instrument's group status -->
+    <sbe:message name="SecurityGroupStatus" id="22" semanticType="f">
+        <field name="SecurityGroupID"                id="20064" type="Int64NULL"             description="Identifier of the security group"/>
+        <field name="HaltType"                       id="20058" type="HaltType"              description="Type of halt"/>
+        <field name="TradeModeMask"                  id="20059" type="Int32NULL"             description="Trade mode bit-mask"/>
+        <field name="GroupMask"                      id="20060" type="Int64NULL"             description="Bit-mask of groups"/>
+        <field name="SectionID"                      id="20061" type="Int32NULL"             description="Identifier of section"/>
+        <field name="BaseContractID"                 id="20062" type="Int32NULL"             description="Identifier of base contract"/>
+        <field name="SecurityTradingStatus"          id="326"   type="SecurityTradingStatus" description="Identifies the trading status of instrument"/>
+        <field name="TransactTime"                   id="60"    type="uInt64"                description="Start of event processing time in number of nanoseconds since Unix epoch, UTC timezone"/>
+    </sbe:message>
+
+    <!-- TCP Recovery - Logon -->
+    <sbe:message name="Logon" id="1000" semanticType="A"/>
+
+    <!-- TCP Recovery - Logout -->
+    <sbe:message name="Logout" id="1001" semanticType="5">
+        <field name="Text" id="58" type="String256"                                     description="Free format text string. May include logout confirmation or reason for logout"/>
+    </sbe:message>
+
+    <!-- TCP Recovery - Request market data retransmission -->
+    <sbe:message name="MarketDataRequest" id="1002" semanticType="V">
+        <field name="ApplBegSeqNum"                id="1182"  type="uInt32"             description="Sequence number of the first requested message"/>
+        <field name="ApplEndSeqNum"                id="1183"  type="uInt32"             description="Sequence number of the last requested message"/>
+    </sbe:message>
+
+    <!-- Dummy Message to generate cpp code of headers by simple-binary-encoding -->
+    <sbe:message name="MarketDataDummyMessage" id="1003">
+        <field name="MarketDataPacketHeader" id="22003" type="MarketDataPacketHeader"/>
+        <field name="IncrementalPacketHeader" id="22004" type="IncrementalPacketHeader"/>
+    </sbe:message>
+
+</sbe:messageSchema>
