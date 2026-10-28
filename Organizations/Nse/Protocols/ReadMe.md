@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [](/) | 5 |
+| [](/) | 6 |
 
 ## Specifications
 
