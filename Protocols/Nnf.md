@@ -1,6 +1,6 @@
 ## Nnf: Non-Neat Front End
 
-Nse's order entry wire encoding for member front ends other than the exchange supplied Neat terminal, carried on the Interactive Virtual Circuit. Messages are C structure images with fixed width fields and no padding between members, prefaced by the forty byte Message Header whose leading Transaction Code selects the structure to apply to the remaining bytes and whose trailing Message Length frames the Tcp byte stream. Unlike the Mtbt encoding used by the tick by tick market data feeds, every multi byte field is big endian.
+Nse's order entry wire encoding for member front ends other than the exchange supplied Neat terminal, carried on the Interactive Virtual Circuit. Messages are C structure images with fixed width fields and no padding between members, prefaced by the forty byte Message Header whose leading Transaction Code selects the structure to apply to the remaining bytes and whose trailing Message Length frames the Tcp byte stream. Unlike the Tbt encoding used by the tick by tick market data feeds, every multi byte field is big endian.
 
 ### Overview
 

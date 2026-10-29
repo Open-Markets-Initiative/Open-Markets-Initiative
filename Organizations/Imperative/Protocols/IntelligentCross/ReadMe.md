@@ -11,3 +11,7 @@ Intelligent Cross is Imperative Execution's SEC registered alternative trading s
 | --- | --- | --- |
 | [DepthOfBook](DepthOfBook.md) | MarketData | Imperative Intelligent Cross Equities Market Data |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

@@ -1,6 +1,6 @@
-## Mtbt: Mtbt
+## Tbt: Tick By Tick
 
-Nse's Mtbt wire encoding, the binary format the MTBT API Specification defines for the tick by tick market data feed and its recovery and order book snapshot services. Messages are C structure images with fixed width fields, little endian byte order, and no padding between members. There is no self describing template or schema on the wire, so a decoder must map each message onto the layout published in the specification, selected by the single byte message type that opens every message.
+Nse's Tbt (Tick By Tick) wire encoding, the binary format the MTBT API Specification defines for the NSE MTBT Feed, the Tick By Tick data feed of NSE, and for its recovery and order book snapshot services. Messages are C structure images with fixed width fields, little endian byte order, and no padding between members. There is no self describing template or schema on the wire, so a decoder must map each message onto the layout published in the specification, selected by the single byte message type that opens every message.
 
 ### Overview
 

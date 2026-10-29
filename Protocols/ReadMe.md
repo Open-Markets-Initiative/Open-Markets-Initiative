@@ -62,7 +62,6 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Itch |
 | [Mmd](Mmd.md) | MarketData | Cnsx | Multicast Market Data Feed |
-| [Mtbt](Mtbt.md) | MarketData | Nse | Mtbt |
 | [Nfn](Nfn.md) | MarketData | Nasdaq | NFN Data Service ascii message blocks |
 | [NnfBcast](NnfBcast.md) | MarketData | Nse | Non-Neat Front End Broadcast |
 | [NxtAscii](NxtAscii.md) | MarketData | Nextrade | Nextrade Ascii fixed-width Udp multicast market data |
@@ -75,6 +74,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [SesM](SesM.md) | MarketData | Miax | Session Management |
 | [Simba](Simba.md) | MarketData | Moex | SIMBA |
 | [Spin](Spin.md) | MarketData | Cboe | Cboe Pitch Spin Server |
+| [Tbt](Tbt.md) | MarketData | Nse | Tick By Tick |
 | [TcpOut](TcpOut.md) | MarketData | CixAts | TcpOut |
 | [Tip](Tip.md) | MarketData | Nasdaq | Transaction Information Protocol |
 | [Utp](Utp.md) | MarketData | Nasdaq | Unlisted Trading Privileges binary feed encoding |
