@@ -10,7 +10,7 @@ The Small Exchange futures market, a designated contract market listing small no
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DropCopy](DropCopy.md) | DropCopy | Small Exchange Drop Copy Fix Api |
-| [OrderDataFeed](OrderDataFeed.md) | MarketData | SmallX Order And Trade Data Feed |
+| [OrderBookFeed](OrderBookFeed.md) | MarketData | Small Exchange Order Book Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Small Exchange Fix Order Management Api |
 
 ## Specifications

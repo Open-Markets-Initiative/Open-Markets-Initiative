@@ -7,7 +7,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-116-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-405-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-116-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-412-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -33,7 +33,7 @@
 
 ## Platforms
 
-> [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Itac](Organizations/Jse/Protocols/Itac/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Nets](Organizations/NsxAustralia/Protocols/Nets/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
+> [Asts](Organizations/Moex/Protocols/Asts/) · [CixAspen](Organizations/CixAts/Protocols/CixAspen/) · [Elasticia](Organizations/Ngm/Protocols/Elasticia/) · [Globex](Organizations/Cme/Protocols/Globex/) · [Itac](Organizations/Jse/Protocols/Itac/) · [Millennium](Organizations/Lseg/Protocols/Millennium/) · [Nets](Organizations/NsxAustralia/Protocols/Nets/) · [Oasis](Organizations/Athex/Protocols/Oasis/) · [Optiq](Organizations/Euronext/Protocols/Optiq/) · [T7](Organizations/Eurex/Protocols/T7/) · [TitanDt](Organizations/Sgx/Protocols/TitanDt/) · [TitanOtc](Organizations/Sgx/Protocols/TitanOtc/)
 
 ---
 

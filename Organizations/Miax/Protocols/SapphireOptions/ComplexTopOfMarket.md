@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Sapphire Options Complex Top Of Market (cTom) publishes the best bid and best offer for every complex multi-leg option strategy traded on the Miax Sapphire Options Exchange along with last sale trade reports. Strategies include spreads, straddles, butterflies, and other defined combinations. The feed complements the simple-series Top Of Market with multi-leg coverage.
 
-Messages share the Miax Express binary format and are distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax Express Session Manager (ESesM) Tcp service to request gap fill and session recovery.
+Messages share the Miax Express binary format and are distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax SesM Tcp Session Management service to request gap fill and session recovery.
 
 ### Transport
 

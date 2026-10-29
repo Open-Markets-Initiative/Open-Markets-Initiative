@@ -6,7 +6,7 @@ Low-latency binary order entry protocol for submitting, modifying, and cancellin
 
 Miax Pearl Equities Express Orders (Meo) is the low-latency binary order entry protocol for the Miax Pearl Equities Exchange. It provides members with a high-performance native interface to submit, modify, and cancel orders for Nms securities listed on the Pearl Equities venue, using the Miax Express binary message format shared across the Miax family of protocols.
 
-The protocol runs over Tcp with the Miax Express Session Manager (ESesM) providing session authentication, heartbeat monitoring, and sequence-based recovery. Application messages cover the full order lifecycle including new order submission, replace, cancel, execution reports, cancel rejects, and trading status updates from the matching engine back to the client.
+The protocol runs over Tcp with Miax Extended TCP Session Management (ESesM) providing session authentication, heartbeat monitoring, and sequence-based recovery. Application messages cover the full order lifecycle including new order submission, replace, cancel, execution reports, cancel rejects, and trading status updates from the matching engine back to the client.
 
 ### Transport
 

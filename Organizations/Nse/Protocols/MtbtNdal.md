@@ -1,6 +1,6 @@
 ## Mtbt Ndal: Multicast Tick By Tick Data Feed
 
-The tick by tick market data feed as published by Nse Data and Analytics Limited to data subscribers, distinct from the Mtbt specification issued to Non Neat Front End members. The wire encoding is the same little endian Binary one, but the two documents are separate publications with independent version numbers and different message sets: this one covers the Capital Market and Currency Derivatives segments and folds each order action into a single Order structure, where the members' document splits them and adds the Futures and Options and Commodity segments.
+The tick by tick market data feed as published by Nse Data and Analytics Limited to data subscribers, distinct from the Mtbt specification issued to Non Neat Front End members. The wire encoding is the same little endian Mtbt one, but the two documents are separate publications with independent version numbers and different message sets: this one covers the Capital Market and Currency Derivatives segments and folds each order action into a single Order structure, where the members' document splits them and adds the Futures and Options and Commodity segments.
 
 ### Overview
 

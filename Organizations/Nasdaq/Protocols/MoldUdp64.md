@@ -1,27 +1,23 @@
-## Mold Udp64: 64-bit Sequenced Multicast Transport
+## Mold Udp64: Nasdaq one-to-many UDP transport with 64-bit sequence numbers
 
-Nasdaq's UDP-based transport protocol for sequenced, recoverable delivery of market data messages over multicast, serving as the transport layer beneath ITCH market data feeds. Uses 64-bit sequence numbers and supersedes the original MoldUDP.
+Lightweight protocol layer on top of UDP for one-transmitter-to-many-listeners delivery, letting listeners detect and re-request missed packets; the 64-bit successor of MoldUDP.
 
 ### Overview
 
-MoldUDP64 is a lightweight transport protocol designed by Nasdaq to deliver sequenced messages over UDP multicast with support for gap detection and retransmission. It provides the framing, sequencing, and session management required for reliable market data delivery without the overhead of TCP connections for each subscriber. MoldUDP64 is the current generation using 64-bit sequence numbers, replacing the original MoldUDP which used 32-bit sequence numbers.
+MoldUDP64 (version 1.00) transmits each downstream packet only once regardless of the number of listeners, and may aggregate several messages into one packet. Each downstream packet has a 20-byte header: a 10-byte alphanumeric Session, an 8-byte Sequence Number of the first message and a 2-byte Message Count, followed by Message Blocks of a 2-byte Message Length and the message data, whose contents are defined by the higher level application. All number fields are big endian.
 
-Each MoldUDP64 packet consists of a session identifier, a 64-bit sequence number, and message count, followed by one or more length-prefixed application messages. The session identifier is a 10-byte ASCII string that changes each trading day, scoping the sequence number space to a single session. Sequence numbers are strictly increasing and contiguous, allowing receivers to detect gaps by comparing expected and received sequence numbers.
-
-When a receiver detects a gap, it can request retransmission of specific missed messages by sending a UDP unicast request to a designated retransmission server specifying the session, starting sequence number, and count. MoldUDP64 also defines heartbeat packets (message count of zero) sent during idle periods to confirm the feed is active and to advance the expected sequence number for gap detection. An End of Session packet signals the close of the current session.
+A Message Count of zero is a heartbeat, typically sent once per second carrying the next expected sequence number, and a Message Count of 0xFFFF marks the end of the session. A listener that detects a sequence number gap sends a Request Packet (session, first requested sequence number and requested message count) to a Re-request Server, which answers with a standard Downstream Packet by UDP unicast. Optional caching Re-request Servers can be placed near remote receivers to reduce latency and bandwidth over WAN links.
 
 ### Transport
 
-MoldUDP64 operates over UDP multicast for primary data distribution. Retransmission requests are sent via UDP unicast to a dedicated retransmission server which responds with the requested messages over UDP unicast. Heartbeat packets with a message count of zero are sent during idle periods. The protocol uses big-endian (network byte order) for all numeric fields in the packet header.
+Downstream packets via UDP multicast on a well known multicast group per data stream, also sent via UDP unicast in response to a Request Packet submitted to a Re-request Server.
 
 ### Key Characteristics
 
-- **UDP multicast delivery** - Primary distribution via multicast for efficient one-to-many dissemination
-- **64-bit sequence numbers** - Strictly increasing contiguous sequence numbers for gap detection (upgraded from 32-bit in original MoldUDP)
-- **Session-scoped** - 10-byte ASCII session identifier changes daily scoping the sequence number space
-- **Retransmission service** - UDP unicast request/response for recovery of missed messages
-- **Heartbeat packets** - Zero-message-count packets during idle periods confirming feed liveness
-- **End of Session** - Explicit session termination packet
-- **Length-prefixed messages** - Each application message preceded by a 2-byte length field
-- **Big-endian header** - Network byte order for all packet header numeric fields
+- **Packet framing** - 10-byte session, 8-byte sequence number and 2-byte message count header
+- **Message block** - Zero or more length-prefixed application messages per packet
+- **Gap detection** - Sequence numbers let listeners detect gaps and re-request them
+- **Heartbeat and end of session** - Message Count 0 is a heartbeat, 0xFFFF marks end of session
+- **Big endian** - Sequence numbers, counts and lengths are most significant byte first
+- **Udp multicast** - Each packet sent once regardless of the number of listeners
 

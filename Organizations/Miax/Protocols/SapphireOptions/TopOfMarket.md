@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Sapphire Options Top Of Market (Tom) is the primary market data feed for the Miax Sapphire Options Exchange, publishing the best bid and best offer for every simple options series traded on the venue along with last sale trade reports. The feed shares the Miax Express binary format used across the Miax platform.
 
-Messages are distributed over Ip multicast with A and B channel redundancy for resilience, and subscribers can use the Miax Express Session Manager (ESesM) Tcp service to request gap fill and session recovery. The feed carries quotes, trades, system events, trading status, and auction messages.
+Messages are distributed over Ip multicast with A and B channel redundancy for resilience, and subscribers can use the Miax SesM Tcp Session Management service to request gap fill and session recovery. The feed carries quotes, trades, system events, trading status, and auction messages.
 
 ### Transport
 

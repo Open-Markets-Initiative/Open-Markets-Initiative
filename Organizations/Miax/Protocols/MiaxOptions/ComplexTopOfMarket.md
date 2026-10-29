@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Miax Options Complex Top Of Market (Ctom) is the market data feed for the complex order book on the Miax Options Exchange. It publishes the best bid and best offer for multi-leg strategies such as spreads, straddles, and combinations along with trade reports for executed complex orders, delivered in the Miax Express binary format.
 
-The protocol shares its transport and session model with the simple Miax Options Top Of Market feed, using Udp multicast for live distribution and the Miax Express Session Manager (ESesM) over Tcp for gap fill. Complex strategy definitions, trading status changes, and auction messages for the complex book are all carried within the same sequenced feed.
+The protocol shares its transport and session model with the simple Miax Options Top Of Market feed, using Udp multicast for live distribution and the Miax SesM Tcp Session Management protocol for gap fill. Complex strategy definitions, trading status changes, and auction messages for the complex book are all carried within the same sequenced feed.
 
 ### Transport
 

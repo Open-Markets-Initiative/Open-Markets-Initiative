@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Miax Options Top Of Market (Tom) is the primary market data feed for the Miax Options Exchange, publishing the best bid and best offer for every simple options series traded on the venue along with last sale trade reports. The feed is delivered in the Miax Express binary format with compact fixed-width messages tuned for options data rates.
 
-Messages are distributed over Ip multicast with A and B channel redundancy for resilience, and subscribers can use the Miax Express Session Manager (ESesM) Tcp service to request gap fill and session recovery. The feed carries not just quotes and trades but also system events, trading status, and auction messages that let subscribers maintain a complete view of Miax Options market state.
+Messages are distributed over Ip multicast with A and B channel redundancy for resilience, and subscribers can use the Miax SesM Tcp Session Management service to request gap fill and session recovery. The feed carries not just quotes and trades but also system events, trading status, and auction messages that let subscribers maintain a complete view of Miax Options market state.
 
 ### Transport
 

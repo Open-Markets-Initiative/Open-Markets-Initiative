@@ -9,6 +9,7 @@ The derivatives market of the Moscow Exchange, running on the Spectra trading pl
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [FastGate](FastGate.md) | MarketData | FAST Gate |
 | [FutInfoIncremental](FutInfoIncremental.md) | MarketData | SIMBA Spectra Futures Instrument Incremental |
 | [FutInfoReplay](FutInfoReplay.md) | MarketData | SIMBA Spectra Futures Instrument Replay |
 | [OptInfoIncremental](OptInfoIncremental.md) | MarketData | SIMBA Spectra Options Instrument Incremental |

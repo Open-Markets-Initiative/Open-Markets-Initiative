@@ -6,7 +6,7 @@ Real-time full depth of book feed publishing order events, aggregated price leve
 
 Pearl Equities Depth Of Market is the full depth of book market data feed for the Miax Pearl Equities Exchange, publishing order-level and price-level events for every Nms security traded on the venue. The feed lets subscribers maintain a complete view of the order book, with add, modify, delete, and execute events for orders and aggregated price level changes.
 
-Messages are distributed over Ip multicast with A and B channel redundancy, using the Miax Express binary format. Subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and session recovery. The feed carries trade reports, trading status, system events, and short sale price test indicators for a complete view of the Pearl Equities market.
+Messages are distributed over Ip multicast with A and B channel redundancy, using the Miax Express binary format. Subscribers use the Miax ESesM Tcp Session Management service for gap fill and session recovery. The feed carries trade reports, trading status, system events, and short sale price test indicators for a complete view of the Pearl Equities market.
 
 ### Transport
 

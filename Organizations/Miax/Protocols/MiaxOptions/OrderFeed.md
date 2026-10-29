@@ -6,7 +6,7 @@ Order-by-order resting market depth feed publishing add, modify, and delete even
 
 Miax Options Order Feed (Mor) publishes every add, modify, and delete on the Miax Options resting order book, letting subscribers reconstruct the full depth-of-book and follow individual order lifecycles. The feed complements the Top Of Market and Complex Top Of Market summary feeds with full order-by-order detail.
 
-Messages share the Miax Express binary format and are distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax Express Session Manager (ESesM) Tcp service to request gap fill and session recovery when multicast packets are lost.
+Messages share the Miax Express binary format and are distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax SesM Tcp Session Management service to request gap fill and session recovery when multicast packets are lost.
 
 ### Transport
 

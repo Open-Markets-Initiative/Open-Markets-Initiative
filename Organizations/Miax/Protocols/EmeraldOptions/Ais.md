@@ -6,7 +6,7 @@ Reference data and administrative feed publishing option series, complex strateg
 
 Emerald Options Administrative Information Subscriber (Ais) is the reference data feed for the Miax Emerald Exchange, publishing the list of option series and complex strategies traded for the current session along with system state, trading status, and liquidity seeking event notifications. Subscribers use the feed to build and maintain their symbol and strategy lists and to react to system-level events.
 
-The feed shares the Miax Express binary format used across all Miax sub-exchanges. Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and last value refresh recovery.
+The feed shares the Miax Express binary format used across all Miax sub-exchanges. Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax SesM Tcp Session Management service for gap fill and last value refresh recovery.
 
 ### Transport
 

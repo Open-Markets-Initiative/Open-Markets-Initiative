@@ -8,8 +8,10 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [AsciiDrop](AsciiDrop.md) | DropCopy | Nasdaq | Nasdaq native DROP line format (fixed length, comma delimited ascii) |
 | [Atr](Atr.md) | DropCopy | Tmx | Automated Trade Reporting |
 | [NnfDc](NnfDc.md) | DropCopy | Nse | Non-Neat Front End Drop Copy |
+| [Binary](Binary.md) | Encoding | Cboe | Binary |
 | [Boe3](Boe3.md) | Encoding | Cboe | Binary Order Entry 3 |
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
+| [Fast](Fast.md) | Encoding | Fix | FIX Adapted for STreaming |
 | [Fbe](Fbe.md) | Encoding | Eurex | Flat Binary Encoding |
 | [Flex](Flex.md) | Encoding | Jpx | Japan Exchange Group arrowhead tag-stream binary encoding |
 | [iMpact](iMpact.md) | Encoding | Ice | Ice iMpact compact fixed-width binary message encoding used by the Mdf market data feed |
@@ -28,25 +30,26 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [BinaryPacketHeader](BinaryPacketHeader.md) | Header | Cme | MDP 3.0 UDP packet framing |
 | [BinarySession](BinarySession.md) | Header | Iex | Iex Options Binary Session Layer |
 | [CommonClient](CommonClient.md) | Header | Nyse | Common Client |
-| [MoldUdp](MoldUdp.md) | Header | Nasdaq | Nasdaq Reliable Multicast Transport Layer |
-| [MoldUdp64](MoldUdp64.md) | Header | Nasdaq | 64-bit Sequenced Multicast Transport |
+| [CommonHeader](CommonHeader.md) | Header | Memx | MEMX-UDP and MEMX-TCP session layer headers |
+| [MoldUdp](MoldUdp.md) | Header | Nasdaq | Nasdaq Reliable Multicast Transport Layer (original, 32-bit sequence numbers) |
+| [MoldUdp64](MoldUdp64.md) | Header | Nasdaq | Nasdaq one-to-many UDP transport with 64-bit sequence numbers |
 | [SbeSession](SbeSession.md) | Header | Coinbase | Coinbase Derivatives Sbe Session Layer |
 | [SequencedUnitHeader](SequencedUnitHeader.md) | Header | Cboe | Sequenced Unit Header |
 | [SimpleOpenFrame](SimpleOpenFrame.md) | Header | Fix | FIX-standard length and encoding-type prefix for stream transports |
-| [SoupBinTcp](SoupBinTcp.md) | Header | Nasdaq | Nasdaq Session Authenticated Tcp Transport |
+| [SoupBinTcp](SoupBinTcp.md) | Header | Nasdaq | Nasdaq point-to-point sequenced TCP session layer |
 | [StreamProtocol](StreamProtocol.md) | Header | Nyse | Stream Protocol |
 | [Abp](Abp.md) | MarketData | Nyse | NYSE Arca Binary Protocol |
 | [Amd](Amd.md) | MarketData | Aquis | Aquis Market Data |
 | [AsciiItch](AsciiItch.md) | MarketData | Nasdaq | Nasdaq ascii market data message format (fixed length ascii lines) |
 | [AsciiPitch](AsciiPitch.md) | MarketData | Cboe | Cboe ASCII variant of Pitch (line-oriented, TCP) |
 | [Aspen](Aspen.md) | MarketData | Imperative | Imperative Intelligent Cross binary market data encoding |
-| [Binary](Binary.md) | MarketData | Nse | Binary |
 | [BmeGate](BmeGate.md) | MarketData | Bme | BMEGate Binary Interface |
 | [CboeOne](CboeOne.md) | MarketData | Cboe | Cboe One consolidated equities feed protocol |
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Csdp](Csdp.md) | MarketData | Cboe | Cboe Summary Depth feed protocol |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
+| [ESesM](ESesM.md) | MarketData | Miax | Extended Session Management |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
 | [GeniumAmd](GeniumAmd.md) | MarketData | Nasdaq | Nasdaq Genium INET AMD |
 | [Gfx](Gfx.md) | MarketData | Tmx | Tmx Global Fx datagram encoding |
@@ -59,6 +62,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mach](Mach.md) | MarketData | Miax | MIAX MACH Protocol |
 | [Mitch](Mitch.md) | MarketData | Lseg | Millennium Itch |
 | [Mmd](Mmd.md) | MarketData | Cnsx | Multicast Market Data Feed |
+| [Mtbt](Mtbt.md) | MarketData | Nse | Mtbt |
 | [Nfn](Nfn.md) | MarketData | Nasdaq | NFN Data Service ascii message blocks |
 | [NnfBcast](NnfBcast.md) | MarketData | Nse | Non-Neat Front End Broadcast |
 | [NxtAscii](NxtAscii.md) | MarketData | Nextrade | Nextrade Ascii fixed-width Udp multicast market data |
@@ -79,6 +83,8 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Atp](Atp.md) | OrderEntry | Aquis | Aquis Trading Protocol |
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
 | [Ctci](Ctci.md) | OrderEntry | Nasdaq | Nasdaq CTCI line-oriented text messages in a binary TCP/IP envelope |
+| [Fei](Fei.md) | OrderEntry | Miax | Futures Express Interface |
+| [Meo](Meo.md) | OrderEntry | Miax | Miax Express Orders |
 | [Nnf](Nnf.md) | OrderEntry | Nse | Non-Neat Front End |
 | [NnfDirect](NnfDirect.md) | OrderEntry | Nse | Non-Neat Front End Direct Interface |
 | [NnfTrimmed](NnfTrimmed.md) | OrderEntry | Nse | Non-Neat Front End Trimmed |
@@ -97,6 +103,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |
 | [Xti](Xti.md) | Protocol | Eurex | Eurex T7 Order Entry |
+| [Prm](Prm.md) | RiskControl | Nasdaq | Pre-Trade Risk Management |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |
 | [IexTp](IexTp.md) | Transport | Iex | IEX Transport Protocol |
 

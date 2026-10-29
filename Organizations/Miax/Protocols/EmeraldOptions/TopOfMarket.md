@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Emerald Options Top Of Market (Tom) is the top of book market data feed for the Miax Emerald Exchange, publishing the best bid and best offer for every simple options series traded on the venue along with last sale trade reports. The feed uses the Miax Express binary format shared across all Miax sub-exchanges.
 
-Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and recovery. The feed carries quotes, trades, system events, trading status, and auction messages so that subscribers can maintain a complete view of Miax Emerald market state.
+Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax SesM Tcp Session Management service for gap fill and recovery. The feed carries quotes, trades, system events, trading status, and auction messages so that subscribers can maintain a complete view of Miax Emerald market state.
 
 ### Transport
 

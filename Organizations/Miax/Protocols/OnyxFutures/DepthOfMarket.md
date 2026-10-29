@@ -6,7 +6,7 @@ Real-time full depth of book feed publishing aggregated price-level quotes and t
 
 Onyx Futures Depth Of Market is the aggregated depth of book market data feed for the Miax Onyx Futures Exchange, publishing price-level quote updates, aggregated quantities, and last sale trade reports for every futures contract traded on the venue. The feed is designed for subscribers that need more granularity than top of book while avoiding the volume of a full order-by-order feed.
 
-Messages are distributed over Ip multicast with A and B channel redundancy, using the Miax Express binary format. Subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and session recovery. The feed carries quotes, trades, system events, and trading status messages for a complete view of the Onyx futures market.
+Messages are distributed over Ip multicast with A and B channel redundancy, using the Miax Express binary format. Subscribers use the Miax SesM Tcp Session Management service for gap fill and session recovery. The feed carries quotes, trades, system events, and trading status messages for a complete view of the Onyx futures market.
 
 ### Transport
 

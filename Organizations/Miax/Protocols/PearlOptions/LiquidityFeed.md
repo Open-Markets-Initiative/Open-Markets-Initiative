@@ -6,7 +6,7 @@ Auction and liquidity-event feed publishing price improvement, opening, and cros
 
 Pearl Options Liquidity Feed (Plf) publishes auction events for the Miax Pearl Options Exchange — price improvement auctions, opening rotations, and other crossing events — letting subscribers monitor liquidity opportunities and trade against advertised interest. The feed complements Top Of Market with auction-specific detail not present in the summary quote stream.
 
-The feed shares the Miax Express binary format used across all Miax sub-exchanges. Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and recovery.
+The feed shares the Miax Express binary format used across all Miax sub-exchanges. Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax SesM Tcp Session Management service for gap fill and recovery.
 
 ### Transport
 

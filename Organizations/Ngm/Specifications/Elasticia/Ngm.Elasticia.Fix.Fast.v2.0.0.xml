@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xmlns="http://www.fixprotocol.org/ns/fast/td/1.1"
+           xmlns:scp="http://www.fixprotocol.org/ns/fast/scp/1.1"><!-- NGM FIX Protocol FAST Templates
+       Version 2.0.0
+       9 December 2022
+    --><template name="StandardHeader">
+      <string name="BeginString" id="8">
+         <constant value="FIXT.1.1"/>
+      </string>
+      <uInt64 name="MsgSeqNum" id="34">
+         <increment/>
+      </uInt64>
+      <string name="TargetCompID" id="56">
+         <copy/>
+      </string>
+      <string name="SenderCompID" id="49">
+         <copy/>
+      </string>
+      <string name="OnBehalfOfCompID" id="115" presence="optional">
+         <default/>
+      </string>
+      <string name="DeliverToCompID" id="128" presence="optional">
+         <default/>
+      </string>
+      <uInt64 name="SendingTime" id="52">
+         <delta/>
+      </uInt64>
+   </template>
+   <template name="SecurityRef">
+      <string name="SecurityID" id="48" presence="optional"/>
+      <uInt32 name="SecurityIDSource" id="22" presence="optional">
+         <constant value="77"/>
+         <!-- 'M' --></uInt32>
+   </template>
+   <template name="BusinessMessageReject" id="1006">
+      <typeRef name="BusinessMessageReject"/>
+      <string name="MsgType" id="35">
+         <constant value="j"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="RefMsgType" id="372"/>
+      <uInt32 name="BusinessRejectReason" id="380"/>
+      <string name="Text" id="58" presence="optional"/>
+      <string name="BusinessRejectRefID" id="379" presence="optional"/>
+   </template>
+   <template name="Parties">
+      <sequence name="PartyIDs" presence="optional" id="453">
+         <length name="NoPartyIDs">
+            <default/>
+         </length>
+         <uInt32 name="PartyRole" id="452"/>
+         <uInt32 name="PartyRoleQualifier" presence="optional" id="2376">
+            <default/>
+         </uInt32>
+         <uInt32 name="PartyIDSource" id="447"/>
+         <string name="PartyID" id="448"/>
+         <sequence name="PartySubIDs" presence="optional" id="802">
+            <length name="NoPartySubIDs">
+               <default/>
+            </length>
+            <uInt32 name="PartySubIDType" id="803"/>
+            <string name="PartySubID" id="523"/>
+         </sequence>
+      </sequence>
+   </template>
+   <template name="Logon" id="1000">
+      <typeRef name="Logon"/>
+      <string name="MsgType" id="35">
+         <constant value="A"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <uInt32 name="HeartBtInt" id="108"/>
+      <uInt32 name="ResetSeqNumFlag" id="141" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <uInt64 name="NextExpectedMsgSeqNum" id="789"/>
+      <string name="Username" id="553" presence="optional"/>
+      <string name="Password" id="554" presence="optional"/>
+      <uInt32 name="EncryptMethod" id="98">
+         <constant value="0"/>
+      </uInt32>
+      <string name="DefaultApplVerID" id="1137">
+         <constant value="FIXLatest"/>
+      </string>
+   </template>
+   <template name="Logout" id="1001">
+      <typeRef name="Logout"/>
+      <string name="MsgType" id="35">
+         <constant value="5"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="Text" id="58" presence="optional"/>
+      <uInt32 name="SessionStatus" id="1409" presence="optional"/>
+   </template>
+   <template name="TestRequest" id="1002">
+      <typeRef name="TestRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="1"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="TestReqID" id="112"/>
+   </template>
+   <template name="Heartbeat" id="1003">
+      <typeRef name="Heartbeat"/>
+      <string name="MsgType" id="35">
+         <constant value="0"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="TestReqID" id="112" presence="optional"/>
+   </template>
+   <template name="SequenceReset" id="1004">
+      <typeRef name="SequenceReset"/>
+      <string name="MsgType" id="35">
+         <constant value="4"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <uInt32 name="GapFillFlag" id="123" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <uInt64 name="NewSeqNo" id="36"/>
+   </template>
+   <template name="Reject" id="1005">
+      <typeRef name="Reject"/>
+      <string name="MsgType" id="35">
+         <constant value="3"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <uInt64 name="RefSeqNum" id="45"/>
+      <string name="RefMsgType" id="372" presence="optional"/>
+      <uInt32 name="RefTagID" id="371" presence="optional"/>
+      <uInt32 name="SessionRejectReason" id="373" presence="optional"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="Order">
+      <uInt32 name="Side" id="54"/>
+      <uInt32 name="OrdType" id="40" presence="optional">
+         <default value="50"/>
+         <!-- '2' --></uInt32>
+      <decimal name="Price" id="44" presence="optional"/>
+      <decimal name="OrderQty" id="38" presence="optional"/>
+      <string name="Account" id="1" presence="optional"/>
+      <uInt32 name="TimeInForce" id="59" presence="optional"/>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+      <uInt64 name="ExpireTime" id="126" presence="optional">
+         <default/>
+      </uInt64>
+      <string name="ExecInst" id="18" presence="optional">
+         <default/>
+      </string>
+      <string name="OrderRestrictions" id="529" presence="optional">
+         <default/>
+      </string>
+      <decimal name="DisplayQty" id="1138" presence="optional">
+         <default/>
+      </decimal>
+      <uInt32 name="DisplayWhen" id="1083" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="DisplayMethod" id="1084" presence="optional">
+         <default/>
+      </uInt32>
+      <decimal name="RefreshQty" id="1088" presence="optional">
+         <default/>
+      </decimal>
+      <uInt32 name="AuctionType" id="1803" presence="optional">
+         <default/>
+      </uInt32>
+   </template>
+   <template name="OrderAttributeGrp">
+      <sequence name="OrderAttributes" id="2593" presence="optional">
+         <length name="NoOrderAttributeGrp">
+            <default/>
+         </length>
+         <uInt32 name="OrderAttributeType" id="2594"/>
+         <string name="OrderAttributeValue" id="2595"/>
+      </sequence>
+   </template>
+   <template name="NewOrderSingle" id="1">
+      <typeRef name="NewOrderSingle"/>
+      <string name="MsgType" id="35">
+         <constant value="D"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="ClOrdID" id="11"/>
+      <templateRef name="Order"/>
+      <uInt32 name="OrderCapacity" id="528" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="OrderOrigination" id="1724" presence="optional">
+         <constant value="5"/>
+      </uInt32>
+      <templateRef name="OrderAttributeGrp"/>
+      <templateRef name="Parties"/>
+   </template>
+   <template name="OrderCancelReplaceRequest" id="2">
+      <typeRef name="OrderCancelReplaceRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="G"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="OrderID" id="37" presence="optional"/>
+      <string name="OrigClOrdID" id="41" presence="optional"/>
+      <string name="ClOrdID" id="11"/>
+      <templateRef name="Order"/>
+   </template>
+   <template name="OrderCancelRequest" id="3">
+      <typeRef name="OrderCancelRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="F"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="OrderID" id="37" presence="optional"/>
+      <string name="OrigClOrdID" id="41" presence="optional"/>
+      <string name="ClOrdID" id="11"/>
+      <uInt64 name="TransactTime" id="60"/>
+   </template>
+   <template name="ExecutionReport" id="4">
+      <typeRef name="ExecutionReport"/>
+      <string name="MsgType" id="35">
+         <constant value="8"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="MassStatusReqID" id="584" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <uInt32 name="OrdStatus" id="39"/>
+      <string name="ExecID" id="17"/>
+      <uInt32 name="ExecType" id="150"/>
+      <string name="OrderID" id="37"/>
+      <string name="ClOrdID" id="11" presence="optional"/>
+      <string name="OrigClOrdID" id="41" presence="optional"/>
+      <templateRef name="Order"/>
+      <string name="MDEntryID" id="278" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="WorkingIndicator" id="636" presence="optional">
+         <default value="78"/>
+         <!-- 'N' --></uInt32>
+      <uInt32 name="LotType" id="1093" presence="optional">
+         <default value="50"/>
+         <!-- '2' --></uInt32>
+      <decimal name="LeavesQty" id="151"/>
+      <decimal name="CumQty" id="14">
+         <default value="0"/>
+      </decimal>
+      <decimal name="AvgPx" id="6" presence="optional">
+         <default/>
+      </decimal>
+      <uInt32 name="OrdRejReason" id="103" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="ExecRestatementReason" id="378" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt64 name="OrderPriority" id="20028" presence="optional"/>
+      <uInt32 name="OrderCapacity" id="528" presence="optional"/>
+      <uInt32 name="OrderOrigination" id="1724" presence="optional">
+         <constant value="5"/>
+      </uInt32>
+      <templateRef name="OrderAttributeGrp"/>
+      <templateRef name="Parties"/>
+      <string name="Text" id="58" presence="optional">
+         <default/>
+      </string>
+   </template>
+   <template name="OrderCancelReject" id="1007">
+      <typeRef name="OrderCancelReject"/>
+      <string name="MsgType" id="35">
+         <constant value="9"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <uInt32 name="OrdStatus" id="39"/>
+      <string name="OrderID" id="37"/>
+      <string name="OrigClOrdID" id="41"/>
+      <string name="ClOrdID" id="11"/>
+      <uInt32 name="CxlRejResponseTo" id="434"/>
+      <uInt32 name="CxlRejReason" id="102" presence="optional"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="OrderMassStatusRequest" id="1008">
+      <typeRef name="OrderMassStatusRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="AF"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MassStatusReqID" id="584"/>
+      <uInt32 name="MassStatusReqType" id="585">
+         <constant value="7"/>
+      </uInt32>
+   </template>
+   <template name="QuoteGrp">
+      <decimal name="BidPx" id="132" presence="optional"/>
+      <decimal name="OfferPx" id="133" presence="optional"/>
+      <decimal name="BidSize" id="134" presence="optional"/>
+      <decimal name="TotalBidSize" id="1749" presence="optional"/>
+      <decimal name="OfferSize" id="135" presence="optional"/>
+      <decimal name="TotalOfferSize" id="1750" presence="optional"/>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+      <string name="Account" id="1" presence="optional"/>
+      <uInt32 name="QuoteType" id="537" presence="optional"/>
+      <string name="OrderRestrictions" id="529" presence="optional">
+         <default/>
+      </string>
+      <templateRef name="Parties"/>
+   </template>
+   <template name="Quote" id="5">
+      <typeRef name="Quote"/>
+      <string name="MsgType" id="35">
+         <constant value="S"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="QuoteReqID" id="131" presence="optional">
+         <default/>
+      </string>
+      <string name="QuoteID" id="117" presence="optional">
+         <default/>
+      </string>
+      <string name="QuoteMsgID" id="1166"/>
+      <string name="OrigQuoteMsgID" id="20018" presence="optional">
+         <default/>
+      </string>
+      <templateRef name="QuoteGrp"/>
+   </template>
+   <template name="QuoteCancel" id="6">
+      <typeRef name="QuoteCancel"/>
+      <string name="MsgType" id="35">
+         <constant value="Z"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <uInt32 name="QuoteCancelType" id="298"/>
+      <string name="QuoteReqID" id="131" presence="optional">
+         <default/>
+      </string>
+      <string name="QuoteID" id="117" presence="optional">
+         <default/>
+      </string>
+      <string name="QuoteMsgID" id="1166"/>
+      <string name="OrigQuoteMsgID" id="20018" presence="optional">
+         <default/>
+      </string>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+   </template>
+   <template name="QuoteStatusReport" id="7">
+      <typeRef name="QuoteStatusReport"/>
+      <string name="MsgType" id="35">
+         <constant value="AI"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="QuoteStatusReqID" id="649" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <uInt32 name="QuoteStatus" id="297"/>
+      <string name="QuoteID" id="117" presence="optional"/>
+      <string name="QuoteMsgID" id="1166" presence="optional"/>
+      <string name="OrigQuoteMsgID" id="20018" presence="optional">
+         <default/>
+      </string>
+      <string name="BidMDEntryID" id="1745" presence="optional"/>
+      <string name="OfferMDEntryID" id="1746" presence="optional"/>
+      <uInt64 name="BidPriority" id="20029" presence="optional"/>
+      <uInt64 name="OfferPriority" id="20030" presence="optional"/>
+      <templateRef name="QuoteGrp"/>
+      <uInt32 name="WorkingIndicator" id="636" presence="optional">
+         <default value="78"/>
+         <!-- 'N' --></uInt32>
+      <uInt32 name="QuoteRejectReason" id="300" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="ExecRestatementReason" id="378" presence="optional">
+         <default/>
+      </uInt32>
+      <string name="Text" id="58" presence="optional">
+         <default/>
+      </string>
+   </template>
+   <template name="QuoteRequest" id="8">
+      <typeRef name="QuoteRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="R"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="QuoteReqID" id="131"/>
+      <string name="QuoteID" id="117" presence="optional">
+         <default/>
+      </string>
+      <string name="QuoteMsgID" id="1166" presence="optional">
+         <default/>
+      </string>
+      <decimal name="OrderQty" id="38" presence="optional">
+         <default/>
+      </decimal>
+      <uInt32 name="Side" id="54" presence="optional">
+         <default/>
+      </uInt32>
+   </template>
+   <template name="QuoteStatusRequest" id="1009">
+      <typeRef name="QuoteStatusRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="a"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="QuoteStatusReqID" id="649" presence="optional"/>
+      <uInt32 name="SubscriptionRequestType" id="263">
+         <constant value="48"/>
+         <!-- '0' --></uInt32>
+   </template>
+   <template name="Trade">
+      <string name="TradeID" id="1003" presence="optional"/>
+      <uInt32 name="TradeReportTransType" id="487" presence="optional"/>
+      <uInt32 name="TradeReportType" id="856" presence="optional"/>
+      <uInt32 name="TrdType" id="828" presence="optional"/>
+      <uInt32 name="SecondaryTrdType" id="855" presence="optional">
+         <default value="0"/>
+      </uInt32>
+      <uInt32 name="TrdPriceCondition" id="1839" presence="optional"/>
+      <uInt32 name="OrderCategory" id="1115" presence="optional"/>
+      <sequence name="TrdRegPublications" id="2668" presence="optional">
+         <length name="NoTrdRegPublications">
+            <default/>
+         </length>
+         <uInt32 name="TrdRegPublicationType" id="2669" presence="optional"/>
+         <uInt32 name="TrdRegPublReason" id="2670" presence="optional"/>
+      </sequence>
+      <uInt32 name="TradeHandlingInstr" id="1123" presence="optional"/>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+      <uInt64 name="TransBkdTime" id="483" presence="optional"/>
+      <uInt32 name="MatchStatus" id="573" presence="optional"/>
+      <uInt32 name="MatchType" id="574" presence="optional"/>
+      <string name="TradeCondition" id="277" presence="optional"/>
+      <decimal name="LastQty" id="32" presence="optional"/>
+      <decimal name="LastPx" id="31" presence="optional"/>
+      <string name="Currency" id="15" presence="optional"/>
+      <string name="LastMkt" id="30" presence="optional"/>
+      <sequence name="Sides" id="552" presence="optional">
+         <length name="NoSides"/>
+         <uInt32 name="Side" id="54"/>
+         <string name="OrderID" id="37" presence="optional"/>
+         <string name="ClOrdID" id="11" presence="optional"/>
+         <uInt64 name="OrderPriority" id="20028" presence="optional"/>
+         <string name="SecondaryClOrdID" id="526" presence="optional"/>
+         <string name="Account" id="1" presence="optional"/>
+         <uInt32 name="LotType" id="1093" presence="optional"/>
+         <uInt32 name="AggressorIndicator" id="1057" presence="optional">
+            <constant value="89"/>
+            <!-- 'Y' --></uInt32>
+         <uInt32 name="OrderCapacity" id="528" presence="optional">
+            <default/>
+         </uInt32>
+         <string name="OrderRestrictions" id="529" presence="optional">
+            <default/>
+         </string>
+         <decimal name="AccruedInterestAmt" id="159" presence="optional">
+            <default/>
+         </decimal>
+         <uInt32 name="OrderOrigination" id="1724" presence="optional">
+            <constant value="5"/>
+         </uInt32>
+         <templateRef name="Parties"/>
+         <templateRef name="OrderAttributeGrp"/>
+      </sequence>
+   </template>
+   <template name="TradeCaptureReport" id="9">
+      <typeRef name="TradeCaptureReport"/>
+      <string name="MsgType" id="35">
+         <constant value="AE"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <templateRef name="SecurityAltIDSequence"/>
+      <string name="TradeRequestID" id="568" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <string name="TradeReportID" id="571" presence="optional"/>
+      <string name="TradeReportRefID" id="572" presence="optional"/>
+      <templateRef name="Trade"/>
+   </template>
+   <template name="TradeCaptureReportAck" id="10">
+      <typeRef name="TradeCaptureReportAck"/>
+      <string name="MsgType" id="35">
+         <constant value="AR"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <uInt32 name="TradeReportRejectReason" id="751" presence="optional"/>
+      <string name="TradeReportID" id="571" presence="optional"/>
+      <string name="TradeReportRefID" id="572" presence="optional"/>
+      <string name="TradeRequestID" id="568" presence="optional"/>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <templateRef name="Trade"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="TradeCaptureReportRequest" id="1010">
+      <typeRef name="TradeCaptureReportRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="AD"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="TradeRequestID" id="568"/>
+      <uInt32 name="TradeRequestType" id="569"/>
+      <sequence name="Dates" id="580" presence="optional">
+         <length name="NoDates"/>
+         <uInt64 name="TransactTime" id="60"/>
+      </sequence>
+   </template>
+   <template name="TradeCaptureReportRequestAck" id="1011">
+      <typeRef name="TradeCaptureReportRequestAck"/>
+      <string name="MsgType" id="35">
+         <constant value="AQ"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="TradeRequestID" id="568"/>
+      <uInt32 name="TradeRequestType" id="569"/>
+      <uInt32 name="TradeRequestResult" id="749"/>
+      <uInt32 name="TradeRequestStatus" id="750"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="UserSecurityStatusUpdateRequest" id="2052">
+      <typeRef name="UserSecurityStatusUpdateRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="FU"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="SecurityStatusUpdateRequestID" id="20040"/>
+      <sequence name="FinancialStatusUpdates" id="20049" presence="optional">
+         <length name="NoUpdates"/>
+         <uInt32 name="FinancialStatusUpdateType" id="20038"/>
+         <uInt32 name="FinancialStatusUpdateValue" id="20050"/>
+      </sequence>
+   </template>
+   <template name="UserSecurityStatusUpdateResponse" id="2053">
+      <typeRef name="UserSecurityStatusUpdateResponse"/>
+      <string name="MsgType" id="35">
+         <constant value="FR"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="SecurityStatusUpdateRequestID" id="20040"/>
+      <uInt32 name="FinancialStatusResult" id="20042"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="MDEntry">
+      <uInt32 name="MDEntryType" id="269"/>
+      <uInt32 name="MDStatScope" id="20016" presence="optional">
+         <default value="1"/>
+      </uInt32>
+      <decimal name="MDEntryPx" id="270" presence="optional"/>
+      <decimal name="MDEntrySize" id="271" presence="optional"/>
+      <string name="MDEntryID" id="278" presence="optional"/>
+      <uInt32 name="MDEntryPositionNo" id="290" presence="optional"/>
+      <string name="MDEntryBuyer" id="288" presence="optional">
+         <default/>
+      </string>
+      <string name="MDEntrySeller" id="289" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LotType" id="1093" presence="optional">
+         <default value="50"/>
+         <!-- '2' --></uInt32>
+      <uInt32 name="MatchType" id="574" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="TrdType" id="828" presence="optional">
+         <default/>
+      </uInt32>
+      <string name="TradeCondition" id="277" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="TrdPriceCondition" id="1839" presence="optional"/>
+      <uInt32 name="AlgorithmicTrdIndicator" id="2667" presence="optional">
+         <default value="0"/>
+      </uInt32>
+      <uInt32 name="OrderCategory" id="1115" presence="optional"/>
+      <sequence name="TrdRegPublications" id="2668" presence="optional">
+         <length name="NoTrdRegPublications">
+            <default/>
+         </length>
+         <uInt32 name="TrdRegPublicationType" id="2669" presence="optional"/>
+         <uInt32 name="TrdRegPublReason" id="2670" presence="optional"/>
+      </sequence>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+      <uInt64 name="TransBkdTime" id="483" presence="optional">
+         <default/>
+      </uInt64>
+      <uInt32 name="AggressorSide" id="5797" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="MarketMakerQuote" id="20033" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+   </template>
+   <template name="MarketDataIncrementalRefresh" id="11">
+      <typeRef name="MarketDataIncrementalRefresh"/>
+      <string name="MsgType" id="35">
+         <constant value="X"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <sequence name="MDEntries" id="268">
+         <length name="NoMDEntries"/>
+         <uInt32 name="MDUpdateAction" id="279"/>
+         <templateRef name="SecurityRef"/>
+         <templateRef name="MDEntry"/>
+         <sequence name="StatsIndicators" id="1175" presence="optional">
+            <length name="NoStatsIndicators">
+               <default/>
+            </length>
+            <uInt32 name="StatsType" id="1176"/>
+         </sequence>
+      </sequence>
+   </template>
+   <template name="MarketDataRequest" id="1012">
+      <typeRef name="MarketDataRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="V"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MDReqID" id="262"/>
+      <uInt32 name="SubscriptionRequestType" id="263">
+         <constant value="48"/>
+         <!-- '0' --></uInt32>
+      <uInt32 name="MarketDepth" id="264">
+         <constant value="0"/>
+      </uInt32>
+      <sequence name="MDEntryTypes" id="267">
+         <length name="NoMDEntryTypes"/>
+         <uInt32 name="MDEntryType" id="269"/>
+      </sequence>
+      <sequence name="Dates" id="580" presence="optional">
+         <length name="NoDates"/>
+         <uInt64 name="TransactTime" id="60"/>
+      </sequence>
+   </template>
+   <template name="MarketDataSnapshotFullRefresh" id="1013">
+      <typeRef name="MarketDataSnapshotFullRefresh"/>
+      <string name="MsgType" id="35">
+         <constant value="W"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="MDReqID" id="262" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <sequence name="MDEntries" id="268">
+         <length name="NoMDEntries"/>
+         <templateRef name="MDEntry"/>
+      </sequence>
+   </template>
+   <template name="MarketDataRequestReject" id="1014">
+      <typeRef name="MarketDataRequestReject"/>
+      <string name="MsgType" id="35">
+         <constant value="Y"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MDReqID" id="262"/>
+      <uInt32 name="MDReqRejReason" id="281" presence="optional"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="SecurityDefaults">
+      <string name="Currency" id="15" presence="optional">
+         <default/>
+      </string>
+      <string name="InstrRegistry" id="543" presence="optional">
+         <default/>
+      </string>
+      <string name="BusinessCenter" id="40471" presence="optional">
+         <default/>
+      </string>
+      <string name="ZoneID" id="20070" presence="optional">
+         <default/>
+      </string>
+   </template>
+   <template name="TradingRules">
+      <decimal name="MinTradeVol" id="562" presence="optional">
+         <default/>
+      </decimal>
+      <decimal name="RoundLot" id="561" presence="optional">
+         <default/>
+      </decimal>
+      <uInt32 name="PriceType" id="423" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="MaxOrderExpireDuration" id="20054" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="MaxTradeTransBkdTimeDiff" id="20055" presence="optional">
+         <default/>
+      </uInt32>
+      <sequence name="TickRules" id="1205" presence="optional" typeRef="TickRule">
+         <length name="NoTickRules">
+            <default/>
+         </length>
+         <decimal name="StartTickPriceRange" id="1206" presence="optional"/>
+         <decimal name="EndTickPriceRange" id="1207" presence="optional"/>
+         <decimal name="TickIncrement" id="1208" presence="optional"/>
+      </sequence>
+      <sequence name="MatchRules" presence="optional" id="1235" typeRef="MatchRule">
+         <length name="NoMatchRules">
+            <default/>
+         </length>
+         <string name="MatchAlgorithm" id="1142"/>
+         <uInt32 name="MatchType" id="574" presence="optional"/>
+      </sequence>
+      <sequence name="MarketOrderRules" id="20056" presence="optional">
+         <length name="NoMarketOrderRules">
+            <default/>
+         </length>
+         <uInt32 name="MarketOrderRule" id="20057"/>
+      </sequence>
+      <uInt32 name="OrderProtectionAuctionTimeMin" id="20058" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="OrderProtectionAuctionTimeMax" id="20059" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="MissingReferencePriceAuctionTimeMin" id="20067" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="MissingReferencePriceAuctionTimeMax" id="20068" presence="optional">
+         <default/>
+      </uInt32>
+      <uInt32 name="AllowReserveOrder" id="20052" presence="optional" absence="'N'">
+         <default/>
+      </uInt32>
+      <decimal name="MinReserveOrderValue" id="20051" presence="optional">
+         <default/>
+      </decimal>
+      <string name="MinReserveOrderValueCurrency" id="20060" presence="optional">
+         <default/>
+      </string>
+      <sequence name="MarketDataRules" id="20061" presence="optional">
+         <length name="NoMarketDataRules">
+            <default/>
+         </length>
+         <uInt32 name="MarketDataRule" id="20062"/>
+      </sequence>
+      <sequence name="PartyRules" id="20063" presence="optional">
+         <length name="NoPartyRules">
+            <default/>
+         </length>
+         <uInt32 name="PartyRule" id="20064" presence="optional"/>
+      </sequence>
+      <sequence name="TradeReportRules" id="20065" presence="optional">
+         <length name="NoTradeReportRules">
+            <default/>
+         </length>
+         <uInt32 name="TradeReportRule" id="20066" presence="optional"/>
+      </sequence>
+   </template>
+   <template name="SecurityAltIDSequence">
+      <sequence name="SecurityAltIDs" id="454" presence="optional">
+         <length name="NoSecurityAltID"/>
+         <string name="SecurityAltID" id="455"/>
+         <uInt32 name="SecurityAltIDSource" id="456"/>
+      </sequence>
+   </template>
+   <template name="Security">
+      <templateRef name="SecurityRef"/>
+      <templateRef name="SecurityAltIDSequence"/>
+      <templateRef name="SecurityDefaults"/>
+      <sequence name="MarketSegments" id="1310" presence="optional">
+         <length name="NoMarketSegments"/>
+         <string name="MarketID" id="1301" presence="optional"/>
+         <string name="MarketSegmentID" id="1300" presence="optional"/>
+         <templateRef name="TradingRules"/>
+      </sequence>
+      <string name="SecurityXML" id="1185" charset="unicode" presence="optional"/>
+      <uInt32 name="LiquidityStatus" id="20069" presence="optional"/>
+   </template>
+   <template name="SecurityListRequest" id="1015">
+      <typeRef name="SecurityListRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="x"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="SecurityReqID" id="320"/>
+   </template>
+   <template name="SecurityList" id="1016">
+      <typeRef name="SecurityList"/>
+      <string name="MsgType" id="35">
+         <constant value="y"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="SecurityReqID" id="320" presence="optional"/>
+      <uInt32 name="SecurityRequestResult" id="560" presence="optional"/>
+      <uInt32 name="LastFragment" id="893" presence="optional"/>
+      <sequence name="RelatedSym" id="146" presence="optional">
+         <length name="NoRelatedSym"/>
+         <templateRef name="Security"/>
+      </sequence>
+   </template>
+   <template name="SecurityDefinitionUpdateReport" id="12">
+      <typeRef name="SecurityDefinitionUpdateReport"/>
+      <string name="MsgType" id="35">
+         <constant value="BP"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <uInt32 name="SecurityUpdateAction" id="980" presence="optional"/>
+      <uInt32 name="SecurityMoveIndicator" id="20027" presence="optional"/>
+      <templateRef name="Security"/>
+      <string name="Text" id="58" presence="optional"/>
+   </template>
+   <template name="SecurityStat">
+      <uInt32 name="SecurityTradingStatus" id="326" presence="optional"/>
+      <uInt32 name="HaltReason" id="327" presence="optional">
+         <default/>
+      </uInt32>
+      <string name="CorporateAction" id="292" presence="optional">
+         <default/>
+      </string>
+      <string name="FinancialStatus" id="291" presence="optional">
+         <default/>
+      </string>
+   </template>
+   <template name="SecurityMassStatusRequest" id="1017">
+      <typeRef name="SecurityMassStatusRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="CN"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="SecurityStatusReqID" id="324"/>
+   </template>
+   <template name="SecurityStatus" id="13">
+      <typeRef name="SecurityStatus"/>
+      <string name="MsgType" id="35">
+         <constant value="f"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="SecurityStatusReqID" id="324" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <templateRef name="SecurityStat"/>
+   </template>
+   <template name="Market">
+      <string name="MarketID" id="1301"/>
+      <string name="MarketSegmentID" id="1300" presence="optional"/>
+      <string name="MarketSegmentDesc" id="1396" presence="optional"/>
+      <string name="EncodedMktSegmDesc" id="1398" charset="unicode" presence="optional">
+         <default/>
+      </string>
+      <string name="ParentMktSegmID" id="1325" presence="optional">
+         <default/>
+      </string>
+      <templateRef name="SecurityDefaults"/>
+      <templateRef name="TradingRules"/>
+   </template>
+   <template name="MarketDefinitionRequest" id="1018">
+      <typeRef name="MarketDefinitionRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="BT"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MarketReqID" id="1393"/>
+      <uInt32 name="SubscriptionRequestType" id="263"/>
+   </template>
+   <template name="MarketDefinition" id="1019">
+      <typeRef name="MarketDefinition"/>
+      <string name="MsgType" id="35">
+         <constant value="BU"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MarketReqID" id="1393" presence="optional"/>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <templateRef name="Market"/>
+   </template>
+   <template name="MarketDefinitionUpdateReport" id="19">
+      <typeRef name="MarketDefinitionUpdateReport"/>
+      <string name="MsgType" id="35">
+         <constant value="BV"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="MarketReportID" id="1394"/>
+      <uInt32 name="MarketUpdateAction" id="1395" presence="optional"/>
+      <templateRef name="Market"/>
+   </template>
+   <template name="TradingSessionStatusRequest" id="1020">
+      <typeRef name="TradingSessionStatusRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="g"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="TradSesReqID" id="335"/>
+      <uInt32 name="SubscriptionRequestType" id="263"/>
+   </template>
+   <template name="TradingSession">
+      <string name="TradSesReqID" id="335" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <string name="MarketID" id="1301" presence="optional"/>
+      <string name="MarketSegmentID" id="1300" presence="optional"/>
+      <uInt32 name="TradSesStatus" id="340"/>
+   </template>
+   <template name="TradingSessionStatus" id="15">
+      <typeRef name="TradingSessionStatus"/>
+      <string name="MsgType" id="35">
+         <constant value="h"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="TradingSession"/>
+   </template>
+   <template name="CorpAction">
+      <uInt32 name="CorpActionType" id="20004" presence="optional"/>
+      <string name="CorpActionID" id="20005" presence="optional"/>
+      <string name="CorpActionDescr" id="20008" presence="optional"/>
+      <uInt32 name="CorpActionStatus" id="20010" presence="optional"/>
+      <uInt64 name="ExTime" id="20017" presence="optional"/>
+      <uInt64 name="TransactTime" id="60" presence="optional"/>
+      <uInt32 name="AdjustmentFactorNumerator" id="20006" presence="optional"/>
+      <uInt32 name="AdjustmentFactorDenominator" id="20022" presence="optional"/>
+      <decimal name="Dividend" id="20007" presence="optional"/>
+   </template>
+   <template name="CorporateActionReport" id="1021">
+      <typeRef name="CorporateActionReport"/>
+      <string name="MsgType" id="35">
+         <constant value="U1"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <templateRef name="SecurityRef"/>
+      <string name="CorpActionReqID" id="20009" presence="optional">
+         <default/>
+      </string>
+      <uInt32 name="LastRptRequested" id="912" presence="optional">
+         <constant value="89"/>
+         <!-- 'Y' --></uInt32>
+      <uInt32 name="CorpActionResult" id="20012" presence="optional"/>
+      <uInt32 name="CorpUpdateAction" id="20011" presence="optional"/>
+      <templateRef name="CorpAction"/>
+   </template>
+   <template name="CorporateActionRequest" id="1022">
+      <typeRef name="CorporateActionRequest"/>
+      <string name="MsgType" id="35">
+         <constant value="U2"/>
+      </string>
+      <templateRef name="StandardHeader"/>
+      <string name="CorpActionReqID" id="20009"/>
+   </template>
+</templates>

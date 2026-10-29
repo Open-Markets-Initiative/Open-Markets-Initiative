@@ -6,7 +6,7 @@ Reference-data feed publishing the list of tradable products, their state, and p
 
 Miax Product Feed (Mpf) is a reference-data feed for the Miax Options Exchange publishing the list of tradable products, their trading state, and product-level configuration. Subscribers use Mpf alongside the Ais series feed to build a complete picture of available instruments for the current session.
 
-The feed shares the Miax Express binary format and is distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and last value refresh recovery.
+The feed shares the Miax Express binary format and is distributed over Ip multicast with A and B channel redundancy. Subscribers use the Miax SesM Tcp Session Management service for gap fill and last value refresh recovery.
 
 ### Transport
 

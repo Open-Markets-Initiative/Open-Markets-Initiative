@@ -6,7 +6,7 @@ Real-time top of market feed publishing best bid and offer quotations and trade 
 
 Pearl Equities Top Of Market is the top of book equities market data feed for the Miax Pearl Equities Exchange, publishing the best bid and best offer for every Nms security traded on the venue along with last sale trade reports. The feed uses the Miax Express binary format shared across all Miax sub-exchanges.
 
-Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax Express Session Manager (ESesM) Tcp service for gap fill and session recovery. The feed carries quotes, trades, system events, trading status, and short sale price test restricted indicators so that subscribers can maintain a complete view of Miax Pearl Equities market state.
+Messages are distributed over Ip multicast with A and B channel redundancy, and subscribers use the Miax ESesM Tcp Session Management service for gap fill and session recovery. The feed carries quotes, trades, system events, trading status, and short sale price test restricted indicators so that subscribers can maintain a complete view of Miax Pearl Equities market state.
 
 ### Transport
 

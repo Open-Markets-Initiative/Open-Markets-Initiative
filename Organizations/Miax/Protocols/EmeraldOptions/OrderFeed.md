@@ -6,7 +6,7 @@ Real-time order feed publishing simple and complex displayed orders on the Miax 
 
 Emerald Options Order Feed (Mor) is the order-level market data feed for the Miax Emerald Exchange, publishing displayed simple and complex orders along with the reference data needed to interpret them. The feed carries Open and Close lifecycle events for resting displayed orders so subscribers can maintain a current view of the displayed order book.
 
-The protocol shares its transport and session model with the other Emerald feeds, using Udp multicast for live distribution and the Miax Express Session Manager (ESesM) over Tcp for gap fill. Auction and immediate orders such as Prime, Ioc, Fok, Iso, and complex crossing orders are not disseminated; the feed is restricted to resting displayed orders eligible for liquidity interaction.
+The protocol shares its transport and session model with the other Emerald feeds, using Udp multicast for live distribution and the Miax SesM Tcp Session Management protocol for gap fill. Auction and immediate orders such as Prime, Ioc, Fok, Iso, and complex crossing orders are not disseminated; the feed is restricted to resting displayed orders eligible for liquidity interaction.
 
 ### Transport
 

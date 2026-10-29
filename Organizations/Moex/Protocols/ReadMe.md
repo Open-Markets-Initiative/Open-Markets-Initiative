@@ -3,7 +3,8 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [Spectra](Spectra/) | 7 |
+| [Asts](Asts/) | 1 |
+| [Spectra](Spectra/) | 8 |
 
 ## Specifications
 

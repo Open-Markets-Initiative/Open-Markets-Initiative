@@ -10,6 +10,7 @@ MIAX Pearl Equities is a US cash equities exchange in the MIAX Exchange Group of
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Miax Pearl Equities Full Depth Of Book Feed |
+| [ESesM](ESesM.md) | Session | Miax Pearl Equities Extended TCP Session Management |
 | [ExpressOrders](ExpressOrders.md) | OrderEntry | Miax Pearl Equities Low Latency Order Entry |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Miax Pearl Equities FIX Order Interface and Drop Interface (FOI) |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Miax Pearl Equities Best Bid And Offer Feed |

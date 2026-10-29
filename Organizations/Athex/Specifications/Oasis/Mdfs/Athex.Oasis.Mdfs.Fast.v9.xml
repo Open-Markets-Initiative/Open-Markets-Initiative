@@ -1,0 +1,1460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xmlns:scp="http://www.fixprotocol.org/ns/fast/scp/1.1"
+    xmlns="http://www.fixprotocol.org/ns/fast/td/1.2" templateNs="http://www.fixprotocol.org/ns/fast/scp/1.1" ns="http://www.fixprotocol.org/ns/fast/scp/1.1">
+
+    <!--CURRENT TEMPLATES-->
+
+    <!--CURRENT - Heartbeat Message-->
+    <template name="Heartbeat_17" id="17">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="0"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369"/>
+        <!--Repeating Group Start - ATHEXRecoveryGrp-->
+        <sequence name="ATHEXRecoveryGrp" presence="optional">
+            <length name="NoATHEXRecoverySeqNums" id="20028">
+                <default/>
+            </length>
+            <uInt32 name="ATHEXRecoverySeqNum" id="20029"/>
+        </sequence>
+        <!--Repeating Group End - ATHEXRecoveryGrp-->
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--CURRENT - Security Status Message-->
+    <template name="SecurityStatus_18" id="18">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="f"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - ATHEXRecoveryGrp-->
+        <sequence name="ATHEXRecoveryGrp" presence="optional">
+            <length name="NoATHEXRecoverySeqNums" id="20028">
+                <default/>
+            </length>
+            <uInt32 name="ATHEXRecoverySeqNum" id="20029"/>
+        </sequence>
+        <!--Repeating Group End - ATHEXRecoveryGrp-->
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <!--Component Start - Instrument-->
+        <string name="Symbol" id="55"/>
+        <uInt32 name="ATHEXSecurityCategory" id="20011"/>
+        <string name="SecurityType" id="167"/>
+        <string name="SecurityExchange" id="207"/>
+        <string name="ATHEXMarketID" id="20001"/>
+        <!--Component End - Instrument-->
+        <string name="TradingSessionSubID" id="625" presence="optional">
+            <default/>
+        </string>
+        <group name="SecurityStatusGrp" presence="optional">
+            <uInt32 name="SecurityTradingStatus" id="326"/>
+            <uInt32 name="HaltReason" id="327" presence="optional">
+                <default/>
+            </uInt32>
+        </group>
+        <uInt32 name="ATHEXAuctionType" id="20030" presence="optional">
+            <default/>
+        </uInt32>
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--CURRENT - Trading Session Status Message-->
+    <template name="TradingSessionStatus_19" id="19">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="h"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - ATHEXRecoveryGrp-->
+        <sequence name="ATHEXRecoveryGrp" presence="optional">
+            <length name="NoATHEXRecoverySeqNums" id="20028">
+                <default/>
+            </length>
+            <uInt32 name="ATHEXRecoverySeqNum" id="20029"/>
+        </sequence>
+        <!--Repeating Group End - ATHEXRecoveryGrp-->
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <group name="TradingSessionGrp" presence="optional">
+            <!--Component Start - Trading Session Fields-->
+            <string name="SecurityExchange" id="207"/>
+            <string name="ATHEXMarketID" id="20001"/>
+            <string name="ATHEXBoardID" id="20002"/>
+            <string name="TradingSessionID" id="336">
+                <constant value="1"/>
+            </string>
+            <string name="TradingSessionSubID" id="625"/>
+            <uInt32 name="TradSesStatus" id="340"/>
+            <!--Component End - Trading Session Fields-->
+        </group>
+        <string name="ATHEXSystemStatus" id="20027" presence="optional">
+            <default/>
+        </string>
+        <uInt32 name="ATHEXAuctionType" id="20030" presence="optional">
+            <default/>
+        </uInt32>
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--CURRENT - News Message-->
+    <template name="News_20" id="20">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="B"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - ATHEXRecoveryGrp-->
+        <sequence name="ATHEXRecoveryGrp" presence="optional">
+            <length name="NoATHEXRecoverySeqNums" id="20028">
+                <default/>
+            </length>
+            <uInt32 name="ATHEXRecoverySeqNum" id="20029"/>
+        </sequence>
+        <!--Repeating Group End - ATHEXRecoveryGrp-->
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <string name="LanguageCode" id="1474"/>
+        <string name="Headline" id="148"/>
+        <!--Repeating Group Start - LinesOfTextGrp-->
+        <sequence name="LinesOfTextGrp">
+            <length name="NoLinesOfText" id="33"/>
+            <string name="Text" id="58"/>
+        </sequence>
+        <!--Repeating Group End - LinesOfTextGrp-->
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--CURRENT - Market Data Snapshot Full Refresh Message-->
+    <template name="MarketDataSnapshotFullRefresh_21" id="21">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="W"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369"/>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <uInt32 name="MDBookType" id="1021" presence="optional">
+            <default/>
+        </uInt32>
+        <group name="InstrumentGrp" presence="optional">
+            <!--Component Start - Instrument-->
+            <string name="Symbol" id="55" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="ATHEXSecurityCategory" id="20011" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="SecurityType" id="167" presence="optional">
+                <default/>
+            </string>
+            <string name="SecurityExchange" id="207" presence="optional">
+                <default/>
+            </string>
+            <group name="BondsInstrumentGrp" presence="optional">
+                <decimal name="ContractMultiplier" id="231"/>
+                <decimal name="AccruedInterestAmt" id="159"/>
+            </group>
+            <string name="ATHEXMarketID" id="20001" presence="optional">
+                <default/>
+            </string>
+            <group name="APAOTCInstrumentGrp" presence="optional">
+                <!--Component Start - APA Instrument Fields-->
+                <string name="SecurityID" id="48"/>
+                <string name="SecurityIDSource" id="22"/>
+                <string name="FinancialInstrumentFullName" id="2714" presence="optional">
+                    <default/>
+                </string>
+                <string name="CFICode" id="461" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="UnitOfMeasureQty" id="1147" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPAUnitOfMeasure" id="20013" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="PutOrCall" id="201" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="StrikePrice" id="202" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="StrikeCurrency" id="947" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="ATHEXAPAStrikePriceType" id="20014" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="ExerciseStyle" id="1194" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="MaturityDate" id="541" presence="optional">
+                    <default/>
+                </string>
+                <string name="SettlMethod" id="1193" presence="optional">
+                    <default/>
+                </string>
+                <!--Component End - APA Instrument Fields-->
+            </group>
+            <!--Component End - Instrument-->
+        </group>
+        <sequence name="UndInstrmtGrp" presence="optional">
+            <length name="NoUnderlyings" id="711">
+                <default/>
+            </length>
+            <string name="UnderlyingSecurityID" id="309" presence="optional">
+                <default/>
+            </string>
+            <string name="UnderlyingSecurityIDSource" id="305" presence="optional">
+                <default/>
+            </string>
+            <string name="UnderlyingIndexCurveUnit" id="2723" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="UnderlyingIndexCurvePeriod" id="2724" presence="optional">
+                <default/>
+            </uInt32>
+        </sequence>
+        <!--Repeating Group Start - MDFullGrp-->
+        <sequence name="MDFullGrp">
+            <length name="NoMDEntries" id="268"/>
+            <string name="MDEntryType" id="269"/>
+            <string name="ATHEXBoardID" id="20002" presence="optional">
+                <default/>
+            </string>
+            <decimal name="MDEntryPx" id="270" presence="optional">
+                <default/>
+            </decimal>
+            <decimal name="MDEntrySize" id="271" presence="optional">
+                <default/>
+            </decimal>
+            <uInt32 name="MDOriginType" id="1024" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="TradingSessionSubID" id="625" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceDepthGrp" presence="optional">
+                <uInt32 name="MarketDepth" id="264"/>
+                <uInt32 name="MDPriceLevel" id="1023" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="NumberOfOrders" id="346" presence="optional">
+                    <default/>
+                </uInt32>
+            </group>
+            <group name="OrderDepthGrp" presence="optional">
+                <uInt32 name="MDEntryPositionNo" id="290"/>
+                <string name="OrderID" id="37"/>
+                <string name="OrdStatus" id="39"/>
+                <decimal name="CumQty" id="14"/>
+                <string name="TimeInForce" id="59"/>
+                <string name="OrdType" id="40" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXSpecialCondition" id="20003" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXConditionVolume" id="20004" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXOrderEntryDate" id="20005"/>
+            </group>
+            <group name="TradeGrp" presence="optional">
+                <string name="TradeCondition" id="277" presence="optional">
+                    <default/>
+                </string>
+                <string name="TradeID" id="1003" presence="optional">
+                    <default/>
+                </string>
+                <string name="OrderCategory" id="1115" presence="optional">
+                    <default/>
+                </string>
+                <!--Repeating Group Start - TrdRegPublicationGrp-->
+                <sequence name="TrdRegPublicationGrp" presence="optional">
+                    <length name="NoTrdRegPublications" id="2668">
+                        <default/>
+                    </length>
+                    <uInt32 name="TrdRegPublicationType" id="2669"/>
+                    <uInt32 name="TrdRegPublicationReason" id="2670"/>
+                </sequence>
+                <!--Repeating Group End - TrdRegPublicationGrp-->
+                <!--Repeating Group Start - TradePriceConditionGrp-->
+                <sequence name="TradePriceConditionGrp" presence="optional">
+                    <length name="NoTradePriceConditions" id="1838">
+                        <default/>
+                    </length>
+                    <uInt32 name="TradePriceCondition" id="1839"/>
+                </sequence>
+                <!--Repeating Group End - TradePriceConditionGrp-->
+                <uInt32 name="AlgorithmicTradeIndicator" id="2667" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="TradePublishIndicator" id="1390" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="ATHEXTotalVolume" id="20006" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="ATHEXTradeValue" id="20007" presence="optional">
+                    <default/>
+                </decimal>
+            </group>
+            <string name="ATHEXIndexType" id="20008" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceLimitsGrp" presence="optional">
+                <!--Component Start - PriceLimits-->
+                <decimal name="LowLimitPrice" id="1148" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="HighLimitPrice" id="1149" presence="optional">
+                    <default/>
+                </decimal>
+                <!--Component Start - PriceLimits-->
+            </group>
+            <group name="APAOTCTradeGrp" presence="optional">
+                <!--Component Start - APA Fields-->
+                <sequence name="TradeTypeGrp">
+                    <length name="NoTradeTypes" id="3005"/>
+                    <uInt32 name="TradeType" id="3006"/>
+                    <uInt32 name="TradeSubType" id="3007" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <string name="ATHEXAPAReportStatus" id="20015"/>
+                <sequence name="PartiesGrp">
+                    <length name="NoPartyIDs" id="453"/>
+                    <string name="PartyID" id="448"/>
+                    <string name="PartyIDSource" id="447"/>
+                </sequence>
+                <uInt32 name="PriceType" id="423" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="ATHEXAPAPriceCurrency" id="20016" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXAPAPriceMultiplier" id="20017" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPASizeCurrency" id="20018" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPATradeValueCurrency" id="20019" presence="optional">
+                    <default/>
+                </string>
+                <string name="ExpireDate" id="432" presence="optional">
+                    <default/>
+                </string>
+                <string name="LastMkt" id="30"/>
+                <group name="APAOTCPreTradeGrp" presence="optional">
+                    <string name="Side" id="54"/>
+                    <string name="QuoteID" id="117"/>
+                    <uInt32 name="ATHEXAPAQuoteLiquidity" id="20020"/>
+                </group>
+                <group name="APAOTCPostTradeGrp" presence="optional">
+                    <uInt32 name="ATHEXAPATradeIDIndicator" id="20021"/>
+                    <sequence name="ATHEXAPARegulatoryReportTypeGrp" presence="optional">
+                        <length name="NoATHEXAPARegulatoryReportTypes" id="20025">
+                            <default/>
+                        </length>
+                        <uInt32 name="RegulatoryReportType" id="1934"/>
+                    </sequence>
+                    <uInt32 name="NumberOfTrades" id="3104" presence="optional">
+                        <default/>
+                    </uInt32>
+                    <string name="ATHEXAPATransactionToBeCleared" id="20022"/>
+                    <string name="ATHEXAPAVenueOfPublication" id="20031"/>
+                    <string name="ATHEXAPAThirdCountryVenue" id="20026" presence="optional">
+                        <default/>
+                    </string>
+                </group>
+                <!--Component End - APA Fields-->
+            </group>
+            <string name="TransactTime" id="60" presence="optional">
+                <default/>
+            </string>
+        </sequence>
+        <!--Repeating Group End - MDFullGrp-->
+        <!--Component End - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--CURRENT - Market Data Incremental Refresh Message-->
+    <template name="MarketDataIncrementalRefresh_22" id="22">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="X"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - ATHEXRecoveryGrp-->
+        <sequence name="ATHEXRecoveryGrp" presence="optional">
+            <length name="NoATHEXRecoverySeqNums" id="20028">
+                <default/>
+            </length>
+            <uInt32 name="ATHEXRecoverySeqNum" id="20029"/>
+        </sequence>
+        <!--Repeating Group End - ATHEXRecoveryGrp-->
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <uInt32 name="MDBookType" id="1021" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - MDIncGrp-->
+        <sequence name="MDIncGrp">
+            <length name="NoMDEntries" id="268"/>
+            <string name="MDUpdateAction" id="279"/>
+            <!--Component Start - Instrument-->
+            <string name="Symbol" id="55" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="ATHEXSecurityCategory" id="20011" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="SecurityType" id="167" presence="optional">
+                <default/>
+            </string>
+            <string name="SecurityExchange" id="207" presence="optional">
+                <default/>
+            </string>
+            <group name="BondsInstrumentGrp" presence="optional">
+                <decimal name="ContractMultiplier" id="231"/>
+                <decimal name="AccruedInterestAmt" id="159"/>
+            </group>
+            <string name="ATHEXMarketID" id="20001" presence="optional">
+                <default/>
+            </string>
+            <group name="APAOTCInstrumentGrp" presence="optional">
+                <!--Component Start - APA Instrument Fields-->
+                <string name="SecurityID" id="48"/>
+                <string name="SecurityIDSource" id="22"/>
+                <string name="FinancialInstrumentFullName" id="2714" presence="optional">
+                    <default/>
+                </string>
+                <string name="CFICode" id="461" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="UnitOfMeasureQty" id="1147" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPAUnitOfMeasure" id="20013" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="PutOrCall" id="201" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="StrikePrice" id="202" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="StrikeCurrency" id="947" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="ATHEXAPAStrikePriceType" id="20014" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="ExerciseStyle" id="1194" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="MaturityDate" id="541" presence="optional">
+                    <default/>
+                </string>
+                <string name="SettlMethod" id="1193" presence="optional">
+                    <default/>
+                </string>
+                <!--Component End - APA Instrument Fields-->
+            </group>
+            <!--Component End - Instrument-->
+            <string name="MDEntryType" id="269"/>
+            <string name="ATHEXBoardID" id="20002" presence="optional">
+                <default/>
+            </string>
+            <decimal name="MDEntryPx" id="270" presence="optional">
+                <default/>
+            </decimal>
+            <decimal name="MDEntrySize" id="271" presence="optional">
+                <default/>
+            </decimal>
+            <uInt32 name="MDOriginType" id="1024" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="TradingSessionSubID" id="625" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceDepthGrp" presence="optional">
+                <uInt32 name="MarketDepth" id="264"/>
+                <uInt32 name="MDPriceLevel" id="1023" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="NumberOfOrders" id="346" presence="optional">
+                    <default/>
+                </uInt32>
+            </group>
+            <group name="OrderDepthGrp" presence="optional">
+                <uInt32 name="MDEntryPositionNo" id="290"/>
+                <string name="OrderID" id="37"/>
+                <string name="OrdStatus" id="39"/>
+                <decimal name="CumQty" id="14"/>
+                <string name="TimeInForce" id="59"/>
+                <string name="OrdType" id="40" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXSpecialCondition" id="20003" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXConditionVolume" id="20004" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXOrderEntryDate" id="20005"/>
+            </group>
+            <group name="TradeGrp" presence="optional">
+                <string name="TradeCondition" id="277" presence="optional">
+                    <default/>
+                </string>
+                <string name="TradeID" id="1003" presence="optional">
+                    <default/>
+                </string>
+                <string name="OrderCategory" id="1115" presence="optional">
+                    <default/>
+                </string>
+                <!--Repeating Group Start - TrdRegPublicationGrp-->
+                <sequence name="TrdRegPublicationGrp" presence="optional">
+                    <length name="NoTrdRegPublications" id="2668">
+                        <default/>
+                    </length>
+                    <uInt32 name="TrdRegPublicationType" id="2669"/>
+                    <uInt32 name="TrdRegPublicationReason" id="2670"/>
+                </sequence>
+                <!--Repeating Group End - TrdRegPublicationGrp-->
+                <!--Repeating Group Start - TradePriceConditionGrp-->
+                <sequence name="TradePriceConditionGrp" presence="optional">
+                    <length name="NoTradePriceConditions" id="1838">
+                        <default/>
+                    </length>
+                    <uInt32 name="TradePriceCondition" id="1839"/>
+                </sequence>
+                <!--Repeating Group End - TradePriceConditionGrp-->
+                <uInt32 name="AlgorithmicTradeIndicator" id="2667" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="TradePublishIndicator" id="1390" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="ATHEXTotalVolume" id="20006" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="ATHEXTradeValue" id="20007" presence="optional">
+                    <default/>
+                </decimal>
+            </group>
+            <string name="ATHEXIndexType" id="20008" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceLimitsGrp" presence="optional">
+                <!--Component Start - PriceLimits-->
+                <decimal name="LowLimitPrice" id="1148" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="HighLimitPrice" id="1149" presence="optional">
+                    <default/>
+                </decimal>
+                <!--Component Start - PriceLimits-->
+            </group>
+            <group name="APAOTCTradeGrp" presence="optional">
+                <!--Component Start - APA Fields-->
+                <sequence name="UndInstrmtGrp" presence="optional">
+                    <length name="NoUnderlyings" id="711">
+                        <default/>
+                    </length>
+                    <string name="UnderlyingSecurityID" id="309" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="UnderlyingSecurityIDSource" id="305" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="UnderlyingIndexCurveUnit" id="2723" presence="optional">
+                        <default/>
+                    </string>
+                    <uInt32 name="UnderlyingIndexCurvePeriod" id="2724" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <sequence name="TradeTypeGrp">
+                    <length name="NoTradeTypes" id="3005"/>
+                    <uInt32 name="TradeType" id="3006"/>
+                    <uInt32 name="TradeSubType" id="3007" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <string name="ATHEXAPAReportStatus" id="20015"/>
+                <sequence name="PartiesGrp">
+                    <length name="NoPartyIDs" id="453"/>
+                    <string name="PartyID" id="448"/>
+                    <string name="PartyIDSource" id="447"/>
+                </sequence>
+                <uInt32 name="PriceType" id="423" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="ATHEXAPAPriceCurrency" id="20016" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXAPAPriceMultiplier" id="20017" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPASizeCurrency" id="20018" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPATradeValueCurrency" id="20019" presence="optional">
+                    <default/>
+                </string>
+                <string name="ExpireDate" id="432" presence="optional">
+                    <default/>
+                </string>
+                <string name="LastMkt" id="30"/>
+                <group name="APAOTCPreTradeGrp" presence="optional">
+                    <string name="Side" id="54"/>
+                    <string name="QuoteID" id="117"/>
+                    <uInt32 name="ATHEXAPAQuoteLiquidity" id="20020"/>
+                </group>
+                <group name="APAOTCPostTradeGrp" presence="optional">
+                    <uInt32 name="ATHEXAPATradeIDIndicator" id="20021"/>
+                    <sequence name="ATHEXAPARegulatoryReportTypeGrp" presence="optional">
+                        <length name="NoATHEXAPARegulatoryReportTypes" id="20025">
+                            <default/>
+                        </length>
+                        <uInt32 name="RegulatoryReportType" id="1934"/>
+                    </sequence>
+                    <uInt32 name="NumberOfTrades" id="3104" presence="optional">
+                        <default/>
+                    </uInt32>
+                    <string name="ATHEXAPATransactionToBeCleared" id="20022"/>
+                    <string name="ATHEXAPAVenueOfPublication" id="20031"/>
+                    <string name="ATHEXAPAThirdCountryVenue" id="20026" presence="optional">
+                        <default/>
+                    </string>
+                </group>
+                <!--Component End - APA Fields-->
+            </group>
+            <string name="TransactTime" id="60"/>
+        </sequence>
+        <!--Repeating Group End - MDIncGrp-->
+        <!--Component End - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED TEMPLATES-->
+
+    <!--DEPRECATED - Heartbeat Message-->
+    <template name="Heartbeat_9" id="9">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="0"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369"/>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED - Security Status Message-->
+    <template name="SecurityStatus_10" id="10">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="f"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <!--Component Start - Instrument-->
+        <string name="Symbol" id="55"/>
+        <uInt32 name="ATHEXSecurityCategory" id="20011"/>
+        <string name="SecurityType" id="167"/>
+        <string name="SecurityExchange" id="207"/>
+        <string name="ATHEXMarketID" id="20001"/>
+        <!--Component End - Instrument-->
+        <string name="TradingSessionSubID" id="625" presence="optional">
+            <default/>
+        </string>
+        <group name="SecurityStatusGrp" presence="optional">
+            <uInt32 name="SecurityTradingStatus" id="326"/>
+            <uInt32 name="HaltReason" id="327" presence="optional">
+                <default/>
+            </uInt32>
+        </group>
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED - Trading Session Status Message-->
+    <template name="TradingSessionStatus_11" id="11">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="h"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <string name="SecurityExchange" id="207"/>
+        <string name="ATHEXMarketID" id="20001"/>
+        <string name="ATHEXBoardID" id="20002"/>
+        <string name="TradingSessionID" id="336">
+            <constant value="1"/>
+        </string>
+        <string name="TradingSessionSubID" id="625"/>
+        <uInt32 name="TradSesStatus" id="340"/>
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED - News Message-->
+    <template name="News_12" id="12">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="B"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <string name="LanguageCode" id="1474"/>
+        <string name="Headline" id="148"/>
+        <!--Repeating Group Start - LinesOfTextGrp-->
+        <sequence name="LinesOfTextGrp">
+            <length name="NoLinesOfText" id="33"/>
+            <string name="Text" id="58"/>
+        </sequence>
+        <!--Repeating Group End - LinesOfTextGrp-->
+        <string name="TransactTime" id="60"/>
+        <!--Component Start - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED - Market Data Snapshot Full Refresh Message-->
+    <template name="MarketDataSnapshotFullRefresh_15" id="15">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="W"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="LastMsgSeqNumProcessed" id="369"/>
+        <uInt32 name="ATHEXSnapshotIndicator" id="20009" presence="optional">
+            <default/>
+        </uInt32>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <uInt32 name="MDBookType" id="1021" presence="optional">
+            <default/>
+        </uInt32>
+        <group name="InstrumentGrp" presence="optional">
+            <!--Component Start - Instrument-->
+            <string name="Symbol" id="55" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="ATHEXSecurityCategory" id="20011" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="SecurityType" id="167" presence="optional">
+                <default/>
+            </string>
+            <string name="SecurityExchange" id="207"/>
+            <group name="BondsInstrumentGrp" presence="optional">
+                <decimal name="ContractMultiplier" id="231"/>
+                <decimal name="AccruedInterestAmt" id="159"/>
+            </group>
+            <string name="ATHEXMarketID" id="20001" presence="optional">
+                <default/>
+            </string>
+            <group name="APAOTCInstrumentGrp" presence="optional">
+                <!--Component Start - APA Instrument Fields-->
+                <string name="SecurityID" id="48"/>
+                <string name="SecurityIDSource" id="22"/>
+                <string name="FinancialInstrumentFullName" id="2714" presence="optional">
+                    <default/>
+                </string>
+                <string name="CFICode" id="461" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="UnitOfMeasureQty" id="1147" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPAUnitOfMeasure" id="20013" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="PutOrCall" id="201" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="StrikePrice" id="202" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="StrikeCurrency" id="947" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPAStrikePriceType" id="20014" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="ExerciseStyle" id="1194" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="MaturityDate" id="541" presence="optional">
+                    <default/>
+                </string>
+                <string name="SettlMethod" id="1193" presence="optional">
+                    <default/>
+                </string>
+                <!--Component End - APA Instrument Fields-->
+            </group>
+            <!--Component End - Instrument-->
+        </group>
+        <sequence name="UndInstrmtGrp" presence="optional">
+            <length name="NoUnderlyings" id="711">
+                <default/>
+            </length>
+            <string name="UnderlyingSecurityID" id="309" presence="optional">
+                <default/>
+            </string>
+            <string name="UnderlyingSecurityIDSource" id="305" presence="optional">
+                <default/>
+            </string>
+            <string name="UnderlyingIndexCurveUnit" id="2723" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="UnderlyingIndexCurvePeriod" id="2724" presence="optional">
+                <default/>
+            </uInt32>
+        </sequence>
+        <!--Repeating Group Start - MDFullGrp-->
+        <sequence name="MDFullGrp">
+            <length name="NoMDEntries" id="268"/>
+            <string name="MDEntryType" id="269"/>
+            <string name="ATHEXBoardID" id="20002" presence="optional">
+                <default/>
+            </string>
+            <decimal name="MDEntryPx" id="270" presence="optional">
+                <default/>
+            </decimal>
+            <decimal name="MDEntrySize" id="271" presence="optional">
+                <default/>
+            </decimal>
+            <group name="PriceDepthGrp" presence="optional">
+                <uInt32 name="MarketDepth" id="264"/>
+                <uInt32 name="MDPriceLevel" id="1023" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="NumberOfOrders" id="346" presence="optional">
+                    <default/>
+                </uInt32>
+            </group>
+            <group name="OrderDepthGrp" presence="optional">
+                <uInt32 name="MDEntryPositionNo" id="290"/>
+                <string name="OrderID" id="37"/>
+                <string name="OrdStatus" id="39"/>
+                <decimal name="CumQty" id="14"/>
+                <string name="TimeInForce" id="59"/>
+                <string name="OrdType" id="40" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXSpecialCondition" id="20003" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXConditionVolume" id="20004" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXOrderEntryDate" id="20005"/>
+            </group>
+            <group name="TradeGrp" presence="optional">
+                <string name="TradeCondition" id="277" presence="optional">
+                    <default/>
+                </string>
+                <string name="TradeID" id="1003" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="MDOriginType" id="1024" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="TradingSessionSubID" id="625" presence="optional">
+                    <default/>
+                </string>
+                <string name="OrderCategory" id="1115" presence="optional">
+                    <default/>
+                </string>
+                <!--Repeating Group Start - TrdRegPublicationGrp-->
+                <sequence name="TrdRegPublicationGrp" presence="optional">
+                    <length name="NoTrdRegPublications" id="2668">
+                        <default/>
+                    </length>
+                    <uInt32 name="TrdRegPublicationType" id="2669"/>
+                    <uInt32 name="TrdRegPublicationReason" id="2670"/>
+                </sequence>
+                <!--Repeating Group End - TrdRegPublicationGrp-->
+                <!--Repeating Group Start - TradePriceConditionGrp-->
+                <sequence name="TradePriceConditionGrp" presence="optional">
+                    <length name="NoTradePriceConditions" id="1838">
+                        <default/>
+                    </length>
+                    <uInt32 name="TradePriceCondition" id="1839"/>
+                </sequence>
+                <!--Repeating Group End - TradePriceConditionGrp-->
+                <uInt32 name="AlgorithmicTradeIndicator" id="2667" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="TradePublishIndicator" id="1390" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="PreviouslyReported" id="570" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXTotalVolume" id="20006" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="ATHEXTradeValue" id="20007" presence="optional">
+                    <default/>
+                </decimal>
+            </group>
+            <string name="ATHEXIndexType" id="20008" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceLimitsGrp" presence="optional">
+                <!--Component Start - PriceLimits-->
+                <decimal name="LowLimitPrice" id="1148" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="HighLimitPrice" id="1149" presence="optional">
+                    <default/>
+                </decimal>
+                <!--Component Start - PriceLimits-->
+            </group>
+            <group name="APAOTCTradeGrp" presence="optional">
+                <!--Component Start - APA Fields-->
+                <sequence name="TradeTypeGrp">
+                    <length name="NoTradeTypes" id="3005"/>
+                    <uInt32 name="TradeType" id="3006"/>
+                    <uInt32 name="TradeSubType" id="3007" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <string name="ATHEXAPAReportStatus" id="20015"/>
+                <sequence name="PartiesGrp">
+                    <length name="NoPartyIDs" id="453"/>
+                    <string name="PartyID" id="448"/>
+                    <string name="PartyIDSource" id="447"/>
+                </sequence>
+                <uInt32 name="PriceType" id="423" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="ATHEXAPAPriceCurrency" id="20016" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXAPAPriceMultiplier" id="20017" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPASizeCurrency" id="20018" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPATradeValueCurrency" id="20019" presence="optional">
+                    <default/>
+                </string>
+                <string name="ExpireDate" id="432" presence="optional">
+                    <default/>
+                </string>
+                <group name="APAOTCPreTradeGrp" presence="optional">
+                    <string name="Side" id="54"/>
+                    <string name="QuoteID" id="117"/>
+                    <uInt32 name="ATHEXAPAQuoteLiquidity" id="20020"/>
+                </group>
+                <group name="APAOTCPostTradeGrp" presence="optional">
+                    <uInt32 name="ATHEXAPATradeIDIndicator" id="20021"/>
+                    <sequence name="ATHEXAPATrdTypesGrp">
+                        <length name="NoATHEXAPATrdTypes" id="20024"/>
+                        <uInt32 name="TrdType" id="828" presence="optional">
+                            <default/>
+                        </uInt32>
+                        <uInt32 name="TrdSubType" id="829" presence="optional">
+                            <default/>
+                        </uInt32>
+                        <uInt32 name="SecondaryTrdType" id="855" presence="optional">
+                            <default/>
+                        </uInt32>
+                    </sequence>
+                    <sequence name="ATHEXAPARegulatoryReportTypeGrp" presence="optional">
+                        <length name="NoATHEXAPARegulatoryReportTypes" id="20025">
+                            <default/>
+                        </length>
+                        <uInt32 name="RegulatoryReportType" id="1934"/>
+                    </sequence>
+                    <string name="ATHEXAPATransactionToBeCleared" id="20022"/>
+                    <string name="ATHEXAPAEmissionAllowance" id="20023" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="ATHEXAPAThirdCountryVenue" id="20026" presence="optional">
+                        <default/>
+                    </string>
+                </group>
+                <!--Component End - APA Fields-->
+            </group>
+            <string name="TransactTime" id="60" presence="optional">
+                <default/>
+            </string>
+        </sequence>
+        <!--Repeating Group End - MDFullGrp-->
+        <!--Component End - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+
+    <!--DEPRECATED - Market Data Incremental Refresh Message-->
+    <template name="MarketDataIncrementalRefresh_16" id="16">
+        <!--Component Start - StandardHeader-->
+        <string name="BeginString" id="8">
+            <constant value="FIXT.1.1"/>
+        </string>
+        <int32 name="BodyLength" id="9"/>
+        <string name="MsgType" id="35">
+            <constant value="X"/>
+        </string>
+        <string name="SenderCompID" id="49"/>
+        <string name="TargetCompID" id="56"/>
+        <uInt32 name="MsgSeqNum" id="34"/>
+        <string name="SendingTime" id="52"/>
+        <uInt32 name="ATHEXFragmentIndicator" id="20010" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Component End - StandardHeader-->
+        <string name="ApplID" id="1180"/>
+        <uInt32 name="ApplSeqNum" id="1181"/>
+        <uInt32 name="MDBookType" id="1021" presence="optional">
+            <default/>
+        </uInt32>
+        <!--Repeating Group Start - MDIncGrp-->
+        <sequence name="MDIncGrp">
+            <length name="NoMDEntries" id="268"/>
+            <string name="MDUpdateAction" id="279"/>
+            <!--Component Start - Instrument-->
+            <string name="Symbol" id="55" presence="optional">
+                <default/>
+            </string>
+            <uInt32 name="ATHEXSecurityCategory" id="20011" presence="optional">
+                <default/>
+            </uInt32>
+            <string name="SecurityType" id="167" presence="optional">
+                <default/>
+            </string>
+            <string name="SecurityExchange" id="207"/>
+            <group name="BondsInstrumentGrp" presence="optional">
+                <decimal name="ContractMultiplier" id="231"/>
+                <decimal name="AccruedInterestAmt" id="159"/>
+            </group>
+            <string name="ATHEXMarketID" id="20001" presence="optional">
+                <default/>
+            </string>
+            <group name="APAOTCInstrumentGrp" presence="optional">
+                <!--Component Start - APA Instrument Fields-->
+                <string name="SecurityID" id="48"/>
+                <string name="SecurityIDSource" id="22"/>
+                <string name="FinancialInstrumentFullName" id="2714" presence="optional">
+                    <default/>
+                </string>
+                <string name="CFICode" id="461" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="UnitOfMeasureQty" id="1147" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPAUnitOfMeasure" id="20013" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="PutOrCall" id="201" presence="optional">
+                    <default/>
+                </uInt32>
+                <decimal name="StrikePrice" id="202" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="StrikeCurrency" id="947" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPAStrikePriceType" id="20014" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="ExerciseStyle" id="1194" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="MaturityDate" id="541" presence="optional">
+                    <default/>
+                </string>
+                <string name="SettlMethod" id="1193" presence="optional">
+                    <default/>
+                </string>
+                <!--Component End - APA Instrument Fields-->
+            </group>
+            <!--Component End - Instrument-->
+            <string name="MDEntryType" id="269"/>
+            <string name="ATHEXBoardID" id="20002" presence="optional">
+                <default/>
+            </string>
+            <decimal name="MDEntryPx" id="270" presence="optional">
+                <default/>
+            </decimal>
+            <decimal name="MDEntrySize" id="271" presence="optional">
+                <default/>
+            </decimal>
+            <group name="PriceDepthGrp" presence="optional">
+                <uInt32 name="MarketDepth" id="264"/>
+                <uInt32 name="MDPriceLevel" id="1023" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="NumberOfOrders" id="346" presence="optional">
+                    <default/>
+                </uInt32>
+            </group>
+            <group name="OrderDepthGrp" presence="optional">
+                <uInt32 name="MDEntryPositionNo" id="290"/>
+                <string name="OrderID" id="37"/>
+                <string name="OrdStatus" id="39"/>
+                <decimal name="CumQty" id="14"/>
+                <string name="TimeInForce" id="59"/>
+                <string name="OrdType" id="40" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXSpecialCondition" id="20003" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXConditionVolume" id="20004" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXOrderEntryDate" id="20005"/>
+            </group>
+            <group name="TradeGrp" presence="optional">
+                <string name="TradeCondition" id="277" presence="optional">
+                    <default/>
+                </string>
+                <string name="TradeID" id="1003" presence="optional">
+                    <default/>
+                </string>
+                <uInt32 name="MDOriginType" id="1024" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="TradingSessionSubID" id="625" presence="optional">
+                    <default/>
+                </string>
+                <string name="OrderCategory" id="1115" presence="optional">
+                    <default/>
+                </string>
+                <!--Repeating Group Start - TrdRegPublicationGrp-->
+                <sequence name="TrdRegPublicationGrp" presence="optional">
+                    <length name="NoTrdRegPublications" id="2668">
+                        <default/>
+                    </length>
+                    <uInt32 name="TrdRegPublicationType" id="2669"/>
+                    <uInt32 name="TrdRegPublicationReason" id="2670"/>
+                </sequence>
+                <!--Repeating Group End - TrdRegPublicationGrp-->
+                <!--Repeating Group Start - TradePriceConditionGrp-->
+                <sequence name="TradePriceConditionGrp" presence="optional">
+                    <length name="NoTradePriceConditions" id="1838">
+                        <default/>
+                    </length>
+                    <uInt32 name="TradePriceCondition" id="1839"/>
+                </sequence>
+                <!--Repeating Group End - TradePriceConditionGrp-->
+                <uInt32 name="AlgorithmicTradeIndicator" id="2667" presence="optional">
+                    <default/>
+                </uInt32>
+                <uInt32 name="TradePublishIndicator" id="1390" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="PreviouslyReported" id="570" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXTotalVolume" id="20006" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="ATHEXTradeValue" id="20007" presence="optional">
+                    <default/>
+                </decimal>
+            </group>
+            <string name="ATHEXIndexType" id="20008" presence="optional">
+                <default/>
+            </string>
+            <group name="PriceLimitsGrp" presence="optional">
+                <!--Component Start - PriceLimits-->
+                <decimal name="LowLimitPrice" id="1148" presence="optional">
+                    <default/>
+                </decimal>
+                <decimal name="HighLimitPrice" id="1149" presence="optional">
+                    <default/>
+                </decimal>
+                <!--Component Start - PriceLimits-->
+            </group>
+            <group name="APAOTCTradeGrp" presence="optional">
+                <!--Component Start - APA Fields-->
+                <sequence name="UndInstrmtGrp" presence="optional">
+                    <length name="NoUnderlyings" id="711">
+                        <default/>
+                    </length>
+                    <string name="UnderlyingSecurityID" id="309" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="UnderlyingSecurityIDSource" id="305" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="UnderlyingIndexCurveUnit" id="2723" presence="optional">
+                        <default/>
+                    </string>
+                    <uInt32 name="UnderlyingIndexCurvePeriod" id="2724" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <sequence name="TradeTypeGrp">
+                    <length name="NoTradeTypes" id="3005"/>
+                    <uInt32 name="TradeType" id="3006"/>
+                    <uInt32 name="TradeSubType" id="3007" presence="optional">
+                        <default/>
+                    </uInt32>
+                </sequence>
+                <string name="ATHEXAPAReportStatus" id="20015"/>
+                <sequence name="PartiesGrp">
+                    <length name="NoPartyIDs" id="453"/>
+                    <string name="PartyID" id="448"/>
+                    <string name="PartyIDSource" id="447"/>
+                </sequence>
+                <uInt32 name="PriceType" id="423" presence="optional">
+                    <default/>
+                </uInt32>
+                <string name="ATHEXAPAPriceCurrency" id="20016" presence="optional">
+                    <default/>
+                </string>
+                <decimal name="ATHEXAPAPriceMultiplier" id="20017" presence="optional">
+                    <default/>
+                </decimal>
+                <string name="ATHEXAPASizeCurrency" id="20018" presence="optional">
+                    <default/>
+                </string>
+                <string name="ATHEXAPATradeValueCurrency" id="20019" presence="optional">
+                    <default/>
+                </string>
+                <string name="ExpireDate" id="432" presence="optional">
+                    <default/>
+                </string>
+                <group name="APAOTCPreTradeGrp" presence="optional">
+                    <string name="Side" id="54"/>
+                    <string name="QuoteID" id="117"/>
+                    <uInt32 name="ATHEXAPAQuoteLiquidity" id="20020"/>
+                </group>
+                <group name="APAOTCPostTradeGrp" presence="optional">
+                    <uInt32 name="ATHEXAPATradeIDIndicator" id="20021"/>
+                    <sequence name="ATHEXAPATrdTypesGrp">
+                        <length name="NoATHEXAPATrdTypes" id="20024"/>
+                        <uInt32 name="TrdType" id="828" presence="optional">
+                            <default/>
+                        </uInt32>
+                        <uInt32 name="TrdSubType" id="829" presence="optional">
+                            <default/>
+                        </uInt32>
+                        <uInt32 name="SecondaryTrdType" id="855" presence="optional">
+                            <default/>
+                        </uInt32>
+                    </sequence>
+                    <sequence name="ATHEXAPARegulatoryReportTypeGrp" presence="optional">
+                        <length name="NoATHEXAPARegulatoryReportTypes" id="20025">
+                            <default/>
+                        </length>
+                        <uInt32 name="RegulatoryReportType" id="1934"/>
+                    </sequence>
+                    <string name="ATHEXAPATransactionToBeCleared" id="20022"/>
+                    <string name="ATHEXAPAEmissionAllowance" id="20023" presence="optional">
+                        <default/>
+                    </string>
+                    <string name="ATHEXAPAThirdCountryVenue" id="20026" presence="optional">
+                        <default/>
+                    </string>
+                </group>
+                <!--Component End - APA Fields-->
+            </group>
+            <string name="TransactTime" id="60"/>
+        </sequence>
+        <!--Repeating Group End - MDIncGrp-->
+        <!--Component End - StandardTrailer-->
+        <string name="Checksum" id="10"/>
+        <!--Component End - StandardTrailer-->
+    </template>
+</templates>
