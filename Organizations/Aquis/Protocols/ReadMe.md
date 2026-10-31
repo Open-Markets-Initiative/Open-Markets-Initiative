@@ -4,6 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [AquisEquities](AquisEquities/) | 6 |
+| [AquisStockExchange](AquisStockExchange/) | 8 |
 
 ## Specifications
 

@@ -3,6 +3,6 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [MemxEquities](MemxEquities/) | 6 |
+| [MemxEquities](MemxEquities/) | 7 |
 | [MemxOptions](MemxOptions/) | 2 |
 

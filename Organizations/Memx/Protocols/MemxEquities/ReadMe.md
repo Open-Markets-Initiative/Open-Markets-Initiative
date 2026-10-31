@@ -10,6 +10,7 @@ Members Exchange Memx US cash equities exchange founded by a consortium of broke
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [CommonHeader](CommonHeader.md) | Transport | MEMX-UDP and MEMX-TCP session layer headers |
+| [InstrumentDirectory](InstrumentDirectory.md) | ReferenceData | MEMX equities instrument directory file |
 | [Memo](Memo.md) | OrderEntry | Memx Sbe Order Entry |
 | [MemoirDepth](MemoirDepth.md) | MarketData | Memx Depth Of Book Data |
 | [MemoirLastSale](MemoirLastSale.md) | MarketData | Memx Last Sale Trade Data |

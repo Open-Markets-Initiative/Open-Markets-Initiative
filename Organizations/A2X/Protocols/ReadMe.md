@@ -3,7 +3,7 @@
 
 | Exchange | Protocols |
 | --- | --- |
-| [A2XEquities](A2XEquities/) | 3 |
+| [A2XEquities](A2XEquities/) | 12 |
 
 ## Specifications
 
