@@ -20,6 +20,6 @@ Tcp for persistent authenticated member sessions carrying order submission, modi
 - **Self-trade prevention** - Built-in protection against self-matching
 - **Post-only orders** - Non-aggressing order types with cancel-replace variants
 - **Market at Close** - Support for closing auction order types
-- **Order sweeps** - Grouped order actions for fast risk management
+- **Order sweeps** - Dark-first orders whose residual is swept to the lit order book
 - **Sequence numbered** - Bidirectional sequence numbers for reliable session recovery
 
