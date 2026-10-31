@@ -10,6 +10,8 @@ Machine generated sources should be treated as if you wrote the code yourself.  
 
 All documents and images have been collected from publicly available sources.  If copyright owners would like any materials removed from this directory please let us know.
 
+Our policy is that a specification a venue publishes online, where anyone (or any agent) can retrieve it without a login, is mirrored here, including older versions the venue no longer links, so that data captured under those versions can still be read.  This holds even when the document itself is marked confidential.  A venue that would rather its documents not be mirrored need only ask, and we will remove them.  Documents behind a member login or provided under a licence are not contained in this repository.
+
 ## Generated Source Copyright
 
 Machine generated Omi code has a provable origin, however, we recognize that some 'models' might be considered proprietary technology.  If copyright owners would like any generated sources removed from github please let us know.  We reserve the right to compare our sources to a dated source-controlled sample.
