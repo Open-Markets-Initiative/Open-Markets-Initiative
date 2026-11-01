@@ -11,6 +11,8 @@ B3 Brasil Bolsa Balcao derivatives segment covering equity, index, interest rate
 | --- | --- | --- |
 | [BinaryEntryPoint](BinaryEntryPoint.md) | OrderEntry | B3 Sbe Order Entry |
 | [BinaryUmdf](BinaryUmdf.md) | MarketData | B3 Sbe Multicast Market Data |
+| [Umdf](Umdf.md) | MarketData | B3 Fix/Fast Multicast Market Data |
+| [UmdfNtp](UmdfNtp.md) | MarketData | B3 Fix/Fast Multicast Market Data, legacy per channel templates |
 
 ## Specifications
 

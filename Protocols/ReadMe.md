@@ -48,6 +48,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Cgif](Cgif.md) | MarketData | Cboe | Cboe Global Indices Feed |
 | [Csdp](Csdp.md) | MarketData | Cboe | Cboe Summary Depth feed protocol |
 | [Cta](Cta.md) | MarketData | Siac | Consolidated Tape Association |
+| [Dbn](Dbn.md) | MarketData | Databento | Databento Binary Encoding |
 | [Dfi](Dfi.md) | MarketData | Finra | FINRA Data Feed Interface |
 | [ESesM](ESesM.md) | MarketData | Miax | Extended Session Management |
 | [Exture](Exture.md) | MarketData | Koscom | Koscom MDCS Exture 3.0 ASCII fixed-width UDP multicast market data protocol |
@@ -102,6 +103,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Mdf](Mdf.md) | Protocol | Ice | IceFutures Global Markets Multicast Market Data over iMpact |
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |
+| [Umdf](Umdf.md) | Protocol | B3 | B3 Fix/Fast Multicast Market Data |
 | [Xti](Xti.md) | Protocol | Eurex | Eurex T7 Order Entry |
 | [Prm](Prm.md) | RiskControl | Nasdaq | Pre-Trade Risk Management |
 | [Cbp](Cbp.md) | Trading | Currenex | Currenex Binary Protocol |

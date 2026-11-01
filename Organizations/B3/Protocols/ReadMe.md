@@ -4,7 +4,7 @@
 | Exchange | Protocols |
 | --- | --- |
 | [](/) | 1 |
-| [B3Derivatives](B3Derivatives/) | 2 |
+| [B3Derivatives](B3Derivatives/) | 4 |
 
 ## Specifications
 

@@ -39,6 +39,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Cse](Cse/) | Colombo Stock Exchange | XCOL | [cse.lk](https://www.cse.lk) |
 | [Currenex](Currenex/) | Currenex |  | [currenex.com](https://currenex.com) |
 | [Cyse](Cyse/) | Cyprus Stock Exchange | XCYS | [cse.com.cy](https://www.cse.com.cy) |
+| [Databento](Databento/) | Databento |  | [databento.com](https://databento.com) |
 | [Dce](Dce/) | Dalian Commodity Exchange | XDCE | [dce.com.cn](http://www.dce.com.cn) |
 | [Eex](Eex/) | European Energy Exchange | XEEE | [eex.com](https://www.eex.com) |
 | [ElectronX](ElectronX/) | ElectronX Markets |  | [electronx.com](https://www.electronx.com) |
