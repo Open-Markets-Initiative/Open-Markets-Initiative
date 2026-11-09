@@ -1,4 +1,4 @@
-## Eobi: Enhanced Order Book Interface
+## BseIndia Eobi: Enhanced Order Book Interface
 
 Bse's full depth order by order market data feed, publishing every visible order together with executions, auction events, instrument state, and intraday complex instrument definitions. It is the higher transparency companion to the netted Emdi feed, and is carried as fixed length little endian binary on Ip multicast.
 

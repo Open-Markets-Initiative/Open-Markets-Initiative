@@ -9,6 +9,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Atr](Atr.md) | DropCopy | Tmx | Automated Trade Reporting |
 | [NnfDc](NnfDc.md) | DropCopy | Nse | Non-Neat Front End Drop Copy |
 | [Binary](Binary.md) | Encoding | Cboe | Binary |
+| [BjseBinary](BjseBinary.md) | Encoding | Bjse | Bjse Binary Market Data Feed |
 | [Boe3](Boe3.md) | Encoding | Cboe | Binary Order Entry 3 |
 | [Csm](Csm.md) | Encoding | Cboe | Csm |
 | [Fast](Fast.md) | Encoding | Fix | FIX Adapted for STreaming |

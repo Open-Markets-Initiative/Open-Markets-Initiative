@@ -1,4 +1,4 @@
-## Mdi: Market Data Interface
+## BseIndia Mdi: Market Data Interface
 
 Bse's netted price level market data feed, aggregating order book changes over a netting interval and publishing fewer price levels than Emdi, with only statistics and the last trade of each interval for on-exchange trades. Snapshots and incremental updates share one channel, encoded as Fix 5.0 Sp2 messages in Fast 1.2 on Ip multicast.
 

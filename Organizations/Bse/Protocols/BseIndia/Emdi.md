@@ -1,4 +1,4 @@
-## Emdi: Enhanced Market Data Interface
+## BseIndia Emdi: Enhanced Market Data Interface
 
 Bse's un-netted price level market data feed, disseminating every order book change up to the configured depth and every on-exchange trade without netting. Its incremental feed carries the order book updates, product and instrument state changes, instrument updates, quote and cross requests and index changes, encoded as Fix 5.0 Sp2 messages in Fast 1.2 on Ip multicast.
 

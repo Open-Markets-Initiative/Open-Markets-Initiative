@@ -1,4 +1,4 @@
-## Eti: Enhanced Trading Interface
+## BseIndia Eti: Enhanced Trading Interface
 
 Bse's binary order entry interface, carrying orders, quotes, and the resulting execution and trade notifications over a session oriented Tcp connection. It follows Fix 5.0 SP2 semantics expressed as fixed length little endian layouts selected by Template Id, and is the interactive counterpart to the Eobi and Emdi market data feeds.
 

@@ -1,4 +1,4 @@
-## Emdi Snapshot: Enhanced Market Data Interface Snapshot
+## BseIndia Emdi Snapshot: Enhanced Market Data Interface Snapshot
 
 The snapshot feed of Bse's Enhanced Market Data Interface, carrying time driven depth snapshots of the order book that a recipient uses to recover lost market data or to build up the current book before applying the Emdi incremental feed. Bse publishes its templates in a file of their own, EMDSFastTemplates, encoded as Fix 5.0 Sp2 messages in Fast 1.2 on Ip multicast.
 
