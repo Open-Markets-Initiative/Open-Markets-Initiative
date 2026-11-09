@@ -1,7 +1,7 @@
 ## Taifex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [TaifexDerivatives](TaifexDerivatives/) | 4 |
 

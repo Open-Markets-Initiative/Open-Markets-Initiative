@@ -9,7 +9,6 @@ CME Globex electronic trading platform hosting futures and options across CME Gr
 
 | Protocol | Type | Note |
 | --- | --- | --- |
-| [iLink3](iLink3.md) | OrderEntry | Cme Globex Sbe Order Entry |
 | [Mdp3](Mdp3.md) | MarketData | Cme Globex Sbe Market Data |
 | [SessionMgmt](SessionMgmt.md) | Session | Cme Mdp Session Recovery Service |
 | [Settlements](Settlements.md) | MarketData | Cme End Of Day Settlement Data |

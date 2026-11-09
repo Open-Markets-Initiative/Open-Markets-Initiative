@@ -1,7 +1,7 @@
 ## ElectronX Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [ElectricDerivatives](ElectricDerivatives/) | 2 |
 

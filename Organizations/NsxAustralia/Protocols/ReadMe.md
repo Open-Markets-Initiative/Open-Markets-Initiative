@@ -1,7 +1,7 @@
 ## NsxAustralia Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Nets](Nets/) | 1 |
 

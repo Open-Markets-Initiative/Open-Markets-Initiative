@@ -1,7 +1,7 @@
 ## Lseg Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Idem](Idem/) | 1 |
 | [Lse](Lse/) | 17 |

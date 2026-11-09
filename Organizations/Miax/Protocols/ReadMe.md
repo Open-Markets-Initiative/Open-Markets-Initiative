@@ -1,7 +1,7 @@
 ## Miax Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [EmeraldOptions](EmeraldOptions/) | 6 |
 | [MiaxOptions](MiaxOptions/) | 7 |

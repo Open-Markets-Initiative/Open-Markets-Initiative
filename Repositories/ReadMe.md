@@ -42,6 +42,7 @@ Code-generated artifacts produced from the protocol specifications.
 | [Omi.CSharp.Parsers][Omi.CSharp.Parsers] | C# | Source generated high performance C# parsers for common exchange protocols |
 | [omi-java-protocols][omi-java-protocols] | Java | Garbage-collector friendly Java binary protocol classes |
 | [omi-python-classes][omi-python-classes] | Python | Stable Python deserialization for common exchange protocols |
+| [omi-esoteric-languages][omi-esoteric-languages] | Brainfuck | Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols |
 
 ## Telemetry
 
@@ -99,6 +100,7 @@ Example protocol data captures from production feeds.
 [Omi.CSharp.Parsers]: https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers "Source generated high performance C# parsers for common exchange protocols"
 [omi-java-protocols]: https://github.com/Open-Markets-Initiative/omi-java-protocols "Garbage-collector friendly Java binary protocol classes"
 [omi-python-classes]: https://github.com/Open-Markets-Initiative/omi-python-classes "Stable Python deserialization for common exchange protocols"
+[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
 [Open-Markets-Initiative]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative "General information about The Open Markets Initiative — the catalog you are reading"

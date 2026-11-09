@@ -1,9 +1,9 @@
 ## Databento Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
-| [MarketData](MarketData/) | 1 |
+| [Databento](MarketData/) | 1 |
 
 ## Specifications
 

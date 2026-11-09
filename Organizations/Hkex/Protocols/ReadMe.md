@@ -1,7 +1,7 @@
 ## Hkex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [ChinaConnect](ChinaConnect/) | 2 |
 | [HkexDerivatives](HkexDerivatives/) | 15 |

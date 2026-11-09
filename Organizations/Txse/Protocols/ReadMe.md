@@ -1,7 +1,7 @@
 ## Txse Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [TxseEquities](TxseEquities/) | 4 |
 

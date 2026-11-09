@@ -99,7 +99,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [BinaryUmdf](BinaryUmdf.md) | Protocol | B3 | B3 Sbe Multicast Market Data |
 | [Eobi](Eobi.md) | Protocol | Eurex | Eurex T7 Order Book Market Data |
 | [Eti](Eti.md) | Protocol | Eurex | Eurex T7 Order Entry |
-| [iLink3](iLink3.md) | Protocol | Cme | Cme Globex Sbe Order Entry |
+| [iLink3](iLink3.md) | Protocol | Cme | Cme Sbe Order Entry |
 | [Mdf](Mdf.md) | Protocol | Ice | IceFutures Global Markets Multicast Market Data over iMpact |
 | [Mdp3](Mdp3.md) | Protocol | Cme | Cme Globex Sbe Market Data |
 | [Opra](Opra.md) | Protocol | Siac | Siac Consolidated Options Market Data Feed |

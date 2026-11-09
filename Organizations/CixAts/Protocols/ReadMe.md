@@ -1,7 +1,7 @@
 ## CixAts Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [CixAspen](CixAspen/) | 4 |
 

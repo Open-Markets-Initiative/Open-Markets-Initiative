@@ -1,7 +1,7 @@
 ## Athex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [AthexDerivatives](AthexDerivatives/) | 2 |
 | [AthexSecurities](AthexSecurities/) | 2 |

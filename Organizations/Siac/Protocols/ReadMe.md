@@ -1,7 +1,7 @@
 ## Siac Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Cqs](Cqs/) | 1 |
 | [Cts](Cts/) | 1 |

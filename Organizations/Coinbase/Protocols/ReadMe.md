@@ -1,7 +1,7 @@
 ## Coinbase Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [CoinbaseDerivatives](CoinbaseDerivatives/) | 4 |
 | [Deribit](Deribit/) | 3 |

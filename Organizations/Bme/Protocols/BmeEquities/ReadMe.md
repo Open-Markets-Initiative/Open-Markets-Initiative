@@ -19,3 +19,7 @@ The equities environment of the BME trading system, which the binary interface s
 | [TopOfBook](TopOfBook.md) | MarketData | BME Equities Top Of Book |
 | [TopOfBook5](TopOfBook5.md) | MarketData | BME Equities Top Of Book Five Levels |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

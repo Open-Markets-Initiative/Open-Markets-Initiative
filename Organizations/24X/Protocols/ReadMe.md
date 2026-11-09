@@ -1,7 +1,7 @@
 ## 24X Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [24XEquities](24XEquities/) | 6 |
 

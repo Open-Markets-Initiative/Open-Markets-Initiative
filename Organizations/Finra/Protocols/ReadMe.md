@@ -1,7 +1,7 @@
 ## Finra Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [FinraOrf](FinraOrf/) | 1 |
 | [FinraOtc](FinraOtc/) | 1 |

@@ -1,7 +1,7 @@
 ## Box Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [BoxOptions](BoxOptions/) | 4 |
 

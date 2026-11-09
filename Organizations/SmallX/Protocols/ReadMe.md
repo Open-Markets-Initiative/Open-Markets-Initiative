@@ -1,7 +1,7 @@
 ## SmallX Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [SmallFutures](SmallFutures/) | 3 |
 

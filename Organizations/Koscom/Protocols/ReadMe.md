@@ -1,7 +1,7 @@
 ## Koscom Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [MdcsRealtime](MdcsRealtime/) | 13 |
 

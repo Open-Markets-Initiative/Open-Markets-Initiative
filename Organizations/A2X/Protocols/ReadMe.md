@@ -1,7 +1,7 @@
 ## A2X Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [A2XEquities](A2XEquities/) | 12 |
 

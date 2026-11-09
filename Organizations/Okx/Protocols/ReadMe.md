@@ -1,7 +1,7 @@
 ## Okx Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [OkxDigital](OkxDigital/) | 3 |
 

@@ -1,7 +1,7 @@
 ## Gpw Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [BondSpot](BondSpot/) | 6 |
 | [Wse](Wse/) | 13 |

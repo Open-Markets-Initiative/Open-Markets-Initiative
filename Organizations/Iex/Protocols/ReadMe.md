@@ -1,7 +1,7 @@
 ## Iex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [IexEquities](IexEquities/) | 4 |
 | [IexOptions](IexOptions/) | 4 |

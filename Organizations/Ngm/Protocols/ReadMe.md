@@ -1,7 +1,7 @@
 ## Ngm Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Elasticia](Elasticia/) | 1 |
 

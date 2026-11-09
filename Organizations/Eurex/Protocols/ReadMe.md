@@ -1,7 +1,7 @@
 ## Eurex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [T7](T7/) | 6 |
 

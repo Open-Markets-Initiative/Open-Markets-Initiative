@@ -1,7 +1,7 @@
 ## Moex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Asts](Asts/) | 1 |
 | [Spectra](Spectra/) | 8 |

@@ -1,7 +1,7 @@
 ## Jnx Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [JnxBonds](JnxBonds/) | 4 |
 | [JnxEquities](JnxEquities/) | 4 |

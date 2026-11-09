@@ -1,7 +1,7 @@
 ## Euronext Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Optiq](Optiq/) | 5 |
 

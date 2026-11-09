@@ -1,7 +1,7 @@
 ## Imperative Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [IntelligentCross](IntelligentCross/) | 1 |
 

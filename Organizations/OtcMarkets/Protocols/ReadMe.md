@@ -1,7 +1,7 @@
 ## OtcMarkets Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [LinkAts](LinkAts/) | 3 |
 | [LinkEcn](LinkEcn/) | 1 |

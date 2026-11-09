@@ -1,7 +1,7 @@
 ## Aquis Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [AquisEquities](AquisEquities/) | 6 |
 | [AquisStockExchange](AquisStockExchange/) | 8 |

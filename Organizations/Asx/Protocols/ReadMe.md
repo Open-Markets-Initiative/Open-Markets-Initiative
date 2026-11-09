@@ -1,7 +1,7 @@
 ## Asx Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [AsxDerivatives](AsxDerivatives/) | 6 |
 | [AsxSecurities](AsxSecurities/) | 6 |

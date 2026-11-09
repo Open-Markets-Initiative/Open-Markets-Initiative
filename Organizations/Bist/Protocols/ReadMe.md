@@ -1,7 +1,7 @@
 ## Bist Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [BorsaIstanbul](BorsaIstanbul/) | 3 |
 

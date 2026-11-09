@@ -1,7 +1,7 @@
 ## Jse Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [Itac](Itac/) | 5 |
 

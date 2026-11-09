@@ -1,7 +1,7 @@
 ## Ice Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [IceFutures](IceFutures/) | 2 |
 

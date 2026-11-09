@@ -1,7 +1,7 @@
 ## Ltse Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [LtseEquities](LtseEquities/) | 6 |
 

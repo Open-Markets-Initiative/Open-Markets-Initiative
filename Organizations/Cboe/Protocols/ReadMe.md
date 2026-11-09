@@ -1,9 +1,8 @@
 ## Cboe Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
-| [](/) | 1 |
 | [BidsEurope](BidsEurope/) | 1 |
 | [BidsJapan](BidsJapan/) | 2 |
 | [BxeEquities](BxeEquities/) | 9 |
@@ -28,6 +27,13 @@
 | [MatchNow](MatchNow/) | 2 |
 | [NeoEquities](NeoEquities/) | 2 |
 | [TitaniumConsolidated](TitaniumConsolidated/) | 4 |
+
+### Organization Wide
+
+
+| Protocol | Type | Note |
+| --- | --- | --- |
+| [SequencedUnitHeader](SequencedUnitHeader.md) | Infrastructure | Sequenced Unit Header |
 
 ## Specifications
 

@@ -1,7 +1,7 @@
 ## Tradelogiq Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [LynxAts](LynxAts/) | 5 |
 | [OmegaAts](OmegaAts/) | 5 |

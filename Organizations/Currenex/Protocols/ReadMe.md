@@ -1,7 +1,7 @@
 ## Currenex Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [CurrenexForex](CurrenexForex/) | 3 |
 

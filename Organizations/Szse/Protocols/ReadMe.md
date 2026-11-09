@@ -1,7 +1,7 @@
 ## Szse Protocols
 
 
-| Exchange | Protocols |
+| Division | Protocols |
 | --- | --- |
 | [SzseSecurities](SzseSecurities/) | 2 |
 
