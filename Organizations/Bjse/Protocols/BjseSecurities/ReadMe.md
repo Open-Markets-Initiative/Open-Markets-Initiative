@@ -10,6 +10,7 @@ Beijing Stock Exchange's trading platforms, covering stocks, convertible bonds a
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [MulticastMarketData](MulticastMarketData.md) | MarketData | Bjse Multicast Market Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Bjse Order Entry |
 | [TcpMarketData](TcpMarketData.md) | MarketData | Bjse Tcp Market Data |
 
 ## Specifications

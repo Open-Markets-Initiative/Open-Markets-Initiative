@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [BjseSecurities](BjseSecurities/) | 2 |
+| [BjseSecurities](BjseSecurities/) | 3 |
 
 ## Specifications
 

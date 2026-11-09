@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [NeeqSecurities](NeeqSecurities/) | 2 |
+| [NeeqSecurities](NeeqSecurities/) | 3 |
 
 ## Specifications
 

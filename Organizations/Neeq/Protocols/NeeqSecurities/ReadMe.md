@@ -10,6 +10,7 @@ National Equities Exchange and Quotations trading system for shares of unlisted 
 | Protocol | Type | Note |
 | --- | --- | --- |
 | [MulticastMarketData](MulticastMarketData.md) | MarketData | Neeq Multicast Market Data |
+| [OrderEntry](OrderEntry.md) | OrderEntry | Neeq Order Entry |
 | [TcpMarketData](TcpMarketData.md) | MarketData | Neeq Tcp Market Data |
 
 ## Specifications
