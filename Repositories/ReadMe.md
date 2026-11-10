@@ -26,23 +26,44 @@ Domain specific language definitions
 
 Code-generated artifacts produced from the protocol specifications.
 
-| Repository | Language | Description |
-| --- | --- | --- |
-| [omi-csharp-protocols][omi-csharp-protocols] | C# | Source generated C# protocol parsers, fixed-layout structs and immutable classes |
-| [omi-rust-protocols][omi-rust-protocols] | Rust | Zero-copy Rust message views, one crate per protocol version |
-| [omi-cpp-protocols][omi-cpp-protocols] |  | Source generated C++ protocol parsers and utilities |
-| [omi-cpp-formats][omi-cpp-formats] |  | Source generated C++ that translates packet captures into formats like JSON and Parquet |
-| [cpp-packets][cpp-packets] | C++ | High performance inline modern C++ packet parsing |
-| [cpp-parsers][cpp-parsers] | C++ | Source generated C++ exchange parsers |
-| [omi-cpp-exchanges][omi-cpp-exchanges] | C++ | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
-| [omi-cpp-protocol-statistics][omi-cpp-protocol-statistics] | C++ | Code generated executables that gather statistics and gap detection on common exchange protocols |
-| [omi-cpp-parquet-wide][omi-cpp-parquet-wide] | C++ | Code generated Apache Parquet protocol transforms for common exchange protocols |
-| [CSharp.Sequential.Layout][CSharp.Sequential.Layout] | C# | Source generated castable C# binary protocol packed structs |
-| [CSharp.Hft.Structs][CSharp.Hft.Structs] | C# | High performance C# binary protocol ref structs |
-| [Omi.CSharp.Parsers][Omi.CSharp.Parsers] | C# | Source generated high performance C# parsers for common exchange protocols |
-| [omi-java-protocols][omi-java-protocols] | Java | Garbage-collector friendly Java binary protocol classes |
-| [omi-python-classes][omi-python-classes] | Python | Stable Python deserialization for common exchange protocols |
-| [omi-esoteric-languages][omi-esoteric-languages] | Brainfuck | Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols |
+### C#
+
+| Repository | Description |
+| --- | --- |
+| [omi-csharp-protocols][omi-csharp-protocols] | Source generated C# protocol parsers, fixed-layout structs and immutable classes |
+| [CSharp.Sequential.Layout][CSharp.Sequential.Layout] | Source generated castable C# binary protocol packed structs |
+| [CSharp.Hft.Structs][CSharp.Hft.Structs] | High performance C# binary protocol ref structs |
+| [Omi.CSharp.Parsers][Omi.CSharp.Parsers] | Source generated high performance C# parsers for common exchange protocols |
+
+### Rust
+
+| Repository | Description |
+| --- | --- |
+| [omi-rust-protocols][omi-rust-protocols] | Zero-copy Rust message views, one crate per protocol version |
+
+### C++
+
+| Repository | Description |
+| --- | --- |
+| [omi-cpp-protocols][omi-cpp-protocols] | Source generated C++ protocol parsers and utilities |
+| [omi-cpp-formats][omi-cpp-formats] | Source generated C++ that translates packet captures into formats like JSON and Parquet |
+| [cpp-packets][cpp-packets] | High performance inline modern C++ packet parsing |
+| [cpp-parsers][cpp-parsers] | Source generated C++ exchange parsers |
+| [omi-cpp-exchanges][omi-cpp-exchanges] | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
+| [omi-cpp-protocol-statistics][omi-cpp-protocol-statistics] | Code generated executables that gather statistics and gap detection on common exchange protocols |
+| [omi-cpp-parquet-wide][omi-cpp-parquet-wide] | Code generated Apache Parquet protocol transforms for common exchange protocols |
+
+### Java
+
+| Repository | Description |
+| --- | --- |
+| [omi-java-protocols][omi-java-protocols] | Garbage-collector friendly Java binary protocol classes |
+
+### Python
+
+| Repository | Description |
+| --- | --- |
+| [omi-python-classes][omi-python-classes] | Stable Python deserialization for common exchange protocols |
 
 ## Telemetry
 
@@ -72,6 +93,14 @@ Example protocol data captures from production feeds.
 | [omi-data-packets][omi-data-packets] | Example protocol data captures |
 | [omi-data-pcaps][omi-data-pcaps] | Exchange pcaps for automated testing |
 
+## Esoteric Languages
+
+Exchange protocols generated into esoteric programming languages.
+
+| Repository | Language | Description |
+| --- | --- | --- |
+| [omi-esoteric-languages][omi-esoteric-languages] | Brainfuck | Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols |
+
 ---
 
 *Full org listing: [github.com/Open-Markets-Initiative](https://github.com/Open-Markets-Initiative)*
@@ -100,7 +129,6 @@ Example protocol data captures from production feeds.
 [Omi.CSharp.Parsers]: https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers "Source generated high performance C# parsers for common exchange protocols"
 [omi-java-protocols]: https://github.com/Open-Markets-Initiative/omi-java-protocols "Garbage-collector friendly Java binary protocol classes"
 [omi-python-classes]: https://github.com/Open-Markets-Initiative/omi-python-classes "Stable Python deserialization for common exchange protocols"
-[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
 [Open-Markets-Initiative]: https://github.com/Open-Markets-Initiative/Open-Markets-Initiative "General information about The Open Markets Initiative — the catalog you are reading"
@@ -108,3 +136,4 @@ Example protocol data captures from production feeds.
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
+[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"
