@@ -7,7 +7,7 @@
 
 # The Open Markets Initiative
 
-[![Organizations](https://img.shields.io/badge/Organizations-117-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-440-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
+[![Organizations](https://img.shields.io/badge/Organizations-117-blue)](Organizations/) [![Protocols](https://img.shields.io/badge/Protocols-441-green)](Protocols/) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](About/License)
 
 [The Open Markets Initiative](About/) (Omi) is a market-neutral effort to enhance the stability of electronic financial markets through transparency, modern tooling, and open documentation of the wire protocols that connect them.
 
@@ -57,9 +57,10 @@ The Directory is the human-readable catalog. The machine-readable specifications
 - [omi-lean4-definitions][omi-lean4-definitions] — Lean 4 definitions of common exchange binary protocols, with proofs
 - [omi-rocq-definitions][omi-rocq-definitions] — Rocq Prover definitions of common exchange binary protocols, with proofs
 - [omi-tlaplus-definitions][omi-tlaplus-definitions] — TLA+ definitions of common exchange binary protocols, model checked with TLC
+- [omi-promela-definitions][omi-promela-definitions] — Promela definitions of common exchange binary protocols, model checked with Spin
 - [omi-xml-specifications][omi-xml-specifications] — XML specifications for common exchange protocols
 
-**Source Generated Outputs**
+**Source Generated Languages**
 
 - C#
   - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
@@ -67,7 +68,10 @@ The Directory is the human-readable catalog. The machine-readable specifications
   - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
 - C++
   - [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
-  - [omi-cpp-formats][omi-cpp-formats] — Source generated C++ that translates packet captures into formats like JSON and Parquet
+  - [omi-cpp-formats][omi-cpp-formats] — Source generated C++ translations for formats like JSON and Parquet
+  - [omi-cpp-databases][omi-cpp-databases] — Source generated C++ programs that load packet captures into databases
+- Java
+  - [omi-java-protocols][omi-java-protocols] — Garbage-collector friendly Java binary protocol classes
 
 **Telemetry**
 
@@ -83,6 +87,10 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 - [omi-data-packets][omi-data-packets] — Example protocol data captures
 - [omi-data-pcaps][omi-data-pcaps] — Exchange pcaps for automated testing
+
+**Esoteric Languages**
+
+- [omi-esoteric-languages][omi-esoteric-languages] — Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols
 
 A complete list lives in [Repositories](Repositories).
 
@@ -102,14 +110,18 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-lean4-definitions]: https://github.com/Open-Markets-Initiative/omi-lean4-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
 [omi-rocq-definitions]: https://github.com/Open-Markets-Initiative/omi-rocq-definitions "Rocq Prover definitions of common exchange binary protocols, with proofs"
 [omi-tlaplus-definitions]: https://github.com/Open-Markets-Initiative/omi-tlaplus-definitions "TLA+ definitions of common exchange binary protocols, model checked with TLC"
+[omi-promela-definitions]: https://github.com/Open-Markets-Initiative/omi-promela-definitions "Promela definitions of common exchange binary protocols, model checked with Spin"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "XML specifications for common exchange protocols"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
-[omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ that translates packet captures into formats like JSON and Parquet"
+[omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ translations for formats like JSON and Parquet"
+[omi-cpp-databases]: https://github.com/Open-Markets-Initiative/omi-cpp-databases "Source generated C++ programs that load packet captures into databases"
+[omi-java-protocols]: https://github.com/Open-Markets-Initiative/omi-java-protocols "Garbage-collector friendly Java binary protocol classes"
 [omi-wireshark-lua]: https://github.com/Open-Markets-Initiative/omi-wireshark-lua "Source generated cross platform Wireshark dissectors"
 [omi-wireshark-c]: https://github.com/Open-Markets-Initiative/omi-wireshark-c "Source generated Wireshark dissectors in C, built in to Wireshark"
 [omi-low-latency-reference]: https://github.com/Open-Markets-Initiative/omi-low-latency-reference "Knowledge base for low latency programming"
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
+[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"

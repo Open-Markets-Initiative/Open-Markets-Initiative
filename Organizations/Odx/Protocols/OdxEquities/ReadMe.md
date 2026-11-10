@@ -12,6 +12,7 @@ Osaka Digital Exchange equities proprietary trading system offering electronic t
 | [DropCopy](DropCopy.md) | DropCopy | Odx Pts FIX Drop Copy Specification for Equities |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Odx Pts FIX Trading Specification for Equities |
 | [Pts](Pts.md) | MarketData | Odx Equities Itch Market Data |
+| [TcpPts](TcpPts.md) | MarketData | Odx Equities Itch Market Data over SoupBinTcp |
 
 ## Specifications
 

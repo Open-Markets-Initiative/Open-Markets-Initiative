@@ -20,9 +20,10 @@ Domain specific language definitions
 | [omi-lean4-definitions][omi-lean4-definitions] | Lean | Lean 4 definitions of common exchange binary protocols, with proofs |
 | [omi-rocq-definitions][omi-rocq-definitions] | Rocq | Rocq Prover definitions of common exchange binary protocols, with proofs |
 | [omi-tlaplus-definitions][omi-tlaplus-definitions] | TLA+ | TLA+ definitions of common exchange binary protocols, model checked with TLC |
+| [omi-promela-definitions][omi-promela-definitions] | Promela | Promela definitions of common exchange binary protocols, model checked with Spin |
 | [omi-xml-specifications][omi-xml-specifications] | Xml | XML specifications for common exchange protocols |
 
-## Source Generated Outputs
+## Source Generated Languages
 
 Code-generated artifacts produced from the protocol specifications.
 
@@ -46,7 +47,8 @@ Code-generated artifacts produced from the protocol specifications.
 | Repository | Description |
 | --- | --- |
 | [omi-cpp-protocols][omi-cpp-protocols] | Source generated C++ protocol parsers and utilities |
-| [omi-cpp-formats][omi-cpp-formats] | Source generated C++ that translates packet captures into formats like JSON and Parquet |
+| [omi-cpp-formats][omi-cpp-formats] | Source generated C++ translations for formats like JSON and Parquet |
+| [omi-cpp-databases][omi-cpp-databases] | Source generated C++ programs that load packet captures into databases |
 | [cpp-packets][cpp-packets] | High performance inline modern C++ packet parsing |
 | [cpp-parsers][cpp-parsers] | Source generated C++ exchange parsers |
 | [omi-cpp-exchanges][omi-cpp-exchanges] | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
@@ -114,11 +116,13 @@ Exchange protocols generated into esoteric programming languages.
 [omi-lean4-definitions]: https://github.com/Open-Markets-Initiative/omi-lean4-definitions "Lean 4 definitions of common exchange binary protocols, with proofs"
 [omi-rocq-definitions]: https://github.com/Open-Markets-Initiative/omi-rocq-definitions "Rocq Prover definitions of common exchange binary protocols, with proofs"
 [omi-tlaplus-definitions]: https://github.com/Open-Markets-Initiative/omi-tlaplus-definitions "TLA+ definitions of common exchange binary protocols, model checked with TLC"
+[omi-promela-definitions]: https://github.com/Open-Markets-Initiative/omi-promela-definitions "Promela definitions of common exchange binary protocols, model checked with Spin"
 [omi-xml-specifications]: https://github.com/Open-Markets-Initiative/omi-xml-specifications "XML specifications for common exchange protocols"
 [omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
 [omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
-[omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ that translates packet captures into formats like JSON and Parquet"
+[omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ translations for formats like JSON and Parquet"
+[omi-cpp-databases]: https://github.com/Open-Markets-Initiative/omi-cpp-databases "Source generated C++ programs that load packet captures into databases"
 [cpp-packets]: https://github.com/Open-Markets-Initiative/cpp-packets "High performance inline modern C++ packet parsing"
 [cpp-parsers]: https://github.com/Open-Markets-Initiative/cpp-parsers "Source generated C++ exchange parsers"
 [omi-cpp-exchanges]: https://github.com/Open-Markets-Initiative/omi-cpp-exchanges "Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers"

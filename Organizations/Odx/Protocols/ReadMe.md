@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [OdxEquities](OdxEquities/) | 3 |
+| [OdxEquities](OdxEquities/) | 4 |
 | [OdxSecurityToken](OdxSecurityToken/) | 2 |
 
 ## Specifications
