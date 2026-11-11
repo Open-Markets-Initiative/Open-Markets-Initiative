@@ -3,7 +3,6 @@
 
 | Division | Protocols |
 | --- | --- |
-| [BxEquities](BxEquities/) | 6 |
 | [FundNetwork](FundNetwork/) | 1 |
 | [GemxOptions](GemxOptions/) | 9 |
 | [Index](Index/) | 1 |
