@@ -16,6 +16,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Fbe](Fbe.md) | Encoding | Eurex | Flat Binary Encoding |
 | [Flex](Flex.md) | Encoding | Jpx | Japan Exchange Group arrowhead tag-stream binary encoding |
 | [iMpact](iMpact.md) | Encoding | Ice | Ice iMpact compact fixed-width binary message encoding used by the Mdf market data feed |
+| [Intra](Intra.md) | Encoding | Bmv | INTRA Multicast |
 | [LmeSource](LmeSource.md) | Encoding | Lme | LMEsource |
 | [Mdt](Mdt.md) | Encoding | Taifex | Taifex Market Data Transmission |
 | [Obi](Obi.md) | Encoding | Siac | Opra Binary Interface |

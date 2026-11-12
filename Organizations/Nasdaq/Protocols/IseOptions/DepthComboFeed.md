@@ -4,7 +4,7 @@ Aggregated depth of book combo feed publishing multi-leg strategy order book eve
 
 ### Overview
 
-Aggregated depth of book combo feed publishing multi-leg strategy order book events for options published for options traded on the Nasdaq Ise Options Exchange
+Aggregated depth of book combo feed publishing multi-leg strategy order book events for options traded on the Nasdaq Ise Options Exchange
 
 ### Transport
 
