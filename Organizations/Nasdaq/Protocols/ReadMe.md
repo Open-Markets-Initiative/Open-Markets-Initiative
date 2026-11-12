@@ -17,7 +17,7 @@
 | [NordicMarkets](NordicMarkets/) | 1 |
 | [NsmEquities](NsmEquities/) | 24 |
 | [NtxEquities](NtxEquities/) | 12 |
-| [NtxOptions](NtxOptions/) | 7 |
+| [NtxOptions](NtxOptions/) | 8 |
 | [PhlxOptions](PhlxOptions/) | 13 |
 | [PsxEquities](PsxEquities/) | 12 |
 

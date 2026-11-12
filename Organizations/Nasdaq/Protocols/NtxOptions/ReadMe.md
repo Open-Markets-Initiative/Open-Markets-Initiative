@@ -13,6 +13,7 @@ Nasdaq Texas US options exchange — successor to the Nasdaq Boston (BX) Options
 | [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Ntx Options Depth Of Book Data |
 | [DropCopy](DropCopy.md) | DropCopy | Nasdaq Texas Options Fix drop |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Texas Options Fix order entry |
+| [Otto](Otto.md) | OrderEntry | Nasdaq BX Ouch to Trade Options (OTTO) |
 | [Quoting](Quoting.md) | OrderEntry | Nasdaq Texas Options (NTX) Specialized Quote Interface (SQF) |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Ntx Options Best Bid And Offer Data |
 | [TradeFeed](TradeFeed.md) | MarketData | Nasdaq Ntx Options Trade Report Data |
