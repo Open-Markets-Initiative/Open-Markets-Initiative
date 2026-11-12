@@ -49,14 +49,14 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 **Source Generated Languages**
 
-- C#
-  - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
-- Rust
-  - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
 - C++
   - [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
   - [omi-cpp-formats][omi-cpp-formats] — Source generated C++ translations for formats like JSON and Parquet
   - [omi-cpp-databases][omi-cpp-databases] — Source generated C++ programs that load packet captures into databases
+- C#
+  - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
+- Rust
+  - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
 - Java
   - [omi-java-protocols][omi-java-protocols] — Garbage-collector friendly Java binary protocol classes
 
@@ -90,7 +90,7 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 **Esoteric Languages**
 
-- [omi-esoteric-languages][omi-esoteric-languages] — Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols
+- [omi-esoteric-languages][omi-esoteric-languages] — Source generated exchanges in esoteric languages like Brainfuck and Emojicode
 
 A complete list lives in [Repositories](Repositories).
 
@@ -102,11 +102,11 @@ Documentation is collected from publicly available sources — corrections and a
 *Specifications belong to their respective owners; this directory aggregates pointers and historical context only.*
 
 
-[omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
-[omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
 [omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ translations for formats like JSON and Parquet"
 [omi-cpp-databases]: https://github.com/Open-Markets-Initiative/omi-cpp-databases "Source generated C++ programs that load packet captures into databases"
+[omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
+[omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-java-protocols]: https://github.com/Open-Markets-Initiative/omi-java-protocols "Garbage-collector friendly Java binary protocol classes"
 [omi-kaitai-struct-definitions]: https://github.com/Open-Markets-Initiative/omi-kaitai-struct-definitions "Kaitai Struct definitions for common exchange binary protocols"
 [omi-dfdl-definitions]: https://github.com/Open-Markets-Initiative/omi-dfdl-definitions "Data Format Description Language schemas for common exchange protocols"
@@ -124,4 +124,4 @@ Documentation is collected from publicly available sources — corrections and a
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
-[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"
+[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated exchanges in esoteric languages like Brainfuck and Emojicode"

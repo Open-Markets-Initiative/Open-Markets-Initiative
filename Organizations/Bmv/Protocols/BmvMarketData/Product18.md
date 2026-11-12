@@ -1,6 +1,6 @@
 ## BmvMarketData Product18: Bmv Market Data Product 18
 
-Product 18: 20 Price levels of the Local and Global market, Indices components, level of Indices and levels of INAV’s. Messages: 1 2 3 4 5 E G H M O P S V U Y Z.
+Product 18: 20 Price levels of the Local and Global market. Messages: 1 2 3 4 5 E G H M O P S V U Y Z.
 
 ### Transport
 

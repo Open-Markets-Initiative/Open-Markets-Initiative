@@ -10,6 +10,19 @@ Index of repositories under the [Open Markets Initiative](https://github.com/Ope
 
 Code-generated artifacts produced from the protocol specifications.
 
+### C++
+
+| Repository | Description |
+| --- | --- |
+| [omi-cpp-protocols][omi-cpp-protocols] | Source generated C++ protocol parsers and utilities |
+| [omi-cpp-formats][omi-cpp-formats] | Source generated C++ translations for formats like JSON and Parquet |
+| [omi-cpp-databases][omi-cpp-databases] | Source generated C++ programs that load packet captures into databases |
+| [cpp-packets][cpp-packets] | High performance inline modern C++ packet parsing |
+| [cpp-parsers][cpp-parsers] | Source generated C++ exchange parsers |
+| [omi-cpp-exchanges][omi-cpp-exchanges] | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
+| [omi-cpp-protocol-statistics][omi-cpp-protocol-statistics] | Code generated executables that gather statistics and gap detection on common exchange protocols |
+| [omi-cpp-parquet-wide][omi-cpp-parquet-wide] | Code generated Apache Parquet protocol transforms for common exchange protocols |
+
 ### C#
 
 | Repository | Description |
@@ -24,19 +37,6 @@ Code-generated artifacts produced from the protocol specifications.
 | Repository | Description |
 | --- | --- |
 | [omi-rust-protocols][omi-rust-protocols] | Zero-copy Rust message views, one crate per protocol version |
-
-### C++
-
-| Repository | Description |
-| --- | --- |
-| [omi-cpp-protocols][omi-cpp-protocols] | Source generated C++ protocol parsers and utilities |
-| [omi-cpp-formats][omi-cpp-formats] | Source generated C++ translations for formats like JSON and Parquet |
-| [omi-cpp-databases][omi-cpp-databases] | Source generated C++ programs that load packet captures into databases |
-| [cpp-packets][cpp-packets] | High performance inline modern C++ packet parsing |
-| [cpp-parsers][cpp-parsers] | Source generated C++ exchange parsers |
-| [omi-cpp-exchanges][omi-cpp-exchanges] | Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers |
-| [omi-cpp-protocol-statistics][omi-cpp-protocol-statistics] | Code generated executables that gather statistics and gap detection on common exchange protocols |
-| [omi-cpp-parquet-wide][omi-cpp-parquet-wide] | Code generated Apache Parquet protocol transforms for common exchange protocols |
 
 ### Java
 
@@ -101,15 +101,13 @@ Exchange protocols generated into esoteric programming languages.
 
 | Repository | Language | Description |
 | --- | --- | --- |
-| [omi-esoteric-languages][omi-esoteric-languages] | Brainfuck | Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols |
+| [omi-esoteric-languages][omi-esoteric-languages] | Brainfuck | Source generated exchanges in esoteric languages like Brainfuck and Emojicode |
 
 ---
 
 *Full org listing: [github.com/Open-Markets-Initiative](https://github.com/Open-Markets-Initiative)*
 
 
-[omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
-[omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [omi-cpp-protocols]: https://github.com/Open-Markets-Initiative/omi-cpp-protocols "Source generated C++ protocol parsers and utilities"
 [omi-cpp-formats]: https://github.com/Open-Markets-Initiative/omi-cpp-formats "Source generated C++ translations for formats like JSON and Parquet"
 [omi-cpp-databases]: https://github.com/Open-Markets-Initiative/omi-cpp-databases "Source generated C++ programs that load packet captures into databases"
@@ -118,6 +116,8 @@ Exchange protocols generated into esoteric programming languages.
 [omi-cpp-exchanges]: https://github.com/Open-Markets-Initiative/omi-cpp-exchanges "Source generated C++ exchange simulators: order entry gateway, matching engine, feed publishers and snapshot servers"
 [omi-cpp-protocol-statistics]: https://github.com/Open-Markets-Initiative/omi-cpp-protocol-statistics "Code generated executables that gather statistics and gap detection on common exchange protocols"
 [omi-cpp-parquet-wide]: https://github.com/Open-Markets-Initiative/omi-cpp-parquet-wide "Code generated Apache Parquet protocol transforms for common exchange protocols"
+[omi-csharp-protocols]: https://github.com/Open-Markets-Initiative/omi-csharp-protocols "Source generated C# protocol parsers, fixed-layout structs and immutable classes"
+[omi-rust-protocols]: https://github.com/Open-Markets-Initiative/omi-rust-protocols "Zero-copy Rust message views, one crate per protocol version"
 [CSharp.Sequential.Layout]: https://github.com/Open-Markets-Initiative/CSharp.Sequential.Layout "Source generated castable C# binary protocol packed structs"
 [CSharp.Hft.Structs]: https://github.com/Open-Markets-Initiative/CSharp.Hft.Structs "High performance C# binary protocol ref structs"
 [Omi.CSharp.Parsers]: https://github.com/Open-Markets-Initiative/Omi.CSharp.Parsers "Source generated high performance C# parsers for common exchange protocols"
@@ -140,4 +140,4 @@ Exchange protocols generated into esoteric programming languages.
 [omi-markets-reference]: https://github.com/Open-Markets-Initiative/omi-markets-reference "Knowledge base for market data collection and analysis"
 [omi-data-packets]: https://github.com/Open-Markets-Initiative/omi-data-packets "Example protocol data captures"
 [omi-data-pcaps]: https://github.com/Open-Markets-Initiative/omi-data-pcaps "Exchange pcaps for automated testing"
-[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated Brainfuck decoders, session handshakes and matching engines for common exchange protocols"
+[omi-esoteric-languages]: https://github.com/Open-Markets-Initiative/omi-esoteric-languages "Source generated exchanges in esoteric languages like Brainfuck and Emojicode"

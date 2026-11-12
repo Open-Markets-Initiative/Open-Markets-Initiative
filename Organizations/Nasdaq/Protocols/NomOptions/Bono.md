@@ -1,20 +1,20 @@
-## NomOptions Bono: Nasdaq Options Binary Order Entry
+## NomOptions Bono: Nasdaq Options Top Of Book Data, which the venue calls Bono
 
-Binary order entry protocol for submitting, modifying, and cancelling options orders on the Nasdaq Options Market.
+Top of book market data feed publishing best bid and offer quotations with aggregated size, last sale data and administrative messages for options traded on the Nasdaq Options Market.
 
 ### Overview
 
-Bono is the binary order entry protocol for the Nasdaq Options Market (Nom), providing members with a low-latency session-based interface to submit, modify, and cancel options orders. The wire format uses compact fixed-width binary messages framed by SoupBinTcp for session authentication and recovery.
+Bono, Best Of Nasdaq Options, is the top of book market data feed for the Nasdaq Options Market (Nom). The options system calculates and disseminates its best bid and offer with aggregated size from displayable order and quote interest, sending a quote two sided where both sides change and one sided where only one does, and reports last sale data with broken trades where a trade is broken on the day it is reported. Administrative messages carry timestamps, the options directory, security open and trading action. Its own specification states that it matches the Nasdaq Texas Options Top Of Market and Nasdaq Phlx Topo specifications, so this is Nom's equivalent of the Top Of Market feed the sibling venues declare under that name.
 
 ### Transport
 
-Tcp via SoupBinTcp for persistent authenticated sessions carrying Nasdaq Options binary order entry messages with sequence recovery.
+Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binary market data messages with per-packet sequence numbers. Tcp via SoupBinTcp to the Glimpse snapshot and retransmission services for recovery of missed multicast messages and mid-day initialisation.
 
 ### Key Characteristics
 
-- **Nasdaq Options** - Nom options order entry
-- **SoupBinTcp framed** - Session authentication and sequence recovery
-- **Binary encoded** - Fixed-width low latency messages
-- **Full order lifecycle** - New, modify, cancel, and execution report messages
-- **Session based** - Persistent authenticated Tcp session per member
+- **Top of book** - Best bid and offer with aggregated size for Nasdaq Options
+- **Nasdaq Itch** - Industry-standard Itch binary format
+- **MoldUdp64 multicast** - Nasdaq multicast framing
+- **Glimpse snapshot** - SoupBinTcp mid-day initialisation
+- **Last sale data** - Trade reports and same day broken trades
 

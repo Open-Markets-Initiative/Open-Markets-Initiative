@@ -1,10 +1,10 @@
-## NomOptions Itto: Nasdaq Options Top Order Market Data
+## NomOptions Itto: Nasdaq Itch to Trade Options, the Nom order and quote depth feed
 
-Top of book Itch-based market data feed publishing best bid and offer quotations and trade reports for options traded on the Nasdaq Options Market.
+Full order and quote depth Itch feed for options traded on the Nasdaq Options Market, tracking the life of every order and quote and reporting trades, auction transactions and the opening net order imbalance.
 
 ### Overview
 
-Itto is the top of book market data feed for the Nasdaq Options Market (Nom), publishing best bid and offer updates plus trade reports for every listed option using the Nasdaq Itch binary protocol. The feed is delivered over MoldUdp64 multicast with a SoupBinTcp glimpse snapshot and retransmission service for recovery.
+Itto is the depth of book market data feed for the Nasdaq Options Market (Nom). Its own specification calls it a direct data feed carrying full order and quote depth: a series of add, replace, cancel, delete and execute messages track the life of each order and quote, trade messages cover the matches and auction transactions the order messages do not already state, and Net Order Imbalance Indicator messages give the indicative clearing price before the opening auction. It is an outbound feed only and does not support order or quote entry. Delivery is over MoldUdp64 multicast with a SoupBinTcp Glimpse snapshot and retransmission service for recovery.
 
 ### Transport
 
@@ -12,9 +12,9 @@ Udp multicast via MoldUdp64 for real-time delivery of sequenced Itch-style binar
 
 ### Key Characteristics
 
-- **Top of book** - Best bid and offer for Nasdaq Options
+- **Order and quote depth** - Full depth of book, a message per order and quote event
 - **Nasdaq Itch** - Industry-standard Itch binary format
 - **MoldUdp64 multicast** - Nasdaq multicast framing
 - **Glimpse snapshot** - SoupBinTcp mid-day initialisation
-- **Options market data** - Coverage of all listed Nom options
+- **Net order imbalance** - Indicative clearing price before the opening auction
 
