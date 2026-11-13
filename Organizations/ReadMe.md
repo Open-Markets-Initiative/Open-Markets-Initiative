@@ -95,8 +95,7 @@ Repository of definitions and protocol specifications of the organizations cover
 | [OneTrading](OneTrading/) | One Trading | ONEX | [onetrading.com](https://onetrading.com) |
 | [Osl](Osl/) | OSL Digital Securities Exchange | OSDS | [osl.com](https://www.osl.com) |
 | [OtcMarkets](OtcMarkets/) | OTC Markets Group | OTCM | [otcmarkets.com](https://www.otcmarkets.com) |
-| [Pse](Pse/) | Prague Stock Exchange | XPRA | [pse.cz](https://www.pse.cz) |
-| [PsePhilippines](PsePhilippines/) | Philippine Stock Exchange | XPHS | [pse.com.ph](https://www.pse.com.ph) |
+| [Pse](Pse/) | Philippine Stock Exchange | XPHS | [pse.com.ph](https://www.pse.com.ph) |
 | [Qse](Qse/) | Qatar Stock Exchange | DSMD | [qe.com.qa](https://www.qe.com.qa) |
 | [Revolut](Revolut/) | Revolut | REVX | [revolut.com](https://www.revolut.com) |
 | [RuleMatch](RuleMatch/) | RuleMatch | RULE | [rulematch.com](https://www.rulematch.com) |
