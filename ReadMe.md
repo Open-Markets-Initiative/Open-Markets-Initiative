@@ -49,16 +49,23 @@ The Directory is the human-readable catalog. The machine-readable specifications
 
 **Source Generated Languages**
 
-- C++
-  - [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
-  - [omi-cpp-formats][omi-cpp-formats] — Source generated C++ translations for formats like JSON and Parquet
-  - [omi-cpp-databases][omi-cpp-databases] — Source generated C++ programs that load packet captures into databases
-- C#
-  - [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
-- Rust
-  - [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
-- Java
-  - [omi-java-protocols][omi-java-protocols] — Garbage-collector friendly Java binary protocol classes
+*C++*
+
+- [omi-cpp-protocols][omi-cpp-protocols] — Source generated C++ protocol parsers and utilities
+- [omi-cpp-formats][omi-cpp-formats] — Source generated C++ translations for formats like JSON and Parquet
+- [omi-cpp-databases][omi-cpp-databases] — Source generated C++ programs that load packet captures into databases
+
+*C#*
+
+- [omi-csharp-protocols][omi-csharp-protocols] — Source generated C# protocol parsers, fixed-layout structs and immutable classes
+
+*Rust*
+
+- [omi-rust-protocols][omi-rust-protocols] — Zero-copy Rust message views, one crate per protocol version
+
+*Java*
+
+- [omi-java-protocols][omi-java-protocols] — Garbage-collector friendly Java binary protocol classes
 
 **Generated Definitions**
 
