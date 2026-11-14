@@ -21,6 +21,7 @@ Cboe Options Exchange C1 the flagship US options exchange with hybrid floor and 
 | [CsmiIndex](CsmiIndex.md) | MarketData | Cboe Streaming Index Value Data |
 | [DropCopy](DropCopy.md) | DropCopy | Cboe C1 Options Fix drop copy |
 | [Flex](Flex.md) | OrderEntry | Cboe Options Flex Order Entry |
+| [Index](Index.md) | MarketData | Cboe Streaming Market Index (CSMI) |
 | [MarketDataFeed](MarketDataFeed.md) | MarketData | Cboe Options Market Data Feed |
 | [MarketLevel2](MarketLevel2.md) | MarketData | Cboe Options Level Two Market Data |
 | [MsciIndex](MsciIndex.md) | MarketData | Cboe Msci Index Value Data |
