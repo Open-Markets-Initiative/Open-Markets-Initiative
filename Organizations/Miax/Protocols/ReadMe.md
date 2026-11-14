@@ -3,12 +3,12 @@
 
 | Division | Protocols |
 | --- | --- |
-| [EmeraldOptions](EmeraldOptions/) | 6 |
-| [MiaxOptions](MiaxOptions/) | 7 |
+| [EmeraldOptions](EmeraldOptions/) | 8 |
+| [MiaxOptions](MiaxOptions/) | 9 |
 | [OnyxFutures](OnyxFutures/) | 5 |
 | [PearlEquities](PearlEquities/) | 5 |
-| [PearlOptions](PearlOptions/) | 4 |
-| [SapphireOptions](SapphireOptions/) | 5 |
+| [PearlOptions](PearlOptions/) | 6 |
+| [SapphireOptions](SapphireOptions/) | 7 |
 
 ## Specifications
 

@@ -9,8 +9,10 @@ MIAX Sapphire is a US options exchange in the MIAX Exchange Group operating a pr
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [ClearingTradeDrop](ClearingTradeDrop.md) | DropCopy | MIAX Sapphire Clearing Trade Drop (CTD) |
 | [ComplexTopOfMarket](ComplexTopOfMarket.md) | MarketData | Miax Sapphire Options Complex Best Bid And Offer Feed |
 | [DropCopy](DropCopy.md) | DropCopy | Miax Sapphire Options FIX Drop Copy (FXD) |
+| [ExpressOrders](ExpressOrders.md) | OrderEntry | MIAX Sapphire Options Express Orders (MEO) |
 | [LiquidityFeed](LiquidityFeed.md) | MarketData | Miax Sapphire Options Liquidity Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Miax Sapphire Options FIX Order Interface (FOI) |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Miax Sapphire Options Best Bid And Offer Feed |

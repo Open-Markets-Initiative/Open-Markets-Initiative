@@ -9,7 +9,9 @@ Miax Pearl Options US options exchange in the MIAX Exchange Group offering price
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [ClearingTradeDrop](ClearingTradeDrop.md) | DropCopy | MIAX Pearl Options Clearing Trade Drop (CTD) |
 | [DropCopy](DropCopy.md) | DropCopy | Miax Pearl Options FIX Drop Copy (FXD) |
+| [ExpressOrders](ExpressOrders.md) | OrderEntry | MIAX Pearl Options Express Orders (MEO) |
 | [LiquidityFeed](LiquidityFeed.md) | MarketData | Miax Pearl Options Liquidity Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Miax Pearl Options FIX Order Interface (FOI) |
 | [TopOfMarket](TopOfMarket.md) | MarketData | Miax Pearl Options Best Bid And Offer Feed |

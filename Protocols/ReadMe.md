@@ -7,6 +7,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Snap](Snap.md) | Binary | Iex | IEX Snapshot Recovery Protocol |
 | [AsciiDrop](AsciiDrop.md) | DropCopy | Nasdaq | Nasdaq native DROP line format (fixed length, comma delimited ascii) |
 | [Atr](Atr.md) | DropCopy | Tmx | Automated Trade Reporting |
+| [Ctd](Ctd.md) | DropCopy | Miax | Miax Clearing Trade Drop |
 | [NnfDc](NnfDc.md) | DropCopy | Nse | Non-Neat Front End Drop Copy |
 | [Binary](Binary.md) | Encoding | Cboe | Binary |
 | [BjseBinary](BjseBinary.md) | Encoding | Bjse | Bjse Binary Market Data Feed |
@@ -88,6 +89,7 @@ Protocol definitions for binary market data, order entry, encoding, transport, s
 | [Boe](Boe.md) | OrderEntry | Cboe | Cboe Binary Order Entry |
 | [Ctci](Ctci.md) | OrderEntry | Nasdaq | Nasdaq CTCI line-oriented text messages in a binary TCP/IP envelope |
 | [Fei](Fei.md) | OrderEntry | Miax | Futures Express Interface |
+| [Mei](Mei.md) | OrderEntry | Miax | Miax Express Interface |
 | [Meo](Meo.md) | OrderEntry | Miax | Miax Express Orders |
 | [Nnf](Nnf.md) | OrderEntry | Nse | Non-Neat Front End |
 | [NnfDirect](NnfDirect.md) | OrderEntry | Nse | Non-Neat Front End Direct Interface |
