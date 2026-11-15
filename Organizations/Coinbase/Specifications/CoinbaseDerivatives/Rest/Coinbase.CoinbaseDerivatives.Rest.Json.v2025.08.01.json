@@ -1,0 +1,1203 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Derivatives Public REST API",
+    "description" : "Public REST API for Coinbase Derivatives Exchange Public REST Gateway",
+    "version" : "0.1.0"
+  },
+  "paths" : {
+    "/rest/firm-position-limits" : {
+      "get" : {
+        "tags" : [ "Firm Position Limits" ],
+        "summary" : "List All Position Limits",
+        "description" : "Retrieves position limits for all firms that the user has access to.",
+        "operationId" : "listFirmPositionLimits",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved all firm position limits",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FirmPositionLimitsResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-position-limits/{firm_uuid}" : {
+      "get" : {
+        "tags" : [ "Firm Position Limits" ],
+        "summary" : "Get Firm Position Limits",
+        "description" : "Retrieves position limits from a specific firm.",
+        "operationId" : "getFirmPositionLimits",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "path",
+          "description" : "The UUID of the firm to get position limits for",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved firm position limits",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FirmPositionLimitsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Unable to parse firmId"
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      },
+      "post" : {
+        "tags" : [ "Firm Position Limits" ],
+        "summary" : "Update Firm Position Limits",
+        "description" : "Updates position limits for a specific firm",
+        "operationId" : "updateFirmPositionLimits",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "path",
+          "description" : "The UUID of firm to update.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Parameters to update the specified firm's position limit",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirmPositionLimitsRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully updated firm position limits",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameters"
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-group-limit" : {
+      "post" : {
+        "tags" : [ "Firm Product Group Limits" ],
+        "summary" : "Create Zero Firm Product Group Limit",
+        "description" : "Creates a zero position limit to a specific firm/product group that disables trading for that combination.",
+        "operationId" : "createZeroFirmProductGroupLimit",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Product group limit parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ModifyFirmProductGroupLimitRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully created firm product group limit",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ModifyFirmProductGroupLimitResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid firm UUID "
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-group-limit/remove" : {
+      "post" : {
+        "tags" : [ "Firm Product Group Limits" ],
+        "summary" : "Remove Firm Product Group Limit",
+        "description" : "Removes any product group level limit for a specific firm/product group combination",
+        "operationId" : "removeFirmProductGroupLimit",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Product group limit removal parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ModifyFirmProductGroupLimitRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully removed firm product group limit",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ModifyFirmProductGroupLimitResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid input or firm product limit group doesn't exist"
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-group-limit/{firm_uuid}" : {
+      "get" : {
+        "tags" : [ "Firm Product Group Limits" ],
+        "summary" : "Get Firm Product Group Limits",
+        "description" : "Retrieves product group limits for a specific firm, including individual product limits within each group",
+        "operationId" : "getFirmProductGroupLimits",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "path",
+          "description" : "The UUID of the firm to get product group limits for",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved firm product group limits",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/GetFirmProductGroupLimitResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-limit" : {
+      "post" : {
+        "tags" : [ "Firm Product Limits" ],
+        "summary" : "Create Zero Firm Product Limit",
+        "description" : "Creates a limit that will block the firm from trading the corresponding product.",
+        "operationId" : "createZeroFirmProductLimit",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Product limit parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateZeroFirmProductLimitRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully created firm product limit",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FirmProductLimitResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid firm UUID or product code"
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-limit/remove" : {
+      "post" : {
+        "tags" : [ "Firm Product Limits" ],
+        "summary" : "Remove Firm Product Limit",
+        "description" : "Removes any product level limit for a specific firm and product",
+        "operationId" : "removeFirmProductLimit",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Product limit removal parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RemoveFirmProductLimitRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully removed firm product limit",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FirmProductLimitResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Product limit doesn't exist or invalid firm/product UUID."
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firm-product-limit/{firm_uuid}" : {
+      "get" : {
+        "tags" : [ "Firm Product Limits" ],
+        "summary" : "Get Firm Product Limits",
+        "description" : "Gets product limits for a specific firm and optional product combination.",
+        "operationId" : "getFirmProductLimits",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "path",
+          "description" : "The UUID of the firm to get product group limits for",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          }
+        }, {
+          "name" : "product_code",
+          "in" : "query",
+          "description" : "The product Code to query limits (exclude to query all products)",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved firm product limits",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FirmProductLimitResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firms" : {
+      "get" : {
+        "tags" : [ "Firms" ],
+        "summary" : "Get All Firms",
+        "description" : "Retrieves a list of all firms you have access to.",
+        "operationId" : "getFirms",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved firms",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FirmResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/firms/{uuid}" : {
+      "get" : {
+        "tags" : [ "Firms" ],
+        "summary" : "Get Firm",
+        "description" : "Retrieves information for a firm with the specified UUID.",
+        "operationId" : "getFirm",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "The firm's UUID",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "e80d6a4e-af9f-4fcb-a819-3d22c7017279"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved firm",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FirmResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/funding-rate" : {
+      "get" : {
+        "tags" : [ "Funding Rate" ],
+        "summary" : "Get historical funding rates",
+        "description" : "Retrieves the historical funding rate data for a specific instrument.",
+        "operationId" : "historicalFundingRate",
+        "parameters" : [ {
+          "name" : "symbol",
+          "in" : "query",
+          "description" : "The instrument symbol (e.g., \"BIPZ30\")",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          }
+        }, {
+          "name" : "trading_session_date",
+          "in" : "query",
+          "description" : "Trading session date in YYYY-MM-DD format (defaults to today's date if absent)",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "2025-08-01"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved funding rate data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/FundingRateResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request - invalid parameters"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/kill-switch" : {
+      "post" : {
+        "tags" : [ "Risk" ],
+        "summary" : "Kill Switch",
+        "description" : "Activates a kill switch to cancel orders and lock trading for specified users, firms, or FCMs. Must only include one uuid (fcm, firm, or trading user). When activated, all open orders will be cancelled and new orders will be rejected.",
+        "operationId" : "killSwitch",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Kill switch parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/KillSwitchRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Kill switch executed successfully",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KillSwitchConf"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid number of uuids provided"
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions for the specified operation"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/positions" : {
+      "get" : {
+        "tags" : [ "Positions" ],
+        "summary" : "Get All Firm Positions",
+        "description" : "Retrieves firm-level positions for all firms you have access to",
+        "operationId" : "getPositions",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved positions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionsResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/positions/{firm_uuid}" : {
+      "get" : {
+        "tags" : [ "Positions" ],
+        "summary" : "Get Firm Position",
+        "description" : "Retrieves positions for the specified firm",
+        "operationId" : "getPosition",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "path",
+          "description" : "The firm's UUID",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "e80d6a4e-af9f-4fcb-a819-3d22c7017279"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved positions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositionsResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/unlock-trading" : {
+      "post" : {
+        "tags" : [ "Risk" ],
+        "summary" : "Unlock Trading",
+        "description" : "Deactivates kill switch to cancel orders and unlocks trading for specified users, firms, or FCMs. Must only include one uuid (fcm, firm, or trading user).",
+        "operationId" : "unlockTrading",
+        "parameters" : [ ],
+        "requestBody" : {
+          "description" : "Unlock Trading parameters",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UnlockTradingRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Unlock trading executed successfully. Note: numOrdersCanceled will always be 0",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KillSwitchConf"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid number of uuids provided"
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions for the specified operation. Can occur if trading lock from higher permission level in effect."
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/users" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Get All Users",
+        "description" : "Retrieves a list of all users you have access to, or all users in the specified firm.",
+        "operationId" : "getUsers",
+        "parameters" : [ {
+          "name" : "firm_uuid",
+          "in" : "query",
+          "description" : "The UUID of the desired users' parent firm.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "abcdef12-3456-7890-abcd-ef1234567890"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved users",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/TradingUserResponse"
+                  }
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/rest/users/{uuid}" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Get User",
+        "description" : "Retrieves information for a user with the specified UUID.",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "name" : "uuid",
+          "in" : "path",
+          "description" : "The user's UUID",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "e80d6a4e-af9f-4fcb-a819-3d22c7017279"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved user",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TradingUserResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden - insufficient permissions"
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "FirmRole" : {
+        "type" : "string",
+        "enum" : [ "FCM", "TRADING_FIRM" ]
+      },
+      "ProductGroup" : {
+        "type" : "string",
+        "enum" : [ "CURRENCY", "EQUITY", "ENERGY", "METALS", "INTEREST_RATE", "AGRICULTURE", "CRYPTO" ]
+      },
+      "SelfMatchPreventionMode" : {
+        "type" : "string",
+        "enum" : [ "CANCEL_AGGRESSING", "CANCEL_RESTING", "CANCEL_BOTH" ]
+      },
+      "PositionsResponse" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/FirmPositionsResponse"
+        },
+        "example" : {
+          "Acme Trading" : {
+            "firm_name" : "Acme Trading",
+            "long_contribution" : 100,
+            "positions" : {
+              "BIPZ30" : {
+                "short_working_position" : 0,
+                "long_working_position" : 0,
+                "short_filled_position" : 0,
+                "symbol" : "BIPZ30",
+                "long_filled_position" : 0,
+                "short_futures_long_dollar_amount" : 0,
+                "long_futures_long_dollar_amount" : 0,
+                "initial_margin" : "100"
+              }
+            },
+            "position_limit" : "5000000",
+            "short_contribution" : 50
+          }
+        }
+      },
+      "CreateZeroFirmProductLimitRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_code" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          }
+        }
+      },
+      "KillSwitchRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "fcm_uuid" : {
+            "type" : "string",
+            "example" : "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+          },
+          "trading_user_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "only_cancel_no_trading_lock" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "only_cancel_no_trading_lock" ]
+      },
+      "ModifyFirmProductGroupLimitRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_group" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductGroup"
+            } ],
+            "example" : "CRYPTO"
+          }
+        }
+      },
+      "RemoveFirmProductLimitRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_code" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          }
+        }
+      },
+      "UnlockTradingRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "fcm_uuid" : {
+            "type" : "string",
+            "example" : "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+          },
+          "trading_user_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          }
+        }
+      },
+      "UpdateFirmPositionLimitsRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "long_limit" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1000000
+          },
+          "short_limit" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500000
+          },
+          "weekend_margin_multiplier" : {
+            "type" : "number",
+            "format" : "double",
+            "example" : 2.0
+          }
+        },
+        "required" : [ "long_limit", "short_limit", "weekend_margin_multiplier" ]
+      },
+      "FirmPositionLimitsResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "long_limit" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 1000000
+          },
+          "short_limit" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 500000
+          },
+          "weekend_margin_multiplier" : {
+            "type" : "number",
+            "format" : "double",
+            "example" : 2.0
+          },
+          "source" : {
+            "$ref" : "#/components/schemas/FirmPositionLimitsSource"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "example" : "2025-08-06T12:13:34Z"
+          }
+        }
+      },
+      "FirmPositionResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "symbol" : {
+            "type" : "string"
+          },
+          "initial_margin" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "long_working_position" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "long_filled_position" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "total_futures_long_dollar_amount" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "short_working_position" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "short_filled_position" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "total_futures_short_dollar_amount" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "required" : [ "initial_margin", "long_working_position", "long_filled_position", "total_futures_long_dollar_amount", "short_working_position", "short_filled_position", "total_futures_short_dollar_amount" ]
+      },
+      "FirmPositionsResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_name" : {
+            "type" : "string"
+          },
+          "position_limit" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "positions" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/FirmPositionResponse"
+            }
+          },
+          "long_contribution" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "short_contribution" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "required" : [ "position_limit", "long_contribution", "short_contribution" ]
+      },
+      "FirmProductLimitResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_code" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          },
+          "product_name" : {
+            "type" : "string",
+            "example" : "Bitcoin Perpetual Index Futures Dec 2030"
+          },
+          "trading_disabled" : {
+            "type" : "boolean",
+            "example" : false
+          }
+        }
+      },
+      "FirmResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "fcm_uuid" : {
+            "type" : "string",
+            "example" : "abcdef12-3456-7890-abcd-ef1234567890"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Acme Trading"
+          },
+          "code" : {
+            "type" : "string",
+            "example" : "ABC"
+          },
+          "firm_role" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FirmRole"
+            } ],
+            "example" : "TRADING_FIRM"
+          },
+          "max_order_size" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 200
+          },
+          "self_match_prevention_mode" : {
+            "$ref" : "#/components/schemas/SelfMatchPreventionMode"
+          },
+          "is24_by7_trading_disabled" : {
+            "type" : "boolean",
+            "example" : false
+          }
+        }
+      },
+      "FundingRateResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "symbol" : {
+            "type" : "string",
+            "example" : "BIPZ30"
+          },
+          "funding_rate" : {
+            "type" : "string",
+            "example" : "0.000100"
+          },
+          "future_mark_price" : {
+            "type" : "string",
+            "example" : "62850.25"
+          },
+          "spot_mark_price" : {
+            "type" : "string",
+            "example" : "62840.10"
+          },
+          "fair_value_price" : {
+            "type" : "string",
+            "example" : "62845.00"
+          },
+          "event_time" : {
+            "type" : "string",
+            "example" : "2025-08-13T12:00:00Z"
+          }
+        }
+      },
+      "GetFirmProductGroupLimitResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_group" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductGroup"
+            } ],
+            "example" : "CRYPTO"
+          },
+          "trading_disabled" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "firm_product_limits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/FirmProductLimitResponse"
+            }
+          }
+        }
+      },
+      "KillSwitchConf" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "num_users_affected" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 4
+          },
+          "num_orders_canceled" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          }
+        }
+      },
+      "ModifyFirmProductGroupLimitResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+          },
+          "product_group" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductGroup"
+            } ],
+            "example" : "CRYPTO"
+          },
+          "trading_disabled" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "TradingUserResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "user_uuid" : {
+            "type" : "string",
+            "example" : "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "John Doe"
+          },
+          "user_role" : {
+            "type" : "string",
+            "example" : "FIX_USER"
+          },
+          "sender_comp_id" : {
+            "type" : "string",
+            "example" : "TRADER001"
+          },
+          "firm_uuid" : {
+            "type" : "string",
+            "example" : "abcdef12-3456-7890-abcd-ef1234567890"
+          },
+          "itm_uuid" : {
+            "type" : "string",
+            "example" : "98765432-dcba-4321-9876-543210fedcba"
+          },
+          "cancel_on_disconnect" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "client_requested_trading_lock" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "admin_trading_lock" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "self_match_prevention_id" : {
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 123
+          },
+          "self_match_prevention_mode" : {
+            "$ref" : "#/components/schemas/SelfMatchPreventionMode"
+          }
+        }
+      },
+      "FirmPositionLimitsSource" : {
+        "type" : "string",
+        "enum" : [ "OVERRIDE", "CLEARING_HOUSE", "FCM" ]
+      }
+    },
+    "securitySchemes" : {
+      "auth_api_key" : {
+        "in" : "header",
+        "name" : "CB-ACCESS-KEY",
+        "description" : "The key string of the API key for the request",
+        "type" : "apiKey"
+      },
+      "auth_timestamp" : {
+        "in" : "header",
+        "name" : "CB-ACCESS-TIMESTAMP",
+        "description" : "The timestamp of when the request is being made (in epoch seconds)",
+        "type" : "apiKey"
+      },
+      "auth_passphrase" : {
+        "in" : "header",
+        "name" : "CB-ACCESS-PASSPHRASE",
+        "description" : "The passphrase affiliated with the API Key",
+        "type" : "apiKey"
+      },
+      "auth_signature" : {
+        "in" : "header",
+        "name" : "CB-ACCESS-SIGN",
+        "description" : "An HMAC SHA-256 signature using the API Key secret on the string TIMESTAMP, METHOD, REQUEST_PATH, BODY",
+        "type" : "apiKey"
+      }
+    }
+  },
+  "servers" : [ {
+    "url" : "https://api.exchange.fairx.net",
+    "variables" : { }
+  } ],
+  "security" : [ {
+    "auth_api_key" : [ ]
+  }, {
+    "auth_timestamp" : [ ]
+  }, {
+    "auth_passphrase" : [ ]
+  }, {
+    "auth_signature" : [ ]
+  } ]
+}

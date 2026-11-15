@@ -3,7 +3,7 @@
 <sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
                    package="cb.deribit.gateway.sbe.marketdata.api"
                    id="2102"
-                   version="1"
+                   version="2"
                    semanticVersion="1.0"
                    description="Deribit Market Data API"
                    byteOrder="littleEndian"
@@ -118,6 +118,7 @@
         <set name="TradeFlags" encodingType="uint32">
             <choice name="isSell">0</choice>
             <choice name="isLiquidation">1</choice>
+            <choice name="wasDelayed" description="block trade print published after a delayed-publication window">2</choice>
         </set>
 
         <set name="FundingRateFlags" encodingType="uint8">
@@ -125,6 +126,7 @@
         </set>
 
         <type name="TimestampNanos" primitiveType="int64" description="Nanoseconds since Unix epoch."/>
+        <type name="Padding2" primitiveType="int16"/>
         <composite name="Price9" description="Price with constant exponent -9">
             <type name="price9" description="price" primitiveType="int64"/>
             <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
@@ -259,6 +261,8 @@
         <field name="impliedVolatility"      id="72" type="double" presence="optional" description="for options"/>
         <field name="takerFlags"             id="76" type="TradeFlags"/>
         <field name="numberOfLegs"           id="78" type="uint16"/>
+        <field name="padding2"               id="80" type="Padding2" sinceVersion="2"/>
+        <field name="executionTimestamp"     id="88" type="TimestampNanos" presence="optional" sinceVersion="2" description="trade execution time; set only on a delayed print"/>
     </sbe:message>
 
     <!-- SNAPSHOT channel messages

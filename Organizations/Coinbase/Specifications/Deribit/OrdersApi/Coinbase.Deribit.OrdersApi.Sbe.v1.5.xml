@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- v22: opt-in (Logon.liquidationNotifications) unsolicited liquidation notifications — OrderFilled.fills.flags.isLiquidation and PositionMoved -->
 <!-- v19: NewOrderResponse echoes back the submitted order flags -->
 <!-- v18: global algo cancel-only mode — new algo parent submissions rejected with CANCEL_ONLY -->
 <sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe"
                    package="cb.deribit.gateway.sbe.codec.order"
                    id="2101"
-                   version="19"
+                   version="22"
                    semanticVersion="1.5"
                    description="Deribit SBE Order Gateway API"
                    byteOrder="littleEndian"
@@ -65,6 +66,7 @@
             <validValue name="INVALID_FIELD_VALUE">4</validValue>
             <validValue name="MESSAGE_DISABLED" sinceVersion="11">5</validValue>
             <validValue name="GATEWAY_NOT_ACTIVE" sinceVersion="14">6</validValue>
+            <validValue name="MESSAGE_NOT_PERMITTED" sinceVersion="21" description="message type not in portfolio whitelist">7</validValue>
         </enum>
 
         <type name="InstrumentId" primitiveType="int64"/>
@@ -180,6 +182,8 @@
             <validValue name="MEMBER_SPEED_BUMP_LIMIT_EXCEEDED" sinceVersion="6" description="member has too many live speed-bumped orders">29</validValue>
             <validValue name="MMP_MIN_FREEZE_TIME_NOT_ELAPSED" sinceVersion="15" description="MMP minimum freeze duration not yet elapsed">30</validValue>
             <validValue name="CANCEL_ONLY" sinceVersion="18" description="only cancel-only orders can be submitted">31</validValue>
+            <validValue name="PORTFOLIO_INSTRUMENT_NOT_ALLOWED" description="instrument not in portfolio whitelist" sinceVersion="20">32</validValue>
+            <validValue name="MMP_REQUIRED" description="portfolio is MMP-only; only MMP orders and mass quotes are accepted" sinceVersion="21">33</validValue>
         </enum>
         <enum name="MassQuoteRejectReason" encodingType="int8">
             <validValue name="SYSTEM_ERROR">0</validValue>
@@ -192,6 +196,7 @@
             <validValue name="PORTFOLIO_LOCKED" description="Portfolio is locked">7</validValue>
             <validValue name="DUPLICATE_INSTRUMENT" sinceVersion="4" description="the same instrument appears in more than one entry of a single mass quote">8</validValue>
             <validValue name="MMP_MIN_FREEZE_TIME_NOT_ELAPSED" sinceVersion="15" description="MMP minimum freeze duration not yet elapsed">9</validValue>
+            <validValue name="PORTFOLIO_INSTRUMENT_NOT_ALLOWED" description="instrument not in portfolio whitelist" sinceVersion="20">10</validValue>
         </enum>
         <enum name="CancelOrderRejectReason" encodingType="int8">
             <validValue name="ERROR">0</validValue>
@@ -213,6 +218,7 @@
         <set name="FillFlags" encodingType="uint8">
             <choice name="isQuote">0</choice>
             <choice name="isFullyFilled">1</choice>
+            <choice name="isLiquidation" sinceVersion="22" description="fill of an exchange-initiated liquidation order on this portfolio">2</choice>
         </set>
         <set name="CancelFlags" encodingType="uint8">
             <choice name="isQuote">0</choice>
@@ -221,6 +227,14 @@
             <validValue name="QUANTITY">0</validValue>
             <validValue name="DELTA">1</validValue>
             <validValue name="VEGA">2</validValue>
+        </enum>
+        <enum name="PositionMoveRole" encodingType="int8">
+            <validValue name="TAKER" sinceVersion="22" description="this portfolio is the source of the move (the liquidated portfolio)">1</validValue>
+            <validValue name="MAKER" sinceVersion="22" description="this portfolio received the moved position (LSP or ADL counterparty)">2</validValue>
+        </enum>
+        <enum name="PositionMoveReason" encodingType="int8">
+            <validValue name="LSP" sinceVersion="22" description="position absorbed by a Liquidity Support Provider">1</validValue>
+            <validValue name="ADL" sinceVersion="22" description="position assigned by Auto-Deleveraging">2</validValue>
         </enum>
         <enum name="MmpStatusRejectReason" encodingType="int8">
             <validValue name="SYSTEM_ERROR">0</validValue>
@@ -238,6 +252,8 @@
                description="Client-negotiated SBE schema (protocol) version. Used as a gate to determine if new messages and new versions of existing messages will be sent to the client.  A value outside the gateway's accepted range is rejected at logon."/>
         <field name="cancelOnDisconnect" id="68" type="Bool" sinceVersion="13"
                description="Session-wide cancel-on-disconnect opt-in. When TRUE the gateway sets the cancelOnDisconnect flag on every NewOrder and mass-quote leg submitted on this session, so that liquidity is pulled when the client disconnects. Absent or FALSE leaves each NewOrder and quote leg to carry its own per-message flag. The session value is a floor, not an override: an individual order cannot opt out once the session has opted in."/>
+        <field name="liquidationNotifications" id="69" type="Bool" sinceVersion="22"
+               description="Session-wide opt-in to unsolicited liquidation notifications for the logged-on portfolio: OrderFilled fills flagged isLiquidation and PositionMoved. Absent or FALSE receives none. A Logon that sets it with a schemaVersion below 22 is rejected."/>
     </sbe:message>
 
     <sbe:message name="LogonConf" id="2" description="Logon confirmation message to client">
@@ -682,6 +698,18 @@
         <field name="execId"          id="16" type="EventId"/>
         <field name="currencyPairId"  id="24" type="CurrencyPairId"/>
         <field name="correlationId"   id="32" type="int64" presence="optional"/>
+    </sbe:message>
+
+    <sbe:message name="PositionMoved" id="330" sinceVersion="22" description="Unsolicited notification that a liquidation moved a position into or out of this portfolio">
+        <field name="timestamp"       id= "8" type="TimestampNanos" description="causal time in matching engine"/>
+        <field name="execId"          id="16" type="EventId"/>
+        <field name="instrumentId"    id="24" type="InstrumentId"/>
+        <field name="matchId"         id="32" type="FillId" description="shared by the TAKER and MAKER notifications of the same move"/>
+        <field name="price"           id="40" type="Price9"/>
+        <field name="quantity"        id="49" type="Decimal72"/>
+        <field name="side"            id="50" type="Side" description="side of this portfolio's position change"/>
+        <field name="role"            id="51" type="PositionMoveRole"/>
+        <field name="reason"          id="52" type="PositionMoveReason"/>
     </sbe:message>
 
     <sbe:message name="DummyMessage" id="9999" description="Dummy message to generate message header">

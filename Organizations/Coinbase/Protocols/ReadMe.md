@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [CoinbaseDerivatives](CoinbaseDerivatives/) | 4 |
+| [CoinbaseDerivatives](CoinbaseDerivatives/) | 6 |
 | [Deribit](Deribit/) | 3 |
 
 ## Specifications

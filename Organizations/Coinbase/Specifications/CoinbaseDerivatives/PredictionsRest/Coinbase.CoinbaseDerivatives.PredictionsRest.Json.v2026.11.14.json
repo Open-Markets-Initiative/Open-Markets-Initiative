@@ -1,0 +1,2938 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "CPM Public REST API",
+    "version" : "0.1.0"
+  },
+  "paths" : {
+    "/api/balances" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get FCM balance",
+        "description" : "Returns the FCM's balance for both segregated segments. Requires an FCM-level API key.",
+        "operationId" : "getBalances",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Balance",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BalanceResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/fcms/{id}" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the caller's own FCM",
+        "description" : "Returns your own FCM. Requires an FCM-level API key.",
+        "operationId" : "getFcm",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "FCM ID, as a decimal string. Must be your own FCM; any other ID, or a FIRM-level key, returns 403.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "FCM",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FcmReferenceResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Not the caller's own FCM",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "FCM not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/fills" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get fill history",
+        "description" : "Returns your own fills, newest first; the counterparty is never included. Requires an active API key.",
+        "operationId" : "getFills",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "query",
+          "description" : "Filter by instrument ID. May appear only once; a repeat returns 400 INVALID_FIELD.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order_id",
+          "in" : "query",
+          "description" : "Filter by order ID, as a positive decimal string up to 9223372036854775807. Completed orders match too; only your side of the trade is returned. May appear only once; a repeat returns 400 INVALID_FIELD.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sub_account",
+          "in" : "query",
+          "description" : "Filter by sub-account. May appear only once; a repeat returns 400 INVALID_FIELD.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of trades per page. Default 100; must be 1 to 500, otherwise 400. Pages count trades, so both sides of a self-match stay on one page and a page can hold more fills than limit. May appear only once; a repeat returns 400 INVALID_FIELD.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request. May appear only once; a repeat returns 400 INVALID_FIELD.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Fill history page",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/FillHistoryResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/firms/{id}" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the caller's own trading firm",
+        "description" : "Returns your own trading firm. Requires a FIRM-level API key.",
+        "operationId" : "getFirm",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Firm ID, as a decimal string. Must be your own firm; any other ID returns 403.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Firm",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FirmReferenceResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Not the caller's own firm",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Firm not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/orderbook/{instrument_id}" : {
+      "get" : {
+        "tags" : [ "MarketData" ],
+        "summary" : "Get the L2 order book snapshot",
+        "description" : "Returns the live order book for an instrument, aggregated by price level. Requires MARKET_DATA permission.",
+        "operationId" : "getOrderBook",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "path",
+          "description" : "Instrument ID.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Order book snapshot",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/L2BookResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/orders" : {
+      "post" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Place an order",
+        "description" : "Submits a limit or market order. Requires TRADE permission.",
+        "operationId" : "placeOrder",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PlaceOrderRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Order accepted. A 200 is returned only for accepted orders.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PlaceOrderResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Order rejected. The error field carries the reject reason.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      },
+      "delete" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Cancel an order by client order id",
+        "description" : "Cancels one of your active orders by client order ID. Requires TRADE permission.",
+        "operationId" : "cancelByClientOrderId",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CancelByClientOrderIdRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Order canceled",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Cancel rejected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      },
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Get open orders",
+        "description" : "Returns your resting orders. Requires an active API key.",
+        "operationId" : "getOpenOrders",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "query",
+          "description" : "Filter by instrument ID.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sub_account",
+          "in" : "query",
+          "description" : "Filter by sub-account.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Sort field: order_id (default), price, quantity, or remaining_quantity.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort direction: asc or desc. Default desc.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of orders per page. Default 100; must be 1 to 500, otherwise 400.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Open orders page. IOC, FOK, and fully filled orders are never listed.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/OpenOrderResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/orders/{order_id}" : {
+      "delete" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Cancel an order by order id",
+        "description" : "Cancels one of your active orders. Requires TRADE permission.",
+        "operationId" : "cancelOrder",
+        "parameters" : [ {
+          "name" : "order_id",
+          "in" : "path",
+          "description" : "Order ID to cancel. An order that belongs to another user is reported as UNKNOWN_ORDER.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Order canceled",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Cancel rejected",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/ping" : {
+      "get" : {
+        "tags" : [ "Health" ],
+        "summary" : "Liveness probe",
+        "description" : "Unauthenticated liveness probe. Returns the literal text \"pong\".",
+        "operationId" : "ping",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Service is live",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/positions" : {
+      "get" : {
+        "tags" : [ "Positions" ],
+        "summary" : "Get open positions",
+        "description" : "Returns open positions for your Firm, or for every Firm under your FCM. Requires a FIRM- or FCM-level API key.",
+        "operationId" : "getPositions",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "query",
+          "description" : "Filter by instrument ID.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sub_account",
+          "in" : "query",
+          "description" : "Filter by sub-account.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of positions per page. Default 100; must be 1 to 500, otherwise 400.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Positions page",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/PositionResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/ticker/{instrument_id}" : {
+      "get" : {
+        "tags" : [ "MarketData" ],
+        "summary" : "Get the ticker snapshot",
+        "description" : "Returns the last trade and the best bid and ask for an instrument. Requires MARKET_DATA permission.",
+        "operationId" : "getTicker",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "path",
+          "description" : "Instrument ID.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ticker snapshot",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TickerResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/trades/{instrument_id}" : {
+      "get" : {
+        "tags" : [ "MarketData" ],
+        "summary" : "Get recent trades",
+        "description" : "Returns the most recent public trades for an instrument, newest first. Requires MARKET_DATA permission.",
+        "operationId" : "getTrades",
+        "parameters" : [ {
+          "name" : "instrument_id",
+          "in" : "path",
+          "description" : "Instrument ID.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of trades to return. Default 100. For your own fills, use GET /api/fills.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Recent trades",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/TradeResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/trading/kill-switch" : {
+      "post" : {
+        "tags" : [ "Trading Controls" ],
+        "summary" : "Kill trading for a scope within the caller's hierarchy",
+        "description" : "Cancels the active orders of one scope within your own hierarchy and locks it against new orders. Requires an FCM- or FIRM-level API key with the RISK_MANAGEMENT permission.",
+        "operationId" : "tradingKillSwitch",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/KillSwitchRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Kill switch applied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KillSwitchResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid scope",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "The target is outside your own firm or FCM.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Unknown target",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Rejected by the exchange",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/trading/unlock" : {
+      "post" : {
+        "tags" : [ "Trading Controls" ],
+        "summary" : "Unlock trading for a scope within the caller's hierarchy",
+        "description" : "Removes the trading lock for one scope within your own hierarchy; it never cancels orders. Requires an FCM- or FIRM-level API key with the RISK_MANAGEMENT permission.",
+        "operationId" : "tradingUnlock",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UnlockRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Unlock applied",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KillSwitchResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid scope",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Scope outside the caller's hierarchy",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Unknown target",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Rejected by the exchange",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrderErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/events" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "List events",
+        "description" : "Returns a page of events. Requires MARKET_DATA permission.",
+        "operationId" : "listEventsV1",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "Filter by event ID. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "title",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the title.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "category",
+          "in" : "query",
+          "description" : "Filter by category. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by lifecycle status. Repeatable. DRAFT returns 400.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Sort field. Only updated_time is accepted. Without sort, results are ordered newest first by ID.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort direction: asc or desc. Default desc. Used only with sort=updated_time.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Page size. Default 100, maximum 1000.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Events page",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/EventReferenceResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/events/{id_or_ticker}" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "Get an event by id or ticker",
+        "description" : "Returns one event. Requires MARKET_DATA permission.",
+        "operationId" : "getEvent",
+        "parameters" : [ {
+          "name" : "id_or_ticker",
+          "in" : "path",
+          "description" : "Event ID or exact ticker. An all-digit value is read as an ID; anything else as a ticker.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Event",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EventReferenceResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Event not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/instruments" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "List instruments",
+        "description" : "Returns a page of instruments. Requires MARKET_DATA permission.",
+        "operationId" : "listInstrumentsV1",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "Filter by instrument ID. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "title",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the title.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "event_ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the event ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "series_ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the series ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "group_ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the group ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by lifecycle status. Repeatable. DRAFT returns 400. Deleted instruments are listed with their last status.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "category",
+          "in" : "query",
+          "description" : "Filter by the linked Series category. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "updated_time_after",
+          "in" : "query",
+          "description" : "Only instruments whose updated_time is after this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "updated_time_before",
+          "in" : "query",
+          "description" : "Only instruments whose updated_time is before this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "list_time_after",
+          "in" : "query",
+          "description" : "Only instruments whose list_time is after this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "list_time_before",
+          "in" : "query",
+          "description" : "Only instruments whose list_time is before this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "open_time_after",
+          "in" : "query",
+          "description" : "Only instruments whose open_time is after this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "open_time_before",
+          "in" : "query",
+          "description" : "Only instruments whose open_time is before this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "close_time_after",
+          "in" : "query",
+          "description" : "Only instruments whose close_time is after this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "close_time_before",
+          "in" : "query",
+          "description" : "Only instruments whose close_time is before this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "settlement_time_after",
+          "in" : "query",
+          "description" : "Only instruments whose settlement_time is after this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "settlement_time_before",
+          "in" : "query",
+          "description" : "Only instruments whose settlement_time is before this value, in Unix epoch milliseconds (exclusive).",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Sort field. Only updated_time is accepted. Without sort, results are ordered newest first by ID.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort direction: asc or desc. Default desc. Used only with sort=updated_time.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Page size. Default 100, maximum 1000.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Instruments page",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/InstrumentReferenceResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/instruments/{id_or_ticker}" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "Get an instrument by id or ticker",
+        "description" : "Returns one instrument. Requires MARKET_DATA permission.",
+        "operationId" : "getInstrument",
+        "parameters" : [ {
+          "name" : "id_or_ticker",
+          "in" : "path",
+          "description" : "Instrument ID or exact ticker. An all-digit value is read as an ID; anything else as a ticker.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Instrument. Deleted instruments stay readable with their last status.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InstrumentReferenceResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Instrument not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/series" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "List series",
+        "description" : "Returns a page of series. Requires MARKET_DATA permission.",
+        "operationId" : "listSeriesV1",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "Filter by series ID. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ticker",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the ticker.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "title",
+          "in" : "query",
+          "description" : "Case-insensitive substring of the title.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "category",
+          "in" : "query",
+          "description" : "Filter by category. Repeatable.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by lifecycle status. Repeatable. DRAFT returns 400.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Sort field. Only updated_time is accepted. Without sort, results are ordered newest first by ID.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort direction: asc or desc. Default desc. Used only with sort=updated_time.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Page size. Default 100, maximum 1000.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "cursor",
+          "in" : "query",
+          "description" : "Opaque cursor from the previous page's cursor field. Omit on the first request.",
+          "required" : false,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Series page",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/SeriesReferenceResponse"
+                      }
+                    },
+                    "cursor" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    },
+    "/api/v1/series/{id_or_ticker}" : {
+      "get" : {
+        "tags" : [ "Reference" ],
+        "summary" : "Get a series by id or ticker",
+        "description" : "Returns one series. Requires MARKET_DATA permission.",
+        "operationId" : "getSeries",
+        "parameters" : [ {
+          "name" : "id_or_ticker",
+          "in" : "path",
+          "description" : "Series ID or exact ticker. An all-digit value is read as an ID; anything else as a ticker.",
+          "required" : true,
+          "deprecated" : false,
+          "allowEmptyValue" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Series",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SeriesReferenceResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameter",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Series not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReferenceDataErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated" : false,
+        "security" : [ ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "BalanceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "house_held" : {
+            "type" : "string",
+            "description" : "Collateral reserved for open orders in the HOUSE (proprietary) segment, as a decimal string.",
+            "example" : "8.850000"
+          },
+          "house_available" : {
+            "type" : "string",
+            "description" : "Funds available for new orders or withdrawal in the HOUSE (proprietary) segment, as a decimal string.",
+            "example" : "9985.250000"
+          },
+          "client_held" : {
+            "type" : "string",
+            "description" : "Collateral reserved for open orders in the CLIENT (customer) segment, as a decimal string. CLIENT and HOUSE funds are segregated.",
+            "example" : "120.500000"
+          },
+          "client_available" : {
+            "type" : "string",
+            "description" : "Funds available for new orders or withdrawal in the CLIENT (customer) segment, as a decimal string.",
+            "example" : "48210.750000"
+          }
+        }
+      },
+      "BigInteger" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "toomSlice" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "lower" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "upper" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "lowestSetBit" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "probablePrime" : {
+            "type" : "boolean"
+          },
+          "int" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "required" : [ "lowestSetBit", "probablePrime", "int" ]
+      },
+      "CancelByClientOrderIdRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "client_order_id" : {
+            "type" : "string",
+            "description" : "Client order id of your active order to cancel.",
+            "example" : "ord-100"
+          }
+        }
+      },
+      "CancelOrderResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "order_id" : {
+            "type" : "string",
+            "description" : "Id of the canceled order, as a canonical decimal string.",
+            "example" : "698471892348"
+          },
+          "canceled_quantity" : {
+            "type" : "string",
+            "description" : "Quantity removed from the book by the cancel, in contracts, as a decimal string.",
+            "example" : "15.00"
+          },
+          "total_filled_quantity" : {
+            "type" : "string",
+            "description" : "Total quantity the order filled before it was canceled, in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "cancel_reason" : {
+            "type" : "string",
+            "description" : "Why the order was canceled, for example USER_REQUEST.",
+            "example" : "USER_REQUEST"
+          }
+        }
+      },
+      "Error" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Machine-readable error code, for example INVALID_PARAMETER, NOT_FOUND, or INTERNAL_ERROR.",
+            "example" : "INVALID_PARAMETER"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Human-readable description of the error.",
+            "example" : "cursor is invalid or belongs to another resource type"
+          },
+          "field" : {
+            "type" : "string",
+            "description" : "Name of the request parameter that caused the error, or null when the error is not tied to one parameter.",
+            "example" : "cursor"
+          }
+        }
+      },
+      "EventReferenceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Event id, as a canonical decimal string.",
+            "example" : "498471892346"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Unique event ticker. Treat it as an opaque identifier.",
+            "example" : "26NOV28LARSF"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "Market category of the event: SPORTS, ECONOMICS, POLITICS, CRYPTO, or WEATHER.",
+            "example" : "SPORTS"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "Human-readable display title.",
+            "example" : "Rams at 49ers — Nov 28, 2026"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Extended description of the event, or null when there is none.",
+            "example" : "Los Angeles Rams at San Francisco 49ers, NFL regular season."
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Creation time in Unix epoch milliseconds.",
+            "example" : 1794787200000
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Last update time in Unix epoch milliseconds.",
+            "example" : 1795730000000
+          },
+          "additional_metadata" : {
+            "$ref" : "#/components/schemas/JsonElement",
+            "description" : "Market-specific event metadata as a JSON object, or null. The fields vary by market."
+          }
+        },
+        "required" : [ "created_at", "updated_at" ]
+      },
+      "FcmReferenceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "FCM id, as a canonical decimal string.",
+            "example" : "198471892341"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "FCM name.",
+            "example" : "Acme Clearing"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Three-character FCM code.",
+            "example" : "ACM"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "FCM status, for example ACTIVE or DISABLED.",
+            "example" : "ACTIVE"
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the FCM's last update, in nanoseconds since the Unix epoch.",
+            "example" : 1795651200123456789
+          }
+        },
+        "required" : [ "updated_at" ]
+      },
+      "FillHistoryResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "trade_id" : {
+            "type" : "string",
+            "description" : "Trade id, as a canonical decimal string.",
+            "example" : "798471892349"
+          },
+          "order_id" : {
+            "type" : "string",
+            "description" : "Id of your order on this side of the trade, as a canonical decimal string.",
+            "example" : "698471892348"
+          },
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Instrument ticker.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF-LAR"
+          },
+          "side" : {
+            "type" : "string",
+            "description" : "Your side of the trade as booked: BUY or SELL of the YES contract. NO-side orders appear as their YES equivalent.",
+            "example" : "BUY"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "TAKER if your order took liquidity, MAKER if it was resting.",
+            "example" : "TAKER"
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "Trade price per YES contract in USDC, as a decimal string.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Filled quantity in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "fee" : {
+            "type" : "string",
+            "description" : "Your fee for this fill in USDC, as a decimal string. A negative value is a rebate.",
+            "example" : "0.170000"
+          },
+          "sub_account" : {
+            "type" : "string",
+            "description" : "Sub-account of your order.",
+            "example" : "fund-a"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "description" : "Trade time as an ISO-8601 UTC string, for example 2026-07-29T00:00:00Z.",
+            "example" : "2026-11-27T17:25:45.678Z"
+          }
+        }
+      },
+      "FillResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "trade_id" : {
+            "type" : "string",
+            "description" : "Trade id, as a canonical decimal string.",
+            "example" : "798471892349"
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "Trade price per YES contract in USDC, as a decimal string.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Filled quantity in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "fee" : {
+            "type" : "string",
+            "description" : "Your fee for this fill in USDC, as a decimal string. A negative value is a rebate.",
+            "example" : "0.170000"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "TAKER if your order took liquidity, MAKER if it was resting.",
+            "example" : "TAKER"
+          }
+        }
+      },
+      "FirmReferenceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Firm id, as a canonical decimal string.",
+            "example" : "298471892342"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Firm name.",
+            "example" : "Northwind Trading"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Three-character firm code.",
+            "example" : "NWT"
+          },
+          "fcm_id" : {
+            "type" : "string",
+            "description" : "Id of the firm's parent FCM, as a canonical decimal string.",
+            "example" : "198471892341"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Firm status, for example ACTIVE or DISABLED.",
+            "example" : "ACTIVE"
+          },
+          "participant_type" : {
+            "type" : "string",
+            "description" : "Participant type: HOUSE or CUSTOMER.",
+            "example" : "HOUSE"
+          },
+          "aggregation_mode" : {
+            "type" : "string",
+            "description" : "How the firm's positions count toward position limits: NET nets all sub-accounts together, GROSS measures each sub-account separately.",
+            "example" : "NET"
+          },
+          "max_order_size" : {
+            "type" : "string",
+            "description" : "Maximum quantity per order in contracts, as a decimal string, or null when no limit is set.",
+            "example" : "5000.00"
+          },
+          "self_match_prevention_mode" : {
+            "type" : "string",
+            "description" : "Firm self-match prevention mode: CANCEL_AGGRESSING, CANCEL_RESTING, or CANCEL_BOTH. When set, the firm's orders in the same sub-account do not match each other. Null when unset.",
+            "example" : "CANCEL_RESTING"
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the firm's last update, in nanoseconds since the Unix epoch.",
+            "example" : 1795651300123456789
+          }
+        },
+        "required" : [ "updated_at" ]
+      },
+      "InstrumentReferenceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string. Use this id to place orders.",
+            "example" : "598471892347"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Unique instrument ticker. Treat it as an opaque identifier.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF-LAR"
+          },
+          "series_ticker" : {
+            "type" : "string",
+            "description" : "Ticker of the series this instrument belongs to.",
+            "example" : "NFL-GAMEWINNER"
+          },
+          "event_ticker" : {
+            "type" : "string",
+            "description" : "Ticker of the event this instrument belongs to.",
+            "example" : "26NOV28LARSF"
+          },
+          "group_ticker" : {
+            "type" : "string",
+            "description" : "Ticker of the group of instruments that share this series and event.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "Human-readable display name.",
+            "example" : "Rams win"
+          },
+          "proposition" : {
+            "type" : "string",
+            "description" : "Plain-language criteria for the YES outcome.",
+            "example" : "Los Angeles Rams win the game."
+          },
+          "disclaimers" : {
+            "type" : "string",
+            "description" : "Compliance or eligibility disclaimer, or null when there is none.",
+            "example" : "Professional football players may not trade this instrument."
+          },
+          "contract_size" : {
+            "type" : "string",
+            "description" : "USDC notional per contract, as a decimal string. Its numeric value is 1.",
+            "example" : "1.00"
+          },
+          "price_level_structure" : {
+            "type" : "string",
+            "description" : "Tick-size schedule for order prices: LINEAR_CENT, DECI_CENT, or TAPERED_DECI_CENT.",
+            "example" : "LINEAR_CENT"
+          },
+          "fractional_enabled" : {
+            "type" : "boolean",
+            "description" : "Whether fractional contract quantities are enabled.",
+            "example" : true
+          },
+          "min_order_size" : {
+            "type" : "string",
+            "description" : "Minimum order quantity in contracts, as a decimal string.",
+            "example" : "0.05"
+          },
+          "position_limit_per_instrument" : {
+            "type" : "string",
+            "description" : "Maximum position in contracts that a firm may hold in this instrument, as a decimal string.",
+            "example" : "25000"
+          },
+          "speedbump_ms" : {
+            "type" : "string",
+            "description" : "Speed-bump delay applied to aggressive orders, in milliseconds, as a decimal string. Null or 0 means no speed bump.",
+            "example" : "100"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Lifecycle status: LISTED, OPEN, PAUSE, CLOSED, DETERMINED, SETTLED, AMENDED, or DELISTED. Orders are accepted only while OPEN.",
+            "example" : "OPEN"
+          },
+          "list_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the first transition to LISTED, in Unix epoch milliseconds. Null until listed.",
+            "example" : 1795730000000
+          },
+          "open_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the first transition to OPEN, in Unix epoch milliseconds. Null until opened.",
+            "example" : 1795750000000
+          },
+          "close_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the most recent transition to CLOSED, in Unix epoch milliseconds. Null until closed."
+          },
+          "expected_open_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Estimated open time for display, in Unix epoch milliseconds, or null. Non-binding: trading opens only when status becomes OPEN.",
+            "example" : 1795750000000
+          },
+          "expected_close_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Estimated close time for display, in Unix epoch milliseconds, or null. Non-binding: trading closes only when status becomes CLOSED.",
+            "example" : 1795914000000
+          },
+          "settlement_outcome" : {
+            "type" : "string",
+            "description" : "Determined outcome: YES, NO, or SCALAR. Null before the instrument is determined."
+          },
+          "settlement_value" : {
+            "type" : "string",
+            "description" : "Payout per contract in USDC, from 0 through 1, as a decimal string. Null before the instrument is determined."
+          },
+          "settlement_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the transition to SETTLED, in Unix epoch milliseconds. Null until settled."
+          },
+          "open_interest" : {
+            "type" : "string",
+            "description" : "Current open interest in contracts, as a decimal string. Null when the instrument has never traded.",
+            "example" : "1250.00"
+          },
+          "total_volume" : {
+            "type" : "string",
+            "description" : "Total traded volume in contracts, as a decimal string. Null when the instrument has never traded.",
+            "example" : "8400.00"
+          },
+          "updated_time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the instrument's latest change, in Unix epoch milliseconds. The updated_time filters compare this value.",
+            "example" : 1795750000123
+          },
+          "additional_metadata" : {
+            "$ref" : "#/components/schemas/JsonElement",
+            "description" : "Market-specific instrument metadata as a JSON object. The fields vary by market."
+          }
+        },
+        "required" : [ "fractional_enabled", "updated_time" ]
+      },
+      "JsonArray" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "jsonArray" : {
+            "type" : "boolean"
+          },
+          "jsonObject" : {
+            "type" : "boolean"
+          },
+          "jsonPrimitive" : {
+            "type" : "boolean"
+          },
+          "jsonNull" : {
+            "type" : "boolean"
+          },
+          "asJsonObject" : {
+            "$ref" : "#/components/schemas/JsonObject"
+          },
+          "asJsonArray" : {
+            "$ref" : "#/components/schemas/JsonArray"
+          },
+          "asJsonPrimitive" : {
+            "$ref" : "#/components/schemas/JsonPrimitive"
+          },
+          "asJsonNull" : {
+            "$ref" : "#/components/schemas/JsonNull"
+          },
+          "empty" : {
+            "type" : "boolean"
+          },
+          "" : {
+            "$ref" : "#/components/schemas/JsonElement"
+          },
+          "asSingleElement" : {
+            "$ref" : "#/components/schemas/JsonElement"
+          },
+          "asNumber" : {
+            "$ref" : "#/components/schemas/Number"
+          },
+          "asString" : {
+            "type" : "string"
+          },
+          "asDouble" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "asBigDecimal" : {
+            "type" : "string"
+          },
+          "asBigInteger" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "asFloat" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "asLong" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "asInt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asByte" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asCharacter" : {
+            "type" : "string"
+          },
+          "asShort" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asBoolean" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "jsonArray", "jsonObject", "jsonPrimitive", "jsonNull", "empty", "asDouble", "asFloat", "asLong", "asInt", "asByte", "asCharacter", "asShort", "asBoolean" ]
+      },
+      "JsonElement" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "jsonArray" : {
+            "type" : "boolean"
+          },
+          "jsonObject" : {
+            "type" : "boolean"
+          },
+          "jsonPrimitive" : {
+            "type" : "boolean"
+          },
+          "jsonNull" : {
+            "type" : "boolean"
+          },
+          "asJsonObject" : {
+            "$ref" : "#/components/schemas/JsonObject"
+          },
+          "asJsonArray" : {
+            "$ref" : "#/components/schemas/JsonArray"
+          },
+          "asJsonPrimitive" : {
+            "$ref" : "#/components/schemas/JsonPrimitive"
+          },
+          "asJsonNull" : {
+            "$ref" : "#/components/schemas/JsonNull"
+          },
+          "asBoolean" : {
+            "type" : "boolean"
+          },
+          "asNumber" : {
+            "$ref" : "#/components/schemas/Number"
+          },
+          "asString" : {
+            "type" : "string"
+          },
+          "asDouble" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "asFloat" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "asLong" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "asInt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asByte" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asCharacter" : {
+            "type" : "string"
+          },
+          "asBigDecimal" : {
+            "type" : "string"
+          },
+          "asBigInteger" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "asShort" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "required" : [ "jsonArray", "jsonObject", "jsonPrimitive", "jsonNull", "asBoolean", "asDouble", "asFloat", "asLong", "asInt", "asByte", "asCharacter", "asShort" ]
+      },
+      "JsonNull" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "jsonArray" : {
+            "type" : "boolean"
+          },
+          "jsonObject" : {
+            "type" : "boolean"
+          },
+          "jsonPrimitive" : {
+            "type" : "boolean"
+          },
+          "jsonNull" : {
+            "type" : "boolean"
+          },
+          "asJsonObject" : {
+            "$ref" : "#/components/schemas/JsonObject"
+          },
+          "asJsonArray" : {
+            "$ref" : "#/components/schemas/JsonArray"
+          },
+          "asJsonPrimitive" : {
+            "$ref" : "#/components/schemas/JsonPrimitive"
+          },
+          "asJsonNull" : {
+            "$ref" : "#/components/schemas/JsonNull"
+          },
+          "asBoolean" : {
+            "type" : "boolean"
+          },
+          "asNumber" : {
+            "$ref" : "#/components/schemas/Number"
+          },
+          "asString" : {
+            "type" : "string"
+          },
+          "asDouble" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "asFloat" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "asLong" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "asInt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asByte" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asCharacter" : {
+            "type" : "string"
+          },
+          "asBigDecimal" : {
+            "type" : "string"
+          },
+          "asBigInteger" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "asShort" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "required" : [ "jsonArray", "jsonObject", "jsonPrimitive", "jsonNull", "asBoolean", "asDouble", "asFloat", "asLong", "asInt", "asByte", "asCharacter", "asShort" ]
+      },
+      "JsonObject" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "jsonArray" : {
+            "type" : "boolean"
+          },
+          "jsonObject" : {
+            "type" : "boolean"
+          },
+          "jsonPrimitive" : {
+            "type" : "boolean"
+          },
+          "jsonNull" : {
+            "type" : "boolean"
+          },
+          "asJsonObject" : {
+            "$ref" : "#/components/schemas/JsonObject"
+          },
+          "asJsonArray" : {
+            "$ref" : "#/components/schemas/JsonArray"
+          },
+          "asJsonPrimitive" : {
+            "$ref" : "#/components/schemas/JsonPrimitive"
+          },
+          "asJsonNull" : {
+            "$ref" : "#/components/schemas/JsonNull"
+          },
+          "asBoolean" : {
+            "type" : "boolean"
+          },
+          "asNumber" : {
+            "$ref" : "#/components/schemas/Number"
+          },
+          "asString" : {
+            "type" : "string"
+          },
+          "asDouble" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "asFloat" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "asLong" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "asInt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asByte" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asCharacter" : {
+            "type" : "string"
+          },
+          "asBigDecimal" : {
+            "type" : "string"
+          },
+          "asBigInteger" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "asShort" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "empty" : {
+            "type" : "boolean"
+          },
+          "" : {
+            "$ref" : "#/components/schemas/JsonElement"
+          }
+        },
+        "required" : [ "jsonArray", "jsonObject", "jsonPrimitive", "jsonNull", "asBoolean", "asDouble", "asFloat", "asLong", "asInt", "asByte", "asCharacter", "asShort", "empty" ]
+      },
+      "JsonPrimitive" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "jsonArray" : {
+            "type" : "boolean"
+          },
+          "jsonObject" : {
+            "type" : "boolean"
+          },
+          "jsonPrimitive" : {
+            "type" : "boolean"
+          },
+          "jsonNull" : {
+            "type" : "boolean"
+          },
+          "asJsonObject" : {
+            "$ref" : "#/components/schemas/JsonObject"
+          },
+          "asJsonArray" : {
+            "$ref" : "#/components/schemas/JsonArray"
+          },
+          "asJsonPrimitive" : {
+            "$ref" : "#/components/schemas/JsonPrimitive"
+          },
+          "asJsonNull" : {
+            "$ref" : "#/components/schemas/JsonNull"
+          },
+          "boolean" : {
+            "type" : "boolean"
+          },
+          "asBoolean" : {
+            "type" : "boolean"
+          },
+          "number" : {
+            "type" : "boolean"
+          },
+          "asNumber" : {
+            "$ref" : "#/components/schemas/Number"
+          },
+          "string" : {
+            "type" : "boolean"
+          },
+          "asString" : {
+            "type" : "string"
+          },
+          "asDouble" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "asBigDecimal" : {
+            "type" : "string"
+          },
+          "asBigInteger" : {
+            "$ref" : "#/components/schemas/BigInteger"
+          },
+          "asFloat" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "asLong" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "asShort" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asInt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asByte" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "asCharacter" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "jsonArray", "jsonObject", "jsonPrimitive", "jsonNull", "boolean", "asBoolean", "number", "string", "asDouble", "asFloat", "asLong", "asShort", "asInt", "asByte", "asCharacter" ]
+      },
+      "KillSwitchRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "api_key" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "API key whose trading to stop. Send exactly one of api_key, firm_id, or fcm_id. The key must be within your own firm or FCM."
+          },
+          "firm_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Id of the firm whose trading to stop, as a canonical decimal string. Must be your own firm, or a firm under your FCM.",
+            "example" : "298471892342"
+          },
+          "fcm_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Id of your own FCM, as a canonical decimal string. Only FCM-level API keys may use this scope."
+          },
+          "cancel_only" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "description" : "If true, cancel the scope's active orders without locking it, so new orders are still accepted. If false or omitted, the scope is also locked against new orders.",
+            "example" : false
+          }
+        }
+      },
+      "KillSwitchResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "description" : "Scope the request applied to: API_KEY, FIRM, or FCM.",
+            "example" : "FIRM"
+          },
+          "scope_id" : {
+            "type" : "string",
+            "description" : "Id of the target, as a canonical decimal string: the API key's user id for API_KEY scope, otherwise the firm or FCM id.",
+            "example" : "298471892342"
+          },
+          "cancel_only" : {
+            "type" : "boolean",
+            "description" : "Echo of cancel_only from the request. Always false for an unlock.",
+            "example" : false
+          },
+          "locked" : {
+            "type" : "boolean",
+            "description" : "True when this request locked the scope against new orders. False for a cancel-only request and for an unlock. While a scope is locked, cancels and reads still work.",
+            "example" : true
+          },
+          "num_orders_canceled" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Number of active orders canceled. Always 0 for an unlock.",
+            "example" : 1
+          }
+        },
+        "required" : [ "cancel_only", "locked", "num_orders_canceled" ]
+      },
+      "L2BookResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "bids" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/L2Level"
+            },
+            "description" : "Bid price levels for the YES contract, best (highest) price first."
+          },
+          "asks" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/L2Level"
+            },
+            "description" : "Ask price levels for the YES contract, best (lowest) price first."
+          }
+        }
+      },
+      "L2Level" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "price" : {
+            "type" : "string",
+            "description" : "Price of this level per YES contract in USDC, as a decimal string.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Total resting quantity at this price, in contracts, as a decimal string.",
+            "example" : "15.00"
+          }
+        }
+      },
+      "Number" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : { }
+      },
+      "OpenOrderResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "order_id" : {
+            "type" : "string",
+            "description" : "Order id, as a canonical decimal string.",
+            "example" : "698471892348"
+          },
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Instrument ticker.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF-LAR"
+          },
+          "side" : {
+            "type" : "string",
+            "description" : "Side as booked: BUY or SELL of the YES contract. NO-side orders appear as their YES equivalent.",
+            "example" : "BUY"
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "Limit price of the YES order as booked, in USDC, as a decimal string.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Original order quantity in contracts, as a decimal string.",
+            "example" : "25.00"
+          },
+          "filled_quantity" : {
+            "type" : "string",
+            "description" : "Quantity filled so far, in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "remaining_quantity" : {
+            "type" : "string",
+            "description" : "Quantity still resting on the book, in contracts, as a decimal string.",
+            "example" : "15.00"
+          },
+          "time_in_force" : {
+            "type" : "string",
+            "description" : "Time in force of the order. IOC and FOK orders never appear in this list.",
+            "example" : "GTC"
+          },
+          "client_order_id" : {
+            "type" : "string",
+            "description" : "Client order id you assigned to the order.",
+            "example" : "ord-100"
+          },
+          "sub_account" : {
+            "type" : "string",
+            "description" : "Sub-account of the order.",
+            "example" : "fund-a"
+          }
+        }
+      },
+      "OrderErrorResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "error" : {
+            "type" : "string",
+            "description" : "Machine-readable error code, for example INVALID_FIELD, INSUFFICIENT_BALANCE, or UNAUTHORIZED.",
+            "example" : "INVALID_FIELD"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Human-readable description of the error.",
+            "example" : "side must be one of: BUY, SELL, BUY_NO, SELL_NO"
+          }
+        }
+      },
+      "PlaceOrderRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Id of the instrument to trade, as a canonical decimal string. Tickers and JSON numbers are rejected.",
+            "example" : "598471892347"
+          },
+          "firm_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Id of the firm the order is for, as a canonical decimal string. Required for FCM-level API keys, and must be a firm under your FCM. A FIRM-level key may omit it or send its own firm id.",
+            "example" : "298471892342"
+          },
+          "side" : {
+            "type" : "string",
+            "description" : "Order side. BUY and SELL trade the YES contract. BUY_NO and SELL_NO trade the NO side and are booked as SELL or BUY of YES at one minus the price. BUY_NO and SELL_NO are REST only: FIX order entry accepts only Buy and Sell, so FIX clients convert NO orders themselves (BUY_NO at price P is SELL at 1 minus P).",
+            "example" : "BUY"
+          },
+          "price" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Limit price per contract in USDC, as a decimal string strictly between 0 and 1 that aligns to the instrument's tick size. Omit or send null for a market order. For BUY_NO and SELL_NO it is the NO price and is required.",
+            "example" : "0.590"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Number of contracts to trade, as a positive decimal string.",
+            "example" : "25.00"
+          },
+          "time_in_force" : {
+            "type" : "string",
+            "description" : "How long the order stays active: GTC rests until filled or canceled, IOC fills what it can immediately and cancels the rest, FOK fills completely at once or is rejected. Market orders run as IOC unless you send FOK.",
+            "example" : "GTC"
+          },
+          "client_order_id" : {
+            "type" : "string",
+            "description" : "Your identifier for the order: at most 18 printable ASCII characters, or a 36-character lowercase UUID. Must be unique among your active orders.",
+            "example" : "ord-100"
+          },
+          "sub_account" : {
+            "type" : "string",
+            "description" : "Sub-account the order and any resulting position belong to, in the same format as client_order_id. A new sub-account is created on first use.",
+            "example" : "fund-a"
+          },
+          "post_only" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "description" : "If true, the order only adds liquidity. An order that would cross the book rests at the best non-crossing price instead, unless post_only_reject is true. Not allowed on market orders.",
+            "example" : false
+          },
+          "post_only_reject" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "description" : "If true, the order only adds liquidity and is rejected with POST_ONLY_WOULD_CROSS if it would cross the book. Not allowed on market orders.",
+            "example" : false
+          },
+          "self_match_prevention_id" : {
+            "type" : "integer",
+            "format" : "int32",
+            "nullable" : true,
+            "description" : "Optional positive self-match prevention id. An incoming order does not match a resting order that carries the same id; self_match_prevention_mode decides which order is canceled.",
+            "example" : 7
+          },
+          "self_match_prevention_mode" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Which order to cancel when self-match prevention triggers: CANCEL_AGGRESSING, CANCEL_RESTING, or CANCEL_BOTH. When omitted, your user or firm default applies.",
+            "example" : "CANCEL_RESTING"
+          }
+        }
+      },
+      "PlaceOrderResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "order_id" : {
+            "type" : "string",
+            "description" : "Exchange-assigned order id, as a canonical decimal string.",
+            "example" : "698471892348"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Order state when the response was sent: SUBMITTED (resting with no fills), PARTIALLY_FILLED, FILLED, or CANCELED (nothing filled and the order was canceled, as with an unfilled IOC order).",
+            "example" : "PARTIALLY_FILLED"
+          },
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Instrument ticker.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF-LAR"
+          },
+          "side" : {
+            "type" : "string",
+            "description" : "Side as booked: BUY or SELL of the YES contract. BUY_NO and SELL_NO orders appear here as SELL and BUY.",
+            "example" : "BUY"
+          },
+          "original_side" : {
+            "type" : "string",
+            "description" : "Side as you submitted it, including BUY_NO or SELL_NO.",
+            "example" : "BUY"
+          },
+          "price" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Limit price of the YES order as booked, in USDC, as a decimal string. For BUY_NO and SELL_NO it is one minus the price you sent. Null for a market order.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Order quantity in contracts, as a decimal string.",
+            "example" : "25.00"
+          },
+          "filled_quantity" : {
+            "type" : "string",
+            "description" : "Quantity filled by the time of the response, in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "remaining_quantity" : {
+            "type" : "string",
+            "description" : "Quantity not filled by the time of the response, in contracts, as a decimal string.",
+            "example" : "15.00"
+          },
+          "time_in_force" : {
+            "type" : "string",
+            "description" : "Time in force you submitted.",
+            "example" : "GTC"
+          },
+          "client_order_id" : {
+            "type" : "string",
+            "description" : "Echo of the client order id from the request.",
+            "example" : "ord-100"
+          },
+          "sub_account" : {
+            "type" : "string",
+            "description" : "Echo of the sub-account from the request.",
+            "example" : "fund-a"
+          },
+          "fills" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/FillResponse"
+            },
+            "nullable" : true,
+            "description" : "Fills that executed before the response was sent, or null if there were none."
+          },
+          "reject_reason" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Always null. A rejected order returns an error response instead of this object."
+          }
+        }
+      },
+      "PositionResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "firm_id" : {
+            "type" : "string",
+            "description" : "Id of the firm that owns the position, as a canonical decimal string.",
+            "example" : "298471892342"
+          },
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Instrument ticker.",
+            "example" : "NFL-GAMEWINNER-26NOV28LARSF-LAR"
+          },
+          "sub_account" : {
+            "type" : "string",
+            "description" : "Sub-account that holds the position.",
+            "example" : "fund-a"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Net position in contracts, as a signed decimal string. Positive is long YES; negative is short YES.",
+            "example" : "10.00"
+          }
+        }
+      },
+      "ReferenceDataErrorResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "error" : {
+            "$ref" : "#/components/schemas/Error",
+            "description" : "Error details."
+          }
+        }
+      },
+      "SeriesReferenceResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Series id, as a canonical decimal string.",
+            "example" : "398471892345"
+          },
+          "ticker" : {
+            "type" : "string",
+            "description" : "Unique series ticker. Treat it as an opaque identifier.",
+            "example" : "NFL-GAMEWINNER"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "Human-readable name.",
+            "example" : "NFL Game Winner"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Series description, or null when there is none.",
+            "example" : "Predict which team will win an NFL game."
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "Market category of the series: SPORTS, ECONOMICS, POLITICS, CRYPTO, or WEATHER.",
+            "example" : "SPORTS"
+          },
+          "mutually_exclusive" : {
+            "type" : "boolean",
+            "description" : "Whether each group of instruments under this series represents mutually exclusive outcomes.",
+            "example" : true
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Creation time in Unix epoch milliseconds.",
+            "example" : 1782498528000
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Last update time in Unix epoch milliseconds.",
+            "example" : 1795730000000
+          },
+          "additional_metadata" : {
+            "$ref" : "#/components/schemas/JsonElement",
+            "description" : "Market-specific series metadata as a JSON object, or null. The fields vary by market."
+          }
+        },
+        "required" : [ "mutually_exclusive", "created_at", "updated_at" ]
+      },
+      "TickerResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "last_trade_price" : {
+            "type" : "string",
+            "description" : "Price of the most recent trade per YES contract in USDC, as a decimal string. Null before the instrument's first trade.",
+            "example" : "0.590000"
+          },
+          "last_trade_qty" : {
+            "type" : "string",
+            "description" : "Quantity of the most recent trade in contracts, as a decimal string. Null before the instrument's first trade.",
+            "example" : "10.00"
+          },
+          "best_bid" : {
+            "type" : "string",
+            "description" : "Highest resting bid price for the YES contract, as a decimal string, or null when there are no bids.",
+            "example" : "0.590000"
+          },
+          "best_ask" : {
+            "type" : "string",
+            "description" : "Lowest resting ask price for the YES contract, as a decimal string, or null when there are no asks.",
+            "example" : "0.600000"
+          },
+          "last_trade_timestamp_ns" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Time of the most recent trade, in nanoseconds since the Unix epoch. Null before the instrument's first trade.",
+            "example" : 1795812345678000000
+          }
+        }
+      },
+      "TradeResponse" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "trade_id" : {
+            "type" : "string",
+            "description" : "Trade id, as a canonical decimal string.",
+            "example" : "798471892349"
+          },
+          "instrument_id" : {
+            "type" : "string",
+            "description" : "Instrument id, as a canonical decimal string.",
+            "example" : "598471892347"
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "Trade price per YES contract in USDC, as a decimal string.",
+            "example" : "0.590000"
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "Traded quantity in contracts, as a decimal string.",
+            "example" : "10.00"
+          },
+          "side" : {
+            "type" : "string",
+            "description" : "Side of the order that took liquidity: BUY or SELL of the YES contract.",
+            "example" : "BUY"
+          },
+          "timestamp_ns" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Trade time in nanoseconds since the Unix epoch.",
+            "example" : 1795812345678000000
+          }
+        },
+        "required" : [ "timestamp_ns" ]
+      },
+      "UnlockRequest" : {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {
+          "api_key" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "API key whose trading lock to remove. Send exactly one of api_key, firm_id, or fcm_id. The key must be within your own firm or FCM. A FIRM or FCM lock above the key still applies after its API_KEY lock is removed."
+          },
+          "firm_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Id of the firm whose trading lock to remove, as a canonical decimal string. Must be your own firm, or a firm under your FCM.",
+            "example" : "298471892342"
+          },
+          "fcm_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Id of your own FCM, as a canonical decimal string. Only FCM-level API keys may use this scope."
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "auth_api_key" : {
+        "name" : "CB-ACCESS-KEY",
+        "description" : "The API key string for the request",
+        "in" : "header",
+        "type" : "apiKey"
+      },
+      "auth_timestamp" : {
+        "name" : "CB-ACCESS-TIMESTAMP",
+        "description" : "The request timestamp (epoch seconds)",
+        "in" : "header",
+        "type" : "apiKey"
+      },
+      "auth_passphrase" : {
+        "name" : "CB-ACCESS-PASSPHRASE",
+        "description" : "The passphrase for the API key",
+        "in" : "header",
+        "type" : "apiKey"
+      },
+      "auth_signature" : {
+        "name" : "CB-ACCESS-SIGN",
+        "description" : "HMAC SHA-256 signature over TIMESTAMP + METHOD + REQUEST_PATH + BODY",
+        "in" : "header",
+        "type" : "apiKey"
+      }
+    }
+  },
+  "servers" : [ {
+    "url" : "https://api.example.com",
+    "variables" : { }
+  } ],
+  "security" : [ {
+    "auth_api_key" : [ ]
+  }, {
+    "auth_timestamp" : [ ]
+  }, {
+    "auth_passphrase" : [ ]
+  }, {
+    "auth_signature" : [ ]
+  } ]
+}
