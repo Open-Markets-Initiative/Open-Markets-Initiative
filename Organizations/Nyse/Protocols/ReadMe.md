@@ -7,6 +7,7 @@
 | [AmexOptions](AmexOptions/) | 7 |
 | [ArcaEquities](ArcaEquities/) | 18 |
 | [ArcaOptions](ArcaOptions/) | 7 |
+| [GlobalOtc](GlobalOtc/) | 1 |
 | [NationalEquities](NationalEquities/) | 16 |
 | [NyseBonds](NyseBonds/) | 3 |
 | [NyseEquities](NyseEquities/) | 21 |
