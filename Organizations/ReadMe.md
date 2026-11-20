@@ -79,12 +79,12 @@ Repository of definitions and protocol specifications of the organizations cover
 | [Miax](Miax/) | Miami International Holdings | MIHI | [miaxglobal.com](https://www.miaxglobal.com) |
 | [Moex](Moex/) | Moscow Exchange | MISX | [moex.com](https://www.moex.com) |
 | [Msx](Msx/) | Muscat Stock Exchange | XMUS | [msx.om](https://www.msx.om) |
-| [Nairobi](Nairobi/) | Nairobi Securities Exchange | XNAI | [nse.co.ke](https://www.nse.co.ke) |
 | [Nasdaq](Nasdaq/) | National Association of Securities Dealers Automated Quotations (Nasdaq) | XNAS | [nasdaq.com](https://www.nasdaq.com) |
 | [Neeq](Neeq/) | National Equities Exchange and Quotations | NEEQ | [neeq.com.cn](https://www.neeq.com.cn) |
 | [Nextrade](Nextrade/) | Nextrade | NXTE | [nextrade.co.kr](https://nextrade.co.kr) |
 | [Ngm](Ngm/) | Nordic Growth Market | XNGM | [ngm.se](https://www.ngm.se) |
 | [Nse](Nse/) | National Stock Exchange of India Ltd | XNSE | [nseindia.com](https://www.nseindia.com) |
+| [NseKenya](NseKenya/) | Nairobi Securities Exchange | XNAI | [nse.co.ke](https://www.nse.co.ke) |
 | [NsxAustralia](NsxAustralia/) | Nation Stock Exchange of Australia | XNEC | [nsx.com.au](https://www.nsx.com.au) |
 | [NsxNamibia](NsxNamibia/) | Namibian Stock Exchange | XNAM | [nsx.com.na](https://nsx.com.na) |
 | [Nyse](Nyse/) | New York Stock Exchange | XNYS | [nyse.com](https://www.nyse.com) |

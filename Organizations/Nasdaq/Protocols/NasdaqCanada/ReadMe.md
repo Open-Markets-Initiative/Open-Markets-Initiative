@@ -9,6 +9,7 @@ Nasdaq Canada (Nasdaq CXC Limited, formerly Chi-X Canada) Canadian cash equities
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [Basic](Basic.md) | MarketData | Nasdaq Canada Level 1 Quotation And Trade Data |
 | [Chixmd](Chixmd.md) | MarketData | Nasdaq Canada Tcp Order And Trade Feed |
 | [Chixmmd](Chixmmd.md) | MarketData | Nasdaq Canada Multicast Order And Trade Feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Canada Order Entry |

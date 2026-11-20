@@ -8,7 +8,7 @@
 | [Index](Index/) | 1 |
 | [IseOptions](IseOptions/) | 17 |
 | [MrxOptions](MrxOptions/) | 13 |
-| [NasdaqCanada](NasdaqCanada/) | 3 |
+| [NasdaqCanada](NasdaqCanada/) | 4 |
 | [NfxFutures](NfxFutures/) | 1 |
 | [NlxDerivatives](NlxDerivatives/) | 1 |
 | [NomOptions](NomOptions/) | 11 |
