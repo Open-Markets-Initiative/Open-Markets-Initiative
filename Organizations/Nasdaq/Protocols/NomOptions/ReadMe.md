@@ -11,11 +11,15 @@ Nasdaq Options Market US options exchange operating a price time priority market
 | --- | --- | --- |
 | [Bono](Bono.md) | MarketData | Nasdaq Options Top Of Book Data, which the venue calls Bono |
 | [Cti](Cti.md) | DropCopy | Nasdaq Options Market (NOM) Clearing Trade Interface (CTI) |
+| [DepthOfMarket](DepthOfMarket.md) | MarketData | Nasdaq Options Market Depth Of Book Data |
 | [DropCopy](DropCopy.md) | DropCopy | Nasdaq Options Market (NOM) FIX DROP |
 | [Itto](Itto.md) | MarketData | Nasdaq Itch to Trade Options, the Nom order and quote depth feed |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Nasdaq Nasdaq Options Market Fix order entry |
+| [OrderFeed](OrderFeed.md) | MarketData | Nom Order Feed Market Data |
 | [Otto](Otto.md) | OrderEntry | Nasdaq Options Market (NOM) Ouch to Trade Options (OTTO) |
 | [Quoting](Quoting.md) | OrderEntry | Nasdaq Options Market (NOM) Specialized Quote Interface (SQF) |
+| [TopOfMarket](TopOfMarket.md) | MarketData | Nasdaq Options Market Best Bid And Offer Data |
+| [TradeFeed](TradeFeed.md) | MarketData | Nasdaq Options Market Trade Report Data |
 
 ## Specifications
 

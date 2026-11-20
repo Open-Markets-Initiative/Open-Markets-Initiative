@@ -11,7 +11,7 @@
 | [NasdaqCanada](NasdaqCanada/) | 3 |
 | [NfxFutures](NfxFutures/) | 1 |
 | [NlxDerivatives](NlxDerivatives/) | 1 |
-| [NomOptions](NomOptions/) | 7 |
+| [NomOptions](NomOptions/) | 11 |
 | [NordicDerivatives](NordicDerivatives/) | 3 |
 | [NordicEquities](NordicEquities/) | 7 |
 | [NordicMarkets](NordicMarkets/) | 1 |
