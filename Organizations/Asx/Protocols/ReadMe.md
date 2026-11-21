@@ -4,7 +4,7 @@
 | Division | Protocols |
 | --- | --- |
 | [AsxDerivatives](AsxDerivatives/) | 6 |
-| [AsxSecurities](AsxSecurities/) | 6 |
+| [AsxSecurities](AsxSecurities/) | 7 |
 
 ## Specifications
 
