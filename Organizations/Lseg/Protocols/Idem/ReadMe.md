@@ -11,3 +11,7 @@ Idem is the Italian Derivatives Market of Borsa Italiana, listing futures and op
 | --- | --- | --- |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Sola Fix Order Entry |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+

@@ -16,3 +16,7 @@ Millennium Exchange is the Lseg matching and trading platform acquired through M
 | [PostTrade](PostTrade.md) | TradeCapture | Fix Post Trade Gateway |
 | [Trading](Trading.md) | OrderEntry | Fix Trading Gateway |
 
+## Specifications
+
+Protocol documentation is available in the [Specifications](../../Specifications) directory.
+
