@@ -15,6 +15,8 @@ Turquoise is the Lseg pan European multilateral trading facility (Mtf), operatin
 | [Level2Incremental](Level2Incremental.md) | MarketData | Level 2 Incremental |
 | [Mifid2PostTrade](Mifid2PostTrade.md) | MarketData | MiFID II Post Trade |
 | [Mifid2PreTrade](Mifid2PreTrade.md) | MarketData | MiFID II Pre Trade |
+| [NativeTradingGateway](NativeTradingGateway.md) | OrderEntry | Native Trading Gateway |
+| [NativeTradingGatewayRecovery](NativeTradingGatewayRecovery.md) | OrderEntry | Native Trading Gateway Recovery |
 | [Recovery](Recovery.md) | MarketData | Recovery |
 | [Replay](Replay.md) | MarketData | Replay |
 

@@ -14,6 +14,7 @@ The derivatives market of the Moscow Exchange, running on the Spectra trading pl
 | [FutInfoReplay](FutInfoReplay.md) | MarketData | SIMBA Spectra Futures Instrument Replay |
 | [OptInfoIncremental](OptInfoIncremental.md) | MarketData | SIMBA Spectra Options Instrument Incremental |
 | [OptInfoReplay](OptInfoReplay.md) | MarketData | SIMBA Spectra Options Instrument Replay |
+| [OrderEntry](OrderEntry.md) | OrderEntry | TWIME Spectra Order Entry |
 | [OrdersLogIncremental](OrdersLogIncremental.md) | MarketData | SIMBA Spectra Orders Log Incremental |
 | [OrdersLogReplay](OrdersLogReplay.md) | MarketData | SIMBA Spectra Orders Log Historical Replay |
 | [OrdersLogSnapshot](OrdersLogSnapshot.md) | MarketData | SIMBA Spectra Orders Log Snapshot |

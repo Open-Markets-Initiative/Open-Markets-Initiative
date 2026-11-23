@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="sbe_schema.xsl" type="text/xsl"?>
+<sbe:messageSchema package="moex_spectra_twime" byteOrder="littleEndian" id="19781" version="7" xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://fixprotocol.io/2016/sbe sbe.xsd">
+    <types>
+        <type name="Int8"           primitiveType="int8"    minValue="-128"                 maxValue="126"          nullValue="127"                 presence="optional" />
+        <type name="Int16"          primitiveType="int16"   minValue="-32768"               maxValue="32766"        nullValue="32767"               presence="optional" />
+        <type name="Int32"          primitiveType="int32"   minValue="-2147483648"          maxValue="2147483646"   nullValue="2147483647"          presence="optional" />
+        <type name="Int64"          primitiveType="int64"   minValue="-9223372036854775808" maxValue="9223372036854775806" nullValue="9223372036854775807" presence="optional" />
+
+        <type name="UInt8"          primitiveType="uint8"   minValue="0" maxValue="254"                     nullValue="255"                 presence="optional" />
+        <type name="UInt16"         primitiveType="uint16"  minValue="0" maxValue="65534"                   nullValue="65535"               presence="optional" />
+        <type name="UInt32"         primitiveType="uint32"  minValue="0" maxValue="4294967294"              nullValue="4294967295"          presence="optional" />
+        <type name="UInt64"         primitiveType="uint64"  minValue="0" maxValue="18446744073709551614"    nullValue="18446744073709551615" presence="optional" />
+
+        <type name="String7"        primitiveType="char" length="7"/>
+        <type name="String20"       primitiveType="char" length="20"/>
+        <type name="String25"       primitiveType="char" length="25"/>
+
+        <type name="DeltaMillisecs" primitiveType="uint32" minValue="1000" maxValue="60000" presence="required" />
+        <type name="TimeStamp"      primitiveType="uint64" minValue="0" maxValue="18446744073709551614" nullValue="18446744073709551615" presence="optional" description="Time in number of nanoseconds since Unix epoch, UTC timezone" />
+
+        <enum name="TerminationCodeEnum" encodingType="uint8">
+            <validValue name="Finished"             >0</validValue>
+            <validValue name="UnspecifiedError"     >1</validValue>
+            <validValue name="ReRequestOutOfBounds" >2</validValue>
+            <validValue name="ReRequestInProgress"  >3</validValue>
+            <validValue name="TooFastClient"        >4</validValue>
+            <validValue name="TooSlowClient"        >5</validValue>
+            <validValue name="MissedHeartbeat"      >6</validValue>
+            <validValue name="InvalidMessage"       >7</validValue>
+            <validValue name="TCPFailure"           >8</validValue>
+            <validValue name="InvalidSequenceNumber">9</validValue>
+            <validValue name="ServerShutdown"       >10</validValue>
+            <validValue name="SequenceReset"        >11</validValue>
+        </enum>
+
+        <enum name="EstablishmentRejectCodeEnum" encodingType="uint8">
+            <validValue name="Unnegotiated"         >0</validValue>
+            <validValue name="AlreadyEstablished"   >1</validValue>
+            <validValue name="SessionBlocked"       >2</validValue>
+            <validValue name="KeepaliveInterval"    >3</validValue>
+            <validValue name="Credentials"          >4</validValue>
+            <validValue name="Unspecified"          >5</validValue>
+            <validValue name="TooFastReconnect"     >6</validValue>
+        </enum>
+
+        <enum name="SessionRejectReasonEnum" encodingType="uint8">
+            <validValue name="ValueIsIncorrect"     >5</validValue>
+            <validValue name="Other"                >99</validValue>
+            <validValue name="SystemIsUnavailable"  >100</validValue>
+            <validValue name="ClOrdIdIsNotUnique"   >101</validValue>
+        </enum>
+
+        <enum name="TimeInForceEnum" encodingType="uint8">
+            <validValue name="Day"                  >0</validValue>
+            <validValue name="IOC"                  >3</validValue>
+            <validValue name="FOK"                  >4</validValue>
+            <validValue name="GTD"                  >6</validValue>
+            <validValue name="BOC"                  >122</validValue>
+        </enum>
+
+        <enum name="SideEnum" encodingType="uint8">
+            <validValue name="Buy"                  >1</validValue>
+            <validValue name="Sell"                 >2</validValue>
+            <validValue name="AllOrders"            >89</validValue>
+        </enum>
+
+        <enum name="ModeEnum" encodingType="uint8">
+            <validValue name="DontChangeOrderQty"               >0</validValue>
+            <validValue name="ChangeOrderQty"                   >1</validValue>
+            <validValue name="CheckOrderQtyAndCancelOrder"      >2</validValue>
+            <validValue name="FixStyleReplace"                  >3</validValue>
+        </enum>
+
+        <set name="SecurityTypeSet" encodingType="uint8">
+            <choice name="Future"   description="Futures"             >0</choice>
+            <choice name="Option"   description="Options"             >1</choice>
+            <choice name="Multileg" description="Multileg instuments" >2</choice>
+        </set>
+
+        <enum name="TradSesEventEnum" encodingType="uint8">
+            <validValue name="SessionDataReady"                  >101</validValue>
+            <validValue name="ClearingStarted"                   >105</validValue>
+            <validValue name="ExtensionOfLimitsFinished"         >106</validValue>
+            <validValue name="BrokerRecalcFinished"              >108</validValue>
+            <validValue name="AuctionFinished"                  >122</validValue>
+            <validValue name="AuctionCollectOrderStarted"       >123</validValue>
+            <validValue name="AuctionCollectOrderFinished"      >124</validValue>
+        </enum>
+
+        <enum name="ComplianceIDEnum" encodingType="char">
+            <validValue name="NotAvailable" > </validValue>
+            <validValue name="Manual"       >M</validValue>
+            <validValue name="StopLoss"     >S</validValue>
+            <validValue name="Algorithm"    >R</validValue>
+            <validValue name="Autofollow"   >A</validValue>
+            <validValue name="MarginCall"   >D</validValue>
+        </enum>
+
+        <set name="FlagsSet" encodingType="uint64">
+            <choice name="Day"                   description="Orders and Trades: Day order"                                                              >0</choice>
+            <choice name="IOC"                   description="Orders and Trades: Immediate or Cancel order"                                                              >1</choice>
+            <choice name="OTC"                   description="Orders and Trades: OTC order or OTC trade"                                                 >2</choice>
+            <choice name="PosTransfer"           description="Trades: Position transfer trade"                                                           >3</choice>
+            <choice name="Collateral"            description="Orders: Client collateral was not checked while adding order"                              >4</choice>
+            <choice name="DontCheckLimits"       description="Orders: Do not check limits for options"                                                   >9</choice>
+            <choice name="DueToCrossCancel"      description="Orders: The record results from cancelling the order due to cross"                         >13</choice>
+            <choice name="FOK"                   description="Orders: Fill or Kill order"                                                                         >19</choice>
+            <choice name="Replace"               description="Orders: The record results from replacing the order"                                       >20</choice>
+            <choice name="Cancel"                description="Orders: The record results from cancelling the order"                                      >21</choice>
+            <choice name="MassCancel"            description="Orders: The record results from mass cancelling"                                           >22</choice>
+            <choice name="Clearing"              description="Trades: Clearing session trade"                                                            >25</choice>
+            <choice name="Negotiated"            description="Trades: Negotiated trade"                                                                  >26</choice>
+            <choice name="MultiLeg"              description="Trades: Multi leg trade"                                                                   >27</choice>
+            <choice name="CrossTrade"            description="Orders: Flag of cancelling the left balance of the order because of a cross-trade"         >29</choice>
+            <choice name="NegotiatedMatchByRef"  description="Trades: Negotiated trade matched by reference"                                             >31</choice>
+            <choice name="COD"                   description="Orders: The record results from cancelling an order via 'Cancel on Disconnect' service"    >32</choice>
+            <choice name="UKS"                   description="Orders: The record results from cancelling an order via 'User Kill Switch' service"        >37</choice>
+            <choice name="NCCRequest"            description="Orders and Trades: National Clearing Center request"                                       >38</choice>
+            <choice name="NCC"                   description="Orders: The record results from cancelling an order via 'OrderMassCancelByBFLimitRequest'" >39</choice>
+            <choice name="LiqNettingRF"          description="Orders and Trades: The record formed in the process of liquidation netting"                >40</choice>
+            <choice name="ActiveSide"            description="Trades: Flag of aggressive side"                                                           >41</choice>
+            <choice name="PassiveSide"           description="Trades: Flag of passive side"                                                              >42</choice>
+            <choice name="Synthetic"             description="Orders: Flag of the synthetic order"                                                       >45</choice>
+            <choice name="Iceberg"               description="Orders and Trades: Iceberg order"                                                          >47</choice>
+            <choice name="DisclosedIceberg"      description="Orders: The record results from disclosing of Iceberg order"                               >53</choice>
+            <choice name="BOC"                   description="Orders and Trades: Book or Cancel order"                                                              >60</choice>
+            <choice name="DuringDiscreteAuction" description="Orders and Trades: The record formed in the process of discrete auction"                   >62</choice>
+        </set>
+
+        <set name="Flags2Set" encodingType="uint64">
+            <choice name="Zero"                  description="Empty set">0</choice>
+        </set>
+
+        <set name="ClientFlagsSet" encodingType="uint8">
+            <choice name="DontCheckLimits"  description="Do not check limits for options"                                               >0</choice>
+            <choice name="NccRequest"       description="National Clearing Center request"                                              >1</choice>
+        </set>
+
+        <composite name="Decimal5" description="Decimal">
+            <type name="mantissa" description="mantissa" minValue="-9999999999999999" maxValue="9999999999999999" primitiveType="int64" presence="required" />
+            <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-5</type>
+        </composite>
+
+        <!-- do not change this one as it is hardcoded in serializer -->
+        <composite name="messageHeader" description="Template ID and length of message root">
+            <type name="blockLength"    primitiveType="uint16" />
+            <type name="templateId"     primitiveType="uint16" />
+            <type name="schemaId"       primitiveType="uint16" />
+            <type name="version"        primitiveType="uint16" />
+        </composite>
+    </types>
+
+    <!-- Session layer messages -->
+    <sbe:message name="Establish" id="5000">
+        <field name="Timestamp"         id="20204"  type="TimeStamp" />
+        <field name="KeepaliveInterval" id="20205"  type="DeltaMillisecs" />
+        <field name="Credentials"       id="20206"  type="String20" />
+    </sbe:message>
+
+    <sbe:message name="EstablishmentAck" id="5001">
+        <field name="RequestTimestamp"  id="20207"  type="TimeStamp" />
+        <field name="KeepaliveInterval" id="20205"  type="DeltaMillisecs" />
+        <field name="NextSeqNo"         id="20208"  type="UInt64" />
+    </sbe:message>
+
+    <sbe:message name="EstablishmentReject" id="5002">
+        <field name="RequestTimestamp"          id="20207" type="TimeStamp" />
+        <field name="EstablishmentRejectCode"   id="20209" type="EstablishmentRejectCodeEnum" />
+    </sbe:message>
+
+    <sbe:message name="Terminate" id="5003">
+        <field name="TerminationCode"   id="20210"  type="TerminationCodeEnum" />
+    </sbe:message>
+
+    <sbe:message name="RetransmitRequest" id="5004">
+        <field name="Timestamp"         id="20204"  type="TimeStamp" />
+        <field name="FromSeqNo"         id="20211"  type="UInt64" />
+        <field name="Count"             id="20212"  type="UInt32" />
+    </sbe:message> 
+
+    <sbe:message name="Retransmission" id="5005">
+        <field name="NextSeqNo"         id="20208"  type="UInt64" />
+        <field name="RequestTimestamp"  id="20207"  type="TimeStamp" />
+        <field name="Count"             id="20212"  type="UInt32" />
+    </sbe:message>
+
+    <sbe:message name="Sequence" id="5006">
+        <field name="NextSeqNo"         id="20208"  type="UInt64" />
+    </sbe:message>
+
+    <sbe:message name="FloodReject" id="5007">
+        <field name="ClOrdID"           id="11"     type="UInt64"/>
+        <field name="QueueSize"         id="20213"  type="UInt32"/>
+        <field name="PenaltyRemain"     id="20214"  type="UInt32"/>
+    </sbe:message>
+
+    <sbe:message name="SessionReject" id="5008">
+        <field name="ClOrdID"             id="11"   type="UInt64"/>
+        <field name="RefTagID"            id="371"  type="UInt32"/>
+        <field name="SessionRejectReason" id="373"  type="SessionRejectReasonEnum"/>
+    </sbe:message>
+
+	<sbe:message name="BusinessMessageReject" id="5009" >
+		<field name="ClOrdID"             id="11"    type="UInt64"           />
+		<field name="Timestamp"           id="20204" type="TimeStamp"        />
+		<field name="OrdRejReason"        id="103"   type="Int32"            />
+	</sbe:message>
+
+
+
+    <!-- Application layer messages -->
+    <sbe:message name="NewOrderSingle" id="6000" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="ExpireDate"          id="432"   type="TimeStamp"                        />
+        <field name="Price"               id="44"    type="Decimal5"                         />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                            />
+        <field name="OrderQty"            id="38"    type="UInt32"                           />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"                 />
+        <field name="TimeInForce"         id="59"    type="TimeInForceEnum"                  />
+        <field name="Side"                id="54"    type="SideEnum"                         />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="NewOrderIceberg" id="6008" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="ExpireDate"          id="432"   type="TimeStamp"                        />
+        <field name="Price"               id="44"    type="Decimal5"                         />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                            />
+        <field name="DisplayQty"          id="1138"  type="UInt32"                           />
+        <field name="DisplayVarianceQty"  id="20036" type="UInt32"                           />
+        <field name="OrderQty"            id="38"    type="UInt32"                           />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"                 />
+        <field name="Side"                id="54"    type="SideEnum"                         />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="NewOrderIcebergX" id="6011" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="ExpireDate"          id="432"   type="TimeStamp"                        />
+        <field name="Price"               id="44"    type="Decimal5"                         />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                            />
+        <field name="DisplayQty"          id="1138"  type="UInt32"                           />
+        <field name="DisplayVarianceQty"  id="20036" type="UInt32"                           />
+        <field name="OrderQty"            id="38"    type="UInt32"                           />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"                 />
+        <field name="TimeInForce"         id="59"    type="TimeInForceEnum"                  />
+        <field name="Side"                id="54"    type="SideEnum"                         />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="OrderCancelRequest" id="6006" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="OrderID"             id="37"    type="Int64"                            />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="OrderIcebergCancelRequest" id="6009" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="OrderID"             id="37"    type="Int64"                            />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="OrderReplaceRequest" id="6007" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="OrderID"             id="37"    type="Int64"                            />
+        <field name="Price"               id="44"    type="Decimal5"                         />
+        <field name="OrderQty"            id="38"    type="UInt32"                           />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                            />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"                 />
+        <field name="Mode"                id="20019" type="ModeEnum"                         />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="OrderIcebergReplaceRequest" id="6010" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                           />
+        <field name="OrderID"             id="37"    type="Int64"                            />
+        <field name="Price"               id="44"    type="Decimal5"                         />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                            />
+        <field name="SecurityID"          id="48"    type="Int32"                            />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"                 />
+        <field name="ClientFlags"         id="20218" type="ClientFlagsSet"                   />
+        <field name="Account"             id="1"     type="String7"                          />
+    </sbe:message>
+
+    <sbe:message name="OrderMassCancelRequest" id="6004" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"            />
+        <field name="SecurityID"          id="48"    type="Int32"            />
+        <field name="SecurityType"        id="167"   type="SecurityTypeSet"  />
+        <field name="Side"                id="54"    type="SideEnum"         />
+        <field name="Account"             id="1"     type="String7"          />
+        <field name="SecurityGroup"       id="1151"  type="String25"         />
+    </sbe:message>
+
+    <sbe:message name="OrderMassCancelByBFLimitRequest" id="6005" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="Account"             id="1"     type="String7"          />
+    </sbe:message>
+
+    <sbe:message name="NewOrderSingleResponse" id="7015" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                  />
+        <field name="Timestamp"           id="20204" type="TimeStamp"               />
+        <field name="ExpireDate"          id="432"   type="TimeStamp"               />
+        <field name="OrderID"             id="37"    type="Int64"                   />
+        <field name="Flags"               id="20215" type="FlagsSet"                />
+        <field name="Flags2"              id="20051" type="Flags2Set"               />
+        <field name="Price"               id="44"    type="Decimal5"                />
+        <field name="SecurityID"          id="48"    type="Int32"                   />
+        <field name="OrderQty"            id="38"    type="UInt32"                  />
+        <field name="TradingSessionID"    id="336"   type="Int32"                   />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                   />
+        <field name="Side"                id="54"    type="SideEnum"                />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"        />
+    </sbe:message>
+
+    <sbe:message name="NewOrderIcebergResponse" id="7016" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                  />
+        <field name="Timestamp"           id="20204" type="TimeStamp"               />
+        <field name="ExpireDate"          id="432"   type="TimeStamp"               />
+        <field name="OrderID"             id="37"    type="Int64"                   />
+        <field name="DisplayOrderID"      id="20037" type="Int64"                   />
+        <field name="Flags"               id="20215" type="FlagsSet"                />
+        <field name="Flags2"              id="20051" type="Flags2Set"               />
+        <field name="Price"               id="44"    type="Decimal5"                />
+        <field name="SecurityID"          id="48"    type="Int32"                   />
+        <field name="OrderQty"            id="38"    type="UInt32"                  />
+        <field name="DisplayQty"          id="1138"  type="UInt32"                  />
+        <field name="DisplayVarianceQty"  id="20036" type="UInt32"                  />
+        <field name="TradingSessionID"    id="336"   type="Int32"                   />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"                   />
+        <field name="Side"                id="54"    type="SideEnum"                />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum"        />
+    </sbe:message>
+
+    <sbe:message name="OrderCancelResponse" id="7017" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="OrderID"             id="37"    type="Int64"            />
+        <field name="Flags"               id="20215" type="FlagsSet"         />
+        <field name="Flags2"              id="20051" type="Flags2Set"        />
+        <field name="OrderQty"            id="38"    type="UInt32"           />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"            />
+    </sbe:message>
+
+    <sbe:message name="OrderReplaceResponse" id="7018" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="OrderID"             id="37"    type="Int64"            />
+        <field name="PrevOrderID"         id="20216" type="Int64"            />
+        <field name="Flags"               id="20215" type="FlagsSet"         />
+        <field name="Flags2"              id="20051" type="Flags2Set"        />
+        <field name="Price"               id="44"    type="Decimal5"         />
+        <field name="OrderQty"            id="38"    type="UInt32"           />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"            />
+        <field name="ComplianceID"        id="376"   type="ComplianceIDEnum" />
+    </sbe:message>
+
+    <sbe:message name="OrderMassCancelResponse" id="7007" >
+        <field name="ClOrdID"             id="11"    type="UInt64"                     />
+        <field name="Timestamp"           id="20204" type="TimeStamp"                  />
+        <field name="TotalAffectedOrders" id="533"   type="Int32"                      />
+    </sbe:message>
+
+    <sbe:message name="ExecutionSingleReport" id="7019" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="OrderID"             id="37"    type="Int64"            />
+        <field name="TrdMatchID"          id="880"   type="Int64"            />
+        <field name="Flags"               id="20215" type="FlagsSet"         />
+        <field name="Flags2"              id="20051" type="Flags2Set"        />
+        <field name="LastPx"              id="31"    type="Decimal5"         />
+        <field name="LastQty"             id="32"    type="UInt32"           />
+        <field name="OrderQty"            id="38"    type="UInt32"           />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"            />
+        <field name="SecurityID"          id="48"    type="Int32"            />
+        <field name="Side"                id="54"    type="SideEnum"         />
+    </sbe:message>
+
+    <sbe:message name="ExecutionMultilegReport" id="7020" >
+        <field name="ClOrdID"             id="11"    type="UInt64"           />
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="OrderID"             id="37"    type="Int64"            />
+        <field name="TrdMatchID"          id="880"   type="Int64"            />
+        <field name="Flags"               id="20215" type="FlagsSet"         />
+        <field name="Flags2"              id="20051" type="Flags2Set"        />
+        <field name="LastPx"              id="31"    type="Decimal5"         />
+        <field name="LegPrice"            id="566"   type="Decimal5"         />
+        <field name="LastQty"             id="32"    type="UInt32"           />
+        <field name="OrderQty"            id="38"    type="UInt32"           />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+        <field name="ClOrdLinkID"         id="583"   type="Int32"            />
+        <field name="SecurityID"          id="48"    type="Int32"            />
+        <field name="Side"                id="54"    type="SideEnum"         />
+    </sbe:message>
+
+    <sbe:message name="EmptyBook" id="7010" >
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+    </sbe:message>
+
+    <sbe:message name="SystemEvent" id="7014" >
+        <field name="Timestamp"           id="20204" type="TimeStamp"        />
+        <field name="EventId"             id="20220" type="Int64"            />
+        <field name="TradingSessionID"    id="336"   type="Int32"            />
+        <field name="TradSesEvent"        id="1368"  type="TradSesEventEnum" />
+    </sbe:message>
+
+</sbe:messageSchema>
