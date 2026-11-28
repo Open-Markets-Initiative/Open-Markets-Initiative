@@ -14,6 +14,8 @@ Euronext Optiq trading platform hosting cash and derivatives markets across Euro
 | [MarketDataGateway](MarketDataGateway.md) | MarketData | Euronext Optiq Sbe Market Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Euronext Optiq Fix 5.0 Order Entry |
 | [OrderEntryGateway](OrderEntryGateway.md) | OrderEntry | Euronext Optiq Sbe Order Entry |
+| [StreamPro](StreamPro.md) | MarketData | Euronext Stream Pro Sbe Market Data |
+| [StreamProRegulatory](StreamProRegulatory.md) | MarketData | Euronext Stream Pro Sbe Regulatory Feed |
 
 ## Specifications
 

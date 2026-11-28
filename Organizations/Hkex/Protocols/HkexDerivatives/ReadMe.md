@@ -25,7 +25,3 @@ The Hkex Derivatives Market is operated by Hong Kong Futures Exchange Limited (H
 | [StandardRefresh](StandardRefresh.md) | MarketData | Orion Market Data Derivatives Standard Refresh |
 | [StandardRetrans](StandardRetrans.md) | MarketData | Orion Market Data Derivatives Standard Retransmission |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

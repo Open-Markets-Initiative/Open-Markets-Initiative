@@ -9,7 +9,11 @@ Asts is the Moscow Exchange trading system for the equity and bond market, the f
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [InstrumentDefinitions](InstrumentDefinitions.md) | MarketData | SIMBA ASTS Instrument Definitions |
+| [InstrumentStatus](InstrumentStatus.md) | MarketData | SIMBA ASTS Instrument Status |
 | [MarketDataMulticast](MarketDataMulticast.md) | MarketData | Market Data Multicast |
+| [OrderListIncremental](OrderListIncremental.md) | MarketData | SIMBA ASTS Order List Refresh |
+| [OrderListSnapshot](OrderListSnapshot.md) | MarketData | SIMBA ASTS Order List Snapshot |
 
 ## Specifications
 

@@ -28,7 +28,3 @@ The Hkex Securities Market is operated by The Stock Exchange of Hong Kong Limite
 | [StandardRefresh](StandardRefresh.md) | MarketData | Orion Market Data Cash Standard Refresh |
 | [StandardRetrans](StandardRetrans.md) | MarketData | Orion Market Data Cash Standard Retransmission |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-

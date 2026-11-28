@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbe:messageSchema package="sbe.asts" byteOrder="littleEndian" id="19780" version="1" semanticVersion="FIX5SP2" description="20201005" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://fixprotocol.io/2016/sbe sbe.xsd">
+    <xi:include href="sbe_asts_types.xml"/>
+    <types>
+        <set name="MsgFlagsSet" encodingType="uint16">
+            <choice name="LastFragment"          description="Message fragmentation flag"                                    >0</choice>
+            <choice name="StartOfSnapshot"       description="Flag of the first message in the snapshot for the instrument"  >1</choice>
+            <choice name="EndOfSnapshot"         description="Flag of the last message in the snapshot for the instrument"   >2</choice>
+            <choice name="IncrementalPacket"     description="Incremental packet flag"                                       >3</choice>
+        </set>
+        
+        <composite name="MarketDataPacketHeader" description="Market Data Packet Header">
+            <type name="MsgSeqNum"    primitiveType="uint32"/>
+            <type name="MsgSize"      primitiveType="uint16"/>
+            <ref  name="MsgFlags"     type="MsgFlagsSet"    />
+            <ref name="SendingTime"  type="UTCTimestamp"/>
+        </composite>
+
+        <composite name="IncrementalPacketHeader" description="Incremental Packet Header">
+            <ref name="TransactTime"              type="UTCTimestamp" description="Start of event processing time in number of nanoseconds since Unix epoch, UTC timezone"/>
+            <ref name="ExchangeTradingSessionID"  type="ExchangeTradingSessionID" description="Trading session ID"/>
+        </composite>
+
+        <enum name="MDUpdateAction" encodingType="uInt8">
+            <validValue name="New"    description="New"   >0</validValue>
+            <validValue name="Change" description="Change">1</validValue>
+            <validValue name="Delete" description="Delete">2</validValue>
+        </enum>
+
+        <enum name="MDEntryType" encodingType="Char">
+            <validValue name="Bid"          description="Bid"       >0</validValue>
+            <validValue name="Offer"        description="Offer"     >1</validValue>
+            <validValue name="EmptyBook"    description="Empty Book">J</validValue>
+        </enum>
+
+        <enum name="TradSesStatus" encodingType="uInt8">
+            <validValue name="Connected"        description="Connection to trading system established"                              >100</validValue>
+            <validValue name="Disconnected"     description="Connection to trading system lost"                                     >101</validValue>
+            <validValue name="Restored"         description="Connection to trading system restored. Trading system dont restarted." >102</validValue>
+            <validValue name="Reconnected"      description="Connection to trading system restored. Trading system restarted."      >103</validValue>
+            <validValue name="StartMain"        description="Start main trading session"                                            >105</validValue>
+            <validValue name="StopMain"         description="Stop main trading session"                                             >106</validValue>
+            <validValue name="StartAdditional"  description="Start additional trading session"                                      >107</validValue>
+            <validValue name="StopAdditional"   description="Stop additional trading session"                                       >108</validValue>
+            <validValue name="Closed"           description="End of trading day"                                                    >109</validValue>
+            <validValue name="Other"            description="Other event"                                                           >110</validValue>
+            <validValue name="StartMorning"     description="Start morning trading session"                                         >111</validValue>
+            <validValue name="StopMorning"      description="Stop morning trading session"                                          >112</validValue>
+        </enum>
+        
+        <enum name="SecuritySessionStatus" encodingType="Char">
+            <validValue name="Unavailable"      description="Unavailable for trading"               >N</validValue>
+            <validValue name="Opening"          description="Opening period"                        >O</validValue>
+            <validValue name="Closed"           description="The trading session is closed"         >C</validValue>
+            <validValue name="Closing"          description="Closing period"                        >F</validValue>
+            <validValue name="Break"            description="Trading break"                         >B</validValue>
+            <validValue name="Trading"          description="The trading session"                   >T</validValue>
+            <validValue name="AOpening"         description="Opening Auction"                       >S</validValue>
+            <validValue name="AClosing"         description="Closing Auction"                       >L</validValue>
+            <validValue name="ALargePackages"   description="Auction in large packages"             >D</validValue>
+            <validValue name="ADiscrete"        description="Discrete auction"                      >I</validValue>
+            <validValue name="AClosingPrice"    description="Auction: Trading at the Closing price" >E</validValue>
+            <validValue name="ABidCollection"   description="Auction: Bid Collection"               >A</validValue>
+            <validValue name="ATrades"          description="Auction: Making trades"                >a</validValue>
+            <validValue name="ABidsBlocked"     description="Auction: Bids are blocked"             >b</validValue>
+            <validValue name="ABidsExcecute"    description="Auction: Bids execute"                 >p</validValue>
+        </enum>
+        
+        <set name="SecurityFlagsSet" encodingType="uint16">
+            <choice name="MorningTrading"       description="Trading in the morning session"                                            >1</choice>
+            <choice name="EveningTrading"       description="Trading in the evening session"                                            >2</choice>
+            <choice name="HighRisk"             description="A sign of high risk"                                                       >5</choice>
+            <choice name="QualifiedInvestors"   description="A sign of permission to trade only for qualified investors"                >6</choice>
+            <choice name="QualifiedInvestorsLE" description="A sign of permission to trade only for qualified investors(legal entity)"  >7</choice>
+            <choice name="SubordinatedBonds"    description="Subordinated bonds"                                                        >8</choice>
+            <choice name="Placement"            description="Placement"                                                                 >9</choice>
+        </set>
+        
+        <set name="MDFlagSet" encodingType="uint32">
+            <choice name="Order" description="Orders and Trades: Day order">0</choice>
+            <choice name="Quote" description="Orders and Trades: Quote">1</choice>
+            <choice name="MarketInAuction" description="Orders and Trades: Market in auction Order">2</choice>
+            <choice name="LastFragment" description="Last message in event">3</choice>
+            <choice name="Negotiated" description="Trades: Negotiated trade">4</choice>
+            <choice name="Confirmed" description="Trades: Confirmed LP trade">5</choice>
+            <choice name="DarkPool" description="Trades: DarkPool or hidden liquidity trade">6</choice>
+            <choice name="AuctionResult" description="Result of auction">7</choice>
+        </set>
+    </types>
+
+    <sbe:message name="Heartbeat" id="1" description="Heartbeat" semanticType="0"/>
+    
+    <sbe:message name="SequenceReset" id="2" description="SequenceReset" semanticType="4">
+        <field name="NewSeqNo"                     id="36"    type="uInt32"             description="New sequence number"/>
+    </sbe:message>
+
+    <!-- ASTS Markets - Best prices message -->
+    <sbe:message name="BestPrices" id="3" description="MarketDataIncrementalRefresh" semanticType="X">
+        <group name="NoMDEntries"                  id="268"   dimensionType="groupSize" description="Number of entries in Best Prices message">
+            <field name="MktBidPx"                 id="645"   type="Decimal9NULL"       description="Best bid price"/>
+            <field name="MktOfferPx"               id="646"   type="Decimal9NULL"       description="Best offer price"/>
+            <field name="MktBidSize"               id="647"   type="Int64NULL"          description="Total qty in best bid"/>
+            <field name="MktOfferSize"             id="648"   type="Int64NULL"          description="Total qty in best offer"/>
+            <field name="Board"                    id="20336"  type="BoardID"           description="Board ID SECBOARD(4)"/>
+            <field name="Symbol"                   id="55"    type="SecurityID"         description="Instrument ID SECODE(12)"/>
+        </group>
+    </sbe:message>
+    
+    <!-- ASTS Market - Empty Book message -->
+    <sbe:message name="EmptyBook" id="4" semanticType="X">
+    </sbe:message>
+
+    <!-- ASTS Markets - New Order message or Delete Order message -->
+    <sbe:message name="OrderUpdate" id="5" description="MarketDataIncrementalRefresh" semanticType="X">
+        <field name="MDEntryID"                id="278"   type="Int64NULL"          description="Order ID"/>
+        <field name="MDEntryPx"                id="270"   type="Decimal9NULL"       description="Order price"/>
+        <field name="MDEntrySize"              id="271"   type="Int64NULL"          description="Market Data entry size"/>
+        <field name="MDFlags"                  id="20017" type="MDFlagSet"          description="Order or Trade type"/>
+        <field name="RptSeq"                   id="83"    type="uInt32NULL"         description="Market Data entry sequence number per instrument update"/>
+        <field name="MDUpdateAction"           id="279"   type="MDUpdateAction"     description="Market Data update action"/>
+        <field name="MDEntryType"              id="269"   type="MDEntryType"        description="Market Data entry type"/>
+        <field name="Board"                    id="20336"  type="BoardID"             description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                   id="55"    type="SecurityID"           description="Instrument ID SECODE(12)"/>
+    </sbe:message>
+    
+    <!-- ASTS Markets - Order Execution message -->
+    <sbe:message name="OrderExecution" id="6" description="MarketDataIncrementalRefresh" semanticType="X">
+        <field name="MDEntryID"                id="278"   type="Int64NULL"          description="Order ID"/>
+        <field name="MDEntryPx"                id="270"   type="Decimal9NULL"       description="Order price"/>
+        <field name="MDEntrySize"              id="271"   type="Int64NULL"          description="Market Data entry size"/>
+        <field name="LastPx"                   id="31"    type="Decimal9NULL"       description="Matched trade price"/>
+        <field name="LastQty"                  id="32"    type="Int64NULL"          description="Trade volume"/>
+        <field name="TradeID"                  id="1003"  type="uInt64NULL"         description="Trade ID"/>
+        <field name="MDFlags"                  id="20017" type="MDFlagSet"          description="Order or Trade type"/>
+        <field name="RptSeq"                   id="83"    type="uInt32NULL"         description="Market Data entry sequence number per instrument update"/>
+        <field name="MDUpdateAction"           id="279"   type="MDUpdateAction"     description="Market Data update action"/>
+        <field name="MDEntryType"              id="269"   type="MDEntryType"        description="Market Data entry type"/>
+        <field name="Board"                    id="20336"  type="BoardID"             description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                   id="55"    type="SecurityID"           description="Instrument ID SECODE(12)"/>
+    </sbe:message>
+
+    <sbe:message name="OrderBookSnapshot" id="7" semanticType="W">
+        <field name="LastMsgSeqNumProcessed"       id="369"   type="uInt32"             description="Sequence number of the last Incremental feed packet processed. This value is used to synchronize the snapshot loop with the real-time feed"/>
+        <field name="RptSeq"                       id="83"    type="uInt32"             description="Market Data entry sequence number per instrument update"/>
+        <field name="Board"                        id="20336" type="BoardID"             description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                       id="55"    type="SecurityID"           description="Instrument ID SECODE(12)"/>
+        <group name="NoMDEntries"                  id="268"   dimensionType="groupSize" description="Number of entries in Market Data message">
+            <field name="MDEntryID"                id="278"   type="Int64NULL"          description="Order ID"/>
+            <field name="TransactTime"             id="60"    type="UTCTimestamp"       description="Start of event processing time in number of nanoseconds since Unix epoch, UTC timezone"/>
+            <field name="MDEntryPx"                id="270"   type="Decimal9NULL"       description="Order price"/>
+            <field name="MDEntrySize"              id="271"   type="Int64NULL"          description="Market Data entry size"/>
+            <field name="MDFlags"                  id="20017" type="MDFlagSet"          description="Order or Trade type"/>
+            <field name="MDEntryType"              id="269"   type="MDEntryType"        description="Market Data entry type"/>
+        </group>
+    </sbe:message>
+    
+    <!-- ASTS Markets - Security Definition message -->
+    <sbe:message name="SecurityDefinition" id="8" description="Security Definition" semanticType="d">
+        <field name="TotNumReports"                   id="911"    type="uInt32"          description=""/>
+        <field name="Board"                    id="20336"  type="BoardID"            description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                   id="55"    type="SecurityID"          description="Instrument ID SECODE(12)"/>
+        <field name="TradingSessionID"         id="336"   type="SecuritySessionStatus"    description="Trading Session status"/>
+        <field name="TradingSessionSubID"      id="625"   type="SecuritySessionStatus"    description="Optional market assigned sub identifier for a trading phase within a trading session"/>
+        <field name="SecurityType"             id="167"   type="String6"          description=""/>
+        <field name="RoundLot"                 id="561"   type="uInt32"          description=""/>
+        <field name="LotDivider"               id="10512" type="uInt16"          description=""/>
+        <field name="PricePrecision"           id="2349"  type="uInt8"          description=""/>
+        <field name="MinPriceIncrement"                   id="969" type="Decimal9NULL"          description=""/>
+        <field name="Currency"                   id="15" type="String4"          description=""/>
+        <field name="FaceValue"                   id="5508" type="Decimal9NULL"          description=""/>
+        <field name="SettlCurrency"                   id="120" type="String4"          description=""/>
+        <field name="SettlDate1"                   id="64" type="monthYearNull"          description=""/>
+        <field name="SettlDate2"                   id="193" type="monthYearNull"          description=""/>
+        <field name="SettlType"                   id="5459" type="String12"          description=""/>
+        <field name="BaseSwapPx"                   id="5556" type="Decimal9NULL"          description=""/>
+        <field name="MarketID"                      id="1301"  type="MarketID"          description="Market ID"/>
+        <field name="MarketSegmentID"               id="1300"  type="Char"          description="Identifies the market segment"/>
+        <field name="LowLimitPx"                   id="1148" type="Decimal9NULL"          description=""/>
+        <field name="HighLimitPx"                   id="1149" type="Decimal9NULL"          description=""/>
+        <field name="SecStatus"               id="20326"  type="Char"          description=""/>
+        <data name="EncodedSecurityDesc"                   id="351" type="Utf8String"          description=""/>
+        <data name="SecurityDesc"                   id="107" type="Utf8String"          description=""/>
+        <data name="EncodedShortSecurityDesc"                   id="5383" type="Utf8String"          description=""/>
+
+<!--        <field name="BuyBackPx"                   id="5558" type="Decimal9NULL"          description=""/>
+        <field name="CouponRate"                   id="223" type="Decimal9NULL"          description=""/>
+        <field name="DividendNetPx"                   id="9982" type="Decimal2NULL"          description=""/>
+        <field name="ComplexProduct"                   id="10518" type="uInt64NULL"          description=""/>
+        <field name="NoSharesIssued"                   id="7595" type="uInt64NULL"          description=""/>
+        <field name="OrigIssueAmt"                   id="5850" type="uInt64NULL"          description=""/>
+        <field name="CouponPaymentDate"                   id="224" type="monthYearNull"          description=""/>
+        <field name="CouponStartDate"                   id="20224" type="monthYearNull"          description=""/>
+        <field name="SettleFixingDate"                   id="9119" type="monthYearNull"          description=""/>
+        <field name="BuyBackDate"                   id="5559" type="monthYearNull"          description=""/>
+        <field name="PriceType"                   id="423" type="uInt8"          description=""/>
+        <field name="OrderNote"                   id="9680" type="uInt8NULL"          description=""/>
+        <field name="SecurityID"                   id="48"    type="String12"          description="ISIN"/>
+        <field name="SecurityIDSource"                   id="22"    type="SecurityIDSource"          description=""/>
+        <field name="Flags"                   id="20008" type="SecurityFlagsSet"          description=""/>
+        <field name="MaturityDate"                   id="541" type="monthYearNull"          description=""/>
+        <data name="StateSecurityID"                   id="5217" type="Utf8String"          description=""/>
+        <data name="QuoteText"                   id="9696" type="Utf8String"          description=""/>-->
+    </sbe:message>
+    
+    <!-- ASTS Markets - Security Status message -->
+    <sbe:message name="SecurityStatus" id="9" description="Security Status" semanticType="f">
+        <field name="TradingSessionID"         id="336"   type="SecuritySessionStatus"    description="Trading Session status"/>
+        <field name="TradingSessionSubID"      id="625"   type="SecuritySessionStatus"    description="Optional market assigned sub identifier for a trading phase within a trading session"/>
+        <field name="Board"                    id="20336"  type="BoardID"            description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                   id="55"    type="SecurityID"          description="Instrument ID SECODE(12)"/>
+        <field name="LowLimitPx"                   id="1148" type="Decimal9NULL"          description=""/>
+        <field name="HighLimitPx"                   id="1149" type="Decimal9NULL"          description=""/>
+        <field name="SecStatus"               id="20326"  type="Char"          description=""/>
+    </sbe:message>
+    
+    <!-- ASTS Markets - Trading session status -->
+    <sbe:message name="TradingSessionStatus" id="11" description="TradingSessionStatus" semanticType="h">
+        <field name="MarketID"                      id="1301"  type="MarketID"          description="Market ID"/>
+        <field name="MarketSegmentID"               id="1300"  type="Char"          description="Identifies the market segment"/>
+        <field name="TradSesStatus"                 id="340"  type="TradSesStatus"     description="State of the trading session"/>
+    </sbe:message>
+    
+    <!-- ASTS Markets - Trade message -->
+    <sbe:message name="Trade" id="16" description="Trade capture report" semanticType="AE">
+        <field name="LastPx"                   id="31"    type="Decimal9NULL"       description="Matched trade price"/>
+        <field name="LastQty"                  id="32"    type="Int64NULL"          description="Trade volume"/>
+        <field name="TradeID"                  id="1003"  type="uInt64NULL"         description="Trade ID"/>
+        <field name="MDFlags"                  id="20017" type="MDFlagSet"          description="Order or Trade type"/>
+        <field name="RptSeq"                   id="83"    type="uInt32NULL"         description="Market Data entry sequence number per instrument update"/>
+        <field name="MDUpdateAction"           id="279"   type="MDUpdateAction"     description="Market Data update action"/>
+        <field name="Board"                    id="20336"  type="BoardID"             description="Board ID SECBOARD(4)"/>
+        <field name="Symbol"                   id="55"    type="SecurityID"           description="Instrument ID SECODE(12)"/>
+    </sbe:message>
+    
+    <!-- TCP Recovery - Logon -->
+    <sbe:message name="Logon" id="1000" semanticType="A">
+        <field name="Username" id="553" type="String12"                                 description="UserID or UserName."/>
+    </sbe:message>
+    <!-- TCP Recovery - Logout -->
+    <sbe:message name="Logout" id="1001" semanticType="5">
+        <field name="Text" id="58" type="String256"                                     description="Free format text string. May include logout confirmation or reason for logout"/>
+    </sbe:message>
+ 
+    <!-- TCP Recovery - Request market data retransmission -->
+    <sbe:message name="MarketDataRequest" id="1002" semanticType="V">
+        <field name="ApplBegSeqNum"                id="1182"  type="uInt32"             description="Sequence number of the first requested message"/>
+        <field name="ApplEndSeqNum"                id="1183"  type="uInt32"             description="Sequence number of the last requested message"/>
+    </sbe:message>
+    
+    <!-- Dummy Message to generate cpp code of headers by simple-binary-encoding -->
+    <sbe:message name="MarketDataDummyMessage" id="1003">
+        <field name="MarketDataPacketHeader"       id="22001"  type="MarketDataPacketHeader"/>
+        <field name="IncrementalPacketHeader"      id="22002"  type="IncrementalPacketHeader"/>
+    </sbe:message>
+
+</sbe:messageSchema>

@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [Optiq](Optiq/) | 5 |
+| [Optiq](Optiq/) | 7 |
 
 ## Specifications
 

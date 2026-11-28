@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [Asts](Asts/) | 1 |
+| [Asts](Asts/) | 5 |
 | [Spectra](Spectra/) | 9 |
 
 ## Specifications

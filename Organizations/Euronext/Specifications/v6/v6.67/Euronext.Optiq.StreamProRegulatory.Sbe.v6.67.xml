@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" xmlns:enx="http://www.euronext.com/dd" xmlns:str="http://exslt.org/strings" xmlns:ext="http://exslt.org/common" package="com.euronext.optiq.dd" id="0" version="367" semanticVersion="266.0.11" description="Euronext Stream Pro Regulatory" byteOrder="littleEndian">
+  <types>
+    <type name="unsigned_char" primitiveType="uint8" nullValue="255" presence="optional" minValue="0" maxValue="254"/>
+    <type name="int8_t" primitiveType="int8" nullValue="-128" presence="optional" minValue="-127" maxValue="127"/>
+    <type name="uint16_t" primitiveType="uint16" nullValue="65535" presence="optional" minValue="0" maxValue="65534"/>
+    <type name="uint32_t" primitiveType="uint32" nullValue="4294967295" presence="optional" minValue="0" maxValue="4294967294"/>
+    <type name="uint64_t" primitiveType="uint64" nullValue="18446744073709551615" presence="optional" minValue="0" maxValue="18446744073709551614"/>
+    <type name="int32_t" primitiveType="int32" nullValue="-2147483648" presence="optional" minValue="-2147483647" maxValue="2147483647"/>
+    <type name="int64_t" primitiveType="int64" nullValue="-9223372036854775808" presence="optional" minValue="-9223372036854775807" maxValue="9223372036854775807"/>
+    <type name="time_t" primitiveType="uint64" nullValue="0" presence="optional"/>
+    <!-- Auto generated list of character types -->
+    <type name="char1" length="1" primitiveType="char"/>
+    <type name="char2" length="2" primitiveType="char"/>
+    <type name="char3" length="3" primitiveType="char"/>
+    <type name="char4" length="4" primitiveType="char"/>
+    <type name="char5" length="5" primitiveType="char"/>
+    <type name="char6" length="6" primitiveType="char"/>
+    <type name="char7" length="7" primitiveType="char"/>
+    <type name="char8" length="8" primitiveType="char"/>
+    <type name="char10" length="10" primitiveType="char"/>
+    <type name="char11" length="11" primitiveType="char"/>
+    <type name="char12" length="12" primitiveType="char"/>
+    <type name="char13" length="13" primitiveType="char"/>
+    <type name="char15" length="15" primitiveType="char"/>
+    <type name="char16" length="16" primitiveType="char"/>
+    <type name="char18" length="18" primitiveType="char"/>
+    <type name="char19" length="19" primitiveType="char"/>
+    <type name="char20" length="20" primitiveType="char"/>
+    <type name="char22" length="22" primitiveType="char"/>
+    <type name="char24" length="24" primitiveType="char"/>
+    <type name="char25" length="25" primitiveType="char"/>
+    <type name="char27" length="27" primitiveType="char"/>
+    <type name="char28" length="28" primitiveType="char"/>
+    <type name="char30" length="30" primitiveType="char"/>
+    <type name="char32" length="32" primitiveType="char"/>
+    <type name="char40" length="40" primitiveType="char"/>
+    <type name="char50" length="50" primitiveType="char"/>
+    <type name="char52" length="52" primitiveType="char"/>
+    <type name="char60" length="60" primitiveType="char"/>
+    <type name="char64" length="64" primitiveType="char"/>
+    <type name="char66" length="66" primitiveType="char"/>
+    <type name="char70" length="70" primitiveType="char"/>
+    <type name="char80" length="80" primitiveType="char"/>
+    <type name="char100" length="100" primitiveType="char"/>
+    <type name="char102" length="102" primitiveType="char"/>
+    <type name="char150" length="150" primitiveType="char"/>
+    <type name="char200" length="200" primitiveType="char"/>
+    <type name="char250" length="250" primitiveType="char"/>
+    <type name="char255" length="255" primitiveType="char"/>
+    <type name="char1000" length="1000" primitiveType="char"/>
+    <type name="char65535" length="65535" primitiveType="char"/>
+    <composite name="messageHeader" description="Message identifiers and length of message root">
+      <type name="blockLength" primitiveType="uint16"/>
+      <type name="templateId" primitiveType="uint16"/>
+      <type name="schemaId" primitiveType="uint16"/>
+      <type name="version" primitiveType="uint16"/>
+    </composite>
+    <composite name="groupSizeEncoding" description="Repeating group dimensions">
+      <type name="blockLength" primitiveType="uint8"/>
+      <type name="numInGroup" primitiveType="uint8" semanticType="NumInGroup"/>
+    </composite>
+    <composite name="groupSizeEncoding16" description="Repeating group dimensions">
+      <type name="blockLength" primitiveType="uint16"/>
+      <type name="numInGroup" primitiveType="uint8" semanticType="NumInGroup"/>
+    </composite>
+    <composite name="varDataEncoding">
+      <type name="length" primitiveType="uint8" semanticType="Length"/>
+      <type name="varData" primitiveType="uint8" length="0" semanticType="data"/>
+    </composite>
+    <composite name="varDataEncoding16">
+      <type name="length" primitiveType="uint16" semanticType="Length"/>
+      <type name="varData" primitiveType="uint8" length="0" semanticType="data"/>
+    </composite>
+    <enum name="OptiqSegment_enum" encodingType="uint8">
+      <validValue name="Equities">1</validValue>
+      <validValue name="Funds">2</validValue>
+      <validValue name="Fixed_Income">3</validValue>
+      <validValue name="Warrants_and_Certificates">4</validValue>
+      <validValue name="Bourse_de_Luxembourg">5</validValue>
+      <validValue name="Options" deprecated="200">6</validValue>
+      <validValue name="Futures" deprecated="200">7</validValue>
+      <validValue name="Commodities">8</validValue>
+      <validValue name="Indices">9</validValue>
+      <validValue name="Trade_Reporting_and_Publication">10</validValue>
+      <validValue name="Block" sinceVersion="110">14</validValue>
+      <validValue name="Index_Derivatives" sinceVersion="200">11</validValue>
+      <validValue name="Equity_Derivatives" sinceVersion="200">12</validValue>
+      <validValue name="Financial_Derivatives" sinceVersion="200">13</validValue>
+      <validValue name="Forex" sinceVersion="117">15</validValue>
+      <validValue name="IBF" sinceVersion="300">16</validValue>
+      <validValue name="Scottish_Stock_Exchange" sinceVersion="117">25</validValue>
+      <validValue name="Cross_Segment_Derivatives" sinceVersion="358">98</validValue>
+      <validValue name="Cross_Segment_Cash" sinceVersion="358">99</validValue>
+    </enum>
+    <enum name="ChannelType2_enum" encodingType="uint8">
+      <validValue name="Full_Order_Book_Order_Update_message">1</validValue>
+      <validValue name="Full_Order_Book_Market_Update_message">2</validValue>
+      <validValue name="Indices_and_referential_channel">3</validValue>
+      <validValue name="Trades_and_referential_channel">4</validValue>
+      <validValue name="Best_Bid_and_Best_Offer_channel">5</validValue>
+      <validValue name="APA_SI_Quotes_channel">6</validValue>
+      <validValue name="APA_Trade_Publication_channel">7</validValue>
+      <validValue name="Synapse_Trades_channel">8</validValue>
+      <validValue name="Block_channel">9</validValue>
+    </enum>
+    <enum name="EmitterType_enum" encodingType="uint8">
+      <validValue name="Real_Time">1</validValue>
+      <validValue name="Snapshot">2</validValue>
+    </enum>
+    <enum name="Environment_enum" encodingType="uint8">
+      <validValue name="PROD">1</validValue>
+      <validValue name="vEUA">2</validValue>
+      <validValue name="pEUA" sinceVersion="361">3</validValue>
+      <validValue name="QAINT" sinceVersion="361">4</validValue>
+    </enum>
+    <enum name="MDGSetOfChannelsID_enum" encodingType="uint8">
+      <validValue name="Funds">1</validValue>
+      <validValue name="FixedIncome">2</validValue>
+      <validValue name="BourseDeLuxembourg">3</validValue>
+      <validValue name="WarrantsandCertificates">4</validValue>
+      <validValue name="EquitiesFrance">5</validValue>
+      <validValue name="EquitiesNetherlands">6</validValue>
+      <validValue name="EquitiesBelgium">7</validValue>
+      <validValue name="EquitiesPortugal">8</validValue>
+      <validValue name="EquitiesDublin">9</validValue>
+      <validValue name="EquitiesNorway">10</validValue>
+      <validValue name="BestofBook">11</validValue>
+      <validValue name="FixedIncomeNordicABM">12</validValue>
+      <validValue name="EuronextIndices">13</validValue>
+      <validValue name="EuronextiNAVs">14</validValue>
+      <validValue name="EuronextDublinIndices">15</validValue>
+      <validValue name="CommodityDerivatives">16</validValue>
+      <validValue name="CurrencyDerivatives">17</validValue>
+      <validValue name="EquitiesItaly" sinceVersion="316">18</validValue>
+      <validValue name="EquitiesTAH" sinceVersion="316">19</validValue>
+      <validValue name="EquityDerivativesFrance">20</validValue>
+      <validValue name="EquityDerivativesNetherlands">21</validValue>
+      <validValue name="EquityDerivativesOther">22</validValue>
+      <validValue name="IndexOptionsFrance">23</validValue>
+      <validValue name="IndexOptionsNetherlands">24</validValue>
+      <validValue name="IndexDerivativesOther">25</validValue>
+      <validValue name="IndexFuturesFrance">26</validValue>
+      <validValue name="IndexFuturesNetherlands">27</validValue>
+      <validValue name="IndexFuturesItaly" sinceVersion="327">28</validValue>
+      <validValue name="APASIQuotes">29</validValue>
+      <validValue name="APATradePublication">30</validValue>
+      <validValue name="BestOfBookFunds">31</validValue>
+      <validValue name="ETFAccess">32</validValue>
+      <validValue name="Block">33</validValue>
+      <validValue name="Forex" sinceVersion="307">34</validValue>
+      <validValue name="IrishBondsandFunds">35</validValue>
+      <validValue name="EquityDerivativesItaly" sinceVersion="327">36</validValue>
+      <validValue name="IndexOptionsItaly" sinceVersion="327">37</validValue>
+      <validValue name="CommodityEnergies" sinceVersion="353">38</validValue>
+      <validValue name="FundsETFItaly" sinceVersion="316">39</validValue>
+      <validValue name="FixedIncomeItaly" sinceVersion="316">40</validValue>
+      <validValue name="WarrantsItaly" sinceVersion="316">41</validValue>
+      <validValue name="FixedIncomeETLX" sinceVersion="316">42</validValue>
+      <validValue name="WarrantsETLX" sinceVersion="316">43</validValue>
+      <validValue name="EquitiesETLX" sinceVersion="316">44</validValue>
+      <validValue name="EquitiesGEM" sinceVersion="316">45</validValue>
+      <validValue name="EquitiesIPOFrance" sinceVersion="361">46</validValue>
+      <validValue name="EquitiesSSE" sinceVersion="117">150</validValue>
+    </enum>
+  </types>
+  <sbe:message name="SBEHeader" id="9997">
+    <field id="1" name="blockLength" type="uint16_t"/>
+    <field id="2" name="templateID" type="uint16_t"/>
+    <field id="3" name="schemaID" type="uint16_t"/>
+    <field id="4" name="schemaVersion" type="uint16_t"/>
+  </sbe:message>
+  <sbe:message name="RTS1PreTradeTransparency" id="802" sinceVersion="361">
+    <field id="1" name="updateDateAndTime" presence="optional" type="char28"/>
+    <field id="2" name="instrumentIdentificationCode" presence="optional" type="char12"/>
+    <field id="3" name="side" presence="optional" type="char4"/>
+    <field id="4" name="marketMaker" presence="optional" type="char20"/>
+    <field id="5" name="price" presence="optional" type="char20"/>
+    <field id="6" name="priceCurrency" presence="optional" type="char3"/>
+    <field id="7" name="priceNotation" presence="optional" type="char4"/>
+    <field id="8" name="quantity" presence="optional" type="char20"/>
+    <field id="9" name="quantityCurrency" presence="optional" type="char3"/>
+    <field id="10" name="aggregatedNumberOfOrdersAndQuotes" presence="optional" type="char18"/>
+    <field id="11" name="venue" presence="optional" type="char4"/>
+    <field id="12" name="tradingSystemType" presence="optional" type="char4"/>
+    <field id="13" name="tradingPhase" presence="optional" type="char4"/>
+    <field id="14" name="publicationDateAndTime" presence="optional" type="char28"/>
+  </sbe:message>
+  <sbe:message name="RTS1PostTradeTransparency" id="803" sinceVersion="361">
+    <field id="1" name="tradingDateAndTime" presence="optional" type="char28"/>
+    <field id="2" name="instrumentIdentificationCode" presence="optional" type="char12"/>
+    <field id="3" name="price" presence="optional" type="char20"/>
+    <field id="4" name="missingPrice" presence="optional" type="char4"/>
+    <field id="5" name="priceCurrency" presence="optional" type="char3"/>
+    <field id="6" name="priceNotation" presence="optional" type="char4"/>
+    <field id="7" name="quantity" presence="optional" type="char20"/>
+    <field id="8" name="venueOfExecution" presence="optional" type="char4"/>
+    <field id="9" name="thirdCountryTradingVenueExecution" presence="optional" type="char4"/>
+    <field id="10" name="tradingSystemType" presence="optional" type="char4"/>
+    <field id="11" name="publicationDateAndTime" presence="optional" type="char28"/>
+    <field id="12" name="venueOfPublication" presence="optional" type="char4"/>
+    <field id="13" name="transactionIdentificationCode" presence="optional" type="char52"/>
+    <field id="14" name="flags" presence="optional" type="char100"/>
+  </sbe:message>
+  <sbe:message name="RTS2PostTradeTransparency" id="804" sinceVersion="361">
+    <field id="1" name="tradingDateAndTime" presence="optional" type="char28"/>
+    <field id="2" name="instrumentIdentificationCode" presence="optional" type="char12"/>
+    <field id="3" name="price" presence="optional" type="char20"/>
+    <field id="4" name="missingPrice" presence="optional" type="char4"/>
+    <field id="5" name="priceCurrency" presence="optional" type="char3"/>
+    <field id="6" name="priceNotation" presence="optional" type="char4"/>
+    <field id="7" name="quantity" presence="optional" type="char20"/>
+    <field id="8" name="quantityInMeasurementUnit" presence="optional" type="char20"/>
+    <field id="9" name="notationOfTheQuantityInMeasurementUnit" presence="optional" type="char4"/>
+    <field id="10" name="notionalAmount" presence="optional" type="char20"/>
+    <field id="11" name="notionalCurrency" presence="optional" type="char3"/>
+    <field id="12" name="venueOfExecution" presence="optional" type="char4"/>
+    <field id="13" name="thirdCountryTradingVenueExecution" presence="optional" type="char4"/>
+    <field id="14" name="publicationDateAndTime" presence="optional" type="char28"/>
+    <field id="15" name="venueOfPublication" presence="optional" type="char4"/>
+    <field id="16" name="transactionIdentificationCode" presence="optional" type="char52"/>
+    <field id="17" name="transactionToBeCleared" presence="optional" type="char5"/>
+    <field id="18" name="flags" presence="optional" type="char100"/>
+    <field id="19" name="tradingSystem" presence="optional" type="char4"/>
+    <field id="20" name="numberOfTransactions" presence="optional" type="char20"/>
+  </sbe:message>
+  <sbe:message name="ChannelsConfiguration" id="805" sinceVersion="361">
+    <field id="1" name="messageName" type="char255"/>
+    <field id="2" name="sessionTradingDay" type="uint16_t"/>
+    <field id="3" name="kafkaTopicName" type="char20"/>
+    <field id="4" name="kafkaTopicContentLabel" type="char255"/>
+    <field id="5" name="dataSetFamily" type="char255"/>
+    <field id="6" name="environment" presence="optional" type="Environment_enum"/>
+    <field id="7" name="partitionNumber" presence="optional" type="unsigned_char"/>
+    <field id="8" name="optiqSegment" presence="optional" type="OptiqSegment_enum"/>
+    <field id="9" name="subsegment" presence="optional" type="MDGSetOfChannelsID_enum"/>
+    <field id="10" name="channelType" presence="optional" type="ChannelType2_enum"/>
+    <field id="11" name="emitterType" presence="optional" type="EmitterType_enum"/>
+  </sbe:message>
+</sbe:messageSchema>

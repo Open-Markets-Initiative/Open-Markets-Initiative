@@ -3,7 +3,7 @@
 
 | Division | Protocols |
 | --- | --- |
-| [BoxOptions](BoxOptions/) | 4 |
+| [BoxOptions](BoxOptions/) | 6 |
 
 ## Specifications
 

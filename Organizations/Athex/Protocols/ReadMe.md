@@ -5,7 +5,7 @@
 | --- | --- |
 | [AthexDerivatives](AthexDerivatives/) | 2 |
 | [AthexSecurities](AthexSecurities/) | 2 |
-| [Oasis](Oasis/) | 1 |
+| [Oasis](Oasis/) | 2 |
 
 ## Specifications
 

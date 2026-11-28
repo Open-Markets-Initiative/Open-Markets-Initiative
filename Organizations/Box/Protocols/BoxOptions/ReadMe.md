@@ -9,6 +9,8 @@ BOX Options Exchange is the US equity options exchange operated by BOX Options M
 
 | Protocol | Type | Note |
 | --- | --- | --- |
+| [BinaryMulticast](BinaryMulticast.md) | MarketData | Box Options Binary Multicast Market Data |
+| [BinaryRetransmission](BinaryRetransmission.md) | MarketData | Box Options Binary Market Data Retransmission |
 | [Hsvf](Hsvf.md) | MarketData | Box Options Sola Multicast Market Data |
 | [OrderEntry](OrderEntry.md) | OrderEntry | Box Options Exchange FIX Specifications Guide |
 | [SolaOrderEntry](SolaOrderEntry.md) | OrderEntry | Box Options Exchange Sail Specifications Guide |

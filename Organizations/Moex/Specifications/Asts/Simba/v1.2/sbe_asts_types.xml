@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+    <type name="uInt8" primitiveType="uint8"/>
+    <type name="uInt8NULL" presence="optional" nullValue="255" primitiveType="uint8"/>
+    <type name="uInt16" primitiveType="uint16"/>
+    <type name="uInt16NULL" presence="optional" nullValue="65535" primitiveType="uint16"/>
+    <type name="uInt32" primitiveType="uint32"/>
+    <type name="uInt32NULL" presence="optional" nullValue="4294967295" primitiveType="uint32"/>
+    <type name="uInt64" primitiveType="uint64"/>
+    <type name="uInt64NULL" presence="optional" nullValue="18446744073709551615" primitiveType="uint64"/>
+    <type name="Int32" primitiveType="int32"/>
+    <type name="Int32NULL" presence="optional" nullValue="2147483647" primitiveType="int32"/>
+    <type name="Int64" primitiveType="int64"/>
+    <type name="Int64NULL" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+    <type name="UTCTimestamp" presence="optional" nullValue="18446744073709551615" primitiveType="uint64" description="UTC timestamp with nanoseconds precision" />
+    <type name="UTCTimeOnly" presence="optional" nullValue="18446744073709551615" primitiveType="uint64" description="Time of day with nanoseconds precision" />
+    <type name="Char" primitiveType="char"/>
+    <type name="String4" length="4" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String5" length="5" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String6" length="6" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String8" length="8" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String12" length="12" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String20" length="20" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="String256"  length="256" primitiveType="char" presence="optional" nullValue=" "/>
+    <type name="BoardID"    length="4" primitiveType="char" presence="optional" nullValue=" " description="Board ID value in trading system SECBOARD(4)"/>
+    <type name="SecurityID" length="12" primitiveType="char" presence="optional" nullValue=" " description="Instrument ID value in trading system SECODE(12)"/>
+    <type name="ExchangeTradingSessionID"  primitiveType="uint32" presence="optional" nullValue="4294967295" description="Trading session ID"/>
+    <type name="MarketID"  length="4" primitiveType="char" presence="constant">MOEX</type>
+    <type name="SecurityIDSource" presence="constant" length="1" primitiveType="char">4</type>
+    <composite  name="monthYearNull">
+        <type name="year"  primitiveType="uint16" presence="optional" nullValue="65535" />
+        <type name="month" primitiveType="uint8"  minValue="1" maxValue="12"  presence="optional"  nullValue="255"/>
+        <type name="day"   primitiveType="uint8"  minValue="1" maxValue="31" presence="optional" nullValue="255" />
+    </composite>
+
+    <composite name="messageHeader" description="Template ID and length of message root">
+        <type name="blockLength"    primitiveType="uint16" />
+        <type name="templateId"     primitiveType="uint16" />
+        <type name="schemaId"       primitiveType="uint16" />
+        <type name="version"        primitiveType="uint16" />
+    </composite>
+
+    <composite name="groupSize" description="Repeating group dimensions" semanticType="NumInGroup">
+        <type name="blockLength" primitiveType="uint16"/>
+        <type name="numInGroup" primitiveType="uint8"/>
+    </composite>
+
+    <composite name="Utf8String" description="Variable-length utf-8 string">
+        <type name="length" primitiveType="uint16" semanticType="Length"/>
+        <type name="varData" length="0" primitiveType="uint8" semanticType="data" characterEncoding="UTF-8"/>
+    </composite>
+
+    <composite name="VarString" description="Variable-length string">
+        <type name="length" primitiveType="uint16" semanticType="Length"/>
+        <type name="varData" length="0" primitiveType="uint8" semanticType="data"/>
+    </composite>
+    
+    <composite name="Decimal2NULL" description="Price type" semanticType="Price">
+        <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+        <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-2</type>
+    </composite>
+    
+    <composite name="Decimal9NULL" description="Price type" semanticType="Price">
+        <type name="mantissa" description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"/>
+        <type name="exponent" description="exponent" presence="constant" primitiveType="int8">-9</type>
+    </composite>
+    <type name="ComplianceID" length="1" primitiveType="char" presence="optional" nullValue=" "/>
+</types>

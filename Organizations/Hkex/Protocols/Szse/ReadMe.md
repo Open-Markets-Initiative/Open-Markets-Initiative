@@ -13,7 +13,3 @@ Shenzhen Stock Exchange (SZSE). Market data for SZSE-listed A-Share securities e
 | [ChinaConnectRefresh](ChinaConnectRefresh.md) | MarketData | Orion Market Data China Connect Refresh |
 | [ChinaConnectRetrans](ChinaConnectRetrans.md) | MarketData | Orion Market Data China Connect Retransmission |
 
-## Specifications
-
-Protocol documentation is available in the [Specifications](../../Specifications) directory.
-
